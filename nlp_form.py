@@ -15,7 +15,11 @@ def read_attributes(input,attribute_name):
 	for line in input.split('\n'):
 		if attribute_name + '="' in line:
 			m = re.search(attribute_name+r'="([^"]*)"',line)
-			attribute_value = m.group(1)
+			if m is None:
+				print "ERR: cant find " + attribute_name + " in line: " + line
+				attribute_value = ""
+			else:
+				attribute_value = m.group(1)
 			if len(attribute_value)==0:
 				attribute_value = "_warn:empty_"+attribute_name+"_"
 			out_stream += attribute_value +"\n"
@@ -107,7 +111,7 @@ def extract_conll(conll_string):
 	return ids, funcs, parents
 
 
-def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True, do_lemma=True, do_lang=True, do_milestone=True, do_parse=True):
+def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True, do_lemma=True, do_lang=True, do_milestone=True, do_parse=True, sgml_mode="sgml", tok_mode="auto", secure=False):
 
 	from paths import tt_path, conllize_path, tokenizer_path, parser_path, norm_path, lang_path, milestone_path, depedit_path
 	
@@ -116,16 +120,31 @@ def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True
 	data=data.replace("\t","")
 	data=data.replace("\r","")
 
-	if len(data) > 20000:
+	if len(data) > 20000 and not secure:
 		return "Input was too long; demo version limited to 10000 characters"
 	else:
 		if do_milestone:
 			milestone = ['perl',milestone_path+'binarize_tags.pl','tempfilename']
 			data = exec_via_temp(data,milestone)
-		if lb == "line":
-			tokenize = ['perl',tokenizer_path+'tokenize_coptic.pl','-l','-d',tokenizer_path+'copt_lex.tab','-s',tokenizer_path+'segmentation_table.tab','-m',tokenizer_path+'morph_table.tab','tempfilename']
+		if sgml_mode == "sgml":
+			tokenize = ['perl',tokenizer_path+'tokenize_coptic.pl']
+			if lb == "line":
+				tokenize.append('-l')
+			if tok_mode == "from_pipes":
+				tokenize.append('-t')
+			tokenize += ['-d',tokenizer_path+'copt_lex.tab','-s',tokenizer_path+'segmentation_table.tab','-m',tokenizer_path+'morph_table.tab','tempfilename']
 		else:
-			tokenize = ['perl',tokenizer_path+'tokenize_coptic.pl','-d',tokenizer_path+'copt_lex.tab','-s',tokenizer_path+'segmentation_table.tab','-m',tokenizer_path+'morph_table.tab','tempfilename']
+			if lb == "line":
+				tokenize = ['perl',tokenizer_path+'tokenize_coptic.pl','-n','-p','-l','-d',tokenizer_path+'copt_lex.tab','-s',tokenizer_path+'segmentation_table.tab','-m',tokenizer_path+'morph_table.tab','tempfilename']
+			else:
+				tokenize = ['perl',tokenizer_path+'tokenize_coptic.pl','-n','-p','-d',tokenizer_path+'copt_lex.tab','-s',tokenizer_path+'segmentation_table.tab','-m',tokenizer_path+'morph_table.tab','tempfilename']
+			tokenized = exec_via_temp(data,tokenize)
+			tokenized = tokenized.replace('\r','').strip()
+			tokenized = re.sub(r'_$','',tokenized)
+			if lb != "line":
+				tokenized = tokenized.replace("\n","")
+			return tokenized
+
 		if do_tok:
 			tokenized = exec_via_temp(data,tokenize)
 		else:
@@ -233,6 +252,8 @@ def make_nlp_form(access_level, mode):
 ⲓⲡⲁⲅⲅⲉⲗⲟⲥ ⲙ̄ⲙ︤ⲛ︦ⲧ︥ϣⲃⲏⲣ"""
 		processed=""
 		lb = "noline"
+		sgml_mode = "sgml"
+		tok_mode = "auto"
 		do_lemma = True
 		do_tag = True
 		do_parse = True
@@ -245,6 +266,8 @@ def make_nlp_form(access_level, mode):
 			data = re.sub(r'\r','',data)
 			data = data.strip()
 			lb = form.getvalue("lb")
+			sgml_mode = form.getvalue("sgml_mode")
+			tok_mode = form.getvalue("tok_mode")
 			do_milestone = form.getvalue("milestone") is not None
 			do_lemma = form.getvalue("lemma") is not None
 			do_tag = form.getvalue("tag") is not None
@@ -252,9 +275,8 @@ def make_nlp_form(access_level, mode):
 			do_norm = form.getvalue("norm") is not None
 			do_tok = form.getvalue("tok") is not None
 			do_lang = form.getvalue("lang") is not None
-			processed = nlp_coptic(data,lb,False,do_tok,do_norm,do_tag,do_lemma,do_lang,do_milestone,do_parse)
+			processed = nlp_coptic(data,lb,False,do_tok,do_norm,do_tag,do_lemma,do_lang,do_milestone,do_parse,sgml_mode,tok_mode,access_level=="secure")
 			processed = processed.strip()
-		#processed = nlp_coptic(data,lb, False, do_norm, do_tag, do_lemma, do_lang, do_milestone) ###
 		data = re.sub(r'\r','',data)
 
 		output += '''<html>
@@ -269,34 +291,47 @@ def make_nlp_form(access_level, mode):
 				</head>
 				<body>
 					<div id="header">
-						<div id="copticlogo"><a href="http://copticscriptorium.org/"><img id="img1" src="https://corpling.uis.georgetown.edu/coptic-nlp/img/copticlogo.png" width="210" height="101" alt="Coptic SCRIPTORIUM"/></a></div>
-						<div id="unicorn"><a href="http://copticscriptorium.org/"><img id="img2" src="https://corpling.uis.georgetown.edu/coptic-nlp/img/unicorn.png" width="80" height="101" alt="Unicorn"/></a></div>
-						<div id="englishlogo"><a href="http://copticscriptorium.org/"><img id="img3" src="https://corpling.uis.georgetown.edu/coptic-nlp/img/englishlogo.png" width="199" height="101" alt="Coptic SCRIPTORIUM"/></a></div><img id="img4" src="img/ruleline.png" width="800px" height="14" alt=""/>
+						<div id="copticlogo">
+							<a href="http://copticscriptorium.org/">
+								<img id="img1" src="https://corpling.uis.georgetown.edu/coptic-nlp/img/copticlogo.png" width="210" height="101" alt="Coptic SCRIPTORIUM"/>
+							</a>
+						</div>
+						<div id="unicorn">
+							<a href="http://copticscriptorium.org/">
+								<img id="img2" src="https://corpling.uis.georgetown.edu/coptic-nlp/img/unicorn.png" width="80" height="101" alt="Unicorn"/>
+							</a>
+						</div>
+						<div id="englishlogo">
+							<a href="http://copticscriptorium.org/">
+								<img id="img3" src="https://corpling.uis.georgetown.edu/coptic-nlp/img/englishlogo.png" width="199" height="101" alt="Coptic SCRIPTORIUM"/>
+							</a>
+						</div>
+						<img id="img4" src="img/ruleline.png" width="800px" height="14" alt=""/>
 						</br>
 						</br>
 					</div>
 				<form id="nlp_form" class="nlp_form" method="post" action="/coptic-nlp/''' + action_dest + '''" onsubmit="isValidForm()">
-				<h2>Coptic NLP Service</h2>
+			<h2>Coptic NLP Service</h2>
 				'''+access_message+'''
-				<div>
-				<h3>Tool settings:</h3>
-					<input type="radio" name="lb" value="line" '''
+			<div>
+			<h3>Input:</h3>
+				<input type="radio" name="lb" value="line" '''
 		if lb != "noline":
 			output+= 'checked="checked"'
 		output += '''>My data contains meaningful linebreaks
-						<a href="#" class="tooltip2">
-					<i class="fa fa-info-circle" style="display: inline-block"></i>
-    				<span>
-						<img class="callout" src="img/callout.gif" />
-						This inserts &lt;line&gt;..&lt;/line&gt; tags around each line of text.</br>
-						If you already have &lt;lb/&gt; tags or your data is already tokenized, you
-						probably want to ignore line breaks.
-						<br/>
-    				</span>
-				</a>
-
-					<br>
-					<input type="radio" name="lb" value="noline"'''
+					<a href="#" class="tooltip2">
+						<i class="fa fa-info-circle" style="display: inline-block"></i>
+    					<span>
+							<img class="callout" src="img/callout.gif" />
+							This inserts &lt;line&gt;..&lt;/line&gt; tags around each line of text.</br>
+							If you already have &lt;lb/&gt; tags or your data is already tokenized, you
+							probably want to ignore line breaks.
+							<br/>
+						</span>
+					</a>
+				</input>
+				<br/>
+				<input type="radio" name="lb" value="noline"'''
 		if lb == "noline":
 			output+= 'checked="checked"'
 		tok_checked = ' checked="checked"' if do_tok else ""
@@ -306,8 +341,17 @@ def make_nlp_form(access_level, mode):
 		parse_checked = ' checked="checked"' if do_parse else ""
 		lang_checked = ' checked="checked"' if do_lang else ""
 		milestone_checked = ' checked="checked"' if do_milestone else ""
-		output+='''>Ignore linebreaks in my data</input><br/><br/>
-				<input type="checkbox" name="milestone" value="milestone"'''+milestone_checked+'''>Stretch milestones
+
+		output+='''>Ignore linebreaks in my data</input>
+		<br/>
+		<h3>Output:</h3>
+		<table><tr><td>
+			<input type="radio" name="sgml_mode" value="sgml" onclick="disable_checkboxes(false);"'''
+		if sgml_mode == "sgml":
+			output+= ' checked="checked"'
+		output += '''>SGML pipeline</input><br/>
+			<ul>
+				<input type="checkbox" id="milestone" name="milestone" value="milestone"'''+milestone_checked+'''>Stretch milestones
 				<a href="#" class="tooltip2">
 					<i class="fa fa-info-circle" style="display: inline-block"></i>
     				<span>
@@ -318,8 +362,18 @@ def make_nlp_form(access_level, mode):
     				</span>
 				</a>
 				</input><br/>
-				<input type="checkbox" name="tok" value="tok"'''+tok_checked+'''>Tokenize</input><br/>
-				<input type="checkbox" name="norm" value="norm"'''+norm_checked+'''>Normalize
+				<input type="checkbox" id="tok" name="tok" value="tok"'''+tok_checked+'''>Tokenize</input>
+				<ul style="padding-left: 20px;">
+					<input type="radio" name="tok_mode" value="auto"'''
+		if tok_mode == "auto":
+			output+= 'checked="checked"'
+		output += '''>Automatic</input><br/>
+					<input type="radio" name="tok_mode" value="from_pipes"'''
+		if tok_mode == "from_pipes":
+			output+= 'checked="checked"'
+		output +='''>From pipes in input</input>
+				</ul>
+				<input type="checkbox" id="norm" name="norm" value="norm"'''+norm_checked+'''>Normalize
 				<a href="#" class="tooltip2">
 					<i class="fa fa-info-circle" style="display: inline-block"></i>
     				<span>
@@ -330,19 +384,31 @@ def make_nlp_form(access_level, mode):
     				</span>
 				</a>
 				</input><br/>
-				<input type="checkbox" name="tag" value="tag"'''+tag_checked+'''>Tag</input><br/>
-				<input type="checkbox" name="lemma" value="lemma"'''+lemma_checked+'''>Lemmatize</input><br/>
-				<input type="checkbox" name="lang" value="lang"'''+lang_checked+'''>Language of origin</input><br/>
-				<input type="checkbox" name="parse" value="parse"'''+parse_checked+'''>Parse</input>
-				</div>
-				<div>
-					<textarea class="anti nlp_input" id="data" name="data" type="textarea">'''
+				<input type="checkbox" id="tag" name="tag" value="tag"'''+tag_checked+'''>Tag</input><br/>
+				<input type="checkbox" id="lemma" name="lemma" value="lemma"'''+lemma_checked+'''>Lemmatize</input><br/>
+				<input type="checkbox" id="lang" name="lang" value="lang"'''+lang_checked+'''>Language of origin</input><br/>
+				<input type="checkbox" id="parse" name="parse" value="parse"'''+parse_checked+'''>Parse</input>
+			</ul>
+		</td>
+		<td style="vertical-align: top; padding-left: 20px">
+			<input type="radio" name="sgml_mode" value="pipes" onclick="disable_checkboxes(true);"'''
+		if sgml_mode != "sgml":
+			output+= ' checked="checked"'
+
+		output += '''>Just piped and dashed morphemes
+			</input>
+		</td>
+		</tr>
+		</table>
+		</div>
+		<div>
+			<textarea class="anti nlp_input" id="data" name="data" type="textarea">'''
 		output += data + '''</textarea>
-				</div>
-				<div><button type="submit">Process</button></div>
-				<div>
-					<p>SGML Result:</p>
-					<textarea class="anti nlp_input" id="result" type="textarea">'''
+			</div>
+			<div><button type="submit">Process</button></div>
+			<div>
+				<p>Result:</p>
+				<textarea class="anti nlp_input" id="result" type="textarea">'''
 		output += processed
 		output += '''</textarea></div>
 				</form>'''
@@ -375,8 +441,37 @@ def make_nlp_form(access_level, mode):
       <br>
   </div>
 
-</div>		
-		</body>
-		</html>"""
+</div>
+	<script>
+		function disable_checkboxes(val){
+			document.getElementById("milestone").disabled = val;
+			document.getElementById("tok").disabled = val;
+			document.getElementById("tag").disabled = val;
+			document.getElementById("lemma").disabled = val;
+			document.getElementById("lang").disabled = val;
+			document.getElementById("norm").disabled = val;
+			document.getElementById("parse").disabled = val;
+			radios = document.getElementsByName("tok_mode");
+			for (radio in radios){
+				radios[radio].disabled = val;
+			}
+			if (val == false){
+				document.getElementById("milestone").checked = true;
+				document.getElementById("tok").checked = true;
+				document.getElementById("tag").checked = true;
+				document.getElementById("lemma").checked = true;
+				document.getElementById("lang").checked = true;
+				document.getElementById("norm").checked = true;
+				document.getElementById("parse").checked = true;
+			}
+		}
+
+		if (document.querySelector('input[name="sgml_mode"]:checked').value == "pipes"){
+			disable_checkboxes(true);
+		}
+	</script>
+</body>
+</html>"""
+		output = output.replace("\n\t\t","\n\t")
 		return output
 
