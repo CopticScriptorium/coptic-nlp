@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+# V1.1.0
+
 import os
 import re
 import cgi
@@ -9,6 +11,20 @@ import subprocess
 import platform
 import _version
 from depedit import run_depedit
+
+
+def groupify_norms(output):
+	groups = ""
+	current_group = ""
+	for line in output.split("\n"):
+		if line.startswith("<norm "):
+			current_group += re.search(r'norm="([^"]+)"',line).group(1)
+		if line.startswith("</norm_group"):
+			groups += current_group +"\n"
+			current_group = ""
+
+	return groups
+
 
 def read_attributes(input,attribute_name):
 	out_stream =""
@@ -80,7 +96,9 @@ def inject(attribute_name, contents, at_attribute,into_stream):
 	for line in into_stream.split("\n"):
 		if at_attribute + "=" in line:
 			if len(insertions[i])>0:
-				if line.find(attribute_name+'=') < 0:
+				if at_attribute == attribute_name:  # Replace old value of attribute with new one
+					line = re.sub(attribute_name+'="[^"]+"',attribute_name+'="'+insertions[i]+'"',line)
+				else:  # Place before specifice at_attribute
 					line = re.sub(at_attribute+"=",attribute_name+'="'+insertions[i]+'" '+at_attribute+"=",line)
 			i += 1
 		injected += line + "\n"
@@ -152,6 +170,13 @@ def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True
 		tokenized = tokenized.replace('\r','')
 		output = tokenized
 		norms = read_attributes(tokenized,"norm")
+
+		if do_norm:
+			normalize = ['perl', norm_path+'auto_norm.pl','-t',norm_path+'norm_table.tab','tempfilename']
+			normalized = exec_via_temp(norms,normalize)
+			norms = re.sub('\r','',normalized)
+			output = inject("norm", norms, "norm", output)
+
 		if parse_only:
 			tag = [tt_path+'bin'+os.sep+'tree-tagger', tt_path+'bin'+os.sep+'coptic_fine9.par', '-token','-lemma','-no-unknown', '-sgml' ,'tempfilename'] #no -token
 			tagged = exec_via_temp(norms,tag)
@@ -214,10 +239,8 @@ def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True
 
 		output = re.sub(r"<norm_group norm_group=","<norm_group orig_group=",output)
 		if do_norm and len(orig_groups) > 0:
-			normalize = ['perl', norm_path+'auto_norm.pl','tempfilename']
-			normalized = exec_via_temp(orig_groups,normalize)
-			normalized = re.sub('\r','',normalized)
-			output = inject("norm_group",normalized,"orig_group",output)
+			groups = groupify_norms(output)
+			output = inject("norm_group",groups,"orig_group",output)
 
 		return output
 
@@ -243,13 +266,12 @@ def make_nlp_form(access_level, mode):
 				contact <a href="http://corpling.uis.georgetown.edu/amir/">Amir Zeldes</a>.
 				</p>'''
 
-	#mode = "interactive" ###
 	if mode == "interactive":
 		print "Content-Type: text/html\n\n\n"
-		form = cgi.FieldStorage()
 		output = ""
 		data = """ⲁ<hi rend="red">ϥ</hi>ⲥⲱⲧ︤ⲙ︥ ⲛ̄ϭ
 ⲓⲡⲁⲅⲅⲉⲗⲟⲥ ⲙ̄ⲙ︤ⲛ︦ⲧ︥ϣⲃⲏⲣ"""
+		form = cgi.FieldStorage()
 		processed=""
 		lb = "noline"
 		sgml_mode = "sgml"
@@ -310,7 +332,7 @@ def make_nlp_form(access_level, mode):
 						</br>
 						</br>
 					</div>
-				<form id="nlp_form" class="nlp_form" method="post" action="/coptic-nlp/''' + action_dest + '''" onsubmit="isValidForm()">
+				<form id="nlp_form" class="nlp_form" method="post" action="/coptic-nlp/''' + action_dest + '''">
 			<h2>Coptic NLP Service</h2>
 				'''+access_message+'''
 			<div>
@@ -405,7 +427,7 @@ def make_nlp_form(access_level, mode):
 			<textarea class="anti nlp_input" id="data" name="data" type="textarea">'''
 		output += data + '''</textarea>
 			</div>
-			<div><button type="submit">Process</button></div>
+			<div><button type="submit" onclick="isValidForm()">Process</button></div>
 			<div>
 				<p>Result:</p>
 				<textarea class="anti nlp_input" id="result" type="textarea">'''
@@ -416,17 +438,26 @@ def make_nlp_form(access_level, mode):
 
 		output += """
 		<script>
-		function isValidForm(){
-				if (document.getElementById("data").value.length > 10000){
-					alert("You entered " + document.getElementById("data").value.length + " characters. Please enter no more than 10000 characters.");
-					return false;
-				}
-				else{
+		document.getElementById('nlp_form').onsubmit = function() {
+			return false;
+		};
+		function isValidForm(){"""
+		if access_level == "secure":
+			output += """						document.getElementById("nlp_form").submit();
+						return true;
+						"""
+		else:
+			output += """
+					if (document.getElementById("data").value.length > 10000){
+						alert("You entered " + document.getElementById("data").value.length + " characters. Please enter no more than 10000 characters.");
+						return false;
+					}
+					else{
 
-					document.getElementById("nlp_form").submit();
-					return true;
-				}
-
+						document.getElementById("nlp_form").submit();
+						return true;
+					}"""
+		output += """
 		}
 		</script>
 <div id="bottomcontent">
@@ -474,4 +505,3 @@ def make_nlp_form(access_level, mode):
 </html>"""
 		output = output.replace("\n\t\t","\n\t")
 		return output
-
