@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# V1.1.0
+# V1.1.1
 
 import os
 import re
@@ -178,7 +178,7 @@ def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True
 			output = inject("norm", norms, "norm", output)
 
 		if parse_only:
-			tag = [tt_path+'bin'+os.sep+'tree-tagger', tt_path+'bin'+os.sep+'coptic_fine9.par', '-token','-lemma','-no-unknown', '-sgml' ,'tempfilename'] #no -token
+			tag = [tt_path+'bin'+os.sep+'tree-tagger', tt_path+'bin'+os.sep+'coptic_fine10.par', '-token','-lemma','-no-unknown', '-sgml' ,'tempfilename'] #no -token
 			tagged = exec_via_temp(norms,tag)
 			tagged = re.sub('\r','',tagged)
 			conllize = ['perl', conllize_path+'TT2CoNLL.pl','-t','PUNCT','tempfilename']
@@ -189,11 +189,11 @@ def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True
 			parsed = exec_via_temp(conllized,parse_coptic,parser_path)
 			return parsed
 		elif not do_parse:
-			tag = [tt_path+'bin'+os.sep+'tree-tagger', tt_path+'bin'+os.sep+'coptic_fine9.par', '-lemma','-no-unknown', '-sgml' ,'tempfilename'] #no -token
+			tag = [tt_path+'bin'+os.sep+'tree-tagger', tt_path+'bin'+os.sep+'coptic_fine10.par', '-lemma','-no-unknown', '-sgml' ,'tempfilename'] #no -token
 			tagged = exec_via_temp(norms,tag)
 			tagged = re.sub('\r','',tagged)
 		if do_parse:
-			tag = [tt_path+'bin'+os.sep+'tree-tagger', tt_path+'bin'+os.sep+'coptic_fine9.par', '-token','-lemma','-no-unknown', '-sgml' ,'tempfilename'] #no -token
+			tag = [tt_path+'bin'+os.sep+'tree-tagger', tt_path+'bin'+os.sep+'coptic_fine10.par', '-token','-lemma','-no-unknown', '-sgml' ,'tempfilename'] #no -token
 			tagged = exec_via_temp(norms,tag)
 			tagged = re.sub('\r','',tagged)
 			conllize = ['perl', conllize_path+'TT2CoNLL.pl','-t','PUNCT','tempfilename']
