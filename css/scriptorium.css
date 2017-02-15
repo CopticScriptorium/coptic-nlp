@@ -119,7 +119,7 @@ font-weight: bold;
 	z-index: 2;
 	margin-left: auto;
 	margin-right: auto;
-	padding-top: 6px;
+	padding-top: 40px;
 	padding-left: 16px;
 	padding-right: 16px;
 }
@@ -167,7 +167,7 @@ font-weight: bold;
 	padding-bottom: 6px;
 	text-align: center;
 }*/
-  
+
 /*#sponsors a {
 	text-decoration: none;
 	color: #F0D38E;
@@ -201,7 +201,7 @@ h4 {font-size: .8em;
 	margin-bottom: 0px;
 	font-variant: normal;
 	font-weight:700}
-	
+
 p, ul, ol, li, table {
 	line-height: 1.4em;
 	font-size: 16px;}
@@ -233,7 +233,7 @@ position:absolute; /* doesn't have to be absolute */
 z-index: -2;         /* places the line behind other elements */
 }
 
-}  
+}
 .line_down {
 position:absolute; /* doesn't have to be absolute */
 z-index: 1;         /* places the line behind other elements */
@@ -256,7 +256,7 @@ margin: 0px;
 	padding-top: 10px;
 	padding-bottom: 6px;
 	padding-left: 0px;
-	margin-top: -50px;
+	margin-top: 0px;
 	text-align: center; /* centers IE6/7 */
 	position: fixed;
 	background-color: #361B01;

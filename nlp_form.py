@@ -1,13 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# V1.1.1
+# V1.1.2
 
 import os
 import re
 import cgi
 import tempfile
 import subprocess
+import requests
 import platform
 import _version
 from depedit import run_depedit
@@ -245,6 +246,12 @@ def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True
 		return output
 
 
+def get_menu():
+	cs = "http://copticscriptorium.org/nav.html"
+	resp = requests.get(cs)
+	return resp.text
+
+
 def make_nlp_form(access_level, mode):
 	if platform.system() == 'Linux':
 		action_dest = ''
@@ -310,8 +317,12 @@ def make_nlp_form(access_level, mode):
 					<meta name="viewport" content="width=800">
 					<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 					<link rel="icon" href="favicon.ico" type="image/x-icon">
+					<script>var __adobewebfontsappname__="dreamweaver"</script>
+					<link rel="stylesheet" href="https://use.edgefonts.net/c/dbcb1c/1w;asul,2,WXx:W:n4/l" media="all">
+					<script src="http://use.edgefonts.net/asul:n4:default.js" type="text/javascript"></script>
 				</head>
 				<body>
+					**navbar**
 					<div id="header">
 						<div id="copticlogo">
 							<a href="http://copticscriptorium.org/">
@@ -503,5 +514,8 @@ def make_nlp_form(access_level, mode):
 	</script>
 </body>
 </html>"""
+		menu = get_menu()
+		menu = menu.encode("utf8")
+		output = output.replace("**navbar**",menu)
 		output = output.replace("\n\t\t","\n\t")
 		return output
