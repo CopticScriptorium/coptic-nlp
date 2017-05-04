@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# V1.1.2
+# V1.2.0
 
 import os
 import re
@@ -90,7 +90,19 @@ def merge_via_temp(input1,input2,command_params,workdir=""):
 		return output
 
 
-def inject(attribute_name, contents, at_attribute,into_stream):
+def get_origs(data):
+	origs = []
+	current = ""
+	for line in data.split("\n"):
+		if "</norm>" in line:
+			origs.append(current)
+			current = ""
+		if not line.startswith("<"):  # Token line
+			current += line
+
+	return "\n".join(origs)
+
+def inject(attribute_name, contents, at_attribute,into_stream,replace=True):
 	insertions = contents.split('\n')
 	injected = ""
 	i=0
@@ -99,8 +111,9 @@ def inject(attribute_name, contents, at_attribute,into_stream):
 			if len(insertions[i])>0:
 				if at_attribute == attribute_name:  # Replace old value of attribute with new one
 					line = re.sub(attribute_name+'="[^"]+"',attribute_name+'="'+insertions[i]+'"',line)
-				else:  # Place before specifice at_attribute
-					line = re.sub(at_attribute+"=",attribute_name+'="'+insertions[i]+'" '+at_attribute+"=",line)
+				else:  # Place before specific at_attribute
+					if replace or " " + attribute_name + "=" not in line:
+						line = re.sub(at_attribute+"=",attribute_name+'="'+insertions[i]+'" '+at_attribute+"=",line)
 			i += 1
 		injected += line + "\n"
 	return injected
@@ -217,6 +230,7 @@ def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True
 		langed = re.sub('\r','',langed)
 		langed = re.sub(r'\t','',langed)
 
+
 		if do_parse:
 			output = inject("xml:id",ids,"norm",output)
 		if do_tag:
@@ -242,6 +256,10 @@ def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True
 		if do_norm and len(orig_groups) > 0:
 			groups = groupify_norms(output)
 			output = inject("norm_group",groups,"orig_group",output)
+
+			# Add orig from tokens based on norm spans
+			origs = get_origs(output)
+			output = inject("orig",origs,"norm",output)
 
 		return output
 
@@ -274,7 +292,6 @@ def make_nlp_form(access_level, mode):
 				</p>'''
 
 	if mode == "interactive":
-		print "Content-Type: text/html\n\n\n"
 		output = ""
 		data = """ⲁ<hi rend="red">ϥ</hi>ⲥⲱⲧ︤ⲙ︥ ⲛ̄ϭ
 ⲓⲡⲁⲅⲅⲉⲗⲟⲥ ⲙ̄ⲙ︤ⲛ︦ⲧ︥ϣⲃⲏⲣ"""
