@@ -22,13 +22,21 @@ if "format" in storage:
 else:
 	format = "xml"
 
-if format != "xml" and format != "conll":
+if format != "xml" and format != "conll" and format != "pipes" and format != "sgml_no_parse":
 	format = "sgml"
 
-if format != "conll":
+if format == "pipes":
+	print "Content-Type: text/plain; charset=UTF-8\n"
+	processed = nlp_coptic(data,line,sgml_mode="pipes")
+	print processed.strip()
+elif format == "sgml_no_parse":
+	print "Content-Type: text/sgml; charset=UTF-8\n"
+	# secure call, note that htaccess prevents this running without authentication
+	processed = nlp_coptic(data,line,parse_only=False, do_tok=True, do_norm=True, do_tag=True, do_lemma=True, do_lang=True, do_milestone=True, do_parse=False, sgml_mode="sgml", tok_mode="auto", secure=True)
+	print processed.strip() + "\n"
+elif format != "conll":
 	print "Content-Type: text/"+format+"; charset=UTF-8\n"
 	processed = nlp_coptic(data,line)
-
 	print "<doc>\n"+processed.strip()+"\n</doc>\n"
 else:
 	print "Content-Type: text/plain; charset=UTF-8\n"
