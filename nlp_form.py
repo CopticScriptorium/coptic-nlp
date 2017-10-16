@@ -1,17 +1,17 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# V1.2.0
+# V1.3.0
 
 import os
 import re
-import cgi
+import cgi, cgitb
 import tempfile
 import subprocess
 import requests
 import platform
 import _version
-from depedit import run_depedit
+from depedit import DepEdit
 
 
 def groupify_norms(output):
@@ -33,7 +33,7 @@ def read_attributes(input,attribute_name):
 		if attribute_name + '="' in line:
 			m = re.search(attribute_name+r'="([^"]*)"',line)
 			if m is None:
-				print "ERR: cant find " + attribute_name + " in line: " + line
+				print("ERR: cant find " + attribute_name + " in line: " + line)
 				attribute_value = ""
 			else:
 				attribute_value = m.group(1)
@@ -59,7 +59,7 @@ def exec_via_temp(input_text, command_params, workdir=""):
 
 		exec_out = stdout
 	except Exception as e:
-		print e
+		print(e)
 	finally:
 		os.remove(temp.name)
 		return exec_out
@@ -102,6 +102,7 @@ def get_origs(data):
 
 	return "\n".join(origs)
 
+
 def inject(attribute_name, contents, at_attribute,into_stream,replace=True):
 	insertions = contents.split('\n')
 	injected = ""
@@ -143,10 +144,9 @@ def extract_conll(conll_string):
 	return ids, funcs, parents
 
 
-def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True, do_lemma=True, do_lang=True, do_milestone=True, do_parse=True, sgml_mode="sgml", tok_mode="auto", secure=False):
+def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True, do_lemma=True, do_lang=True, do_milestone=True, do_parse=True, sgml_mode="sgml", tok_mode="auto", secure=False,exp_tok=False):
 
-	from paths import tt_path, conllize_path, tokenizer_path, parser_path, norm_path, lang_path, milestone_path, depedit_path
-	
+	from paths import tt_path, conllize_path, tokenizer_path, parser_path, norm_path, lang_path, milestone_path, depedit_path, stacked_tok_path, python3
 	plain_test="""	ⲁ<hi rend="red">ϥ</hi>ⲥⲱⲧ︤ⲙ︥_ⲛ̄ϭⲓⲡⲁⲅⲅⲉⲗⲟⲥ"""
 	data=input
 	data=data.replace("\t","")
@@ -159,18 +159,33 @@ def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True
 			milestone = ['perl',milestone_path+'binarize_tags.pl','tempfilename']
 			data = exec_via_temp(data,milestone)
 		if sgml_mode == "sgml":
-			tokenize = ['perl',tokenizer_path+'tokenize_coptic.pl']
+			if exp_tok and tok_mode != "from_pipes":
+				tokenize = [python3, stacked_tok_path + 'stacked_tokenizer.py']
+			else:
+				tokenize = ['perl',tokenizer_path+'tokenize_coptic.pl']
+				tokenize += ['-d', tokenizer_path + 'copt_lex.tab', '-s', tokenizer_path + 'segmentation_table.tab',
+							 '-m', tokenizer_path + 'morph_table.tab']
 			if lb == "line":
 				tokenize.append('-l')
 			if tok_mode == "from_pipes":
 				tokenize.append('-t')
-			tokenize += ['-d',tokenizer_path+'copt_lex.tab','-s',tokenizer_path+'segmentation_table.tab','-m',tokenizer_path+'morph_table.tab','tempfilename']
+			tokenize += ['tempfilename']
 		else:
 			if lb == "line":
-				tokenize = ['perl',tokenizer_path+'tokenize_coptic.pl','-n','-p','-l','-d',tokenizer_path+'copt_lex.tab','-s',tokenizer_path+'segmentation_table.tab','-m',tokenizer_path+'morph_table.tab','tempfilename']
+				if exp_tok:
+					tokenize = [python3,stacked_tok_path+'stacked_tokenizer.py','-p','-l','tempfilename']
+				else:
+					tokenize = ['perl',tokenizer_path+'tokenize_coptic.pl','-n','-p','-l','-d',tokenizer_path+'copt_lex.tab','-s',tokenizer_path+'segmentation_table.tab','-m',tokenizer_path+'morph_table.tab','tempfilename']
 			else:
-				tokenize = ['perl',tokenizer_path+'tokenize_coptic.pl','-n','-p','-d',tokenizer_path+'copt_lex.tab','-s',tokenizer_path+'segmentation_table.tab','-m',tokenizer_path+'morph_table.tab','tempfilename']
-			tokenized = exec_via_temp(data,tokenize)
+				if exp_tok:
+					tokenize = [python3,stacked_tok_path+'stacked_tokenizer.py','-p','tempfilename']
+				else:
+					tokenize = ['perl',tokenizer_path+'tokenize_coptic.pl','-n','-p','-d',tokenizer_path+'copt_lex.tab','-s',tokenizer_path+'segmentation_table.tab','-m',tokenizer_path+'morph_table.tab','tempfilename']
+
+			if exp_tok:
+				tokenized = exec_via_temp(data,tokenize,stacked_tok_path)
+			else:
+				tokenized = exec_via_temp(data,tokenize)
 			tokenized = tokenized.replace('\r','').strip()
 			tokenized = re.sub(r'_$','',tokenized)
 			if lb != "line":
@@ -178,10 +193,21 @@ def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True
 			return tokenized
 
 		if do_tok:
-			tokenized = exec_via_temp(data,tokenize)
+			if exp_tok:
+				tokenized = exec_via_temp(data,tokenize,stacked_tok_path)
+			else:
+				tokenized = exec_via_temp(data,tokenize)
 		else:
 			tokenized = data
-		tokenized = tokenized.replace('\r','')
+			if sgml_mode == "sgml":
+				tok_lines = []
+				for line in tokenized.split("\n"):
+					out_line = '<norm_group norm_group="' + line + '">\n<norm norm="'+ line +'">\n' + line + '\n</norm>\n</norm_group>'
+					tok_lines.append(out_line)
+				tokenized = "\n".join(tok_lines)
+		tokenized = tokenized.replace('\r','').strip()
+		with open("/var/www/html/gitdox/scriptorium/debug.txt",'w') as f:
+			f.write(tokenized)
 		output = tokenized
 		norms = read_attributes(tokenized,"norm")
 
@@ -216,7 +242,8 @@ def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True
 			conllized = re.sub("\r","",conllized)
 			parse_coptic = ['java','-mx512m','-jar',"maltparser-1.8.jar",'-a','stackeager','-c','coptic','-i','tempfilename','-m','parse']
 			parsed = exec_via_temp(conllized,parse_coptic,parser_path)
-			depedited = run_depedit(parsed.split("\n"),open(depedit_path + "parser_postprocess_nodom.ini"))
+			deped = DepEdit(open(depedit_path + "parser_postprocess_nodom.ini"))
+			depedited = deped.run_depedit(parsed.split("\n"))
 			ids, funcs, parents = extract_conll(depedited)
 			tagged = re.sub(r"(^|\n)[^\t]+\t",r"\1",tagged)
 
@@ -266,7 +293,10 @@ def nlp_coptic(input,lb,parse_only=False, do_tok=True, do_norm=True, do_tag=True
 
 def get_menu():
 	cs = "http://copticscriptorium.org/nav.html"
-	resp = requests.get(cs)
+	try:
+		resp = requests.get(cs)
+	except:
+		return ""
 	return resp.text
 
 
@@ -298,6 +328,7 @@ def make_nlp_form(access_level, mode):
 		form = cgi.FieldStorage()
 		processed=""
 		lb = "noline"
+		exp_tok = False
 		sgml_mode = "sgml"
 		tok_mode = "auto"
 		do_lemma = True
@@ -312,6 +343,7 @@ def make_nlp_form(access_level, mode):
 			data = re.sub(r'\r','',data)
 			data = data.strip()
 			lb = form.getvalue("lb")
+			exp_tok = form.getvalue("exp_tok") is not None
 			sgml_mode = form.getvalue("sgml_mode")
 			tok_mode = form.getvalue("tok_mode")
 			do_milestone = form.getvalue("milestone") is not None
@@ -321,7 +353,7 @@ def make_nlp_form(access_level, mode):
 			do_norm = form.getvalue("norm") is not None
 			do_tok = form.getvalue("tok") is not None
 			do_lang = form.getvalue("lang") is not None
-			processed = nlp_coptic(data,lb,False,do_tok,do_norm,do_tag,do_lemma,do_lang,do_milestone,do_parse,sgml_mode,tok_mode,access_level=="secure")
+			processed = nlp_coptic(data,lb,False,do_tok,do_norm,do_tag,do_lemma,do_lang,do_milestone,do_parse,sgml_mode,tok_mode,access_level=="secure",exp_tok)
 			processed = processed.strip()
 		data = re.sub(r'\r','',data)
 
@@ -385,6 +417,7 @@ def make_nlp_form(access_level, mode):
 		if lb == "noline":
 			output+= 'checked="checked"'
 		tok_checked = ' checked="checked"' if do_tok else ""
+		exp_checked = ' checked="checked"' if exp_tok else ""
 		norm_checked = ' checked="checked"' if do_norm else ""
 		tag_checked = ' checked="checked"' if do_tag else ""
 		lemma_checked = ' checked="checked"' if do_lemma else ""
@@ -395,7 +428,21 @@ def make_nlp_form(access_level, mode):
 		output+='''>Ignore linebreaks in my data</input>
 		<br/>
 		<h3>Output:</h3>
-		<table><tr><td>
+		<table>
+		<tr><td colspan="2" style="padding-bottom: 10px"><input type="checkbox" name="exp_tok" value="exp_tok"'''
+		if exp_tok:
+			output+= exp_checked
+		output += '''>Use experimental tokenizer <span style="color: gray; font-size:small"><tt>[stk-&alpha;-0.9.1]</tt></span>
+		<a href="#" class="tooltip2">
+						<i class="fa fa-info-circle" style="display: inline-block"></i>
+    					<span>
+							<img class="callout" src="img/callout.gif" />
+							Highly experimental. </br>Should be more accurate but less stable.
+							Crashes are possible.
+							<br/>
+						</span>
+					</a></input><br/></td></tr>
+		<tr><td>
 			<input type="radio" name="sgml_mode" value="sgml" onclick="disable_checkboxes(false);"'''
 		if sgml_mode == "sgml":
 			output+= ' checked="checked"'
@@ -531,6 +578,7 @@ def make_nlp_form(access_level, mode):
 	</script>
 </body>
 </html>"""
+
 		menu = get_menu()
 		menu = menu.encode("utf8")
 		output = output.replace("**navbar**",menu)
