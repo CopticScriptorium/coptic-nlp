@@ -13,6 +13,7 @@ The NLP pipeline can run as a script or as part of the included web interface vi
 
 ## Command line usage
 
+```
 usage: python coptic_nlp.py [OPTIONS] files
 
 positional arguments:
@@ -52,6 +53,7 @@ less common options:
   --pos_spans           Harvest POS tags and lemmas from SGML spans
   --merge_parse         Merge/add a parse into a ready SGML file
   --version             Print version number and quit
+```
 
 ### Example usage
 
