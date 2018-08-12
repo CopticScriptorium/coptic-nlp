@@ -1,0 +1,185 @@
+<html>
+    <head>
+        <title>Coptic NLP Service</title>
+        <link rel="stylesheet" href="css/global.css" type="text/css" charset="utf-8"/>
+        <link rel="stylesheet" href="css/nlp.css" type="text/css" charset="utf-8"/>
+        <link rel="stylesheet" href="css/font-awesome-4.2.0/css/font-awesome.min.css"/>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=800">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <script>var __adobewebfontsappname__="dreamweaver"</script>
+        <link rel="stylesheet" href="https://use.edgefonts.net/c/dbcb1c/1w;asul,2,WXx:W:n4/l" media="all">
+        <script src="http://use.edgefonts.net/asul:n4:default.js" type="text/javascript"></script>
+    </head>
+    <body class="home">
+		<div id="wrapper">
+			<header id="header">
+				**navbar**
+			</header>
+
+			<form id="nlp_form" class="nlp_form" method="post" action="/coptic-nlp/**action_dest**">
+				<h2 class="nlp_title">Coptic NLP Service</h2>
+				**access_message**
+				<div>
+				<h3 class="nlp_title">Input:</h3>
+					<input type="radio" name="lb" value="line" >My data contains meaningful linebreaks
+						<a href="#" class="tooltip2">
+							<i class="fa fa-info-circle" style="display: inline-block"></i>
+								<span>
+								<img class="callout" src="img/callout.gif" />
+								This inserts &lt;line&gt;..&lt;/line&gt; tags around each line of text.</br>
+								If you already have &lt;lb/&gt; tags or your data is already tokenized, you
+								probably want to ignore line breaks.
+								<br/>
+							</span>
+						</a>
+					</input>
+					<br/>
+					<input type="radio" name="lb" value="noline"**noline_checked**>Ignore linebreaks in my data</input>
+			<br/>
+			<h3 class="nlp_title">Output:</h3>
+			<table>
+			<tr><td colspan="2" style="padding-bottom: 10px"><input type="checkbox" name="old_tok" value="old_tok"**old_checked**>Use old finite state tokenizer
+			<a href="#" class="tooltip2">
+							<i class="fa fa-info-circle" style="display: inline-block"></i>
+							<span>
+								<img class="callout" src="img/callout.gif" />
+								Less accurate, provided for reproducing older results.<br/>
+							</span>
+						</a></input><br/></td></tr>
+			<tr><td>
+				<input type="radio" name="sgml_mode" value="sgml" onclick="disable_checkboxes(false);"**sgml_checked**>SGML pipeline</input><br/>
+				<ul>
+					<input type="checkbox" id="milestone" name="milestone" value="milestone"**milestone_checked**>Stretch milestones
+					<a href="#" class="tooltip2">
+						<i class="fa fa-info-circle" style="display: inline-block"></i>
+							<span>
+							<img class="callout" src="img/callout.gif" />
+							This setting replaces unary XML elements with binary ones. For example for
+							milestone page break elements: (&lt;pb/&gt; &rarr; &lt;pb&gt; ... &lt;/pb&gt;)
+							<br/>
+							</span>
+					</a>
+					</input><br/>
+					<input type="checkbox" id="tok" name="tok" value="tok"**tok_checked**>Tokenize <span style="color: gray; font-size:small"><tt>[stk-1.1.1]</tt></span></input>
+					<ul style="padding-left: 20px;">
+						<input type="radio" name="tok_mode" value="auto"**auto_checked**>Automatic</input><br/>
+						<input type="radio" name="tok_mode" value="from_pipes"**pipes_checked**>From pipes in input</input>
+					</ul>
+					<input type="checkbox" id="norm" name="norm" value="norm"**norm_checked**>Normalize
+					<a href="#" class="tooltip2">
+						<i class="fa fa-info-circle" style="display: inline-block"></i>
+							<span>
+							<img class="callout" src="img/callout.gif" />
+							Disable to remove norm_group attribute from output.<br/>
+							Diacritic stripping will still be done for processing norm units.
+							<br/>
+							</span>
+					</a>
+					</input><br/>
+					<input type="checkbox" id="tag" name="tag" value="tag"**tag_checked**>Tag</input><span style="color: gray; font-size:small"><tt>[fine-V12]</tt></span><br/>
+					<input type="checkbox" id="lemma" name="lemma" value="lemma"**lemma_checked**>Lemmatize</input><br/>
+					<input type="checkbox" id="lang" name="lang" value="lang"**lang_checked**>Language of origin</input><br/>
+					<input type="checkbox" id="parse" name="parse" value="parse"**parse_checked**>Parse</input>
+				</ul>
+			</td>
+			<td style="vertical-align: top; padding-left: 20px">
+				<input type="radio" name="sgml_mode" value="pipes" onclick="disable_checkboxes(true);">Just piped and dashed morphemes
+				</input>
+			</td>
+			</tr>
+			</table>
+			</div>
+				<div>
+					<textarea class="anti nlp_input" id="data" name="data" type="textarea">**data**</textarea>
+				</div>
+				<div><button class="nlp" type="submit" onclick="isValidForm()">Process</button></div>
+				<div>
+					<p>Result:</p>
+					<textarea class="anti nlp_input" id="result" type="textarea">**processed**</textarea>
+				</div>
+			</form>
+		<script>
+		document.getElementById('nlp_form').onsubmit = function() {
+			return false;
+		};
+		function isValidForm(){
+		**access_js**
+		}
+		</script>
+	<div id="bottomcontent">
+		<footer id="footer">
+			**footer**
+		</footer>
+	</div>
+		<script>
+		function disable_checkboxes(val){
+			document.getElementById("milestone").disabled = val;
+			document.getElementById("tok").disabled = val;
+			document.getElementById("tag").disabled = val;
+			document.getElementById("lemma").disabled = val;
+			document.getElementById("lang").disabled = val;
+			document.getElementById("norm").disabled = val;
+			document.getElementById("parse").disabled = val;
+			radios = document.getElementsByName("tok_mode");
+			for (radio in radios){
+				radios[radio].disabled = val;
+			}
+			if (val == false){
+				document.getElementById("milestone").checked = true;
+				document.getElementById("tok").checked = true;
+				document.getElementById("tag").checked = true;
+				document.getElementById("lemma").checked = true;
+				document.getElementById("lang").checked = true;
+				document.getElementById("norm").checked = true;
+				document.getElementById("parse").checked = true;
+			}
+		}
+
+		if (document.querySelector('input[name="sgml_mode"]:checked').value == "pipes"){
+			disable_checkboxes(true);
+		}
+		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<script>
+	  $(function(){
+		//$("#navbar").load("nav.html");
+		$(".m-tools").addClass('on');
+		$("#footer").load("footer.html");
+
+		$.get("http://blog.copticscriptorium.org/feed/", function(data) {
+
+		var $XML = $(data);
+		i=0;
+
+		$XML.find("item").each(function(i) {
+			var $this = $(this),
+				item = {
+					title:       $this.find("title").text(),
+					link:        $this.find("link").text(),
+					description: $this.find("description").text(),
+					pubDate:     new Date($this.find("pubDate").text()),
+					author:      $this.find("author").text()
+				};
+
+		  i++;
+		  if (i<=3){
+
+			$post = "<div><h2>"+item.title+'</h2>\n<h2>'+item.pubDate.getFullYear()+'-'+(item.pubDate.getMonth()+1)+'-'+item.pubDate.getDate()+'</h2><p>'+item.description+'</p><p><a href="'+item.link+'" class="btn">Read More</a></p></div>';
+
+			$('#slider').append($post);
+
+		  } else {
+			$('#slider').bxSlider();
+		  }
+		});
+	});
+
+
+	  });
+	</script>
+		</div>
+	</body>
+</html>
