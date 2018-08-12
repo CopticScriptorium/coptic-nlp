@@ -58,6 +58,7 @@ less common options:
 ### Example usage
 
 Add norm, lemma, parse, tag, unary tags and language recognition:
+
 ```
 > python coptic_nlp.py -penult infile.txt
 ```
@@ -109,7 +110,7 @@ The pipeline accepts the following kinds of input:
 
 1. Plain text input, untokenized, no meaningful line breaks, spaces separating bound groups
 
-̀̀̀̀```
+```
 Ⲁϥⲥⲱⲧⲙ ⲛϭⲓⲡϣⲃⲏⲣ ⲛ̄ⲧⲙⲛⲧⲁⲧⲥⲱⲧⲙ
 ```
 
