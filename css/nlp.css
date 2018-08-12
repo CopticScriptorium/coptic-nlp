@@ -1,0 +1,101 @@
+@font-face {
+    font-family: 'antinoouRegular';
+    src: url('antinoou-webfont.eot');
+    src: url('antinoou-webfont.eot?#iefix') format('embedded-opentype'),
+         url('antinoou-webfont.woff') format('woff'),
+         url('antinoou-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'antinoouItalic';
+    src: url('antinoouitalic-webfont.eot');
+    src: url('antinoouitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('antinoouitalic-webfont.woff') format('woff'),
+         url('antinoouitalic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body { -webkit-font-smoothing: subpixel-antialiased; }
+.small {
+	font-size: 14px;
+	line-height: 1.4em;
+}
+
+.nlp_input{	width: 650px;
+	height: 320px;
+	border: 3px solid #cccccc;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5px;
+	font-size: 16px;
+
+	/*background-image: url(bg.gif);
+	background-position: bottom right;
+	background-repeat: no-repeat;*/}
+	
+	
+.nlp_form{
+    min-height: 20px;
+    padding: 19px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+    border: 2px solid black;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+font-family: asul, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	overflow-y: hidden;
+	clear: both;
+	padding-top: 10px;
+	padding-right: 56px;
+	padding-left: 56px;
+	padding-bottom: 40px;
+	line-height: 1.4em;
+	background-color: hsla(40,53%,100%,0.80);
+
+    }
+
+.nlp_form div{margin-bottom: 20px}
+
+
+a.tooltip2 {outline:none; }
+a.tooltip2:hover {text-decoration:none;} 
+a.tooltip2 span {
+     margin-top:-20px;
+	 z-index:10;display:none; padding:14px 20px;
+    width:300px; 
+	font-weight: normal;
+}
+a.tooltip2:hover span{
+     position:absolute; color:#111; padding-top:-10px;
+	display:inline;
+    border:1px solid #DCA; background:#fffAF0;}
+.callout {z-index:20;position:absolute;top:20px;border:0;left:-12px;}
+    
+/*CSS3 extras*/
+a.tooltip2 span
+{
+    border-radius:4px;
+    box-shadow: 5px 5px 8px #CCC;
+	text-align: left;
+}
+
+h2.nlp_title{display: inline-block;
+    padding-right: 20px;
+    font-weight: normal;
+    font-size: 24px;
+    padding-bottom: 6px;
+    background: url(../images/hor-line.png) no-repeat 0 100%;
+    background-size: auto 3px;}
+
+h3.nlp_title{font-size: 2rem;
+margin-bottom: 1.4rem;
+margin-top: 1.4rem;}
+
+button.nlp{color: #8E463D;}
