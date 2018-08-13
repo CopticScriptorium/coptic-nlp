@@ -10,7 +10,7 @@
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <script>var __adobewebfontsappname__="dreamweaver"</script>
         <link rel="stylesheet" href="https://use.edgefonts.net/c/dbcb1c/1w;asul,2,WXx:W:n4/l" media="all">
-        <script src="http://use.edgefonts.net/asul:n4:default.js" type="text/javascript"></script>
+        <!--<script src="http://use.edgefonts.net/asul:n4:default.js" type="text/javascript"></script>-->
     </head>
     <body class="home">
 		<div id="wrapper">
@@ -85,7 +85,7 @@
 				</ul>
 			</td>
 			<td style="vertical-align: top; padding-left: 20px">
-				<input type="radio" name="sgml_mode" value="pipes" onclick="disable_checkboxes(true);">Just piped and dashed morphemes
+				<input type="radio" name="sgml_mode" value="pipes" onclick="disable_checkboxes(true);"**justpipes_checked**>Just piped and dashed morphemes
 				</input>
 			</td>
 			</tr>
@@ -105,6 +105,13 @@
 			return false;
 		};
 		function isValidForm(){
+		if (document.getElementById("data").value.indexOf("|") > -1 && document.getElementsByName("tok_mode")[0].checked && document.getElementsByName("sgml_mode")[0].checked){
+			// Auto mode selected but input contains pipes
+			var r = confirm("Your input contains pipes ('|') but you selected Automatic tokenization. Really proceed?");
+			if (r == false) {
+    			return false;
+    		}
+		}
 		**access_js**
 		}
 		</script>
@@ -143,43 +150,7 @@
 		</script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-	<script>
-	  $(function(){
-		//$("#navbar").load("nav.html");
-		$(".m-tools").addClass('on');
-		$("#footer").load("footer.html");
 
-		$.get("http://blog.copticscriptorium.org/feed/", function(data) {
-
-		var $XML = $(data);
-		i=0;
-
-		$XML.find("item").each(function(i) {
-			var $this = $(this),
-				item = {
-					title:       $this.find("title").text(),
-					link:        $this.find("link").text(),
-					description: $this.find("description").text(),
-					pubDate:     new Date($this.find("pubDate").text()),
-					author:      $this.find("author").text()
-				};
-
-		  i++;
-		  if (i<=3){
-
-			$post = "<div><h2>"+item.title+'</h2>\n<h2>'+item.pubDate.getFullYear()+'-'+(item.pubDate.getMonth()+1)+'-'+item.pubDate.getDate()+'</h2><p>'+item.description+'</p><p><a href="'+item.link+'" class="btn">Read More</a></p></div>';
-
-			$('#slider').append($post);
-
-		  } else {
-			$('#slider').bxSlider();
-		  }
-		});
-	});
-
-
-	  });
-	</script>
 		</div>
 	</body>
 </html>

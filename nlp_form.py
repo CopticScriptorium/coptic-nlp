@@ -56,8 +56,8 @@ def make_nlp_form(access_level, mode):
 		output = ""
 		data = """ⲁ<hi rend="red">ϥ</hi>ⲥⲱⲧ︤ⲙ︥ ⲛ̄ϭ
 ⲓⲡⲁⲅⲅⲉⲗⲟⲥ ⲙ̄ⲙ︤ⲛ︦ⲧ︥ϣⲃⲏⲣ""".decode("utf8")
-		form = {}
-		#form = cgi.FieldStorage()
+		#form = {}
+		form = cgi.FieldStorage()
 		processed=""
 		lb = "noline"
 		old_tok = False
@@ -85,22 +85,25 @@ def make_nlp_form(access_level, mode):
 			do_norm = form.getvalue("norm") is not None
 			do_tok = form.getvalue("tok") is not None
 			do_lang = form.getvalue("lang") is not None
+			if sgml_mode == "pipes":
+				do_tok = True
 
 			if len(data) > 20000 and access_level != "secure":
 				processed = "Input was too long; demo version limited to 10000 characters"
 			else:
-				processed = nlp_coptic(data,lb=lb,parse_only=False,do_tok=do_tok,do_norm=do_norm,do_tag=do_tag,
+				processed = nlp_coptic(data,lb=lb=="line",parse_only=False,do_tok=do_tok,do_norm=do_norm,do_tag=do_tag,
 									   do_lemma=do_lemma,do_lang=do_lang,do_milestone=do_milestone,do_parse=do_parse,
 									   sgml_mode=sgml_mode,tok_mode=tok_mode,old_tokenizer=old_tok)
 				processed = processed.strip()
 
 		###
+		"""
 		form = {"data":data,"tok":True}
 		if "data" in form:
 			processed = nlp_coptic(data, lb=lb, parse_only=False, do_tok=do_tok, do_norm=do_norm, do_tag=do_tag,
 								   do_lemma=do_lemma, do_lang=do_lang, do_milestone=do_milestone, do_parse=do_parse,
 								   sgml_mode=sgml_mode, tok_mode=tok_mode, old_tokenizer=False)
-
+		"""
 		###
 
 		data = re.sub(r'\r','',data)
@@ -111,7 +114,7 @@ def make_nlp_form(access_level, mode):
 		tok_checked = ' checked="checked"' if do_tok else ""
 		old_checked = ' checked="checked"' if old_tok else ""
 		auto_checked = ' checked="checked"' if tok_mode == "auto" else ""
-		pipes_checked = ' checked="checked"' if tok_mode == "pipes" else ""
+		pipes_checked = ' checked="checked"' if tok_mode == "from_pipes" else ""
 		norm_checked = ' checked="checked"' if do_norm else ""
 		tag_checked = ' checked="checked"' if do_tag else ""
 		lemma_checked = ' checked="checked"' if do_lemma else ""
@@ -119,6 +122,7 @@ def make_nlp_form(access_level, mode):
 		lang_checked = ' checked="checked"' if do_lang else ""
 		milestone_checked = ' checked="checked"' if do_milestone else ""
 		sgml_checked = ' checked="checked"' if sgml_mode == "sgml" else ""
+		justpipes_checked = ' checked="checked"' if sgml_mode == "pipes" else ""
 		header, footer = get_menu()
 
 		if access_level == "secure":
@@ -155,6 +159,8 @@ def make_nlp_form(access_level, mode):
 		template = template.replace("**parse_checked**", parse_checked)
 		template = template.replace("**lang_checked**", lang_checked)
 		template = template.replace("**noline_checked**", noline_checked)
+		template = template.replace("**sgml_checked**", sgml_checked)
+		template = template.replace("**justpipes_checked**", justpipes_checked)
 		template = template.replace("**data**", data)
 		template = template.replace("**processed**", processed)
 		template = template.replace("**access_js**", access_js)
