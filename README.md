@@ -5,11 +5,35 @@ An end-to-end NLP pipeline for Coptic text in UTF-8 encoding.
 Online production version available as a web interface at:
 https://corpling.uis.georgetown.edu/coptic-nlp/
 
+## Installation
+
+The NLP pipeline can run as a script or as part of the included web interface via a web server (e.g. Apache, using index.py as a landing page). To run it:
+
+  * Clone this repository into the directory that the script should run on
+  * Ensure that the relevant user has permissions to run scripts in the directory
+  * Make sure the dependencies under **Requirements** are installed
+  
 ## Requirements
 
-The NLP pipeline can run as a script or as part of the included web interface via a web server (e.g. Apache, using index.py as a landing page).
+### Python libraries
 
-**Note** you will need TreeTagger and MaltParser 1.8 if you want to use tagging and parsing. The script will offer to attempt to download them if they are missing
+The NLP pipeline will run on Python 2.7+ or Python 3.5+ (2.6 and lower are not supported). Required libraries:
+
+  * numpy
+  * pandas
+  * scikit-learn==0.19.0
+
+You should be able to install these manually via pip if necessary (i.e. `pip install scikit-learn==0.19.0`).
+
+Note that some versions of Python + Windows do not install numpy correctly from pip, in which case you can download compiled binaries for your version of Python + Windows here: https://www.lfd.uci.edu/~gohlke/pythonlibs/, then run for example:
+
+`pip install c:\some_directory\numpy‑1.15.0+mkl‑cp27‑cp27m‑win_amd64.whl`
+
+### External dependencies
+
+The pipeline also requires **perl** and **java** to be available (the latter only for parsing). Note you will also need binaries of TreeTagger and MaltParser 1.8 if you want to use POS tagging and parsing. These are not included in the distribution but the script will offer to attempt to download them if they are missing.
+
+**Note on older Linux distributions**: the latest TreeTagger binaries do not run on some older Linux distributions. When automatically downloading TreeTagger, the script will attempt to notice this. If you receive the error `FATAL: kernel too old`, please contact @amir-zeldes or open an issue describing your Linux version so it can be added to the script handler. The compatible older version of TreeTagger can be downloaded manually from http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-linux-3.2-old5.tar.gz
 
 ## Command line usage
 
