@@ -71,6 +71,7 @@ less common options:
   --stdout              Print output to stdout, do not create output file
   --para                Add <p> tags if <hi rend="ekthetic"> is present
   --space               Add spaces around punctuation
+  --from_pipes          Tokenization is indicated in input via pipes
   --dirout DIROUT       Optional output directory (default: this dir)
   --meta META           Add fixed meta data string read from this file name
   --parse_only          Only add a parse to an existing tagged SGML input
