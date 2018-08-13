@@ -288,7 +288,11 @@ def download_requirements(tt_ok=True, malt_ok=True):
 		elif platform.system() == "Darwin":
 			u = "http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-MacOSX-3.2.tar.gz"
 		else:
-			u = "http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-linux-3.2.1.tar.gz"
+			if "Red Hat Enterprise" in platform.linux_distribution()[0] and platform.linux_distribution()[1].startswith("6."):
+				# Use older kernel version of TreeTagger for RHEL 6
+				u = "http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-linux-3.2-old5.tar.gz"
+			else:
+				u = "http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-linux-3.2.1.tar.gz"
 		if platform.system() != "Windows":  # Create TreeTagger subdirectory
 			os.makedirs(bin_dir + "TreeTagger")
 		urls.append(u)
@@ -478,6 +482,12 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 
 
 if __name__ == "__main__":
+
+	if sys.version_info[0] == 2 and sys.version_info[1] < 7:
+		sys.stderr.write("Python versions below 2.7 are not supported.\n")
+		sys.stderr.write("Your Python version:\n")
+		sys.stderr.write(".".join([str(v) for v in sys.version_info[:3]]) + "\n")
+		sys.exit(0)
 
 	from argparse import ArgumentParser, RawDescriptionHelpFormatter
 
