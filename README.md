@@ -19,6 +19,7 @@ The NLP pipeline can run as a script or as part of the included web interface vi
 
 The NLP pipeline will run on Python 2.7+ or Python 3.5+ (2.6 and lower are not supported). Required libraries:
 
+  * requests
   * numpy
   * pandas
   * scikit-learn==0.19.0
