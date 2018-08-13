@@ -20,6 +20,7 @@ from lib.harvest_tt_sgml import harvest_tt
 from lib.tokenize_rf import MultiColumnLabelEncoder, DataFrameSelector, lambda_underscore
 
 PY3 = sys.version_info[0] > 2
+inp = input if PY3 else raw_input
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
 lib_dir = script_dir + os.sep + "lib" + os.sep
@@ -325,7 +326,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 	if preloaded is not None:
 		stk = preloaded
 	else:
-		stk = StackedTokenizer(pipes=sgml_mode != "sgml", lines=lb)
+		stk = StackedTokenizer(pipes=sgml_mode != "sgml", lines=lb, tokenized=tok_mode=="from_pipes")
 
 	if do_milestone:
 		data = binarize(data)
@@ -371,6 +372,14 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 		output = inject("norm", norms, "norm", output)
 
 	if parse_only or merge_parse:
+		if not do_tag and (parse_only or merge_parse):
+			if not "\t" in input_data:
+				sys.stderr.write("! You selected parsing without tagging (-t) and your data format appears to contain no POS tag column.\n")
+				resp = inp("! Would you like to add POS tagging to the job profile? [Y]es/[N]o/[A]bort ")
+				if resp.lower() == "y":
+					do_tag = True
+				elif resp.lower() == "a":
+					sys.exit(0)
 		if do_tag:
 			tag = [tt_path+'tree-tagger', tt_path+'coptic_fine.par', '-token','-lemma','-no-unknown', '-sgml' ,'tempfilename'] #no -token
 			tagged = exec_via_temp(norms,tag)
@@ -537,6 +546,7 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 	g2.add_argument("--stdout", action="store_true", help='Print output to stdout, do not create output file')
 	g2.add_argument("--para", action="store_true", help='Add <p> tags if <hi rend="ekthetic"> is present')
 	g2.add_argument("--space", action="store_true", help='Add spaces around punctuation')
+	g2.add_argument("--from_pipes", action="store_true", help='Tokenization is indicated in input via pipes')
 	g2.add_argument("--dirout", action="store", default=".", help='Optional output directory (default: this dir)')
 	g2.add_argument("--meta", action="store", default=None, help='Add fixed meta data string read from this file name')
 	g2.add_argument("--parse_only", action="store_true", help='Only add a parse to an existing tagged SGML input')
@@ -567,7 +577,7 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 
 	if dotok and not old_tokenizer:
 		# Pre-load stacked tokenizer for entire batch
-		stk = StackedTokenizer(pipes=opts.outmode == "pipes", lines=opts.breaklines)
+		stk = StackedTokenizer(pipes=opts.outmode == "pipes", lines=opts.breaklines, tokenized=opts.from_pipes)
 	else:
 		stk = None
 
@@ -579,7 +589,6 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 			sys.stderr.write(" - Tagging is specified but TreeTagger is not installed\n")
 		if (opts.parse or opts.parse_only or opts.merge_parse) and not malt_OK:
 			sys.stderr.write(" - Parsing is specified but Malt Parser 1.8 is not installed\n")
-		inp = input if PY3 else raw_input
 		response = inp("Attempt to download missing software? [Y/N]\n")
 		if response.upper().strip() == "Y":
 			download_requirements(tt_OK,malt_OK)
