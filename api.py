@@ -26,19 +26,28 @@ if format != "xml" and format != "conll" and format != "pipes" and format != "sg
 	format = "sgml"
 
 if format == "pipes":
-	print "Content-Type: text/plain; charset=UTF-8\n"
+	print("Content-Type: text/plain; charset=UTF-8\n")
 	processed = nlp_coptic(data,line,sgml_mode="pipes")
-	print processed.strip()
+	print(processed.strip())
 elif format == "sgml_no_parse":
-	print "Content-Type: text/sgml; charset=UTF-8\n"
+	print("Content-Type: text/sgml; charset=UTF-8\n")
 	# secure call, note that htaccess prevents this running without authentication
-	processed = nlp_coptic(data,line,parse_only=False, do_tok=True, do_norm=True, do_tag=True, do_lemma=True, do_lang=True, do_milestone=True, do_parse=False, sgml_mode="sgml", tok_mode="auto", secure=True)
-	print processed.strip() + "\n"
+	if "|" in data:
+		processed = nlp_coptic(data, lb=line, parse_only=False, do_tok=True,
+							   do_norm=True, do_tag=True, do_lemma=True, do_lang=True,
+							   do_milestone=True, do_parse=True, sgml_mode="sgml",
+							   tok_mode="from_pipes", old_tokenizer=False)
+	else:
+		processed = nlp_coptic(data, lb=line, parse_only=False, do_tok=True,
+							   do_norm=True, do_tag=True, do_lemma=True, do_lang=True,
+							   do_milestone=True, do_parse=True, sgml_mode="sgml",
+							   tok_mode="auto", old_tokenizer=False)
+	print(processed.strip() + "\n")
 elif format != "conll":
-	print "Content-Type: text/"+format+"; charset=UTF-8\n"
+	print("Content-Type: text/"+format+"; charset=UTF-8\n")
 	processed = nlp_coptic(data,line)
-	print "<doc>\n"+processed.strip()+"\n</doc>\n"
+	print("<doc>\n"+processed.strip()+"\n</doc>\n")
 else:
-	print "Content-Type: text/plain; charset=UTF-8\n"
+	print("Content-Type: text/plain; charset=UTF-8\n")
 	processed = nlp_coptic(data,line,True)
-	print processed.strip()
+	print(processed.strip())
