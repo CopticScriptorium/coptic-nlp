@@ -6,6 +6,8 @@ from __future__ import unicode_literals
 import sys, re, io
 PY3 = sys.version_info[0] == 3
 
+cap_map = {"Ⲁ":"ⲁ","Ⲃ":"ⲃ","Ⲑ":"ⲑ","Ⲇ":"ⲇ","Ⲉ":"ⲉ","Ϥ":"ϥ","Ⲅ":"ⲅ","Ⲏ":"ⲏ","Ⲓ":"ⲓ","Ϫ":"ϫ","Ⲕ":"ⲕ","Ⲗ":"ⲗ","Ⲙ":"ⲙ","Ⲛ":"ⲛ","Ⲟ":"ⲟ","Ⲡ":"ⲡ","Ϭ":"ϭ","Ⲣ":"ⲣ","Ⲥ":"ⲥ","Ⲧ":"ⲧ","Ⲩ":"ⲩ","Ⲫ":"ⲫ","Ⲱ":"ⲱ","Ϩ":"ϩ","Ⲭ":"ⲭ","Ⲍ":"ⲍ","Ϣ":"ϣ","Ϯ":"ϯ","Ⲯ":"ⲯ","Ⲝ":"ⲝ"}
+
 if PY3 and __name__ != "__main__":
 	from .tokenize_fs import fs_tokenize
 	from .tokenize_lookup import lookup_tokenize
@@ -75,13 +77,15 @@ class BoundGroup():
 				self.orig += c
 				self.norm_map[self.norm_cursor] = self.cursor
 			else:
+				self.orig += c
 				if c == "⳯":  # ad-hoc normalization of superscript ni chracter
 					c = "ⲛ"
+				elif c in cap_map:
+					c = cap_map[c]
 				self.norm += c
 				if c not in ["□","■"] and tokenized:
 					self.pretokenization += c
 				self.norm_map[self.norm_cursor] = self.cursor
-				self.orig += c
 				self.norm_cursor += 1
 
 		if c == ">":

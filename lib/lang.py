@@ -63,13 +63,13 @@ def lookup_lang(in_data,lexicon=None,words=False):
 			for i in range(min_pref,max_pref+1):
 				substr = line[:i] + "*"
 				if substr in lang_dict:
-					l = lang_dict[line]
+					l = lang_dict[substr]
 					break
 			if l == "":
 				for i in range(min_suf, max_suf + 1):
 					substr = "*" + line[i:]
 					if substr in lang_dict:
-						l = lang_dict[line]
+						l = lang_dict[substr]
 						break
 		if not words:
 			outlines.append(l)
