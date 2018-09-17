@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import cgitb
-from nlp_form import make_nlp_form
-
 cgitb.enable()
 
-print "Content-Type: text/html\n\n\n"
-print make_nlp_form("secure", "interactive")
+from lib.tokenize_rf import MultiColumnLabelEncoder, DataFrameSelector, lambda_underscore
+from nlp_form import make_nlp_form
+
+print("Content-Type: text/html\n\n\n")
+print(make_nlp_form("secure", "interactive"))
