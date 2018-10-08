@@ -1,4 +1,4 @@
-import subprocess, tempfile, os, sys
+import subprocess, tempfile, os, sys,io
 
 PY3 = sys.version_info[0] == 3
 
@@ -38,3 +38,13 @@ def fs_tokenize(bound_groups):
 
 	tokenized = tokenized.replace("\r","").strip().split("\n")
 	return tokenized
+
+
+if __name__ == "__main__":
+	groups = io.open(sys.argv[1],encoding="utf8").read().replace("\r","").split("\n")
+	tokenized = fs_tokenize(groups)
+	tokenized = "\n".join(tokenized) + "\n"
+	if PY3:
+		sys.stdout.buffer.write(tokenized.encode("utf8"))
+	else:
+		sys.stdout.write(tokenized.encode("utf8"))
