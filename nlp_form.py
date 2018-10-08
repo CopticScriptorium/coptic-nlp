@@ -54,7 +54,7 @@ def make_nlp_form(access_level, mode):
 
 	if mode == "interactive":
 		output = ""
-		data = """ⲁ<hi rend="red">ϥ</hi>ⲥⲱⲧ︤ⲙ︥ ⲛ̄ϭ
+		data = """ⲁ<hi rend="red">ϥ</hi>ⲥⲱⲧ︤ⲙ︥ ⲛⲥⲱϥ ⲛ̄ϭ
 ⲓⲡⲁⲅⲅⲉⲗⲟⲥ ⲙ̄ⲙ︤ⲛ︦ⲧ︥ϣⲃⲏⲣ""".decode("utf8")
 		#form = {}
 		form = cgi.FieldStorage()
@@ -68,6 +68,7 @@ def make_nlp_form(access_level, mode):
 		do_parse = True
 		do_tok = True
 		do_norm = True
+		do_mwe = True
 		do_lang = True
 		do_milestone = True
 		if "data" in form:
@@ -83,6 +84,7 @@ def make_nlp_form(access_level, mode):
 			do_tag = form.getvalue("tag") is not None
 			do_parse = form.getvalue("parse") is not None
 			do_norm = form.getvalue("norm") is not None
+			do_mwe = form.getvalue("mwe") is not None
 			do_tok = form.getvalue("tok") is not None
 			do_lang = form.getvalue("lang") is not None
 			if sgml_mode == "pipes":
@@ -91,16 +93,16 @@ def make_nlp_form(access_level, mode):
 			if len(data) > 20000 and access_level != "secure":
 				processed = "Input was too long; demo version limited to 10000 characters"
 			else:
-				processed = nlp_coptic(data,lb=lb=="line",parse_only=False,do_tok=do_tok,do_norm=do_norm,do_tag=do_tag,
-									   do_lemma=do_lemma,do_lang=do_lang,do_milestone=do_milestone,do_parse=do_parse,
-									   sgml_mode=sgml_mode,tok_mode=tok_mode,old_tokenizer=old_tok)
+				processed = nlp_coptic(data,lb=lb=="line",parse_only=False,do_tok=do_tok,do_norm=do_norm,do_mwe=do_mwe,
+									   do_tag=do_tag, do_lemma=do_lemma,do_lang=do_lang,do_milestone=do_milestone,
+									   do_parse=do_parse, sgml_mode=sgml_mode,tok_mode=tok_mode,old_tokenizer=old_tok)
 				processed = processed.strip()
 
 		###
 		"""
 		form = {"data":data,"tok":True}
 		if "data" in form:
-			processed = nlp_coptic(data, lb=lb, parse_only=False, do_tok=do_tok, do_norm=do_norm, do_tag=do_tag,
+			processed = nlp_coptic(data, lb=lb, parse_only=False, do_tok=do_tok, do_norm=do_norm, do_mwe=do_mwe, do_tag=do_tag,
 								   do_lemma=do_lemma, do_lang=do_lang, do_milestone=do_milestone, do_parse=do_parse,
 								   sgml_mode=sgml_mode, tok_mode=tok_mode, old_tokenizer=False)
 		"""
@@ -116,6 +118,7 @@ def make_nlp_form(access_level, mode):
 		auto_checked = ' checked="checked"' if tok_mode == "auto" else ""
 		pipes_checked = ' checked="checked"' if tok_mode == "from_pipes" else ""
 		norm_checked = ' checked="checked"' if do_norm else ""
+		mwe_checked = ' checked="checked"' if do_mwe else ""
 		tag_checked = ' checked="checked"' if do_tag else ""
 		lemma_checked = ' checked="checked"' if do_lemma else ""
 		parse_checked = ' checked="checked"' if do_parse else ""
@@ -154,6 +157,7 @@ def make_nlp_form(access_level, mode):
 		template = template.replace("**auto_checked**", auto_checked)
 		template = template.replace("**pipes_checked**", pipes_checked)
 		template = template.replace("**norm_checked**", norm_checked)
+		template = template.replace("**mwe_checked**", mwe_checked)
 		template = template.replace("**tag_checked**", tag_checked)
 		template = template.replace("**lemma_checked**", lemma_checked)
 		template = template.replace("**parse_checked**", parse_checked)
