@@ -204,6 +204,13 @@ def exec_via_temp(input_text, command_params, workdir=""):
 
 
 def get_origs(data):
+	"""
+	Harvests orig from plain tokens (non-tag lines of TT SGML), grouped by norm spans
+
+	:param data: TT SGML with unnormalized tokens in non-tag lines and <norm.. tags indicating norm/orig borders
+	:return: string containing one reconstituted orig unit per line
+	"""
+
 	origs = []
 	current = ""
 	for line in data.split("\n"):
@@ -217,6 +224,16 @@ def get_origs(data):
 
 
 def inject(attribute_name, contents, at_attribute,into_stream,replace=True):
+	"""
+	Inject new attributes and values into a specified SGML element in TT SGML format
+
+	:param attribute_name: name of the attribute to insert
+	:param contents: string, one value per line to insert as attribute values
+	:param at_attribute: attribute in target element to insert this attribute before (can be same attribute name, replace in place)
+	:param into_stream: TT SGML string with elements to add attributes to
+	:param replace: boolean, whether to replace existing values of attribute_name when already present
+	:return: TT SGML with added attributes
+	"""
 	insertions = contents.split('\n')
 	injected = ""
 	i=0
