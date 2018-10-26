@@ -63,6 +63,7 @@ $stoplist{'ϥⲓ'} = 'ϥⲓ;V';
 $tm = $verblist;
 $tm =~ s/\|/|ⲧⲙ/g;
 $verblist .=  "$tm";
+$verblist .=  "|ⲙⲉϣϣⲉ";
 
 #add noun derivations
 $at = $verblist;
@@ -504,6 +505,10 @@ sub tokenize{
 		if ($strWord=~/\|ⲧⲙ(?!ⲁⲉⲓⲏⲩ|ⲁⲓⲏⲩ|ⲁⲓⲟ|ⲁⲓⲟⲕ|ⲙⲟ|ⲟ$|\|)/) {$strWord =~ s/\|ⲧⲙ/|ⲧⲙ|/;}
 		if ($strWord=~/^$ke_art\|/o) {$strWord =~ s/^([^\|]+)ⲕⲉ\|/$1\|ⲕⲉ\|/;}
 		if ($strWord=~/\|$ke_art\|/o) {$strWord =~ s/\|([^\|]+)ⲕⲉ\|/\|$1\|ⲕⲉ\|/;}
+		
+		# split irregular negation ⲙⲉϣϣⲉ
+		$strWord=~ s/\|ⲙⲉϣϣⲉ/|ⲙⲉ|ϣϣⲉ/;
+		
 		
 		$strWord =~ s/^\|//;  # No leading pipes
 		$strWord =~ s/\|+/\|/; # No double pipes
