@@ -535,28 +535,31 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 		output = inject("head",parents,"norm",output)
 		output = output.replace(' head="#u0"',"")  # Remove head attribute for root tokens in dependency tree
 
-	if "orig_group=" in tokenized:
-		orig_groups = read_attributes(tokenized,"orig_group")
-	elif "orig=" in tokenized:
-		orig_groups = groupify(output, "orig")
-	elif "norm_group=" in tokenized:
-		orig_groups = read_attributes(tokenized, "norm_group")
-	else:
-		orig_groups = ""
-
-	output = re.sub(r"<norm_group norm_group=","<norm_group orig_group=",output)
-	if do_norm and len(orig_groups) > 0:
+	if do_norm and "norm=" in output:
 		groups = groupify(output,"norm")
-		output = inject("norm_group",groups,"orig_group",output)
+		output = inject("norm_group",groups,"norm_group",output)
 
 		# Add orig from tokens based on norm spans
 		origs = get_origs(output)
 		output = inject("orig",origs,"norm",output)
 		orig_groups = groupify(output, "orig")
 		if "orig_group=" in output:
+			# Replace existing orig groups in output with newly harvested orig content
 			output = inject("orig_group",orig_groups,"orig_group",output)
 		else:
+			# Add orig_group attribute since not yet present
 			output = inject("orig_group",orig_groups,"norm_group",output)
+	else:
+		if "orig_group=" in tokenized:  # There are already orig_group attrs and we're not normalizing
+			orig_groups = read_attributes(tokenized, "orig_group")
+			origs = get_origs(tokenized)
+			output = inject("orig", origs, "orig", output)
+			output = inject("orig_group", orig_groups, "orig_group", output)
+		elif "orig=" in tokenized:  # Need to reconstitute
+			origs = get_origs(tokenized)
+			orig_groups = groupify(tokenized, "orig")
+			output = inject("orig", origs, "orig", output)
+			output = inject("orig_group", orig_groups, "orig_group", output)
 
 	return output.strip() + "\n"
 
