@@ -277,11 +277,22 @@ def extract_conll(conll_string):
 
 
 def space_punct(input_text):
-	input_text = input_text.encode("utf8").replace("·", " · ").replace(".", " . ").replace("·", " · ").replace("ⲵ", " ⲵ ")
-	input_text = input_text.replace(",", " , ").replace(":", " : ").replace(";", " ; ").replace("ʼ", " ʼ ").replace("„"," „ ").replace("“"," “ ")
-	input_text = re.sub(" +", " ", input_text)
-	input_text = re.sub(r'([A-Za-z]) ([.,;:])', r'\1\2', input_text).decode("utf8")
-	return input_text
+	punct = set(["·",".","·","ⲵ",",",":",";","ʼ","„","“","{","}"])
+	if not PY3:
+		punct = set([unicode(p) for p in punct])
+	outstr = ""
+	textmode = True
+	for c in input_text:
+		if c == "<":
+			textmode = False
+		if c in punct and textmode:
+			outstr = "".join([outstr," " + c + " "])
+		else:
+			outstr = "".join([outstr,c])
+		if c == ">":
+			textmode = True
+	outstr = re.sub(" +", " ", outstr)  # Kill double spaces
+	return outstr
 
 
 def inject_tags(in_sgml,insertion_specs,around_tag="norm",inserted_tag="multiword"):
