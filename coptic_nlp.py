@@ -17,9 +17,6 @@ from lib.lang import lookup_lang
 from lib.harvest_tt_sgml import harvest_tt
 from lib.mwe import tag_mwes
 
-# Import pickled classes for RFTokenizer
-from lib.tokenize_rf import MultiColumnLabelEncoder, DataFrameSelector, lambda_underscore
-
 PY3 = sys.version_info[0] > 2
 
 if PY3:
@@ -63,6 +60,15 @@ def log_tasks(opts):
 	special_tasks = []
 	if opts.space:
 		special_tasks.append("o Space out punctuation")
+	if opts.detokenize > 0:
+		if opts.detokenize > 1:
+			special_tasks.append("o Detokenization (a.k.a. 'Laytonization') - aggressive")
+		else:
+			special_tasks.append("o Detokenization (a.k.a. 'Laytonization') - conservative")
+	if opts.segment_merged:
+		special_tasks.append("o Insert boundary between merged groups")
+	if opts.breaklines:
+		special_tasks.append("o Add line tags to preserve line breaks")
 	if opts.merge_parse:
 		special_tasks.append("o Merge parse into SGML file")
 	if opts.para:
@@ -83,7 +89,7 @@ def groupify(output,anno):
 		if " "+anno+"=" in line:
 			current_group += re.search(anno + r'="([^"]*)"',line).group(1)
 		if line.startswith("</") and "_group" in line:
-			groups += current_group +"\n"
+			groups += current_group + "\n"
 			current_group = ""
 
 	return groups
@@ -384,7 +390,7 @@ def download_requirements(tt_ok=True, malt_ok=True):
 
 def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True, do_mwe=True, do_tag=True, do_lemma=True, do_lang=True,
 			   do_milestone=True, do_parse=True, sgml_mode="sgml", tok_mode="auto", old_tokenizer=False, sent_tag=None,
-			   preloaded=None, pos_spans=False, merge_parse=False):
+			   preloaded=None, pos_spans=False, merge_parse=False, detokenize=0):
 
 	data = input_data.replace("\t","")
 	data = data.replace("\r","")
@@ -392,7 +398,8 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 	if preloaded is not None:
 		stk = preloaded
 	else:
-		stk = StackedTokenizer(pipes=sgml_mode != "sgml", lines=lb, tokenized=tok_mode=="from_pipes")
+		stk = StackedTokenizer(pipes=sgml_mode != "sgml", lines=lb, tokenized=tok_mode=="from_pipes",
+							   detok=detokenize, segment_merged=opts.segment_merged)
 
 	if do_milestone:
 		data = binarize(data)
@@ -616,6 +623,8 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 
 	g2 = parser.add_argument_group("less common options")
 	g2.add_argument("-f","--finitestate", action="store_true", help='Use old finite-state tokenizer (less accurate)')
+	g2.add_argument("-d","--detokenize", action="store", type=int, choices=[0,1,2], default=0, help="Re-group non-standard bound groups (a.k.a. 'laytonize') - 1=normal 2=aggressive")
+	g2.add_argument("--segment_merged", action="store_true", help="When re-grouping bound groups, assume merged groups have segmentation boundary between them")
 	g2.add_argument("-q","--quiet", action="store_true", help='Suppress verbose messages')
 	g2.add_argument("-x","--extension", action="store", default=None, help='Extension for SGML mode output files (default: tt)')
 	g2.add_argument("--stdout", action="store_true", help='Print output to stdout, do not create output file')
@@ -652,7 +661,8 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 
 	if dotok and not old_tokenizer:
 		# Pre-load stacked tokenizer for entire batch
-		stk = StackedTokenizer(pipes=opts.outmode == "pipes", lines=opts.breaklines, tokenized=opts.from_pipes)
+		stk = StackedTokenizer(pipes=opts.outmode == "pipes", lines=opts.breaklines, tokenized=opts.from_pipes,
+							   segment_merged=opts.segment_merged, detok=opts.detokenize)
 	else:
 		stk = None
 
@@ -708,7 +718,7 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 							   do_norm=opts.norm, do_mwe=opts.multiword, do_tag=opts.tag, do_lemma=opts.lemma,
 							   do_lang=opts.etym, do_milestone=opts.unary, do_parse=opts.parse, sgml_mode=opts.outmode,
 							   tok_mode="auto", old_tokenizer=old_tokenizer, sent_tag=opts.sent, preloaded=stk,
-							   pos_spans=opts.pos_spans, merge_parse=opts.merge_parse)
+							   pos_spans=opts.pos_spans, merge_parse=opts.merge_parse, detokenize=opts.detokenize)
 
 		if opts.outmode == "sgml":
 			processed = reorder(processed.strip().split("\n"),add_fixed_meta=add_fixed_meta)

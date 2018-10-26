@@ -44,48 +44,50 @@ class BoundGroup():
 		self.orig = ""
 		self.tokenization = ""  # Holds the clean tokenization (a|f|sOtm)
 		self.tokenized = ""  # Holds the dirty tokenization (a^|f|sO<hi rend="x">t</hi>m)
-		self.unaligned_tokenization = ""  # Holds irregular, unalignable tokenization only be expressible in SGML (n|t|he)
+		self.unaligned_tokenization = ""  # Holds irregular, unalignable tokenization only expressible in SGML (n|t|he)
 		self.pretokenization = ""  # Holds pre-specified tokenization (pipes in input)
 		self.cursor = 0
 		self.norm_cursor = 0
 		self.mode = "text"
 		self.norm_map = {}  # Dictionary from clean character position to dirty position, without seps
+		self.merge_boundaries = []  # List of norm_map positions at which bound group merging has happened (during 'laytonization')
 		self.out_tok_sep = out_tok_sep  # Separator to print between subtokens in 'pipes' mode
+		self.proclitic = False  # Whether to join with next group ('laytonize')
 
 	# Add a character to the bound group
 	def affix(self, c, tokenized=False):
 
 		if c == "|": # Input to ML tokenizer can't contain '|' or '-'
 			if tokenized and self.mode!="xml":
-				self.pretokenization += c
+				self.pretokenization = "".join([self.pretokenization,c])
 				return None
 			else:
 				c = "□"
 		elif c == "-":
 			if tokenized and self.mode!="xml":
-				self.pretokenization += c
+				self.pretokenization = "".join([self.pretokenization,c])
 				return None
 			else:
 				c = "■"
 
-		self.dirty += c
+		self.dirty = "".join([self.dirty,c])
 
 		if c == "<":
 			self.mode = "xml"
 
 		if self.mode != "xml":
 			if c in self.orig_chars:
-				self.orig += c
-				self.norm_map[self.norm_cursor] = self.cursor
+				self.orig = "".join([self.orig,c])
+				#self.norm_map[self.norm_cursor] = self.cursor
 			else:
-				self.orig += c
+				self.orig = "".join([self.orig,c])
 				if c == "⳯":  # ad-hoc normalization of superscript ni chracter
 					c = "ⲛ"
 				elif c in cap_map:
 					c = cap_map[c]
-				self.norm += c
+				self.norm  = "".join([self.norm,c])
 				if c not in ["□","■"] and tokenized:
-					self.pretokenization += c
+					self.pretokenization  = "".join([self.pretokenization,c])
 				self.norm_map[self.norm_cursor] = self.cursor
 				self.norm_cursor += 1
 
@@ -129,7 +131,7 @@ class BoundGroup():
 			c = tokenization[-i]  # Traverse tokenized string backwards
 			if c in self.tokenization_chars:
 				position = self.norm_map[cursor+1] - 1 if cursor < len(self.norm) else self.norm_map[cursor]
-				tokenized = tokenized[:position+1] + c + tokenized[position+1:]
+				tokenized = "".join([tokenized[:position+1], c, tokenized[position+1:]])
 			else:
 				cursor -= 1
 		self.tokenized = tokenized
@@ -143,11 +145,11 @@ class BoundGroup():
 		for i, c in enumerate(list(unsegmented)):
 			if len(segmented) <= i+1+offset:
 				if i+1 < len(unsegmented):  # Segmentation is over, append remaining characters to output
-					output += unsegmented[i:]
+					output = "".join([output,unsegmented[i:]])
 				break
 			else:
 				if segmented[i+offset] in ["|","-"]:
-					output += segmented[i+offset]
+					output = "".join([output,segmented[i+offset]])
 					offset += 1
 				if segmented[i+offset] != unsegmented[i]:  # Character conflict
 					while segmented[i+offset] != unsegmented[i]:
@@ -156,7 +158,7 @@ class BoundGroup():
 							#	output += unsegmented[i+1:]
 							break
 						elif segmented[i+offset] in ["|","-"]:
-							output += segmented[i+offset]
+							output = "".join([output, segmented[i + offset]])
 						offset += 1
 					#if segmented[i+offset] == unsegmented[i]:
 					#	output+=unsegmented[i]
@@ -179,18 +181,20 @@ class BoundGroup():
 		dirty_norms = escaped.split("|")
 		clean_norms = self.tokenization.split("|")
 		for i, norm in enumerate(dirty_norms):
-			clean_norm = clean_norms[i].replace("-","").replace("□","").replace("■","")
-			out_sgml += '<norm norm="'+clean_norm+'">'
+			clean_norm = clean_norms[i].replace("-","")
+			if len(clean_norm) > 1:
+				clean_norm = clean_norm.replace("□","").replace("■","")
+			out_sgml = "".join([out_sgml,'<norm norm="'+clean_norm+'">'])
 			morphs = norm.split("-")
 			clean_morphs = clean_norms[i].split("-")
 			for j, morph in enumerate(morphs):
 				if len(morphs) > 1:
-					out_sgml += '<morph morph="'+clean_morphs[j].replace("□","").replace("■","")+'">'
-				out_sgml += morph #.replace("□","").replace("■","")
+					out_sgml = "".join([out_sgml,'<morph morph="'+clean_morphs[j].replace("□","").replace("■","")+'">'])
+				out_sgml = "".join([out_sgml,morph]) #.replace("□","").replace("■","")
 				if len(morphs) > 1:
-					out_sgml += '</morph>'
-			out_sgml += '</norm>'
-		out_sgml += '</norm_group>'
+					out_sgml = "".join([out_sgml,'</morph>'])
+			out_sgml = "".join([out_sgml,'</norm>'])
+		out_sgml = "".join([out_sgml,'</norm_group>'])
 		out_sgml = self.restore_seps(out_sgml)
 		out_sgml = out_sgml.replace(">",">\n")
 		out_sgml = out_sgml.replace("<", "\n<")
@@ -202,16 +206,16 @@ class BoundGroup():
 		o = ""
 		seps = ["|","-"]
 		reps = ["@@@","$$$"]
-		mode = "text"
+		textmode = True
 		for c in t:
 			if c == "<":
-				mode = "xml"
+				textmode = False
 			elif c ==">":
-				mode = "text"
-			if mode == "xml" and c in seps:
-				o += reps[seps.index(c)]
+				textmode = True
+			if not textmode and c in seps:
+				o = "".join([o,reps[seps.index(c)]])
 			else:
-				o += c
+				o = "".join([o,c])
 		return o
 
 	@staticmethod
@@ -275,8 +279,42 @@ def dissolve(text, tok_sep="|", tokenized=False):
 	return bound_groups
 
 
-def serialize(groups,pipes=False,group_sep="_",tok_sep="|"):
+def find_non_sep_position(text, norm_position, norm_sep="|", morph_sep="-"):
+	"""
+	Finds the actual position of character n in a string, such that n is the
+	number of characters traversed excluding separator chatacters
+
+	:param text: the text to search for a position in
+	:param norm_position: position ignoring separators
+	:param norm_sep: norm separator to ignore when counting, default '|'
+	:param norm_sep: morph separator to ignore when counting, default '-'
+	:return: position in string not ignoring separators
+	"""
+
+	cursor = -1
+	position = -1
+	for c in text:
+		position +=1
+		if c != norm_sep and c != morph_sep:
+			cursor +=1
+			if cursor == norm_position:
+				break
+	return position
+
+
+def serialize(groups,pipes=False,group_sep="_",tok_sep="|",segment_merged=False):
 	out_text = ""
+	if segment_merged:
+		# Ensure that merged bound group positions have a separator, else add one
+		for g in groups:
+			if len(g.merge_boundaries) > 0:
+				new_tokenization = g.tokenization
+				for b in g.merge_boundaries:
+					pos = find_non_sep_position(new_tokenization, b)
+					#seps_before_boundary = new_tokenization[0:pos+1].count(tok_sep) + new_tokenization[0:pos+1].count("-")
+					if new_tokenization[pos+1] != "-" and new_tokenization[pos+1] != tok_sep:
+						new_tokenization = new_tokenization[0:pos+1] + "|" + new_tokenization[pos+1:]
+				g.add_tokenization(new_tokenization)
 	if not pipes:
 		for g in groups:
 			out_text += g.serialize_sgml()
@@ -288,15 +326,74 @@ def serialize(groups,pipes=False,group_sep="_",tok_sep="|"):
 
 class StackedTokenizer:
 
-	def __init__(self,lines=False,pipes=False,tokenized=False,no_morphs=False):
+	def __init__(self,lines=False,pipes=False,tokenized=False,no_morphs=False,detok=0,segment_merged=False,model="cop"):
 		self.lines = lines
 		self.pipes = pipes
 		self.tokenized = tokenized
 		self.no_morphs = no_morphs
+		self.model = model
 		self.load_rftokenizer()
+		self.ambig = {}
+		self.load_rftokenizer()
+		# Place-holders for detokenization mode (a.k.a. Laytonization)
+		self.detokenize = detok
+		self.segment_merged = segment_merged
+		self.detok_table = None
+		# Punctuation marks not to detokenize preceding bound groups into:
+		self.no_merge = set(["·",".","·","ⲵ",",",":",";","ʼ","„","“"])
+		if detok > 0:
+			if detok > 1:
+				self.load_detokenizer(aggressive=True)
+			else:
+				self.load_detokenizer(aggressive=False)
+
+	def load_detokenizer(self,data=None,aggressive=False):
+		if data is None:
+			data = stk_dir + os.sep + ".." + os.sep + "data" + os.sep + "detok.tab"
+		if os.path.exists(data):
+			detoks = io.open(data,encoding="utf8").read().replace("\r","").strip().split("\n")
+			split_lines = [(line.split("\t")[0], float(line.split("\t")[-1])) for line in detoks if not line.startswith("#")]
+			if aggressive:
+				split_lines = [(line[0].replace("%",""),line[1]) for line in split_lines]
+			self.detok_table = set([line[0] for line in split_lines if line[1] >= 0.5])
+		else:
+			sys.stderr("x Stacked tokenizer could not load detok.tab at " + data)
+
+	def load_ambig(self,ambig_table):
+		lines = io.open(ambig_table,encoding="utf8").read().split("\n")
+		for line in lines:
+			if "\t" in line:
+				fields = line.split("\t")
+				self.ambig[fields[0]] = fields[1:]
 
 	def load_rftokenizer(self):
-		self.rf_tok = RFTokenizer(model="cop")
+		self.rf_tok = RFTokenizer(model=self.model)
+		self.rf_tok.load()
+
+	@staticmethod
+	def merge_groups(last_grp, grp):
+		"""
+		Take two bound groups, the first of which is proctlitic, and merge them (i.e. 'laytonize')
+
+		:param last_grp: proclitic group
+		:param grp: following group to merge into
+		:return:
+		"""
+		max_map = max(iterkeys(last_grp.norm_map))
+		max_mapped = len(last_grp.dirty)-1 #max(itervalues(last_grp.norm_map))
+		new_group = last_grp
+		new_group.norm += grp.norm
+		new_group.orig += grp.orig
+		new_group.dirty += grp.dirty
+		#new_group.tokenized += "|" + grp.tokenized
+		#new_group.pretokenization += "|" + grp.pretokenization
+		#new_group.unaligned_tokenization += "|" + grp.unaligned_tokenization
+		new_group.merge_boundaries.append(max_map)
+		for key in grp.norm_map:
+			new_group.norm_map[key + max_map + 1] = grp.norm_map[key] + max_mapped + 1
+		new_group.proclitic = grp.proclitic
+
+		return new_group
 
 	def analyze(self,data):
 		if self.lines:
@@ -305,6 +402,25 @@ class StackedTokenizer:
 		if not PY3:
 			data = unicode(data)
 		grps = dissolve(data, tokenized=self.tokenized)
+
+		if self.detokenize:
+			for grp in grps:
+				if grp.norm in self.detok_table:
+					grp.proclitic = True
+			last_grp = None
+			detokenized = []
+			for grp in grps:
+				if last_grp is not None:
+					if last_grp.proclitic or last_grp.norm in self.detok_table:
+						if grp.norm not in self.no_merge:
+							new_grp = self.merge_groups(last_grp,grp)
+							last_grp = new_grp
+							continue
+					detokenized.append(last_grp)
+				last_grp = grp
+			if last_grp not in detokenized:
+				detokenized.append(last_grp)
+			grps = detokenized
 
 		if self.tokenized:
 			for g in grps:
@@ -326,17 +442,20 @@ class StackedTokenizer:
 			# tokenizations_lo = dict(zip(norm_types,tokenizations_lo))
 
 			for norm, tokked in zip(norm_types, tokenizations_lo):
-				if tokked == "_":
-					unknown.add(norm)
+				if len(norm) == 1:
+					known_tokenizations[norm] = norm
 				else:
-					known_tokenizations[norm] = tokked
+					if tokked == "_" or norm in self.ambig:
+						unknown.add(norm)
+					else:
+						known_tokenizations[norm] = tokked
 
 			to_tokenize = list(unknown)
 			tokenizations_fs = fs_tokenize(to_tokenize)
 			unknown = set([])
 
 			for norm, tokked in zip(to_tokenize, tokenizations_fs):
-				if "|" in tokked:
+				if "|" in tokked and not norm in self.ambig:
 					if tokked.endswith("|"):
 						tokked = tokked[:-1]
 					known_tokenizations[norm] = tokked
@@ -357,8 +476,17 @@ class StackedTokenizer:
 			j = 0
 			for i, norm in enumerate(norms):
 				if i in unknown_indices:
-					best_tokenizations.append(tokenizations_rf[j])
-					j += 1
+					if norm in self.ambig:
+						if tokenizations_rf[j] in self.ambig[norm]:
+							#best_tokenizations.append(tokenizations_rf[j])
+							best_tokenizations.append(self.ambig[norm][0])
+							j+=1
+							continue
+						j+=1
+						best_tokenizations.append(self.ambig[norm][0])
+					else:
+						best_tokenizations.append(tokenizations_rf[j])
+						j += 1
 				else:
 					best_tokenizations.append(known_tokenizations[norm])
 
@@ -379,7 +507,7 @@ class StackedTokenizer:
 					tokenization = m.analyze_morph(tokenization)
 				grps[i].add_tokenization(tokenization)
 
-		toks = serialize(grps, self.pipes)
+		toks = serialize(grps, self.pipes, segment_merged=self.segment_merged)
 		return toks
 
 # toks = [g.tokenized for g in grps]
@@ -392,10 +520,13 @@ if __name__ == "__main__":
 	parser.add_argument("-l","--lines",action="store_true",dest="lines", help="surround lines containing tokens with <line> tags")
 	parser.add_argument("-p","--pipes",action="store_true",dest="pipes", help="output plain pipes and hyphens instead of SGML")
 	parser.add_argument("-t","--tokenized",action="store_true",dest="tokenized", help="tokenization is already indicated via pipes and dashes")
+	parser.add_argument("-d","--detokenize",action="store_true",dest="detokenize", help="re-split boundgroups based on Layton's conventions")
+	parser.add_argument("-s","--segment_merged",action="store_true",help="if detokenizing, force merged groups to hahve a boundary between them")
 
 	options = parser.parse_args()
 
-	stk = StackedTokenizer(lines=options.lines,pipes=options.pipes,tokenized=options.tokenized,no_morphs=options.no_morphs)
+	stk = StackedTokenizer(lines=options.lines,pipes=options.pipes,tokenized=options.tokenized,no_morphs=options.no_morphs,
+						   detok=options.detokenize, segment_merged=options.segment_merged)
 
 	data = io.open(options.infile, encoding="utf8").read().replace("\r", "")
 
