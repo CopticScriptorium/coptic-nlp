@@ -74,7 +74,7 @@ def lookup_lang(in_data,lexicon=None,words=False):
 		if not words:
 			outlines.append(l)
 		else:
-			outlines.append(line + "\t" + l)
+			outlines.append("".join([line,"\t",l]))
 	return "\n".join(outlines)
 
 
