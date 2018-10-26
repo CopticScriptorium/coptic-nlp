@@ -592,8 +592,8 @@ Add norm, lemma, parse, tag, unary tags, find multiword expressions and do langu
 Just tokenize a file using pipes and dashes:
 > python coptic_nlp.py -o pipes infile.txt       
 
-Tokenize with pipes and mark up line breaks:
-> python coptic_nlp.py -b -o pipes infile.txt
+Tokenize with pipes and mark up line breaks, conservatively detokenize bound groups, assume seg boundary at merge site:
+> python coptic_nlp.py -b -d 1 --segment_merged -o pipes infile.txt
 
 Normalize, tag, lemmatize, find multiword expressions and parse, splitting sentences by <verse> tags:
 > python coptic_nlp.py -pnltm -s verse infile.txt       

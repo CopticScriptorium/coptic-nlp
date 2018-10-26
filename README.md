@@ -42,29 +42,32 @@ The pipeline also requires **perl** and **java** to be available (the latter onl
 usage: python coptic_nlp.py [OPTIONS] files
 
 positional arguments:
-
   files                 File name or pattern of files to process (e.g. *.txt)
 
 optional arguments:
-
   -h, --help            show this help message and exit
 
 standard module options:
-
   -u, --unary           Binarize unary XML milestone tags
   -t, --tag             Do POS tagging
   -l, --lemma           Do lemmatization
   -n, --norm            Do normalization
+  -m, --multiword       Tag multiword expressions
   -b, --breaklines      Add line tags at line breaks
   -p, --parse           Parse with dependency parser
   -e, --etym            Add etymolgical language of origin for loan words
   -s SENT, --sent SENT  XML tag to split sentences, e.g. verse for <verse ..>
                         (otherwise PUNCT tag is used to split sentences)
-  -o {pipes,sgml}, --outmode {pipes,sgml}
-                        Output SGML or tokenize with pipes
+  -o {pipes,sgml,conllu}, --outmode {pipes,sgml,conllu}
+                        Output SGML, conllu or tokenize with pipes
 
 less common options:
   -f, --finitestate     Use old finite-state tokenizer (less accurate)
+  -d {0,1,2}, --detokenize {0,1,2}
+                        Re-group non-standard bound groups (a.k.a.
+                        'laytonize') - 1=normal 2=aggressive
+  --segment_merged      When re-grouping bound groups, assume merged groups
+                        have segmentation boundary between them
   -q, --quiet           Suppress verbose messages
   -x EXTENSION, --extension EXTENSION
                         Extension for SGML mode output files (default: tt)
@@ -83,39 +86,26 @@ less common options:
 
 ### Example usage
 
-Add norm, lemma, parse, tag, unary tags and language recognition:
-
 ```
-> python coptic_nlp.py -penult infile.txt
-```
+Add norm, lemma, parse, tag, unary tags, find multiword expressions and do language recognition:
+> python coptic_nlp.py -penmult infile.txt        
 
 Just tokenize a file using pipes and dashes:
-```
-> python coptic_nlp.py -o pipes infile.txt
-```
+> python coptic_nlp.py -o pipes infile.txt       
 
-Tokenize with pipes and mark up line breaks:
-```
-> python coptic_nlp.py -b -o pipes infile.txt
-```
+Tokenize with pipes and mark up line breaks, conservatively detokenize bound groups, assume seg boundary at merge site:
+> python coptic_nlp.py -b -d 1 --segment_merged -o pipes infile.txt
 
-Normalize, tag, lemmatize and parse, splitting sentences by <verse> tags:
-```
-> python coptic_nlp.py -pnlt -s verse infile.txt
-```
+Normalize, tag, lemmatize, find multiword expressions and parse, splitting sentences by <verse> tags:
+> python coptic_nlp.py -pnmlt -s verse infile.txt       
 
 Add full analyses to a whole directory of *.xml files, output to a specified directory:
-```
-> python coptic_nlp.py -penult --dirout /home/cop/out/ *.xml
-```
+> python coptic_nlp.py -penmult --dirout /home/cop/out/ *.xml
 
 Parse a tagged SGML file into CoNLL tabular format for treebanking, use translation tag to recognize sentences:
-```
 > python coptic_nlp.py --no_tok --parse_only --pos_spans -s translation infile.tt
-```
 
 Merge a parse into a tagged SGML file's <norm> tags, use translation tag to recognize sentences:
-```
 > python coptic_nlp.py --merge_parse --pos_spans -s translation infile.tt
 ```
 
