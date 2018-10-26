@@ -4,7 +4,6 @@ import sys, os, io, random, re
 import numpy as np
 import pandas as pd
 
-from sklearn.pipeline import FeatureUnion, Pipeline
 from sklearn.ensemble import ExtraTreesClassifier, RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.externals import joblib
@@ -19,8 +18,16 @@ except ImportError:
 PY3 = sys.version_info[0] == 3
 script_dir = os.path.dirname(os.path.realpath(__file__))
 
-def lambda_underscore():  # Module level named lambda-function to make defaultdict picklable
-	return "_"
+cat_labels = ['group_in_lex', 'current_letter', 'prev_prev_letter', 'prev_letter', 'next_letter', 'next_next_letter',
+			  'mns4_coarse', 'mns3_coarse', 'mns2_coarse',
+			  'mns1_coarse', 'pls1_coarse', 'pls2_coarse',
+			  'pls3_coarse', 'pls4_coarse', "so_far_pos", "remaining_pos", "prev_grp_pos", "next_grp_pos",
+			  "remaining_pos_mns1", "remaining_pos_mns2",
+			  "prev_grp_first", "prev_grp_last", "next_grp_first", "next_grp_last"]
+
+num_labels = ['idx', 'len_bound_group', "current_vowel", "prev_prev_vowel", "prev_vowel", "next_vowel",
+			  "next_next_vowel", "prev_grp_len", "next_grp_len", "freq_ratio"]
+
 
 class FloatProportion(object):
 	def __init__(self, start, end):
@@ -45,136 +52,43 @@ class LetterConfig:
 				for cat in letter_cats:
 					self.letters[cat] = letters
 			self.vowels = vowels
-			self.pos_lookup = pos_lookup
+			self.pos_lookup = defaultdict(lambda: "_")
+			self.pos_lookup.update(pos_lookup)
 
 
-class DataFrameSelector(BaseEstimator, TransformerMixin):
-	def __init__(self, attribute_names):
-		self.attribute_names = attribute_names
-	def fit(self, X, y=None):
-		return self
-	def transform(self, X):
-		return X[self.attribute_names].values
+def multicol_fit_transform(dframe, columns):
+
+	if isinstance(columns, list):
+		columns = np.array(columns)
+	else:
+		columns = columns
+
+	encoder_dict = {}
+	# columns are provided, iterate through and get `classes_`
+	# ndarray to hold LabelEncoder().classes_ for each
+	# column; should match the shape of specified `columns`
+	all_classes_ = np.ndarray(shape=columns.shape, dtype=object)
+	all_encoders_ = np.ndarray(shape=columns.shape, dtype=object)
+	all_labels_ = np.ndarray(shape=columns.shape, dtype=object)
+	for idx, column in enumerate(columns):
+		# instantiate LabelEncoder
+		le = LabelEncoder()
+		# fit and transform labels in the column
+		dframe.loc[:, column] = le.fit_transform(dframe.loc[:, column].values)
+		encoder_dict[column] = le
+		# append the `classes_` to our ndarray container
+		all_classes_[idx] = (column, np.array(le.classes_.tolist(), dtype=object))
+		all_encoders_[idx] = le
+		all_labels_[idx] = le
+
+	multicol_dict = {"encoder_dict":encoder_dict, "all_classes_":all_classes_,"all_encoders_":all_encoders_,"columns": columns}
+	return dframe, multicol_dict
 
 
-class MultiColumnLabelEncoder(LabelEncoder):
-	"""
-	Wraps sklearn LabelEncoder functionality for use on multiple columns of a
-	pandas dataframe.
-
-	"""
-
-	def __init__(self, columns=None):
-		self.encoder_dict = {}
-		if isinstance(columns, list):
-			self.columns = np.array(columns)
-		else:
-			self.columns = columns
-
-	def fit(self, dframe):
-		"""
-		Fit label encoder to pandas columns.
-
-		Access individual column classes via indexing `self.all_classes_`
-
-		Access individual column encoders via indexing
-		`self.all_encoders_`
-		"""
-		# if columns are provided, iterate through and get `classes_`
-		if self.columns is not None:
-			# ndarray to hold LabelEncoder().classes_ for each
-			# column; should match the shape of specified `columns`
-			self.all_classes_ = np.ndarray(shape=self.columns.shape, dtype=object)
-			self.all_encoders_ = np.ndarray(shape=self.columns.shape, dtype=object)
-			for idx, column in enumerate(self.columns):
-				# fit LabelEncoder to get `classes_` for the column
-				le = LabelEncoder()
-				le.fit(dframe.loc[:, column].values)
-				# append the `classes_` to our ndarray container
-				self.all_classes_[idx] = (column, np.array(le.classes_.tolist(), dtype=object))
-				# append this column's encoder
-				self.all_encoders_[idx] = le
-		else:
-			# no columns specified; assume all are to be encoded
-			self.columns = dframe.iloc[:, :].columns
-			self.all_classes_ = np.ndarray(shape=self.columns.shape, dtype=object)
-			for idx, column in enumerate(self.columns):
-				le = LabelEncoder()
-				le.fit(dframe.loc[:, column].values)
-				self.all_classes_[idx] = (column, np.array(le.classes_.tolist(), dtype=object))
-				self.all_encoders_[idx] = le
-		return self
-
-	def fit_transform(self, dframe):
-		"""
-		Fit label encoder and return encoded labels.
-
-		Access individual column classes via indexing
-		`self.all_classes_`
-
-		Access individual column encoders via indexing
-		`self.all_encoders_`
-
-		Access individual column encoded labels via indexing
-		`self.all_labels_`
-		"""
-		# if columns are provided, iterate through and get `classes_`
-		if self.columns is not None:
-			# ndarray to hold LabelEncoder().classes_ for each
-			# column; should match the shape of specified `columns`
-			self.all_classes_ = np.ndarray(shape=self.columns.shape, dtype=object)
-			self.all_encoders_ = np.ndarray(shape=self.columns.shape, dtype=object)
-			self.all_labels_ = np.ndarray(shape=self.columns.shape, dtype=object)
-			for idx, column in enumerate(self.columns):
-				# instantiate LabelEncoder
-				le = LabelEncoder()
-				# fit and transform labels in the column
-				dframe.loc[:, column] = le.fit_transform(dframe.loc[:, column].values)
-				self.encoder_dict[column] = le
-				# append the `classes_` to our ndarray container
-				self.all_classes_[idx] = (column, np.array(le.classes_.tolist(),dtype=object))
-				self.all_encoders_[idx] = le
-				self.all_labels_[idx] = le
-		else:
-			# no columns specified; assume all are to be encoded
-			self.columns = dframe.iloc[:, :].columns
-			self.all_classes_ = np.ndarray(shape=self.columns.shape,
-										   dtype=object)
-			for idx, column in enumerate(self.columns):
-				le = LabelEncoder()
-				dframe.loc[:, column] = le.fit_transform(
-					dframe.loc[:, column].values)
-				self.all_classes_[idx] = (column, np.array(le.classes_.tolist(), dtype=object))
-				self.all_encoders_[idx] = le
-		return dframe
-
-	def transform(self, dframe):
-		"""
-		Transform labels to normalized encoding.
-		"""
-		if self.columns is not None:
-			for idx, column in enumerate(self.columns):
-				dframe.loc[:, column] = self.all_encoders_[idx].transform(dframe.loc[:, column].values)
-		else:
-			self.columns = dframe.iloc[:, :].columns
-			for idx, column in enumerate(self.columns):
-				dframe.loc[:, column] = self.all_encoders_[idx].transform(dframe.loc[:, column].values)
-		return dframe
-
-	def inverse_transform(self, dframe):
-		"""
-		Transform labels back to original encoding.
-		"""
-		if self.columns is not None:
-			for idx, column in enumerate(self.columns):
-				dframe.loc[:, column] = self.all_encoders_[idx] \
-					.inverse_transform(dframe.loc[:, column].values)
-		else:
-			self.columns = dframe.iloc[:, :].columns
-			for idx, column in enumerate(self.columns):
-				dframe.loc[:, column] = self.all_encoders_[idx] \
-					.inverse_transform(dframe.loc[:, column].values)
-		return dframe
+def multicol_transform(dframe, columns, all_encoders_):
+	for idx, column in enumerate(columns):
+		dframe.loc[:, column] = all_encoders_[idx].transform(dframe.loc[:, column].values)
+	return dframe
 
 
 #@profile
@@ -295,7 +209,6 @@ def bg2array(bound_group, prev_group="", next_group="", print_headers=False, grp
 
 		output.append(char_feats)
 
-
 	if print_headers:
 		return headers
 	else:
@@ -315,6 +228,7 @@ def segs2array(segs):
 	output.append(0)
 
 	return output
+
 
 def read_lex(short_pos, lex_file):
 	"""
@@ -336,7 +250,7 @@ def read_lex(short_pos, lex_file):
 			else:
 				lex[word].add(pos)
 
-	pos_lookup = defaultdict(lambda_underscore)
+	pos_lookup = {}
 	for word in lex:
 		pos_lookup[word] = "|".join(sorted(list(lex[word])))
 
@@ -392,7 +306,8 @@ class RFTokenizer:
 		self.regex_tok = None
 		self.enforce_allowed = False
 		self.short_pos = {}
-		self.pos_lookup = defaultdict(lambda: "_")
+		self.pos_lookup = {}
+		self.test_cache = {}  # Cache for bg2array encoded bound groups at test time
 		self.allowed = defaultdict(list)
 		self.conf["base_letters"] = set()
 		self.conf["vowels"] = set()
@@ -472,8 +387,17 @@ class RFTokenizer:
 		if model_path is None:
 			# Default model path for a language is the language name, extension ".sm2" for Python 2 or ".sm3" for Python 3
 			model_path = self.lang + ".sm" + str(sys.version_info[0])
-		self.tokenizer, self.num_labels, self.cat_labels, self.encoder, self.preparation_pipeline, self.pos_lookup, self.freqs, self.conf_file_parser = joblib.load(model_path)
+		if not os.path.exists(model_path):  # Try loading from calling directory
+			model_path = os.path.dirname(sys.argv[0]) + self.lang + ".sm" + str(sys.version_info[0])
+		if not os.path.exists(model_path):  # Try loading from tokenize_rf.py directory
+			model_path = os.path.dirname(os.path.realpath(__file__)) + os.sep + self.lang + ".sm" + str(sys.version_info[0])
+		#sys.stderr.write("Module: " + self.__module__ + "\n")
+		self.tokenizer, self.num_labels, self.cat_labels, self.multicol_dict, pos_lookup, self.freqs, self.conf_file_parser = joblib.load(model_path)
+		default_pos_lookup = defaultdict(lambda :"_")
+		default_pos_lookup.update(pos_lookup)
+		self.pos_lookup = default_pos_lookup
 		self.read_conf_file()
+		self.loaded = True
 
 	def train(self, train_file, lexicon_file=None, freq_file=None, test_prop=0.1, output_importances=False, dump_model=False,
 			  cross_val_test=False, output_errors=False, ablations=None, dump_transformed_data=False, do_shuffle=True, conf=None):
@@ -497,8 +421,8 @@ class RFTokenizer:
 		"""
 		import timing
 
-		pos_lookup = read_lex(self.short_pos,lexicon_file)
 		self.read_conf_file(file_name=conf)
+		pos_lookup = read_lex(self.short_pos,lexicon_file)
 		self.pos_lookup = pos_lookup
 		conf_file_parser = self.conf_file_parser
 		letter_config = LetterConfig(self.letters, self.conf["vowels"], self.pos_lookup)
@@ -589,7 +513,7 @@ class RFTokenizer:
 			if bound_group != "|":
 				if len(bound_group) != len(segmentation.replace("|","")):  # Ignore segmentations that also normalize
 					non_ident_segs += 1
-					bug_rows.append(row_idx)
+					bug_rows.append((row_idx,bound_group,segmentation.replace("|","")))
 					continue
 
 			###
@@ -614,8 +538,8 @@ class RFTokenizer:
 		sys.stderr.write("o Finished encoding " + str(len(data_y)) + " chars (" + str(len(seg_table)) + " groups, " + str(len(encoding_cache)) + " group types)\n")
 
 		if non_ident_segs > 0:
-			with open("bug_rows.txt",'w') as f:
-				f.write("\n".join([str(r) for r in sorted([shuffle_mapping[x] for x in bug_rows])]) + "\n")
+			with io.open("bug_rows.txt",'w',encoding="utf8") as f:
+				f.write(("\n".join([str(r) + ": " + g + "<>" + s for r, g, s in sorted([[shuffle_mapping[x], g, s] for x, g, s in bug_rows])]) + "\n"))
 
 			sys.stderr.write("i WARN: found " + str(non_ident_segs) + " rows in training data where left column characters not identical to right column characters\n")
 			sys.stderr.write("        Row numbers dumped to: bug_rows.txt\n")
@@ -623,15 +547,6 @@ class RFTokenizer:
 
 		data_y = np.array(data_y)
 
-		cat_labels = ['group_in_lex','current_letter', 'prev_prev_letter', 'prev_letter', 'next_letter', 'next_next_letter',
-					 'mns4_coarse', 'mns3_coarse', 'mns2_coarse',
-					 'mns1_coarse', 'pls1_coarse', 'pls2_coarse',
-					 'pls3_coarse', 'pls4_coarse', "so_far_pos", "remaining_pos","prev_grp_pos","next_grp_pos",
-					  "remaining_pos_mns1","remaining_pos_mns2",
-					  "prev_grp_first", "prev_grp_last","next_grp_first","next_grp_last"]
-
-		num_labels = ['idx','len_bound_group',"current_vowel","prev_prev_vowel","prev_vowel","next_vowel","next_next_vowel",
-					  "prev_grp_len","next_grp_len","freq_ratio"]
 
 		# Remove features switched off in .conf file
 		for label in self.conf["unused"]:
@@ -676,8 +591,7 @@ class RFTokenizer:
 			sys.exit()
 		###
 
-		encoder = MultiColumnLabelEncoder(pd.Index(cat_labels))
-		data_x_enc = encoder.fit_transform(data_x)
+		data_x_enc, multicol_dict = multicol_fit_transform(data_x, pd.Index(cat_labels))
 
 		if test_prop > 0:
 			sys.stderr.write("o Generating train/test split with test proportion "+str(test_prop)+"\n")
@@ -686,27 +600,14 @@ class RFTokenizer:
 		strat_train_set = data_x_enc.iloc[data_x_enc.index[data_x_enc["is_test"] == 0]]
 		strat_test_set = data_x_enc.iloc[data_x_enc.index[data_x_enc["is_test"] == 1]]
 
-		cat_pipeline = Pipeline([
-			('selector', DataFrameSelector(cat_labels)),
-		])
-
-		num_pipeline = Pipeline([
-			('selector', DataFrameSelector(num_labels))
-		])
-
-		preparation_pipeline = FeatureUnion(transformer_list=[
-			("cat_pipeline", cat_pipeline),
-			("num_pipeline", num_pipeline),
-		])
-
 		sys.stderr.write("o Transforming data to numerical array\n")
-		train_x = preparation_pipeline.fit_transform(strat_train_set)
+		train_x = strat_train_set[cat_labels+num_labels].values
 
 		train_y = strat_train_set["boundary"]
 		train_y_bin = np.where(strat_train_set['boundary'] == 0, 0, 1)
 
 		if test_prop > 0:
-			test_x = preparation_pipeline.transform(strat_test_set)
+			test_x = strat_test_set[cat_labels+num_labels].values
 			test_y_bin = np.where(strat_test_set['boundary'] == 0, 0, 1)
 			bound_grp_idx = np.array(strat_test_set['grp_id'])
 
@@ -789,12 +690,10 @@ class RFTokenizer:
 			print("o Test proportion is 0%, skipping evaluation")
 
 		if dump_model:
-			print("name is:"+__name__)
-			#MultiColumnLabelEncoder.__module__ = "lib.modules.tokenize_rf"
-			#encoder.__module__ = "tokenize_rf"
-			joblib.dump((forest_clf, num_labels, cat_labels, encoder, preparation_pipeline, pos_lookup, freqs, conf_file_parser), self.lang + ".sm" + str(sys.version_info[0]), compress=3)
+			plain_dict_pos_lookup = {}
+			plain_dict_pos_lookup.update(pos_lookup)
+			joblib.dump((forest_clf, num_labels, cat_labels, multicol_dict, plain_dict_pos_lookup, freqs, conf_file_parser), self.lang + ".sm" + str(sys.version_info[0]), compress=3)
 			print("o Dumped trained model to " + self.lang + ".sm" + str(sys.version_info[0]))
-
 
 	def rf_tokenize(self, data, sep="|", indices=None):
 		"""
@@ -807,19 +706,9 @@ class RFTokenizer:
 		"""
 
 		if not self.loaded:
-			if os.path.isfile(self.model):
-				self.load(self.model)
-			else:
-				if os.path.isfile(self.lang + ".sm" + str(sys.version_info[0])):
-					self.load(self.lang + ".sm" + str(sys.version_info[0]))
-				elif os.path.isfile(script_dir + os.sep + self.lang + ".sm" + str(sys.version_info[0])):
-					self.load(script_dir + os.sep + self.lang + ".sm" + str(sys.version_info[0]))
-				else:
-					sys.stderr.write("FATAL: Could not find segmentation model at " + script_dir + os.sep + self.model + ".sm" + str(sys.version_info[0]))
-					sys.exit()
-			self.loaded = True
+			self.load()
 
-		tokenizer, num_labels, cat_labels, encoder, preparation_pipeline, freqs = self.tokenizer, self.num_labels, self.cat_labels, self.encoder, self.preparation_pipeline, self.freqs
+		tokenizer, num_labels, cat_labels, multicol_dict, freqs = self.tokenizer, self.num_labels, self.cat_labels, self.multicol_dict, self.freqs
 
 		do_not_tok_indices = set()
 
@@ -835,8 +724,8 @@ class RFTokenizer:
 
 		letters = {}
 		for header in headers:
-			if header in encoder.encoder_dict:
-				letters[header] = encoder.encoder_dict[header].classes_
+			if header in multicol_dict["encoder_dict"]:
+				letters[header] = multicol_dict["encoder_dict"][header].classes_
 
 		letter_config = LetterConfig(letters, self.conf["vowels"], self.pos_lookup)
 
@@ -862,7 +751,12 @@ class RFTokenizer:
 						do_not_tok_indices.add(j)
 			j += 1
 
-			encoded_group = bg2array(word,prev_group=prev_group,next_group=next_group,config=letter_config,freqs=freqs)
+			group_type = "_".join([prev_group, next_group, word])
+			if group_type in self.test_cache:  # No need to encode, an identical featured group has already been seen
+				encoded_group = self.test_cache[group_type]
+			else:
+				encoded_group = bg2array(word,prev_group=prev_group,next_group=next_group,config=letter_config,freqs=freqs)
+				self.test_cache[group_type] = encoded_group
 			encoded_groups += encoded_group
 			word_lengths.append(cursor + len(word))
 			cursor += len(word)
@@ -874,8 +768,8 @@ class RFTokenizer:
 		data_x = pd.DataFrame(encoded_groups)
 		data_x.columns = headers
 
-		encoder.transform(data_x)
-		prepped = preparation_pipeline.transform(data_x)
+		data_x = multicol_transform(data_x,multicol_dict["columns"],multicol_dict["all_encoders_"])
+		prepped = data_x[cat_labels+num_labels].values
 
 		p = tokenizer.predict(prepped)
 		p_words = np.split(p, word_lengths)

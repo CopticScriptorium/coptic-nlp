@@ -3,8 +3,11 @@
 
 
 from __future__ import unicode_literals
-import sys, re, io
+import sys, re, io, os
+from six import iterkeys, itervalues
 PY3 = sys.version_info[0] == 3
+
+stk_dir = os.path.dirname(os.path.realpath(__file__))
 
 cap_map = {"Ⲁ":"ⲁ","Ⲃ":"ⲃ","Ⲑ":"ⲑ","Ⲇ":"ⲇ","Ⲉ":"ⲉ","Ϥ":"ϥ","Ⲅ":"ⲅ","Ⲏ":"ⲏ","Ⲓ":"ⲓ","Ϫ":"ϫ","Ⲕ":"ⲕ","Ⲗ":"ⲗ","Ⲙ":"ⲙ","Ⲛ":"ⲛ","Ⲟ":"ⲟ","Ⲡ":"ⲡ","Ϭ":"ϭ","Ⲣ":"ⲣ","Ⲥ":"ⲥ","Ⲧ":"ⲧ","Ⲩ":"ⲩ","Ⲫ":"ⲫ","Ⲱ":"ⲱ","Ϩ":"ϩ","Ⲭ":"ⲭ","Ⲍ":"ⲍ","Ϣ":"ϣ","Ϯ":"ϯ","Ⲯ":"ⲯ","Ⲝ":"ⲝ"}
 
@@ -13,13 +16,11 @@ if PY3 and __name__ != "__main__":
 	from .tokenize_lookup import lookup_tokenize
 	from .tokenize_rf import RFTokenizer
 	from .tokenize_morph import MorphAnalyzer
-	from .tokenize_rf import MultiColumnLabelEncoder, lambda_underscore, DataFrameSelector
 else:
 	from tokenize_fs import fs_tokenize
 	from tokenize_lookup import lookup_tokenize
 	from tokenize_rf import RFTokenizer
 	from tokenize_morph import MorphAnalyzer
-	from tokenize_rf import MultiColumnLabelEncoder, lambda_underscore, DataFrameSelector
 
 from argparse import ArgumentParser
 from six import iteritems
