@@ -243,7 +243,7 @@ def inject(attribute_name, contents, at_attribute,into_stream,replace=True):
 				raise Exception("Error out of bounds at element " + str(i) + " in document beginning " + into_stream[:1000])
 			if len(insertions[i])>0:
 				if at_attribute == attribute_name:  # Replace old value of attribute with new one
-					line = re.sub(attribute_name+'="[^"]+"',attribute_name+'="'+insertions[i]+'"',line)
+					line = re.sub(attribute_name+'="[^"]*"',attribute_name+'="'+insertions[i]+'"',line)
 				else:  # Place before specific at_attribute
 					if replace or " " + attribute_name + "=" not in line:
 						line = re.sub(at_attribute+"=",attribute_name+'="'+insertions[i]+'" '+at_attribute+"=",line)
