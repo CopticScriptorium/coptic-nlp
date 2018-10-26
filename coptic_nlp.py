@@ -15,11 +15,13 @@ from lib.depedit import DepEdit
 from lib.binarize_tags import binarize
 from lib.lang import lookup_lang
 from lib.harvest_tt_sgml import harvest_tt
-
-# Import pickled classes for RFTokenizer
-from lib.tokenize_rf import MultiColumnLabelEncoder, DataFrameSelector, lambda_underscore
+from lib.mwe import tag_mwes
 
 PY3 = sys.version_info[0] > 2
+
+if PY3:
+	from builtins import type
+
 inp = input if PY3 else raw_input
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
@@ -31,31 +33,42 @@ tt_path = bin_dir + "TreeTagger" + os.sep + "bin" + os.sep
 
 
 def log_tasks(opts):
-	sys.stdout.write("\nRunning standard tasks:\n" +"="*20 + "\n")
+	sys.stderr.write("\nRunning standard tasks:\n" +"="*20 + "\n")
 	if opts.unary:
-		sys.stdout.write("o Binarize unary XML milestone tags\n")
+		sys.stderr.write("o Binarize unary XML milestone tags\n")
 	if opts.para:
-		sys.stdout.write("o Paragraph detection\n")
+		sys.stderr.write("o Paragraph detection\n")
 	if opts.meta:
-		sys.stdout.write("o Metadata insertion\n")
+		sys.stderr.write("o Metadata insertion\n")
 	if not opts.no_tok and not opts.parse_only and not opts.merge_parse:
-		sys.stdout.write("o Tokenization\n")
+		sys.stderr.write("o Tokenization\n")
 	if opts.norm:
-		sys.stdout.write("o Normalization\n")
+		sys.stderr.write("o Normalization\n")
 	if opts.tag:
-		sys.stdout.write("o POS tagging\n")
+		sys.stderr.write("o POS tagging\n")
 	if opts.lemma:
-		sys.stdout.write("o Lemmatization\n")
+		sys.stderr.write("o Lemmatization\n")
 	if opts.etym:
-		sys.stdout.write("o Language of origin detection\n")
+		sys.stderr.write("o Language of origin detection\n")
+	if opts.multiword:
+		sys.stderr.write("o Multiword expression recognition\n")
 	if opts.sent is not None:
-		sys.stdout.write("o Splitting sentences based on tag: "+opts.sent+"\n")
+		sys.stderr.write("o Splitting sentences based on tag: "+opts.sent+"\n")
 	if opts.parse or opts.parse_only or opts.merge_parse:
-		sys.stdout.write("o Dependency parsing\n")
+		sys.stderr.write("o Dependency parsing\n")
 
 	special_tasks = []
 	if opts.space:
 		special_tasks.append("o Space out punctuation")
+	if opts.detokenize > 0:
+		if opts.detokenize > 1:
+			special_tasks.append("o Detokenization (a.k.a. 'Laytonization') - aggressive")
+		else:
+			special_tasks.append("o Detokenization (a.k.a. 'Laytonization') - conservative")
+	if opts.segment_merged:
+		special_tasks.append("o Insert boundary between merged groups")
+	if opts.breaklines:
+		special_tasks.append("o Add line tags to preserve line breaks")
 	if opts.merge_parse:
 		special_tasks.append("o Merge parse into SGML file")
 	if opts.para:
@@ -63,10 +76,10 @@ def log_tasks(opts):
 	if opts.parse_only:
 		special_tasks.append("o Parse to CoNLL file")
 	if len(special_tasks) > 0:
-		sys.stdout.write("\nRunning special tasks:\n" + "=" * 20 + "\n")
-		sys.stdout.write("\n".join(special_tasks) + "\n")
+		sys.stderr.write("\nRunning special tasks:\n" + "=" * 20 + "\n")
+		sys.stderr.write("\n".join(special_tasks) + "\n")
 
-	sys.stdout.write("\n")
+	sys.stderr.write("\n")
 
 
 def groupify(output,anno):
@@ -76,7 +89,7 @@ def groupify(output,anno):
 		if " "+anno+"=" in line:
 			current_group += re.search(anno + r'="([^"]*)"',line).group(1)
 		if line.startswith("</") and "_group" in line:
-			groups += current_group +"\n"
+			groups += current_group + "\n"
 			current_group = ""
 
 	return groups
@@ -197,6 +210,13 @@ def exec_via_temp(input_text, command_params, workdir=""):
 
 
 def get_origs(data):
+	"""
+	Harvests orig from plain tokens (non-tag lines of TT SGML), grouped by norm spans
+
+	:param data: TT SGML with unnormalized tokens in non-tag lines and <norm.. tags indicating norm/orig borders
+	:return: string containing one reconstituted orig unit per line
+	"""
+
 	origs = []
 	current = ""
 	for line in data.split("\n"):
@@ -210,6 +230,16 @@ def get_origs(data):
 
 
 def inject(attribute_name, contents, at_attribute,into_stream,replace=True):
+	"""
+	Inject new attributes and values into a specified SGML element in TT SGML format
+
+	:param attribute_name: name of the attribute to insert
+	:param contents: string, one value per line to insert as attribute values
+	:param at_attribute: attribute in target element to insert this attribute before (can be same attribute name, replace in place)
+	:param into_stream: TT SGML string with elements to add attributes to
+	:param replace: boolean, whether to replace existing values of attribute_name when already present
+	:return: TT SGML with added attributes
+	"""
 	insertions = contents.split('\n')
 	injected = ""
 	i=0
@@ -219,7 +249,7 @@ def inject(attribute_name, contents, at_attribute,into_stream,replace=True):
 				raise Exception("Error out of bounds at element " + str(i) + " in document beginning " + into_stream[:1000])
 			if len(insertions[i])>0:
 				if at_attribute == attribute_name:  # Replace old value of attribute with new one
-					line = re.sub(attribute_name+'="[^"]+"',attribute_name+'="'+insertions[i]+'"',line)
+					line = re.sub(attribute_name+'="[^"]*"',attribute_name+'="'+insertions[i]+'"',line)
 				else:  # Place before specific at_attribute
 					if replace or " " + attribute_name + "=" not in line:
 						line = re.sub(at_attribute+"=",attribute_name+'="'+insertions[i]+'" '+at_attribute+"=",line)
@@ -253,11 +283,53 @@ def extract_conll(conll_string):
 
 
 def space_punct(input_text):
-	input_text = input_text.encode("utf8").replace("·", " · ").replace(".", " . ").replace("·", " · ").replace("ⲵ", " ⲵ ")
-	input_text = input_text.replace(",", " , ").replace(":", " : ").replace(";", " ; ").replace("ʼ", " ʼ ")
-	input_text = re.sub(" +", " ", input_text)
-	input_text = re.sub(r'([A-Za-z]) ([.,;:])', r'\1\2', input_text).decode("utf8")
-	return input_text
+	punct = set(["·",".","·","ⲵ",",",":",";","ʼ","„","“","{","}"])
+	if not PY3:
+		punct = set([unicode(p) for p in punct])
+	outstr = ""
+	textmode = True
+	for c in input_text:
+		if c == "<":
+			textmode = False
+		if c in punct and textmode:
+			outstr = "".join([outstr," " + c + " "])
+		else:
+			outstr = "".join([outstr,c])
+		if c == ">":
+			textmode = True
+	outstr = re.sub(" +", " ", outstr)  # Kill double spaces
+	return outstr
+
+
+def inject_tags(in_sgml,insertion_specs,around_tag="norm",inserted_tag="multiword"):
+	"""
+
+	:param in_sgml: input SGML stream including tags to surround with new tags
+	:param insertion_specs: list of triples (start, end, value)
+	:param around_tag: tag of span to surround by insertion
+	:return: modified SGML stream
+	"""
+	if len(insertion_specs) == 0:
+		return in_sgml
+
+	counter = -1
+	next_insert = insertion_specs[0]
+	insertion_counter = 0
+	outlines = []
+	for line in in_sgml.split("\n"):
+		if line.startswith("<" + around_tag + " "):
+			counter += 1
+			if next_insert[0] == counter:  # beginning of a span
+				outlines.append("<" + inserted_tag + " " + inserted_tag + '="' + next_insert[2] + '">')
+		outlines.append(line)
+		if line.startswith("</" + around_tag + ">"):
+			if next_insert[1] == counter:  # end of a span
+				outlines.append("</" + inserted_tag + ">")
+				insertion_counter += 1
+				if len(insertion_specs) > insertion_counter:
+					next_insert = insertion_specs[insertion_counter]
+
+	return "\n".join(outlines)
 
 
 def check_requirements():
@@ -316,9 +388,9 @@ def download_requirements(tt_ok=True, malt_ok=True):
 	shutil.copyfile(bin_dir+"coptic_fine.par",bin_dir+"TreeTagger" + os.sep + "bin" + os.sep + "coptic_fine.par")
 
 
-def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True, do_tag=True, do_lemma=True, do_lang=True,
+def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True, do_mwe=True, do_tag=True, do_lemma=True, do_lang=True,
 			   do_milestone=True, do_parse=True, sgml_mode="sgml", tok_mode="auto", old_tokenizer=False, sent_tag=None,
-			   preloaded=None, pos_spans=False, merge_parse=False):
+			   preloaded=None, pos_spans=False, merge_parse=False, detokenize=0):
 
 	data = input_data.replace("\t","")
 	data = data.replace("\r","")
@@ -326,7 +398,8 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 	if preloaded is not None:
 		stk = preloaded
 	else:
-		stk = StackedTokenizer(pipes=sgml_mode != "sgml", lines=lb, tokenized=tok_mode=="from_pipes")
+		stk = StackedTokenizer(pipes=sgml_mode != "sgml", lines=lb, tokenized=tok_mode=="from_pipes",
+							   detok=detokenize, segment_merged=opts.segment_merged)
 
 	if do_milestone:
 		data = binarize(data)
@@ -373,7 +446,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 
 	if parse_only or merge_parse:
 		if not do_tag and (parse_only or merge_parse):
-			if not "\t" in input_data:
+			if not "\t" in input_data and not 'pos="' in input_data:
 				sys.stderr.write("! You selected parsing without tagging (-t) and your data format appears to contain no POS tag column.\n")
 				resp = inp("! Would you like to add POS tagging to the job profile? [Y]es/[N]o/[A]bort ")
 				if resp.lower() == "y":
@@ -404,6 +477,8 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 			if "norm=" not in input_data:
 				sys.stderr.write('ERR: --merge_parse was selected but no <norm norm=".."> tags found in input\n')
 				sys.exit(0)
+			if sgml_mode == "conllu":
+				return depedited
 			ids, funcs, parents = extract_conll(depedited.strip())
 			output = inject("xml:id", ids, "norm", input_data)
 			output = inject("func", funcs, "norm", output)
@@ -449,6 +524,9 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 		output = inject("pos",tagged,"norm",output)
 	if do_lemma:
 		output = inject("lemma",lemmas,"norm",output)
+	if do_mwe:
+		mwe_positions = tag_mwes(norms.split('\n'),lemmas.split('\n'))
+		output = inject_tags(output, mwe_positions)
 	if do_lang:
 		output = inject("xml:lang",langed,"norm",output)
 		if "morph" in tokenized:
@@ -464,28 +542,31 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 		output = inject("head",parents,"norm",output)
 		output = output.replace(' head="#u0"',"")  # Remove head attribute for root tokens in dependency tree
 
-	if "orig_group=" in tokenized:
-		orig_groups = read_attributes(tokenized,"orig_group")
-	elif "orig=" in tokenized:
-		orig_groups = groupify(output, "orig")
-	elif "norm_group=" in tokenized:
-		orig_groups = read_attributes(tokenized, "norm_group")
-	else:
-		orig_groups = ""
-
-	output = re.sub(r"<norm_group norm_group=","<norm_group orig_group=",output)
-	if do_norm and len(orig_groups) > 0:
+	if do_norm and "norm=" in output:
 		groups = groupify(output,"norm")
-		output = inject("norm_group",groups,"orig_group",output)
+		output = inject("norm_group",groups,"norm_group",output)
 
 		# Add orig from tokens based on norm spans
 		origs = get_origs(output)
 		output = inject("orig",origs,"norm",output)
 		orig_groups = groupify(output, "orig")
 		if "orig_group=" in output:
+			# Replace existing orig groups in output with newly harvested orig content
 			output = inject("orig_group",orig_groups,"orig_group",output)
 		else:
+			# Add orig_group attribute since not yet present
 			output = inject("orig_group",orig_groups,"norm_group",output)
+	else:
+		if "orig_group=" in tokenized:  # There are already orig_group attrs and we're not normalizing
+			orig_groups = read_attributes(tokenized, "orig_group")
+			origs = get_origs(tokenized)
+			output = inject("orig", origs, "orig", output)
+			output = inject("orig_group", orig_groups, "orig_group", output)
+		elif "orig=" in tokenized:  # Need to reconstitute
+			origs = get_origs(tokenized)
+			orig_groups = groupify(tokenized, "orig")
+			output = inject("orig", origs, "orig", output)
+			output = inject("orig_group", orig_groups, "orig_group", output)
 
 	return output.strip() + "\n"
 
@@ -505,8 +586,8 @@ if __name__ == "__main__":
 	parser.usage = "python coptic_nlp.py [OPTIONS] files"
 	parser.epilog = """Example usage:
 --------------
-Add norm, lemma, parse, tag, unary tags and language recognition:
-> python coptic_nlp.py -penult infile.txt        
+Add norm, lemma, parse, tag, unary tags, find multiword expressions and do language recognition:
+> python coptic_nlp.py -penmult infile.txt        
 
 Just tokenize a file using pipes and dashes:
 > python coptic_nlp.py -o pipes infile.txt       
@@ -514,11 +595,11 @@ Just tokenize a file using pipes and dashes:
 Tokenize with pipes and mark up line breaks:
 > python coptic_nlp.py -b -o pipes infile.txt
 
-Normalize, tag, lemmatize and parse, splitting sentences by <verse> tags:
-> python coptic_nlp.py -pnlt -s verse infile.txt       
+Normalize, tag, lemmatize, find multiword expressions and parse, splitting sentences by <verse> tags:
+> python coptic_nlp.py -pnltm -s verse infile.txt       
 
 Add full analyses to a whole directory of *.xml files, output to a specified directory:    
-> python coptic_nlp.py -penult --dirout /home/cop/out/ *.xml
+> python coptic_nlp.py -penmult --dirout /home/cop/out/ *.xml
 
 Parse a tagged SGML file into CoNLL tabular format for treebanking, use translation tag to recognize sentences:
 > python coptic_nlp.py --no_tok --parse_only --pos_spans -s translation infile.tt
@@ -533,14 +614,17 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 	g1.add_argument("-t","--tag", action="store_true", help='Do POS tagging')
 	g1.add_argument("-l","--lemma", action="store_true", help='Do lemmatization')
 	g1.add_argument("-n","--norm", action="store_true", help='Do normalization')
+	g1.add_argument("-m","--multiword", action="store_true", help='Tag multiword expressions')
 	g1.add_argument("-b","--breaklines", action="store_true", help='Add line tags at line breaks')
 	g1.add_argument("-p","--parse", action="store_true", help='Parse with dependency parser')
 	g1.add_argument("-e","--etym", action="store_true", help='Add etymolgical language of origin for loan words')
 	g1.add_argument("-s","--sent", action="store", help='XML tag to split sentences, e.g. verse for <verse ..> (otherwise PUNCT tag is used to split sentences)')
-	g1.add_argument("-o","--outmode", action="store", choices=["pipes","sgml"], default="sgml", help='Output SGML or tokenize with pipes')
+	g1.add_argument("-o","--outmode", action="store", choices=["pipes","sgml","conllu"], default="sgml", help='Output SGML, conllu or tokenize with pipes')
 
 	g2 = parser.add_argument_group("less common options")
 	g2.add_argument("-f","--finitestate", action="store_true", help='Use old finite-state tokenizer (less accurate)')
+	g2.add_argument("-d","--detokenize", action="store", type=int, choices=[0,1,2], default=0, help="Re-group non-standard bound groups (a.k.a. 'laytonize') - 1=normal 2=aggressive")
+	g2.add_argument("--segment_merged", action="store_true", help="When re-grouping bound groups, assume merged groups have segmentation boundary between them")
 	g2.add_argument("-q","--quiet", action="store_true", help='Suppress verbose messages')
 	g2.add_argument("-x","--extension", action="store", default=None, help='Extension for SGML mode output files (default: tt)')
 	g2.add_argument("--stdout", action="store_true", help='Print output to stdout, do not create output file')
@@ -561,7 +645,7 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 
 	opts = parser.parse_args()
 	old_tokenizer = True if opts.finitestate else False
-	dotok = False if opts.no_tok else True
+	dotok = False if opts.no_tok or opts.merge_parse else True
 
 	if not opts.quiet:
 		from lib import timing
@@ -577,7 +661,8 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 
 	if dotok and not old_tokenizer:
 		# Pre-load stacked tokenizer for entire batch
-		stk = StackedTokenizer(pipes=opts.outmode == "pipes", lines=opts.breaklines, tokenized=opts.from_pipes)
+		stk = StackedTokenizer(pipes=opts.outmode == "pipes", lines=opts.breaklines, tokenized=opts.from_pipes,
+							   segment_merged=opts.segment_merged, detok=opts.detokenize)
 	else:
 		stk = None
 
@@ -610,6 +695,8 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 				outfile = base[:-4] + "." + opts.extension
 			else:
 				outfile = base + "." + opts.extension
+		elif opts.outmode == "conllu":
+			opts.extension = "conllu"
 		else:
 			outfile = base + ".out.txt"
 
@@ -628,10 +715,10 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 			opts.pos_spans = True
 
 		processed = nlp_coptic(input_text, lb=opts.breaklines, parse_only=opts.parse_only, do_tok=dotok,
-							   do_norm=opts.norm, do_tag=opts.tag, do_lemma=opts.lemma, do_lang=opts.etym,
-							   do_milestone=opts.unary, do_parse=opts.parse, sgml_mode=opts.outmode,
+							   do_norm=opts.norm, do_mwe=opts.multiword, do_tag=opts.tag, do_lemma=opts.lemma,
+							   do_lang=opts.etym, do_milestone=opts.unary, do_parse=opts.parse, sgml_mode=opts.outmode,
 							   tok_mode="auto", old_tokenizer=old_tokenizer, sent_tag=opts.sent, preloaded=stk,
-							   pos_spans=opts.pos_spans, merge_parse=opts.merge_parse)
+							   pos_spans=opts.pos_spans, merge_parse=opts.merge_parse, detokenize=opts.detokenize)
 
 		if opts.outmode == "sgml":
 			processed = reorder(processed.strip().split("\n"),add_fixed_meta=add_fixed_meta)

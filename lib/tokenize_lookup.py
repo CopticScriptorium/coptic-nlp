@@ -1,19 +1,14 @@
-import csv, os, io, sys
+import os, io, sys
 
 PY3 = sys.version_info[0] > 2
 
 def lookup_tokenize(norms,underscore_oov=False,seg_table=None):
 	if seg_table is None:
 		seg_table = os.path.dirname(os.path.realpath(__file__)) + os.sep +".." + os.sep + "data" +os.sep+"segmentation_table.tab"
-	try:
-		reader = csv.reader(open(seg_table, encoding="utf8"), delimiter='\t', escapechar="\\")
-	except TypeError:
-		reader = csv.reader(io.open(seg_table,encoding="utf8"), delimiter='\t', escapechar="\\")
 
-	if PY3:
-		segs = dict((rows[0], rows[1]) for rows in reader)
-	else:
-		segs = dict((rows[0].decode("utf8"), rows[1].decode("utf8")) for rows in reader)
+	rows = io.open(seg_table,encoding="utf8").read().replace("\r","").strip().split("\n")
+	tuples = [row.split("\t") for row in rows if "\t" in row]
+	segs = dict((t[0],t[1]) for t in tuples)
 
 	tokenized = []
 
@@ -27,3 +22,18 @@ def lookup_tokenize(norms,underscore_oov=False,seg_table=None):
 				tokenized.append(norm)
 
 	return tokenized
+
+if __name__ == "__main__":
+	from argparse import ArgumentParser
+	p = ArgumentParser()
+	p.add_argument("infile")
+	p.add_argument("-o","--oov_underscore",action="store_true",help="output underscore for OOV items")
+	opts = p.parse_args()
+
+	norms = io.open(opts.infile,encoding="utf8").read().replace("\r","").split("\n")
+	tokenized = lookup_tokenize(norms,underscore_oov=opts.oov_underscore)
+	tokenized = "\n".join(tokenized) + "\n"
+	if PY3:
+		sys.stdout.buffer.write(tokenized.encode("utf8"))
+	else:
+		sys.stdout.write(tokenized.encode("utf8"))
