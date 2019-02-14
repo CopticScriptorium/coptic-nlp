@@ -130,7 +130,7 @@ class BoundGroup():
 		for i in range(1, len(tokenization)):
 			c = tokenization[-i]  # Traverse tokenized string backwards
 			if c in self.tokenization_chars:
-				position = self.norm_map[cursor+1] - 1 if cursor < len(self.norm) else self.norm_map[cursor]
+				position = self.norm_map[cursor+1] - 1 if cursor < len(self.norm) - 1 else self.norm_map[cursor]
 				tokenized = "".join([tokenized[:position+1], c, tokenized[position+1:]])
 			else:
 				cursor -= 1
