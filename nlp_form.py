@@ -66,6 +66,8 @@ def make_nlp_form(access_level, mode):
 		do_lemma = True
 		do_tag = True
 		do_parse = True
+		detok = 0
+		segment_merged = False
 		do_tok = True
 		do_norm = True
 		do_mwe = True
@@ -85,6 +87,13 @@ def make_nlp_form(access_level, mode):
 			do_parse = form.getvalue("parse") is not None
 			do_norm = form.getvalue("norm") is not None
 			do_mwe = form.getvalue("mwe") is not None
+			if form.getvalue("laytonize") == "aggressive":
+				detok = 2
+			elif form.getvalue("laytonize") == "conservative":
+				detok = 1
+			else:
+				detok = 0
+			segment_merged = form.getvalue("segment_merged") is not None
 			do_tok = form.getvalue("tok") is not None
 			do_lang = form.getvalue("lang") is not None
 			if sgml_mode == "pipes":
@@ -95,7 +104,8 @@ def make_nlp_form(access_level, mode):
 			else:
 				processed = nlp_coptic(data,lb=lb=="line",parse_only=False,do_tok=do_tok,do_norm=do_norm,do_mwe=do_mwe,
 									   do_tag=do_tag, do_lemma=do_lemma,do_lang=do_lang,do_milestone=do_milestone,
-									   do_parse=do_parse, sgml_mode=sgml_mode,tok_mode=tok_mode,old_tokenizer=old_tok)
+									   do_parse=do_parse, sgml_mode=sgml_mode,tok_mode=tok_mode,old_tokenizer=old_tok,
+									   detokenize=detok, segment_merged=segment_merged)
 				processed = processed.strip()
 
 		###
@@ -115,6 +125,10 @@ def make_nlp_form(access_level, mode):
 		noline_checked = ' checked="checked"' if lb else ""
 		tok_checked = ' checked="checked"' if do_tok else ""
 		old_checked = ' checked="checked"' if old_tok else ""
+		segment_merged_checked = ' checked="checked"' if segment_merged else ""
+		detokenize_checked = ' checked="checked"' if detok > 0 else ""
+		laytonize_conservative_checked = ' checked="checked"' if detok == 1 else ""
+		laytonize_aggressive_checked = ' checked="checked"' if detok == 2 else ""
 		auto_checked = ' checked="checked"' if tok_mode == "auto" else ""
 		pipes_checked = ' checked="checked"' if tok_mode == "from_pipes" else ""
 		norm_checked = ' checked="checked"' if do_norm else ""
@@ -154,6 +168,10 @@ def make_nlp_form(access_level, mode):
 		template = template.replace("**old_checked**", old_checked)
 		template = template.replace("**milestone_checked**", milestone_checked)
 		template = template.replace("**tok_checked**", tok_checked)
+		template = template.replace("**detokenize_checked**", detokenize_checked)
+		template = template.replace("**laytonize_conservative_checked**", laytonize_conservative_checked)
+		template = template.replace("**laytonize_aggressive_checked**", laytonize_aggressive_checked)
+		template = template.replace("**segment_merged_checked**", segment_merged_checked)
 		template = template.replace("**auto_checked**", auto_checked)
 		template = template.replace("**pipes_checked**", pipes_checked)
 		template = template.replace("**norm_checked**", norm_checked)

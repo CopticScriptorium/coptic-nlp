@@ -40,14 +40,51 @@
 			<br/>
 			<h3 class="nlp_title">Output:</h3>
 			<table>
-			<tr><td colspan="2" style="padding-bottom: 10px"><input type="checkbox" name="old_tok" value="old_tok"**old_checked**>Use old finite state tokenizer
+			<tr><td colspan="2" style="padding-bottom: 10px"><input type="checkbox" id="old_tok" name="old_tok" value="old_tok" onclick="toggle_laytonize(false);"**old_checked**>Use old finite state tokenizer
 			<a href="#" class="tooltip2">
 							<i class="fa fa-info-circle" style="display: inline-block"></i>
 							<span>
 								<img class="callout" src="img/callout.gif" />
-								Less accurate, provided for reproducing older results.<br/>
+								Less accurate, provided for reproducing older results. Not compatible with detokenization.<br/>
 							</span>
 						</a></input><br/></td></tr>
+			<tr><td colspan="2" style="padding-bottom: 10px"><input type="checkbox" id="detokenize" name="detokenize" value="detokenize" onclick="toggle_laytonize(true);"**detokenize_checked**>Re-merge bound groups
+			<a href="#" class="tooltip2">
+							<i class="fa fa-info-circle" style="display: inline-block"></i>
+							<span>
+								<img class="callout" src="img/callout.gif" />
+								Regularizes bound group spaces if input does not follow Layton's guidelines<br/>
+								(a.k.a. 'Laytonization'; increases accuracy on Till-segmented text and OCR)
+							</span>
+						</a></input><br/>
+						<ul>
+							<input type="radio" id="laytonize1" name="laytonize" value="conservative"**laytonize_conservative_checked**>Conservative merging<a href="#" class="tooltip2">
+								<i class="fa fa-info-circle" style="display: inline-block"></i>
+								<span>
+									<img class="callout" src="img/callout.gif" />
+									Only re-bind items known to appear unbound in other segmentations <br/>(e.g. well edited text following Till)<br/>
+									<div style="font-family: Antinoou; text-align:right; margin-bottom: 0px; font-weight: bold"><br/>ϩⲙ ⲡⲏⲓ --&gt; ϩⲙ|ⲡ|ⲏⲓ</div>
+								</span>
+							</a></input><br/>
+							<input type="radio"  id="laytonize2" name="laytonize" value="aggressive"**laytonize_aggressive_checked**>Aggressive merging<a href="#" class="tooltip2">
+								<i class="fa fa-info-circle" style="display: inline-block"></i>
+								<span>
+									<img class="callout" src="img/callout.gif" />
+									Re-bind all items that are unlikely to appear unbound <br/>(better for messy data/OCR)<br/>
+									<div style="font-family: Antinoou; text-align:right; margin-bottom: 0px; font-weight: bold"><br/>ⲁ ϥⲥⲱⲧⲙ --&gt; ⲁ|ϥ|ⲥⲱⲧⲙ</div>
+								</span>
+							</a></input><br/>
+							<input type="checkbox" id="segment_merged" name="segment_merged" value="segment_merged"**segment_merged_checked**>Segment at merge point
+								<a href="#" class="tooltip2">
+								<i class="fa fa-info-circle" style="display: inline-block"></i>
+								<span>
+									<img class="callout" src="img/callout.gif" />
+									If bound groups are merged, assume a morpheme boundary <br/>
+									(recommended if base segmentation is reliable)
+								</span>
+							</a></input><br/>
+						</ul>
+						</td></tr>
 			<tr><td>
 				<input type="radio" name="sgml_mode" value="sgml" onclick="disable_checkboxes(false);"**sgml_checked**>SGML pipeline</input><br/>
 				<ul>
@@ -159,6 +196,31 @@
 
 		if (document.querySelector('input[name="sgml_mode"]:checked').value == "pipes"){
 			disable_checkboxes(true);
+		}
+		
+		function toggle_laytonize(laytonize_on){
+			if (laytonize_on){
+				document.getElementById("old_tok").checked = false;
+			}
+			else{
+				document.getElementById("detokenize").checked = false;
+			}
+			document.getElementById("norm").disabled = laytonize_on;
+			if (document.getElementById("detokenize").checked){
+				document.getElementById("laytonize1").disabled = false;
+				document.getElementById("laytonize1").checked = true;
+				document.getElementById("laytonize2").disabled = false;
+				document.getElementById("segment_merged").disabled = false;
+				document.getElementById("segment_merged").checked = true;
+			}
+			else{
+				document.getElementById("laytonize1").disabled = true;
+				document.getElementById("laytonize1").checked = false;
+				document.getElementById("laytonize2").disabled = true;
+				document.getElementById("laytonize2").checked = false;
+				document.getElementById("segment_merged").disabled = true;
+				document.getElementById("segment_merged").checked = false;
+			}
 		}
 		</script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

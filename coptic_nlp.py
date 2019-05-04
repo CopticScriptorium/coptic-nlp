@@ -390,7 +390,7 @@ def download_requirements(tt_ok=True, malt_ok=True):
 
 def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True, do_mwe=True, do_tag=True, do_lemma=True, do_lang=True,
 			   do_milestone=True, do_parse=True, sgml_mode="sgml", tok_mode="auto", old_tokenizer=False, sent_tag=None,
-			   preloaded=None, pos_spans=False, merge_parse=False, detokenize=0):
+			   preloaded=None, pos_spans=False, merge_parse=False, detokenize=0, segment_merged=False, gold_parse=""):
 
 	data = input_data.replace("\t","")
 	data = data.replace("\r","")
@@ -399,7 +399,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 		stk = preloaded
 	else:
 		stk = StackedTokenizer(pipes=sgml_mode != "sgml", lines=lb, tokenized=tok_mode=="from_pipes",
-							   detok=detokenize, segment_merged=opts.segment_merged)
+							   detok=detokenize, segment_merged=segment_merged)
 
 	if do_milestone:
 		data = binarize(data)
@@ -453,7 +453,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 					do_tag = True
 				elif resp.lower() == "a":
 					sys.exit(0)
-		if do_tag:
+		if do_tag and not pos_spans:
 			tag = [tt_path+'tree-tagger', tt_path+'coptic_fine.par', '-token','-lemma','-no-unknown', '-sgml' ,'tempfilename'] #no -token
 			tagged = exec_via_temp(norms,tag)
 			tagged = re.sub('\r','',tagged)
@@ -464,13 +464,20 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 				tagged = input_data
 				if PY3:
 					tagged = input_data.encode("utf8")  # Handle non-UTF-8 when calling TT from subprocess in Python 3
-		conllized = conllize(tagged,tag="PUNCT",element=sent_tag, no_zero=True)  # NB element is present it supercedes the POS tag
-		deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
-		depedited = deped.run_depedit(conllized.split("\n"))
-		parse_coptic = ['java','-mx512m','-jar',"maltparser-1.8.jar",'-c','coptic','-i','tempfilename','-m','parse']
-		parsed = exec_via_temp(depedited,parse_coptic,parser_path)
-		deped = DepEdit(io.open(data_dir + "parser_postprocess_nodom.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
-		depedited = deped.run_depedit(parsed.split("\n"))
+		if gold_parse == "":
+			conllized = conllize(tagged,tag="PUNCT",element=sent_tag, no_zero=True)  # NB element is present it supercedes the POS tag
+			deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
+			depedited = deped.run_depedit(conllized.split("\n"))
+			parse_coptic = ['java','-mx512m','-jar',"maltparser-1.8.jar",'-c','coptic','-i','tempfilename','-m','parse']
+			parsed = exec_via_temp(depedited,parse_coptic,parser_path)
+			deped = DepEdit(io.open(data_dir + "parser_postprocess_nodom.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
+			depedited = deped.run_depedit(parsed.split("\n"))
+		else:  # A cached gold parse has been specified
+			depedited = gold_parse
+			norm_count = len(re.findall(r'(\n|^)[0-9]+\t',depedited))
+			input_norms = input_data.count(" norm=")
+			if norm_count != input_norms:
+				raise IOError("Mismatch in word count: " + str(norm_count) + " in gold parse but " + str(input_norms) + " in SGML file\n")
 		if parse_only:  # Output parse in conll format
 			return depedited
 		elif merge_parse:  # Insert parse into input SGML as attributes of <norm>
@@ -718,7 +725,8 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 							   do_norm=opts.norm, do_mwe=opts.multiword, do_tag=opts.tag, do_lemma=opts.lemma,
 							   do_lang=opts.etym, do_milestone=opts.unary, do_parse=opts.parse, sgml_mode=opts.outmode,
 							   tok_mode="auto", old_tokenizer=old_tokenizer, sent_tag=opts.sent, preloaded=stk,
-							   pos_spans=opts.pos_spans, merge_parse=opts.merge_parse, detokenize=opts.detokenize)
+							   pos_spans=opts.pos_spans, merge_parse=opts.merge_parse, detokenize=opts.detokenize,
+							   segment_merged=opts.segment_merged)
 
 		if opts.outmode == "sgml":
 			processed = reorder(processed.strip().split("\n"),add_fixed_meta=add_fixed_meta)
