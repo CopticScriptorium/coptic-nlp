@@ -17,7 +17,10 @@ else:
 if "lb" in storage:
 	line = storage.getvalue("lb")
 else:
-	line = "noline"
+	if "<lb" in data:
+		line = "noline"
+	else:
+		line = "line"
 
 if "format" in storage:
 	format = storage.getvalue("format")
@@ -29,7 +32,9 @@ if format != "conll" and format != "pipes" and format != "sgml_no_parse":
 
 if format == "pipes":
 	print("Content-Type: text/plain; charset=UTF-8\n")
-	processed = nlp_coptic(data,line,sgml_mode="pipes",do_tok=True)
+	processed = nlp_coptic(data,lb=line=="line",sgml_mode="pipes",do_tok=True)
+	if "</lb>" in processed:
+		processed = processed.replace("</lb>","</lb>\n")
 	print(processed.strip())
 elif format == "sgml_no_parse":
 	print("Content-Type: text/sgml; charset=UTF-8\n")
