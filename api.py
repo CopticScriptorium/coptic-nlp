@@ -1,7 +1,7 @@
-#!/usr/bin/python
+#!/usr/local/bin/python2.7
 # -*- coding: utf-8 -*-
 
-from lib.tokenize_rf import MultiColumnLabelEncoder, DataFrameSelector, lambda_underscore
+#from lib.tokenize_rf import MultiColumnLabelEncoder, DataFrameSelector, lambda_underscore
 
 #Example call on localhost:
 #http://localhost/coptic-nlp/api.py?data=%E2%B2%81%CF%A5%E2%B2%A5%E2%B2%B1%E2%B2%A7%E2%B2%99%20%E2%B2%9B%CF%AD%E2%B2%93%E2%B2%A1%E2%B2%A3%E2%B2%B1%E2%B2%99%E2%B2%89&lb=line
@@ -37,12 +37,12 @@ elif format == "sgml_no_parse":
 	if "|" in data:
 		processed = nlp_coptic(data, lb=line=="line", parse_only=False, do_tok=True,
 							   do_norm=True, do_tag=True, do_lemma=True, do_lang=True,
-							   do_milestone=True, do_parse=True, sgml_mode="sgml",
+							   do_milestone=True, do_parse=("no_parse" not in format), sgml_mode="sgml",
 							   tok_mode="from_pipes", old_tokenizer=False)
 	else:
 		processed = nlp_coptic(data, lb=line=="line", parse_only=False, do_tok=True,
 							   do_norm=True, do_tag=True, do_lemma=True, do_lang=True,
-							   do_milestone=True, do_parse=True, sgml_mode="sgml",
+							   do_milestone=True, do_parse=("no_parse" not in format), sgml_mode="sgml",
 							   tok_mode="auto", old_tokenizer=False)
 	print(processed.strip() + "\n")
 elif format != "conll":
