@@ -1,0 +1,400 @@
+<meta annotation="Rebecca Krawiec, Caroline T. Schroeder, David Sriboonreuang, Amir Zeldes" author="Shenoute" collection="Papyrussammlung" Coptic_edition="none" corpus="shenoute.eagerness" country="Egypt" document_cts_urn="urn:cts:copticLit:shenoute.eagerness.monbgl_29" endnote="The text continues in MONB.GL 29-30 and MONB.XJ 33-34 which are parallel witnesses to each other." idno="K 9322" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msContents_title_n="5" msContents_title_type="Discourses" msItem_title="I See Your Eagerness" msName="MONB.GL" next="urn:cts:copticLit:shenoute.eagerness.monbxj_33_34" note="Transcribed in Vienna by David Brakke, July 2006; collated in Vienna by Stephen Emmel, March 2007; transcription does not record spaces and paleographic rendition of letters other than ekthetics. David Brakke and Andrew Crislip published a translation of I See Your Eagerness in their book Selected Discourses of Shenoute the Great (Cambridge University Press, 2015), p. 93." objectType="codex" origDate="between 900 and 1200 C.E." origDate_notAfter="1200" origDate_notBefore="0900" origDate_precision="medium" origPlace="White Monastery" pages_from="29" pages_to="29" placeName="Atripe" previous="urn:cts:copticLit:shenoute.eagerness.monbgf_17_18" project="Coptic SCRIPTORIUM" redundant="no" repository="Österreichische Nationalbibliothek" source="David Brakke, Stephen Emmel" title="I See Your Eagerness: GL 29" translation="none" Trismegistos="none" version_date="2017-03-30" version_n="2.3.0" witness="The first part of MONB.GL 29-30 has no parallel witnesses; the remainder of MONB.GL 29-30, which is parallel to MONB.XJ 33-34, is in urn:cts:copticLit:shenoute.eagerness.monbgl_29_30">
+<pb_xml_id pb_xml_id="GL29">
+<cb_n cb_n="1">
+<lb_n lb_n="1">
+<p p="p">
+<translation translation="…">
+<orig_group orig_group="ⲛⲟⲩⲟⲉⲓ̈ϣ">
+<norm_group norm_group="ⲛⲟⲩⲟⲉⲓϣ">
+<orig orig="ⲛ">
+<norm norm="ⲛ">
+<lemma lemma="ⲡ">
+<pos pos="ART">
+<note note="choir number ⲅ and page number ⲕⲑ visible in the top margin">
+ⲛ
+</note>
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲟⲩⲟⲉⲓ̈ϣ">
+<norm norm="ⲟⲩⲟⲉⲓϣ">
+<lemma lemma="ⲟⲩⲟⲉⲓϣ">
+<pos pos="N">
+ⲟⲩⲟⲉⲓ̈ϣ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲛⲓ̈ⲙ">
+<norm_group norm_group="ⲛⲓⲙ">
+<orig orig="ⲛⲓ̈ⲙ">
+<norm norm="ⲛⲓⲙ">
+<lemma lemma="ⲛⲓⲙ">
+<pos pos="PINT">
+ⲛⲓ̈ⲙ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</translation>
+</p>
+</lb_n>
+<p p="p">
+<lb_n lb_n="2">
+<translation translation="…">
+<orig_group orig_group="ⲁⲩⲱ">
+<norm_group norm_group="ⲁⲩⲱ">
+<orig orig="ⲁⲩⲱ">
+<norm norm="ⲁⲩⲱ">
+<lemma lemma="ⲁⲩⲱ">
+<pos pos="CONJ">
+<hi_rend hi_rend="ekthetic large">
+ⲁ
+</hi_rend>
+ⲩⲱ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉⲧⲱϭⲉ">
+<norm_group norm_group="ⲉⲧⲱϭⲉ">
+<orig orig="ⲉⲧ">
+<norm norm="ⲉⲧ">
+<lemma lemma="ⲉⲧⲉⲣⲉ">
+<pos pos="CREL">
+ⲉⲧ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲱϭⲉ">
+<norm norm="ⲱϭⲉ">
+<lemma lemma="ⲱϭⲉ">
+<pos pos="V">
+ⲱϭⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="·">
+<norm_group norm_group="·">
+<orig orig="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
+·
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</translation>
+<translation translation="…">
+<orig_group orig_group="ⲏ̄">
+<norm_group norm_group="ⲏ">
+<orig orig="ⲏ̄">
+<norm norm="ⲏ">
+<lemma lemma="ⲏ">
+<pos pos="CONJ">
+<lang lang="Greek">
+ⲏ̄
+</lang>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉϫⲓ">
+<norm_group norm_group="ⲉϫⲓ">
+<orig orig="ⲉ">
+<norm norm="ⲉ">
+<lemma lemma="ⲉⲣⲉ">
+<pos pos="CFOC">
+ⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+</lb_n>
+<lb_n lb_n="3">
+<orig orig="ϫⲓ">
+<norm norm="ϫⲓ">
+<lemma lemma="ϫⲓ">
+<pos pos="V">
+ϫⲓ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉϩⲟⲩⲛ">
+<norm_group norm_group="ⲉϩⲟⲩⲛ">
+<orig orig="ⲉϩⲟⲩⲛ">
+<norm norm="ⲉϩⲟⲩⲛ">
+<lemma lemma="ⲉϩⲟⲩⲛ">
+<pos pos="ADV">
+ⲉϩⲟⲩⲛ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉⲣⲟⲟⲩ">
+<norm_group norm_group="ⲉⲣⲟⲟⲩ">
+<orig orig="ⲉⲣⲟ">
+<norm norm="ⲉⲣⲟ">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
+ⲉⲣⲟ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲟⲩ">
+<norm norm="ⲟⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERO">
+ⲟⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲛ̄ϩⲉⲛⲣⲱⲙⲉ">
+<norm_group norm_group="ⲛϩⲉⲛⲣⲱⲙⲉ">
+<orig orig="ⲛ̄">
+<norm norm="ⲛ">
+<lemma lemma="ⲛ">
+<pos pos="PREP">
+ⲛ̄
+</pos>
+</lemma>
+</norm>
+</orig>
+</lb_n>
+<lb_n lb_n="4">
+<orig orig="ϩⲉⲛ">
+<norm norm="ϩⲉⲛ">
+<lemma lemma="ⲟⲩ">
+<pos pos="ART">
+ϩⲉⲛ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲣⲱⲙⲉ">
+<norm norm="ⲣⲱⲙⲉ">
+<lemma lemma="ⲣⲱⲙⲉ">
+<pos pos="N">
+ⲣⲱⲙⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="·">
+<norm_group norm_group="·">
+<orig orig="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
+·
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</translation>
+<translation translation="…">
+<orig_group orig_group="ⲉⲩⲛⲁⲥⲟⲩⲛ">
+<norm_group norm_group="ⲉⲩⲛⲁⲥⲟⲩⲛ">
+<orig orig="ⲉ">
+<norm norm="ⲉ">
+<lemma lemma="ⲉⲣⲉ">
+<pos pos="CCIRC">
+ⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERS">
+ⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲛⲁ">
+<norm norm="ⲛⲁ">
+<lemma lemma="ⲛⲁ">
+<pos pos="FUT">
+ⲛⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+</lb_n>
+<lb_n lb_n="5">
+<orig orig="ⲥⲟⲩⲛ">
+<norm norm="ⲥⲟⲩⲛ">
+<lemma lemma="ⲥⲟⲟⲩⲛ">
+<pos pos="V">
+ⲥⲟⲩⲛ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲧⲉⲭⲁⲣⲓⲥ">
+<norm_group norm_group="ⲧⲉⲭⲁⲣⲓⲥ">
+<orig orig="ⲧⲉ">
+<norm norm="ⲧⲉ">
+<lemma lemma="ⲡ">
+<pos pos="ART">
+ⲧⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲭⲁⲣⲓⲥ">
+<norm norm="ⲭⲁⲣⲓⲥ">
+<lemma lemma="ⲭⲁⲣⲓⲥ">
+<pos pos="N">
+<lang lang="Greek">
+ⲭⲁⲣⲓⲥ
+</lang>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲙ̄ⲡⲉⲛⲧⲁϥϯⲉⲟⲟⲩ">
+<norm_group norm_group="ⲙⲡⲉⲛⲧⲁϥϯⲉⲟⲟⲩ">
+<orig orig="ⲙ̄">
+<norm norm="ⲙ">
+<lemma lemma="ⲛ">
+<pos pos="PREP">
+ⲙ̄
+</pos>
+</lemma>
+</norm>
+</orig>
+</lb_n>
+<lb_n lb_n="6">
+<orig orig="ⲡ">
+<norm norm="ⲡ">
+<lemma lemma="ⲡ">
+<pos pos="ART">
+ⲡ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲉⲛⲧ">
+<norm norm="ⲉⲛⲧ">
+<lemma lemma="ⲉⲧⲉⲣⲉ">
+<pos pos="CREL">
+ⲉⲛⲧ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
+ⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERS">
+ϥ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϯⲉⲟⲟⲩ">
+<norm norm="ϯⲉⲟⲟⲩ">
+<lemma lemma="ϯⲉⲟⲟⲩ">
+<pos pos="V">
+<morph morph="ϯ">
+ϯ
+</morph>
+<morph morph="ⲉⲟⲟⲩ">
+ⲉⲟⲟⲩ
+</morph>
+</pos>
+</lemma>
+</norm>
+</orig>
+</lb_n>
+</norm_group>
+</orig_group>
+<lb_n lb_n="7">
+<orig_group orig_group="ⲛⲁⲩ">
+<norm_group norm_group="ⲛⲁⲩ">
+<orig orig="ⲛⲁ">
+<norm norm="ⲛⲁ">
+<lemma lemma="ⲛⲁ">
+<pos pos="PREP">
+ⲛⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERO">
+ⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲡⲉ">
+<norm_group norm_group="ⲡⲉ">
+<orig orig="ⲡⲉ">
+<norm norm="ⲡⲉ">
+<lemma lemma="ⲡ">
+<pos pos="ART">
+<note note="Bound group ends ⲡⲉⲭ︤ⲥ︥ in GL29-30 (parallel witness of XJ33-34)">
+ⲡⲉ
+</note>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+</translation>
+</p>
+</cb_n>
+</pb_xml_id>
+</meta>
