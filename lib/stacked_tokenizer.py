@@ -32,7 +32,7 @@ if not PY3:
 
 sys.path.append("lib")
 
-class BoundGroup():
+class BoundGroup:
 
 	# Static list of characters that are removed from norm text (basic normalization)
 	orig_chars = ["̈", "", "̄", "̀", "̣", "`", "̅", "̈", "̂", "︤", "︥", "︦", "⳿", "~", "\n", "[", "]", "̇", "᷍"]
@@ -324,6 +324,12 @@ def serialize(groups,pipes=False,group_sep="_",tok_sep="|",segment_merged=False)
 	return out_text
 
 
+def adjust_theta(tokenization):
+	"""Post-edit pre-tokenization in 'from pipes' mode to account for theta boundaries"""
+	tokenization = tokenization.replace("ⲑ|","ⲧ|ϩ").replace("ⲑ-","ⲧ-ϩ")
+	return tokenization
+
+
 class StackedTokenizer:
 
 	def __init__(self,lines=False,pipes=False,tokenized=False,no_morphs=False,detok=0,segment_merged=False,model="cop"):
@@ -426,6 +432,7 @@ class StackedTokenizer:
 			for g in grps:
 				# plain_tokenization = g.norm.replace("□","|").replace("■","-")
 				plain_tokenization = g.pretokenization
+				plain_tokenization = adjust_theta(plain_tokenization)
 				g.orig = g.orig.replace("□", "").replace("■", "")
 				g.norm = g.norm.replace("□", "").replace("■", "")
 				# g.dirty = g.dirty.replace("□","").replace("■","")
