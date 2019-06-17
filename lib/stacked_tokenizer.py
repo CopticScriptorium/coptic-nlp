@@ -11,12 +11,14 @@ stk_dir = os.path.dirname(os.path.realpath(__file__))
 
 cap_map = {"Ⲁ":"ⲁ","Ⲃ":"ⲃ","Ⲑ":"ⲑ","Ⲇ":"ⲇ","Ⲉ":"ⲉ","Ϥ":"ϥ","Ⲅ":"ⲅ","Ⲏ":"ⲏ","Ⲓ":"ⲓ","Ϫ":"ϫ","Ⲕ":"ⲕ","Ⲗ":"ⲗ","Ⲙ":"ⲙ","Ⲛ":"ⲛ","Ⲟ":"ⲟ","Ⲡ":"ⲡ","Ϭ":"ϭ","Ⲣ":"ⲣ","Ⲥ":"ⲥ","Ⲧ":"ⲧ","Ⲩ":"ⲩ","Ⲫ":"ⲫ","Ⲱ":"ⲱ","Ϩ":"ϩ","Ⲭ":"ⲭ","Ⲍ":"ⲍ","Ϣ":"ϣ","Ϯ":"ϯ","Ⲯ":"ⲯ","Ⲝ":"ⲝ"}
 
-if PY3 and __name__ != "__main__":
+#if PY3 and __name__ != "__main__":
+try:
 	from .tokenize_fs import fs_tokenize
 	from .tokenize_lookup import lookup_tokenize
 	from .tokenize_rf import RFTokenizer
 	from .tokenize_morph import MorphAnalyzer
-else:
+#else:
+except:
 	from tokenize_fs import fs_tokenize
 	from tokenize_lookup import lookup_tokenize
 	from tokenize_rf import RFTokenizer
@@ -134,6 +136,7 @@ class BoundGroup:
 				tokenized = "".join([tokenized[:position+1], c, tokenized[position+1:]])
 			else:
 				cursor -= 1
+		tokenized = tokenized.replace("[|","|[").replace("|]","]|")  # place pipes outside brackets
 		self.tokenized = tokenized
 
 	@staticmethod
@@ -257,11 +260,16 @@ def dissolve(text, tok_sep="|", tokenized=False):
 	bound_groups = [BoundGroup(out_tok_sep=tok_sep)]  # First bound group filled as position of pre-text XML
 
 	for i, c in enumerate(text):
+		if c == "]":
+			a=4
 		if mode != "xml" and (c in [" ", "_"] and i != len(text)-1):  # bound group ends
-			if not bound_groups[-1].norm == "": # Check previous group is non-empty
+			if bound_groups[-1].norm != "" or bound_groups[-1].dirty.strip() in ["[","]"]: # Check previous group is non-empty
+				if bound_groups[-1].norm == "":  # Exception for user entered square bracket group
+					bound_groups[-1].norm = bound_groups[-1].dirty.strip()
 				bound_groups.append(BoundGroup(out_tok_sep=tok_sep))
 		else:
 			bound_groups[-1].affix(c,tokenized)
+
 
 		if c == "<":
 			mode = "xml"
