@@ -126,7 +126,7 @@ if __name__ == "__main__":
 	p.add_argument("--train_list",default=None,help="file with one file name per line of TT SGML training files; all files not in test if not supplied")
 	p.add_argument("--test_list",default="test_list.tab",help="file with one file name per line of TT SGML test files")
 	p.add_argument("--file_dir",default="tt",help="directory with TT SGML files")
-	p.add_argument("--method",default="stacked",choices=["stacked","lookup","finitestate","rf"],help="directory with TT SGML files")
+	p.add_argument("--method",default="stacked",choices=["stacked","lookup","finitestate","rf"],help="tokenizer to use")
 	p.add_argument("--retrain",action="store_true",help="whether to retrain RF tokenizer")
 
 	opts = p.parse_args()

@@ -85,35 +85,44 @@ def exec_via_temp_old(input_text, command_params, workdir=""):
 		return exec_out
 
 
-def list_files(alias="silver",file_dir=None):
+def list_files(alias="silver",file_dir=None,parse=False):
 
 	if file_dir is None:
 		file_dir = eval_dir + "tt" + os.sep # Default tt file directory
 
 	file_list = []
-	if alias.lower() == "cyrus":
-		file_dir = eval_dir + "unreleased" + os.sep
-		file_list = [file_dir + "BritMusOriental6783_part1.tt",file_dir + "BritMusOriental6783_part2.tt"]
-	elif alias.lower() == "cyrus_plain":
-		file_dir = eval_dir + "plain" + os.sep
-		file_list = [file_dir + "BritMusOriental6783_part1.txt",file_dir + "BritMusOriental6783_part2.txt"]
-	elif alias.lower() == "ud_test":
-		file_list = io.open(eval_dir + "test_list.tab").read().strip().split("\n")
-		file_list = [file_dir + f for f in file_list]
-	elif alias.lower() == "victor_plain":
-		file_dir = eval_dir + "plain" + os.sep
-		file_list = [file_dir + "martyrdom.victor.txt"]
-	elif alias.lower() == "victor_tt":
-		file_dir = eval_dir + "plain" + os.sep
-		file_list = [file_dir + "martyrdom.victor.01.tt"]
-	elif alias.lower() == "silver":
-		test_list = io.open(eval_dir + "test_list.tab").read().strip().split("\n")
-		file_list = glob(file_dir + os.sep + "*.tt")
-		filtered = []
-		for f in file_list:
-			if os.path.basename(f) not in test_list:
-				filtered.append(f)
-		file_list = filtered
+	if parse:
+		file_dir = eval_dir + "parses" + os.sep
+		if alias.lower() == "ud_test":
+			file_list = [file_dir + "cop_scriptorium-ud-test.conllu"]
+		elif alias.lower() == "ud_train":
+			file_list = [file_dir + "cop_scriptorium-ud-train.conllu"]
+		elif alias.lower() == "ud_dev_train":
+			file_list = [file_dir + "cop_scriptorium-ud-train.conllu",file_dir + "cop_scriptorium-ud-dev.conllu"]
+	else:
+		if alias.lower() == "cyrus":
+			file_dir = eval_dir + "unreleased" + os.sep
+			file_list = [file_dir + "BritMusOriental6783_part1.tt",file_dir + "BritMusOriental6783_part2.tt"]
+		elif alias.lower() == "cyrus_plain":
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "BritMusOriental6783_part1.txt",file_dir + "BritMusOriental6783_part2.txt"]
+		elif alias.lower() == "ud_test":
+			file_list = io.open(eval_dir + "test_list.tab").read().strip().split("\n")
+			file_list = [file_dir + f for f in file_list]
+		elif alias.lower() == "victor_plain":
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "martyrdom.victor.txt"]
+		elif alias.lower() == "victor_tt":
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "martyrdom.victor.01.tt"]
+		elif alias.lower() == "silver":
+			test_list = io.open(eval_dir + "test_list.tab").read().strip().split("\n")
+			file_list = glob(file_dir + os.sep + "*.tt")
+			filtered = []
+			for f in file_list:
+				if os.path.basename(f) not in test_list:
+					filtered.append(f)
+			file_list = filtered
 
 	return file_list
 

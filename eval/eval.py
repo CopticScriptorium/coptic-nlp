@@ -28,17 +28,20 @@ def my_config():
 def run(params):
 
 	ex.add_config({"params":params})
-	if "train" in params:
-		train_list = list_files(params["train"])
-	else:
-		train_list = list_files("silver")
-	if "test" in params:
-		test_list = list_files(params["test"])
-	else:
-		test_list = list_files("ud_test")
 
 	if "script" not in params:
 		raise IOError("No 'script' defined in json configuration:\n" + str(params))
+
+	parse = "pars" in params["script"]
+	if "train" in params:
+		train_list = list_files(params["train"],parse=parse)
+	else:
+		train_list = list_files("silver",parse=parse)
+	if "test" in params:
+		test_list = list_files(params["test"],parse=parse)
+	else:
+		test_list = list_files("ud_test",parse=parse)
+
 	if "name" not in params:
 		raise IOError("No 'name' defined in json configuration:\n" + str(params))
 	print("\nRunning task: " + params["name"])
@@ -54,11 +57,16 @@ def run(params):
 	elif "bind" in params["script"]:
 		from eval_binding import run_eval
 		res = run_eval(train_list,test_list)
+	elif "pars" in params["script"]:
+		from eval_parsing import run_eval
+		retrain = params.get('retrain',False)
+		method = params.get('method','malt')
+		res = run_eval(train_list,test_list,retrain=retrain,method=method)
 	elif "tok" in params["script"]:
 		from eval_tokenization import run_eval
-		retrain_rf = params.get('retrain',False)
+		retrain = params.get('retrain',False)
 		method = params.get('method','stacked')
-		res = run_eval(train_list,test_list,retrain_rf=retrain_rf,method=method)
+		res = run_eval(train_list,test_list,retrain_rf=retrain,method=method)
 
 	if "method" in params:
 		ex.log_scalar("method",params["method"])

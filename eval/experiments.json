@@ -1,3 +1,4 @@
+{"script":"parse","name":"parser_malt","target":"dep","train":"ud_dev_train","test":"ud_test","method":"malt","retrain":true}
 {"script":"bind","name":"binding_cyrus","target":"orig_group","train":"cyrus","test":"cyrus_plain","method":"aggressive"}
 {"script":"bind","name":"binding_victor","target":"orig_group","train":"victor_tt","test":"victor_plain","method":"aggressive"}
 {"script":"tag","name":"tagger_tt","target":"pos","train":"silver","test":"ud_test","method":"treetagger","retrain":true}
