@@ -31,13 +31,14 @@ This program is free software.
 from argparse import ArgumentParser
 import io, sys, os, re
 
+script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 def normalize(in_data,table_file=None,sahidica=False):
 
 	outlines=[]
 	if table_file is None:
 		# Use default location for norm table
-		table_file = "data" + os.sep + "norm_table.tab"
+		table_file = script_dir + ".." + os.sep + "data" + os.sep + "norm_table.tab"
 	try:
 		norm_lines = io.open(table_file,encoding="utf8").read().replace("\r","").split("\n")
 	except IOError as e:
@@ -86,26 +87,29 @@ def normalize(in_data,table_file=None,sahidica=False):
 			line = line.replace("᷍","")
 			line = line.replace("̣","")
 
-			line = re.sub(r"(^|_)ⲓⲏⲗ(|_)", r"\1ⲓⲥⲣⲁⲏⲗ\2", line)
-			line = re.sub(r"(^|_)ⲓⲏ?ⲥ(|_)", r"\1ⲓⲏⲥⲟⲩⲥ\2", line)
-			line = re.sub(r"(^|_)ϫⲟⲓⲥ(|_)", r"\1ϫⲟⲉⲓⲥ\2", line)
-			line = re.sub(r"(^|_)ⲭⲣ?ⲥ(|_)", r"\1ⲭⲣⲓⲥⲧⲟⲥ\2", line)
-			line = re.sub(r"(^|_)ϯⲟⲩⲇⲁⲓⲁ(|_)", r"\1ⲧⲓⲟⲩⲇⲁⲓⲁ\2", line)
-			line = re.sub(r"(^|_)ⲡⲛⲁ(|_)", r"\1ⲡⲛⲉⲩⲙⲁ\2", line)
-			line = re.sub(r"(^|_)ⲃⲁⲍⲁⲛⲓⲍⲉ(|_)", r"\1ⲃⲁⲥⲁⲛⲓⲍⲉ\2", line)
-			line = re.sub(r"(^|_)ⲃⲁⲍⲁⲛⲟⲥ(|_)", r"\1ⲃⲁⲥⲁⲛⲟⲥ\2", line)
-			line = re.sub(r"(^|_)ϩⲓⲗⲏⲙ(|_)", r"\1ϩⲓⲉⲣⲟⲩⲥⲁⲗⲏⲙ\2", line)
-			line = re.sub(r"(^|_)ⲥ[ⳁⲣ]ⲟⲥ(|_)", r"\1ⲥⲧⲁⲩⲣⲟⲥ\2", line)
-			line = re.sub(r"(^|_)ⲕⲗⲏⲣⲟⲛⲟⲙⲓ(|_)", r"\1ⲕⲗⲏⲣⲟⲛⲟⲙⲉⲓ\2", line)
-			line = re.sub(r"(^|_)ⲓⲱⲧ(|_)", r"\1ⲉⲓⲱⲧ\2", line)
-			line = re.sub(r"(^|_)ⲓⲟⲧⲉ(|_)", r"\1ⲉⲓⲟⲧⲉ\2", line)
-			line = re.sub(r"(^|_)ϩⲣⲁⲉⲓ(|_)", r"\1ϩⲣⲁⲓ\2", line)
-			line = re.sub(r"(^|_)ⲡⲏⲟⲩⲉ(|_)", r"\1ⲡⲏⲩⲉ\2", line)
-			line = re.sub(r"(^|_)ϩⲃⲏⲟⲩⲉ(|_)", r"\1ϩⲃⲏⲩⲉ\2", line)
-			line = re.sub(r"(^|_)ⲓⲉⲣⲟⲥⲟⲗⲩⲙⲁ(|_)", r"\1ϩⲓⲉⲣⲟⲩⲥⲁⲗⲏⲙ\2", line)
-			line = re.sub(r"(^|_)ⲡⲓⲑⲉ(|_)", r"\1ⲡⲉⲓⲑⲉ\2", line)
-			line = re.sub(r"(^|_)ⲡⲣⲟⲥⲕⲁⲣⲧⲉⲣⲓ(|_)", r"\1ⲡⲣⲟⲥⲕⲁⲣⲧⲉⲣⲓⲁ\2", line)
-			line = re.sub(r"(^|_)ⲙⲡⲁⲧⲉ[ⲕϥⲥⲛ]([^_ ]*)(|_)", r"\1ⲙⲡⲁⲧ\2\3", line)
+			if line in norms:
+				line = norms[line]
+
+			line = re.sub(r"(^|_)ⲓⲏⲗ($|_)", r"\1ⲓⲥⲣⲁⲏⲗ\2", line)
+			line = re.sub(r"(^|_)ⲓⲏ?ⲥ($|_)", r"\1ⲓⲏⲥⲟⲩⲥ\2", line)
+			line = re.sub(r"(^|_)ϫⲟⲓⲥ($|_)", r"\1ϫⲟⲉⲓⲥ\2", line)
+			line = re.sub(r"(^|_)ⲭⲣ?ⲥ($|_)", r"\1ⲭⲣⲓⲥⲧⲟⲥ\2", line)
+			line = re.sub(r"(^|_)ϯⲟⲩⲇⲁⲓⲁ($|_)", r"\1ⲧⲓⲟⲩⲇⲁⲓⲁ\2", line)
+			line = re.sub(r"(^|_)ⲡⲛⲁ($|_)", r"\1ⲡⲛⲉⲩⲙⲁ\2", line)
+			line = re.sub(r"(^|_)ⲃⲁⲍⲁⲛⲓⲍⲉ($|_)", r"\1ⲃⲁⲥⲁⲛⲓⲍⲉ\2", line)
+			line = re.sub(r"(^|_)ⲃⲁⲍⲁⲛⲟⲥ($|_)", r"\1ⲃⲁⲥⲁⲛⲟⲥ\2", line)
+			line = re.sub(r"(^|_)ϩⲓⲗⲏⲙ($|_)", r"\1ϩⲓⲉⲣⲟⲩⲥⲁⲗⲏⲙ\2", line)
+			line = re.sub(r"(^|_)ⲥ[ⳁⲣ]ⲟⲥ($|_)", r"\1ⲥⲧⲁⲩⲣⲟⲥ\2", line)
+			line = re.sub(r"(^|_)ⲕⲗⲏⲣⲟⲛⲟⲙⲓ($|_)", r"\1ⲕⲗⲏⲣⲟⲛⲟⲙⲉⲓ\2", line)
+			line = re.sub(r"(^|_)ⲓⲱⲧ($|_)", r"\1ⲉⲓⲱⲧ\2", line)
+			line = re.sub(r"(^|_)ⲓⲟⲧⲉ($|_)", r"\1ⲉⲓⲟⲧⲉ\2", line)
+			line = re.sub(r"(^|_)ϩⲣⲁⲉⲓ($|_)", r"\1ϩⲣⲁⲓ\2", line)
+			line = re.sub(r"(^|_)ⲡⲏⲟⲩⲉ($|_)", r"\1ⲡⲏⲩⲉ\2", line)
+			line = re.sub(r"(^|_)ϩⲃⲏⲟⲩⲉ($|_)", r"\1ϩⲃⲏⲩⲉ\2", line)
+			line = re.sub(r"(^|_)ⲓⲉⲣⲟⲥⲟⲗⲩⲙⲁ($|_)", r"\1ϩⲓⲉⲣⲟⲩⲥⲁⲗⲏⲙ\2", line)
+			line = re.sub(r"(^|_)ⲡⲓⲑⲉ($|_)", r"\1ⲡⲉⲓⲑⲉ\2", line)
+			line = re.sub(r"(^|_)ⲡⲣⲟⲥⲕⲁⲣⲧⲉⲣⲓ($|_)", r"\1ⲡⲣⲟⲥⲕⲁⲣⲧⲉⲣⲓⲁ\2", line)
+			line = re.sub(r"(^|_)ⲙⲡⲁⲧⲉ[ⲕϥⲥⲛ]([^_ ]*)($|_)", r"\1ⲙⲡⲁⲧ\2\3", line)
 
 			# Sahidica specific replacements
 			if sahidica:
