@@ -477,7 +477,13 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 			norm_count = len(re.findall(r'(\n|^)[0-9]+\t',depedited))
 			input_norms = input_data.count(" norm=")
 			if norm_count != input_norms:
-				raise IOError("Mismatch in word count: " + str(norm_count) + " in gold parse but " + str(input_norms) + " in SGML file\n")
+				dped = re.findall(r'(?:\n|^)[0-9]+\t([^\n\t]+)',depedited)
+				nrms = re.findall(r' norm="([^"]*)"',input_data)
+				for i, nrm in enumerate(nrms):
+					if nrm != dped[i]:
+						mismatch = nrm +"!="+dped[i] + " at " + str(i) + " after " + nrms[i-2] + " " +  nrms[i-1]
+						break
+				raise IOError("Mismatch in word count: " + str(norm_count) + " in gold parse but " + str(input_norms) + " in SGML file\nMismatch: "+ mismatch)
 		if parse_only:  # Output parse in conll format
 			return depedited
 		elif merge_parse:  # Insert parse into input SGML as attributes of <norm>
