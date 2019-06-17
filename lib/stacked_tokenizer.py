@@ -11,13 +11,11 @@ stk_dir = os.path.dirname(os.path.realpath(__file__))
 
 cap_map = {"Ⲁ":"ⲁ","Ⲃ":"ⲃ","Ⲑ":"ⲑ","Ⲇ":"ⲇ","Ⲉ":"ⲉ","Ϥ":"ϥ","Ⲅ":"ⲅ","Ⲏ":"ⲏ","Ⲓ":"ⲓ","Ϫ":"ϫ","Ⲕ":"ⲕ","Ⲗ":"ⲗ","Ⲙ":"ⲙ","Ⲛ":"ⲛ","Ⲟ":"ⲟ","Ⲡ":"ⲡ","Ϭ":"ϭ","Ⲣ":"ⲣ","Ⲥ":"ⲥ","Ⲧ":"ⲧ","Ⲩ":"ⲩ","Ⲫ":"ⲫ","Ⲱ":"ⲱ","Ϩ":"ϩ","Ⲭ":"ⲭ","Ⲍ":"ⲍ","Ϣ":"ϣ","Ϯ":"ϯ","Ⲯ":"ⲯ","Ⲝ":"ⲝ"}
 
-#if PY3 and __name__ != "__main__":
 try:
 	from .tokenize_fs import fs_tokenize
 	from .tokenize_lookup import lookup_tokenize
 	from .tokenize_rf import RFTokenizer
 	from .tokenize_morph import MorphAnalyzer
-#else:
 except:
 	from tokenize_fs import fs_tokenize
 	from tokenize_lookup import lookup_tokenize
@@ -235,9 +233,7 @@ class BoundGroup:
 			elif item in self.__dict__:
 				return self.__dict__[item]
 			else:
-				pass
 				raise AttributeError("No attribute: " + str(item))
-				#sys.stderr.write(item + " not in dict\n")
 
 	def __repr__(self):
 		return self.norm + " (" + self.dirty.replace("\\n","\n") + ")"
@@ -399,9 +395,6 @@ class StackedTokenizer:
 		new_group.norm += grp.norm
 		new_group.orig += grp.orig
 		new_group.dirty += grp.dirty
-		#new_group.tokenized += "|" + grp.tokenized
-		#new_group.pretokenization += "|" + grp.pretokenization
-		#new_group.unaligned_tokenization += "|" + grp.unaligned_tokenization
 		new_group.merge_boundaries.append(max_map)
 		for key in grp.norm_map:
 			new_group.norm_map[key + max_map + 1] = grp.norm_map[key] + max_mapped + 1
@@ -438,12 +431,10 @@ class StackedTokenizer:
 
 		if self.tokenized:
 			for g in grps:
-				# plain_tokenization = g.norm.replace("□","|").replace("■","-")
 				plain_tokenization = g.pretokenization
 				plain_tokenization = adjust_theta(plain_tokenization)
 				g.orig = g.orig.replace("□", "").replace("■", "")
 				g.norm = g.norm.replace("□", "").replace("■", "")
-				# g.dirty = g.dirty.replace("□","").replace("■","")
 				g.add_tokenization(plain_tokenization)
 		else:
 			norms = [g.norm for g in grps]
@@ -523,9 +514,8 @@ class StackedTokenizer:
 				grps[i].add_tokenization(tokenization)
 
 		toks = serialize(grps, self.pipes, segment_merged=self.segment_merged)
-		return toks
 
-# toks = [g.tokenized for g in grps]
+		return toks
 
 
 if __name__ == "__main__":
@@ -551,4 +541,3 @@ if __name__ == "__main__":
 		sys.stdout.buffer.write(toks.encode("utf8"))
 	else:
 		print(toks.encode("utf8"))
-
