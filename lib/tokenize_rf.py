@@ -85,6 +85,119 @@ def multicol_fit_transform(dframe, columns):
 	return dframe, multicol_dict
 
 
+def hyper_optimize(data_x,data_y,val_x=None,val_y=None,cat_labels=None,space=None,max_evals=20):
+	from hyperopt import tpe, hp, space_eval, Trials
+	from hyperopt.fmin import fmin
+	from hyperopt.pyll.base import scope
+	from sklearn.metrics import make_scorer, f1_score
+	from sklearn.model_selection import cross_val_score, StratifiedKFold
+
+	trials = Trials(exp_key="tokenize_coptic")
+
+	average="binary"
+	if space is not None:
+		if "average" in space:
+			average = "micro"
+
+	def f1_sklearn(truth,predictions):
+		if space is not None:
+			if "average" in space:
+				return -f1_score(truth,predictions)
+		return -f1_score(truth,predictions,average=average)
+
+	f1_scorer = make_scorer(f1_sklearn)
+
+	def objective(in_params):
+		clf = in_params['clf']
+		if clf == "rf":
+			clf = RandomForestClassifier(n_jobs=4,random_state=42)
+		elif clf == "gbm":
+			clf = GradientBoostingClassifier(random_state=42)
+		elif clf == "xgb":
+			from xgboost import XGBClassifier
+			clf = XGBClassifier(random_state=42,nthread=4)
+		elif clf == "cat":
+			from catboost import CatBoostClassifier
+			clf = CatBoostClassifier(random_state=42)
+		else:
+			clf = ExtraTreesClassifier(n_jobs=4,random_state=42)
+
+		if clf.__class__.__name__ == "XGBClassifier":
+			params = {
+				'n_estimators': int(in_params['n_estimators']),
+				'max_depth': int(in_params['max_depth']),
+				'eta': float(in_params['eta']),
+				'gamma': float(in_params['gamma']),
+				'colsample_bytree': float(in_params['colsample_bytree']),
+				'subsample': float(in_params['subsample'])
+			}
+			if "average" in in_params:
+				params["average"] = in_params["average"]
+		else:
+			params = {
+				'n_estimators': int(in_params['n_estimators']),
+				'max_depth': int(in_params['max_depth']),
+				'min_samples_split': int(in_params['min_samples_split']),
+				'min_samples_leaf': int(in_params['min_samples_leaf']),
+				'max_features': in_params['max_features']
+			}
+
+		clf.set_params(**params)
+		if val_x is None:  # No fixed validation set given, perform cross-valiation on train
+			score = cross_val_score(clf, data_x, data_y, scoring=f1_scorer, cv=StratifiedKFold(n_splits=3), n_jobs=3).mean()
+		else:  # validated on validation set
+			clf.fit(data_x,data_y)
+			pred_y = clf.predict(val_x)
+			score = -f1_score(val_y,pred_y)
+		if "Forest" in clf.__class__.__name__:
+			shortname = "RF"
+		elif "Cat" in clf.__class__.__name__:
+			shortname = "CAT"
+		elif "XG" in clf.__class__.__name__:
+			shortname = "XGB"
+		else:
+			shortname = "ET" if "Extra" in clf.__class__.__name__ else "GBM"
+		print("F1 {:.3f} params {} {}".format(-score, params, shortname))
+		return score
+
+	# For large corpora, consider raising max n_estimators up to 350
+	if space is None:
+		space = {
+			'n_estimators': scope.int(hp.quniform('n_estimators', 75, 250, 10)),
+			'max_depth': scope.int(hp.quniform('max_depth', 5, 40, 1)),
+			'min_samples_split': scope.int(hp.quniform('min_samples_split', 2, 10, 1)),
+			'min_samples_leaf': scope.int(hp.quniform('min_samples_leaf', 1, 10, 1)),
+			'max_features': hp.choice('max_features', ["sqrt", None, 0.5, 0.6, 0.7, 0.8]),
+			'clf': hp.choice('clf', ["rf","et","gbm"])
+		}
+
+	sys.stderr.write("o Using "+str(data_x.shape[0])+" tokens to choose hyperparameters\n")
+	if val_x is not None:
+		sys.stderr.write("o Using "+str(val_x.shape[0])+" held out tokens as fixed validation data\n")
+	else:
+		sys.stderr.write("o No validation data provided, using cross-validation on train set to score\n")
+
+	best_params = fmin(fn=objective, space=space, algo=tpe.suggest, max_evals=max_evals, trials=trials)
+
+	best_params = space_eval(space,best_params)
+	sys.stderr.write(str(best_params) + "\n")
+
+	best_clf = best_params['clf']
+	if best_clf == "rf":
+		best_clf = RandomForestClassifier(n_jobs=4,random_state=42)
+	elif best_clf == "gbm":
+		best_clf = GradientBoostingClassifier(random_state=42)
+	elif best_clf == "xgb":
+		from xgboost import XGBClassifier
+		best_clf = XGBClassifier(random_state=42,nthread=4)
+	else:
+		best_clf = ExtraTreesClassifier(n_jobs=4,random_state=42)
+	del best_params['clf']
+	best_clf.set_params(**best_params)
+
+	return best_clf, best_params
+
+
 def multicol_transform(dframe, columns, all_encoders_):
 	for idx, column in enumerate(columns):
 		dframe.loc[:, column] = all_encoders_[idx].transform(dframe.loc[:, column].values)
@@ -557,6 +670,7 @@ class RFTokenizer:
 
 		# Handle temporary ablations if specified in option -a
 		if ablations is not None:
+			sys.stderr.write("o Applying ablations\n")
 			if len(ablations) > 0 and ablations != "none":
 				abl_feats = ablations.split(",")
 				sys.stderr.write("o Ablating features:\n")
@@ -574,6 +688,7 @@ class RFTokenizer:
 						sys.stderr.write("\tERR: can't find ablation feature " + feat + "\n")
 						sys.exit()
 
+		sys.stderr.write("o Creating dataframe\n")
 		data_x = pd.DataFrame(all_encoded_groups, columns=headers)
 
 		###
@@ -618,30 +733,46 @@ class RFTokenizer:
 			print("o Majority baseline:")
 			print("\t" + str(accuracy_score(test_y_bin, pred)))
 
-		forest_clf = ExtraTreesClassifier(n_estimators=250, max_features=None, n_jobs=3, random_state=42)
+		from xgboost import XGBClassifier
+		#clf = ExtraTreesClassifier(n_estimators=250, max_features=None, n_jobs=3, random_state=42)
+		#clf = XGBClassifier(n_estimators=200,n_jobs=3,random_state=42,max_depth=20,subsample=0.6,colsample_bytree=0.9,eta=.05,gamma=.15)
+		#20 round best:
+		# clf = XGBClassifier(n_estimators=220,n_jobs=3,random_state=42,max_depth=28,subsample=.8,colsample_bytree=0.6,eta=.05,gamma=.13)
+		# 100 round best:
+		clf = XGBClassifier(n_estimators=230,n_jobs=3,random_state=42,max_depth=17,subsample=1.0,colsample_bytree=0.6,eta=.07,gamma=.09)
+
+		#{'colsample_bytree': 0.6, 'eta': 0.05, 'gamma': 0.13, 'max_depth': 28, 'n_estimators': 160, 'subsample': 1.0}
+
+		#100 rounds:
+		#{'colsample_bytree': 0.6, 'eta': 0.07, 'gamma': 0.09, 'max_depth': 17, 'n_estimators': 230, 'subsample': 1.0}
+
 
 		if cross_val_test:
-			# Modify code to tune hyperparameters/use different estimators
+			# Modify code to tune hyperparameters
 
-			from sklearn.model_selection import GridSearchCV
-			sys.stderr.write("o Running CV...\n")
-
-			params = {"n_estimators":[300,400,500],"max_features":["auto",None]}#,"class_weight":["balanced",None]}
-			grid = GridSearchCV(RandomForestClassifier(n_jobs=-1,random_state=42,warm_start=True),param_grid=params,refit=False)
-			grid.fit(train_x,train_y_bin)
-			print("\nGrid search results:\n" + 30 * "=")
-			for key in grid.cv_results_:
-				print(key + ": " + str(grid.cv_results_[key]))
+			from hyperopt import hp
+			from hyperopt.pyll import scope
+			space = {
+				'n_estimators': scope.int(hp.quniform('n_estimators', 100, 250, 10)),
+				'max_depth': scope.int(hp.quniform('max_depth', 8, 35, 1)),
+				'eta': scope.float(hp.quniform('eta', 0.01, 0.2, 0.01)),
+				'gamma': scope.float(hp.quniform('gamma', 0.01, 0.2, 0.01)),
+				'colsample_bytree': hp.choice('colsample_bytree', [0.6,0.7,0.8,1.0]),
+				'subsample': hp.choice('subsample', [0.6,0.7,0.8,0.9,1.0]),
+				'clf': hp.choice('clf', ["xgb"])
+			}
+			best_clf, best_params = hyper_optimize(train_x,train_y_bin,val_x=None,val_y=None,space=space,max_evals=100)
+			print(best_params)
+			clf = best_clf
 
 			print("\nBest parameters:\n" + 30 * "=")
-			print(grid.best_params_)
-			sys.exit()
+			print(best_params)
 
 		sys.stderr.write("o Learning...\n")
-		forest_clf.fit(train_x, train_y_bin)
+		clf.fit(train_x, train_y_bin)
 
 		if test_prop > 0:
-			pred = forest_clf.predict(test_x)
+			pred = clf.predict(test_x)
 			j=-1
 			for i, row in strat_test_set.iterrows():
 				j+=1
@@ -677,22 +808,23 @@ class RFTokenizer:
 				with io.open("errs.txt",'w',encoding="utf8") as f:
 					for err in errs:
 						f.write(err + "\t" + str(errs[err])+"\n")
-
-			if output_importances:
-				feature_names = cat_labels + num_labels
-
-				zipped = zip(feature_names, forest_clf.feature_importances_)
-				sorted_zip = sorted(zipped, key=lambda x: x[1], reverse=True)
-				print("o Feature importances:\n")
-				for name, importance in sorted_zip:
-					print(name, "=", importance)
 		else:
 			print("o Test proportion is 0%, skipping evaluation")
+
+		if output_importances:
+			feature_names = cat_labels + num_labels
+
+			zipped = zip(feature_names, clf.feature_importances_)
+			sorted_zip = sorted(zipped, key=lambda x: x[1], reverse=True)
+			print("o Feature importances:\n")
+			for name, importance in sorted_zip:
+				print(name, "=", importance)
+
 
 		if dump_model:
 			plain_dict_pos_lookup = {}
 			plain_dict_pos_lookup.update(pos_lookup)
-			joblib.dump((forest_clf, num_labels, cat_labels, multicol_dict, plain_dict_pos_lookup, freqs, conf_file_parser), self.lang + ".sm" + str(sys.version_info[0]), compress=3)
+			joblib.dump((clf, num_labels, cat_labels, multicol_dict, plain_dict_pos_lookup, freqs, conf_file_parser), self.lang + ".sm" + str(sys.version_info[0]), compress=3)
 			print("o Dumped trained model to " + self.lang + ".sm" + str(sys.version_info[0]))
 
 	def rf_tokenize(self, data, sep="|", indices=None):
