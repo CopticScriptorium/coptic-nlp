@@ -109,6 +109,12 @@ def list_files(alias="silver",file_dir=None,parse=False):
 		elif alias.lower() == "ud_test":
 			file_list = io.open(eval_dir + "test_list.tab").read().strip().split("\n")
 			file_list = [file_dir + f for f in file_list]
+		elif alias.lower() == "ud_dev":
+			file_list = io.open(eval_dir + "dev_list.tab").read().strip().split("\n")
+			file_list = [file_dir + f for f in file_list]
+		elif alias.lower() == "ud_train":
+			file_list = io.open(eval_dir + "train_list.tab").read().strip().split("\n")
+			file_list = [file_dir + f for f in file_list]
 		elif alias.lower() == "victor_plain":
 			file_dir = eval_dir + "plain" + os.sep
 			file_list = [file_dir + "martyrdom.victor.txt"]
