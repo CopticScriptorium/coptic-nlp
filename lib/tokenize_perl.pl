@@ -13,7 +13,7 @@ else{
 	$sep = "/";
 }
 
-$lexicon =  $dirname . $sep . ".." . $sep . "data" .$sep . "copt_lex.tab";
+$lexicon =  $dirname . $sep . ".." . $sep . "data" .$sep . "copt_lemma_lex.tab";
 $segfile  = $dirname . $sep . ".." . $sep . "data" .$sep . "segmentation_table.tab";
 $morphfile = $dirname . $sep . ".." . $sep . "data" .$sep . "morph_table.tab";
 
