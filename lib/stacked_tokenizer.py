@@ -484,8 +484,7 @@ class StackedTokenizer:
 				if i in unknown_indices:
 					if norm in self.ambig:
 						if tokenizations_rf[j] in self.ambig[norm]:
-							#best_tokenizations.append(tokenizations_rf[j])
-							best_tokenizations.append(self.ambig[norm][0])
+							best_tokenizations.append(tokenizations_rf[j])
 							j+=1
 							continue
 						j+=1
