@@ -336,7 +336,7 @@ def adjust_theta(tokenization):
 
 class StackedTokenizer:
 
-	def __init__(self,lines=False,pipes=False,tokenized=False,no_morphs=False,detok=0,segment_merged=False,model="cop"):
+	def __init__(self,lines=False,pipes=False,tokenized=False,no_morphs=False,detok=0,segment_merged=False,model="cop",ambig=None):
 		self.lines = lines
 		self.pipes = pipes
 		self.tokenized = tokenized
@@ -344,6 +344,8 @@ class StackedTokenizer:
 		self.model = model
 		self.load_rftokenizer()
 		self.ambig = {}
+		if ambig is not None:
+			self.load_ambig(ambig)
 		self.load_rftokenizer()
 		# Place-holders for detokenization mode (a.k.a. Laytonization)
 		self.detokenize = detok
