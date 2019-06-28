@@ -1,4 +1,4 @@
-<meta annotation="Rebecca Krawiec" author="Shenoute" collection="Oriental Manuscripts" Coptic_edition="none" corpus="shenoute.eagerness" country="Egypt" document_cts_urn="urn:cts:copticLit:shenoute.eagerness.monbgl_45_53" endnote="This fragment is parallel to (and considered redundant to) &lt;a href='http://copticscriptorium.org/urn:cts:copticLit:shenoute.eagerness.monbxj_52_62/'&gt;MONB.XJ 52-62&lt;/a&gt;" idno="GB-MR Coptic 69 f. 1r-1v, 3r-6r" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msContents_title_n="5" msContents_title_type="Discourses" msItem_title="I See Your Eagerness" msName="MONB.GL" note="Transcribed from photograph by Stephen Emmel July 1993; collated in Manchester by Stephen Emmel August 1993 and by David Brakke August 2007. Transcription does not record spaces and paleographic rendition of letters other than ekthetics.  David Brakke and Andrew Crislip published a translation of I See Your Eagerness in their book Selected Discourses of Shenoute the Great (Cambridge University Press, 2015), pp. 95-98." objectType="codex" origDate="between 900 and 1200 C.E." origDate_notAfter="1200" origDate_notBefore="0900" origDate_precision="medium" origPlace="White Monastery" pages_from="45" pages_to="53" placeName="Atripe" project="Coptic SCRIPTORIUM" redundant="yes" repository="John Rylands Library, University of Manchester" source="David Brakke; Stephen Emmel" title="I See Your Eagerness: GL 45-53" translation="none" Trismegistos="none" version_date="2017-03-30" version_n="2.3.0" witness="urn:cts:copticLit:shenoute.eagerness.monbxj_52_62">
+<meta annotation="Rebecca Krawiec" author="Shenoute" collection="Oriental Manuscripts" Coptic_edition="none" corpus="shenoute.eagerness" country="Egypt" document_cts_urn="urn:cts:copticLit:shenoute.eagerness.monbgl_45_53" endnote="This fragment is parallel to (and considered redundant to) &lt;a href='http://copticscriptorium.org/urn:cts:copticLit:shenoute.eagerness.monbxj_52_62/'&gt;MONB.XJ 52-62&lt;/a&gt;" idno="GB-MR Coptic 69 f. 1r-1v, 3r-6r" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msContents_title_n="5" msContents_title_type="Discourses" msItem_title="I See Your Eagerness" msName="MONB.GL" note="Transcribed from photograph by Stephen Emmel July 1993; collated in Manchester by Stephen Emmel August 1993 and by David Brakke August 2007. Transcription does not record spaces and paleographic rendition of letters other than ekthetics.  David Brakke and Andrew Crislip published a translation of I See Your Eagerness in their book Selected Discourses of Shenoute the Great (Cambridge University Press, 2015), pp. 95-98." objectType="codex" origDate="between 900 and 1200 C.E." origDate_notAfter="1200" origDate_notBefore="0900" origDate_precision="medium" origPlace="White Monastery" pages_from="45" pages_to="53" parsing="automatic" placeName="Atripe" project="Coptic SCRIPTORIUM" redundant="yes" repository="John Rylands Library, University of Manchester" segmentation="checked" source="David Brakke; Stephen Emmel" tagging="checked" title="I See Your Eagerness: GL 45-53" translation="none" Trismegistos="none" version_date="2017-03-30" version_n="2.3.0" witness="urn:cts:copticLit:shenoute.eagerness.monbxj_52_62">
 <pb_xml_id pb_xml_id="GL45">
 <p p="p">
 <cb_n cb_n="1">
@@ -8355,18 +8355,22 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲁϩⲉⲣⲁⲧ">
-<norm norm="ⲁϩⲉⲣⲁⲧ">
-<lemma lemma="ⲁϩⲉⲣⲁⲧ">
+<orig orig="ⲁϩⲉ">
+<norm norm="ⲁϩⲉ">
+<lemma lemma="ⲱϩⲉ">
 <pos pos="V">
-<morph morph="ⲁϩⲉ">
 ⲁϩⲉ
-</morph>
+</pos>
+</lemma>
+</norm>
+</orig>
 </lb_n>
 <lb_n lb_n="9">
-<morph morph="ⲣⲁⲧ">
+<orig orig="ⲣⲁⲧ">
+<norm norm="ⲣⲁⲧ">
+<lemma lemma="ⲣⲁⲧ_ⲁⲛⲟⲕ">
+<pos pos="N_PPERO">
 ⲣⲁⲧ
-</morph>
 </pos>
 </lemma>
 </norm>
@@ -8388,19 +8392,17 @@
 </orig_group>
 </translation>
 <translation translation="...">
-<orig_group orig_group="ϩⲓⲧⲟⲩⲛ">
-<norm_group norm_group="ϩⲓⲧⲟⲩⲛ">
+<orig_group orig_group="ϩⲓⲧⲟⲩⲛⲧⲉⲧⲣⲁⲡⲉⲍⲁ">
+<norm_group norm_group="ϩⲓⲧⲟⲩⲱⲛⲧⲉⲧⲣⲁⲡⲉⲍⲁ">
 <orig orig="ϩⲓⲧⲟⲩⲛ">
-<norm norm="ϩⲓⲧⲟⲩⲛ">
-<lemma lemma="ϩⲓⲧⲟⲩⲛ">
+<norm norm="ϩⲓⲧⲟⲩⲱⲛ">
+<lemma lemma="ϩⲓⲧⲟⲩⲱⲛ">
 <pos pos="PREP">
 ϩⲓⲧⲟⲩⲛ
 </pos>
 </lemma>
 </norm>
 </orig>
-</norm_group>
-</orig_group>
 <orig orig="ⲧⲉ">
 <norm norm="ⲧⲉ">
 <lemma lemma="ⲡ">
@@ -8424,6 +8426,8 @@
 </lemma>
 </norm>
 </orig>
+</norm_group>
+</orig_group>
 <orig_group orig_group="ⲛⲙⲙⲁⲕ">
 <norm_group norm_group="ⲛⲙⲙⲁⲕ">
 <orig orig="ⲛⲙⲙⲁ">
@@ -19937,6 +19941,8 @@
 </orig_group>
 </lb_n>
 <lb_n lb_n="15">
+<orig_group orig_group="ⲉⲑⲩⲡⲟⲕⲣⲏⲥⲓⲥ">
+<norm_group norm_group="ⲉⲧϩⲩⲡⲟⲕⲣⲓⲥⲓⲥ">
 <orig orig="ⲉ">
 <norm norm="ⲉ">
 <lemma lemma="ⲉ">
@@ -19946,8 +19952,6 @@
 </lemma>
 </norm>
 </orig>
-<orig_group orig_group="ⲉⲑⲩⲡⲟⲕⲣⲏⲥⲓⲥ">
-<norm_group norm_group="ⲉⲧϩⲩⲡⲟⲕⲣⲓⲥⲓⲥ">
 <orig orig="ⲑ">
 <norm norm="ⲧ">
 <lemma lemma="ⲡ">
@@ -25280,9 +25284,11 @@
 <norm_group norm_group="ⲛⲛⲉⲛⲧⲁϥϫⲟⲟⲩ">
 <orig orig="ⲛ̄">
 <norm norm="ⲛ">
+<lemma lemma="ⲛ">
 <pos pos="PREP">
 ⲛ̄
 </pos>
+</lemma>
 </norm>
 </orig>
 </lb_n>

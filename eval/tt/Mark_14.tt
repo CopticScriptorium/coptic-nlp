@@ -15697,7 +15697,7 @@
 <orig orig="ⲭⲁⲓⲣⲉ">
 <norm norm="ⲭⲁⲓⲣⲉ">
 <lemma lemma="ⲭⲁⲓⲣⲉ">
-<pos pos="V">
+<pos pos="PTC">
 <lang lang="Greek">
 ⲭⲁⲓⲣⲉ
 </lang>
@@ -24572,11 +24572,20 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ϩⲓⲧⲟⲟⲧ">
-<norm norm="ϩⲓⲧⲟⲟⲧ">
-<lemma lemma="ϩⲓⲧⲟⲟⲧ">
+<orig orig="ϩⲓ">
+<norm norm="ϩⲓ">
+<lemma lemma="ϩⲓⲟⲩⲉ">
 <pos pos="V">
-ϩⲓⲧⲟⲟⲧ
+ϩⲓ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲧⲟⲟⲧ">
+<norm norm="ⲧⲟⲟⲧ">
+<lemma lemma="ⲧⲱⲣⲉ">
+<pos pos="N">
+ⲧⲟⲟⲧ
 </pos>
 </lemma>
 </norm>

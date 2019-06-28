@@ -2239,7 +2239,7 @@
 <orig orig="ⲙⲟⲥⲧⲉ">
 <norm norm="ⲙⲟⲥⲧⲉ">
 <lemma lemma="ⲙⲟⲥⲧⲉ">
-<pos pos="V">
+<pos pos="N">
 ⲙⲟⲥⲧⲉ
 </pos>
 </lemma>
@@ -2252,7 +2252,7 @@
 <orig orig="ⲉ">
 <norm norm="ⲉ">
 <lemma lemma="ⲉⲣⲉ">
-<pos pos="CFOC">
+<pos pos="CCIRC">
 ⲉ
 </pos>
 </lemma>

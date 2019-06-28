@@ -232,8 +232,8 @@
 </orig>
 </norm_group>
 </orig_group>
-<orig_group orig_group="ⲛ̇ⲥⲁ">
-<norm_group norm_group="ⲛⲥⲁ">
+<orig_group orig_group="ⲛ̇ⲥⲁⲙ̇ⲙⲓ̇ⲗⲓ̇ⲟⲛ">
+<norm_group norm_group="ⲛⲥⲁⲙⲙⲓⲗⲓⲟⲛ">
 <orig orig="ⲛ̇ⲥⲁ">
 <norm norm="ⲛⲥⲁ">
 <lemma lemma="ⲛⲥⲁ">
@@ -243,10 +243,6 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-</orig_group>
-<orig_group orig_group="ⲙ̇ⲙⲓ̇ⲗⲓ̇ⲟⲛ">
-<norm_group norm_group="ⲙⲙⲓⲗⲓⲟⲛ">
 <orig orig="ⲙ̇">
 <norm norm="ⲙ">
 <lemma lemma="ⲡ">

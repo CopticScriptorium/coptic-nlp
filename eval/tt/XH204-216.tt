@@ -1051,7 +1051,7 @@
 <orig orig="ⲓ︤ⲥ︥">
 <norm norm="ⲓⲏⲥⲟⲩⲥ">
 <lemma lemma="ⲓⲏⲥⲟⲩⲥ">
-<pos pos="N">
+<pos pos="NPROP">
 ⲓ︤ⲥ︥
 </pos>
 </lemma>
@@ -8802,8 +8802,8 @@
 <lb_n lb_n="29">
 <orig orig="ⲟ ̂ⲩ">
 <norm norm="ⲟⲩ">
-<lemma lemma="ⲛⲧⲟⲟⲩ">
-<pos pos="PPERO">
+<lemma lemma="ⲟⲩ">
+<pos pos="PINT">
 ⲟ ̂ⲩ
 </pos>
 </lemma>

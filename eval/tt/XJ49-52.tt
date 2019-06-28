@@ -1,4 +1,4 @@
-<meta annotation="Rebecca Krawiec, Caroline T. Schroeder, Amir Zeldes" author="Shenoute" collection="Borgia Collection" Coptic_edition="Amélineau 1907–14, 2:46–49" corpus="shenoute.eagerness" country="Egypt" document_cts_urn="urn:cts:copticLit:shenoute.eagerness.monbxj_49_52" endnote="A lacuna of 14 pages (7 folios) exists prior to this document. The text in this document immediately continues in the next digitized document of MONB.XJ 52" idno="IB5 f. 45r-46v" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msContents_title_n="5" msContents_title_type="Discourses" msitem_title="I See Your Eagerness" msName="MONB.XJ" next="urn:cts:copticLit:shenoute.eagerness.monbxj_52_62" note="Collated in Naples by David Brakke, March 2009; transcription does not record spaces and paleographic rendition of letters other than ekthetics. David Brakke and Andrew Crislip published a translation of I See Your Eagerness in their book Selected Discourses of Shenoute the Great (Cambridge University Press, 2015), pp. 94-95." objectType="codex" origDate="between 900 and 1200 C.E." origDate_notAfter="1200" origDate_notBefore="0900" origDate_precision="medium" origPlace="White Monastery" pages_from="49" pages_to="52" placeName="Atripe" previous="urn:cts:copticLit:shenoute.eagerness.monbxj_33_34" project="Coptic SCRIPTORIUM" redundant="no" repository="Biblioteca Nazionale di Napoli" source="David Brakke" title="I See Your Eagerness: XJ 49-52" translation="none" Trismegistos="none" version_date="2017-03-30" version_n="2.3.0" witness="No parallel witness">
+<meta annotation="Rebecca Krawiec, Caroline T. Schroeder, Amir Zeldes" author="Shenoute" collection="Borgia Collection" Coptic_edition="Amélineau 1907–14, 2:46–49" corpus="shenoute.eagerness" country="Egypt" document_cts_urn="urn:cts:copticLit:shenoute.eagerness.monbxj_49_52" endnote="A lacuna of 14 pages (7 folios) exists prior to this document. The text in this document immediately continues in the next digitized document of MONB.XJ 52" idno="IB5 f. 45r-46v" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msContents_title_n="5" msContents_title_type="Discourses" msitem_title="I See Your Eagerness" msName="MONB.XJ" next="urn:cts:copticLit:shenoute.eagerness.monbxj_52_62" note="Collated in Naples by David Brakke, March 2009; transcription does not record spaces and paleographic rendition of letters other than ekthetics. David Brakke and Andrew Crislip published a translation of I See Your Eagerness in their book Selected Discourses of Shenoute the Great (Cambridge University Press, 2015), pp. 94-95." objectType="codex" origDate="between 900 and 1200 C.E." origDate_notAfter="1200" origDate_notBefore="0900" origDate_precision="medium" origPlace="White Monastery" pages_from="49" pages_to="52" parsing="automatic" placeName="Atripe" previous="urn:cts:copticLit:shenoute.eagerness.monbxj_33_34" project="Coptic SCRIPTORIUM" redundant="no" repository="Biblioteca Nazionale di Napoli" segmentation="checked" source="David Brakke" tagging="checked" title="I See Your Eagerness: XJ 49-52" translation="none" Trismegistos="none" version_date="2017-03-30" version_n="2.3.0" witness="No parallel witness">
 <pb_xml_id pb_xml_id="XJ49">
 <cb_n cb_n="1">
 <p p="p">
@@ -197,10 +197,8 @@
 <orig orig="ⲟ᷍ⲩ">
 <norm norm="ⲟⲩ">
 <lemma lemma="ⲛⲧⲟⲟⲩ">
-<pos pos="PPERO">
-<morph morph="ⲟ᷍ⲩ">
+<pos pos="PINT">
 ⲟ᷍ⲩ
-</morph>
 </pos>
 </lemma>
 </norm>
@@ -403,8 +401,8 @@
 <norm_group norm_group="ⲉⲧⲙⲟⲩⲱⲙ">
 <orig orig="ⲉ">
 <norm norm="ⲉ">
-<lemma lemma="ⲉⲣⲉ">
-<pos pos="CCIRC">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
 ⲉ
 </pos>
 </lemma>
@@ -820,8 +818,8 @@
 </orig>
 </norm_group>
 </orig_group>
-<orig_group orig_group="ⲧⲉⲛⲧⲁⲥϯⲛⲁⲓ̈">
-<norm_group norm_group="ⲧⲉⲛⲧⲁⲥϯⲛⲁⲓ">
+<orig_group orig_group="ⲧⲉⲛⲧⲁⲥϯ">
+<norm_group norm_group="ⲧⲉⲛⲧⲁⲥϯ">
 <orig orig="ⲧ">
 <norm norm="ⲧ">
 <lemma lemma="ⲡ">
@@ -870,6 +868,10 @@
 </lemma>
 </norm>
 </orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲛⲁⲓ̈">
+<norm_group norm_group="ⲛⲁⲓ">
 <orig orig="ⲛⲁ">
 <norm norm="ⲛⲁ">
 <lemma lemma="ⲛⲁ">
@@ -1254,7 +1256,7 @@
 <orig orig="ⲉ">
 <norm norm="ⲉ">
 <lemma lemma="ⲉⲣⲉ">
-<pos pos="CCIRC">
+<pos pos="CFOC">
 ⲉ
 </pos>
 </lemma>
@@ -1305,7 +1307,7 @@
 <orig orig="ⲧⲱⲛ">
 <norm norm="ⲧⲱⲛ">
 <lemma lemma="ⲧⲱⲛ">
-<pos pos="N">
+<pos pos="PINT">
 ⲧⲱⲛ
 </pos>
 </lemma>
@@ -1317,6 +1319,8 @@
 </cb_n>
 <cb_n cb_n="2">
 <lb_n lb_n="1">
+<orig_group orig_group="ⲛ̄ⲛⲁϩ︤ⲣ︦ⲙ︥ⲡϩⲟ̂">
+<norm_group norm_group="ⲛⲛⲁϩⲣⲙⲡϩⲟ">
 <orig orig="ⲛ̄ⲛⲁϩ︤ⲣ︦ⲙ︥">
 <norm norm="ⲛⲛⲁϩⲣⲙ">
 <lemma lemma="ⲛⲁϩⲣⲛ">
@@ -1344,6 +1348,8 @@
 </lemma>
 </norm>
 </orig>
+</norm_group>
+</orig_group>
 </lb_n>
 <lb_n lb_n="2">
 <orig_group orig_group="ⲙ̄ⲡⲛⲟⲩⲧⲉ">
@@ -1804,8 +1810,8 @@
 </orig>
 </norm_group>
 </orig_group>
-<orig_group orig_group="ⲉⲧ︤ⲛ︥ϯⲛⲟⲩϭ︤ⲥ︥">
-<norm_group norm_group="ⲉⲧⲛϯⲛⲟⲩϭⲥ">
+<orig_group orig_group="ⲉⲧ︤ⲛ︥ϯ">
+<norm_group norm_group="ⲉⲧⲛϯ">
 <orig orig="ⲉⲧ︤">
 <norm norm="ⲉⲧ">
 <lemma lemma="ⲉⲧⲉⲣⲉ">
@@ -1833,6 +1839,10 @@
 </lemma>
 </norm>
 </orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲛⲟⲩϭ︤ⲥ︥">
+<norm_group norm_group="ⲛⲟⲩϭⲥ">
 <orig orig="ⲛ">
 <norm norm="ⲛ">
 <lemma lemma="ⲛ">
@@ -1971,8 +1981,8 @@
 </orig>
 </norm_group>
 </orig_group>
-<orig_group orig_group="ⲁⲩⲥⲟⲩⲛ̄">
-<norm_group norm_group="ⲁⲩⲥⲟⲩⲛ">
+<orig_group orig_group="ⲁⲩⲥⲟⲩⲛ̄ⲡϣⲓⲡⲉ">
+<norm_group norm_group="ⲁⲩⲥⲟⲩⲛⲡϣⲓⲡⲉ">
 <orig orig="ⲁ">
 <norm norm="ⲁ">
 <lemma lemma="ⲁ">
@@ -2000,12 +2010,8 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-</orig_group>
 </lb_n>
 <lb_n lb_n="18">
-<orig_group orig_group="ⲡϣⲓⲡⲉ">
-<norm_group norm_group="ⲡϣⲓⲡⲉ">
 <orig orig="ⲡ">
 <norm norm="ⲡ">
 <lemma lemma="ⲡ">
@@ -2918,9 +2924,9 @@
 </norm_group>
 </orig_group>
 </lb_n>
+<orig_group orig_group="ⲙ̄ⲡ︤ⲛ︥ⲥⲟⲩⲛ̄ⲡϣⲓⲡⲉ">
+<norm_group norm_group="ⲙⲡⲛⲥⲟⲩⲛⲡϣⲓⲡⲉ">
 <lb_n lb_n="12">
-<orig_group orig_group="ⲙ̄ⲡ︤ⲛ︥ⲥⲟⲩⲛ̄">
-<norm_group norm_group="ⲙⲡⲛⲥⲟⲩⲛ">
 <orig orig="ⲙ̄ⲡ︤">
 <norm norm="ⲙⲡ">
 <lemma lemma="ⲙⲡⲉ">
@@ -2948,12 +2954,8 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-</orig_group>
 </lb_n>
 <lb_n lb_n="13">
-<orig_group orig_group="ⲡϣⲓⲡⲉ">
-<norm_group norm_group="ⲡϣⲓⲡⲉ">
 <orig orig="ⲡ">
 <norm norm="ⲡ">
 <lemma lemma="ⲡ">
@@ -3527,8 +3529,8 @@
 <norm_group norm_group="ⲉⲣϩⲉⲛϩⲃⲏⲩⲉ">
 <orig orig="ⲉ">
 <norm norm="ⲉ">
-<lemma lemma="ⲉⲣⲉ">
-<pos pos="CFOC">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
 ⲉ
 </pos>
 </lemma>
@@ -3746,7 +3748,7 @@
 <lb_n lb_n="4">
 <orig_group orig_group="ⲙ̄ⲡⲉⲛⲥⲱϣ">
 <norm_group norm_group="ⲙⲡⲉⲛⲥⲱϣ">
-<orig orig="ⲙ̄ⲡⲉ">
+<orig orig="ⲙ̄">
 <norm norm="ⲙ">
 <lemma lemma="ⲛ">
 <pos pos="PREP">
@@ -3755,7 +3757,7 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲛ">
+<orig orig="ⲡⲉⲛ">
 <norm norm="ⲡⲉⲛ">
 <lemma lemma="ⲡⲉⲛ">
 <pos pos="PDEM">
@@ -3948,7 +3950,7 @@
 <orig orig="ⲉⲣⲉ">
 <norm norm="ⲉⲣⲉ">
 <lemma lemma="ⲉⲣⲉ">
-<pos pos="CCIRC">
+<pos pos="CFOC">
 ⲉⲣⲉ
 </pos>
 </lemma>
@@ -4048,7 +4050,7 @@
 <orig orig="ⲧⲱⲛ">
 <norm norm="ⲧⲱⲛ">
 <lemma lemma="ⲧⲱⲛ">
-<pos pos="N">
+<pos pos="PINT">
 ⲧⲱⲛ
 </pos>
 </lemma>
@@ -4367,7 +4369,7 @@
 <orig orig="ⲧⲱⲛ">
 <norm norm="ⲧⲱⲛ">
 <lemma lemma="ⲧⲱⲛ">
-<pos pos="N">
+<pos pos="PINT">
 ⲧⲱⲛ
 </pos>
 </lemma>
@@ -4410,7 +4412,7 @@
 <orig orig="ⲛ̄ⲧⲉ">
 <norm norm="ⲛⲧⲉ">
 <lemma lemma="ⲛⲧⲉ">
-<pos pos="PREP">
+<pos pos="ACONJ">
 ⲛ̄ⲧⲉ
 </pos>
 </lemma>
@@ -4914,7 +4916,7 @@
 <orig orig="ⲉ">
 <norm norm="ⲉ">
 <lemma lemma="ⲉⲣⲉ">
-<pos pos="CCIRC">
+<pos pos="CFOC">
 ⲉ
 </pos>
 </lemma>
@@ -5455,7 +5457,7 @@
 <orig orig="ⲣ̂ϭⲱⲃ">
 <norm norm="ⲣϭⲱⲃ">
 <lemma lemma="ⲣϭⲱⲃ">
-<pos pos="V">
+<pos pos="N">
 <morph morph="ⲣ">
 ⲣ̂
 </morph>
@@ -5644,17 +5646,21 @@
 </orig>
 </norm_group>
 </orig_group>
-<orig_group orig_group="ⲕⲱ">
-<norm_group norm_group="ⲕⲱⲛ">
+<orig_group orig_group="ⲕⲱ̂">
+<norm_group norm_group="ⲕⲱ">
 <orig orig="ⲕⲱ̂">
 <norm norm="ⲕⲱ">
 <lemma lemma="ⲕⲱ">
-<pos pos="V">
+<pos pos="N">
 ⲕⲱ̂
 </pos>
 </lemma>
 </norm>
 </orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲛ̄ϩⲉⲛⲥⲕⲁⲛⲇⲁⲗⲟⲛ">
+<norm_group norm_group="ⲛϩⲉⲛⲥⲕⲁⲛⲇⲁⲗⲟⲛ">
 <orig orig="ⲛ̄">
 <norm norm="ⲛ">
 <lemma lemma="ⲛ">
@@ -5664,11 +5670,7 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-</orig_group>
 </lb_n>
-<orig_group orig_group="̂ⲛ̄ϩⲉⲛⲥⲕⲁⲛⲇⲁⲗⲟⲛ">
-<norm_group norm_group="ϩⲉⲛⲥⲕⲁⲛⲇⲁⲗⲟⲛ">
 <lb_n lb_n="22">
 <orig orig="ϩⲉⲛ">
 <norm norm="ϩⲉⲛ">
@@ -5874,16 +5876,20 @@
 </orig>
 </lb_n>
 <lb_n lb_n="27">
-<orig orig="ϯⲧⲟⲟⲧ">
-<norm norm="ϯⲧⲟⲟⲧ">
-<lemma lemma="ϯⲧⲟⲟⲧ">
+<orig orig="ϯ">
+<norm norm="ϯ">
+<lemma lemma="ϯ">
 <pos pos="V">
-<morph morph="ϯ">
 ϯ
-</morph>
-<morph morph="ⲧⲟⲟⲧ">
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲧⲟⲟⲧ">
+<norm norm="ⲧⲟⲟⲧ">
+<lemma lemma="ⲧⲱⲣⲉ">
+<pos pos="N">
 ⲧⲟⲟⲧ
-</morph>
 </pos>
 </lemma>
 </norm>
@@ -6247,25 +6253,45 @@
 </orig>
 </norm_group>
 </orig_group>
-<orig_group orig_group="ⲉϩⲁⲣⲉϩⲉⲛϣⲁϫⲉ">
-<norm_group norm_group="ⲉϩⲁⲣⲉϩⲉⲛϣⲁϫⲉ">
-<orig orig="ⲉϩⲁⲣⲉ">
-<norm norm="ⲉϩⲁⲣⲉ">
-<lemma lemma="ⲉϩⲁⲣⲉ">
+<orig_group orig_group="ⲉϩⲁⲣⲉϩ">
+<norm_group norm_group="ⲉϩⲁⲣⲉϩ">
+<orig orig="ⲉ">
+<norm norm="ⲉ">
+<lemma lemma="ⲉ">
+ⲉ
+</lemma>
+</norm>
+</orig>
+<orig orig="ϩⲁⲣⲉϩ">
+<norm norm="ϩⲁⲣⲉϩ">
+<lemma lemma="ϩⲁⲣⲉϩ">
 <pos pos="PREP">
-ⲉϩⲁ
+ϩⲁ
 </lb_n>
 <lb_n lb_n="8">
-ⲣⲉ
+ⲣⲉϩ
 </pos>
 </lemma>
 </norm>
 </orig>
-<orig orig="ϩⲉⲛ">
-<norm norm="ϩⲉⲛ">
-<lemma lemma="ⲟⲩ">
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉⲛϣⲁϫⲉ">
+<norm_group norm_group="ⲉⲛϣⲁϫⲉ">
+<orig orig="ⲉ">
+<norm norm="ⲉ">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
+ⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲛ">
+<norm norm="ⲛ">
+<lemma lemma="ⲡ">
 <pos pos="ART">
-ϩⲉⲛ
+ⲛ
 </pos>
 </lemma>
 </norm>
@@ -6279,9 +6305,9 @@
 </lemma>
 </norm>
 </orig>
-</lb_n>
 </norm_group>
 </orig_group>
+</lb_n>
 <lb_n lb_n="9">
 <orig_group orig_group="ⲛ̄ⲛⲉⲅⲣⲁⲫⲏ">
 <norm_group norm_group="ⲛⲛⲉⲅⲣⲁⲫⲏ">
@@ -6363,7 +6389,7 @@
 <orig orig="ⲉⲣⲉ">
 <norm norm="ⲉⲣⲉ">
 <lemma lemma="ⲉⲣⲉ">
-<pos pos="CCIRC">
+<pos pos="CFOC">
 ⲉ
 </lb_n>
 <lb_n lb_n="11">
@@ -6423,8 +6449,8 @@
 </orig>
 <orig orig="ⲩ">
 <norm norm="ⲩ">
-<lemma lemma="ⲟⲩ">
-<pos pos="ART">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERO">
 ⲩ
 </pos>
 </lemma>
@@ -6579,8 +6605,8 @@
 </orig>
 </norm_group>
 </orig_group>
-<orig_group orig_group="ⲡⲉⲛⲧⲁϥⲧⲁⲙⲓⲉ">
-<norm_group norm_group="ⲡⲉⲛⲧⲁϥⲧⲁⲙⲓⲉ">
+<orig_group orig_group="ⲡⲉⲛⲧⲁϥⲧⲁⲙⲓⲉⲧⲡⲉ">
+<norm_group norm_group="ⲡⲉⲛⲧⲁϥⲧⲁⲙⲓⲉⲧⲡⲉ">
 <orig orig="ⲡ">
 <norm norm="ⲡ">
 <lemma lemma="ⲡ">
@@ -6637,10 +6663,6 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-</orig_group>
-<orig_group orig_group="ⲧⲡⲉ">
-<norm_group norm_group="ⲧⲡⲉ">
 <orig orig="ⲡⲉ">
 <norm norm="ⲡⲉ">
 <lemma lemma="ⲡⲉ">
@@ -7357,9 +7379,9 @@
 </norm_group>
 </orig_group>
 </lb_n>
+<orig_group orig_group="ⲉⲧ︤ⲙ︥ⲕⲁ̂ϩⲉⲛϩⲃⲏⲩⲉ">
+<norm_group norm_group="ⲉⲧⲙⲕⲁϩⲉⲛϩⲃⲏⲩⲉ">
 <lb_n lb_n="7">
-<orig_group orig_group="ⲉⲧ︤ⲙ︥ⲕⲁ̂">
-<norm_group norm_group="ⲉⲧⲙⲕⲁ">
 <orig orig="ⲉ">
 <norm norm="ⲉ">
 <lemma lemma="ⲉ">
@@ -7387,10 +7409,6 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-</orig_group>
-<orig_group orig_group="ϩⲉⲛϩⲃⲏⲩⲉ">
-<norm_group norm_group="ϩⲉⲛϩⲃⲏⲩⲉ">
 <orig orig="ϩⲉⲛ">
 <norm norm="ϩⲉⲛ">
 <lemma lemma="ⲟⲩ">
@@ -7603,7 +7621,8 @@
 </orig>
 </norm_group>
 </orig_group>
-<norm_group norm_group="ϩⲛ">
+<orig_group orig_group="ϩ︤ⲛ︥ϩⲉⲛⲙ︤ⲛ︥ⲧ︥ⲣⲉϥⲁⲣⲉⲥⲕⲉ">
+<norm_group norm_group="ϩⲛϩⲉⲛⲙⲛⲧⲣⲉϥⲁⲣⲉⲥⲕⲉ">
 <orig orig="ϩ︤ⲛ︥">
 <norm norm="ϩⲛ">
 <lemma lemma="ϩⲛ">
@@ -7613,9 +7632,6 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-<orig_group orig_group="ϩ︤ⲛ︥ϩⲉⲛⲙ︤ⲛ︥ⲧ︥ⲣⲉϥⲁⲣⲉⲥⲕⲉ">
-<norm_group norm_group="ϩⲉⲛⲙⲛⲧⲣⲉϥⲁⲣⲉⲥⲕⲉ">
 <orig orig="ϩⲉⲛ">
 <norm norm="ϩⲉⲛ">
 <lemma lemma="ⲟⲩ">
@@ -8337,19 +8353,23 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ϯⲧⲟⲟⲧ︤">
-<norm norm="ϯⲧⲟⲟⲧ">
-<lemma lemma="ϯⲧⲟⲟⲧ">
+<orig orig="ϯ">
+<norm norm="ϯ">
+<lemma lemma="ϯ">
 <pos pos="V">
-<morph morph="ϯ">
 ϯ
-</morph>
-<morph morph="ⲧⲟⲟⲧ">
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲧⲟⲟⲧ︤">
+<norm norm="ⲧⲟⲟⲧ">
+<lemma lemma="ⲧⲱⲣⲉ">
+<pos pos="N">
 ⲧⲟⲟ
 </lb_n>
 <lb_n lb_n="3">
 ⲧ︤
-</morph>
 </pos>
 </lemma>
 </norm>

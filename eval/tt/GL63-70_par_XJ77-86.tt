@@ -1,4 +1,4 @@
-<meta annotation="Rebecca Krawiec, Caroline T. Schroeder" author="Shenoute" collection="Manuscrits Copte" Coptic_edition="Amélineau 1907–14, 2:66–74" corpus="shenoute.eagerness" country="Egypt" document_cts_urn="urn:cts:copticLit:shenoute.eagerness.monbgl_63_70" endnote="This document picks up immediately after urn:cts:copticLit:shenoute.eagerness.monbgl_61_63 ends.  It runs parallel to (and is considered redundant to) the text in codex MONB.XJ 77-86.  The text continues in urn:cts:shenoute.eagerness.monbgl_70" idno="FR-BN 130(3) f. 77r-80v" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msContents_title_n="5" msContents_title_type="Discourses" msitem_title="I See Your Eagerness" msName="MONB.GL" note="Transcribed in Paris by David Brakke, March 2010.  Transcription does not record spaces and paleographic rendition of letters other than ekthetics. David Brakke and Andrew Crislip published a translation of I See Your Eagerness in their book Selected Discourses of Shenoute the Great (Cambridge University Press, 2015), pp. 102-105." objectType="codex" origDate="between 900 and 1200 C.E." origDate_notAfter="1200" origDate_notBefore="0900" origDate_precision="medium" origPlace="White Monastery" pages_from="63" pages_to="70" placeName="Atripe" project="Coptic SCRIPTORIUM" redundant="yes" repository="Bibliothèque Nationale de France" source="David Brakke" title="I See Your Eagerness: GL 63-70" translation="none" Trismegistos="none" witness="urn:cts:copticLit:shenoute.eagerness.monbxj_77_86, MONB.DD 219-220 (not published by Coptic SCRIPTORIUM)">
+<meta annotation="Rebecca Krawiec, Caroline T. Schroeder" author="Shenoute" collection="Manuscrits Copte" Coptic_edition="Amélineau 1907–14, 2:66–74" corpus="shenoute.eagerness" country="Egypt" document_cts_urn="urn:cts:copticLit:shenoute.eagerness.monbgl_63_70" endnote="This document picks up immediately after urn:cts:copticLit:shenoute.eagerness.monbgl_61_63 ends.  It runs parallel to (and is considered redundant to) the text in codex MONB.XJ 77-86.  The text continues in urn:cts:shenoute.eagerness.monbgl_70" idno="FR-BN 130(3) f. 77r-80v" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msContents_title_n="5" msContents_title_type="Discourses" msitem_title="I See Your Eagerness" msName="MONB.GL" note="Transcribed in Paris by David Brakke, March 2010.  Transcription does not record spaces and paleographic rendition of letters other than ekthetics. David Brakke and Andrew Crislip published a translation of I See Your Eagerness in their book Selected Discourses of Shenoute the Great (Cambridge University Press, 2015), pp. 102-105." objectType="codex" origDate="between 900 and 1200 C.E." origDate_notAfter="1200" origDate_notBefore="0900" origDate_precision="medium" origPlace="White Monastery" pages_from="63" pages_to="70" parsing="automatic" placeName="Atripe" project="Coptic SCRIPTORIUM" redundant="yes" repository="Bibliothèque Nationale de France" segmentation="checked" source="David Brakke" tagging="checked" title="I See Your Eagerness: GL 63-70" translation="none" Trismegistos="none" witness="urn:cts:copticLit:shenoute.eagerness.monbxj_77_86, MONB.DD 219-220 (not published by Coptic SCRIPTORIUM)">
 <p p="p">
 <pb_xml_id pb_xml_id="GL63">
 <cb_n cb_n="1">
@@ -11572,7 +11572,7 @@
 <orig orig="ⲙ">
 <norm norm="ⲙ">
 <lemma lemma="ⲛ">
-<pos pos="PREP">
+<pos pos="NEG">
 ⲙ
 </pos>
 </lemma>
@@ -11626,29 +11626,11 @@
 <lb_n lb_n="20">
 <orig_group orig_group="ⲙⲡϣⲁ">
 <norm_group norm_group="ⲙⲡϣⲁ">
-<orig orig="ⲙ">
-<norm norm="ⲙ">
-<lemma lemma="ⲛ">
-<pos pos="PREP">
-ⲙ
-</pos>
-</lemma>
-</norm>
-</orig>
-<orig orig="ⲡ">
-<norm norm="ⲡ">
-<lemma lemma="ⲡ">
-<pos pos="ART">
-ⲡ
-</pos>
-</lemma>
-</norm>
-</orig>
-<orig orig="ϣⲁ">
-<norm norm="ϣⲁ">
-<lemma lemma="ϣⲁ">
-<pos pos="N">
-ϣⲁ
+<orig orig="ⲙⲡϣⲁ">
+<norm norm="ⲙⲡϣⲁ">
+<lemma lemma="ⲙⲡϣⲁ">
+<pos pos="V">
+ⲙⲡϣⲁ
 </pos>
 </lemma>
 </norm>
@@ -12235,6 +12217,7 @@
 </norm>
 </orig>
 <orig orig="ⲁⲡⲟⲥⲧⲟⲗⲟⲥ">
+<norm norm="ⲁⲡⲟⲥⲧⲟⲗⲟⲥ">
 <lemma lemma="ⲁⲡⲟⲥⲧⲟⲗⲟⲥ">
 <pos pos="N">
 <lang lang="Greek">
@@ -12252,6 +12235,7 @@
 </lang>
 </pos>
 </lemma>
+</norm>
 </orig>
 </norm_group>
 </orig_group>
@@ -21368,7 +21352,7 @@
 </norm>
 </orig>
 <orig orig="ⲡ">
-<norm norm="ⲡ+E1064">
+<norm norm="ⲡ">
 <lemma lemma="ⲡ">
 <pos pos="ART">
 ⲡ

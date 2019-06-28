@@ -4664,16 +4664,20 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲁϩⲉⲣⲁⲧ">
-<norm norm="ⲁϩⲉⲣⲁⲧ">
+<orig orig="ⲁϩⲉ">
+<norm norm="ⲁϩⲉ">
 <lemma lemma="ⲱϩⲉ">
 <pos pos="V">
-<morph morph="ⲁϩⲉ">
 ⲁϩⲉ
-</morph>
-<morph morph="ⲣⲁⲧ">
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲣⲁⲧ">
+<norm norm="ⲣⲁⲧ">
+<lemma lemma="ⲣⲁⲧ">
+<pos pos="N">
 ⲣⲁⲧ
-</morph>
 </pos>
 </lemma>
 </norm>

@@ -1,4 +1,4 @@
-<meta annotation="Rebecca Krawiec, Caroline T. Schroeder" author="Shenoute" collection="Oriental Manuscripts" Coptic_edition="GL 56 in Crum 1909, 34 (line 1a = GL 56:ii.30); GL 54-55, 57-60 none" corpus="shenoute.eagerness" country="Egypt" document_cts_urn="urn:cts:copticLit:shenoute.eagerness.monbgl_54_60" endnote="This document picks up immediately after urn:cts:copticLit:shenoute.eagerness.monbgl_53_54 ends.   It runs parallel to (and is considered redundant to) the text in codex MONB.XJ 65-72, which is published in urn:cts:copticLit:shenoute.eagerness.monbxj_65_76." idno="Coptic 69 ff. 6v-8v, 2v-r" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msContents_title_n="5" msContents_title_type="Discourses" msitem_title="I See Your Eagerness" msName="MONB.GL" note="Transcribed from photograph by Stephen Emmel July 1993; collated in Manchester by Stephen Emmel August 1993 and by David Brakke August 2007. Transcription does not record spaces and paleographic rendition of letters other than ekthetics. David Brakke and Andrew Crislip published a translation of I See Your Eagerness in their book Selected Discourses of Shenoute the Great (Cambridge University Press, 2015), pp. 98-101" objectType="codex" origDate="between 900 and 1200 C.E." origDate_notAfter="1200" origDate_notBefore="0900" origDate_precision="medium" origPlace="White Monastery" pages_from="54" pages_to="60" placeName="Atripe" project="Coptic SCRIPTORIUM" redundant="yes" repository="John Rylands Library, University of Manchester" source="David Brakke; Stephen Emmel" title="I See Your Eagerness: GL 54-60" translation="none" Trismegistos="none" witness="urn:cts:copticLit:shenoute.eagerness.monbxj_65_76">
+<meta annotation="Rebecca Krawiec, Caroline T. Schroeder" author="Shenoute" collection="Oriental Manuscripts" Coptic_edition="GL 56 in Crum 1909, 34 (line 1a = GL 56:ii.30); GL 54-55, 57-60 none" corpus="shenoute.eagerness" country="Egypt" document_cts_urn="urn:cts:copticLit:shenoute.eagerness.monbgl_54_60" endnote="This document picks up immediately after urn:cts:copticLit:shenoute.eagerness.monbgl_53_54 ends.   It runs parallel to (and is considered redundant to) the text in codex MONB.XJ 65-72, which is published in urn:cts:copticLit:shenoute.eagerness.monbxj_65_76." idno="Coptic 69 ff. 6v-8v, 2v-r" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msContents_title_n="5" msContents_title_type="Discourses" msitem_title="I See Your Eagerness" msName="MONB.GL" note="Transcribed from photograph by Stephen Emmel July 1993; collated in Manchester by Stephen Emmel August 1993 and by David Brakke August 2007. Transcription does not record spaces and paleographic rendition of letters other than ekthetics. David Brakke and Andrew Crislip published a translation of I See Your Eagerness in their book Selected Discourses of Shenoute the Great (Cambridge University Press, 2015), pp. 98-101" objectType="codex" origDate="between 900 and 1200 C.E." origDate_notAfter="1200" origDate_notBefore="0900" origDate_precision="medium" origPlace="White Monastery" pages_from="54" pages_to="60" parsing="automatic" placeName="Atripe" project="Coptic SCRIPTORIUM" redundant="yes" repository="John Rylands Library, University of Manchester" segmentation="checked" source="David Brakke; Stephen Emmel" tagging="checked" title="I See Your Eagerness: GL 54-60" translation="none" Trismegistos="none" witness="urn:cts:copticLit:shenoute.eagerness.monbxj_65_76">
 <pb_xml_id pb_xml_id="GL54">
 <cb_n cb_n="2">
 <p p="p">
@@ -12068,11 +12068,20 @@
 </orig_group>
 <orig_group orig_group="ⲉⲡⲁϩⲟⲩ">
 <norm_group norm_group="ⲉⲡⲁϩⲟⲩ">
-<orig orig="ⲉⲡⲁϩⲟⲩ">
-<norm norm="ⲉⲡⲁϩⲟⲩ">
-<lemma lemma="ⲉⲡⲁϩⲟⲩ">
-<pos pos="ADV">
-ⲉⲡⲁϩⲟⲩ
+<orig orig="ⲉ">
+<norm norm="ⲉ">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
+ⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲡⲁϩⲟⲩ">
+<norm norm="ⲡⲁϩⲟⲩ">
+<lemma lemma="ⲡⲁϩⲟⲩ">
+<pos pos="N">
+ⲡⲁϩⲟⲩ
 </pos>
 </lemma>
 </norm>
@@ -16621,11 +16630,29 @@
 </orig_group>
 <orig_group orig_group="ⲉⲡⲉⲥⲏⲧ">
 <norm_group norm_group="ⲉⲡⲉⲥⲏⲧ">
-<orig orig="ⲉⲡⲉⲥⲏⲧ">
-<norm norm="ⲉⲡⲉⲥⲏⲧ">
-<lemma lemma="ⲉⲡⲉⲥⲏⲧ">
-<pos pos="ADV">
-ⲉⲡⲉⲥⲏⲧ
+<orig orig="ⲉ">
+<norm norm="ⲉ">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
+ⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲡ">
+<norm norm="ⲡ">
+<lemma lemma="ⲡ">
+<pos pos="ART">
+ⲡ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲉⲥⲏⲧ">
+<norm norm="ⲉⲥⲏⲧ">
+<lemma lemma="ⲉⲥⲏⲧ">
+<pos pos="N">
+ⲉⲥⲏⲧ
 </pos>
 </lemma>
 </norm>

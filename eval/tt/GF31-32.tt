@@ -1,4 +1,4 @@
-<meta annotation="Rebecca Krawiec, Caroline T. Schroeder" author="Shenoute" collection="Manuscrits Copte" Coptic_edition="none" corpus="shenoute.eagerness" country="Egypt" document_cts_urn="urn:cts:copticLit:shenoute.eagerness.monbgf_31_32" endnote="A lacuna of 12 pages (6 folios) precedes this fragment.  The next known fragment (following a lacuna) begins with MONB.GL 29." idno="130(2) f. 66r-v" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msContents_title_n="5" msContents_title_type="Discourses" msItem_title="I See Your Eagerness" msName="MONB.GF" next="urn:cts:copticLit:shenoute.eagerness.monbgl_29" note="Transcribed from photograph by Stephen Emmel, ca. 1990 (?); collated in Paris by David Brakke, March 2010; transcription does not record spaces and paleographic rendition of letters other than ekthetics. No translation published in David Brakke's and Andrew Crislip's Selected Discourses of Shenoute the Great (Cambridge University Press, 2015)." objectType="codex" origDate="between 900 and 1200 C.E." origDate_notAfter="1200" origDate_notBefore="0900" origDate_precision="low" origPlace="White Monastery" pages_from="31" pages_to="32" placeName="Atripe" previous="urn:cts:copticLit:shenoute.eagerness.monbgf_17_18" project="Coptic SCRIPTORIUM" redundant="no" repository="Bibliothèque nationale de France" source="Stephen Emmel, David Brakke" title="I See Your Eagerness: GF 31-32" translation="none" Trismegistos="none" version_date="2017-03-30" version_n="2.3.0" witness="The parallel witness in MONB.CZ 25-26 has not yet been digitized.">
+<meta annotation="Rebecca Krawiec, Caroline T. Schroeder" author="Shenoute" collection="Manuscrits Copte" Coptic_edition="none" corpus="shenoute.eagerness" country="Egypt" document_cts_urn="urn:cts:copticLit:shenoute.eagerness.monbgf_31_32" endnote="A lacuna of 12 pages (6 folios) precedes this fragment.  The next known fragment (following a lacuna) begins with MONB.GL 29." idno="130(2) f. 66r-v" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msContents_title_n="5" msContents_title_type="Discourses" msItem_title="I See Your Eagerness" msName="MONB.GF" next="urn:cts:copticLit:shenoute.eagerness.monbgl_29" note="Transcribed from photograph by Stephen Emmel, ca. 1990 (?); collated in Paris by David Brakke, March 2010; transcription does not record spaces and paleographic rendition of letters other than ekthetics. No translation published in David Brakke's and Andrew Crislip's Selected Discourses of Shenoute the Great (Cambridge University Press, 2015)." objectType="codex" origDate="between 900 and 1200 C.E." origDate_notAfter="1200" origDate_notBefore="0900" origDate_precision="low" origPlace="White Monastery" pages_from="31" pages_to="32" parsing="automatic" placeName="Atripe" previous="urn:cts:copticLit:shenoute.eagerness.monbgf_17_18" project="Coptic SCRIPTORIUM" redundant="no" repository="Bibliothèque nationale de France" segmentation="checked" source="Stephen Emmel, David Brakke" tagging="checked" title="I See Your Eagerness: GF 31-32" translation="none" Trismegistos="none" version_date="2017-03-30" version_n="2.3.0" witness="The parallel witness in MONB.CZ 25-26 has not yet been digitized.">
 <pb_xml_id pb_xml_id="GF31">
 <p p="p">
 <cb_n cb_n="1">
@@ -10,7 +10,7 @@
 <norm norm="ⲓⲟⲩⲇⲁⲓ">
 <lemma lemma="ⲓⲟⲩⲇⲁⲓ">
 <pos pos="NPROP">
-<lang lang="Greek">
+<lang lang="Hebrew">
 <note note="page number ⲗⲁ visible in top margin">
 ⲓ
 </note>
@@ -2673,48 +2673,44 @@
 <translation translation="...">
 <orig_group orig_group="ⲛⲛⲁϯⲗⲟⲅⲟⲥ">
 <norm_group norm_group="ⲛⲛⲁϯⲗⲟⲅⲟⲥ">
-<orig orig="ⲛ">
-<norm norm="ⲛ">
-<lemma lemma="ⲁⲛⲟⲛ">
+<orig orig="ⲛⲛ">
+<norm norm="ⲛⲛ">
+<lemma lemma="ⲛⲛⲉ">
+<pos pos="ANEGOPT">
+ⲛⲛ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁⲛⲟⲕ">
 <pos pos="PPERS">
-ⲛ
+ⲁ
 </pos>
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲛⲁ">
-<norm norm="ⲛⲁ">
-<lemma lemma="ⲛⲁ">
-<pos pos="FUT">
-ⲛⲁ
-</pos>
-</lemma>
-</norm>
-</orig>
-<orig orig="ϯ">
-<norm norm="ϯ">
-<lemma lemma="ϯ">
+<orig orig="ϯⲗⲟⲅⲟⲥ">
+<norm norm="ϯⲗⲟⲅⲟⲥ">
+<lemma lemma="ϯⲗⲟⲅⲟⲥ">
 <pos pos="V">
+<morph morph="ϯ">
 ϯ
-</pos>
-</lemma>
-</norm>
-</orig>
+</morph>
 </lb_n>
 </cb_n>
 </pb_xml_id>
 <pb_xml_id pb_xml_id="GF32">
 <cb_n cb_n="1">
 <lb_n lb_n="1">
-<orig orig="ⲗⲟⲅⲟⲥ">
-<norm norm="ⲗⲟⲅⲟⲥ">
-<lemma lemma="ⲗⲟⲅⲟⲥ">
-<pos pos="N">
 <lang lang="Greek">
+<morph morph="ⲗⲟⲅⲟⲥ">
 <note note="page number ⲗⲃ and quire number ⲃ visible in top margin">
 ⲗ
 </note>
 ⲟⲅⲟⲥ
+</morph>
 </lang>
 </pos>
 </lemma>
@@ -2809,7 +2805,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲉⲧⲉⲙⲛⲛⲟⲩϥ">
-<norm_group norm_group="ⲉⲧⲉⲙⲛⲛⲟⲩϥ">
+<norm_group norm_group="ⲉⲧⲉⲙⲛⲛⲟⲩϥⲉ">
 <orig orig="ⲉⲧⲉ">
 <norm norm="ⲉⲧⲉ">
 <lemma lemma="ⲉⲧⲉⲣⲉ">
@@ -2831,9 +2827,9 @@
 </norm>
 </orig>
 <orig orig="ⲛⲟⲩϥ">
-<norm norm="ⲛⲟⲩϥ">
-<lemma lemma="ⲡⲱϥ">
-<pos pos="PPOS">
+<norm norm="ⲛⲟⲩϥⲉ">
+<lemma lemma="ⲛⲟⲩϥⲉ">
+<pos pos="N">
 ⲛⲟⲩϥ
 </pos>
 </lemma>
@@ -3089,8 +3085,8 @@
 </orig>
 <orig orig="ⲛ">
 <norm norm="ⲛ">
-<lemma lemma="ⲡ">
-<pos pos="ART">
+<lemma lemma="ⲁⲛⲟⲛ">
+<pos pos="PPERO">
 ⲛ
 </pos>
 </lemma>
@@ -3452,9 +3448,11 @@
 <lb_n lb_n="15">
 <orig orig="ⲧ">
 <norm norm="ⲧ">
+<lemma lemma="ⲡ">
 <pos pos="ART">
 ⲧ
 </pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲙⲛⲧⲙⲁⲓϩⲟⲙⲛⲧ">
@@ -3464,12 +3462,13 @@
 <morph morph="ⲙⲛⲧ">
 ⲙⲛⲧ
 </morph>
-<morph morph="ⲙⲁⲓϩⲟ">
-ⲙⲁⲓϩⲟ
+<morph morph="ⲙⲁⲓ">
+ⲙⲁⲓ
 </morph>
+<morph morph="ϩⲟⲙⲛⲧ">
+ϩⲟ
 </lb_n>
 <lb_n lb_n="16">
-<morph morph="ⲙⲛⲧ">
 ⲙⲛⲧ
 </morph>
 </pos>
@@ -3562,20 +3561,20 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲛ">
-<norm norm="ⲛ">
-<lemma lemma="ⲛⲧⲉⲧⲛ">
-<pos pos="PPERS">
-ⲛ
+<orig orig="ⲛⲛ">
+<norm norm="ⲛⲛ">
+<lemma lemma="ⲛⲛⲉ">
+<pos pos="ANEGOPT">
+ⲛⲛ
 </pos>
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲛⲁ">
-<norm norm="ⲛⲁ">
-<lemma lemma="ⲛⲁ">
-<pos pos="FUT">
-ⲛⲁ
+<orig orig="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁⲛⲟⲕ">
+<pos pos="PPERS">
+ⲁ
 </pos>
 </lemma>
 </norm>
@@ -3628,27 +3627,18 @@
 <norm_group norm_group="ⲛⲥⲟⲧⲡ">
 <orig orig="ⲛ">
 <norm norm="ⲛ">
-<lemma lemma="ⲛⲧⲉ">
-<pos pos="ACONJ">
+<lemma lemma="ⲛ">
+<pos pos="PREP">
 ⲛ
 </pos>
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲥ">
-<norm norm="ⲥ">
-<lemma lemma="ⲛⲧⲟⲥ">
-<pos pos="PPERS">
+<orig orig="ⲥⲟⲧⲡ">
+<norm norm="ⲥⲟⲧⲡ">
+<lemma lemma="ⲥⲟⲧⲡ">
+<pos pos="N">
 ⲥ
-</pos>
-</lemma>
-</norm>
-</orig>
-<orig orig="ⲟⲧⲡ">
-<norm norm="ⲟⲧⲡ">
-<lemma lemma="ⲱⲧⲡ">
-<pos pos="VSTAT">
-ⲟⲧⲡ
 </pos>
 </lemma>
 </norm>
@@ -3674,29 +3664,20 @@
 </orig_group>
 <orig_group orig_group="ⲛⲁⲛⲟⲩⲛ">
 <norm_group norm_group="ⲛⲁⲛⲟⲩⲛ">
-<orig orig="ⲛⲁ">
-<norm norm="ⲛⲁ">
-<lemma lemma="ⲛⲁ">
-<pos pos="PREP">
-ⲛⲁ
+<orig orig="ⲛⲁⲛⲟⲩ">
+<norm norm="ⲛⲁⲛⲟⲩ">
+<lemma lemma="ⲛⲁⲛⲟⲩ">
+<pos pos="VBD">
+ⲛⲁⲛⲟⲩ
 </pos>
 </lemma>
 </norm>
 </orig>
 <orig orig="ⲛ">
 <norm norm="ⲛ">
-<lemma lemma="ⲡ">
-<pos pos="ART">
+<lemma lemma="ⲁⲛⲟⲛ">
+<pos pos="PPERS">
 ⲛ
-</pos>
-</lemma>
-</norm>
-</orig>
-<orig orig="ⲟⲩⲛ">
-<norm norm="ⲟⲩⲛ">
-<lemma lemma="ⲟⲩⲛ">
-<pos pos="EXIST">
-ⲟⲩⲛ
 </pos>
 </lemma>
 </norm>
@@ -3819,7 +3800,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲛⲑⲉ">
-<norm_group norm_group="ⲛⲧⲉ">
+<norm_group norm_group="ⲛⲧϩⲉ">
 <orig orig="ⲛ">
 <norm norm="ⲛ">
 <lemma lemma="ⲛ">
@@ -3839,9 +3820,9 @@
 </norm>
 </orig>
 <orig orig="ⲉ">
-<norm norm="ⲉ">
-<lemma lemma="ⲉⲧⲉⲣⲉ">
-<pos pos="CREL">
+<norm norm="ϩⲉ">
+<lemma lemma="ϩⲉ">
+<pos pos="N">
 ⲉ
 </pos>
 </lemma>
@@ -4219,22 +4200,21 @@
 </orig_group>
 <orig_group orig_group="ⲡⲉⲓⲙⲁ">
 <norm_group norm_group="ⲡⲉⲓⲙⲁ">
-<orig orig="ⲡ">
-<norm norm="ⲡ">
-<lemma lemma="ⲡ">
-<pos pos="ART">
-ⲡ
+<orig orig="ⲡⲉⲓ">
+<norm norm="ⲡⲉⲓ">
+<lemma lemma="ⲡⲉⲓ">
+<pos pos="PDEM">
+ⲡⲉⲓ
 </pos>
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲉⲓⲙⲁ">
-<norm norm="ⲉⲓⲙⲁ">
-<lemma lemma="ⲉⲓⲙⲁ">
-<pos pos="N">
-ⲉⲓ
 </lb_n>
 <lb_n lb_n="5">
+<orig orig="ⲙⲁ">
+<norm norm="ⲙⲁ">
+<lemma lemma="ⲙⲁ">
+<pos pos="N">
 ⲙⲁ
 </pos>
 </lemma>
@@ -4610,20 +4590,20 @@
 </orig_group>
 <orig_group orig_group="ⲛⲥⲱⲛ">
 <norm_group norm_group="ⲛⲥⲱⲛ">
-<orig orig="ⲛ">
-<norm norm="ⲛ">
-<lemma lemma="ⲛ">
+<orig orig="ⲛⲥⲱ">
+<norm norm="ⲛⲥⲱ">
+<lemma lemma="ⲛⲥⲁ">
 <pos pos="PREP">
-ⲛ
+ⲛⲥⲱ
 </pos>
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲥⲱⲛ">
-<norm norm="ⲥⲱⲛ">
-<lemma lemma="ⲥⲱⲛ">
-<pos pos="N">
-ⲥⲱⲛ
+<orig orig="ⲛ">
+<norm norm="ⲛ">
+<lemma lemma="ⲁⲛⲟⲛ">
+<pos pos="PPERO">
+ⲛ
 </pos>
 </lemma>
 </norm>
@@ -4721,7 +4701,7 @@
 <orig orig="ϣⲁϫⲉ">
 <norm norm="ϣⲁϫⲉ">
 <lemma lemma="ϣⲁϫⲉ">
-<pos pos="N">
+<pos pos="V">
 ϣⲁϫⲉ
 </pos>
 </lemma>
@@ -5031,7 +5011,7 @@
 <orig orig="ⲙⲛ">
 <norm norm="ⲙⲛ">
 <lemma lemma="ⲙⲛ">
-<pos pos="PREP">
+<pos pos="EXIST">
 ⲙⲛ
 </pos>
 </lemma>
@@ -5288,16 +5268,20 @@
 <norm_group norm_group="ⲉⲧⲉⲛⲥⲉⲥⲟⲩⲧⲱⲛ">
 <orig orig="ⲉⲧⲉ">
 <norm norm="ⲉⲧⲉ">
+<lemma lemma="ⲉⲧⲉⲣⲉ">
 <pos pos="CREL">
 ⲉⲧⲉ
 </pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲛ">
 <norm norm="ⲛ">
-<pos pos="ACONJ">
+<lemma lemma="ⲛ">
+<pos pos="NEG">
 ⲛ
 </pos>
+</lemma>
 </norm>
 </orig>
 </lb_n>

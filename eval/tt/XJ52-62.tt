@@ -1,23 +1,6 @@
-<meta annotation="Rebecca Krawiec, Caroline T. Schroeder, Amir Zeldes" author="Shenoute" collection="Borgia Collection" Coptic_edition="Amélineau 1907–14, 2:49-57, 161; Zoega 1810, 492 (lines 2b–3a = XJ 53:ii.10b–13); Zoega 1810, 492 (lines 2b–11a = XJ 59:i.1b–ii.20); Ladeuze 1898, 366 (lines 3–15a = XJ 59:i.1b–ii.20)" corpus="shenoute.eagerness" country="Egypt" document_cts_urn="urn:cts:copticLit:shenoute.eagerness.monbxj_52_62" endnote="Continuation of the text in MONB.XJ 49-52. Parallel to urn:cts:copticLit:shenoute.eagerness.monbgl_45_53. A lacuna of 2 pages (1 folio) follows before the next fragment of MONB.XJ; the next document is MONB.GL 53 1.8-54 2.13, which contains text parallel to the XJ lacuna." idno="IB5 f. 46v-51v" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msContents_title_n="5" msContents_title_type="Discourses" msitem_title="I See Your Eagerness" msName="MONB.XJ" next="urn:cts:copticLit:shenoute.eagerness.monbgl_53_54" note="Collated in Naples by David Brakke, March 2009; transcription does not record spaces and paleographic rendition of letters other than ekthetics. David Brakke and Andrew Crislip published a translation of I See Your Eagerness in their book Selected Discourses of Shenoute the Great (Cambridge University Press, 2015), pp. 95-98." objectType="codex" origDate="between 900 and 1200 C.E." origDate_notAfter="1200" origDate_notBefore="0900" origDate_precision="medium" origPlace="White Monastery" pages_from="52" pages_to="62" placeName="Atripe" previous="urn:cts:copticLit:shenoute.eagerness.monbxj_49_52" project="Coptic SCRIPTORIUM" redundant="no" repository="Biblioteca Nazionale di Napoli" source="David Brakke" title="I See Your Eagerness: XJ 52-62" translation="none" Trismegistos="none" version_date="2017-03-30" version_n="2.3.0" witness="urn:cts:copticLit:shenoute.eagerness.monbgl_45_53">
+<meta annotation="Rebecca Krawiec, Caroline T. Schroeder, Amir Zeldes" author="Shenoute" collection="Borgia Collection" Coptic_edition="Amélineau 1907–14, 2:49-57, 161; Zoega 1810, 492 (lines 2b–3a = XJ 53:ii.10b–13); Zoega 1810, 492 (lines 2b–11a = XJ 59:i.1b–ii.20); Ladeuze 1898, 366 (lines 3–15a = XJ 59:i.1b–ii.20)" corpus="shenoute.eagerness" country="Egypt" document_cts_urn="urn:cts:copticLit:shenoute.eagerness.monbxj_52_62" endnote="Continuation of the text in MONB.XJ 49-52. Parallel to urn:cts:copticLit:shenoute.eagerness.monbgl_45_53. A lacuna of 2 pages (1 folio) follows before the next fragment of MONB.XJ; the next document is MONB.GL 53 1.8-54 2.13, which contains text parallel to the XJ lacuna." idno="IB5 f. 46v-51v" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msContents_title_n="5" msContents_title_type="Discourses" msitem_title="I See Your Eagerness" msName="MONB.XJ" next="urn:cts:copticLit:shenoute.eagerness.monbgl_53_54" note="Collated in Naples by David Brakke, March 2009; transcription does not record spaces and paleographic rendition of letters other than ekthetics. David Brakke and Andrew Crislip published a translation of I See Your Eagerness in their book Selected Discourses of Shenoute the Great (Cambridge University Press, 2015), pp. 95-98." objectType="codex" origDate="between 900 and 1200 C.E." origDate_notAfter="1200" origDate_notBefore="0900" origDate_precision="medium" origPlace="White Monastery" pages_from="52" pages_to="62" parsing="automatic" placeName="Atripe" previous="urn:cts:copticLit:shenoute.eagerness.monbxj_49_52" project="Coptic SCRIPTORIUM" redundant="no" repository="Biblioteca Nazionale di Napoli" segmentation="checked" source="David Brakke" tagging="checked" title="I See Your Eagerness: XJ 52-62" translation="none" Trismegistos="none" version_date="2017-03-30" version_n="2.3.0" witness="urn:cts:copticLit:shenoute.eagerness.monbgl_45_53">
 <p p="p">
 <pb_xml_id pb_xml_id="XJ52">
-<cb_n cb_n="1">
-<lb_n lb_n="28">
-<orig_group orig_group=" ">
-<norm_group norm_group=" ">
-<orig orig=" ">
-<norm norm=" ">
-<lemma lemma=" ">
-<translation translation="…">
-
-</translation>
-</lemma>
-</norm>
-</orig>
-</norm_group>
-</orig_group>
-</lb_n>
-</cb_n>
 <cb_n cb_n="2">
 <translation translation="…">
 <lb_n lb_n="12">
@@ -1498,11 +1481,20 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲁϩⲉⲣⲁⲧ︤">
-<norm norm="ⲁϩⲉⲣⲁⲧ">
+<orig orig="ⲁϩⲉ">
+<norm norm="ⲁϩⲉ">
 <lemma lemma="ⲱϩⲉ">
 <pos pos="V">
-ⲁϩⲉⲣⲁⲧ︤
+ⲁϩⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲣⲁⲧ︤">
+<norm norm="ⲣⲁⲧ">
+<lemma lemma="ⲣⲁⲧ">
+<pos pos="N">
+ⲣⲁⲧ︤
 </pos>
 </lemma>
 </norm>
@@ -7060,8 +7052,6 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-</orig_group>
 <orig orig="ⲟⲩ">
 <norm norm="ⲟⲩ">
 <lemma lemma="ⲟⲩ">
@@ -7080,6 +7070,8 @@
 </lemma>
 </norm>
 </orig>
+</norm_group>
+</orig_group>
 <orig_group orig_group="ϩⲓϫⲱⲛ">
 <norm_group norm_group="ϩⲓϫⲱⲛ">
 <orig orig="ϩⲓϫⲱ">
@@ -8139,6 +8131,7 @@
 </norm_group>
 </orig_group>
 <lb_n lb_n="25">
+<orig_group orig_group="ⲛ̄ⲙ̄ⲙⲁⲓ̈">
 <norm_group norm_group="ⲛⲙⲙⲁⲓ">
 <orig orig="ⲛ̄ⲙ̄ⲙⲁ">
 <norm norm="ⲛⲙⲙⲁ">
@@ -8159,6 +8152,7 @@
 </norm>
 </orig>
 </norm_group>
+</orig_group>
 <orig_group orig_group="·">
 <norm_group norm_group="·">
 <orig orig="·">
@@ -8185,14 +8179,23 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲁϩⲉⲣⲁⲧ">
-<norm norm="ⲁϩⲉⲣⲁⲧ">
+<orig orig="ⲁϩⲉ">
+<norm norm="ⲁϩⲉ">
 <lemma lemma="ⲱϩⲉ">
 <pos pos="V">
 ⲁϩ
 </lb_n>
 <lb_n lb_n="26">
-ⲉⲣⲁⲧ
+ⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲣⲁⲧ">
+<norm norm="ⲣⲁⲧ">
+<lemma lemma="ⲣⲁⲧ_ⲁⲛⲟⲕ">
+<pos pos="N_PPERO">
+ⲣⲁⲧ
 </pos>
 </lemma>
 </norm>
@@ -11306,7 +11309,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ϫⲉⲡⲉⲧⲟⲩⲱⲙ">
-<norm_group norm_group="ϫⲉⲡⲉⲧ">
+<norm_group norm_group="ϫⲉⲡⲉⲧⲟⲩⲱⲙ">
 <orig orig="ϫⲉ">
 <norm norm="ϫⲉ">
 <lemma lemma="ϫⲉ">
@@ -11334,9 +11337,6 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-</orig_group>
-<norm_group norm_group="ⲟⲩⲱⲙ">
 <orig orig="ⲟⲩⲱⲙ">
 <norm norm="ⲟⲩⲱⲙ">
 <lemma lemma="ⲟⲩⲱⲙ">
@@ -11350,6 +11350,7 @@
 </norm>
 </orig>
 </norm_group>
+</orig_group>
 <orig_group orig_group="ⲙ̄ⲡⲁⲟⲉⲓⲕ">
 <norm_group norm_group="ⲙⲡⲁⲟⲉⲓⲕ">
 <orig orig="ⲙ̄">
@@ -14094,8 +14095,7 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-</orig_group>
+<orig orig="ϥ︥">
 <norm norm="ϥ">
 <lemma lemma="ⲛⲧⲟϥ">
 <pos pos="PPERO">
@@ -14103,6 +14103,9 @@
 </pos>
 </lemma>
 </norm>
+</orig>
+</norm_group>
+</orig_group>
 <orig_group orig_group="ⲁϥⲧⲁⲁϥ">
 <norm_group norm_group="ⲁϥⲧⲁⲁϥ">
 <orig orig="ⲁ">
@@ -14993,6 +14996,7 @@
 <translation translation="…">
 <orig_group orig_group="ϥⲛⲁⲉⲓ⳿">
 <norm_group norm_group="ϥⲛⲁⲉⲓ">
+<orig orig="ϥ">
 <norm norm="ϥ">
 <lemma lemma="ⲛⲧⲟϥ">
 <pos pos="PPERS">
@@ -15000,6 +15004,8 @@
 </pos>
 </lemma>
 </norm>
+</orig>
+<orig orig="ⲛⲁ">
 <norm norm="ⲛⲁ">
 <lemma lemma="ⲛⲁ">
 <pos pos="FUT">
@@ -15007,6 +15013,7 @@
 </pos>
 </lemma>
 </norm>
+</orig>
 <orig orig="ϥⲛⲁⲉⲓ⳿">
 <norm norm="ⲉⲓ">
 <lemma lemma="ⲉⲓ">
@@ -17620,7 +17627,8 @@
 </orig_group>
 </lb_n>
 <lb_n lb_n="27">
-<norm_group norm_group="ⲙ">
+<orig_group orig_group="ⲙ̄ⲡⲡⲉⲧⲛⲁⲛⲟⲩϥ">
+<norm_group norm_group="ⲙⲡⲡⲉⲧⲛⲁⲛⲟⲩϥ">
 <orig orig="ⲙ̄">
 <norm norm="ⲙ">
 <lemma lemma="ⲛ">
@@ -17630,8 +17638,6 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-<norm_group norm_group="ⲡ">
 <orig orig="ⲡ">
 <norm norm="ⲡ">
 <lemma lemma="ⲡ">
@@ -17641,9 +17647,6 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-<orig_group orig_group="ⲙ̄ⲡⲡⲉⲧⲛⲁⲛⲟⲩϥ">
-<norm_group norm_group="ⲡⲉⲧⲛⲁⲛⲟⲩϥ">
 <orig orig="ⲡ">
 <norm norm="ⲡ">
 <lemma lemma="ⲡ">
@@ -19197,6 +19200,8 @@
 </orig_group>
 </lb_n>
 <lb_n lb_n="4">
+<orig_group orig_group="ⲉⲧϭⲟⲟⲙⲉ">
+<norm_group norm_group="ⲉⲧϭⲟⲟⲙⲉ">
 <orig orig="ⲉⲧ">
 <norm norm="ⲉⲧ">
 <lemma lemma="ⲉⲧⲉⲣⲉ">
@@ -19215,6 +19220,8 @@
 </lemma>
 </norm>
 </orig>
+</norm_group>
+</orig_group>
 <orig_group orig_group="·">
 <norm_group norm_group="·">
 <orig orig="·">
@@ -25058,4 +25065,15 @@
 <lemma lemma=".">
 <pos pos="PUNCT">
 .
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+</translation>
+</p>
+</cb_n>
+</pb_xml_id>
 </meta>
