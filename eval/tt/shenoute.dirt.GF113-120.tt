@@ -18777,11 +18777,20 @@
 </orig_group>
 <orig_group orig_group="ⲛⲧⲉⲧⲙ">
 <norm_group norm_group="ⲛⲧⲉⲧⲙ">
-<orig orig="ⲛⲧⲉⲧⲙ">
-<norm norm="ⲧⲉⲧⲙ">
-<lemma lemma="ⲛⲧⲱⲧⲛ">
-<pos pos="PPERS">
-ⲛⲧⲉⲧⲙ
+<orig orig="ⲛⲧⲉ">
+<norm norm="ⲛⲧⲉ">
+<lemma lemma="ⲛⲧⲉ">
+<pos pos="ACONJ">
+ⲛⲧⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲧⲙ">
+<norm norm="ⲧⲙ">
+<lemma lemma="ⲧⲙ">
+<pos pos="NEG">
+ⲧⲙ
 </pos>
 </lemma>
 </norm>

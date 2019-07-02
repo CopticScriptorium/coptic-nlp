@@ -13080,21 +13080,12 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲡ">
-<norm norm="ⲡ">
-<lemma lemma="ⲡ">
-<pos pos="ART">
-ⲡ
-</pos>
-</lemma>
-</norm>
-</orig>
-<orig orig="ⲉⲓⲣⲁⲥⲙⲟⲥ">
-<norm norm="ⲉⲓⲣⲁⲥⲙⲟⲥ">
-<lemma lemma="ⲉⲓⲣⲁⲥⲙⲟⲥ">
+<orig orig="ⲡⲉⲓⲣⲁⲥⲙⲟⲥ">
+<norm norm="ⲡⲉⲓⲣⲁⲥⲙⲟⲥ">
+<lemma lemma="ⲡⲉⲓⲣⲁⲥⲙⲟⲥ">
 <pos pos="N">
 <lang lang="Greek">
-ⲉⲓⲣⲁⲥⲙⲟⲥ
+ⲡⲉⲓⲣⲁⲥⲙⲟⲥ
 </lang>
 </pos>
 </lemma>
@@ -19436,11 +19427,20 @@
 </orig_group>
 <orig_group orig_group="ϩⲓⲛⲁⲓ">
 <norm_group norm_group="ϩⲓⲛⲁⲓ">
-<orig orig="ϩⲓⲛⲁⲓ">
-<norm norm="ϩⲓⲛⲁⲓ">
-<lemma lemma="ϩⲓⲛⲁⲓ">
-<pos pos="ADV">
-ϩⲓⲛⲁⲓ
+<orig orig="ϩⲓ">
+<norm norm="ϩⲓ">
+<lemma lemma="ϩⲓ">
+<pos pos="PREP">
+ϩⲓ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲛⲁⲓ">
+<norm norm="ⲛⲁⲓ">
+<lemma lemma="ⲡⲁⲓ">
+<pos pos="PDEM">
+ⲛⲁⲓ
 </pos>
 </lemma>
 </norm>

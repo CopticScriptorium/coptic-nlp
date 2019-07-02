@@ -1932,20 +1932,16 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲕⲁ">
-<norm norm="ⲕⲁ">
-<lemma lemma="ⲕⲱ">
+<orig orig="ⲕⲁⲛⲟⲃⲉ">
+<norm norm="ⲕⲁⲛⲟⲃⲉ">
+<lemma lemma="ⲕⲁⲛⲟⲃⲉ">
 <pos pos="V">
+<morph morph="ⲕⲁ">
 ⲕⲁ
-</pos>
-</lemma>
-</norm>
-</orig>
-<orig orig="ⲛⲟⲃⲉ">
-<norm norm="ⲛⲟⲃⲉ">
-<lemma lemma="ⲛⲟⲃⲉ">
-<pos pos="N">
+</morph>
+<morph morph="ⲛⲟⲃⲉ">
 ⲛⲟⲃⲉ
+</morph>
 </pos>
 </lemma>
 </norm>
@@ -3756,11 +3752,20 @@
 </orig_group>
 <orig_group orig_group="ϩⲓⲛⲁⲓ">
 <norm_group norm_group="ϩⲓⲛⲁⲓ">
-<orig orig="ϩⲓⲛⲁⲓ">
-<norm norm="ϩⲓⲛⲁⲓ">
-<lemma lemma="ϩⲓⲛⲁⲓ">
-<pos pos="ADV">
-ϩⲓⲛⲁⲓ
+<orig orig="ϩⲓ">
+<norm norm="ϩⲓ">
+<lemma lemma="ϩⲓ">
+<pos pos="PREP">
+ϩⲓ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲛⲁⲓ">
+<norm norm="ⲛⲁⲓ">
+<lemma lemma="ⲡⲁⲓ">
+<pos pos="PDEM">
+ⲛⲁⲓ
 </pos>
 </lemma>
 </norm>

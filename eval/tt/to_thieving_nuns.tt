@@ -5030,8 +5030,8 @@
 </orig>
 </norm_group>
 </orig_group>
-<orig_group orig_group="ⲛ̄ⲧⲉ">
-<norm_group norm_group="ⲛⲧⲉ">
+<orig_group orig_group="ⲛ̄ⲧⲉⲩϣⲏ̂">
+<norm_group norm_group="ⲛⲧⲉⲩϣⲏ">
 <orig orig="ⲛ̄">
 <norm norm="ⲛ">
 <lemma lemma="ⲛ">
@@ -5050,10 +5050,6 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-</orig_group>
-<orig_group orig_group="ⲩϣⲏ̂">
-<norm_group norm_group="ⲩϣⲏ">
 <orig orig="ⲩϣⲏ̂">
 <norm norm="ⲩϣⲏ">
 <lemma lemma="ⲟⲩϣⲏ">

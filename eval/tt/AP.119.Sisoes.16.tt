@@ -9,20 +9,32 @@
 <orig_group orig_group="ⲁϩⲛ̇ⲕⲟⲟⲩⲉ̇">
 <norm_group norm_group="ⲁϩⲛⲕⲟⲟⲩⲉ">
 <orig orig="ⲁ">
-<norm xml:id="u1" func="aux" head="#u4" pos="APST" lemma="ⲁ" norm="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
 <hi_rend hi_rend="red ekthetic">
 ⲁ
 </hi_rend>
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϩⲛ̇">
-<norm xml:id="u2" func="det" head="#u4" pos="ART" lemma="ⲟⲩ" norm="ϩⲛ">
+<norm norm="ϩⲛ">
+<lemma lemma="ⲟⲩ">
+<pos pos="ART">
 ϩⲛ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϩⲛ̇ⲕⲟⲟⲩⲉ̇">
-<norm xml:id="u3" func="det" head="#u4" pos="ART" lemma="ⲕⲉ" norm="ⲕⲟⲟⲩⲉ">
+<norm norm="ⲕⲟⲟⲩⲉ">
+<lemma lemma="ⲕⲉ">
+<pos pos="ART">
 ⲕⲟⲟⲩⲉ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -30,8 +42,12 @@
 <orig_group orig_group="ⲃⲱⲕ">
 <norm_group norm_group="ⲃⲱⲕ">
 <orig orig="ⲃⲱⲕ">
-<norm xml:id="u4" func="root" pos="V" lemma="ⲃⲱⲕ" norm="ⲃⲱⲕ">
+<norm norm="ⲃⲱⲕ">
+<lemma lemma="ⲃⲱⲕ">
+<pos pos="V">
 ⲃⲱⲕ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -39,16 +55,24 @@
 <orig_group orig_group="ϣⲁⲣⲟϥ">
 <norm_group norm_group="ϣⲁⲣⲟϥ">
 <orig orig="ϣⲁⲣⲟ">
-<norm xml:id="u5" func="case" head="#u6" pos="PREP" lemma="ϣⲁ" norm="ϣⲁⲣⲟ">
+<norm norm="ϣⲁⲣⲟ">
+<lemma lemma="ϣⲁ">
+<pos pos="PREP">
 ϣⲁ
 </lb_n>
 <lb_n lb_n="41">
 ⲣⲟ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϥ">
-<norm xml:id="u6" func="obl" head="#u4" pos="PPERO" lemma="ⲛⲧⲟϥ" norm="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERO">
 ϥ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -56,23 +80,39 @@
 <orig_group orig_group="ⲉ̇ⲧⲣⲉⲩⲥⲱⲧⲙ̇">
 <norm_group norm_group="ⲉⲧⲣⲉⲩⲥⲱⲧⲙ">
 <orig orig="ⲉ̇">
-<norm xml:id="u7" func="mark" head="#u8" pos="PREP" lemma="ⲉ" norm="ⲉ">
+<norm norm="ⲉ">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
 ⲉ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲧⲣⲉ">
-<norm xml:id="u8" func="xcomp" head="#u4" pos="ACAUS" lemma="ⲧⲣⲉ" norm="ⲧⲣⲉ">
+<norm norm="ⲧⲣⲉ">
+<lemma lemma="ⲧⲣⲉ">
+<pos pos="ACAUS">
 ⲧⲣⲉ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲩ">
-<norm xml:id="u9" func="det" head="#u10" pos="ART" lemma="ⲛⲧⲟⲟⲩ" norm="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="ART">
 ⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲥⲱⲧⲙ̇">
-<norm xml:id="u10" func="xcomp" head="#u8" pos="V" lemma="ⲥⲱⲧⲙ" norm="ⲥⲱⲧⲙ">
+<norm norm="ⲥⲱⲧⲙ">
+<lemma lemma="ⲥⲱⲧⲙ">
+<pos pos="V">
 ⲥⲱⲧⲙ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -86,22 +126,34 @@
 <orig_group orig_group="ⲉ̇ⲩϣⲁϫⲉ">
 <norm_group norm_group="ⲉⲩϣⲁϫⲉ">
 <orig orig="ⲉ̇">
-<norm xml:id="u11" func="case" head="#u13" pos="PREP" lemma="ⲉ" norm="ⲉ">
+<norm norm="ⲉ">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
 ⲉ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲩ">
-<norm xml:id="u12" func="det" head="#u13" pos="ART" lemma="ⲟⲩ" norm="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲟⲩ">
+<pos pos="ART">
 ⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϣⲁϫⲉ">
-<norm xml:id="u13" func="obl" head="#u10" pos="N" lemma="ϣⲁϫⲉ" norm="ϣⲁϫⲉ">
+<norm norm="ϣⲁϫⲉ">
+<lemma lemma="ϣⲁϫⲉ">
+<pos pos="N">
 ϣⲁ
 <hi_rend hi_rend="red">
 ϫ
 </hi_rend>
 ⲉ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -109,12 +161,15 @@
 <orig_group orig_group="ⲉ̇ⲃⲟⲗ">
 <norm_group norm_group="ⲉⲃⲟⲗ">
 <orig orig="ⲉ̇ⲃⲟⲗ">
-<multiword multiword="ⲉⲃⲟⲗ ϩⲓⲧⲟⲟⲧ">
-<norm xml:id="u14" func="case" head="#u16" pos="ADV" lemma="ⲉⲃⲟⲗ" norm="ⲉⲃⲟⲗ">
+<norm norm="ⲉⲃⲟⲗ">
+<lemma lemma="ⲉⲃⲟⲗ">
+<pos pos="ADV">
 ⲉ̇ⲃⲟ
 <note note="red line of ⲗ extends into upper margin">
 ⲗ
 </note>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -122,17 +177,24 @@
 <orig_group orig_group="ϩⲓ̇ⲧⲟⲟⲧϥ">
 <norm_group norm_group="ϩⲓⲧⲟⲟⲧϥ">
 <orig orig="ϩⲓ̇ⲧⲟⲟⲧ">
-<norm xml:id="u15" func="fixed" head="#u14" pos="PREP" lemma="ϩⲓⲧⲟⲟⲧ" norm="ϩⲓⲧⲟⲟⲧ">
+<norm norm="ϩⲓⲧⲟⲟⲧ">
+<lemma lemma="ϩⲓⲧⲟⲟⲧ">
+<pos pos="PREP">
 ϩⲓ̇
 </lb_n>
 <lb_n lb_n="2">
 ⲧⲟⲟⲧ
+</pos>
+</lemma>
 </norm>
-</multiword>
 </orig>
 <orig orig="ϥ">
-<norm xml:id="u16" func="nmod" head="#u13" pos="PPERO" lemma="ⲛⲧⲟϥ" norm="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERO">
 ϥ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -140,8 +202,12 @@
 <orig_group orig_group="·">
 <norm_group norm_group="·">
 <orig orig="·">
-<norm xml:id="u17" func="punct" pos="PUNCT" lemma="·" norm="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
 ·
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -155,8 +221,12 @@
 <orig_group orig_group="ⲁⲩⲱ̇">
 <norm_group norm_group="ⲁⲩⲱ">
 <orig orig="ⲁⲩⲱ̇">
-<norm xml:id="u18" func="cc" head="#u21" pos="CONJ" lemma="ⲁⲩⲱ" norm="ⲁⲩⲱ">
+<norm norm="ⲁⲩⲱ">
+<lemma lemma="ⲁⲩⲱ">
+<pos pos="CONJ">
 ⲁⲩⲱ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -164,25 +234,41 @@
 <orig_group orig_group="ⲙ̇ⲡϥ̇ϫⲉⲗⲁⲁ̇ⲩ">
 <norm_group norm_group="ⲙⲡϥϫⲉⲗⲁⲁⲩ">
 <orig orig="ⲙ̇ⲡ">
-<norm xml:id="u19" func="aux" head="#u21" pos="ANEGPST" lemma="ⲙⲡ" norm="ⲙⲡ">
+<norm norm="ⲙⲡ">
+<lemma lemma="ⲙⲡ">
+<pos pos="ANEGPST">
 ⲙ̇ⲡ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϥ̇">
-<norm xml:id="u20" func="nsubj" head="#u21" pos="PPERS" lemma="ⲛⲧⲟϥ" norm="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERS">
 ϥ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 </lb_n>
 <lb_n lb_n="3">
 <orig orig="ϫⲉ">
-<norm xml:id="u21" func="root" pos="V" lemma="ϫⲱ" norm="ϫⲉ">
+<norm norm="ϫⲉ">
+<lemma lemma="ϫⲱ">
+<pos pos="V">
 ϫⲉ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲗⲁⲁ̇ⲩ">
-<norm xml:id="u22" func="obj" head="#u21" pos="N" lemma="ⲗⲁⲁⲩ" norm="ⲗⲁⲁⲩ">
+<norm norm="ⲗⲁⲁⲩ">
+<lemma lemma="ⲗⲁⲁⲩ">
+<pos pos="N">
 ⲗⲁⲁ̇ⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -190,13 +276,21 @@
 <orig_group orig_group="ⲛⲁⲩ">
 <norm_group norm_group="ⲛⲁⲩ">
 <orig orig="ⲛⲁ">
-<norm xml:id="u23" func="case" head="#u24" pos="PREP" lemma="ⲙ" norm="ⲛⲁ">
+<norm norm="ⲛⲁ">
+<lemma lemma="ⲙ">
+<pos pos="PREP">
 ⲛⲁ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲩ">
-<norm xml:id="u24" func="obl" head="#u21" pos="PPERO" lemma="ⲛⲧⲟⲟⲩ" norm="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERO">
 ⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -204,8 +298,12 @@
 <orig_group orig_group="·">
 <norm_group norm_group="·">
 <orig orig="·">
-<norm xml:id="u25" func="punct" pos="PUNCT" lemma="·" norm="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
 ·
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -219,8 +317,12 @@
 <orig_group orig_group="ⲁ̇ⲗⲗⲁ">
 <norm_group norm_group="ⲁⲗⲗⲁ">
 <orig orig="ⲁ̇ⲗⲗⲁ">
-<norm xml:id="u26" func="cc" head="#u29" pos="CONJ" lemma="ⲁⲗⲗⲁ" norm="ⲁⲗⲗⲁ">
+<norm norm="ⲁⲗⲗⲁ">
+<lemma lemma="ⲁⲗⲗⲁ">
+<pos pos="CONJ">
 ⲁ̇ⲗⲗⲁ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -230,18 +332,30 @@
 <orig_group orig_group="ⲛⲉϥϫⲱ">
 <norm_group norm_group="ⲛⲉϥϫⲱ">
 <orig orig="ⲛⲉ ">
-<norm xml:id="u27" func="aux" head="#u29" pos="CPRET" lemma="ⲛⲉⲣⲉ" norm="ⲛⲉ">
+<norm norm="ⲛⲉ">
+<lemma lemma="ⲛⲉⲣⲉ">
+<pos pos="CPRET">
 ⲛⲉ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϥ">
-<norm xml:id="u28" func="nsubj" head="#u29" pos="PPERS" lemma="ⲛⲧⲟϥ" norm="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERS">
 ϥ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϫⲱ">
-<norm xml:id="u29" func="root" pos="V" lemma="ϫⲱ" norm="ϫⲱ">
+<norm norm="ϫⲱ">
+<lemma lemma="ϫⲱ">
+<pos pos="V">
 ϫⲱ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -249,13 +363,21 @@
 <orig_group orig_group="ⲙ̇ⲙⲟⲥ">
 <norm_group norm_group="ⲙⲙⲟⲥ">
 <orig orig="ⲙ̇ⲙⲟ">
-<norm xml:id="u30" func="case" head="#u31" pos="PREP" lemma="ⲛ" norm="ⲙⲙⲟ">
+<norm norm="ⲙⲙⲟ">
+<lemma lemma="ⲛ">
+<pos pos="PREP">
 ⲙ̇ⲙⲟ
+</pos>
+</lemma>
 </norm>
 </orig>
-<orig orig="ⲥ ">
-<norm xml:id="u31" func="obl" head="#u29" pos="PPERO" lemma="ⲛⲧⲟⲥ" norm="ⲥ ">
+<orig orig="ⲥ">
+<norm norm="ⲥ">
+<lemma lemma="ⲛⲧⲟⲥ">
+<pos pos="PPERO">
 ⲥ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -263,17 +385,25 @@
 <orig_group orig_group="ϫⲉⲕⲱ">
 <norm_group norm_group="ϫⲉⲕⲱ">
 <orig orig="ϫⲉ">
-<norm xml:id="u32" func="mark" head="#u33" pos="CONJ" lemma="ϫⲉ" norm="ϫⲉ">
+<norm norm="ϫⲉ">
+<lemma lemma="ϫⲉ">
+<pos pos="CONJ">
 ϫⲉ
+</pos>
+</lemma>
 </norm>
 </orig>
 </lb_n>
 <lb_n lb_n="5">
 <orig orig="ⲕⲱ">
-<norm xml:id="u33" func="ccomp" head="#u29" pos="V" lemma="ⲕⲱ" norm="ⲕⲱ">
+<norm norm="ⲕⲱ">
+<lemma lemma="ⲕⲱ">
+<pos pos="V">
 <note note="⸓ in the left margin">
 ⲕⲱ
 </note>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -281,13 +411,21 @@
 <orig_group orig_group="ⲛⲁⲓ̇">
 <norm_group norm_group="ⲛⲁⲓ">
 <orig orig="ⲛⲁ">
-<norm xml:id="u34" func="case" head="#u35" pos="PREP" lemma="ⲙ" norm="ⲛⲁ">
+<norm norm="ⲛⲁ">
+<lemma lemma="ⲙ">
+<pos pos="PREP">
 ⲛⲁ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲓ̇">
-<norm xml:id="u35" func="obl" head="#u33" pos="PPERO" lemma="ⲁⲛⲟⲕ" norm="ⲓ">
+<norm norm="ⲓ">
+<lemma lemma="ⲁⲛⲟⲕ">
+<pos pos="PPERO">
 ⲓ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -295,8 +433,12 @@
 <orig_group orig_group="ⲉ̇ⲃⲟⲗ">
 <norm_group norm_group="ⲉⲃⲟⲗ">
 <orig orig="ⲉ̇ⲃⲟⲗ">
-<norm xml:id="u36" func="advmod" head="#u33" pos="ADV" lemma="ⲉⲃⲟⲗ" norm="ⲉⲃⲟⲗ">
+<norm norm="ⲉⲃⲟⲗ">
+<lemma lemma="ⲉⲃⲟⲗ">
+<pos pos="ADV">
 ⲉ̇ⲃⲟⲗ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -304,10 +446,14 @@
 <orig_group orig_group="ⲻ">
 <norm_group norm_group="ⲻ">
 <orig orig="ⲻ">
-<norm xml:id="u37" func="punct" pos="PUNCT" lemma="ⲻ" norm="ⲻ">
+<norm norm="ⲻ">
+<lemma lemma="ⲻ">
+<pos pos="PUNCT">
 <hi_rend hi_rend="5_space_right">
 ⲻ
 </hi_rend>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -323,20 +469,32 @@
 <orig_group orig_group="ⲛⲧⲉⲣⲟⲩⲛⲁⲩ">
 <norm_group norm_group="ⲛⲧⲉⲣⲟⲩⲛⲁⲩ">
 <orig orig="ⲛⲧⲉⲣ">
-<norm xml:id="u38" func="aux" head="#u40" pos="APREC" lemma="ⲛⲧⲉⲣⲉ" norm="ⲛⲧⲉⲣ">
+<norm norm="ⲛⲧⲉⲣ">
+<lemma lemma="ⲛⲧⲉⲣⲉ">
+<pos pos="APREC">
 <hi_rend hi_rend="red ekthetic">
 ⲛⲧⲉⲣ
 </hi_rend>
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲟⲩ">
-<norm xml:id="u39" func="nsubj" head="#u40" pos="PPERS" lemma="ⲛⲧⲟⲟⲩ" norm="ⲟⲩ">
+<norm norm="ⲟⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERS">
 ⲟⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲛⲁⲩ">
-<norm xml:id="u40" func="advcl" head="#u46" pos="V" lemma="ⲛⲁⲩ" norm="ⲛⲁⲩ">
+<norm norm="ⲛⲁⲩ">
+<lemma lemma="ⲛⲁⲩ">
+<pos pos="V">
 ⲛⲁⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -344,10 +502,14 @@
 <orig_group orig_group="ⲇⲉ">
 <norm_group norm_group="ⲇⲉ">
 <orig orig="ⲇⲉ">
-<norm xml:id="u41" func="advmod" head="#u40" pos="PTC" lemma="ⲇⲉ" norm="ⲇⲉ">
+<norm norm="ⲇⲉ">
+<lemma lemma="ⲇⲉ">
+<pos pos="PTC">
 <lang lang="Greek">
 ⲇⲉ
 </lang>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -355,20 +517,32 @@
 <orig_group orig_group="̇ⲉ̇ⲛⲉϥⲃⲓ̇ⲣ">
 <norm_group norm_group="ⲉⲛⲉϥⲃⲓⲣ">
 <orig orig="ⲉ̇">
-<norm xml:id="u42" func="case" head="#u44" pos="PREP" lemma="ⲉ" norm="ⲉ">
+<norm norm="ⲉ">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
 ⲉ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲉ̇ⲛⲉϥ">
-<norm xml:id="u43" func="det" head="#u44" pos="PPOS" lemma="ⲡⲉϥ" norm="ⲛⲉϥ">
+<norm norm="ⲛⲉϥ">
+<lemma lemma="ⲡⲉϥ">
+<pos pos="PPOS">
 ⲉ̇ⲛⲉϥ
+</pos>
+</lemma>
 </norm>
 </orig>
 </lb_n>
 <lb_n lb_n="7">
 <orig orig="ⲃⲓ̇ⲣ">
-<norm xml:id="u44" func="obl" head="#u40" pos="V" lemma="ⲃⲓⲣ" norm="ⲃⲓⲣ">
+<norm norm="ⲃⲓⲣ">
+<lemma lemma="ⲃⲓⲣ">
+<pos pos="V">
 ⲃⲓ̇ⲣ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -376,8 +550,12 @@
 <orig_group orig_group="·">
 <norm_group norm_group="·">
 <orig orig="·">
-<norm xml:id="u45" func="punct" pos="PUNCT" lemma="·" norm="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
 ·
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -385,13 +563,21 @@
 <orig_group orig_group="ⲡⲉϫⲁⲩ">
 <norm_group norm_group="ⲡⲉϫⲁⲩ">
 <orig orig="ⲡⲉϫⲁ">
-<norm xml:id="u46" func="root" pos="VBD" lemma="ⲡⲉϫⲁ" norm="ⲡⲉϫⲁ">
+<norm norm="ⲡⲉϫⲁ">
+<lemma lemma="ⲡⲉϫⲁ">
+<pos pos="VBD">
 ⲡⲉϫⲁ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲩ">
-<norm xml:id="u47" func="nsubj" head="#u46" pos="PPERS" lemma="ⲛⲧⲟⲟⲩ" norm="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERS">
 ⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -399,18 +585,26 @@
 <orig_group orig_group="ⲛⲁϥⲣⲁϩⲁⲙ">
 <norm_group norm_group="ⲛⲁϥⲣⲁϩⲁⲙ">
 <orig orig="ⲛ">
-<norm xml:id="u48" func="case" head="#u49" pos="PREP" lemma="ⲛ" norm="ⲛ">
+<norm norm="ⲛ">
+<lemma lemma="ⲛ">
+<pos pos="PREP">
 ⲛ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲁϥⲣⲁϩⲁⲙ">
-<norm xml:id="u49" func="obl" head="#u46" pos="NPROP" lemma="ⲁϥⲣⲁϩⲁⲙ" norm="ⲁϥⲣⲁϩⲁⲙ">
+<norm norm="ⲁϥⲣⲁϩⲁⲙ">
+<lemma lemma="ⲁϥⲣⲁϩⲁⲙ">
+<pos pos="NPROP">
 ⲁϥⲣⲁ
 </lb_n>
 <lb_n lb_n="8">
 <note note="⸖ in the left margin">
 ϩⲁⲙ
 </note>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -418,15 +612,23 @@
 <orig_group orig_group="ⲡⲉϥⲙⲁⲑⲏⲧⲏⲥ">
 <norm_group norm_group="ⲡⲉϥⲙⲁⲑⲏⲧⲏⲥ">
 <orig orig="ⲡⲉϥ">
-<norm xml:id="u50" func="det" head="#u51" pos="PPOS" lemma="ⲡⲉϥ" norm="ⲡⲉϥ">
+<norm norm="ⲡⲉϥ">
+<lemma lemma="ⲡⲉϥ">
+<pos pos="PPOS">
 ⲡⲉϥ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲙⲁⲑⲏⲧⲏⲥ">
-<norm xml:id="u51" func="appos" head="#u49" pos="N" lemma="ⲙⲁⲑⲏⲧⲏⲥ" norm="ⲙⲁⲑⲏⲧⲏⲥ">
+<norm norm="ⲙⲁⲑⲏⲧⲏⲥ">
+<lemma lemma="ⲙⲁⲑⲏⲧⲏⲥ">
+<pos pos="N">
 <lang lang="Greek">
 ⲙⲁⲑⲏⲧⲏⲥ
 </lang>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -434,8 +636,12 @@
 <orig_group orig_group="·">
 <norm_group norm_group="·">
 <orig orig="·">
-<norm xml:id="u52" func="punct" pos="PUNCT" lemma="·" norm="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
 ·
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -451,28 +657,48 @@
 <orig_group orig_group="ϫⲉⲉ̇ⲧⲉⲧⲛ̇ⲣⲟⲩ">
 <norm_group norm_group="ϫⲉⲉⲧⲉⲧⲛⲣⲟⲩ">
 <orig orig="ϫⲉ">
-<norm xml:id="u53" func="mark" head="#u56" pos="CONJ" lemma="ϫⲉ" norm="ϫⲉ">
+<norm norm="ϫⲉ">
+<lemma lemma="ϫⲉ">
+<pos pos="CONJ">
 ϫⲉ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲉ̇">
-<norm xml:id="u54" func="mark" head="#u56" pos="CFOC" lemma="ⲉⲣⲉ" norm="ⲉ">
+<norm norm="ⲉ">
+<lemma lemma="ⲉⲣⲉ">
+<pos pos="CFOC">
 ⲉ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲧⲉⲧⲛ̇">
-<norm xml:id="u55" func="nsubj" head="#u56" pos="PPERS" lemma="ⲛⲧⲱⲧⲛ" norm="ⲧⲉⲧⲛ">
+<norm norm="ⲧⲉⲧⲛ">
+<lemma lemma="ⲛⲧⲱⲧⲛ">
+<pos pos="PPERS">
 ⲧⲉⲧⲛ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲣ">
-<norm xml:id="u56" func="root" pos="V" lemma="ⲉⲓⲣⲉ" norm="ⲣ">
+<norm norm="ⲣ">
+<lemma lemma="ⲉⲓⲣⲉ">
+<pos pos="V">
 ⲣ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲟⲩ">
-<norm xml:id="u57" func="obj" head="#u56" pos="PPERO" lemma="ⲛⲧⲟⲟⲩ" norm="ⲟⲩ">
+<norm norm="ⲟⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERO">
 ⲟⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -480,20 +706,32 @@
 <orig_group orig_group="ⲛ̇ⲛⲉⲓ̇ⲃⲓ̇ⲣ">
 <norm_group norm_group="ⲛⲛⲉⲓⲃⲓⲣ">
 <orig orig="ⲛ̇">
-<norm xml:id="u58" func="case" head="#u60" pos="PREP" lemma="ⲛ" norm="ⲛ">
+<norm norm="ⲛ">
+<lemma lemma="ⲛ">
+<pos pos="PREP">
 ⲛ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲛⲉⲓ̇">
-<norm xml:id="u59" func="det" head="#u60" pos="PDEM" lemma="ⲡⲉⲓ" norm="ⲛⲉⲓ">
+<norm norm="ⲛⲉⲓ">
+<lemma lemma="ⲡⲉⲓ">
+<pos pos="PDEM">
 ⲛⲉⲓ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 </lb_n>
 <lb_n lb_n="10">
 <orig orig="ⲃⲓ̇ⲣ">
-<norm xml:id="u60" func="obl" head="#u56" pos="N" lemma="ⲃⲓⲣ" norm="ⲃⲓⲣ">
+<norm norm="ⲃⲓⲣ">
+<lemma lemma="ⲃⲓⲣ">
+<pos pos="N">
 ⲃⲓ̇ⲣ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -501,10 +739,14 @@
 <orig_group orig_group="·">
 <norm_group norm_group="·">
 <orig orig="·">
-<norm xml:id="u61" func="punct" pos="PUNCT" lemma="·" norm="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
 <hi_rend hi_rend="3_space_right">
 ·
 </hi_rend>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -518,13 +760,21 @@
 <orig_group orig_group="ⲡⲉϫⲁϥ">
 <norm_group norm_group="ⲡⲉϫⲁϥ">
 <orig orig="ⲡⲉϫⲁ">
-<norm xml:id="u62" func="root" pos="VBD" lemma="ⲡⲉϫⲁ" norm="ⲡⲉϫⲁ">
+<norm norm="ⲡⲉϫⲁ">
+<lemma lemma="ⲡⲉϫⲁ">
+<pos pos="VBD">
 ⲡⲉϫⲁ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϥ">
-<norm xml:id="u63" func="nsubj" head="#u62" pos="PPERS" lemma="ⲛⲧⲟϥ" norm="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERS">
 ϥ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -532,32 +782,52 @@
 <orig_group orig_group="ϫⲉϣⲁⲛϫⲟⲟⲩ">
 <norm_group norm_group="ϫⲉϣⲁⲛϫⲟⲟⲩ">
 <orig orig="ϫⲉ">
-<norm xml:id="u64" func="mark" head="#u67" pos="CONJ" lemma="ϫⲉ" norm="ϫⲉ">
+<norm norm="ϫⲉ">
+<lemma lemma="ϫⲉ">
+<pos pos="CONJ">
 ϫⲉ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϣⲁ">
-<norm xml:id="u65" func="aux" head="#u67" pos="AAOR" lemma="ϣⲁ" norm="ϣⲁ">
+<norm norm="ϣⲁ">
+<lemma lemma="ϣⲁ">
+<pos pos="AAOR">
 ϣⲁ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲛ">
-<norm xml:id="u66" func="nsubj" head="#u67" pos="PPERS" lemma="ⲁⲛⲟⲛ" norm="ⲛ">
+<norm norm="ⲛ">
+<lemma lemma="ⲁⲛⲟⲛ">
+<pos pos="PPERS">
 ⲛ
+</pos>
+</lemma>
 </norm>
 </orig>
 </lb_n>
 <lb_n lb_n="11">
 <orig orig="ϫⲟ">
-<norm xml:id="u67" func="ccomp" head="#u62" pos="V" lemma="ϫⲟ" norm="ϫⲟ">
+<norm norm="ϫⲟ">
+<lemma lemma="ϫⲟ">
+<pos pos="V">
 <note note="⸓ in the left margin">
 ϫⲟ
 </note>
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲟⲩ">
-<norm xml:id="u68" func="obj" head="#u67" pos="PPERO" lemma="ⲛⲧⲟⲟⲩ" norm="ⲟⲩ">
+<norm norm="ⲟⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERO">
 ⲟⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -565,8 +835,12 @@
 <orig_group orig_group="ⲉ̇ⲃⲟⲗ">
 <norm_group norm_group="ⲉⲃⲟⲗ">
 <orig orig="ⲉ̇ⲃⲟⲗ">
-<norm xml:id="u69" func="advmod" head="#u67" pos="ADV" lemma="ⲉⲃⲟⲗ" norm="ⲉⲃⲟⲗ">
+<norm norm="ⲉⲃⲟⲗ">
+<lemma lemma="ⲉⲃⲟⲗ">
+<pos pos="ADV">
 ⲉ̇ⲃⲟⲗ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -574,18 +848,30 @@
 <orig_group orig_group="ⲉ̇ⲡⲉⲓ̇ⲥⲁ">
 <norm_group norm_group="ⲉⲡⲉⲓⲥⲁ">
 <orig orig="ⲉ̇">
-<norm xml:id="u70" func="case" head="#u72" pos="PREP" lemma="ⲉ" norm="ⲉ">
+<norm norm="ⲉ">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
 ⲉ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲡⲉⲓ̇">
-<norm xml:id="u71" func="det" head="#u72" pos="PDEM" lemma="ⲡⲉⲓ" norm="ⲡⲉⲓ">
+<norm norm="ⲡⲉⲓ">
+<lemma lemma="ⲡⲉⲓ">
+<pos pos="PDEM">
 ⲡⲉⲓ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲥⲁ">
-<norm xml:id="u72" func="obl" head="#u67" pos="N" lemma="ⲥⲁ" norm="ⲥⲁ">
+<norm norm="ⲥⲁ">
+<lemma lemma="ⲥⲁ">
+<pos pos="N">
 ⲥⲁ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -593,15 +879,23 @@
 <orig_group orig_group="ⲙⲛ̇ⲡⲁⲓ">
 <norm_group norm_group="ⲙⲛⲡⲁⲓ">
 <orig orig="ⲙⲛ̇">
-<norm xml:id="u73" func="cc" head="#u74" pos="PREP" lemma="ⲙⲛ" norm="ⲙⲛ">
+<norm norm="ⲙⲛ">
+<lemma lemma="ⲙⲛ">
+<pos pos="PREP">
 ⲙⲛ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 </lb_n>
 <lb_n lb_n="12">
 <orig orig="ⲡⲁⲓ">
-<norm xml:id="u74" func="conj" head="#u72" pos="PDEM" lemma="ⲡⲁⲓ" norm="ⲡⲁⲓ">
+<norm norm="ⲡⲁⲓ">
+<lemma lemma="ⲡⲁⲓ">
+<pos pos="PDEM">
 ⲡⲁⲓ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -609,10 +903,14 @@
 <orig_group orig_group="·">
 <norm_group norm_group="·">
 <orig orig="·">
-<norm xml:id="u75" func="punct" pos="PUNCT" lemma="·" norm="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
 <hi_rend hi_rend="1_space_right">
 ·
 </hi_rend>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -626,18 +924,30 @@
 <orig_group orig_group="ⲁ̇ϥⲥⲱⲧⲙ̇">
 <norm_group norm_group="ⲁϥⲥⲱⲧⲙ">
 <orig orig="ⲁ̇">
-<norm xml:id="u76" func="aux" head="#u78" pos="APST" lemma="ⲁ" norm="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
 ⲁ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϥ">
-<norm xml:id="u77" func="nsubj" head="#u78" pos="PPERS" lemma="ⲛⲧⲟϥ" norm="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERS">
 ϥ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲥⲱⲧⲙ̇">
-<norm xml:id="u78" func="root" pos="V" lemma="ⲥⲱⲧⲙ" norm="ⲥⲱⲧⲙ">
+<norm norm="ⲥⲱⲧⲙ">
+<lemma lemma="ⲥⲱⲧⲙ">
+<pos pos="V">
 ⲥⲱⲧⲙ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -647,13 +957,17 @@
 <orig_group orig_group="ⲇⲉ">
 <norm_group norm_group="ⲇⲉ">
 <orig orig="ⲇⲉ">
-<norm xml:id="u79" func="advmod" head="#u78" pos="PTC" lemma="ⲇⲉ" norm="ⲇⲉ">
+<norm norm="ⲇⲉ">
+<lemma lemma="ⲇⲉ">
+<pos pos="PTC">
 <lang lang="Greek">
 <hi_rend hi_rend="red ekthetic">
 ⲇ
 </hi_rend>
 ⲉ
 </lang>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -661,18 +975,30 @@
 <orig_group orig_group="ⲛ̇ϭⲓ̇ⲡϩⲗⲗⲟ̇">
 <norm_group norm_group="ⲛϭⲓⲡϩⲗⲗⲟ">
 <orig orig="ⲛ̇ϭⲓ̇">
-<norm xml:id="u80" func="case" head="#u82" pos="PTC" lemma="ⲛϭⲓ" norm="ⲛϭⲓ">
+<norm norm="ⲛϭⲓ">
+<lemma lemma="ⲛϭⲓ">
+<pos pos="PTC">
 ⲛ̇ϭⲓ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲡ">
-<norm xml:id="u81" func="det" head="#u82" pos="ART" lemma="ⲡ" norm="ⲡ">
+<norm norm="ⲡ">
+<lemma lemma="ⲡ">
+<pos pos="ART">
 ⲡ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϩⲗⲗⲟ̇">
-<norm xml:id="u82" func="dislocated" head="#u78" pos="N" lemma="ϩⲗⲗⲟ" norm="ϩⲗⲗⲟ">
+<norm norm="ϩⲗⲗⲟ">
+<lemma lemma="ϩⲗⲗⲟ">
+<pos pos="N">
 ϩⲗⲗⲟ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -680,13 +1006,21 @@
 <orig_group orig_group="ⲡⲉϫⲁϥ">
 <norm_group norm_group="ⲡⲉϫⲁϥ">
 <orig orig="ⲡⲉϫⲁ">
-<norm xml:id="u83" func="parataxis" head="#u78" pos="VBD" lemma="ⲡⲉϫⲁ" norm="ⲡⲉϫⲁ">
+<norm norm="ⲡⲉϫⲁ">
+<lemma lemma="ⲡⲉϫⲁ">
+<pos pos="VBD">
 ⲡⲉϫⲁ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϥ">
-<norm xml:id="u84" func="nsubj" head="#u83" pos="PPERS" lemma="ⲛⲧⲟϥ" norm="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERS">
 ϥ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -696,18 +1030,30 @@
 <orig_group orig_group="ϫⲉⲡ̇ⲉⲕϫⲓ̇ϫⲱⲓ̇">
 <norm_group norm_group="ϫⲉⲡⲉⲕϫⲓϫⲱⲓ">
 <orig orig="ϫⲉ">
-<norm xml:id="u85" func="mark" head="#u90" pos="CONJ" lemma="ϫⲉ" norm="ϫⲉ">
+<norm norm="ϫⲉ">
+<lemma lemma="ϫⲉ">
+<pos pos="CONJ">
 ϫⲉ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲡ̇ⲉⲕ">
-<norm xml:id="u86" func="det" head="#u87" pos="PPOS" lemma="ⲡⲉⲕ" norm="ⲡⲉⲕ">
+<norm norm="ⲡⲉⲕ">
+<lemma lemma="ⲡⲉⲕ">
+<pos pos="PPOS">
 ⲡ̇ⲉⲕ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϫⲓ̇ϫⲱⲓ̇">
-<norm xml:id="u87" func="dislocated" head="#u90" pos="NPROP" lemma="ϫⲓϫⲱⲓ" norm="ϫⲓϫⲱⲓ">
+<norm norm="ϫⲓϫⲱⲓ">
+<lemma lemma="ϫⲓϫⲱⲓ">
+<pos pos="NPROP">
 ϫⲓ̇ϫⲱⲓ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -715,23 +1061,35 @@
 <orig_group orig_group="ⲉ̇ϥⲟ̇ⲩⲱ̇ⲙ">
 <norm_group norm_group="ⲉϥⲟⲩⲱⲙ">
 <orig orig="ⲉ̇">
-<norm xml:id="u88" func="mark" head="#u90" pos="CFOC" lemma="ⲉⲣⲉ" norm="ⲉ">
+<norm norm="ⲉ">
+<lemma lemma="ⲉⲣⲉ">
+<pos pos="CFOC">
 ⲉ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϥ">
-<norm xml:id="u89" func="nsubj" head="#u90" pos="PPERS" lemma="ⲛⲧⲟϥ" norm="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERS">
 ϥ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲟ̇ⲩⲱ̇ⲙ">
-<norm xml:id="u90" func="ccomp" head="#u83" pos="V" lemma="ⲟⲩⲱⲙ" norm="ⲟⲩⲱⲙ">
+<norm norm="ⲟⲩⲱⲙ">
+<lemma lemma="ⲟⲩⲱⲙ">
+<pos pos="V">
 ⲟ̇ⲩ
 </lb_n>
 <lb_n lb_n="15">
 <note note="⸖ in the left margin">
 ⲱ̇ⲙ
 </note>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -739,18 +1097,30 @@
 <orig_group orig_group="ⲉ̇ⲡⲉⲓ̇ⲥⲁ">
 <norm_group norm_group="ⲉⲡⲉⲓⲥⲁ">
 <orig orig="̇ⲉ̇">
-<norm xml:id="u91" func="case" head="#u93" pos="PREP" lemma="ⲉ" norm="ⲉ">
+<norm norm="ⲉ">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
 ⲉ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲡⲉⲓ̇">
-<norm xml:id="u92" func="det" head="#u93" pos="PDEM" lemma="ⲡⲉⲓ" norm="ⲡⲉⲓ">
+<norm norm="ⲡⲉⲓ">
+<lemma lemma="ⲡⲉⲓ">
+<pos pos="PDEM">
 ⲡⲉⲓ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲥⲁ">
-<norm xml:id="u93" func="obl" head="#u90" pos="N" lemma="ⲥⲁ" norm="ⲥⲁ">
+<norm norm="ⲥⲁ">
+<lemma lemma="ⲥⲁ">
+<pos pos="N">
 ⲥⲁ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -758,13 +1128,21 @@
 <orig_group orig_group="ⲙⲛ̇ⲡⲁⲓ">
 <norm_group norm_group="ⲙⲛⲡⲁⲓ">
 <orig orig="ⲙⲛ̇">
-<norm xml:id="u94" func="cc" head="#u95" pos="PREP" lemma="ⲙⲛ" norm="ⲙⲛ">
+<norm norm="ⲙⲛ">
+<lemma lemma="ⲙⲛ">
+<pos pos="PREP">
 ⲙⲛ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲡⲁⲓ̇">
-<norm xml:id="u95" func="conj" head="#u93" pos="PDEM" lemma="ⲡⲁⲓ" norm="ⲡⲁⲓ">
+<norm norm="ⲡⲁⲓ">
+<lemma lemma="ⲡⲁⲓ">
+<pos pos="PDEM">
 ⲡⲁⲓ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -780,8 +1158,12 @@
 <orig_group orig_group="ⲛ̇ⲧⲟⲟⲩ">
 <norm_group norm_group="ⲛⲧⲟⲟⲩ">
 <orig orig="ⲛ̇ⲧⲟⲟⲩ">
-<norm xml:id="u96" func="dislocated" head="#u100" pos="PPERI" lemma="ⲛⲧⲟⲟⲩ" norm="ⲛⲧⲟⲟⲩ">
+<norm norm="ⲛⲧⲟⲟⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERI">
 ⲛ̇ⲧⲟⲟⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -789,10 +1171,14 @@
 <orig_group orig_group="ⲇⲉ">
 <norm_group norm_group="ⲇⲉ">
 <orig orig="ⲇⲉ">
-<norm xml:id="u97" func="advmod" head="#u100" pos="PTC" lemma="ⲇⲉ" norm="ⲇⲉ">
+<norm norm="ⲇⲉ">
+<lemma lemma="ⲇⲉ">
+<pos pos="PTC">
 <lang lang="Greek">
 ⲇⲉ
 </lang>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -800,18 +1186,30 @@
 <orig_group orig_group="ⲁⲩⲥⲱⲧⲙ̇">
 <norm_group norm_group="ⲁⲩⲥⲱⲧⲙ">
 <orig orig="ⲁ">
-<norm xml:id="u98" func="aux" head="#u100" pos="APST" lemma="ⲁ" norm="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
 ⲁ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲩ">
-<norm xml:id="u99" func="nsubj" head="#u100" pos="PPERS" lemma="ⲛⲧⲟⲟⲩ" norm="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERS">
 ⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲥⲱⲧⲙ̇">
-<norm xml:id="u100" func="root" pos="V" lemma="ⲥⲱⲧⲙ" norm="ⲥⲱⲧⲙ">
+<norm norm="ⲥⲱⲧⲙ">
+<lemma lemma="ⲥⲱⲧⲙ">
+<pos pos="V">
 ⲥⲱⲧⲙ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -821,23 +1219,35 @@
 <orig_group orig_group="ⲁ̇ⲩϯϩⲏⲩ">
 <norm_group norm_group="ⲁⲩϯϩⲏⲩ">
 <orig orig="ⲁ̇">
-<norm xml:id="u101" func="aux" head="#u103" pos="APST" lemma="ⲁ" norm="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
 ⲁ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲩ">
-<norm xml:id="u102" func="nsubj" head="#u103" pos="PPERS" lemma="ⲛⲧⲟⲟⲩ" norm="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERS">
 ⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϯϩⲏⲩ">
-<norm xml:id="u103" func="parataxis" head="#u100" pos="V" lemma="ϯϩⲏⲩ" norm="ϯϩⲏⲩ">
+<norm norm="ϯϩⲏⲩ">
+<lemma lemma="ϯϩⲏⲩ">
+<pos pos="V">
 <morph morph="ϯ">
 ϯ
 </morph>
 <morph morph="ϩⲏⲩ">
 ϩⲏⲩ
 </morph>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -845,8 +1255,12 @@
 <orig_group orig_group="ⲙ̇ⲙⲁⲧⲉ">
 <norm_group norm_group="ⲙⲙⲁⲧⲉ">
 <orig orig="ⲙ̇ⲙⲁⲧⲉ">
-<norm xml:id="u104" func="advmod" head="#u103" pos="ADV" lemma="ⲙⲙⲁⲧⲉ" norm="ⲙⲙⲁⲧⲉ">
+<norm norm="ⲙⲙⲁⲧⲉ">
+<lemma lemma="ⲙⲙⲁⲧⲉ">
+<pos pos="ADV">
 ⲙ̇ⲙⲁⲧⲉ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -854,8 +1268,12 @@
 <orig_group orig_group="·">
 <norm_group norm_group="·">
 <orig orig="·">
-<norm xml:id="u105" func="punct" pos="PUNCT" lemma="·" norm="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
 ·
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -869,8 +1287,12 @@
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
 <orig orig="ⲁⲩⲱ">
-<norm xml:id="u106" func="cc" head="#u109" pos="CONJ" lemma="ⲁⲩⲱ" norm="ⲁⲩⲱ">
+<norm norm="ⲁⲩⲱ">
+<lemma lemma="ⲁⲩⲱ">
+<pos pos="CONJ">
 ⲁⲩⲱ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -880,18 +1302,30 @@
 <orig_group orig_group="ⲁⲩⲃⲱⲕ">
 <norm_group norm_group="ⲁⲩⲃⲱⲕ">
 <orig orig="ⲁ">
-<norm xml:id="u107" func="aux" head="#u109" pos="APST" lemma="ⲁ" norm="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
 ⲁ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲩ">
-<norm xml:id="u108" func="nsubj" head="#u109" pos="PPERS" lemma="ⲛⲧⲟⲟⲩ" norm="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERS">
 ⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲁⲩⲃⲱⲕ">
-<norm xml:id="u109" func="root" pos="V" lemma="ⲃⲱⲕ" norm="ⲃⲱⲕ">
+<norm norm="ⲃⲱⲕ">
+<lemma lemma="ⲃⲱⲕ">
+<pos pos="V">
 ⲃⲱⲕ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -899,18 +1333,30 @@
 <orig_group orig_group="ϩⲛ̇ⲟⲩⲣⲁϣⲉ">
 <norm_group norm_group="ϩⲛⲟⲩⲣⲁϣⲉ">
 <orig orig="ϩⲛ̇">
-<norm xml:id="u110" func="case" head="#u112" pos="PREP" lemma="ϩⲛ" norm="ϩⲛ">
+<norm norm="ϩⲛ">
+<lemma lemma="ϩⲛ">
+<pos pos="PREP">
 ϩⲛ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲟⲩ">
-<norm xml:id="u111" func="det" head="#u112" pos="ART" lemma="ⲟⲩ" norm="ⲟⲩ">
+<norm norm="ⲟⲩ">
+<lemma lemma="ⲟⲩ">
+<pos pos="ART">
 ⲟⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲣⲁϣⲉ">
-<norm xml:id="u112" func="obl" head="#u109" pos="N" lemma="ⲣⲁϣⲉ" norm="ⲣⲁϣⲉ">
+<norm norm="ⲣⲁϣⲉ">
+<lemma lemma="ⲣⲁϣⲉ">
+<pos pos="N">
 ⲣⲁϣⲉ
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -918,8 +1364,12 @@
 <orig_group orig_group="·">
 <norm_group norm_group="·">
 <orig orig="·">
-<norm xml:id="u113" func="punct" pos="PUNCT" lemma="·" norm="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
 ·
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -929,28 +1379,44 @@
 <orig_group orig_group="ⲉ̇ⲁ̇ⲩϫⲓ̇ⲕⲱⲧ">
 <norm_group norm_group="ⲉⲁⲩϫⲓⲕⲱⲧ">
 <orig orig="ⲉ̇">
-<norm xml:id="u114" func="mark" head="#u117" pos="CCIRC" lemma="ⲉⲣⲉ" norm="ⲉ">
+<norm norm="ⲉ">
+<lemma lemma="ⲉⲣⲉ">
+<pos pos="CCIRC">
 ⲉ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲁ̇">
-<norm xml:id="u115" func="aux" head="#u117" pos="APST" lemma="ⲁ" norm="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
 ⲁ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲩ">
-<norm xml:id="u116" func="nsubj" head="#u117" pos="PPERS" lemma="ⲛⲧⲟⲟⲩ" norm="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERS">
 ⲩ
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ϫⲓ̇ⲕⲱⲧ">
-<norm xml:id="u117" func="advcl" head="#u109" pos="V" lemma="ϫⲓⲕⲱⲧ" norm="ϫⲓⲕⲱⲧ">
+<norm norm="ϫⲓⲕⲱⲧ">
+<lemma lemma="ϫⲓⲕⲱⲧ">
+<pos pos="V">
 <morph morph="ϫⲓ">
 ϫⲓ̇
 </morph>
 <morph morph="ⲕⲱⲧ">
 ⲕⲱⲧ
 </morph>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -958,22 +1424,34 @@
 <orig_group orig_group="ϩⲙ̇ⲡⲉϥⲑⲃⲃⲓ̇ⲟ̇">
 <norm_group norm_group="ϩⲙⲡⲉϥⲑⲃⲃⲓⲟ">
 <orig orig="ϩⲙ̇">
-<norm xml:id="u118" func="case" head="#u120" pos="PREP" lemma="ϩⲛ" norm="ϩⲙ">
+<norm norm="ϩⲙ">
+<lemma lemma="ϩⲛ">
+<pos pos="PREP">
 ϩⲙ̇
+</pos>
+</lemma>
 </norm>
 </orig>
 <orig orig="ⲡⲉϥ">
-<norm xml:id="u119" func="det" head="#u120" pos="PPOS" lemma="ⲡⲉϥ" norm="ⲡⲉϥ">
+<norm norm="ⲡⲉϥ">
+<lemma lemma="ⲡⲉϥ">
+<pos pos="PPOS">
 ⲡⲉϥ
+</pos>
+</lemma>
 </norm>
 </orig>
 </lb_n>
 <lb_n lb_n="20">
 <orig orig="ⲑⲃⲃⲓ̇ⲟ̇">
-<norm xml:id="u120" func="obl" head="#u117" pos="N" lemma="ⲑⲃⲃⲓⲟ" norm="ⲑⲃⲃⲓⲟ">
+<norm norm="ⲑⲃⲃⲓⲟ">
+<lemma lemma="ⲑⲃⲃⲓⲟ">
+<pos pos="N">
 <note note="⸖ in the left margin">
 ⲑⲃⲃⲓ̇ⲟ̇
 </note>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -981,8 +1459,12 @@
 <orig_group orig_group="·">
 <norm_group norm_group="·">
 <orig orig="·">
-<norm xml:id="u121" func="punct" pos="PUNCT" lemma="·" norm="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
 ·
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>
@@ -990,10 +1472,14 @@
 <orig_group orig_group="ⲻ">
 <norm_group norm_group="ⲻ">
 <orig orig="ⲻ">
-<norm xml:id="u122" func="punct" pos="PUNCT" lemma="ⲻ" norm="ⲻ">
+<norm norm="ⲻ">
+<lemma lemma="ⲻ">
+<pos pos="PUNCT">
 <hi_rend hi_rend="5_space_right">
 ⲻ
 </hi_rend>
+</pos>
+</lemma>
 </norm>
 </orig>
 </norm_group>

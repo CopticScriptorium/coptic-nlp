@@ -11655,11 +11655,20 @@
 <lb_n lb_n="21">
 <orig_group orig_group="ⲛⲁⲓ̈">
 <norm_group norm_group="ⲛⲁⲓ">
-<orig orig="ⲛⲁⲓ̈">
-<norm norm="ⲛⲁⲓ">
-<lemma lemma="ⲡⲁⲓ">
-<pos pos="PDEM">
-ⲛⲁⲓ̈
+<orig orig="ⲛⲁ">
+<norm norm="ⲛⲁ">
+<lemma lemma="ⲛⲁ">
+<pos pos="PREP">
+ⲛⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲓ̈">
+<norm norm="ⲓ">
+<lemma lemma="ⲁⲛⲟⲕ">
+<pos pos="PPERO">
+ⲓ̈
 </pos>
 </lemma>
 </norm>

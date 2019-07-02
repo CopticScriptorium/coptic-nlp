@@ -2946,8 +2946,8 @@
 <vid_n vid_n="urn:cts:copticLit:nt.mark.sahidica_ed:3.10">
 <verse_vid verse_vid="41N 3:10">
 <sbl_greek sbl_greek="πολλοὺς γὰρ ἐθεράπευσεν, ὥστε ἐπιπίπτειν αὐτῷ ἵνα αὐτοῦ ἅψωνται ὅσοι εἶχον μάστιγας. ">
-<orig_group orig_group="ⲛⲁϣⲉ">
-<norm_group norm_group="ⲛⲁϣⲉ">
+<orig_group orig_group="ⲛⲁϣⲉⲛⲉⲛⲧⲁϥⲧⲁⲗϭⲟⲟⲩ">
+<norm_group norm_group="ⲛⲁϣⲉⲛⲉⲛⲧⲁϥⲧⲁⲗϭⲟⲟⲩ">
 <orig orig="ⲛⲁϣⲉ">
 <norm norm="ⲛⲁϣⲉ">
 <lemma lemma="ⲛⲁϣⲉ">
@@ -2957,10 +2957,6 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-</orig_group>
-<orig_group orig_group="ⲛⲉⲛⲧⲁϥⲧⲁⲗϭⲟⲟⲩ">
-<norm_group norm_group="ⲛⲉⲛⲧⲁϥⲧⲁⲗϭⲟⲟⲩ">
 <orig orig="ⲛ">
 <norm norm="ⲛ">
 <lemma lemma="ⲡ">

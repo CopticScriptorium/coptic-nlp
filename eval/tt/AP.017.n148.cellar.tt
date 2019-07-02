@@ -917,11 +917,20 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲡⲉ̇ⲥⲏⲧ">
-<norm norm="ⲡⲉⲥⲏⲧ">
-<lemma lemma="ⲡⲉⲥⲏⲧ">
+<orig orig="ⲡ">
+<norm norm="ⲡ">
+<lemma lemma="ⲡ">
+<pos pos="ART">
+ⲡ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲉ̇ⲥⲏⲧ">
+<norm norm="ⲉⲥⲏⲧ">
+<lemma lemma="ⲉⲥⲏⲧ">
 <pos pos="N">
-ⲡⲉ̇ⲥⲏⲧ
+ⲉ̇ⲥⲏⲧ
 </pos>
 </lemma>
 </norm>
