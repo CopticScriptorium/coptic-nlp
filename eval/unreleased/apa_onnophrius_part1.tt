@@ -28564,7 +28564,7 @@
 </orig>
 </norm_group>
 </orig_group>
-<orig_group orig_group="ⲉⲛϯⲉϩⲟⲟⲩ">
+<orig_group orig_group="ⲉⲛϯⲉⲟⲟⲩ">
 <norm_group norm_group="ⲉⲛϯⲉⲟⲟⲩ">
 <orig orig="ⲉ">
 <norm norm="ⲉ">
@@ -28584,7 +28584,7 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ϯⲉϩⲟⲟⲩ">
+<orig orig="ϯⲉⲟⲟⲩ">
 <norm norm="ϯⲉⲟⲟⲩ">
 <lemma lemma="ϯⲉⲟⲟⲩ">
 <pos pos="V">
@@ -28592,7 +28592,7 @@
 ϯ
 </morph>
 <morph morph="ⲉⲟⲟⲩ">
-ⲉ
+ⲉⲟⲟⲩ
 </morph>
 </pos>
 </lemma>
