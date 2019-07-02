@@ -52,7 +52,7 @@ def clean(text):
 	uncoptic3 = r'\([^\)]+\)'   # Anything in round brackets
 	uncoptic = "("+"|".join([uncoptic1,uncoptic2,uncoptic3])+")"
 
-	text = re.sub(r'.*ⲦⲘⲀⲢⲦⲨⲢⲒⲀ','ⲦⲘⲀⲢⲦⲨⲢⲒⲀ',text,flags=re.MULTILINE|re.DOTALL)
+	#text = re.sub(r'.*ⲦⲘⲀⲢⲦⲨⲢⲒⲀ','ⲦⲘⲀⲢⲦⲨⲢⲒⲀ',text,flags=re.MULTILINE|re.DOTALL)
 	text = re.sub(uncoptic,'',text)
 	text = re.sub(r"\n+",r"\n",text)
 	text = re.sub(r" +",r" ",text)
@@ -190,18 +190,27 @@ if __name__ == "__main__":
 
 	opts = p.parse_args()
 
-	if os.path.isfile(opts.test_list):
+	train_list = opts.train_list
+	test_list = opts.test_list
+	if opts.test_list.startswith("onno"):
+		test_list = "onno_plain"
+		train_list = "onno"
+	if opts.test_list.startswith("cyrus"):
+		test_list = "cyrus_plain"
+		train_list = "cyrus"
+
+	if os.path.isfile(test_list):
 		test_list = io.open(opts.test_list,encoding="utf8").read().strip().split("\n")
 		test_list = [script_dir + opts.file_dir + os.sep + f for f in test_list]
 	else:
-		test_list = list_files(opts.test_list)
+		test_list = list_files(test_list)
 
-	if opts.train_list is not None:
-		if os.path.isfile(opts.train_list):
-			train_list = io.open(opts.train_list,encoding="utf8").read().strip().split("\n")
+	if train_list is not None:
+		if os.path.isfile(train_list):
+			train_list = io.open(train_list,encoding="utf8").read().strip().split("\n")
 			train_list = [script_dir + opts.gold_dir + os.sep + f for f in train_list]
 		else:
-			train_list = list_files(opts.train_list)
+			train_list = list_files(train_list)
 	else:
 		train_list = glob(script_dir + opts.gold_dir + os.sep + "*.tt")
 		train_list = [os.path.basename(f) for f in train_list if os.path.basename(f) not in test_list]
