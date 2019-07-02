@@ -103,6 +103,9 @@ def list_files(alias="silver",file_dir=None,parse=False):
 		if alias.lower() == "cyrus":
 			file_dir = eval_dir + "unreleased" + os.sep
 			file_list = [file_dir + "BritMusOriental6783_part1.tt",file_dir + "BritMusOriental6783_part2.tt"]
+		elif alias.lower().startswith("onno_plain"):  # onnophrius
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "apa_onnophrius_part1.txt"]
 		elif alias.lower().startswith("onno"):  # onnophrius
 			file_dir = eval_dir + "unreleased" + os.sep
 			file_list = [file_dir + "apa_onnophrius_part1.tt"]
