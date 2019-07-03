@@ -9,7 +9,9 @@
 from nlp_form import nlp_coptic
 import cgi
 storage = cgi.FieldStorage()
+#storage = {"data":"ⲁϥⲥⲱⲧⲙ ⲛϭⲓⲡⲣⲱⲙⲉ"}
 if "data" in storage:
+	#data = storage["data"]
 	data = storage.getvalue("data")
 else:
 	data = ""
@@ -40,12 +42,12 @@ elif format == "sgml_no_parse":
 	print("Content-Type: text/sgml; charset=UTF-8\n")
 	# secure call, note that htaccess prevents this running without authentication
 	if "|" in data:
-		processed = nlp_coptic(data, lb=line=="line", parse_only=False, do_tok=True,
+		processed = nlp_coptic(data, lb=line=="line", parse_only=False, do_tok=True, do_mwe=False,
 							   do_norm=True, do_tag=True, do_lemma=True, do_lang=True,
 							   do_milestone=True, do_parse=("no_parse" not in format), sgml_mode="sgml",
 							   tok_mode="from_pipes", old_tokenizer=False)
 	else:
-		processed = nlp_coptic(data, lb=line=="line", parse_only=False, do_tok=True,
+		processed = nlp_coptic(data, lb=line=="line", parse_only=False, do_tok=True, do_mwe=False,
 							   do_norm=True, do_tag=True, do_lemma=True, do_lang=True,
 							   do_milestone=True, do_parse=("no_parse" not in format), sgml_mode="sgml",
 							   tok_mode="auto", old_tokenizer=False)
