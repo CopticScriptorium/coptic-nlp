@@ -24,6 +24,11 @@ from stacked_tokenizer import StackedTokenizer
 
 ignore = ["̈", "", "̄", "̀", "̣", "`", "̅", "̈", "̂", "︤", "︥", "︦", "⳿", "~", "\n", "̇", "᷍"]
 
+def read_file_list(file_list):
+	contents = ""
+	for f in file_list:
+		contents += io.open(f, encoding="utf8").read().strip() + "\n"
+	return contents
 
 def check_identical_text(gold,pred):
 
@@ -59,15 +64,30 @@ def clean(text):
 
 	return text
 
+def bind_naive(to_process, gold):
+	naive = "".join(to_process)
+	check_identical_text(gold,naive)  # Check that gold and input have same number of Coptic characters
+	naive = naive.replace(" ","_")
+
+	scores, errs = binding_score(gold, naive)
+	return scores
+
+def bind_with_stacked_tokenizer(to_process, gold):
+	stk = StackedTokenizer(no_morphs=True, model="test", pipes=True, detok=2, tokenized=True)
+	stk.load_ambig(ambig_table=ambig)
+
+	bound = stk.analyze("\n".join(to_process)).replace("|", "").replace('\n', '').strip()
+
+	scores, errs = binding_score(gold,bound)
+
+	with io.open(err_dir + "errs_binding.tab", 'w', encoding="utf8") as f:
+		f.write("\n".join(errs) + "\n")
+
+	return scores
 
 def run_eval(gold_list, test_list, return_baseline=False):
-
-	gold = ""
-	for file_ in gold_list:
-		gold += io.open(file_,encoding="utf8").read().strip() + "\n"
-	test = ""
-	for file_ in test_list:
-		test += io.open(file_,encoding="utf8").read().strip() + "\n"
+	gold = read_file_list(gold_list)
+	test = read_file_list(test_list)
 	test = clean(test)
 
 	to_process = []
@@ -81,9 +101,7 @@ def run_eval(gold_list, test_list, return_baseline=False):
 			line += " "
 		to_process.append(line)
 
-
 	# Get gold data
-
 	lines = gold.split("\n")
 	gold = []
 	for line in lines:
@@ -92,34 +110,19 @@ def run_eval(gold_list, test_list, return_baseline=False):
 			gold.append(grp.strip())
 	gold = "_".join(gold)
 
-	naive = "".join(to_process)
-	check_identical_text(gold,naive)  # Check that gold and input have same number of Coptic characters
-	naive = naive.replace(" ","_")
-
-	scores,errs = binding_score(gold,naive)
+	# Naive baseline: simply take the existing bindings
+	baseline_scores = bind_naive(to_process, gold)
 	print("Baseline f-score:")
-	print(scores["f1"])
-
+	print(baseline_scores["f1"])
 	if return_baseline:
-		return scores
+		return baseline_scores
 
-	baseline_f1 = scores["f1"]
-
-	stk = StackedTokenizer(no_morphs=True,model="test",pipes=True,detok=2,tokenized=True)
-	stk.load_ambig(ambig_table=ambig)
-
-	bound = stk.analyze("\n".join(to_process)).replace("|","").replace('\n','').strip()
-
-	scores, errs = binding_score(gold,bound)
-	scores["baseline"] = baseline_f1
-
-	with io.open(err_dir + "errs_binding.tab",'w',encoding="utf8") as f:
-		f.write("\n".join(errs) + "\n")
-
+	# Bind with the stacked tokenizer
+	st_scores = bind_with_stacked_tokenizer(to_process, gold)
 	print("Binding f-score:")
-	print(scores["f1"])
+	print(st_scores["f1"])
 
-	return scores
+	return st_scores
 
 
 def binarize(text):
