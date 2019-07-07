@@ -15,118 +15,125 @@ frq = script_dir + ".." + os.sep + "data" + os.sep + "cop_freqs.tab"
 conf = script_dir + ".." + os.sep + "data" + os.sep + "test.conf"
 ambig = script_dir + ".." + os.sep + "data" + os.sep + "ambig.tab"
 
-corpora = "C:\\Uni\\Coptic\\git\\corpora\\pub_corpora\\"
-victor = corpora + "martyrdom-victor\\martyrdom.victor_TT\\martyrdom.victor.01.tt"
-
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'lib')))
 
 from stacked_tokenizer import StackedTokenizer
 
-ignore = ["̈", "", "̄", "̀", "̣", "`", "̅", "̈", "̂", "︤", "︥", "︦", "⳿", "~", "\n", "̇", "᷍"]
+IGNORE = [
+	"",  #         empty string
+	"~",  # 0x007e  TILDE
+	"`",  # 0x0060  GRAVE ACCENT
+	"\n",  #        NEWLINE
+	"̈",  # 0x0308  COMBINING DIAERESIS
+	"̄",  # 0x0304  COMBINING MACRON
+	"̀",  # 0x0300  COMBINING GRAVE ACCENT
+	"̣",  # 0x0323  COMBINING DOT BELOW
+	"̅",  # 0x0305  COMBINING OVERLINE
+	"̂",  # 0x0302  COMBINING CIRCUMFLEX ACCENT
+	"︤",  # 0xfe24  COMBINING MACRON LEFT HALF
+	"︥",  # 0xfe25  COMBINING MACRON RIGHT HALF
+	"︦",  # 0xfe26  COMBINING CONJOINING MACRON
+	"̇",  # 0x0307  COMBINING DOT ABOVE
+	"᷍",  # 0x1dcd  COMBINING DOUBLE CIRCUMFLEX ABOVE
+	"⳿",  # 0x2cff  COPTIC MORPHOLOGICAL DIVIDER
+]
+TOKEN_BOUNDARY = "_"
 
+# I/O and preprocessing -----------------------------------------------------------------------------------------------
 def read_file_list(file_list):
+	"""Given a list of file paths, strip and add a newline character to the contents of each and concatenate them all
+	together into a single string.
+	:param file_list: a list of file paths
+	:return: string contents of all files
+	"""
 	contents = ""
 	for f in file_list:
 		contents += io.open(f, encoding="utf8").read().strip() + "\n"
 	return contents
 
-def check_identical_text(gold,pred):
 
-	gold_labs = []
+def check_identical_text(gold, pred):
+	"""For each character in gold, ensure that the corresponding character is identical in pred.
+	Characters in IGNORE are ignored, and the TOKEN_BOUNDARY character is ignored.
+
+	:param gold: The entire gold text string, with TOKEN_BOUNDARY separating tokens
+	:param pred: The entire pred text string
+	"""
 	counter = -1
-	pred_chars = pred.replace(" ","").replace("̅","̄").replace("̅","")
-	for i, c in enumerate(gold):
-		if c == "_":
-			gold_labs[-1]=1
+	pred_chars = pred.replace(" ", "")       # remove SPACE
+	pred_chars = pred_chars.replace("̅", "̄")  # replace COMBINING OVERLINE with COMBINING MACRON
+	pred_chars = pred_chars.replace("̅", "")  # remove COMBINING MACRON
+
+	for i, gold_c in enumerate(gold):
+		if gold_c == TOKEN_BOUNDARY:
 			continue
 		else:
-			gold_labs.append(0)
-			counter+=1
-		if c != pred_chars[counter]:
-			if not c in ignore and pred_chars[counter] in ignore:
-				print("non matching char at " + str(i)+":")
-				print(gold[i-15:i+1])
-				print(pred_chars[counter-15:counter+1])
-				sys.exit(0)
+			counter += 1
+
+		pred_c = pred_chars[counter]
+
+		if gold_c not in IGNORE and gold_c != pred_c:
+			# TODO: ask Amir why the below was written
+			#if gold_c not in IGNORE and pred_chars[counter] in IGNORE:
+			gold_start = max(i-15, 0)
+			pred_start = max(counter-15, 0)
+			raise Exception("non matching char at " + str(i) + ":\n"
+							+ str(list(gold[gold_start:i+1])) + "\n"
+							+ str(list(pred_chars[pred_start:counter+1])))
 
 
 def clean(text):
-	text = text.replace("."," .").replace("·"," ·").replace(":"," : ")
+	"""Cleans text by: (1) removing obviously non-Coptic text; (2) turning sequences of >=1 newline into a single
+	newline; (3) turning sequences of >=1 space into a single space; (4) spacing out ., ·, and :
+	:param text: A string of Coptic text
+	:return: Cleaned Coptic text
+	"""
+	text = text.replace(".", " .").replace("·", " ·").replace(":", " : ")
 	uncoptic1 = r'[A-Za-z0-9|]' # Latin or numbers, pipe
-	uncoptic2 = r'\[F[^]]+\]'    # Square brackets if they start with F
+	uncoptic2 = r'\[F[^]]+\]'   # Square brackets if they start with F
 	uncoptic3 = r'\([^\)]+\)'   # Anything in round brackets
-	uncoptic = "("+"|".join([uncoptic1,uncoptic2,uncoptic3])+")"
+	uncoptic = "("+"|".join([uncoptic1, uncoptic2, uncoptic3])+")"
 
 	#text = re.sub(r'.*ⲦⲘⲀⲢⲦⲨⲢⲒⲀ','ⲦⲘⲀⲢⲦⲨⲢⲒⲀ',text,flags=re.MULTILINE|re.DOTALL)
-	text = re.sub(uncoptic,'',text)
-	text = re.sub(r"\n+",r"\n",text)
-	text = re.sub(r" +",r" ",text)
+	text = re.sub(uncoptic, '', text)
+	text = re.sub(r"\n+", r"\n", text)
+	text = re.sub(r" +", r" ", text)
 
 	return text
 
-def bind_naive(to_process, gold):
-	naive = "".join(to_process)
-	check_identical_text(gold,naive)  # Check that gold and input have same number of Coptic characters
-	naive = naive.replace(" ","_")
+# binding --------------------------------------------------------------------------------------------------------------
+def bind_naive(lines_to_process, gold):
+	naive = "".join(lines_to_process)
+	check_identical_text(gold, naive)
+	naive = naive.replace(" ", TOKEN_BOUNDARY)
 
 	scores, errs = binding_score(gold, naive)
+	print("Baseline f-score:")
+	print(scores["f1"])
 	return scores
 
-def bind_with_stacked_tokenizer(to_process, gold):
+def bind_with_stacked_tokenizer(lines_to_process, gold):
 	stk = StackedTokenizer(no_morphs=True, model="test", pipes=True, detok=2, tokenized=True)
 	stk.load_ambig(ambig_table=ambig)
 
-	bound = stk.analyze("\n".join(to_process)).replace("|", "").replace('\n', '').strip()
+	bound = stk.analyze("\n".join(lines_to_process)).replace("|", "").replace('\n', '').strip()
 
 	scores, errs = binding_score(gold,bound)
+	print("Binding f-score:")
+	print(scores["f1"])
 
 	with io.open(err_dir + "errs_binding.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
 
 	return scores
 
-def run_eval(gold_list, test_list, return_baseline=False):
-	gold = read_file_list(gold_list)
-	test = read_file_list(test_list)
-	test = clean(test)
-
-	to_process = []
-	for line in test.strip().split("\n"):
-		line = line.strip()
-		if len(line) == 0:
-			continue
-		if line.endswith("‐"):
-			line = line[:-1]
-		else:
-			line += " "
-		to_process.append(line)
-
-	# Get gold data
-	lines = gold.split("\n")
-	gold = []
-	for line in lines:
-		if "orig_group=" in line:
-			grp = re.search('orig_group="([^"]*)"',line).group(1).strip()
-			gold.append(grp.strip())
-	gold = "_".join(gold)
-
-	# Naive baseline: simply take the existing bindings
-	baseline_scores = bind_naive(to_process, gold)
-	print("Baseline f-score:")
-	print(baseline_scores["f1"])
-	if return_baseline:
-		return baseline_scores
-
-	# Bind with the stacked tokenizer
-	st_scores = bind_with_stacked_tokenizer(to_process, gold)
-	print("Binding f-score:")
-	print(st_scores["f1"])
-
-	return st_scores
+def bind_with_lstm(lines_to_process, gold):
+	pass
 
 
+# evaluation -----------------------------------------------------------------------------------------------------------
 def binarize(text):
-	"""Turn a text with _ separating boundgroups into array of 0 (no split after character) or 1 (split after
+	"""Turn a text with _ separating bound groups into array of 0 (no split after character) or 1 (split after
 	this character)
 
 	Input: auO_prOme_...
@@ -135,26 +142,30 @@ def binarize(text):
 	output = []
 
 	for c in text:
-		if c in ignore:
+		if c in IGNORE:
 			continue
-		if c == "_" and len(output) > 0:
+		if c == TOKEN_BOUNDARY and len(output) > 0:
 			output[-1] = 1
 		else:
 			output.append(0)
 	return output
 
 
-def binding_score(gold,pred):
-
+def binding_score(gold, pred):
+	"""Calculate precision, recall, and f1.
+	:param gold: Gold tokens separated by TOKEN_BOUNDARY
+	:param pred: Predicted tokens separated by TOKEN_BOUNDARY
+	:return: dict with keys "precision", "recall", "f1"
+	"""
 	bin_gold = binarize(gold)
 	bin_pred = binarize(pred)
 
 	gold_reached = 0
 	pred_reached = 0
-	gold_groups = gold.split("_")
-	pred_groups = pred.split("_")
+	gold_groups = gold.split(TOKEN_BOUNDARY)
+	pred_groups = pred.split(TOKEN_BOUNDARY)
 	errs = []
-	for i,c in enumerate(range(len(bin_gold))):
+	for i, c in enumerate(range(len(bin_gold))):
 		if bin_gold[i] == 1:
 			gold_reached +=1
 		if bin_pred[i] == 1:
@@ -174,18 +185,57 @@ def binding_score(gold,pred):
 				pred_end = pred_reached +2
 			errs.append(" ".join(gold_groups[gold_start:gold_end]) + "\t" + " ".join(pred_groups[pred_start:pred_end]))
 
-	scores = {}
-	scores["f1"] = f1_score(bin_gold,bin_pred)
-	scores["precision"] = precision_score(bin_gold,bin_pred)
-	scores["recall"] = recall_score(bin_gold,bin_pred)
+	scores = {
+		"f1": f1_score(bin_gold,bin_pred),
+		"precision": precision_score(bin_gold,bin_pred),
+		"recall": recall_score(bin_gold,bin_pred)
+	}
 
 	return scores, errs
 
 
-if __name__ == "__main__":
-	# Get just Coptic chars and whitespace
+def run_eval(gold_list, test_list, strategy):
+	gold = read_file_list(gold_list)
+	test = read_file_list(test_list)
+	test = clean(test)
 
+	lines_to_process = []
+	for line in test.strip().split("\n"):
+		line = line.strip()
+		if len(line) == 0:
+			continue
+		if line.endswith("‐"):
+			line = line[:-1]
+		else:
+			line += " "
+		lines_to_process.append(line)
+
+	# Get gold data
+	lines = gold.split("\n")
+	gold = []
+	for line in lines:
+		if "orig_group=" in line:
+			grp = re.search('orig_group="([^"]*)"',line).group(1).strip()
+			gold.append(grp.strip())
+	gold = TOKEN_BOUNDARY.join(gold)
+
+	if strategy == 'naive':
+		baseline_scores = bind_naive(lines_to_process, gold)
+		return baseline_scores
+	elif strategy == 'stacked':
+		st_scores = bind_with_stacked_tokenizer(lines_to_process, gold)
+		return st_scores
+	elif strategy == 'all':
+		_ = bind_naive(lines_to_process, gold)
+		st_scores = bind_with_stacked_tokenizer(lines_to_process, gold)
+		return st_scores
+	else:
+		raise Exception("Unknown strategy: '{}'.\nMust be one of 'naive', 'stacked', 'all'.".format(strategy))
+
+
+def main():
 	p = ArgumentParser()
+	p.add_argument("strategy",default="all",help="binding strategy: one of 'naive', 'stacked', 'all'", nargs='?')
 	p.add_argument("--train_list",default="victor_tt",help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied")
 	p.add_argument("--test_list",default="victor_plain",help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'")
 	p.add_argument("--file_dir",default="plain",help="directory with plain text files")
@@ -220,7 +270,10 @@ if __name__ == "__main__":
 		train_list = [script_dir + opts.gold_dir + os.sep + f for f in train_list]
 
 
-	scores = run_eval(train_list,test_list)
+	scores = run_eval(train_list, test_list, opts.strategy)
+
+if __name__ == "__main__":
+	main()
 
 
 
