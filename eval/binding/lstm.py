@@ -21,10 +21,10 @@ class LSTMBindingModel:
 				 sample_ratio=None,
 				 gold_token_separator="_",
 				 pred_token_separator=" ",
-				 embedding_size=100,
-				 hidden_size=10,
+				 embedding_size=200,
+				 hidden_size=100,
 				 dropout=0.2,
-				 epochs=10,
+				 epochs=30,
 				 batch_size=64
 				 ):
 		assert n_chars_left >= 0 and type(n_chars_left) == int
@@ -48,14 +48,15 @@ class LSTMBindingModel:
 		self._indices = None
 		self._char_vocab = None
 
-	def _generate_sample_indices(self, n):
+	def _generate_sample_indices(self, txt):
 		"""Samples without replacement in the interval [0, n-1] until n * self._sample_ratio indices have been drawn.
 		If self._sample_ratio is None, returns the entire interval.
 		:param n: the length of the text
 		:return: a list of indexes into the text
 		"""
 		if self._sample_ratio is None:
-			return list(reversed(range(n)))
+			indices = [i for i in range(len(txt)) if txt[i] != self._gold_token_separator]
+			return list(reversed(indices))
 
 		raise Exception("Random sampling not currently supported")
 
@@ -69,7 +70,9 @@ class LSTMBindingModel:
 		#return list(reversed(sorted(sampled_indices)))
 
 	def featurize_char(self, char):
-		return [1 if c == char else 0 for c in self._char_vocab]
+		v_idx = self._char_vocab.index(char)
+		assert v_idx > -1
+		return v_idx
 
 	def _take_left_n_chars(self, txt, i):
 		"""Takes the self._n_chars_left that lie to the left of txt[i], IGNORING SEPARATORS. Does not include txt[i].
@@ -104,7 +107,8 @@ class LSTMBindingModel:
 	def _featurize_at_i(self, txt, i):
 		"""Transforms the position i in a text into a row in the matrix that will be fed to the model."""
 		feats = []
-		feats += [self.featurize_char(c) for c in self._take_left_n_chars(txt, i)]
+		feats += [self.featurize_char(c if c in self._char_vocab else UNK) 
+				  for c in self._take_left_n_chars(txt, i)]
 		feats.append(self.featurize_char(txt[i]))
 		feats += [self.featurize_char(c) for c in self._take_right_n_chars(txt, i)]
 
@@ -116,20 +120,22 @@ class LSTMBindingModel:
 					or gold_txt[i + 1] == self._gold_token_separator)
 		return 1 if boundary else 0
 
+	def _construct_vocab(self, txt):
+		return list(set(txt + OUT_OF_BOUNDS).difference(set(self._separators)))
+
 	def _matrixify(self, txt, training=True):
 		"""Prepare X matrix for input to the model, and the y binary label matrix if we are not training
 		(i.e., predicting)"""
-		indices = self._generate_sample_indices(len(txt)) #if training else self._indices
+		indices = self._generate_sample_indices(txt) #if training else self._indices
 		self._indices = indices
 
 		if training:
-		    char_vocab = list(set(txt).difference(set(self._separators)))
-		    self._char_vocab = char_vocab
+			char_vocab = self._construct_vocab(txt)
+			self._char_vocab = char_vocab
 		else:
-		    char_vocab = self._char_vocab
+			char_vocab = self._char_vocab
 
 		X = np.array([self._featurize_at_i(txt, i) for i in indices])
-		X = X.reshape((X.shape[0], X.shape[1] * X.shape[2]))
 		if not training:
 			return X
 
@@ -153,7 +159,7 @@ class LSTMBindingModel:
 
 		X, y = self._matrixify(txt, training=True)
 		self._construct_model()
-		self._m.fit(X, y, batch_size=self._batch_size)
+		self._m.fit(X, y, epochs=self._epochs)
 
 	def _insert_separators(self, txt, preds):
 		indices = self._indices
@@ -161,7 +167,8 @@ class LSTMBindingModel:
 
 		for k, pred in enumerate(preds):
 			index = indices[k]
-			txt = insert_after_index(txt, index, self._gold_token_separator)
+			if pred >= 0.5:
+				txt = insert_after_index(txt, index, self._gold_token_separator)
 		return txt
 
 	def predict(self, txt):
@@ -170,7 +177,7 @@ class LSTMBindingModel:
 		txt = txt.replace(self._pred_token_separator, "")
 		X = self._matrixify(txt, training=False)
 
-		preds = self._m.predict(X).tolist()
+		preds = [pred[0] for pred in self._m.predict(X).tolist()]
 		return self._insert_separators(txt, preds)
 
 
