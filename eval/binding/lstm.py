@@ -24,7 +24,8 @@ class LSTMBindingModel:
 				 embedding_size=100,
 				 hidden_size=10,
 				 dropout=0.2,
-				 epochs=10
+				 epochs=10,
+				 batch_size=64
 				 ):
 		assert n_chars_left >= 0 and type(n_chars_left) == int
 		assert n_chars_right >= 0 and type(n_chars_right) == int
@@ -42,6 +43,7 @@ class LSTMBindingModel:
 		self._hidden_size = hidden_size
 		self._dropout = dropout
 		self._epochs = epochs
+		self._batch_size = batch_size
 
 		self._indices = None
 		self._char_vocab = None
@@ -66,8 +68,7 @@ class LSTMBindingModel:
 
 		#return list(reversed(sorted(sampled_indices)))
 
-	@staticmethod
-	def featurize_char(char):
+	def featurize_char(self, char):
 		return [1 if c == char else 0 for c in self._char_vocab]
 
 	def _take_left_n_chars(self, txt, i):
@@ -120,13 +121,18 @@ class LSTMBindingModel:
 		(i.e., predicting)"""
 		indices = self._generate_sample_indices(len(txt)) #if training else self._indices
 		self._indices = indices
-		char_vocab = list(set(txt).difference(set(self._separators))) if training else self._char_vocab
 
-		X = np.array([self._featurize_at_i(txt, i, char_vocab) for i in indices])
+		if training:
+		    char_vocab = list(set(txt).difference(set(self._separators)))
+		    self._char_vocab = char_vocab
+		else:
+		    char_vocab = self._char_vocab
+
+		X = np.array([self._featurize_at_i(txt, i) for i in indices])
+		X = X.reshape((X.shape[0], X.shape[1] * X.shape[2]))
 		if not training:
 			return X
 
-		self._char_vocab = char_vocab
 		y = np.array([self._boundary_after_i(txt, i) for i in indices])
 		return X, y
 
@@ -136,10 +142,9 @@ class LSTMBindingModel:
 		model.add(Dropout(self._dropout))
 		model.add(Bidirectional(LSTM(self._hidden_size)))
 		model.add(Dropout(self._dropout))
-		model.add(Dense(2, activation='softmax'))
+		model.add(Dense(1, activation='sigmoid'))
 
-		adadelta = optimizers.Adadelta(clipnorm=1.0)
-		model.compile(optimizer=adadelta, loss='categorical_crossentropy', metrics=['accuracy'])
+		model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
 		self._m = model
 
@@ -148,7 +153,7 @@ class LSTMBindingModel:
 
 		X, y = self._matrixify(txt, training=True)
 		self._construct_model()
-		self._m.fit(X, y)
+		self._m.fit(X, y, batch_size=self._batch_size)
 
 	def _insert_separators(self, txt, preds):
 		indices = self._indices
