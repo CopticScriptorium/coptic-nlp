@@ -2338,21 +2338,21 @@
 </translation>
 <translation translation="And having departed from him into the mountain I came to a small cell of a monk, ">
 <orig_group orig_group="ⲛ̅ⲧⲉⲣⲉⲓⲙⲟⲟϣⲉ">
-<norm_group norm_group="ⲛⲧⲉⲣⲉⲓⲙⲟⲟϣⲉ">
-<orig orig="ⲛ̅ⲧⲉⲣⲉ">
-<norm norm="ⲛⲧⲉⲣⲉ">
+<norm_group norm_group="ⲛⲧⲉⲣⲓⲙⲟⲟϣⲉ">
+<orig orig="ⲛ̅ⲧⲉⲣ">
+<norm norm="ⲛⲧⲉⲣ">
 <lemma lemma="ⲛⲧⲉⲣⲉ">
 <pos pos="APREC">
-ⲛ̅ⲧⲉⲣⲉ
+ⲛ̅ⲧⲉⲣ
 </pos>
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲓ">
+<orig orig="ⲉⲓ">
 <norm norm="ⲓ">
 <lemma lemma="ⲁⲛⲟⲕ">
 <pos pos="PPERS">
-ⲓ
+ⲉⲓ
 </pos>
 </lemma>
 </norm>
@@ -3602,7 +3602,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲙ̅ⲡⲟⲟⲩ">
-<norm_group norm_group="ⲙⲡϩⲟⲟⲩ">
+<norm_group norm_group="ⲙⲡⲟⲟⲩ">
 <orig orig="ⲙ̅">
 <norm norm="ⲙ">
 <lemma lemma="ⲛ">
@@ -3622,7 +3622,7 @@
 </norm>
 </orig>
 <orig orig="ⲟⲟⲩ">
-<norm norm="ϩⲟⲟⲩ">
+<norm norm="ⲟⲟⲩ">
 <lemma lemma="ϩⲟⲟⲩ">
 <pos pos="N">
 ⲟⲟⲩ
@@ -8034,7 +8034,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲛ̅ⲧⲕ̅ⲕⲗⲏⲥⲓⲁ">
-<norm_group norm_group="ⲛⲧⲕⲕⲗⲏⲥⲓⲁ">
+<norm_group norm_group="ⲛⲧⲉⲕⲕⲗⲏⲥⲓⲁ">
 <orig orig="ⲛ̅">
 <norm norm="ⲛ">
 <lemma lemma="ⲛ">
