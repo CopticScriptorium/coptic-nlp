@@ -37,7 +37,7 @@ IGNORE = [
 	"᷍",  # U+1DCD  COMBINING DOUBLE CIRCUMFLEX ABOVE
 	"⳿",  # U+2CFF  COPTIC MORPHOLOGICAL DIVIDER
 ]
-TOKEN_BOUNDARY = "_"
+TOKEN_SEPARATOR = "_"
 
 # I/O and preprocessing -----------------------------------------------------------------------------------------------
 def read_file_list(file_list):
@@ -52,34 +52,42 @@ def read_file_list(file_list):
 	return contents
 
 
-def check_identical_text(gold, pred):
-	"""For each character in gold, ensure that the corresponding character is identical in pred.
-	Characters in IGNORE are ignored, and the TOKEN_BOUNDARY character is ignored.
+def remove_chars(text, ignore_list):
+	for c in ignore_list:
+		text = text.replace(c, "")
+	return text
 
-	:param gold: The entire gold text string, with TOKEN_BOUNDARY separating tokens
+
+def check_identical_text(gold, pred):
+	"""For each character in gold, ensure that the corresponding character is identical in pred. Also check that lengths
+	are identical. Characters in IGNORE + [" ", TOKEN_SEPARATOR] are ignored.
+
+	:param gold: The entire gold text string, with TOKEN_SEPARATOR separating tokens
 	:param pred: The entire pred text string
 	"""
 	counter = -1
-	pred_chars = pred.replace(" ", "")       # remove SPACE
-	pred_chars = pred_chars.replace("̅", "̄")  # replace COMBINING OVERLINE with COMBINING MACRON
-	pred_chars = pred_chars.replace("̅", "")  # remove COMBINING MACRON
 
+	# ensure same length
+	gold = remove_chars(gold, IGNORE + [" ", TOKEN_SEPARATOR])
+	pred = remove_chars(pred, IGNORE + [" ", TOKEN_SEPARATOR])
+	if len(gold) != len(pred):
+		raise Exception("gold and pred have different lengths: len(gold)={}, len(pred)={}".format(len(gold), len(pred)))
+
+	# ensure identical letters
 	for i, gold_c in enumerate(gold):
-		if gold_c == TOKEN_BOUNDARY:
+		if gold_c == TOKEN_SEPARATOR:
 			continue
 		else:
 			counter += 1
 
-		pred_c = pred_chars[counter]
+		pred_c = pred[counter]
 
-		if gold_c not in IGNORE and gold_c != pred_c:
-			# TODO: ask Amir why the below was written
-			#if gold_c not in IGNORE and pred_chars[counter] in IGNORE:
+		if gold_c != pred_c:
 			gold_start = max(i-15, 0)
 			pred_start = max(counter-15, 0)
 			raise Exception("non matching char at " + str(i) + ":\n"
 							+ str(list(gold[gold_start:i+1])) + "\n"
-							+ str(list(pred_chars[pred_start:counter+1])))
+							+ str(list(pred[pred_start:counter+1])))
 
 
 def clean(text):
@@ -103,13 +111,15 @@ def clean(text):
 
 # binding --------------------------------------------------------------------------------------------------------------
 def bind_naive(lines_to_process, gold):
-	naive = "".join(lines_to_process)
-	check_identical_text(gold, naive)
-	naive = naive.replace(" ", TOKEN_BOUNDARY)
+	txt = "".join(lines_to_process)
+	check_identical_text(gold, txt)
+	naive = txt.replace(" ", TOKEN_SEPARATOR)
 
 	scores, errs = binding_score(gold, naive)
-	print("Baseline f-score:")
-	print(scores["f1"])
+	print("Baseline scores:")
+	print("Precision: %s" % scores["precision"])
+	print("Recall:    %s" % scores["recall"])
+	print("F1:        %s" % scores["f1"])
 	return scores
 
 def bind_with_stacked_tokenizer(lines_to_process, gold):
@@ -119,16 +129,40 @@ def bind_with_stacked_tokenizer(lines_to_process, gold):
 	bound = stk.analyze("\n".join(lines_to_process)).replace("|", "").replace('\n', '').strip()
 
 	scores, errs = binding_score(gold,bound)
-	print("Binding f-score:")
-	print(scores["f1"])
+	print("Stacked binding scores:")
+	print("Precision: %s" % scores["precision"])
+	print("Recall:    %s" % scores["recall"])
+	print("F1:        %s" % scores["f1"])
 
-	with io.open(err_dir + "errs_binding.tab", 'w', encoding="utf8") as f:
+	with io.open(err_dir + "errs_binding_stacked.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
 
 	return scores
 
+
 def bind_with_lstm(lines_to_process, gold):
-	pass
+	txt = "".join(lines_to_process)
+	check_identical_text(gold, txt)
+
+	gold = remove_chars(gold, IGNORE)
+	txt = remove_chars(txt, IGNORE)
+
+	from binding.lstm import LSTMBindingModel
+	m = LSTMBindingModel(gold_token_separator=TOKEN_SEPARATOR, pred_token_separator=" ")
+	m.train(gold)
+	pred = m.predict(txt)
+	print(pred[:100])
+
+	scores, errs = binding_score(gold, pred)
+	print("LSTM regression binding scores:")
+	print("Precision: %s" % scores["precision"])
+	print("Recall:    %s" % scores["recall"])
+	print("F1:        %s" % scores["f1"])
+
+	with io.open(err_dir + "errs_binding_lstm.tab", 'w', encoding="utf8") as f:
+		f.write("\n".join(errs) + "\n")
+
+	return scores
 
 
 # evaluation -----------------------------------------------------------------------------------------------------------
@@ -144,7 +178,7 @@ def binarize(text):
 	for c in text:
 		if c in IGNORE:
 			continue
-		if c == TOKEN_BOUNDARY and len(output) > 0:
+		if c == TOKEN_SEPARATOR and len(output) > 0:
 			output[-1] = 1
 		else:
 			output.append(0)
@@ -153,8 +187,8 @@ def binarize(text):
 
 def binding_score(gold, pred):
 	"""Calculate precision, recall, and f1.
-	:param gold: Gold tokens separated by TOKEN_BOUNDARY
-	:param pred: Predicted tokens separated by TOKEN_BOUNDARY
+	:param gold: Gold tokens separated by TOKEN_SEPARATOR
+	:param pred: Predicted tokens separated by TOKEN_SEPARATOR
 	:return: dict with keys "precision", "recall", "f1"
 	"""
 	bin_gold = binarize(gold)
@@ -162,8 +196,8 @@ def binding_score(gold, pred):
 
 	gold_reached = 0
 	pred_reached = 0
-	gold_groups = gold.split(TOKEN_BOUNDARY)
-	pred_groups = pred.split(TOKEN_BOUNDARY)
+	gold_groups = gold.split(TOKEN_SEPARATOR)
+	pred_groups = pred.split(TOKEN_SEPARATOR)
 	errs = []
 	for i, c in enumerate(range(len(bin_gold))):
 		if bin_gold[i] == 1:
@@ -217,7 +251,7 @@ def run_eval(gold_list, test_list, strategy):
 		if "orig_group=" in line:
 			grp = re.search('orig_group="([^"]*)"',line).group(1).strip()
 			gold.append(grp.strip())
-	gold = TOKEN_BOUNDARY.join(gold)
+	gold = TOKEN_SEPARATOR.join(gold)
 
 	if strategy == 'naive':
 		baseline_scores = bind_naive(lines_to_process, gold)
@@ -225,17 +259,22 @@ def run_eval(gold_list, test_list, strategy):
 	elif strategy == 'stacked':
 		st_scores = bind_with_stacked_tokenizer(lines_to_process, gold)
 		return st_scores
+	elif strategy == 'lstm':
+		lstm_scores = bind_with_lstm(lines_to_process, gold)
+		return lstm_scores
 	elif strategy == 'all':
 		_ = bind_naive(lines_to_process, gold)
+		_ = bind_with_lstm(lines_to_process, gold)
 		st_scores = bind_with_stacked_tokenizer(lines_to_process, gold)
 		return st_scores
 	else:
-		raise Exception("Unknown strategy: '{}'.\nMust be one of 'naive', 'stacked', 'all'.".format(strategy))
+		raise Exception("Unknown strategy: '{}'.\nMust be one of 'naive', 'stacked', 'lstm', 'all'."
+						.format(strategy))
 
 
 def main():
 	p = ArgumentParser()
-	p.add_argument("strategy",default="all",help="binding strategy: one of 'naive', 'stacked', 'all'", nargs='?')
+	p.add_argument("strategy",default="all",help="binding strategy: one of 'naive', 'stacked', 'lstm', 'all'", nargs='?')
 	p.add_argument("--train_list",default="victor_tt",help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied")
 	p.add_argument("--test_list",default="victor_plain",help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'")
 	p.add_argument("--file_dir",default="plain",help="directory with plain text files")
@@ -268,7 +307,6 @@ def main():
 		train_list = glob(script_dir + opts.gold_dir + os.sep + "*.tt")
 		train_list = [os.path.basename(f) for f in train_list if os.path.basename(f) not in test_list]
 		train_list = [script_dir + opts.gold_dir + os.sep + f for f in train_list]
-
 
 	scores = run_eval(train_list, test_list, opts.strategy)
 
