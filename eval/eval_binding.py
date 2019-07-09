@@ -20,10 +20,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'l
 from stacked_tokenizer import StackedTokenizer
 
 IGNORE = [
-	"",  #         empty string
+	"",  #	 empty string
 	"~",  # U+007E  TILDE
 	"`",  # U+0060  GRAVE ACCENT
-	"\n",  #        NEWLINE
+	"\n",  #	NEWLINE
 	"̈",  # U+0308  COMBINING DIAERESIS
 	"̄",  # U+0304  COMBINING MACRON
 	"̀",  # U+0300  COMBINING GRAVE ACCENT
@@ -119,7 +119,7 @@ def bind_naive(lines_to_process, gold):
 	print("Baseline scores:")
 	print("Precision: %s" % scores["precision"])
 	print("Recall:    %s" % scores["recall"])
-	print("F1:        %s" % scores["f1"])
+	print("F1:	%s" % scores["f1"])
 	return scores
 
 def bind_with_stacked_tokenizer(lines_to_process, gold):
@@ -132,7 +132,7 @@ def bind_with_stacked_tokenizer(lines_to_process, gold):
 	print("Stacked binding scores:")
 	print("Precision: %s" % scores["precision"])
 	print("Recall:    %s" % scores["recall"])
-	print("F1:        %s" % scores["f1"])
+	print("F1:	%s" % scores["f1"])
 
 	with io.open(err_dir + "errs_binding_stacked.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
@@ -146,18 +146,20 @@ def bind_with_lstm(lines_to_process, gold):
 
 	gold = remove_chars(gold, IGNORE)
 	txt = remove_chars(txt, IGNORE)
+	print(len(txt), len(gold))
 
 	from binding.lstm import LSTMBindingModel
 	m = LSTMBindingModel(gold_token_separator=TOKEN_SEPARATOR, pred_token_separator=" ")
-	m.train(gold)
-	pred = m.predict(txt)
+	m.train(gold[:int(len(gold)*4/5)])
+	pred_cut = int(len(txt)*4/5)
+	pred = m.predict(txt[pred_cut:])
 	print(pred[:100])
 
-	scores, errs = binding_score(gold, pred)
+	scores, errs = binding_score(gold[pred_cut:], pred[pred_cut:])
 	print("LSTM regression binding scores:")
 	print("Precision: %s" % scores["precision"])
 	print("Recall:    %s" % scores["recall"])
-	print("F1:        %s" % scores["f1"])
+	print("F1:	%s" % scores["f1"])
 
 	with io.open(err_dir + "errs_binding_lstm.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
