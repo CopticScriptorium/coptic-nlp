@@ -2052,7 +2052,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲉⲣⲟⲉⲓ">
-<norm_group norm_group="ⲉⲣⲟⲉⲓ">
+<norm_group norm_group="ⲉⲣⲟⲓ">
 <orig orig="ⲉⲣⲟ">
 <norm norm="ⲉⲣⲟ">
 <lemma lemma="ⲉ">
@@ -2063,8 +2063,8 @@
 </norm>
 </orig>
 <orig orig="ⲉⲓ">
-<norm norm="ⲉⲓ">
-<lemma lemma="ⲉⲓ">
+<norm norm="ⲓ">
+<lemma lemma="ⲁⲛⲟⲕ">
 <pos pos="PPERO">
 ⲉⲓ
 </pos>

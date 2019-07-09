@@ -1486,7 +1486,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲛ︤ϥ︥ϫⲓⲟⲩⲉ">
-<norm_group norm_group="ϫⲓⲟⲩⲉ">
+<norm_group norm_group="ⲛϥϫⲓⲟⲩⲉ">
 <orig orig="ⲛ︤">
 <norm norm="ⲛ">
 <lemma lemma="ⲛⲧⲉ">
@@ -4162,7 +4162,7 @@
 </orig_group>
 </lb_n>
 <lb_n lb_n="19">
-<orig_group orig_group="ⲁⲧⲉⲧ︤ⲛ︥ⲥⲱⲧⲡ⳯">
+<orig_group orig_group="ⲁⲧⲉⲧ︤ⲛ︥ⲥⲱⲧⲡ̄">
 <norm_group norm_group="ⲁⲧⲉⲧⲛⲥⲱⲧⲡ">
 <orig orig="ⲁ">
 <norm norm="ⲁ">
@@ -4182,15 +4182,14 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲥⲱⲧⲡ⳯">
+<orig orig="ⲥⲱⲧⲡ̄">
 <norm norm="ⲥⲱⲧⲡ">
 <lemma lemma="ⲥⲱⲧⲡ">
 <pos pos="V">
 ⲥⲱⲧ
 <hi_rend hi_rend="small">
-ⲡ
+ⲡ̄
 </hi_rend>
-⳯
 </pos>
 </lemma>
 </norm>
@@ -4937,7 +4936,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲛ̄ⲑⲉ">
-<norm_group norm_group="ⲛⲑⲉ">
+<norm_group norm_group="ⲛⲧϩⲉ">
 <orig orig="ⲛ̄">
 <norm norm="ⲛ">
 <lemma lemma="ⲛ">
@@ -5079,7 +5078,7 @@
 <translation translation="As it is written: “she has stumbled, she has fallen, that is the virgin of Israel and so she won’t get up again.">
 <lb_n lb_n="10">
 <orig_group orig_group="ⲛ̄ⲑⲉ">
-<norm_group norm_group="ⲛⲑⲉ">
+<norm_group norm_group="ⲛⲧϩⲉ">
 <orig orig="ⲛ̄">
 <norm norm="ⲛ">
 <lemma lemma="ⲛ">
@@ -5243,7 +5242,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲙ̄ⲡⲓ︤ⲏ︦ⲗ︥">
-<norm_group norm_group="ⲙⲡⲓⲏⲗ">
+<norm_group norm_group="ⲙⲡⲓⲥⲣⲁⲏⲗ">
 <orig orig="ⲙ̄">
 <norm norm="ⲙ">
 <lemma lemma="ⲛ">
@@ -5810,7 +5809,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲛ̄ⲑⲉ">
-<norm_group norm_group="ⲛⲑⲉ">
+<norm_group norm_group="ⲛⲧϩⲉ">
 <orig orig="ⲛ̄">
 <norm norm="ⲛ">
 <lemma lemma="ⲛ">
@@ -6114,7 +6113,7 @@
 </lb_n>
 <lb_n lb_n="3">
 <orig_group orig_group="ⲛ̄ⲑⲉ">
-<norm_group norm_group="ⲛⲑⲉ">
+<norm_group norm_group="ⲛⲧϩⲉ">
 <orig orig="ⲛ̄">
 <norm norm="ⲛ">
 <lemma lemma="ⲛ">
