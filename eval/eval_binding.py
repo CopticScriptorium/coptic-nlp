@@ -189,7 +189,7 @@ def bind_with_lstm(lines_to_process, gold):
 	check_identical_text(gold, txt)
 
 	from binding.lstm import LSTMBindingModel
-	m = LogisticBindingModel(gold_token_separator=TOKEN_SEPARATOR, pred_token_separator=" ")
+	m = LSTMBindingModel(gold_token_separator=TOKEN_SEPARATOR, pred_token_separator=" ")
 	g_train, p_train, g_test, p_test = test_train_split(gold, txt)
 	m.train(g_train)
 	pred = m.predict(p_test)
