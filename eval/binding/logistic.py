@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 
 OUT_OF_BOUNDS = "ॐ"
-UNK = "<UNK>"
+UNK = "❤"
 
 
 class LogisticBindingModel:
