@@ -90,6 +90,28 @@ def check_identical_text(gold, pred):
 							+ str(list(pred[pred_start:counter+1])))
 
 
+def test_train_split(gold, pred, train_proportion=0.8):
+	split = int(len(gold) * train_proportion)
+	split = gold.index(TOKEN_SEPARATOR, split) + 1
+	assert split != 0
+
+	gold_train, gold_test = gold[:split], gold[split:]
+
+	pred_i = 0
+	for i, gold_c in enumerate(gold_train):
+		if gold_c not in IGNORE + [" ", TOKEN_SEPARATOR]:
+			while pred[pred_i] != gold_c:
+				pred_i += 1
+	while pred[pred_i - 1] != " ":
+		pred_i += 1
+
+	pred_train, pred_test = pred[:pred_i], pred[pred_i:]
+
+	assert (len(remove_chars(gold_train, IGNORE + [" ", TOKEN_SEPARATOR]))
+			== len(remove_chars(pred_train, IGNORE + [" ", TOKEN_SEPARATOR])))
+	return gold_train, pred_train, gold_test, pred_test
+
+
 def clean(text):
 	"""Cleans text by: (1) removing obviously non-Coptic text; (2) turning sequences of >=1 newline into a single
 	newline; (3) turning sequences of >=1 space into a single space; (4) spacing out ., ·, and :
@@ -140,31 +162,49 @@ def bind_with_stacked_tokenizer(lines_to_process, gold):
 	return scores
 
 
+def bind_with_logistic(lines_to_process, gold):
+	txt = "".join(lines_to_process)
+	check_identical_text(gold, txt)
+
+	from binding.logistic import LogisticBindingModel
+	m = LogisticBindingModel(gold_token_separator=TOKEN_SEPARATOR, pred_token_separator=" ")
+	g_train, p_train, g_test, p_test = test_train_split(gold, txt)
+	m.train(g_train)
+	pred = m.predict(p_test)
+
+	scores, errs = binding_score(g_test, pred)
+	print("Logistic regression binding scores:")
+	print("Precision: %s" % scores["precision"])
+	print("Recall:    %s" % scores["recall"])
+	print("F1:	      %s" % scores["f1"])
+
+	with io.open(err_dir + "errs_binding_logistic.tab", 'w', encoding="utf8") as f:
+		f.write("\n".join(errs) + "\n")
+
+	return scores
+
+
 def bind_with_lstm(lines_to_process, gold):
 	txt = "".join(lines_to_process)
 	check_identical_text(gold, txt)
 
-	gold = remove_chars(gold, IGNORE)
-	txt = remove_chars(txt, IGNORE)
-	print(len(txt), len(gold))
-
 	from binding.lstm import LSTMBindingModel
-	m = LSTMBindingModel(gold_token_separator=TOKEN_SEPARATOR, pred_token_separator=" ")
-	m.train(gold[:int(len(gold)*4/5)])
-	pred_cut = int(len(txt)*4/5)
-	pred = m.predict(txt[pred_cut:])
-	print(pred[:100])
+	m = LogisticBindingModel(gold_token_separator=TOKEN_SEPARATOR, pred_token_separator=" ")
+	g_train, p_train, g_test, p_test = test_train_split(gold, txt)
+	m.train(g_train)
+	pred = m.predict(p_test)
 
-	scores, errs = binding_score(gold[pred_cut:], pred[pred_cut:])
-	print("LSTM regression binding scores:")
+	scores, errs = binding_score(g_test, pred)
+	print("Logistic regression binding scores:")
 	print("Precision: %s" % scores["precision"])
 	print("Recall:    %s" % scores["recall"])
-	print("F1:	%s" % scores["f1"])
+	print("F1:	      %s" % scores["f1"])
 
-	with io.open(err_dir + "errs_binding_lstm.tab", 'w', encoding="utf8") as f:
+	with io.open(err_dir + "errs_binding_logistic.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
 
 	return scores
+
 
 
 # evaluation -----------------------------------------------------------------------------------------------------------
@@ -261,22 +301,26 @@ def run_eval(gold_list, test_list, strategy):
 	elif strategy == 'stacked':
 		st_scores = bind_with_stacked_tokenizer(lines_to_process, gold)
 		return st_scores
+	elif strategy == 'logistic':
+		logistic_scores = bind_with_logistic(lines_to_process, gold)
+		return logistic_scores
 	elif strategy == 'lstm':
 		lstm_scores = bind_with_lstm(lines_to_process, gold)
 		return lstm_scores
 	elif strategy == 'all':
 		_ = bind_naive(lines_to_process, gold)
+		_ = bind_with_logistic(lines_to_process, gold)
 		_ = bind_with_lstm(lines_to_process, gold)
 		st_scores = bind_with_stacked_tokenizer(lines_to_process, gold)
 		return st_scores
 	else:
-		raise Exception("Unknown strategy: '{}'.\nMust be one of 'naive', 'stacked', 'lstm', 'all'."
+		raise Exception("Unknown strategy: '{}'.\nMust be one of 'naive', 'stacked', 'logistic', 'lstm', 'all'."
 						.format(strategy))
 
 
 def main():
 	p = ArgumentParser()
-	p.add_argument("strategy",default="all",help="binding strategy: one of 'naive', 'stacked', 'lstm', 'all'", nargs='?')
+	p.add_argument("strategy",default="all",help="binding strategy: one of 'naive', 'stacked', 'logistic', 'lstm', 'all'", nargs='?')
 	p.add_argument("--train_list",default="victor_tt",help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied")
 	p.add_argument("--test_list",default="victor_plain",help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'")
 	p.add_argument("--file_dir",default="plain",help="directory with plain text files")
