@@ -120,7 +120,7 @@ class LSTMBindingModel:
 		"""Transforms the position i in a text into a row in the matrix that will be fed to the model."""
 		feats = []
 		feats += [self.featurize_char(c if c in self._char_vocab else UNK) for c in self._take_left_n_chars(txt, i)]
-		feats.append(self.featurize_char(txt[i]))
+		feats.append(self.featurize_char(txt[i] if txt[i] in self._char_vocab else UNK))
 		feats += [self.featurize_char(c if c in self._char_vocab else UNK) for c in self._take_right_n_chars(txt, i)]
 
 		return np.array(feats)
@@ -132,7 +132,6 @@ class LSTMBindingModel:
 		return 1 if boundary else 0
 
 	def _construct_vocab(self, txt):
-		print(set(txt + OUT_OF_BOUNDS + UNK))
 		return list(set(txt + OUT_OF_BOUNDS + UNK).difference(set(self._separators)))
 
 	def _matrixify(self, txt, training=True):
