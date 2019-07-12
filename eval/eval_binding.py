@@ -37,7 +37,8 @@ IGNORE = [
 	"᷍",  # U+1DCD  COMBINING DOUBLE CIRCUMFLEX ABOVE
 	"⳿",  # U+2CFF  COPTIC MORPHOLOGICAL DIVIDER
 ]
-TOKEN_SEPARATOR = "_"
+GOLD_TOKEN_SEPARATOR = "_"
+ORIG_TOKEN_SEPARATOR = " "
 
 # I/O and preprocessing -----------------------------------------------------------------------------------------------
 def read_file_list(file_list):
@@ -60,22 +61,22 @@ def remove_chars(text, ignore_list):
 
 def check_identical_text(gold, pred):
 	"""For each character in gold, ensure that the corresponding character is identical in pred. Also check that lengths
-	are identical. Characters in IGNORE + [" ", TOKEN_SEPARATOR] are ignored.
+	are identical. Characters in IGNORE + [ORIG_TOKEN_SEPARATOR, GOLD_TOKEN_SEPARATOR] are ignored.
 
-	:param gold: The entire gold text string, with TOKEN_SEPARATOR separating tokens
+	:param gold: The entire gold text string, with GOLD_TOKEN_SEPARATOR separating tokens
 	:param pred: The entire pred text string
 	"""
 	counter = -1
 
 	# ensure same length
-	gold = remove_chars(gold, IGNORE + [" ", TOKEN_SEPARATOR])
-	pred = remove_chars(pred, IGNORE + [" ", TOKEN_SEPARATOR])
+	gold = remove_chars(gold, IGNORE + [ORIG_TOKEN_SEPARATOR, GOLD_TOKEN_SEPARATOR])
+	pred = remove_chars(pred, IGNORE + [ORIG_TOKEN_SEPARATOR, GOLD_TOKEN_SEPARATOR])
 	if len(gold) != len(pred):
 		raise Exception("gold and pred have different lengths: len(gold)={}, len(pred)={}".format(len(gold), len(pred)))
 
 	# ensure identical letters
 	for i, gold_c in enumerate(gold):
-		if gold_c == TOKEN_SEPARATOR:
+		if gold_c == GOLD_TOKEN_SEPARATOR:
 			continue
 		else:
 			counter += 1
@@ -92,23 +93,23 @@ def check_identical_text(gold, pred):
 
 def test_train_split(gold, pred, train_proportion=0.8):
 	split = int(len(gold) * train_proportion)
-	split = gold.index(TOKEN_SEPARATOR, split) + 1
+	split = gold.index(GOLD_TOKEN_SEPARATOR, split) + 1
 	assert split != 0
 
 	gold_train, gold_test = gold[:split], gold[split:]
 
 	pred_i = 0
 	for i, gold_c in enumerate(gold_train):
-		if gold_c not in IGNORE + [" ", TOKEN_SEPARATOR]:
+		if gold_c not in IGNORE + [ORIG_TOKEN_SEPARATOR, GOLD_TOKEN_SEPARATOR]:
 			while pred[pred_i] != gold_c:
 				pred_i += 1
-	while pred[pred_i - 1] != " ":
+	while pred[pred_i - 1] != ORIG_TOKEN_SEPARATOR:
 		pred_i += 1
 
 	pred_train, pred_test = pred[:pred_i], pred[pred_i:]
 
-	assert (len(remove_chars(gold_train, IGNORE + [" ", TOKEN_SEPARATOR]))
-			== len(remove_chars(pred_train, IGNORE + [" ", TOKEN_SEPARATOR])))
+	assert (len(remove_chars(gold_train, IGNORE + [ORIG_TOKEN_SEPARATOR, GOLD_TOKEN_SEPARATOR]))
+			== len(remove_chars(pred_train, IGNORE + [ORIG_TOKEN_SEPARATOR, GOLD_TOKEN_SEPARATOR])))
 	return gold_train, pred_train, gold_test, pred_test
 
 
@@ -135,7 +136,7 @@ def clean(text):
 def bind_naive(lines_to_process, gold):
 	txt = "".join(lines_to_process)
 	check_identical_text(gold, txt)
-	naive = txt.replace(" ", TOKEN_SEPARATOR)
+	naive = txt.replace(ORIG_TOKEN_SEPARATOR, GOLD_TOKEN_SEPARATOR)
 
 	scores, errs = binding_score(gold, naive)
 	print("Baseline scores:")
@@ -162,15 +163,20 @@ def bind_with_stacked_tokenizer(lines_to_process, gold):
 	return scores
 
 
-def bind_with_logistic(lines_to_process, gold):
-	txt = "".join(lines_to_process)
-	check_identical_text(gold, txt)
+def bind_with_logistic(lines_to_process, gold, opts):
+	orig = "".join(lines_to_process)
+	check_identical_text(gold, orig)
 
 	from binding.logistic import LogisticBindingModel
-	m = LogisticBindingModel(gold_token_separator=TOKEN_SEPARATOR, pred_token_separator=" ")
-	g_train, p_train, g_test, p_test = test_train_split(gold, txt)
-	m.train(g_train)
-	pred = m.predict(p_test)
+	m = LogisticBindingModel(
+		ignore_chars=IGNORE,
+		gold_token_separator=GOLD_TOKEN_SEPARATOR,
+		orig_token_separator=ORIG_TOKEN_SEPARATOR,
+		binding_freq_file_path=opts.detok_table
+	)
+	g_train, o_train, g_test, o_test = test_train_split(gold, orig)
+	m.train(g_train, o_train)
+	pred = m.predict(o_test)
 
 	scores, errs = binding_score(g_test, pred)
 	print("Logistic regression binding scores:")
@@ -184,12 +190,15 @@ def bind_with_logistic(lines_to_process, gold):
 	return scores
 
 
-def bind_with_lstm(lines_to_process, gold):
+def bind_with_lstm(lines_to_process, gold, opts):
 	txt = "".join(lines_to_process)
 	check_identical_text(gold, txt)
 
 	from binding.lstm import LSTMBindingModel
-	m = LSTMBindingModel(gold_token_separator=TOKEN_SEPARATOR, pred_token_separator=" ")
+	m = LSTMBindingModel(
+		gold_token_separator=GOLD_TOKEN_SEPARATOR,
+		pred_token_separator=ORIG_TOKEN_SEPARATOR
+	)
 	g_train, p_train, g_test, p_test = test_train_split(gold, txt)
 	m.train(g_train)
 	pred = m.predict(p_test)
@@ -220,7 +229,7 @@ def binarize(text):
 	for c in text:
 		if c in IGNORE:
 			continue
-		if c == TOKEN_SEPARATOR and len(output) > 0:
+		if c == GOLD_TOKEN_SEPARATOR and len(output) > 0:
 			output[-1] = 1
 		else:
 			output.append(0)
@@ -229,8 +238,8 @@ def binarize(text):
 
 def binding_score(gold, pred):
 	"""Calculate precision, recall, and f1.
-	:param gold: Gold tokens separated by TOKEN_SEPARATOR
-	:param pred: Predicted tokens separated by TOKEN_SEPARATOR
+	:param gold: Gold tokens separated by GOLD_TOKEN_SEPARATOR
+	:param pred: Predicted tokens separated by GOLD_TOKEN_SEPARATOR
 	:return: dict with keys "precision", "recall", "f1"
 	"""
 	bin_gold = binarize(gold)
@@ -238,8 +247,8 @@ def binding_score(gold, pred):
 
 	gold_reached = 0
 	pred_reached = 0
-	gold_groups = gold.split(TOKEN_SEPARATOR)
-	pred_groups = pred.split(TOKEN_SEPARATOR)
+	gold_groups = gold.split(GOLD_TOKEN_SEPARATOR)
+	pred_groups = pred.split(GOLD_TOKEN_SEPARATOR)
 	errs = []
 	for i, c in enumerate(range(len(bin_gold))):
 		if bin_gold[i] == 1:
@@ -270,7 +279,9 @@ def binding_score(gold, pred):
 	return scores, errs
 
 
-def run_eval(gold_list, test_list, strategy):
+def run_eval(gold_list, test_list, opts):
+	strategy = opts.strategy
+
 	gold = read_file_list(gold_list)
 	test = read_file_list(test_list)
 	test = clean(test)
@@ -293,7 +304,7 @@ def run_eval(gold_list, test_list, strategy):
 		if "orig_group=" in line:
 			grp = re.search('orig_group="([^"]*)"',line).group(1).strip()
 			gold.append(grp.strip())
-	gold = TOKEN_SEPARATOR.join(gold)
+	gold = GOLD_TOKEN_SEPARATOR.join(gold)
 
 	if strategy == 'naive':
 		baseline_scores = bind_naive(lines_to_process, gold)
@@ -302,15 +313,15 @@ def run_eval(gold_list, test_list, strategy):
 		st_scores = bind_with_stacked_tokenizer(lines_to_process, gold)
 		return st_scores
 	elif strategy == 'logistic':
-		logistic_scores = bind_with_logistic(lines_to_process, gold)
+		logistic_scores = bind_with_logistic(lines_to_process, gold, opts)
 		return logistic_scores
 	elif strategy == 'lstm':
-		lstm_scores = bind_with_lstm(lines_to_process, gold)
+		lstm_scores = bind_with_lstm(lines_to_process, gold, opts)
 		return lstm_scores
 	elif strategy == 'all':
 		_ = bind_naive(lines_to_process, gold)
-		_ = bind_with_logistic(lines_to_process, gold)
-		_ = bind_with_lstm(lines_to_process, gold)
+		_ = bind_with_logistic(lines_to_process, gold, opts)
+		#_ = bind_with_lstm(lines_to_process, gold, opts)
 		st_scores = bind_with_stacked_tokenizer(lines_to_process, gold)
 		return st_scores
 	else:
@@ -325,6 +336,11 @@ def main():
 	p.add_argument("--test_list",default="victor_plain",help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'")
 	p.add_argument("--file_dir",default="plain",help="directory with plain text files")
 	p.add_argument("--gold_dir",default="unreleased",help="directory with gold .tt files")
+	p.add_argument(
+		"--detok_table",
+		default=os.sep.join(['..', 'data', 'detok.tab']),
+		help="A TSV file containing bound groups, "
+	)
 
 	opts = p.parse_args()
 
@@ -354,7 +370,7 @@ def main():
 		train_list = [os.path.basename(f) for f in train_list if os.path.basename(f) not in test_list]
 		train_list = [script_dir + opts.gold_dir + os.sep + f for f in train_list]
 
-	scores = run_eval(train_list, test_list, opts.strategy)
+	scores = run_eval(train_list, test_list, opts)
 
 
 if __name__ == "__main__":
