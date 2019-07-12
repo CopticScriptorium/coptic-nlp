@@ -2275,11 +2275,11 @@
 </orig>
 </norm_group>
 </orig_group>
-<orig_group orig_group="ⲉⲓⲙⲏⲧⲉⲓ">
+<orig_group orig_group="ⲉⲓⲙⲏⲧⲓ">
 <norm_group norm_group="ⲉⲓⲙⲏⲧⲉⲓ">
 <orig orig="ⲉⲓⲙⲏⲧⲉⲓ">
-<norm norm="ⲉⲓⲙⲏⲧⲉⲓ">
-<lemma lemma="ⲉⲓⲙⲏⲧⲉⲓ">
+<norm norm="ⲉⲓⲙⲏⲧⲓ">
+<lemma lemma="ⲉⲓⲙⲏⲧⲓ">
 <pos pos="CONJ">
 <lang lang="Greek">
 ⲉⲓⲙⲏⲧⲉⲓ
@@ -4276,10 +4276,10 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲉⲓⲙⲏⲧⲉⲓ">
-<norm_group norm_group="ⲉⲓⲙⲏⲧⲉⲓ">
+<norm_group norm_group="ⲉⲓⲙⲏⲧⲓ">
 <orig orig="ⲉⲓⲙⲏⲧⲉⲓ">
-<norm norm="ⲉⲓⲙⲏⲧⲉⲓ">
-<lemma lemma="ⲉⲓⲙⲏⲧⲉⲓ">
+<norm norm="ⲉⲓⲙⲏⲧⲓ">
+<lemma lemma="ⲉⲓⲙⲏⲧⲓ">
 <pos pos="CONJ">
 <lang lang="Greek">
 ⲉⲓⲙⲏ
@@ -25086,10 +25086,10 @@
 </lb_n>
 <lb_n lb_n="25">
 <orig_group orig_group="ⲉⲓⲙⲏⲧⲉⲓ̄">
-<norm_group norm_group="ⲉⲓⲙⲏⲧⲉⲓ">
+<norm_group norm_group="ⲉⲓⲙⲏⲧⲓ">
 <orig orig="ⲉⲓⲙⲏⲧⲉⲓ̄">
-<norm norm="ⲉⲓⲙⲏⲧⲉⲓ">
-<lemma lemma="ⲉⲓⲙⲏⲧⲉⲓ">
+<norm norm="ⲉⲓⲙⲏⲧⲓ">
+<lemma lemma="ⲉⲓⲙⲏⲧⲓ">
 <pos pos="CONJ">
 <lang lang="Greek">
 ⲉⲓⲙⲏⲧⲉⲓ̄

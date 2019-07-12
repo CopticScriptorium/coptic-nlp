@@ -13175,21 +13175,14 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲉⲧⲉⲓ">
-<norm_group norm_group="ⲉⲧⲉⲓ">
-<orig orig="ⲉ">
-<norm norm="ⲉ">
-<lemma lemma="ⲉⲣⲉ">
-<pos pos="CFOC">
-ⲉ
-</pos>
-</lemma>
-</norm>
-</orig>
-<orig orig="ⲧⲉⲓ">
-<norm norm="ⲧⲉⲓ">
-<lemma lemma="ⲡⲉⲓ">
-<pos pos="PDEM">
-ⲧⲉⲓ
+<norm_group norm_group="ⲉⲧⲓ">
+<orig orig="ⲉⲧⲉⲓ">
+<norm norm="ⲉⲧⲓ">
+<lemma lemma="ⲉⲧⲓ">
+<pos pos="ADV">
+<lang lang="Greek">
+ⲉⲧⲉⲓ
+</lang>
 </pos>
 </lemma>
 </norm>
