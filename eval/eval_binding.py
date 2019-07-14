@@ -40,8 +40,9 @@ IGNORE = [
 GOLD_TOKEN_SEPARATOR = "_"
 ORIG_TOKEN_SEPARATOR = " "
 
+
 # I/O and preprocessing -----------------------------------------------------------------------------------------------
-def read_file_list(file_list):
+def read_and_combine_files(file_list):
 	"""Given a list of file paths, strip and add a newline character to the contents of each and concatenate them all
 	together into a single string.
 	:param file_list: a list of file paths
@@ -91,6 +92,36 @@ def check_identical_text(gold, pred):
 							+ str(list(pred[pred_start:counter+1])))
 
 
+def prepare_gold_text(gold_list):
+	text = read_and_combine_files(gold_list)
+	lines = text.split("\n")
+	gold = []
+	for line in lines:
+		if "orig_group=" in line:
+			grp = re.search('orig_group="([^"]*)"',line).group(1).strip()
+			gold.append(grp.strip())
+	return GOLD_TOKEN_SEPARATOR.join(gold)
+
+
+def prepare_orig_lines(orig_list):
+	text = read_and_combine_files(orig_list)
+	text = clean(text)
+
+	eval_orig_lines = []
+	for line in text.strip().split("\n"):
+		line = line.strip()
+		if len(line) == 0:
+			continue
+		if line.endswith("‐"):
+			line = line[:-1]
+		else:
+			line += " "
+		eval_orig_lines.append(line)
+
+	return eval_orig_lines
+
+
+# No longer used
 def test_train_split(gold, pred, train_proportion=0.8):
 	split = int(len(gold) * train_proportion)
 	split = gold.index(GOLD_TOKEN_SEPARATOR, split) + 1
@@ -133,8 +164,8 @@ def clean(text):
 	return text
 
 # binding --------------------------------------------------------------------------------------------------------------
-def bind_naive(lines_to_process, gold):
-	txt = "".join(lines_to_process)
+def bind_naive(eval_orig_lines, gold):
+	txt = "".join(eval_orig_lines)
 	check_identical_text(gold, txt)
 	naive = txt.replace(ORIG_TOKEN_SEPARATOR, GOLD_TOKEN_SEPARATOR)
 
@@ -145,11 +176,12 @@ def bind_naive(lines_to_process, gold):
 	print("F1:	%s" % scores["f1"])
 	return scores
 
-def bind_with_stacked_tokenizer(lines_to_process, gold):
+
+def bind_with_stacked_tokenizer(eval_orig_lines, gold):
 	stk = StackedTokenizer(no_morphs=True, model="test", pipes=True, detok=2, tokenized=True)
 	stk.load_ambig(ambig_table=ambig)
 
-	bound = stk.analyze("\n".join(lines_to_process)).replace("|", "").replace('\n', '').strip()
+	bound = stk.analyze("\n".join(eval_orig_lines)).replace("|", "").replace('\n', '').strip()
 
 	scores, errs = binding_score(gold,bound)
 	print("Stacked binding scores:")
@@ -163,9 +195,12 @@ def bind_with_stacked_tokenizer(lines_to_process, gold):
 	return scores
 
 
-def bind_with_logistic(lines_to_process, gold, opts):
-	orig = "".join(lines_to_process)
-	check_identical_text(gold, orig)
+def bind_with_logistic(eval_orig_lines, eval_gold, train_orig_lines, train_gold, opts):
+	eval_orig = "".join(eval_orig_lines)
+	train_orig = "".join(train_orig_lines)
+
+	check_identical_text(eval_orig, eval_gold)
+	check_identical_text(train_orig, train_gold)
 
 	from binding.logistic import LogisticBindingModel
 	m = LogisticBindingModel(
@@ -174,11 +209,9 @@ def bind_with_logistic(lines_to_process, gold, opts):
 		orig_token_separator=ORIG_TOKEN_SEPARATOR,
 		binding_freq_file_path=opts.detok_table
 	)
-	g_train, o_train, g_test, o_test = test_train_split(gold, orig)
-	m.train(g_train, o_train)
-	pred = m.predict(o_test)
-
-	scores, errs = binding_score(g_test, pred)
+	m.train(train_gold, train_orig)
+	pred = m.predict(train_orig)
+	scores, errs = binding_score(train_gold, pred)
 	print("Logistic regression binding scores:")
 	print("Precision: %s" % scores["precision"])
 	print("Recall:    %s" % scores["recall"])
@@ -190,8 +223,8 @@ def bind_with_logistic(lines_to_process, gold, opts):
 	return scores
 
 
-def bind_with_lstm(lines_to_process, gold, opts):
-	txt = "".join(lines_to_process)
+def bind_with_lstm(eval_orig_lines, gold, opts):
+	txt = "".join(eval_orig_lines)
 	check_identical_text(gold, txt)
 
 	from binding.lstm import LSTMBindingModel
@@ -213,7 +246,6 @@ def bind_with_lstm(lines_to_process, gold, opts):
 		f.write("\n".join(errs) + "\n")
 
 	return scores
-
 
 
 # evaluation -----------------------------------------------------------------------------------------------------------
@@ -279,61 +311,92 @@ def binding_score(gold, pred):
 	return scores, errs
 
 
-def run_eval(gold_list, test_list, opts):
+def run_eval(eval_gold_list, eval_orig_list, train_gold_list, train_orig_list, opts):
 	strategy = opts.strategy
 
-	gold = read_file_list(gold_list)
-	test = read_file_list(test_list)
-	test = clean(test)
+	eval_gold = prepare_gold_text(eval_gold_list)
+	eval_orig_lines = prepare_orig_lines(eval_orig_list)
 
-	lines_to_process = []
-	for line in test.strip().split("\n"):
-		line = line.strip()
-		if len(line) == 0:
-			continue
-		if line.endswith("‐"):
-			line = line[:-1]
-		else:
-			line += " "
-		lines_to_process.append(line)
-
-	# Get gold data
-	lines = gold.split("\n")
-	gold = []
-	for line in lines:
-		if "orig_group=" in line:
-			grp = re.search('orig_group="([^"]*)"',line).group(1).strip()
-			gold.append(grp.strip())
-	gold = GOLD_TOKEN_SEPARATOR.join(gold)
+	train_gold = prepare_gold_text(train_gold_list)
+	train_orig_lines = prepare_orig_lines(train_orig_list)
 
 	if strategy == 'naive':
-		baseline_scores = bind_naive(lines_to_process, gold)
+		baseline_scores = bind_naive(eval_orig_lines, eval_gold)
 		return baseline_scores
 	elif strategy == 'stacked':
-		st_scores = bind_with_stacked_tokenizer(lines_to_process, gold)
+		st_scores = bind_with_stacked_tokenizer(eval_orig_lines, eval_gold)
 		return st_scores
 	elif strategy == 'logistic':
-		logistic_scores = bind_with_logistic(lines_to_process, gold, opts)
+		logistic_scores = bind_with_logistic(
+			eval_orig_lines,
+			eval_gold,
+			train_orig_lines,
+			train_gold,
+			opts
+		)
 		return logistic_scores
 	elif strategy == 'lstm':
-		lstm_scores = bind_with_lstm(lines_to_process, gold, opts)
+		lstm_scores = bind_with_lstm(eval_orig_lines, eval_gold, opts)
 		return lstm_scores
 	elif strategy == 'all':
-		_ = bind_naive(lines_to_process, gold)
-		_ = bind_with_logistic(lines_to_process, gold, opts)
-		#_ = bind_with_lstm(lines_to_process, gold, opts)
-		st_scores = bind_with_stacked_tokenizer(lines_to_process, gold)
+		_ = bind_naive(eval_orig_lines, eval_gold)
+		_ = bind_with_logistic(
+			eval_orig_lines,
+			eval_gold,
+			train_orig_lines,
+			train_gold,
+			opts
+		)
+		#_ = bind_with_lstm(eval_orig_lines, gold, opts)
+		st_scores = bind_with_stacked_tokenizer(eval_orig_lines, eval_gold)
 		return st_scores
 	else:
 		raise Exception("Unknown strategy: '{}'.\nMust be one of 'naive', 'stacked', 'logistic', 'lstm', 'all'."
 						.format(strategy))
 
 
+# command line interface -----------------------------------------------------------------------------------------------
+def resolve_file_lists(gold, orig, gold_dir, file_dir):
+	gold, orig = expand_abbreviations(gold, orig)
+
+	if os.path.isfile(orig):
+		orig = io.open(orig, encoding="utf8").read().strip().split("\n")
+		orig = [script_dir + file_dir + os.sep + f for f in orig]
+	else:
+		orig = list_files(orig)
+
+	if gold is not None:
+		if os.path.isfile(gold):
+			gold = io.open(gold, encoding="utf8").read().strip().split("\n")
+			gold = [script_dir + gold_dir + os.sep + f for f in gold]
+		else:
+			gold = list_files(gold)
+	else:
+		gold = glob(script_dir + gold_dir + os.sep + "*.tt")
+		gold = [os.path.basename(f) for f in gold if os.path.basename(f) not in orig]
+		gold = [script_dir + gold_dir + os.sep + f for f in gold]
+
+	return gold, orig
+
+
+def expand_abbreviations(gold_list, orig_list):
+	if orig_list.startswith("onno"):
+		orig_list = "onno_plain"
+		gold_list = "onno"
+	elif orig_list.startswith("cyrus"):
+		orig_list = "cyrus_plain"
+		gold_list = "cyrus"
+
+	return gold_list, orig_list
+
+
 def main():
 	p = ArgumentParser()
 	p.add_argument("strategy",default="all",help="binding strategy: one of 'naive', 'stacked', 'logistic', 'lstm', 'all'", nargs='?')
-	p.add_argument("--train_list",default="victor_tt",help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied")
-	p.add_argument("--test_list",default="victor_plain",help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'")
+	p.add_argument("--train_gold_list",default="onno",help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied")
+	p.add_argument("--train_orig_list",default="onno",help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'")
+	p.add_argument("--eval_gold_list",default="cyrus_tt",help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied")
+	p.add_argument("--eval_orig_list",default="cyrus_plain",help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'")
 	p.add_argument("--file_dir",default="plain",help="directory with plain text files")
 	p.add_argument("--gold_dir",default="unreleased",help="directory with gold .tt files")
 	p.add_argument(
@@ -344,33 +407,27 @@ def main():
 
 	opts = p.parse_args()
 
-	train_list = opts.train_list
-	test_list = opts.test_list
-	if opts.test_list.startswith("onno"):
-		test_list = "onno_plain"
-		train_list = "onno"
-	if opts.test_list.startswith("cyrus"):
-		test_list = "cyrus_plain"
-		train_list = "cyrus"
+	eval_gold_list, eval_orig_list = resolve_file_lists(
+		opts.eval_gold_list,
+		opts.eval_orig_list,
+		opts.gold_dir,
+		opts.file_dir,
+	)
 
-	if os.path.isfile(test_list):
-		test_list = io.open(opts.test_list,encoding="utf8").read().strip().split("\n")
-		test_list = [script_dir + opts.file_dir + os.sep + f for f in test_list]
-	else:
-		test_list = list_files(test_list)
+	train_gold_list, train_orig_list = resolve_file_lists(
+		opts.train_gold_list,
+		opts.train_orig_list,
+		opts.gold_dir,
+		opts.file_dir,
+	)
 
-	if train_list is not None:
-		if os.path.isfile(train_list):
-			train_list = io.open(train_list,encoding="utf8").read().strip().split("\n")
-			train_list = [script_dir + opts.gold_dir + os.sep + f for f in train_list]
-		else:
-			train_list = list_files(train_list)
-	else:
-		train_list = glob(script_dir + opts.gold_dir + os.sep + "*.tt")
-		train_list = [os.path.basename(f) for f in train_list if os.path.basename(f) not in test_list]
-		train_list = [script_dir + opts.gold_dir + os.sep + f for f in train_list]
-
-	scores = run_eval(train_list, test_list, opts)
+	scores = run_eval(
+		eval_gold_list,
+		eval_orig_list,
+		train_gold_list,
+		train_orig_list,
+		opts
+	)
 
 
 if __name__ == "__main__":
