@@ -174,6 +174,7 @@ def bind_naive(eval_orig_lines, gold):
 	print("Precision: %s" % scores["precision"])
 	print("Recall:    %s" % scores["recall"])
 	print("F1:	%s" % scores["f1"])
+	print()
 	return scores
 
 
@@ -188,6 +189,7 @@ def bind_with_stacked_tokenizer(eval_orig_lines, gold):
 	print("Precision: %s" % scores["precision"])
 	print("Recall:    %s" % scores["recall"])
 	print("F1:	%s" % scores["f1"])
+	print()
 
 	with io.open(err_dir + "errs_binding_stacked.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
@@ -207,7 +209,8 @@ def bind_with_logistic(eval_orig_lines, eval_gold, train_orig_lines, train_gold,
 		ignore_chars=IGNORE,
 		gold_token_separator=GOLD_TOKEN_SEPARATOR,
 		orig_token_separator=ORIG_TOKEN_SEPARATOR,
-		binding_freq_file_path=opts.detok_table
+		binding_freq_file_path=opts.detok_table,
+		pos_file_path=opts.pos_table
 	)
 	m.train(train_gold, train_orig)
 	pred = m.predict(train_orig)
@@ -216,6 +219,7 @@ def bind_with_logistic(eval_orig_lines, eval_gold, train_orig_lines, train_gold,
 	print("Precision: %s" % scores["precision"])
 	print("Recall:    %s" % scores["recall"])
 	print("F1:	      %s" % scores["f1"])
+	print()
 
 	with io.open(err_dir + "errs_binding_logistic.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
@@ -241,6 +245,7 @@ def bind_with_lstm(eval_orig_lines, gold, opts):
 	print("Precision: %s" % scores["precision"])
 	print("Recall:    %s" % scores["recall"])
 	print("F1:	      %s" % scores["f1"])
+	print()
 
 	with io.open(err_dir + "errs_binding_logistic.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
@@ -405,7 +410,12 @@ def main():
 	p.add_argument(
 		"--detok_table",
 		default=os.sep.join(['..', 'data', 'detok.tab']),
-		help="A TSV file containing bound groups, "
+		help="A TSV file containing bound groups and their binding frequencies"
+	)
+	p.add_argument(
+		"--pos_table",
+		default="copt_lemma_lex_cplx_2.8_cdo.tab", #TODO: change this
+		help="A TSV file containing POS information"
 	)
 
 	opts = p.parse_args()

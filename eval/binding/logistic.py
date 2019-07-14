@@ -17,6 +17,7 @@ class LogisticBindingModel:
 		gold_token_separator="_",
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
+		pos_file_path=None,
 	):
 		self._tokens = []
 		self._tokenizer = Tokenizer(
@@ -32,6 +33,7 @@ class LogisticBindingModel:
 			n_groups_right=n_groups_right,
 			orig_token_separator=" ",
 			binding_freq_file_path=binding_freq_file_path,
+			pos_file_path=pos_file_path,
 		)
 		self._postprocessor = Postprocessor(separator=gold_token_separator)
 
@@ -49,6 +51,8 @@ class LogisticBindingModel:
 				.add_bound_count()
 				.add_not_bound_count()
 				.add_prob_bound()
+				#.add_length()
+				.add_pos()
 				.features()
 		)
 
