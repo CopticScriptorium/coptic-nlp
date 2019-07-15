@@ -12,8 +12,8 @@ class LogisticBindingModel:
 	def __init__(
 		self,
 		ignore_chars=[],
-		n_groups_left=5,
-		n_groups_right=5,
+		n_groups_left=1,
+		n_groups_right=3,
 		gold_token_separator="_",
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
@@ -37,7 +37,7 @@ class LogisticBindingModel:
 		)
 		self._postprocessor = Postprocessor(separator=gold_token_separator)
 
-		self._m = LogisticRegression(random_state=0, solver='liblinear')
+		self._m = LogisticRegression(random_state=0, solver='liblinear', penalty='l2')
 
 	def _build_feature_matrix(self, text, orig_text=None, training=False):
 		"""Prepare X matrix for input to the model. text is gold if orig_text is
@@ -47,7 +47,7 @@ class LogisticBindingModel:
 		self._tokens = tokens
 		X = np.array(
 			self._featurizer
-				.load_tokens(tokens)
+				.load_tokens(tokens, training=training)
 				.add_bound_count()
 				.add_not_bound_count()
 				.add_prob_bound()
@@ -73,7 +73,7 @@ class LogisticBindingModel:
 		self._m.fit(X, y)
 
 	def predict(self, orig_text):
-		X = self._build_feature_matrix(orig_text, training=False)
+		X = self._build_feature_matrix(orig_text)
 		preds = self._m.predict(X).tolist()
 		output = self._postprocessor.insert_separators(self._tokens, preds)
 		return output
