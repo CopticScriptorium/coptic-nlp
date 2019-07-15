@@ -213,8 +213,8 @@ def bind_with_logistic(eval_orig_lines, eval_gold, train_orig_lines, train_gold,
 		pos_file_path=opts.pos_table
 	)
 	m.train(train_gold, train_orig)
-	pred = m.predict(train_orig)
-	scores, errs = binding_score(train_gold, pred)
+	pred = m.predict(eval_orig)
+	scores, errs = binding_score(eval_gold, pred)
 	print("Logistic regression binding scores:")
 	print("Precision: %s" % scores["precision"])
 	print("Recall:    %s" % scores["recall"])
@@ -353,8 +353,7 @@ def run_eval(eval_gold_list, eval_orig_list, train_gold_list, train_orig_list, o
 			opts
 		)
 		#_ = bind_with_lstm(eval_orig_lines, gold, opts)
-		st_scores = bind_with_stacked_tokenizer(eval_orig_lines, eval_gold)
-		return st_scores
+		_ = bind_with_stacked_tokenizer(eval_orig_lines, eval_gold)
 	else:
 		raise Exception("Unknown strategy: '{}'.\nMust be one of 'naive', 'stacked', 'logistic', 'lstm', 'all'."
 						.format(strategy))
@@ -400,13 +399,34 @@ def expand_abbreviations(gold_list, orig_list):
 
 def main():
 	p = ArgumentParser()
-	p.add_argument("strategy",default="all",help="binding strategy: one of 'naive', 'stacked', 'logistic', 'lstm', 'all'", nargs='?')
-	p.add_argument("--train_gold_list",default="onno",help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied")
-	p.add_argument("--train_orig_list",default="onno",help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'")
-	p.add_argument("--eval_gold_list",default="cyrus_tt",help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied")
-	p.add_argument("--eval_orig_list",default="cyrus_plain",help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'")
-	p.add_argument("--file_dir",default="plain",help="directory with plain text files")
-	p.add_argument("--gold_dir",default="unreleased",help="directory with gold .tt files")
+	p.add_argument(
+		"strategy",
+		default="all",
+		help="binding strategy: one of 'naive', 'stacked', 'logistic', 'lstm', 'all'",
+		nargs='?'
+	)
+	p.add_argument(
+		"--train_gold_list",
+		default="onno",
+		help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied"
+	)
+	p.add_argument(
+		"--train_orig_list",
+		default="onno",
+		help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'"
+	)
+	p.add_argument(
+		"--eval_gold_list",
+		default="cyrus_tt",
+		help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied"
+	)
+	p.add_argument(
+		"--eval_orig_list",
+		default="cyrus_plain",
+		help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'"
+	)
+	p.add_argument("--file_dir", default="plain", help="directory with plain text files")
+	p.add_argument("--gold_dir", default="unreleased", help="directory with gold .tt files")
 	p.add_argument(
 		"--detok_table",
 		default=os.sep.join(['..', 'data', 'detok.tab']),
@@ -434,7 +454,7 @@ def main():
 		opts.file_dir,
 	)
 
-	scores = run_eval(
+	run_eval(
 		eval_gold_list,
 		eval_orig_list,
 		train_gold_list,
