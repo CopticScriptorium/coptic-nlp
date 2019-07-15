@@ -28,17 +28,24 @@ def exec_via_temp(input_text, command_params, workdir=""):
 		return exec_out
 
 
-def fs_tokenize(bound_groups):
+def fs_tokenize(bound_groups,rule_nums=False):
 
-	cmd = ["perl",os.path.dirname(os.path.realpath(__file__)) + os.sep + "tokenize_perl.pl","tempfilename"]
+	if rule_nums:
+		cmd = ["perl",os.path.dirname(os.path.realpath(__file__)) + os.sep + "tokenize_perl.pl","-r","tempfilename"]
+	else:
+		cmd = ["perl",os.path.dirname(os.path.realpath(__file__)) + os.sep + "tokenize_perl.pl","tempfilename"]
 	data = "\n".join(bound_groups)
 	tokenized = exec_via_temp(data,cmd,os.path.dirname(os.path.realpath(__file__)) + os.sep)
 	#if PY3:
 	tokenized = tokenized.decode("utf8")
 
-	tokenized = tokenized.replace("\r","").strip().split("\n")
-	return tokenized
-
+	if rule_nums:
+		tokenized = tokenized.replace("\r","").strip().split("\n")
+		rules, tokenized = zip(*[line.split("\t") for line in tokenized])
+		return list(tokenized), list([int(r) for r in rules])
+	else:
+		tokenized = tokenized.replace("\r","").strip().split("\n")
+		return tokenized
 
 if __name__ == "__main__":
 	groups = io.open(sys.argv[1],encoding="utf8").read().replace("\r","").split("\n")
