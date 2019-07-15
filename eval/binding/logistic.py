@@ -42,9 +42,9 @@ class LogisticBindingModel:
 		self._m = LogisticRegressionCV(
 			random_state=0,
 			fit_intercept=True,
-			max_iter=1000,
+			max_iter=100,
 			solver='liblinear',
-			penalty='l1',
+			penalty='l2',
 			cv=5
 		)
 

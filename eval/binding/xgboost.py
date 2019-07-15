@@ -78,7 +78,7 @@ class XGBoostBindingModel:
 				.load_tokens(self._tokens)
 				.labels()
 		)
-		return np.ravel(vec)
+		return vec
 
 	def train(self, gold_text, orig_text=None):
 		X = self._build_feature_matrix(gold_text, orig_text=orig_text, training=True)
