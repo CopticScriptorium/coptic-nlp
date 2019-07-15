@@ -12,8 +12,8 @@ class LogisticBindingModel:
 	def __init__(
 		self,
 		ignore_chars=[],
-		n_groups_left=1,
-		n_groups_right=2,
+		n_groups_left=5,
+		n_groups_right=5,
 		gold_token_separator="_",
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
@@ -51,8 +51,10 @@ class LogisticBindingModel:
 				.add_bound_count()
 				.add_not_bound_count()
 				.add_prob_bound()
-				#.add_length()
+				.add_length()
 				.add_pos()
+				.add_first_letter()
+				.add_last_letter()
 				.features()
 		)
 

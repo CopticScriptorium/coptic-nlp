@@ -1,7 +1,8 @@
 import os
 import io
+import types
 
-from .const import OUT_OF_BOUNDS, UNK
+from .const import UNKNOWN_CHAR
 
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder
@@ -66,6 +67,46 @@ def read_pos_file(path):
 	return table
 
 
+def windowed_feature(out_of_window_value=None):
+	"""A decorator to simplify writing windowed features. Given a function that is given the arguments
+	self, token, and i and returns either a feature or a list of features, it iterates that function
+	over a token window dictated by the parameters self._n_groups_right and self._n_groups_left. Also
+	returns self to maintain the Featurizer's fluent API.
+
+	If the out of window value is callable, it is called on self."""
+
+	# inner_decorator is needed so we can give windowed_feature parameters
+	# see http://scottlobdell.me/2015/04/decorators-arguments-python/
+	def inner_decorator(func):
+
+		def wrapper(self, *args, **kwargs):
+			self._feat_cache = {}
+			for i in range(len(self._tokens)):
+				for j in range(i - self._n_groups_left, i + self._n_groups_right + 1):
+					# build the feature
+					if j not in range(len(self._tokens)):
+						if callable(out_of_window_value):
+							feature = out_of_window_value(self)
+						else:
+							feature = out_of_window_value
+					elif j in self._feat_cache:
+						feature = self._feat_cache[j]
+					else:
+						token = self._tokens[j]
+						feature = func(self, token, j, *args, **kwargs)
+						self._feat_cache[j] = feature
+
+					# add it
+					if type(feature) == list:
+						self._feats[i] += feature
+					else:
+						self._feats[i] += [feature]
+			return self
+
+		return wrapper
+	return inner_decorator
+
+
 class Featurizer:
 	"""Produces token-level featurizations."""
 	def __init__(
@@ -89,12 +130,29 @@ class Featurizer:
 		self._pos_table = pos_table
 		self._pos_encoder = OneHotEncoder(handle_unknown='ignore')
 		self._pos_encoder.fit(np.array(list(pos_table.values()) + [UNKNOWN_POS]).reshape(-1, 1))
+		# convenience function for encoding single values--monkey patch it onto the instance
+		def transform_single(self, x):
+			return self.transform(np.array(x).reshape(-1, 1)).todense().tolist()[0]
+		self._pos_encoder.transform_single = types.MethodType(transform_single, self._pos_encoder)
+
+		self._char_encoder = None
 
 		self._tokens = []
 		self._feats = []
+		self._feat_cache = {}
+
+	def _init_char_encoder(self, tokens):
+		vocab = list(set("".join([t.orig for t in tokens])))
+		self._char_encoder = OneHotEncoder(handle_unknown='ignore')
+		self._char_encoder.fit(np.array(vocab + [UNKNOWN_CHAR]).reshape(-1, 1))
+		# convenience function for encoding single values--monkey patch it onto the instance
+		def transform_single(self, x):
+			return self.transform(np.array(x).reshape(-1, 1)).todense().tolist()[0]
+		self._char_encoder.transform_single = types.MethodType(transform_single, self._char_encoder)
 
 	def load_tokens(self, tokens):
 		self._tokens = tokens
+		self._init_char_encoder(tokens)
 
 		# initialize a feature list for each token
 		self._feats = []
@@ -109,48 +167,47 @@ class Featurizer:
 	def labels(self):
 		return [1 if t.gold_bound else 0 for t in self._tokens]
 
-	def add_bound_count(self):
-		for i, tok in enumerate(self._tokens):
-			orig = tok.text(ignore=self._ignore_chars)
-			if orig in self._binding_freq_table:
-				self._feats[i].append(self._binding_freq_table[orig].n_bound)
-			else:
-				self._feats[i].append(0)
+	@windowed_feature(out_of_window_value=0)
+	def add_bound_count(self, token, i):
+		orig = token.text(ignore=self._ignore_chars)
+		if orig in self._binding_freq_table:
+			return self._binding_freq_table[orig].n_bound
+		else:
+			return 0
 
-		return self
+	@windowed_feature(out_of_window_value=0)
+	def add_not_bound_count(self, token, i):
+		orig = token.text(ignore=self._ignore_chars)
+		if orig in self._binding_freq_table:
+			return self._binding_freq_table[orig].n_not_bound
+		else:
+			return 0
 
-	def add_not_bound_count(self):
-		for i, tok in enumerate(self._tokens):
-			orig = tok.text(ignore=self._ignore_chars)
-			if orig in self._binding_freq_table:
-				self._feats[i].append(self._binding_freq_table[orig].n_not_bound)
-			else:
-				self._feats[i].append(0)
+	@windowed_feature(out_of_window_value=0.5) # TODO: should this be 0.5?
+	def add_prob_bound(self, token, i):
+		orig = token.text(ignore=self._ignore_chars)
+		if orig in self._binding_freq_table:
+			return self._binding_freq_table[orig].p_bound
+		else:
+			return 0.5 # TODO: see above
 
-		return self
+	@windowed_feature(out_of_window_value=0)
+	def add_length(self, token, i):
+		return len(token.text(ignore=self._ignore_chars))
 
-	def add_prob_bound(self):
-		for i, tok in enumerate(self._tokens):
-			orig = tok.text(ignore=self._ignore_chars)
-			if orig in self._binding_freq_table:
-				self._feats[i].append(self._binding_freq_table[orig].p_bound)
-			else:
-				self._feats[i].append(0.5) # TODO: better way to handle nulls?
+	@windowed_feature(out_of_window_value=lambda self: self._pos_encoder.transform_single(UNKNOWN_POS))
+	def add_pos(self, token, i):
+		orig = token.text(ignore=self._ignore_chars)
+		pos = self._pos_table[orig] if orig in self._pos_table else UNKNOWN_POS
+		feature = self._pos_encoder.transform_single(pos)
+		return feature
 
-		return self
+	@windowed_feature(out_of_window_value=lambda self: self._char_encoder.transform_single(UNKNOWN_CHAR))
+	def add_first_letter(self, token, i):
+		orig = token.text(ignore=self._ignore_chars)
+		return self._char_encoder.transform_single(orig[0])
 
-	def add_length(self):
-		for i, tok in enumerate(self._tokens):
-			orig = tok.text(ignore=self._ignore_chars)
-			self._feats[i].append(len(orig))
-
-		return self
-
-	def add_pos(self):
-		for i, tok in enumerate(self._tokens):
-			orig = tok.text(ignore=self._ignore_chars)
-			pos = self._pos_table[orig] if orig in self._pos_table else UNKNOWN_POS
-			pos = np.array(pos).reshape(-1, 1)
-			self._feats[i] += self._pos_encoder.transform(pos).todense().tolist()[0]
-
-		return self
+	@windowed_feature(out_of_window_value=lambda self: self._char_encoder.transform_single(UNKNOWN_CHAR))
+	def add_last_letter(self, token, i):
+		orig = token.text(ignore=self._ignore_chars)
+		return self._char_encoder.transform_single(orig[-1])
