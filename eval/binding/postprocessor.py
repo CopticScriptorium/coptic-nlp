@@ -11,4 +11,8 @@ class Postprocessor:
 			if pred == 0:
 				accum.append(self._sep)
 
-		return "".join(accum)
+		output = "".join(accum)
+		if output[-1] == self._sep:
+			output = output[:-1]
+
+		return output

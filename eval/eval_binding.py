@@ -213,8 +213,8 @@ def bind_with_logistic(eval_orig_lines, eval_gold, train_orig_lines, train_gold,
 		pos_file_path=opts.pos_table
 	)
 	m.train(train_gold, train_orig)
-	pred = m.predict(train_orig)
-	scores, errs = binding_score(train_gold, pred)
+	pred = m.predict(eval_orig)
+	scores, errs = binding_score(eval_gold, pred)
 	print("Logistic regression binding scores:")
 	print("Precision: %s" % scores["precision"])
 	print("Recall:    %s" % scores["recall"])
@@ -222,6 +222,36 @@ def bind_with_logistic(eval_orig_lines, eval_gold, train_orig_lines, train_gold,
 	print()
 
 	with io.open(err_dir + "errs_binding_logistic.tab", 'w', encoding="utf8") as f:
+		f.write("\n".join(errs) + "\n")
+
+	return scores
+
+
+def bind_with_xgboost(eval_orig_lines, eval_gold, train_orig_lines, train_gold, opts):
+	eval_orig = "".join(eval_orig_lines)
+	train_orig = "".join(train_orig_lines)
+
+	check_identical_text(eval_orig, eval_gold)
+	check_identical_text(train_orig, train_gold)
+
+	from binding.xgboost import XGBoostBindingModel
+	m = XGBoostBindingModel(
+		ignore_chars=IGNORE,
+		gold_token_separator=GOLD_TOKEN_SEPARATOR,
+		orig_token_separator=ORIG_TOKEN_SEPARATOR,
+		binding_freq_file_path=opts.detok_table,
+		pos_file_path=opts.pos_table
+	)
+	m.train(train_gold, train_orig)
+	pred = m.predict(eval_orig)
+	scores, errs = binding_score(eval_gold, pred)
+	print("XGBoost regression binding scores:")
+	print("Precision: %s" % scores["precision"])
+	print("Recall:    %s" % scores["recall"])
+	print("F1:	      %s" % scores["f1"])
+	print()
+
+	with io.open(err_dir + "errs_binding_xgboost.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
 
 	return scores
@@ -340,6 +370,15 @@ def run_eval(eval_gold_list, eval_orig_list, train_gold_list, train_orig_list, o
 			opts
 		)
 		return logistic_scores
+	elif strategy == 'xgboost':
+		xgboost_scores = bind_with_xgboost(
+			eval_orig_lines,
+			eval_gold,
+			train_orig_lines,
+			train_gold,
+			opts
+		)
+		return xgboost_scores
 	elif strategy == 'lstm':
 		lstm_scores = bind_with_lstm(eval_orig_lines, eval_gold, opts)
 		return lstm_scores
@@ -352,11 +391,17 @@ def run_eval(eval_gold_list, eval_orig_list, train_gold_list, train_orig_list, o
 			train_gold,
 			opts
 		)
+		_ = bind_with_xgboost(
+			eval_orig_lines,
+			eval_gold,
+			train_orig_lines,
+			train_gold,
+			opts
+		)
 		#_ = bind_with_lstm(eval_orig_lines, gold, opts)
-		st_scores = bind_with_stacked_tokenizer(eval_orig_lines, eval_gold)
-		return st_scores
+		_ = bind_with_stacked_tokenizer(eval_orig_lines, eval_gold)
 	else:
-		raise Exception("Unknown strategy: '{}'.\nMust be one of 'naive', 'stacked', 'logistic', 'lstm', 'all'."
+		raise Exception("Unknown strategy: '{}'.\nMust be one of 'naive', 'stacked', 'logistic', 'xgboost', 'lstm', 'all'."
 						.format(strategy))
 
 
@@ -400,13 +445,34 @@ def expand_abbreviations(gold_list, orig_list):
 
 def main():
 	p = ArgumentParser()
-	p.add_argument("strategy",default="all",help="binding strategy: one of 'naive', 'stacked', 'logistic', 'lstm', 'all'", nargs='?')
-	p.add_argument("--train_gold_list",default="onno",help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied")
-	p.add_argument("--train_orig_list",default="onno",help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'")
-	p.add_argument("--eval_gold_list",default="cyrus_tt",help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied")
-	p.add_argument("--eval_orig_list",default="cyrus_plain",help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'")
-	p.add_argument("--file_dir",default="plain",help="directory with plain text files")
-	p.add_argument("--gold_dir",default="unreleased",help="directory with gold .tt files")
+	p.add_argument(
+		"strategy",
+		default="all",
+		help="binding strategy: one of 'naive', 'stacked', 'logistic', 'xgboost', 'lstm', 'all'",
+		nargs='?'
+	)
+	p.add_argument(
+		"--train_gold_list",
+		default="onno",
+		help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied"
+	)
+	p.add_argument(
+		"--train_orig_list",
+		default="onno",
+		help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'"
+	)
+	p.add_argument(
+		"--eval_gold_list",
+		default="cyrus_tt",
+		help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied"
+	)
+	p.add_argument(
+		"--eval_orig_list",
+		default="cyrus_plain",
+		help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'"
+	)
+	p.add_argument("--file_dir", default="plain", help="directory with plain text files")
+	p.add_argument("--gold_dir", default="unreleased", help="directory with gold .tt files")
 	p.add_argument(
 		"--detok_table",
 		default=os.sep.join(['..', 'data', 'detok.tab']),
@@ -434,7 +500,7 @@ def main():
 		opts.file_dir,
 	)
 
-	scores = run_eval(
+	run_eval(
 		eval_gold_list,
 		eval_orig_list,
 		train_gold_list,

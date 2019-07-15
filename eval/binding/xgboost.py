@@ -1,20 +1,19 @@
 from __future__ import division
 
 import numpy as np
-from sklearn.linear_model import LogisticRegressionCV, LassoCV
-from sklearn.svm import LinearSVC
+from xgboost import XGBClassifier
 
 from .tokenizer import Tokenizer
 from .featurizer import Featurizer
 from .postprocessor import Postprocessor
 
 
-class LogisticBindingModel:
+class XGBoostBindingModel:
 	def __init__(
 		self,
 		ignore_chars=[],
-		n_groups_left=1,
-		n_groups_right=1,
+		n_groups_left=2,
+		n_groups_right=4,
 		gold_token_separator="_",
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
@@ -35,18 +34,11 @@ class LogisticBindingModel:
 			orig_token_separator=" ",
 			binding_freq_file_path=binding_freq_file_path,
 			pos_file_path=pos_file_path,
-			encoder='one_hot'
+			encoder='label'
 		)
 		self._postprocessor = Postprocessor(separator=gold_token_separator)
 
-		self._m = LogisticRegressionCV(
-			random_state=0,
-			fit_intercept=True,
-			max_iter=1000,
-			solver='liblinear',
-			penalty='l1',
-			cv=5
-		)
+		self._m = XGBClassifier()
 
 	def _build_feature_matrix(self, text, orig_text=None, training=False):
 		"""Prepare X matrix for input to the model. text is gold if orig_text is
