@@ -103,6 +103,9 @@ def list_files(alias="silver",file_dir=None,parse=False):
 		if alias.lower() == "cyrus":
 			file_dir = eval_dir + "unreleased" + os.sep
 			file_list = [file_dir + "BritMusOriental6783_part1.tt",file_dir + "BritMusOriental6783_part2.tt"]
+		elif alias.lower() == "ephraim_tt":
+			file_dir = eval_dir + "unreleased" + os.sep
+			file_list = [file_dir + "BritMusOriental6783_63b_67b.tt"]
 		elif alias.lower().startswith("onno_plain"):  # onnophrius
 			file_dir = eval_dir + "plain" + os.sep
 			file_list = [file_dir + "apa_onnophrius_part1.txt"]
@@ -112,6 +115,9 @@ def list_files(alias="silver",file_dir=None,parse=False):
 		elif alias.lower() == "cyrus_plain":
 			file_dir = eval_dir + "plain" + os.sep
 			file_list = [file_dir + "BritMusOriental6783_part1.txt",file_dir + "BritMusOriental6783_part2.txt"]
+		elif alias.lower() == "ephraim_plain":
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "BritMusOriental6783_63b_67b.txt"]
 		elif alias.lower() == "ud_test":
 			file_list = io.open(eval_dir + "test_list.tab").read().strip().split("\n")
 			file_list = [file_dir + f for f in file_list]
