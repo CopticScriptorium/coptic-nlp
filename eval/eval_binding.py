@@ -305,7 +305,7 @@ def binding_score(gold, pred):
 				gold_end = gold_reached +2
 			if pred_reached < len(pred_groups) -1:
 				pred_end = pred_reached +2
-			errs.append(" ".join(gold_groups[gold_start:gold_end]) + "\t" + " ".join(pred_groups[pred_start:pred_end]))
+			errs.append("_".join(gold_groups[gold_start:gold_end]) + "\t" + "_".join(pred_groups[pred_start:pred_end]))
 
 	scores = {
 		"f1": f1_score(bin_gold,bin_pred),
