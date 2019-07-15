@@ -5,7 +5,7 @@ import types
 from .const import UNKNOWN_CHAR
 
 import numpy as np
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 
 UNKNOWN_POS = "UNKNOWN"
 
@@ -81,8 +81,10 @@ def windowed_feature(out_of_window_value=None):
 
 		def wrapper(self, *args, **kwargs):
 			feat_cache = {}
+			n_groups_left = ("n_groups_left" in kwargs and kwargs.pop("n_groups_left")) or self._n_groups_left
+			n_groups_right = ("n_groups_right" in kwargs and kwargs.pop("n_groups_right")) or self._n_groups_right
 			for i in range(len(self._tokens)):
-				for j in range(i - self._n_groups_left, i + self._n_groups_right + 1):
+				for j in range(i - n_groups_left, i + n_groups_right + 1):
 					# build the feature
 					if j not in range(len(self._tokens)):
 						if callable(out_of_window_value):
@@ -107,6 +109,14 @@ def windowed_feature(out_of_window_value=None):
 	return inner_decorator
 
 
+# convenience function for encoding single values--monkey patch it onto an instance of an encoder
+def transform_single(self, x):
+	a = self.transform(np.array(x).reshape(-1, 1))
+	if type(a) != np.ndarray:
+		a = a.todense()
+	return a.tolist()[0]
+
+
 class Featurizer:
 	"""Produces token-level featurizations."""
 	def __init__(
@@ -117,6 +127,7 @@ class Featurizer:
 			orig_token_separator=" ",
 			binding_freq_file_path=None,
 			pos_file_path=None,
+			encoder='one_hot',
 	):
 		self._ignore_chars = ignore_chars
 		self._n_groups_left = n_groups_left
@@ -125,30 +136,25 @@ class Featurizer:
 
 		self._binding_freq_table = read_binding_freq_file(binding_freq_file_path)
 
+		assert encoder in ['one_hot', 'label'], "Encoder must be one of 'one_hot', 'label'."
 		# pos encoding
 		pos_table = read_pos_file(pos_file_path)
 		self._pos_table = pos_table
-		self._pos_encoder = OneHotEncoder(handle_unknown='ignore')
+		self._pos_encoder = OneHotEncoder(handle_unknown='ignore') if encoder == 'one_hot' else LabelEncoder()
 		self._pos_vocab = list(pos_table.values()) + [UNKNOWN_POS]
 		self._pos_encoder.fit(np.array(self._pos_vocab).reshape(-1, 1))
-		# convenience function for encoding single values--monkey patch it onto the instance
-		def transform_single(self, x):
-			return self.transform(np.array(x).reshape(-1, 1)).todense().tolist()[0]
 		self._pos_encoder.transform_single = types.MethodType(transform_single, self._pos_encoder)
 
+		# char encoding
 		self._char_vocab = []
-		self._char_encoder = None
+		self._char_encoder = OneHotEncoder(handle_unknown='ignore') if encoder == 'one_hot' else LabelEncoder()
 
 		self._tokens = []
 		self._feats = []
 
 	def _init_char_encoder(self, tokens):
 		self._char_vocab = list(set("".join([t.orig for t in tokens]))) + [UNKNOWN_CHAR]
-		self._char_encoder = OneHotEncoder(handle_unknown='ignore')
 		self._char_encoder.fit(np.array(self._char_vocab).reshape(-1, 1))
-		# convenience function for encoding single values--monkey patch it onto the instance
-		def transform_single(self, x):
-			return self.transform(np.array(x).reshape(-1, 1)).todense().tolist()[0]
 		self._char_encoder.transform_single = types.MethodType(transform_single, self._char_encoder)
 
 	def load_tokens(self, tokens, training=False):
@@ -193,6 +199,52 @@ class Featurizer:
 		else:
 			return 0.5 # TODO: see above
 
+	# the next 3 features: like the 3 above, except for the ith token and its following token combined
+	@windowed_feature(out_of_window_value=0)
+	def add_combined_token_bound_count(self, token, i):
+		if i + 1 == len(self._tokens):
+			return 0
+		next_token = self._tokens[i + 1]
+		combined_text = token.text(ignore=self._ignore_chars) + next_token.text(ignore=self._ignore_chars)
+		if combined_text in  self._binding_freq_table:
+			return self._binding_freq_table[combined_text].n_bound
+		else:
+			return 0
+
+	@windowed_feature(out_of_window_value=0)
+	def add_combined_token_not_bound_count(self, token, i):
+		if i + 1 == len(self._tokens):
+			return 0
+		next_token = self._tokens[i + 1]
+		combined_text = token.text(ignore=self._ignore_chars) + next_token.text(ignore=self._ignore_chars)
+		if combined_text in  self._binding_freq_table:
+			return self._binding_freq_table[combined_text].n_not_bound
+		else:
+			return 0
+
+	@windowed_feature(out_of_window_value=0.5) #TODO: see above
+	def add_combined_token_prob_bound(self, token, i):
+		if i + 1 == len(self._tokens):
+			return 0.5 #TODO: see above
+		next_token = self._tokens[i + 1]
+		combined_text = token.text(ignore=self._ignore_chars) + next_token.text(ignore=self._ignore_chars)
+		if combined_text in  self._binding_freq_table:
+			return self._binding_freq_table[combined_text].p_bound
+		else:
+			return 0.5 #TODO: see above
+
+	@windowed_feature(out_of_window_value=0)
+	def add_count_if_bound(self, token, i):
+		if i + 1 == len(self._tokens):
+			return 0
+		next_token = self._tokens[i + 1]
+		combined_text = token.text(ignore=self._ignore_chars) + next_token.text(ignore=self._ignore_chars)
+		if combined_text in  self._binding_freq_table:
+			return self._binding_freq_table[combined_text].n_bound
+		else:
+			return 0
+
+
 	@windowed_feature(out_of_window_value=0)
 	def add_length(self, token, i):
 		return len(token.text(ignore=self._ignore_chars))
@@ -213,3 +265,4 @@ class Featurizer:
 	def add_last_letter(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
 		return self._char_encoder.transform_single(orig[-1] if orig[-1] in self._char_vocab else UNKNOWN_CHAR)
+
