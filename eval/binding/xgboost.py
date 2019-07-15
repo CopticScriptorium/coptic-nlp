@@ -12,8 +12,8 @@ class XGBoostBindingModel:
 	def __init__(
 		self,
 		ignore_chars=[],
-		n_groups_left=2,
-		n_groups_right=4,
+		n_groups_left=1,
+		n_groups_right=3,
 		gold_token_separator="_",
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
@@ -38,7 +38,15 @@ class XGBoostBindingModel:
 		)
 		self._postprocessor = Postprocessor(separator=gold_token_separator)
 
-		self._m = XGBClassifier()
+		# cf: https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier
+		self._m = XGBClassifier(
+			random_state=0,
+			n_estimators=200,
+			colsample_bytree=0.9,
+			colsample_bylevel=0.9,
+			colsample_bynode=0.9,
+			booster='gbtree'
+		)
 
 	def _build_feature_matrix(self, text, orig_text=None, training=False):
 		"""Prepare X matrix for input to the model. text is gold if orig_text is
@@ -51,12 +59,12 @@ class XGBoostBindingModel:
 				.load_tokens(tokens, training=training)
 				.add_bound_count()
 				.add_not_bound_count()
-				.add_prob_bound(n_groups_left=1, n_groups_right=2)
-				.add_combined_token_bound_count(n_groups_left=1, n_groups_right=1)
-				.add_combined_token_not_bound_count(n_groups_left=1, n_groups_right=1)
-				.add_combined_token_prob_bound(n_groups_left=1, n_groups_right=1)
-				.add_length(n_groups_left=2, n_groups_right=4)
-				.add_pos(n_groups_left=1, n_groups_right=2)
+				.add_prob_bound()
+				.add_combined_token_bound_count()
+				.add_combined_token_not_bound_count()
+				.add_combined_token_prob_bound()
+				.add_length()
+				.add_pos()
 				.add_first_letter(n_groups_left=0, n_groups_right=1)
 				.add_last_letter(n_groups_left=1, n_groups_right=0)
 				.features()
@@ -65,11 +73,12 @@ class XGBoostBindingModel:
 		return X
 
 	def _build_label_vector(self):
-		return np.array(
+		vec = np.array(
 			self._featurizer
 				.load_tokens(self._tokens)
 				.labels()
 		)
+		return np.ravel(vec)
 
 	def train(self, gold_text, orig_text=None):
 		X = self._build_feature_matrix(gold_text, orig_text=orig_text, training=True)

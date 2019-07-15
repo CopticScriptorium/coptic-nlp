@@ -244,7 +244,6 @@ class Featurizer:
 		else:
 			return 0
 
-
 	@windowed_feature(out_of_window_value=0)
 	def add_length(self, token, i):
 		return len(token.text(ignore=self._ignore_chars))
