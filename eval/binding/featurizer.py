@@ -80,7 +80,7 @@ def windowed_feature(out_of_window_value=None):
 	def inner_decorator(func):
 
 		def wrapper(self, *args, **kwargs):
-			self._feat_cache = {}
+			feat_cache = {}
 			for i in range(len(self._tokens)):
 				for j in range(i - self._n_groups_left, i + self._n_groups_right + 1):
 					# build the feature
@@ -89,12 +89,12 @@ def windowed_feature(out_of_window_value=None):
 							feature = out_of_window_value(self)
 						else:
 							feature = out_of_window_value
-					elif j in self._feat_cache:
-						feature = self._feat_cache[j]
+					elif j in feat_cache:
+						feature = feat_cache[j]
 					else:
 						token = self._tokens[j]
 						feature = func(self, token, j, *args, **kwargs)
-						self._feat_cache[j] = feature
+						feat_cache[j] = feature
 
 					# add it
 					if type(feature) == list:
@@ -139,7 +139,6 @@ class Featurizer:
 
 		self._tokens = []
 		self._feats = []
-		self._feat_cache = {}
 
 	def _init_char_encoder(self, tokens):
 		vocab = list(set("".join([t.orig for t in tokens])))
