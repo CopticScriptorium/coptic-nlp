@@ -3084,13 +3084,21 @@
 </orig_group>
 <orig_group orig_group="ⲛ̄ϥⲓ">
 <norm_group norm_group="ⲛϥⲓ">
-<orig orig="ⲛ̄ϥⲓ">
-<norm norm="ⲛϥⲓ">
-<lemma lemma="ⲛϥⲓ">
-<pos pos="ADV">
+<orig orig="ⲛ̄">
+<norm norm="ⲛ">
+<lemma lemma="ⲛ">
+<pos pos="PREP">
 ⲛ̄
+</pos>
+</lemma>
+</norm>
+</orig>
 </lb_n>
 <lb_n lb_n="5">
+<orig orig="ϥⲓ">
+<norm norm="ϥⲓ">
+<lemma lemma="ϥⲓ">
+<pos pos="N">
 ϥⲓ
 </pos>
 </lemma>

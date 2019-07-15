@@ -5629,9 +5629,9 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲙ̄ⲡⲁⲧⲉⲕⲁⲛⲁⲭⲱⲣⲉⲓ">
-<norm_group norm_group="ⲙⲡⲁⲧⲉⲕⲁⲛⲁⲭⲱⲣⲉⲓ">
+<norm_group norm_group="ⲙⲡⲁⲧⲕⲁⲛⲁⲭⲱⲣⲉⲓ">
 <orig orig="ⲙ̄ⲡⲁⲧⲉ">
-<norm xml:id="u1325" func="aux" head="#u1327" pos="ANY" lemma="ⲙⲡⲁⲧⲉ" norm="ⲙⲡⲁⲧⲉ">
+<norm xml:id="u1325" func="aux" head="#u1327" pos="ANY" lemma="ⲙⲡⲁⲧⲉ" norm="ⲙⲡⲁⲧ">
 ⲙ̄ⲡⲁⲧⲉ
 </norm>
 </orig>

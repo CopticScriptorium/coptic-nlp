@@ -827,7 +827,7 @@ class RFTokenizer:
 			joblib.dump((clf, num_labels, cat_labels, multicol_dict, plain_dict_pos_lookup, freqs, conf_file_parser), self.lang + ".sm" + str(sys.version_info[0]), compress=3)
 			print("o Dumped trained model to " + self.lang + ".sm" + str(sys.version_info[0]))
 
-	def rf_tokenize(self, data, sep="|", indices=None):
+	def rf_tokenize(self, data, sep="|", indices=None, proba=False):
 		"""
 		Main tokenizer routine
 
@@ -903,9 +903,16 @@ class RFTokenizer:
 		data_x = multicol_transform(data_x,multicol_dict["columns"],multicol_dict["all_encoders_"])
 		prepped = data_x[cat_labels+num_labels].values
 
-		p = tokenizer.predict(prepped)
+		if proba:
+			probas = tokenizer.predict_proba(prepped)
+			p = [int(p[1]>0.5) for p in probas]
+			probs = np.split(np.array([p[1] for p in probas]), word_lengths)
+		else:
+			p = tokenizer.predict(prepped)
 		p_words = np.split(p, word_lengths)
 		out_tokenized = []
+		out_probas = []
+		out_proba = 0.0
 
 		for word_idx, segmentation in enumerate(p_words):
 			tokenized = ""
@@ -919,12 +926,20 @@ class RFTokenizer:
 					for f, r in self.regex_tok:
 						word = f.sub(r, word)
 					tokenized += word
+					if proba:
+						out_proba = 1.0
 				else:
+					out_proba = 1.0
+					if proba:
+						segmentation_probas = probs[word_idx]
 					for idx, bit in enumerate(segmentation):
 						if PY3:
 							tokenized += data[word_idx][idx]
 						else:
 							tokenized += data[word_idx][idx]
+						if proba:
+							if segmentation_probas[idx] < out_proba:
+								out_proba = segmentation_probas[idx]
 						if bit == 1:
 							if self.enforce_allowed:
 								neg_idx = -1*(len(data[word_idx])-idx-1)
@@ -944,8 +959,13 @@ class RFTokenizer:
 										continue
 							tokenized += sep
 			out_tokenized.append(tokenized)
+			if proba:
+				out_probas.append(out_proba)
 
-		return out_tokenized
+		if proba:
+			return out_tokenized, out_probas
+		else:
+			return out_tokenized
 
 
 if __name__ == "__main__":
