@@ -129,29 +129,32 @@ class Featurizer:
 		pos_table = read_pos_file(pos_file_path)
 		self._pos_table = pos_table
 		self._pos_encoder = OneHotEncoder(handle_unknown='ignore')
-		self._pos_encoder.fit(np.array(list(pos_table.values()) + [UNKNOWN_POS]).reshape(-1, 1))
+		self._pos_vocab = list(pos_table.values()) + [UNKNOWN_POS]
+		self._pos_encoder.fit(np.array(self._pos_vocab).reshape(-1, 1))
 		# convenience function for encoding single values--monkey patch it onto the instance
 		def transform_single(self, x):
 			return self.transform(np.array(x).reshape(-1, 1)).todense().tolist()[0]
 		self._pos_encoder.transform_single = types.MethodType(transform_single, self._pos_encoder)
 
+		self._char_vocab = []
 		self._char_encoder = None
 
 		self._tokens = []
 		self._feats = []
 
 	def _init_char_encoder(self, tokens):
-		vocab = list(set("".join([t.orig for t in tokens])))
+		self._char_vocab = list(set("".join([t.orig for t in tokens]))) + [UNKNOWN_CHAR]
 		self._char_encoder = OneHotEncoder(handle_unknown='ignore')
-		self._char_encoder.fit(np.array(vocab + [UNKNOWN_CHAR]).reshape(-1, 1))
+		self._char_encoder.fit(np.array(self._char_vocab).reshape(-1, 1))
 		# convenience function for encoding single values--monkey patch it onto the instance
 		def transform_single(self, x):
 			return self.transform(np.array(x).reshape(-1, 1)).todense().tolist()[0]
 		self._char_encoder.transform_single = types.MethodType(transform_single, self._char_encoder)
 
-	def load_tokens(self, tokens):
+	def load_tokens(self, tokens, training=False):
 		self._tokens = tokens
-		self._init_char_encoder(tokens)
+		if training:
+			self._init_char_encoder(tokens)
 
 		# initialize a feature list for each token
 		self._feats = []
@@ -198,15 +201,15 @@ class Featurizer:
 	def add_pos(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
 		pos = self._pos_table[orig] if orig in self._pos_table else UNKNOWN_POS
-		feature = self._pos_encoder.transform_single(pos)
+		feature = self._pos_encoder.transform_single(pos if pos in self._pos_vocab else UNKNOWN_POS)
 		return feature
 
 	@windowed_feature(out_of_window_value=lambda self: self._char_encoder.transform_single(UNKNOWN_CHAR))
 	def add_first_letter(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
-		return self._char_encoder.transform_single(orig[0])
+		return self._char_encoder.transform_single(orig[0] if orig[0] in self._char_vocab else UNKNOWN_CHAR)
 
 	@windowed_feature(out_of_window_value=lambda self: self._char_encoder.transform_single(UNKNOWN_CHAR))
 	def add_last_letter(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
-		return self._char_encoder.transform_single(orig[-1])
+		return self._char_encoder.transform_single(orig[-1] if orig[-1] in self._char_vocab else UNKNOWN_CHAR)
