@@ -1,7 +1,8 @@
 from __future__ import division
 
 import numpy as np
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegressionCV, LassoCV
+from sklearn.svm import LinearSVC
 
 from .tokenizer import Tokenizer
 from .featurizer import Featurizer
@@ -13,7 +14,7 @@ class LogisticBindingModel:
 		self,
 		ignore_chars=[],
 		n_groups_left=1,
-		n_groups_right=3,
+		n_groups_right=1,
 		gold_token_separator="_",
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
@@ -34,10 +35,18 @@ class LogisticBindingModel:
 			orig_token_separator=" ",
 			binding_freq_file_path=binding_freq_file_path,
 			pos_file_path=pos_file_path,
+			encoder='one_hot'
 		)
 		self._postprocessor = Postprocessor(separator=gold_token_separator)
 
-		self._m = LogisticRegression(random_state=0, solver='liblinear', penalty='l2')
+		self._m = LogisticRegressionCV(
+			random_state=0,
+			fit_intercept=True,
+			max_iter=1000,
+			solver='liblinear',
+			penalty='l1',
+			cv=5
+		)
 
 	def _build_feature_matrix(self, text, orig_text=None, training=False):
 		"""Prepare X matrix for input to the model. text is gold if orig_text is
@@ -50,11 +59,14 @@ class LogisticBindingModel:
 				.load_tokens(tokens, training=training)
 				.add_bound_count()
 				.add_not_bound_count()
-				.add_prob_bound()
-				.add_length()
-				.add_pos()
-				.add_first_letter()
-				.add_last_letter()
+				.add_prob_bound(n_groups_left=1, n_groups_right=2)
+				.add_combined_token_bound_count(n_groups_left=1, n_groups_right=1)
+				.add_combined_token_not_bound_count(n_groups_left=1, n_groups_right=1)
+				.add_combined_token_prob_bound(n_groups_left=1, n_groups_right=1)
+				.add_length(n_groups_left=2, n_groups_right=4)
+				.add_pos(n_groups_left=1, n_groups_right=2)
+				.add_first_letter(n_groups_left=0, n_groups_right=1)
+				.add_last_letter(n_groups_left=1, n_groups_right=0)
 				.features()
 		)
 
