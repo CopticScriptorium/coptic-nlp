@@ -1220,7 +1220,7 @@
 <sbl_greek sbl_greek="ἦσαν δέ τινες ἀγανακτοῦντες πρὸς ⸀ἑαυτούς· Εἰς τί ἡ ἀπώλεια αὕτη τοῦ μύρου γέγονεν; ">
 <sbl_apparatus sbl_apparatus="ἑαυτούς WH NIV ] + καὶ λέγοντες Treg RP">
 <orig_group orig_group="ⲁϩⲟⲓⲛⲉ">
-<norm_group norm_group="ⲁϩⲟⲉⲓⲛⲉ">
+<norm_group norm_group="ⲁϩⲟⲓⲛⲉ">
 <orig orig="ⲁ">
 <norm norm="ⲁ">
 <lemma lemma="ⲁ">
@@ -1231,7 +1231,7 @@
 </norm>
 </orig>
 <orig orig="ϩⲟⲓⲛⲉ">
-<norm norm="ϩⲟⲉⲓⲛⲉ">
+<norm norm="ϩⲟⲓⲛⲉ">
 <lemma lemma="ϩⲟⲓⲛⲉ">
 <pos pos="N">
 ϩⲟⲓⲛⲉ
@@ -18777,9 +18777,9 @@
 <verse_vid verse_vid="41N 14:57">
 <sbl_greek sbl_greek="καί τινες ἀναστάντες ἐψευδομαρτύρουν κατ’ αὐτοῦ λέγοντες ">
 <orig_group orig_group="ϩⲟⲓⲛⲉ">
-<norm_group norm_group="ϩⲟⲉⲓⲛⲉ">
+<norm_group norm_group="ϩⲟⲓⲛⲉ">
 <orig orig="ϩⲟⲓⲛⲉ">
-<norm norm="ϩⲟⲉⲓⲛⲉ">
+<norm norm="ϩⲟⲓⲛⲉ">
 <lemma lemma="ϩⲟⲓⲛⲉ">
 <pos pos="N">
 ϩⲟⲓⲛⲉ
@@ -21533,7 +21533,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲛϭⲓϩⲟⲓⲛⲉ">
-<norm_group norm_group="ⲛϭⲓϩⲟⲉⲓⲛⲉ">
+<norm_group norm_group="ⲛϭⲓϩⲟⲓⲛⲉ">
 <orig orig="ⲛϭⲓ">
 <norm norm="ⲛϭⲓ">
 <lemma lemma="ⲛϭⲓ">
@@ -21544,7 +21544,7 @@
 </norm>
 </orig>
 <orig orig="ϩⲟⲓⲛⲉ">
-<norm norm="ϩⲟⲉⲓⲛⲉ">
+<norm norm="ϩⲟⲓⲛⲉ">
 <lemma lemma="ϩⲟⲓⲛⲉ">
 <pos pos="N">
 ϩⲟⲓⲛⲉ

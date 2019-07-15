@@ -6312,7 +6312,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲙⲛ̣ϩⲉⲛⲡⲓⲣⲁⲥⲙⲟ̣ⲥ̣">
-<norm_group norm_group="ⲙⲛϩⲉⲛⲡⲓⲣⲁⲥⲙⲟⲥ">
+<norm_group norm_group="ⲙⲛϩⲉⲛⲡⲉⲓⲣⲁⲥⲙⲟⲥ">
 <orig orig="ⲙⲛ̣">
 <norm norm="ⲙⲛ">
 <lemma lemma="ⲙⲛ">
@@ -6334,8 +6334,8 @@
 </norm>
 </orig>
 <orig orig="ⲡⲓⲣⲁⲥⲙⲟ̣ⲥ̣">
-<norm norm="ⲡⲓⲣⲁⲥⲙⲟⲥ">
-<lemma lemma="ⲡⲓⲣⲁⲥⲙⲟⲥ">
+<norm norm="ⲡⲉⲓⲣⲁⲥⲙⲟⲥ">
+<lemma lemma="ⲡⲉⲓⲣⲁⲥⲙⲟⲥ">
 <pos pos="N">
 <lang lang="Greek">
 ⲡⲓⲣⲁⲥⲙⲟ̣ⲥ̣
@@ -7594,7 +7594,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲙⲡⲓⲣⲁⲥⲙⲟⲥ">
-<norm_group norm_group="ⲙⲡⲓⲣⲁⲥⲙⲟⲥ">
+<norm_group norm_group="ⲙⲡⲉⲓⲣⲁⲥⲙⲟⲥ">
 <orig orig="ⲙ">
 <norm norm="ⲙ">
 <lemma lemma="ⲛ">
@@ -7605,8 +7605,8 @@
 </norm>
 </orig>
 <orig orig="ⲡⲓⲣⲁⲥⲙⲟⲥ">
-<norm norm="ⲡⲓⲣⲁⲥⲙⲟⲥ">
-<lemma lemma="ⲡⲓⲣⲁⲥⲙⲟⲥ">
+<norm norm="ⲡⲉⲓⲣⲁⲥⲙⲟⲥ">
+<lemma lemma="ⲡⲉⲓⲣⲁⲥⲙⲟⲥ">
 <pos pos="N">
 <lang lang="Greek">
 ⲡⲓⲣⲁⲥ
@@ -14040,8 +14040,8 @@
 </orig_group>
 </lb_n>
 <lb_n lb_n="30">
-<orig_group orig_group="ⲁⲡⲉⲭ︦ⲥ︦ⲙⲟⲩ">
-<norm_group norm_group="ⲁⲡⲉⲭⲥⲙⲟⲩ">
+<orig_group orig_group="ⲁⲡⲉⲭ︦ⲥ︦">
+<norm_group norm_group="ⲁⲡⲉⲭⲣⲓⲥⲧⲟⲥ">
 <orig orig="ⲁ">
 <norm norm="ⲁ">
 <lemma lemma="ⲁ">
@@ -14071,6 +14071,10 @@
 </lemma>
 </norm>
 </orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲙⲟⲩ">
+<norm_group norm_group="ⲙⲟⲩ">
 <orig orig="ⲙⲟⲩ">
 <norm norm="ⲙⲟⲩ">
 <lemma lemma="ⲙⲟⲩ">

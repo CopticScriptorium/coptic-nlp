@@ -2871,7 +2871,7 @@
 <translation translation="From this inquiry happening…through God, he confined himself. ">
 <lb_n lb_n="3">
 <orig_group orig_group="ⲛ̇ⲧⲁⲡⲉⲓ̇ϭⲙ[ϣⲓ]ⲛⲉ">
-<norm_group norm_group="ⲛⲧⲁⲡⲉⲓϭⲙ[ϣⲓ]ⲛⲉ">
+<norm_group norm_group="ⲛⲧⲁⲡⲉⲓϭⲙϣⲓⲛⲉ">
 <orig orig="ⲛ̇ⲧ">
 <norm norm="ⲛⲧ">
 <lemma lemma="ⲉⲧⲉⲣⲉ">
@@ -2900,7 +2900,7 @@
 </norm>
 </orig>
 <orig orig="ϭⲙ[ϣⲓ]ⲛⲉ">
-<norm norm="ϭⲙ[ϣⲓ]ⲛⲉ">
+<norm norm="ϭⲙϣⲓⲛⲉ">
 <lemma lemma="ϭⲙϣⲓⲛⲉ">
 <pos pos="N">
 <morph morph="ϭⲙ">
@@ -2966,9 +2966,9 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="[ⲉⲃⲟ]ⲗ">
-<norm_group norm_group="[ⲉⲃⲟ]ⲗ">
+<norm_group norm_group="ⲉⲃⲟⲗ">
 <orig orig="[ⲉⲃⲟ]ⲗ">
-<norm norm="[ⲉⲃⲟ]ⲗ">
+<norm norm="ⲉⲃⲟⲗ">
 <lemma lemma="ⲉⲃⲟⲗ">
 <pos pos="ADV">
 <supplied_reason supplied_reason="lost">
@@ -4126,8 +4126,8 @@
 </orig>
 </norm_group>
 </orig_group>
-<orig_group orig_group="ϫⲉⲉ̇ϣϫⲉⲙ̇ⲡⲓϣ̇ϭⲙ̇ϭⲟⲙ">
-<norm_group norm_group="ϫⲉⲉϣϫⲉⲙⲡⲓϣ̇ϭⲙϭⲟⲙ">
+<orig_group orig_group="ϫⲉⲉ̇ϣϫⲉ">
+<norm_group norm_group="ϫⲉⲉϣϫⲉ">
 <orig orig="ϫⲉ">
 <norm norm="ϫⲉ">
 <lemma lemma="ϫⲉ">
@@ -4146,6 +4146,10 @@
 </lemma>
 </norm>
 </orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲙ̇ⲡⲓϣ̇ϭⲙ̇ϭⲟⲙ">
+<norm_group norm_group="ⲙⲡⲓϣϭⲙϭⲟⲙ">
 <orig orig="ⲙ̇ⲡ">
 <norm norm="ⲙⲡ">
 <lemma lemma="ⲙⲡⲉ">
@@ -4202,8 +4206,8 @@
 </orig_group>
 </lb_n>
 <lb_n lb_n="24">
-<orig_group orig_group="ϩⲁ">
-<norm_group norm_group="ϩⲁ">
+<orig_group orig_group="ϩⲁⲡ̇ⲛⲟϭⲛⲉϭ">
+<norm_group norm_group="ϩⲁⲡⲛⲟϭⲛⲉϭ">
 <orig orig="ϩⲁ">
 <norm norm="ϩⲁ">
 <lemma lemma="ϩⲁ">
@@ -4213,10 +4217,6 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-</orig_group>
-<orig_group orig_group="ⲡ̇ⲛⲟϭⲛⲉϭ">
-<norm_group norm_group="ⲡⲛⲟϭⲛⲉϭ">
 <orig orig="ⲡ̇">
 <norm norm="ⲡ">
 <lemma lemma="ⲡ">
