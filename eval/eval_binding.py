@@ -199,7 +199,8 @@ def bind_with_logistic(eval_orig_lines, eval_gold, train_orig_lines, train_gold,
 		gold_token_separator=GOLD_TOKEN_SEPARATOR,
 		orig_token_separator=ORIG_TOKEN_SEPARATOR,
 		binding_freq_file_path=opts.detok_table,
-		pos_file_path=opts.pos_table
+		pos_file_path=opts.pos_table,
+		group_freq_file_path=opts.group_freq_table,
 	)
 	m.train(train_gold, train_orig)
 	pred = m.predict(eval_orig)
@@ -226,6 +227,7 @@ def bind_with_xgboost(eval_orig_lines, eval_gold, train_orig_lines, train_gold, 
 		orig_token_separator=ORIG_TOKEN_SEPARATOR,
 		binding_freq_file_path=opts.detok_table,
 		pos_file_path=opts.pos_table,
+		group_freq_file_path=opts.group_freq_table,
 		**kwargs
 	)
 	m.train(train_gold, train_orig)
@@ -514,6 +516,12 @@ def main():
 		default="copt_lemma_lex_cplx_2.8_cdo.tab", #TODO: change this
 		help="A TSV file containing POS information"
 	)
+	p.add_argument(
+		"--group_freq_table",
+		default=os.sep.join(['..', 'data', 'annis_silver_orig_group_freqs_2019_07.tab']), #TODO: change this
+		help="A TSV file containing orig group freq information in silver data"
+	)
+
 
 	opts = p.parse_args()
 
