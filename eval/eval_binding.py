@@ -170,11 +170,6 @@ def bind_naive(eval_orig_lines, gold):
 	naive = txt.replace(ORIG_TOKEN_SEPARATOR, GOLD_TOKEN_SEPARATOR)
 
 	scores, errs = binding_score(gold, naive)
-	print("Baseline scores:")
-	print("Precision: %s" % scores["precision"])
-	print("Recall:    %s" % scores["recall"])
-	print("F1:	%s" % scores["f1"])
-	print()
 	return scores
 
 
@@ -185,7 +180,6 @@ def bind_with_stacked_tokenizer(eval_orig_lines, gold):
 	bound = stk.analyze("\n".join(eval_orig_lines)).replace("|", "").replace('\n', '').strip()
 
 	scores, errs = binding_score(gold,bound)
-
 	with io.open(err_dir + "errs_binding_stacked.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
 
@@ -270,7 +264,7 @@ def print_scores(scores, model_name):
 	print("%s binding scores:" % model_name)
 	print("Precision: %s" % scores["precision"])
 	print("Recall:    %s" % scores["recall"])
-	print("F1:	      %s" % scores["f1"])
+	print("F1:        %s" % scores["f1"])
 	print()
 
 
