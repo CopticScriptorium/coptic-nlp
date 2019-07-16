@@ -18,6 +18,14 @@ class XGBoostBindingModel:
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
 		pos_file_path=None,
+		n_estimators=160,
+		max_depth=28,
+		eta=0.05,
+		gamma=0.11,
+		colsample_bytree=0.6,
+		colsample_bylevel=0.6,
+		colsample_bynode=0.6,
+		subsample=0.9,
 	):
 		self._tokens = []
 		self._tokenizer = Tokenizer(
@@ -40,12 +48,14 @@ class XGBoostBindingModel:
 
 		# cf: https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier
 		self._m = XGBClassifier(
-			random_state=0,
-			n_estimators=200,
-			colsample_bytree=0.9,
-			colsample_bylevel=0.9,
-			colsample_bynode=0.9,
-			booster='gbtree'
+			n_estimators=n_estimators,
+			colsample_bytree=colsample_bytree,
+			colsample_bynode=colsample_bynode,
+			colsample_bylevel=colsample_bylevel,
+			max_depth=max_depth,
+			eta=eta,
+			gamma=gamma,
+			subsample=subsample,
 		)
 
 	def _build_feature_matrix(self, text, orig_text=None, training=False):

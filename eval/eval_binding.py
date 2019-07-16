@@ -227,7 +227,7 @@ def bind_with_logistic(eval_orig_lines, eval_gold, train_orig_lines, train_gold,
 	return scores
 
 
-def bind_with_xgboost(eval_orig_lines, eval_gold, train_orig_lines, train_gold, opts):
+def bind_with_xgboost(eval_orig_lines, eval_gold, train_orig_lines, train_gold, opts, **kwargs):
 	eval_orig = "".join(eval_orig_lines)
 	train_orig = "".join(train_orig_lines)
 
@@ -235,12 +235,14 @@ def bind_with_xgboost(eval_orig_lines, eval_gold, train_orig_lines, train_gold, 
 	check_identical_text(train_orig, train_gold)
 
 	from binding.xgboost import XGBoostBindingModel
+
 	m = XGBoostBindingModel(
 		ignore_chars=IGNORE,
 		gold_token_separator=GOLD_TOKEN_SEPARATOR,
 		orig_token_separator=ORIG_TOKEN_SEPARATOR,
 		binding_freq_file_path=opts.detok_table,
-		pos_file_path=opts.pos_table
+		pos_file_path=opts.pos_table,
+		**kwargs
 	)
 	m.train(train_gold, train_orig)
 	pred = m.predict(eval_orig)
@@ -379,6 +381,43 @@ def run_eval(eval_gold_list, eval_orig_list, train_gold_list, train_orig_list, o
 			opts
 		)
 		return xgboost_scores
+	elif strategy == 'xgboost-hyper':
+		from hyperopt import hp, fmin, Trials, STATUS_OK, tpe
+		from hyperopt.pyll import scope
+		space = {
+			'n_estimators': scope.int(hp.quniform('n_estimators', 100, 250, 10)),
+			'max_depth': scope.int(hp.quniform('max_depth', 8, 35, 1)),
+			'eta': scope.float(hp.quniform('eta', 0.01, 0.2, 0.01)),
+			'gamma': scope.float(hp.quniform('gamma', 0.01, 0.2, 0.01)),
+			'colsample_bytree': hp.choice('colsample_bytree', [0.6, 0.7, 0.8, 1.0]),
+			'colsample_bynode': hp.choice('colsample_bynode', [0.6, 0.7, 0.8, 1.0]),
+			'colsample_bylevel': hp.choice('colsample_bylevel', [0.6, 0.7, 0.8, 1.0]),
+			'subsample': hp.choice('subsample', [0.6, 0.7, 0.8, 0.9, 1.0]),
+		}
+
+		def f(params):
+			scores = bind_with_xgboost(
+				eval_orig_lines,
+				eval_gold,
+				train_orig_lines,
+				train_gold,
+				opts,
+				**params
+			)
+			return {'loss': -scores['f1'], 'status': STATUS_OK}
+
+		trials = Trials()
+		best = fmin(f, space, algo=tpe.suggest, max_evals=200, trials=trials)
+		print("\nBest parameters:\n" + 30 * "=")
+		print(best)
+		return bind_with_xgboost(
+			eval_orig_lines,
+			eval_gold,
+			train_orig_lines,
+			train_gold,
+			opts,
+			**best
+		)
 	elif strategy == 'lstm':
 		lstm_scores = bind_with_lstm(eval_orig_lines, eval_gold, opts)
 		return lstm_scores
@@ -401,7 +440,7 @@ def run_eval(eval_gold_list, eval_orig_list, train_gold_list, train_orig_list, o
 		#_ = bind_with_lstm(eval_orig_lines, gold, opts)
 		_ = bind_with_stacked_tokenizer(eval_orig_lines, eval_gold)
 	else:
-		raise Exception("Unknown strategy: '{}'.\nMust be one of 'naive', 'stacked', 'logistic', 'xgboost', 'lstm', 'all'."
+		raise Exception("Unknown strategy: '{}'.\nMust be one of 'naive', 'stacked', 'logistic', 'xgboost', 'xgboost-hyper', 'lstm', 'all'."
 						.format(strategy))
 
 
@@ -439,6 +478,9 @@ def expand_abbreviations(gold_list, orig_list):
 	elif orig_list.startswith("victor"):
 		orig_list = "victor_plain"
 		gold_list = "victor_tt"
+	elif orig_list.startswith("ephraim"):
+		orig_list = "ephraim_plain"
+		gold_list = "ephraim_tt"
 
 	return gold_list, orig_list
 
@@ -448,7 +490,7 @@ def main():
 	p.add_argument(
 		"strategy",
 		default="all",
-		help="binding strategy: one of 'naive', 'stacked', 'logistic', 'xgboost', 'lstm', 'all'",
+		help="binding strategy: one of 'naive', 'stacked', 'logistic', 'xgboost', 'xgboost-hyper', 'lstm', 'all'",
 		nargs='?'
 	)
 	p.add_argument(
