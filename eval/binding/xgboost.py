@@ -18,6 +18,7 @@ class XGBoostBindingModel:
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
 		pos_file_path=None,
+		group_freq_file_path=None,
 		n_estimators=160,
 		max_depth=28,
 		eta=0.05,
@@ -36,12 +37,13 @@ class XGBoostBindingModel:
 		)
 		self._featurizer = Featurizer(
 			# seps might occur in tokens, also add them to the ignore list
+			n_groups_left,
+			n_groups_right,
 			ignore_chars=ignore_chars + [orig_token_separator, gold_token_separator],
-			n_groups_left=n_groups_left,
-			n_groups_right=n_groups_right,
 			orig_token_separator=" ",
 			binding_freq_file_path=binding_freq_file_path,
 			pos_file_path=pos_file_path,
+			group_freq_file_path=group_freq_file_path
 			encoder='label'
 		)
 		self._postprocessor = Postprocessor(separator=gold_token_separator)

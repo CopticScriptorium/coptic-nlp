@@ -14,11 +14,12 @@ class LogisticBindingModel:
 		self,
 		ignore_chars=[],
 		n_groups_left=1,
-		n_groups_right=1,
+		n_groups_right=3,
 		gold_token_separator="_",
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
 		pos_file_path=None,
+		group_freq_file_path=None,
 	):
 		self._tokens = []
 		self._tokenizer = Tokenizer(
@@ -28,13 +29,14 @@ class LogisticBindingModel:
 			lowercase=True
 		)
 		self._featurizer = Featurizer(
+			n_groups_left,
+			n_groups_right,
 			# seps might occur in tokens, also add them to the ignore list
 			ignore_chars=ignore_chars + [orig_token_separator, gold_token_separator],
-			n_groups_left=n_groups_left,
-			n_groups_right=n_groups_right,
 			orig_token_separator=" ",
 			binding_freq_file_path=binding_freq_file_path,
 			pos_file_path=pos_file_path,
+			group_freq_file_path=group_freq_file_path,
 			encoder='one_hot'
 		)
 		self._postprocessor = Postprocessor(separator=gold_token_separator)
