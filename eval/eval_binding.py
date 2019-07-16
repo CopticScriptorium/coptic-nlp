@@ -382,8 +382,8 @@ def run_eval(eval_gold_list, eval_orig_list, train_gold_list, train_orig_list, o
 			'eta': scope.float(hp.quniform('eta', 0.01, 0.2, 0.01)),
 			'gamma': scope.float(hp.quniform('gamma', 0.01, 0.2, 0.01)),
 			'colsample_bytree': hp.choice('colsample_bytree', [0.6, 0.7, 0.8, 1.0]),
-			'colsample_bynode': hp.choice('colsample_bynode', [0.6, 0.7, 0.8, 1.0]),
-			'colsample_bylevel': hp.choice('colsample_bylevel', [0.6, 0.7, 0.8, 1.0]),
+			#'colsample_bynode': hp.choice('colsample_bynode', [0.6, 0.7, 0.8, 1.0]),
+			#'colsample_bylevel': hp.choice('colsample_bylevel', [0.6, 0.7, 0.8, 1.0]),
 			'subsample': hp.choice('subsample', [0.6, 0.7, 0.8, 0.9, 1.0]),
 		}
 

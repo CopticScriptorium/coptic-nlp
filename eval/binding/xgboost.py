@@ -23,8 +23,8 @@ class XGBoostBindingModel:
 		eta=0.05,
 		gamma=0.11,
 		colsample_bytree=0.6,
-		colsample_bylevel=0.6,
-		colsample_bynode=0.6,
+		#colsample_bylevel=0.6,
+		#colsample_bynode=0.6,
 		subsample=0.9,
 	):
 		self._tokens = []
@@ -50,8 +50,8 @@ class XGBoostBindingModel:
 		self._m = XGBClassifier(
 			n_estimators=n_estimators,
 			colsample_bytree=colsample_bytree,
-			colsample_bynode=colsample_bynode,
-			colsample_bylevel=colsample_bylevel,
+			#colsample_bynode=colsample_bynode,
+			#colsample_bylevel=colsample_bylevel,
 			max_depth=max_depth,
 			eta=eta,
 			gamma=gamma,
