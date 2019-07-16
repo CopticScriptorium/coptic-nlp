@@ -38,9 +38,10 @@ def read_binding_freq_file(path):
 	for line in detoks:
 		if line.startswith("#"):
 			continue
-		# ignore "aggressive" entries for now
+
+		# include "aggressive" entries for now
 		if line.startswith("%"):
-			continue
+			line = line[1:]
 
 		line = line.split("\t")
 		assert len(line) == 4, "Malformed line in " + path
@@ -67,6 +68,30 @@ def read_pos_file(path):
 	return table
 
 
+def read_group_freq_file(path, ignore):
+	if not os.path.isfile(path):
+		raise Exception("Could not find a binding frequency file at '" + path + "'.")
+
+	file = io.open(path, encoding="utf8").read().replace("\r", "").strip().split("\n")
+
+	table = {}
+	for line in file:
+		if line.startswith("#"):
+			continue
+
+		group, freq = line.split("\t")
+		assert len(line) == 2, "Malformed line in " + path
+
+		group = line[0]
+		group = "".join([c for c in group if c not in ignore])
+		if group in table:
+			table[group] += freq
+		else:
+			table[group] = freq
+
+	return table
+
+
 def windowed_feature(out_of_window_value=None):
 	"""A decorator to simplify writing windowed features. Given a function that is given the arguments
 	self, token, and i and returns either a feature or a list of features, it iterates that function
@@ -81,8 +106,16 @@ def windowed_feature(out_of_window_value=None):
 
 		def wrapper(self, *args, **kwargs):
 			feat_cache = {}
-			n_groups_left = ("n_groups_left" in kwargs and kwargs.pop("n_groups_left")) or self._n_groups_left
-			n_groups_right = ("n_groups_right" in kwargs and kwargs.pop("n_groups_right")) or self._n_groups_right
+			n_groups_left = (
+				kwargs.pop("n_groups_left") if "n_groups_left" in kwargs
+				else kwargs.pop("left") if "left" in kwargs
+				else self._n_groups_left
+			)
+			n_groups_right = (
+				kwargs.pop("n_groups_right") if "n_groups_right" in kwargs
+				else kwargs.pop("right") if "right" in kwargs
+				else self._n_groups_right
+			)
 			for i in range(len(self._tokens)):
 				for j in range(i - n_groups_left, i + n_groups_right + 1):
 					# build the feature
@@ -120,30 +153,37 @@ def transform_single(self, x):
 class Featurizer:
 	"""Produces token-level featurizations."""
 	def __init__(
-			self,
-			ignore_chars=[],
-			n_groups_left=1,
-			n_groups_right=2,
-			orig_token_separator=" ",
-			binding_freq_file_path=None,
-			pos_file_path=None,
-			encoder='one_hot',
+		self,
+		n_groups_left,
+		n_groups_right,
+		ignore_chars=[],
+		orig_token_separator=" ",
+		binding_freq_file_path=None,
+		pos_file_path=None,
+		group_freq_file_path=None,
+		encoder='one_hot',
 	):
+		assert encoder in ['one_hot', 'label'], "Encoder must be one of 'one_hot', 'label'."
+
 		self._ignore_chars = ignore_chars
 		self._n_groups_left = n_groups_left
 		self._n_groups_right = n_groups_right
 		self._orig_token_separator = orig_token_separator
 
-		self._binding_freq_table = read_binding_freq_file(binding_freq_file_path)
+		if binding_freq_file_path:
+			self._binding_freq_table = read_binding_freq_file(binding_freq_file_path)
 
-		assert encoder in ['one_hot', 'label'], "Encoder must be one of 'one_hot', 'label'."
 		# pos encoding
-		pos_table = read_pos_file(pos_file_path)
-		self._pos_table = pos_table
-		self._pos_encoder = OneHotEncoder(handle_unknown='ignore') if encoder == 'one_hot' else LabelEncoder()
-		self._pos_vocab = list(pos_table.values()) + [UNKNOWN_POS]
-		self._pos_encoder.fit(np.array(self._pos_vocab).reshape(-1, 1))
-		self._pos_encoder.transform_single = types.MethodType(transform_single, self._pos_encoder)
+		if pos_file_path:
+			pos_table = read_pos_file(pos_file_path)
+			self._pos_table = pos_table
+			self._pos_encoder = OneHotEncoder(handle_unknown='ignore') if encoder == 'one_hot' else LabelEncoder()
+			self._pos_vocab = list(pos_table.values()) + [UNKNOWN_POS]
+			self._pos_encoder.fit(np.array(self._pos_vocab).reshape(-1, 1))
+			self._pos_encoder.transform_single = types.MethodType(transform_single, self._pos_encoder)
+
+		if group_freq_file_path:
+			self._group_freq_table = read_group_freq_file(group_freq_file_path, ignore_chars)
 
 		# char encoding
 		self._char_vocab = []
