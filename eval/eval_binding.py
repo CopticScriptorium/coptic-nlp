@@ -185,11 +185,6 @@ def bind_with_stacked_tokenizer(eval_orig_lines, gold):
 	bound = stk.analyze("\n".join(eval_orig_lines)).replace("|", "").replace('\n', '').strip()
 
 	scores, errs = binding_score(gold,bound)
-	print("Stacked binding scores:")
-	print("Precision: %s" % scores["precision"])
-	print("Recall:    %s" % scores["recall"])
-	print("F1:	%s" % scores["f1"])
-	print()
 
 	with io.open(err_dir + "errs_binding_stacked.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
@@ -215,11 +210,6 @@ def bind_with_logistic(eval_orig_lines, eval_gold, train_orig_lines, train_gold,
 	m.train(train_gold, train_orig)
 	pred = m.predict(eval_orig)
 	scores, errs = binding_score(eval_gold, pred)
-	print("Logistic regression binding scores:")
-	print("Precision: %s" % scores["precision"])
-	print("Recall:    %s" % scores["recall"])
-	print("F1:	      %s" % scores["f1"])
-	print()
 
 	with io.open(err_dir + "errs_binding_logistic.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
@@ -247,11 +237,6 @@ def bind_with_xgboost(eval_orig_lines, eval_gold, train_orig_lines, train_gold, 
 	m.train(train_gold, train_orig)
 	pred = m.predict(eval_orig)
 	scores, errs = binding_score(eval_gold, pred)
-	print("XGBoost regression binding scores:")
-	print("Precision: %s" % scores["precision"])
-	print("Recall:    %s" % scores["recall"])
-	print("F1:	      %s" % scores["f1"])
-	print()
 
 	with io.open(err_dir + "errs_binding_xgboost.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
@@ -273,11 +258,6 @@ def bind_with_lstm(eval_orig_lines, gold, opts):
 	pred = m.predict(p_test)
 
 	scores, errs = binding_score(g_test, pred)
-	print("Logistic regression binding scores:")
-	print("Precision: %s" % scores["precision"])
-	print("Recall:    %s" % scores["recall"])
-	print("F1:	      %s" % scores["f1"])
-	print()
 
 	with io.open(err_dir + "errs_binding_logistic.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
@@ -286,6 +266,14 @@ def bind_with_lstm(eval_orig_lines, gold, opts):
 
 
 # evaluation -----------------------------------------------------------------------------------------------------------
+def print_scores(scores, model_name):
+	print("%s binding scores:" % model_name)
+	print("Precision: %s" % scores["precision"])
+	print("Recall:    %s" % scores["recall"])
+	print("F1:	      %s" % scores["f1"])
+	print()
+
+
 def binarize(text):
 	"""Turn a text with _ separating bound groups into array of 0 (no split after character) or 1 (split after
 	this character)
@@ -359,9 +347,11 @@ def run_eval(eval_gold_list, eval_orig_list, train_gold_list, train_orig_list, o
 
 	if strategy == 'naive':
 		baseline_scores = bind_naive(eval_orig_lines, eval_gold)
+		print_scores(baseline_scores, 'Baseline')
 		return baseline_scores
 	elif strategy == 'stacked':
 		st_scores = bind_with_stacked_tokenizer(eval_orig_lines, eval_gold)
+		print_scores(st_scores, 'Stacked tokenizer')
 		return st_scores
 	elif strategy == 'logistic':
 		logistic_scores = bind_with_logistic(
@@ -371,6 +361,7 @@ def run_eval(eval_gold_list, eval_orig_list, train_gold_list, train_orig_list, o
 			train_gold,
 			opts
 		)
+		print_scores(logistic_scores, 'LogisticRegressionCV')
 		return logistic_scores
 	elif strategy == 'xgboost':
 		xgboost_scores = bind_with_xgboost(
@@ -380,6 +371,7 @@ def run_eval(eval_gold_list, eval_orig_list, train_gold_list, train_orig_list, o
 			train_gold,
 			opts
 		)
+		print_scores(xgboost_scores, 'XGBoost')
 		return xgboost_scores
 	elif strategy == 'xgboost-hyper':
 		from hyperopt import hp, fmin, Trials, STATUS_OK, tpe
@@ -410,7 +402,7 @@ def run_eval(eval_gold_list, eval_orig_list, train_gold_list, train_orig_list, o
 		best = fmin(f, space, algo=tpe.suggest, max_evals=200, trials=trials)
 		print("\nBest parameters:\n" + 30 * "=")
 		print(best)
-		return bind_with_xgboost(
+		xgboost_scores = bind_with_xgboost(
 			eval_orig_lines,
 			eval_gold,
 			train_orig_lines,
@@ -418,8 +410,11 @@ def run_eval(eval_gold_list, eval_orig_list, train_gold_list, train_orig_list, o
 			opts,
 			**best
 		)
+		print_scores(xgboost_scores, 'XGBoost hyper search')
+		return xgboost_scores
 	elif strategy == 'lstm':
 		lstm_scores = bind_with_lstm(eval_orig_lines, eval_gold, opts)
+		print_scores(lstm_scores, 'LSTM')
 		return lstm_scores
 	elif strategy == 'all':
 		_ = bind_naive(eval_orig_lines, eval_gold)
