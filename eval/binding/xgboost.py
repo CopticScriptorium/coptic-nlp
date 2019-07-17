@@ -1,7 +1,7 @@
 from __future__ import division
 
 import numpy as np
-from xgboost import XGBClassifier
+from xgboost import XGBClassifier, XGBRegressor
 
 from .tokenizer import Tokenizer
 from .featurizer import Featurizer
@@ -13,20 +13,20 @@ class XGBoostBindingModel:
 		self,
 		ignore_chars=[],
 		n_groups_left=1,
-		n_groups_right=3,
+		n_groups_right=2,
 		gold_token_separator="_",
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
 		pos_file_path=None,
 		group_freq_file_path=None,
-		n_estimators=160,
-		max_depth=28,
+		n_estimators=150,
+		max_depth=15,
 		eta=0.05,
-		gamma=0.11,
+		gamma=0.10,
 		colsample_bytree=0.6,
-		#colsample_bylevel=0.6,
-		#colsample_bynode=0.6,
-		subsample=0.9,
+		colsample_bylevel=0.6,
+		colsample_bynode=0.6,
+		subsample=0.95,
 	):
 		self._tokens = []
 		self._tokenizer = Tokenizer(
@@ -43,13 +43,14 @@ class XGBoostBindingModel:
 			orig_token_separator=" ",
 			binding_freq_file_path=binding_freq_file_path,
 			pos_file_path=pos_file_path,
-			group_freq_file_path=group_freq_file_path
+			group_freq_file_path=group_freq_file_path,
 			encoder='label'
 		)
 		self._postprocessor = Postprocessor(separator=gold_token_separator)
 
 		# cf: https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier
 		self._m = XGBClassifier(
+			nthread=-1,
 			n_estimators=n_estimators,
 			colsample_bytree=colsample_bytree,
 			#colsample_bynode=colsample_bynode,
@@ -69,16 +70,20 @@ class XGBoostBindingModel:
 		X = np.array(
 			self._featurizer
 				.load_tokens(tokens, training=training)
-				.add_bound_count()
-				.add_not_bound_count()
-				.add_prob_bound()
-				.add_combined_token_bound_count()
-				.add_combined_token_not_bound_count()
-				.add_combined_token_prob_bound()
-				.add_length()
-				.add_pos()
-				.add_first_letter(n_groups_left=0, n_groups_right=1)
-				.add_last_letter(n_groups_left=1, n_groups_right=0)
+				.add_group_count()
+				.add_combined_token_group_count()
+				.add_morph_bound_count()
+				.add_morph_not_bound_count()
+				.add_morph_prob_bound()
+				#.add_combined_token_morph_bound_count()
+				#.add_combined_token_morph_not_bound_count()
+				#.add_combined_token_morph_prob_bound()
+				.add_length(left=1, right=3)
+				.add_pos(left=1, right=2)
+				.add_first_letter(left=0, right=1)
+				.add_last_letter(left=1, right=0)
+				.add_right_substr_pos(left=1, right=0)
+				.add_left_substr_pos(left=0, right=2)
 				.features()
 		)
 
