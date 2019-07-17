@@ -79,15 +79,16 @@ def read_group_freq_file(path, ignore):
 		if line.startswith("#"):
 			continue
 
-		group, freq = line.split("\t")
+		line = line.split("\t")
 		assert len(line) == 2, "Malformed line in " + path
+		group, freq = line
 
 		group = line[0]
 		group = "".join([c for c in group if c not in ignore])
 		if group in table:
-			table[group] += freq
+			table[group] = int(freq) + int(table[group])
 		else:
-			table[group] = freq
+			table[group] = int(freq)
 
 	return table
 
@@ -103,7 +104,6 @@ def windowed_feature(out_of_window_value=None):
 	# inner_decorator is needed so we can give windowed_feature parameters
 	# see http://scottlobdell.me/2015/04/decorators-arguments-python/
 	def inner_decorator(func):
-
 		def wrapper(self, *args, **kwargs):
 			feat_cache = {}
 			n_groups_left = (
@@ -137,7 +137,6 @@ def windowed_feature(out_of_window_value=None):
 					else:
 						self._feats[i] += [feature]
 			return self
-
 		return wrapper
 	return inner_decorator
 
@@ -146,8 +145,11 @@ def windowed_feature(out_of_window_value=None):
 def transform_single(self, x):
 	a = self.transform(np.array(x).reshape(-1, 1))
 	if type(a) != np.ndarray:
-		a = a.todense()
-	return a.tolist()[0]
+		a = a.todense()[0]
+	a = a.tolist()
+	if type(a[0]) == list:
+		a = a[0]
+	return a
 
 
 class Featurizer:
@@ -164,6 +166,8 @@ class Featurizer:
 		encoder='one_hot',
 	):
 		assert encoder in ['one_hot', 'label'], "Encoder must be one of 'one_hot', 'label'."
+		# assume that we have a linear model iff encoding is one-hot
+		self._linear = encoder == 'one_hot'
 
 		self._ignore_chars = ignore_chars
 		self._n_groups_left = n_groups_left
@@ -192,6 +196,12 @@ class Featurizer:
 		self._tokens = []
 		self._feats = []
 
+	def _undefined_count(self):
+		return 0 if self._linear else -1
+
+	def _undefined_prob(self):
+		return 0.5 if self._linear else -1
+
 	def _init_char_encoder(self, tokens):
 		self._char_vocab = list(set("".join([t.orig for t in tokens]))) + [UNKNOWN_CHAR]
 		self._char_encoder.fit(np.array(self._char_vocab).reshape(-1, 1))
@@ -215,76 +225,95 @@ class Featurizer:
 	def labels(self):
 		return [1 if t.gold_bound else 0 for t in self._tokens]
 
-	@windowed_feature(out_of_window_value=0)
-	def add_bound_count(self, token, i):
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
+	def add_group_count(self, token, i):
+		orig = token.text(ignore=self._ignore_chars)
+		if orig in self._group_freq_table:
+			return self._group_freq_table[orig]
+		else:
+			return self._undefined_count()
+
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
+	def add_combined_token_group_count(self, token, i):
+		if i + 1 == len(self._tokens):
+			return 0
+		next_token = self._tokens[i + 1]
+		combined_text = token.text(ignore=self._ignore_chars) + next_token.text(ignore=self._ignore_chars)
+		if combined_text in self._group_freq_table:
+			return self._group_freq_table[combined_text]
+		else:
+			return self._undefined_count()
+
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
+	def add_morph_bound_count(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
 		if orig in self._binding_freq_table:
 			return self._binding_freq_table[orig].n_bound
 		else:
-			return 0
+			return self._undefined_count()
 
-	@windowed_feature(out_of_window_value=0)
-	def add_not_bound_count(self, token, i):
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
+	def add_morph_not_bound_count(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
 		if orig in self._binding_freq_table:
 			return self._binding_freq_table[orig].n_not_bound
 		else:
-			return 0
+			return self._undefined_count()
 
-	@windowed_feature(out_of_window_value=0.5) # TODO: should this be 0.5?
-	def add_prob_bound(self, token, i):
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_prob()) # TODO: should this be 0.5?
+	def add_morph_prob_bound(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
 		if orig in self._binding_freq_table:
 			return self._binding_freq_table[orig].p_bound
 		else:
-			return 0.5 # TODO: see above
+			return self._undefined_prob() # TODO: see above
 
 	# the next 3 features: like the 3 above, except for the ith token and its following token combined
-	@windowed_feature(out_of_window_value=0)
-	def add_combined_token_bound_count(self, token, i):
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
+	def add_combined_token_morph_bound_count(self, token, i):
 		if i + 1 == len(self._tokens):
-			return 0
+			return self._undefined_count()
 		next_token = self._tokens[i + 1]
 		combined_text = token.text(ignore=self._ignore_chars) + next_token.text(ignore=self._ignore_chars)
-		if combined_text in  self._binding_freq_table:
+		if combined_text in self._binding_freq_table:
 			return self._binding_freq_table[combined_text].n_bound
 		else:
-			return 0
+			return self._undefined_count()
 
-	@windowed_feature(out_of_window_value=0)
-	def add_combined_token_not_bound_count(self, token, i):
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
+	def add_combined_token_morph_not_bound_count(self, token, i):
 		if i + 1 == len(self._tokens):
-			return 0
+			return self._undefined_count()
 		next_token = self._tokens[i + 1]
 		combined_text = token.text(ignore=self._ignore_chars) + next_token.text(ignore=self._ignore_chars)
-		if combined_text in  self._binding_freq_table:
+		if combined_text in self._binding_freq_table:
 			return self._binding_freq_table[combined_text].n_not_bound
 		else:
-			return 0
+			return self._undefined_count()
 
-	@windowed_feature(out_of_window_value=0.5) #TODO: see above
-	def add_combined_token_prob_bound(self, token, i):
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_prob()) #TODO: see above
+	def add_combined_token_morph_prob_bound(self, token, i):
 		if i + 1 == len(self._tokens):
-			return 0.5 #TODO: see above
+			return self._undefined_prob() #TODO: see above
 		next_token = self._tokens[i + 1]
 		combined_text = token.text(ignore=self._ignore_chars) + next_token.text(ignore=self._ignore_chars)
-		if combined_text in  self._binding_freq_table:
+		if combined_text in self._binding_freq_table:
 			return self._binding_freq_table[combined_text].p_bound
 		else:
-			return 0.5 #TODO: see above
+			return self._undefined_prob() #TODO: see above
 
-	@windowed_feature(out_of_window_value=0)
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
 	def add_count_if_bound(self, token, i):
 		if i + 1 == len(self._tokens):
-			return 0
+			return self._undefined_count()
 		next_token = self._tokens[i + 1]
 		combined_text = token.text(ignore=self._ignore_chars) + next_token.text(ignore=self._ignore_chars)
 		if combined_text in  self._binding_freq_table:
 			return self._binding_freq_table[combined_text].n_bound
 		else:
-			return 0
+			return self._undefined_count()
 
-	@windowed_feature(out_of_window_value=0)
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
 	def add_length(self, token, i):
 		return len(token.text(ignore=self._ignore_chars))
 
@@ -304,4 +333,78 @@ class Featurizer:
 	def add_last_letter(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
 		return self._char_encoder.transform_single(orig[-1] if orig[-1] in self._char_vocab else UNKNOWN_CHAR)
+
+	@windowed_feature(out_of_window_value
+					  =lambda self: (self._pos_encoder.transform_single(UNKNOWN_POS)
+									 + [self._undefined_prob(),
+										#self._undefined_count(),
+										#self._undefined_count(),
+										#self._undefined_prob()
+										]))
+	def add_right_substr_pos(self, token, i):
+		orig = token.text(ignore=self._ignore_chars)
+
+		j = 1
+		pos = UNKNOWN_POS
+		while j <= len(orig):
+			substr = orig[j:]
+			if substr in self._pos_table:
+				pos = self._pos_table[substr]
+			j += 1
+
+		feats = (
+			self._pos_encoder.transform_single(pos if pos in self._pos_vocab else UNKNOWN_POS)
+			+ [float(len(substr)) / len(orig)]
+		)
+
+		#if substr in self._binding_freq_table:
+		#	entry = self._binding_freq_table[substr]
+		#	feats += [
+		#		entry.n_bound,
+		#		entry.n_not_bound,
+		#		entry.p_bound
+		#	]
+		#else:
+		#	feats += [self._undefined_count(), self._undefined_count(), self._undefined_prob()]
+
+		return feats
+
+	@windowed_feature(out_of_window_value
+					  =lambda self: (self._pos_encoder.transform_single(UNKNOWN_POS)
+									 + [self._undefined_prob(),
+										#self._undefined_count(),
+										#self._undefined_count(),
+										#self._undefined_prob()
+										]))
+	def add_left_substr_pos(self, token, i):
+		orig = token.text(ignore=self._ignore_chars)
+
+		j = len(orig) - 1
+		pos = UNKNOWN_POS
+		while j >= 0:
+			substr = orig[:j]
+			if substr in self._pos_table:
+				pos = self._pos_table[substr]
+			j -= 1
+
+		feats = (
+			self._pos_encoder.transform_single(pos if pos in self._pos_vocab else UNKNOWN_POS)
+			+ [float(len(substr)) / len(orig)]
+		)
+
+		#if substr in self._binding_freq_table:
+		#	entry = self._binding_freq_table[substr]
+		#	feats += [
+		#		entry.n_bound,
+		#		entry.n_not_bound,
+		#		entry.p_bound
+		#	]
+		#else:
+		#	feats += [self._undefined_count(), self._undefined_count(), self._undefined_prob()]
+
+		return feats
+
+
+
+
 
