@@ -2,17 +2,19 @@
 # -*- coding: utf-8 -*-
 
 """
-auto_norm - Python
-V2.0.0
-Python port of the Perl script normalizing Sahidic Coptic text to standard spelling.
+norm - Python
+V3.0.0
+Extended python port of the Perl script normalizing Sahidic Coptic text to standard spelling.
+New in V3: fall back to finite state normalizer for OOV items and other enhancements.
 
-Usage:  auto_norm.py [options] <FILE>
+Usage:  norm.py [options] <FILE>
 
 Options and argument:
 
 -h              print this [h]elp message and quit
 -s              use [s]ahidica Bible specific normalization rules
 -t              use [t]able containing previous normalizations (first column is diplomatic text, last column is normalized)
+-n              no finite-state tokenizer (closer to behavior of V2)
 
 <FILE>    A text file encoded in UTF-8 without BOM
 
@@ -20,80 +22,105 @@ Options and argument:
 Examples:
 
 Normalize a Coptic plain text file in UTF-8 encoding (without BOM):
-python auto_norm.py in_Coptic_utf8.txt > out_Coptic_normalized.txt
-python auto_norm.py -t norm_table.tab in_Coptic_utf8.txt > out_Coptic_normalized.txt
+python norm.py in_Coptic_utf8.txt > out_Coptic_normalized.txt
+python norm.py -t norm_table.tab in_Coptic_utf8.txt > out_Coptic_normalized.txt
 
-Copyright 2013-2018, Amir Zeldes & Caroline T. Schroeder
+Copyright 2013-2019, Amir Zeldes & Caroline T. Schroeder
 
 This program is free software.
 """
 
 from argparse import ArgumentParser
 import io, sys, os, re
+from collections import defaultdict
 
 script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
+data_dir = script_dir + ".." + os.sep + "data" + os.sep
 
-def normalize(in_data,table_file=None,sahidica=False):
+
+orig_chars = set(["̈", "", "̄", "̀", "̣", "`", "̅", "̈", "̂", "︤", "︥", "︦", "⳿", "~", "\n", "̇", " ", "‴", "#", "᷍", "⸍", "›", "‹"])
+
+
+#@profile
+def normalize(in_data,table_file=None,sahidica=False,finite_state=True):
+	def clean(text):
+		if "(" not in text and ")" not in text:  # Retain square brackets if item has capturing groups
+			if len(text) > 1:
+				text = text.replace("[","").replace("]","")
+		return ''.join([c for c in text if c not in orig_chars]).lower()
 
 	outlines=[]
 	if table_file is None:
 		# Use default location for norm table
-		table_file = script_dir + ".." + os.sep + "data" + os.sep + "norm_table.tab"
+		table_file = data_dir + os.sep + "norm_table.tab"
 	try:
-		norm_lines = io.open(table_file,encoding="utf8").read().replace("\r","").split("\n")
-	except IOError as e:
+		norm_lines = io.open(table_file,encoding="utf").read().replace("\r","").split("\n")
+	except Exception as e:
 		sys.stderr.write("could not find normalization table file at " + table_file + "\n")
 		sys.exit(0)
-	norms = dict((line.split("\t")) for line in norm_lines if "\t" in line)
-	for line in in_data.split("\n"):
+
+	norms = defaultdict(lambda : defaultdict(int))
+	for line in norm_lines:
+		if "\t" in line:
+			fields = line.split("\t")
+			norms[fields[0]][fields[1]]+=1
+	temp = {}
+	for orig in norms:
+		max_norm = max(norms[orig],key=lambda x: norms[orig][x])
+		temp[orig] = max_norm
+	norms = temp
+	norms["ⲉⲣ"] = "ⲉⲣ"  # Prevent incorrect generalization from training data
+
+	lines = [clean(line) for line in in_data.strip().split("\n")]
+	unk_lines = list(set([line for line in lines if line not in norms]))
+
+	use_foma = True
+	if finite_state:
+		if use_foma:
+			from foma_norm import FomaNorm
+			fs = FomaNorm()
+			fm_norms = fs.normalize(unk_lines)
+			for i, norm in enumerate(fm_norms):
+				if unk_lines[i] != norm:
+					norms[unk_lines[i]] = norm
+		else:
+			from fs_norm import FSNorm
+			# Get set of char n-grams attested in data
+			gram = 5
+			char_n_grams = [in_data[i:i+gram].lower() for i in range(len("\n".join(unk_lines))-gram)]
+			char_n_grams = set([g for g in char_n_grams if "\n" not in g])
+
+			# Build normalizer, ignoring items that can't possibly match the data to increase performance speed
+			fs = FSNorm(grams=char_n_grams)
+
+
+	for line in lines:
 		if line in norms:
 			line = norms[line]
 		else:
 			line = line.replace("|","").replace("[","").replace("]","")
 			line = line.replace("⳯","ⲛ")
 			line = line.replace("[`̂︦︥̄⳿̣̣̇̈̇̄̈︤᷍]","")
-			line = line.replace("Ⲁ","ⲁ")
-			line = line.replace("Ⲃ","ⲃ")
-			line = line.replace("Ⲅ","ⲅ")
-			line = line.replace("Ⲇ","ⲇ")
-			line = line.replace("Ⲉ","ⲉ")
-			line = line.replace("Ϥ","ϥ")
-			line = line.replace("Ⲫ","ⲫ")
-			line = line.replace("Ⲍ","ⲍ")
-			line = line.replace("Ⲏ","ⲏ")
-			line = line.replace("Ⲑ","ⲑ")
-			line = line.replace("Ⲓ","ⲓ")
-			line = line.replace("Ⲕ","ⲕ")
-			line = line.replace("Ⲗ","ⲗ")
-			line = line.replace("Ⲙ","ⲙ")
-			line = line.replace("Ⲛ","ⲛ")
-			line = line.replace("Ⲟ","ⲟ")
-			line = line.replace("Ⲝ","ⲝ")
-			line = line.replace("Ⲡ","ⲡ")
-			line = line.replace("Ⲣ","ⲣ")
-			line = line.replace("Ⲥ","ⲥ")
-			line = line.replace("Ⲧ","ⲧ")
-			line = line.replace("Ⲩ","ⲩ")
-			line = line.replace("Ⲱ","ⲱ")
-			line = line.replace("Ⲯ","ⲯ")
-			line = line.replace("Ⲭ","ⲭ")
-			line = line.replace("Ϩ","ϩ")
-			line = line.replace("Ϫ","ϫ")
-			line = line.replace("Ϣ","ϣ")
-			line = line.replace("Ϭ","ϭ")
-			line = line.replace("Ϯ","ϯ")
 			line = line.replace("̂","")
 			line = line.replace("`","")
 			line = line.replace("᷍","")
 			line = line.replace("̣","")
+			line = re.sub(r'([ⲁⲃⲅⲇⲉⲍⲏⲑⲓⲕⲗⲙⲛⲥⲟⲡⲝⲣⲧⲩⲱⲯϭϣϩϥϯ])[·.]([ⲁⲃⲅⲇⲉⲍⲏⲑⲓⲕⲗⲙⲛⲥⲟⲡⲝⲣⲧⲩⲱⲯϭϣϩϥϯ])',r'\1\2',line)  # remove punctuation inside alphabetic word
 
+			clean = line
 			if line in norms:
 				line = norms[line]
+				outlines.append(line)
+				continue
+			elif not use_foma:
+				line = fs.normalize(line)
 
+			# Known regex substitutions
 			line = re.sub(r"(^|_)ⲓⲏⲗ($|_)", r"\1ⲓⲥⲣⲁⲏⲗ\2", line)
 			line = re.sub(r"(^|_)ⲓⲏ?ⲥ($|_)", r"\1ⲓⲏⲥⲟⲩⲥ\2", line)
 			line = re.sub(r"(^|_)ϫⲟⲓⲥ($|_)", r"\1ϫⲟⲉⲓⲥ\2", line)
-			line = re.sub(r"(^|_)ⲭⲣ?ⲥ($|_)", r"\1ⲭⲣⲓⲥⲧⲟⲥ\2", line)
+			line = re.sub(r"ⲭⲣ?ⲥ($|_)", r"ⲭⲣⲓⲥⲧⲟⲥ\1", line)
+			line = re.sub(r"ⲡⲛⲓⲕⲟ([ⲛⲥ]($|_))", r"ⲡⲛⲉⲩⲙⲁⲧⲓⲕⲟ\1", line)
 			line = re.sub(r"(^|_)ϯⲟⲩⲇⲁⲓⲁ($|_)", r"\1ⲧⲓⲟⲩⲇⲁⲓⲁ\2", line)
 			line = re.sub(r"(^|_)ⲡⲛⲁ($|_)", r"\1ⲡⲛⲉⲩⲙⲁ\2", line)
 			line = re.sub(r"(^|_)ⲃⲁⲍⲁⲛⲓⲍⲉ($|_)", r"\1ⲃⲁⲥⲁⲛⲓⲍⲉ\2", line)
@@ -107,28 +134,37 @@ def normalize(in_data,table_file=None,sahidica=False):
 			line = re.sub(r"(^|_)ⲡⲏⲟⲩⲉ($|_)", r"\1ⲡⲏⲩⲉ\2", line)
 			line = re.sub(r"(^|_)ϩⲃⲏⲟⲩⲉ($|_)", r"\1ϩⲃⲏⲩⲉ\2", line)
 			line = re.sub(r"(^|_)ⲓⲉⲣⲟⲥⲟⲗⲩⲙⲁ($|_)", r"\1ϩⲓⲉⲣⲟⲩⲥⲁⲗⲏⲙ\2", line)
+			line = re.sub(r"ⲑⲓⲗⲏⲙ($|_)", r"ⲧϩⲓⲉⲣⲟⲩⲥⲁⲗⲏⲙ\1", line)
 			line = re.sub(r"(^|_)ⲡⲓⲑⲉ($|_)", r"\1ⲡⲉⲓⲑⲉ\2", line)
 			line = re.sub(r"(^|_)ⲡⲣⲟⲥⲕⲁⲣⲧⲉⲣⲓ($|_)", r"\1ⲡⲣⲟⲥⲕⲁⲣⲧⲉⲣⲓⲁ\2", line)
-			line = re.sub(r"(^|_)ⲙⲡⲁⲧⲉ[ⲕϥⲥⲛ]([^_ ]*)($|_)", r"\1ⲙⲡⲁⲧ\2\3", line)
+			line = re.sub(r"(^|[_ ]|ϫⲉ)ⲙⲡⲁⲧⲉ([ⲕϥⲥⲛ][^_ ]*)($|_)", r"\1ⲙⲡⲁⲧ\2\3", line)
+			line = re.sub(r"(^|[_ ]|ϫⲉ)ⲙⲡⲁϯ([^_ ]+)($|_)", r"\1ⲙⲡⲁⲧⲓ\2\3", line)
+			line = re.sub(r'ⲉⲑⲟⲟⲩ($|_)',r'ⲉⲧϩⲟⲟⲩ\1',line)
 
 			# Sahidica specific replacements
 			if sahidica:
 				line = re.sub(r'ⲟⲉⲓ($|_| )',"ⲉⲓ",line)
 				line = re.sub(r'^([ⲡⲧⲛ])ⲉⲉⲓ)',r"\1ⲉⲓ",line)
 
+			norms[clean] = line
+
 		outlines.append(line)
 	return "\n".join(outlines)
 
 
 if __name__=="__main__":
+
 	parser = ArgumentParser()
 	parser.add_argument("-s","--sahidica",action="store_true",help="use [s]ahidica Bible specific normalization rules")
 	parser.add_argument("-t","--table",action="store",default=None,help="use [t]able containing previous normalizations (first column is diplomatic text, last column is normalized)")
+	parser.add_argument("-n","--no_finite_state",action="store_true",help="[n]o finite state normalizer")
 	parser.add_argument("infile",action="store",help="file to process")
 
 	opts = parser.parse_args()
 
+	finite_state = False if opts.no_finite_state else True
+
 	in_data = io.open(opts.infile,encoding="utf8").read().replace("\r","")
-	normalized = normalize(in_data,table_file=opts.table,sahidica=opts.sahidica)
+	normalized = normalize(in_data,table_file=opts.table,sahidica=opts.sahidica,finite_state=finite_state)
 	print(normalized)
 

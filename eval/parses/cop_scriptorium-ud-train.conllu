@@ -4168,7 +4168,7 @@
 44	.	.	PUNCT	PUNCT	_	3	punct	_	Orig=·
 
 # sent_id = apophthegmata_patrum-AP_002_n136_account_s0002
-# text = ⲟⲩ ⲅⲁⲣ ⲡⲉ ⲛⲁⲩ ⲉⲙⲡⲏⲩⲉ ⲉⲩⲛⲁⲡⲱϩ . ⲁⲩⲱ ⲡⲛⲟⲩⲧⲉ ⲉϥⲟⲩⲱⲛϩ ⲙⲙⲟϥ ⲉⲃⲟⲗ ϩⲛⲟⲩⲟⲣⲅⲏ . ⲙⲛⲟⲩⲁⲡⲓⲗⲏ
+# text = ⲟⲩ ⲅⲁⲣ ⲡⲉ ⲛⲁⲩ ⲉⲙⲡⲏⲩⲉ ⲉⲩⲛⲁⲡⲱϩ . ⲁⲩⲱ ⲡⲛⲟⲩⲧⲉ ⲉϥⲟⲩⲱⲛϩ ⲙⲙⲟϥ ⲉⲃⲟⲗ ϩⲛⲟⲩⲟⲣⲅⲏ . ⲙⲛⲟⲩⲁⲡⲉⲓⲗⲏ
 1	ⲟⲩ	ⲟⲩ	PRON	PINT	PronType=Int	0	root	_	Orig=Ⲟⲩ
 2	ⲅⲁⲣ	ⲅⲁⲣ	PART	PTC	_	1	advmod	_	_
 3	ⲡⲉ	ⲡⲉ	PRON	COP	Gender=Masc|Number=Sing	1	cop	_	_
@@ -4200,10 +4200,10 @@
 23	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	24	det	_	_
 24	ⲟⲣⲅⲏ	ⲟⲣⲅⲏ	NOUN	N	_	18	obl	_	Orig=ⲟ̇ⲣⲅⲏ
 25	.	.	PUNCT	PUNCT	_	24	punct	_	Orig=·
-26-28	ⲙⲛⲟⲩⲁⲡⲓⲗⲏ	_	_	_	_	_	_	_	_
+26-28	ⲙⲛⲟⲩⲁⲡⲉⲓⲗⲏ	_	_	_	_	_	_	_	_
 26	ⲙⲛ	ⲙⲛ	ADP	PREP	_	28	cc	_	Orig=ⲙⲛ̇
 27	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	28	det	_	_
-28	ⲁⲡⲓⲗⲏ	ⲁⲡⲓⲗⲏ	NOUN	N	_	24	conj	_	Orig=ⲁⲡⲓ̇ⲗⲏ
+28	ⲁⲡⲉⲓⲗⲏ	ⲁⲡⲉⲓⲗⲏ	NOUN	N	_	24	conj	_	Orig=ⲁⲡⲓ̇ⲗⲏ
 
 # sent_id = apophthegmata_patrum-AP_002_n136_account_s0003
 # text = ..... ⲙⲏⲏϣⲉ ⲛⲧⲁⲅⲙⲁ ⲛⲁⲅⲅⲉⲗⲟⲥ ⲉⲙⲛⲏⲡ .....
@@ -4688,17 +4688,17 @@
 31	.	.	PUNCT	PUNCT	_	3	punct	_	Orig=·
 
 # sent_id = apophthegmata_patrum-AP_005_unid_senses_s0003
-# text = ⲛⲁⲓ ϭⲉ ⲉϣⲱⲡⲉ ⲉⲕϣⲁⲛϫⲡⲟ ⲛⲧⲉⲩⲉⲛⲉⲣⲅⲓⲁ ϩⲛⲟⲩⲙⲛⲧⲕⲁⲑⲁⲣⲟⲥ ϣⲁⲣⲉ ⲛⲕⲉⲉⲥⲑⲏⲧⲏⲣⲓⲟⲛ ⲉⲧϩⲓϩⲟⲩⲛ ϣⲱⲡⲉ ϩⲛⲟⲩⲥϭⲣⲁϩⲧ , ⲙⲛⲟⲩⲟⲩϫⲁⲓ .
+# text = ⲛⲁⲓ ϭⲉ ⲉϣⲱⲡⲉ ⲉⲕϣⲁⲛϫⲡⲟ ⲛⲧⲉⲩⲉⲛⲉⲣⲅⲉⲓⲁ ϩⲛⲟⲩⲙⲛⲧⲕⲁⲑⲁⲣⲟⲥ ϣⲁⲣⲉ ⲛⲕⲉⲉⲥⲑⲏⲧⲏⲣⲓⲟⲛ ⲉⲧϩⲓϩⲟⲩⲛ ϣⲱⲡⲉ ϩⲛⲟⲩⲥϭⲣⲁϩⲧ , ⲙⲛⲟⲩⲟⲩϫⲁⲓ .
 1	ⲛⲁⲓ	ⲡⲁⲓ	DET	PDEM	Definite=Def|Number=Plur|PronType=Dem	5	dislocated	_	Orig=Ⲛⲁⲓ
 2	ϭⲉ	ϭⲉ	PART	PTC	_	5	advmod	_	_
 3	ⲉϣⲱⲡⲉ	ⲉϣⲱⲡⲉ	CCONJ	CONJ	_	5	mark	_	_
 4-5	ⲉⲕϣⲁⲛϫⲡⲟ	_	_	_	_	_	_	_	_
 4	ⲉⲕϣⲁⲛ	ⲉⲣϣⲁⲛ_ⲛⲧⲟⲕ	PRON	ACOND_PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=2|PronType=Prs	5	nsubj	_	Orig=ⲉⲕϣ̇ⲁⲛ
 5	ϫⲡⲟ	ϫⲡⲟ	VERB	V	VerbForm=Fin	18	advcl	_	_
-6-8	ⲛⲧⲉⲩⲉⲛⲉⲣⲅⲓⲁ	_	_	_	_	_	_	_	_
+6-8	ⲛⲧⲉⲩⲉⲛⲉⲣⲅⲉⲓⲁ	_	_	_	_	_	_	_	_
 6	ⲛ	ⲛ	ADP	PREP	_	8	case	_	Orig=ⲛ̄
 7	ⲧⲉⲩ	ⲡⲉⲩ	DET	PPOS	Definite=Def|Gender=Fem|Number=Sing|Number[psor]=Plur|Person=3|Poss=Yes|PronType=Prs	8	det	_	_
-8	ⲉⲛⲉⲣⲅⲓⲁ	ⲉⲛⲉⲣⲅⲓⲁ	NOUN	N	_	5	obj	_	Orig=ⲉ̇ⲛⲉⲣⲅⲓⲁ
+8	ⲉⲛⲉⲣⲅⲉⲓⲁ	ⲉⲛⲉⲣⲅⲉⲓⲁ	NOUN	N	_	5	obj	_	Orig=ⲉ̇ⲛⲉⲣⲅⲓⲁ
 9-11	ϩⲛⲟⲩⲙⲛⲧⲕⲁⲑⲁⲣⲟⲥ	_	_	_	_	_	_	_	_
 9	ϩⲛ	ϩⲛ	ADP	PREP	_	11	case	_	Orig=ϩⲛ̇
 10	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	11	det	_	_
@@ -4887,7 +4887,7 @@
 8	ϣⲗⲏⲗ	ϣⲗⲏⲗ	NOUN	N	_	3	obl	_	_
 
 # sent_id = apophthegmata_patrum-AP_018_n372_anger_s0003
-# text = ⲁϥⲁⲓⲧⲉⲓ ⲉϫⲓ ⲛⲟⲩⲙⲛⲧϩⲁⲣϣϩⲏⲧ ⲉϫⲙ ⲡⲉϥⲥⲟⲛ , ⲁⲩⲱ ⲉⲡⲁⲣⲁⲅⲉ ⲙⲡⲡⲓⲣⲁⲥⲙⲟⲥ ⲁϫⲙ ⲡⲱⲗⲁϩ .
+# text = ⲁϥⲁⲓⲧⲉⲓ ⲉϫⲓ ⲛⲟⲩⲙⲛⲧϩⲁⲣϣϩⲏⲧ ⲉϫⲙ ⲡⲉϥⲥⲟⲛ , ⲁⲩⲱ ⲉⲡⲁⲣⲁⲅⲉ ⲙⲡⲡⲉⲓⲣⲁⲥⲙⲟⲥ ⲁϫⲙ ⲡⲱⲗⲁϩ .
 1-3	ⲁϥⲁⲓⲧⲉⲓ	_	_	_	_	_	_	_	_
 1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	Orig=ⲁ̇
 2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	Orig=ϥ̣
@@ -4908,10 +4908,10 @@
 14-15	ⲉⲡⲁⲣⲁⲅⲉ	_	_	_	_	_	_	_	_
 14	ⲉ	ⲉ	PART	PREP	_	15	mark	_	Orig=ⲉ̇
 15	ⲡⲁⲣⲁⲅⲉ	ⲡⲁⲣⲁⲅⲉ	VERB	V	VerbForm=Inf	5	conj	_	_
-16-18	ⲙⲡⲡⲓⲣⲁⲥⲙⲟⲥ	_	_	_	_	_	_	_	_
+16-18	ⲙⲡⲡⲉⲓⲣⲁⲥⲙⲟⲥ	_	_	_	_	_	_	_	_
 16	ⲙ	ⲛ	ADP	PREP	_	18	case	_	Orig=ⲙ̇
 17	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	18	det	_	Orig=ⲡ̇
-18	ⲡⲓⲣⲁⲥⲙⲟⲥ	ⲡⲓⲣⲁⲥⲙⲟⲥ	NOUN	N	_	15	obj	_	Orig=ⲡⲓ̇ⲣⲁⲥⲙⲟⲥ
+18	ⲡⲉⲓⲣⲁⲥⲙⲟⲥ	ⲡⲉⲓⲣⲁⲥⲙⲟⲥ	NOUN	N	_	15	obj	_	Orig=ⲡⲓ̇ⲣⲁⲥⲙⲟⲥ
 19	ⲁϫⲙ	ⲁϫⲛ	ADP	PREP	_	20	case	_	Orig=ⲁ̇ϫⲙ̇
 20	ⲡⲱⲗⲁϩ	ⲡⲱⲗⲁϩ	NOUN	N	_	15	obl	_	_
 21	.	.	PUNCT	PUNCT	_	3	punct	_	Orig=⸱
@@ -7886,16 +7886,16 @@
 18	.	.	PUNCT	PUNCT	_	5	punct	_	_
 
 # sent_id = sahidica_mark-Mark_09_s0028
-# text = ⲛⲧⲉⲣⲉϥⲃⲱⲕ ⲉϩⲟⲩⲛ ⲉⲡⲏⲉⲓ . ⲁⲛⲉϥⲙⲁⲑⲏⲧⲏⲥ ϫⲛⲟⲩϥ ⲛⲥⲁⲩⲥⲁ . ϫⲉⲉⲧⲃⲉⲟⲩ ⲁⲛⲟⲛ ⲙⲡⲛⲉϣⲛⲟϫϥ ⲉⲃⲟⲗ .
+# text = ⲛⲧⲉⲣⲉϥⲃⲱⲕ ⲉϩⲟⲩⲛ ⲉⲡⲏⲓ . ⲁⲛⲉϥⲙⲁⲑⲏⲧⲏⲥ ϫⲛⲟⲩϥ ⲛⲥⲁⲩⲥⲁ . ϫⲉⲉⲧⲃⲉⲟⲩ ⲁⲛⲟⲛ ⲙⲡⲛⲉϣⲛⲟϫϥ ⲉⲃⲟⲗ .
 1-3	ⲛⲧⲉⲣⲉϥⲃⲱⲕ	_	_	_	_	_	_	_	_
 1	ⲛⲧⲉⲣⲉ	ⲛⲧⲉⲣⲉ	AUX	AUX	_	3	aux	_	_
 2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
 3	ⲃⲱⲕ	ⲃⲱⲕ	VERB	V	VerbForm=Fin	12	advcl	_	_
 4	ⲉϩⲟⲩⲛ	ⲉϩⲟⲩⲛ	ADV	ADV	_	3	advmod	_	_
-5-7	ⲉⲡⲏⲉⲓ	_	_	_	_	_	_	_	_
+5-7	ⲉⲡⲏⲓ	_	_	_	_	_	_	_	_
 5	ⲉ	ⲉ	ADP	PREP	_	7	case	_	_
 6	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	7	det	_	_
-7	ⲏⲉⲓ	ⲏⲓ	NOUN	N	_	3	obl	_	_
+7	ⲏⲓ	ⲏⲓ	NOUN	N	_	3	obl	_	Orig=ⲏⲉⲓ
 8	.	.	PUNCT	PUNCT	_	3	punct	_	_
 9-11	ⲁⲛⲉϥⲙⲁⲑⲏⲧⲏⲥ	_	_	_	_	_	_	_	_
 9	ⲁ	ⲁ	AUX	AUX	_	12	aux	_	_
@@ -8153,7 +8153,7 @@
 26	.	.	PUNCT	PUNCT	_	5	punct	_	_
 
 # sent_id = sahidica_mark-Mark_09_s0035
-# text = ⲛⲧⲉⲣⲉϥϩⲙⲟⲟⲥ ⲇⲉ ⲉϩⲣⲁⲓ ⲁϥⲙⲟⲩⲧⲉ ⲉⲡⲙⲛⲧⲥⲛⲟⲟⲩⲥ ⲁⲩⲱ ⲡⲉϫⲁϥ ⲛⲁⲩ ϫⲉⲡⲉⲧⲟⲩⲱϣ ⲉⲣⲛⲟϭ ⲛϩⲏⲧⲧⲏⲩⲧⲛ ⲉϥⲛⲁⲣⲕⲟⲩⲉⲓ ⲉⲟⲩⲟⲛ ⲛⲓⲙ . ⲁⲩⲱ ⲛϥⲇⲓⲁⲕⲟⲛⲓ ⲟⲩⲟⲛ ⲛⲓⲙ .
+# text = ⲛⲧⲉⲣⲉϥϩⲙⲟⲟⲥ ⲇⲉ ⲉϩⲣⲁⲓ ⲁϥⲙⲟⲩⲧⲉ ⲉⲡⲙⲛⲧⲥⲛⲟⲟⲩⲥ ⲁⲩⲱ ⲡⲉϫⲁϥ ⲛⲁⲩ ϫⲉⲡⲉⲧⲟⲩⲱϣ ⲉⲣⲛⲟϭ ⲛϩⲏⲧⲧⲏⲩⲧⲛ ⲉϥⲛⲁⲣⲕⲟⲩⲓ ⲉⲟⲩⲟⲛ ⲛⲓⲙ . ⲁⲩⲱ ⲛϥⲇⲓⲁⲕⲟⲛⲓ ⲟⲩⲟⲛ ⲛⲓⲙ .
 1-3	ⲛⲧⲉⲣⲉϥϩⲙⲟⲟⲥ	_	_	_	_	_	_	_	_
 1	ⲛⲧⲉⲣⲉ	ⲛⲧⲉⲣⲉ	AUX	AUX	_	3	aux	_	Orig=[......]
 2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
@@ -8186,11 +8186,11 @@
 23-24	ⲛϩⲏⲧⲧⲏⲩⲧⲛ	_	_	_	_	_	_	_	_
 23	ⲛϩⲏⲧ	ϩⲛ	ADP	PREP	_	24	case	_	_
 24	ⲧⲏⲩⲧⲛ	ⲛⲧⲱⲧⲛ	PRON	PPERO	Definite=Def|Number=Plur|Person=2|PronType=Prs	22	obl	_	_
-25-28	ⲉϥⲛⲁⲣⲕⲟⲩⲉⲓ	_	_	_	_	_	_	_	_
+25-28	ⲉϥⲛⲁⲣⲕⲟⲩⲓ	_	_	_	_	_	_	_	_
 25	ⲉ	ⲉⲣⲉ	PART	CFOC	_	28	mark	_	_
 26	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	28	nsubj	_	_
 27	ⲛⲁ	ⲛⲁ	AUX	AUX	_	28	aux	_	_
-28	ⲣⲕⲟⲩⲉⲓ	ⲣⲕⲟⲩⲉⲓ	VERB	V	VerbForm=Fin	13	ccomp	_	Morphs=ⲣ-ⲕⲟⲩⲉⲓ|Orig=ⲣⲕⲟⲩⲓ
+28	ⲣⲕⲟⲩⲓ	ⲣⲕⲟⲩⲉⲓ	VERB	V	VerbForm=Fin	13	ccomp	_	Morphs=ⲣ-ⲕⲟⲩⲓ
 29-30	ⲉⲟⲩⲟⲛ	_	_	_	_	_	_	_	_
 29	ⲉ	ⲉ	ADP	PREP	_	30	case	_	_
 30	ⲟⲩⲟⲛ	ⲟⲩⲟⲛ	NOUN	N	_	28	obl	_	_
@@ -12042,7 +12042,7 @@
 12	·	·	PUNCT	PUNCT	_	3	punct	_	_
 
 # sent_id = martyrdom_victor-martyrdom_victor_04_s0012
-# text = ϫⲉϫⲓ ⲙⲡⲉⲓⲇⲓⲁⲧⲁⲅⲙⲁ · ⲙⲁⲣⲉⲛⲕⲉⲥⲉⲉⲡⲉ ⲙⲙⲏⲏϣⲉ ⲑⲩⲥⲓⲁⲍⲉ ⲙⲡⲁⲧⲉⲕⲁⲛⲁⲭⲱⲣⲉⲓ ·
+# text = ϫⲉϫⲓ ⲙⲡⲉⲓⲇⲓⲁⲧⲁⲅⲙⲁ · ⲙⲁⲣⲉⲛⲕⲉⲥⲉⲉⲡⲉ ⲙⲙⲏⲏϣⲉ ⲑⲩⲥⲓⲁⲍⲉ ⲙⲡⲁⲧⲕⲁⲛⲁⲭⲱⲣⲉⲓ ·
 1-2	ϫⲉϫⲓ	_	_	_	_	_	_	_	_
 1	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	2	mark	_	_
 2	ϫⲓ	ϫⲓ	VERB	V	VerbForm=Fin	0	root	_	_
@@ -12060,8 +12060,8 @@
 11	ⲙ	ⲛ	ADP	PREP	_	12	case	_	Orig=ⲙ̄
 12	ⲙⲏⲏϣⲉ	ⲙⲏⲏϣⲉ	NOUN	N	_	10	nmod	_	_
 13	ⲑⲩⲥⲓⲁⲍⲉ	ⲑⲩⲥⲓⲁⲍⲉ	VERB	V	VerbForm=Fin	2	parataxis	_	_
-14-16	ⲙⲡⲁⲧⲉⲕⲁⲛⲁⲭⲱⲣⲉⲓ	_	_	_	_	_	_	_	_
-14	ⲙⲡⲁⲧⲉ	ⲙⲡⲁⲧⲉ	AUX	ANY	Polarity=Neg	16	aux	_	Orig=ⲙ̄ⲡⲁⲧⲉ
+14-16	ⲙⲡⲁⲧⲕⲁⲛⲁⲭⲱⲣⲉⲓ	_	_	_	_	_	_	_	_
+14	ⲙⲡⲁⲧ	ⲙⲡⲁⲧⲉ	AUX	ANY	Polarity=Neg	16	aux	_	Orig=ⲙ̄ⲡⲁⲧⲉ
 15	ⲕ	ⲛⲧⲟⲕ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=2|PronType=Prs	16	nsubj	_	_
 16	ⲁⲛⲁⲭⲱⲣⲉⲓ	ⲁⲛⲁⲭⲱⲣⲉⲓ	VERB	V	VerbForm=Fin	13	advcl	_	_
 17	·	·	PUNCT	PUNCT	_	2	punct	_	_
