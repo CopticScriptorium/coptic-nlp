@@ -120,6 +120,16 @@ def list_files(alias="silver",file_dir=None,parse=False):
 						 file_dir + "BritMusOriental6783_63b_67b.tt"]
 			file_dir = eval_dir + "plain" + os.sep
 			file_list.append(file_dir + "martyrdom.victor.01.tt")
+		elif alias.lower() == "ephcyon_plain":
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "BritMusOriental6783_part1.txt",file_dir + "BritMusOriental6783_part2.txt",
+						 file_dir + "BritMusOriental6783_63b_67b.txt",
+						 file_dir + "apa_onnophrius_part1.txt"]
+		elif alias.lower() == "ephcyon_tt":
+			file_dir = eval_dir + "unreleased" + os.sep
+			file_list = [file_dir + "BritMusOriental6783_part1.tt",file_dir + "BritMusOriental6783_part2.tt",
+						 file_dir + "BritMusOriental6783_63b_67b.tt",
+						 file_dir + "apa_onnophrius_part1.tt"]
 		elif alias.lower() == "cyrus_plain":
 			file_dir = eval_dir + "plain" + os.sep
 			file_list = [file_dir + "BritMusOriental6783_part1.txt",file_dir + "BritMusOriental6783_part2.txt"]

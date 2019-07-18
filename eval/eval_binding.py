@@ -490,6 +490,9 @@ def expand_abbreviations(gold_list, orig_list):
 	elif orig_list.startswith("ephcyvic"):
 		orig_list = "ephcyvic_plain"
 		gold_list = "ephcyvic_tt"
+	elif orig_list.startswith("ephcyon"):
+		orig_list = "ephcyon_plain"
+		gold_list = "ephcyon_tt"
 
 	return gold_list, orig_list
 
