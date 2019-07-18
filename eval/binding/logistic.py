@@ -1,7 +1,7 @@
 from __future__ import division
 
 import numpy as np
-from sklearn.linear_model import LogisticRegressionCV, LassoCV
+from sklearn.linear_model import LogisticRegressionCV
 from sklearn.svm import LinearSVC
 
 from .tokenizer import Tokenizer
@@ -14,11 +14,12 @@ class LogisticBindingModel:
 		self,
 		ignore_chars=[],
 		n_groups_left=1,
-		n_groups_right=1,
+		n_groups_right=2,
 		gold_token_separator="_",
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
 		pos_file_path=None,
+		group_freq_file_path=None,
 	):
 		self._tokens = []
 		self._tokenizer = Tokenizer(
@@ -28,13 +29,14 @@ class LogisticBindingModel:
 			lowercase=True
 		)
 		self._featurizer = Featurizer(
+			n_groups_left,
+			n_groups_right,
 			# seps might occur in tokens, also add them to the ignore list
 			ignore_chars=ignore_chars + [orig_token_separator, gold_token_separator],
-			n_groups_left=n_groups_left,
-			n_groups_right=n_groups_right,
 			orig_token_separator=" ",
 			binding_freq_file_path=binding_freq_file_path,
 			pos_file_path=pos_file_path,
+			group_freq_file_path=group_freq_file_path,
 			encoder='one_hot'
 		)
 		self._postprocessor = Postprocessor(separator=gold_token_separator)
@@ -42,10 +44,10 @@ class LogisticBindingModel:
 		self._m = LogisticRegressionCV(
 			random_state=0,
 			fit_intercept=True,
-			max_iter=1000,
+			max_iter=100,
 			solver='liblinear',
 			penalty='l1',
-			cv=5
+			cv=3
 		)
 
 	def _build_feature_matrix(self, text, orig_text=None, training=False):
@@ -57,16 +59,20 @@ class LogisticBindingModel:
 		X = np.array(
 			self._featurizer
 				.load_tokens(tokens, training=training)
-				.add_bound_count()
-				.add_not_bound_count()
-				.add_prob_bound(n_groups_left=1, n_groups_right=2)
-				.add_combined_token_bound_count(n_groups_left=1, n_groups_right=1)
-				.add_combined_token_not_bound_count(n_groups_left=1, n_groups_right=1)
-				.add_combined_token_prob_bound(n_groups_left=1, n_groups_right=1)
-				.add_length(n_groups_left=2, n_groups_right=4)
-				.add_pos(n_groups_left=1, n_groups_right=2)
-				.add_first_letter(n_groups_left=0, n_groups_right=1)
-				.add_last_letter(n_groups_left=1, n_groups_right=0)
+				.add_group_count()
+				.add_combined_token_group_count()
+				.add_morph_bound_count()
+				.add_morph_not_bound_count()
+				.add_morph_prob_bound()
+				#.add_combined_token_morph_bound_count()
+				#.add_combined_token_morph_not_bound_count()
+				#.add_combined_token_morph_prob_bound()
+				.add_length(left=1, right=3)
+				.add_pos(left=1, right=2)
+				.add_first_letter(left=0, right=1)
+				.add_last_letter(left=1, right=0)
+				.add_right_substr_pos(left=1, right=0)
+				.add_left_substr_pos(left=0, right=2)
 				.features()
 		)
 

@@ -5,3 +5,5 @@ __pycache__/
 .idea
 /_scrap/
 /.idea/
+_tmp*.tab
+errors/

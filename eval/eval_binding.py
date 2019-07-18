@@ -164,44 +164,33 @@ def clean(text):
 	return text
 
 # binding --------------------------------------------------------------------------------------------------------------
-def bind_naive(eval_orig_lines, gold):
-	txt = "".join(eval_orig_lines)
+def bind_naive(test_orig_lines, gold):
+	txt = "".join(test_orig_lines)
 	check_identical_text(gold, txt)
 	naive = txt.replace(ORIG_TOKEN_SEPARATOR, GOLD_TOKEN_SEPARATOR)
 
 	scores, errs = binding_score(gold, naive)
-	print("Baseline scores:")
-	print("Precision: %s" % scores["precision"])
-	print("Recall:    %s" % scores["recall"])
-	print("F1:	%s" % scores["f1"])
-	print()
 	return scores
 
 
-def bind_with_stacked_tokenizer(eval_orig_lines, gold):
+def bind_with_stacked_tokenizer(test_orig_lines, gold):
 	stk = StackedTokenizer(no_morphs=True, model="test", pipes=True, detok=2, tokenized=True)
 	stk.load_ambig(ambig_table=ambig)
 
-	bound = stk.analyze("\n".join(eval_orig_lines)).replace("|", "").replace('\n', '').strip()
+	bound = stk.analyze("\n".join(test_orig_lines)).replace("|", "").replace('\n', '').strip()
 
 	scores, errs = binding_score(gold,bound)
-	print("Stacked binding scores:")
-	print("Precision: %s" % scores["precision"])
-	print("Recall:    %s" % scores["recall"])
-	print("F1:	%s" % scores["f1"])
-	print()
-
 	with io.open(err_dir + "errs_binding_stacked.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
 
 	return scores
 
 
-def bind_with_logistic(eval_orig_lines, eval_gold, train_orig_lines, train_gold, opts):
-	eval_orig = "".join(eval_orig_lines)
+def bind_with_logistic(test_orig_lines, test_gold, train_orig_lines, train_gold, opts):
+	test_orig = "".join(test_orig_lines)
 	train_orig = "".join(train_orig_lines)
 
-	check_identical_text(eval_orig, eval_gold)
+	check_identical_text(test_orig, test_gold)
 	check_identical_text(train_orig, train_gold)
 
 	from binding.logistic import LogisticBindingModel
@@ -210,16 +199,12 @@ def bind_with_logistic(eval_orig_lines, eval_gold, train_orig_lines, train_gold,
 		gold_token_separator=GOLD_TOKEN_SEPARATOR,
 		orig_token_separator=ORIG_TOKEN_SEPARATOR,
 		binding_freq_file_path=opts.detok_table,
-		pos_file_path=opts.pos_table
+		pos_file_path=opts.pos_table,
+		group_freq_file_path=opts.group_freq_table,
 	)
 	m.train(train_gold, train_orig)
-	pred = m.predict(eval_orig)
-	scores, errs = binding_score(eval_gold, pred)
-	print("Logistic regression binding scores:")
-	print("Precision: %s" % scores["precision"])
-	print("Recall:    %s" % scores["recall"])
-	print("F1:	      %s" % scores["f1"])
-	print()
+	pred = m.predict(test_orig)
+	scores, errs = binding_score(test_gold, pred)
 
 	with io.open(err_dir + "errs_binding_logistic.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
@@ -227,29 +212,27 @@ def bind_with_logistic(eval_orig_lines, eval_gold, train_orig_lines, train_gold,
 	return scores
 
 
-def bind_with_xgboost(eval_orig_lines, eval_gold, train_orig_lines, train_gold, opts):
-	eval_orig = "".join(eval_orig_lines)
+def bind_with_xgboost(test_orig_lines, test_gold, train_orig_lines, train_gold, opts, **kwargs):
+	test_orig = "".join(test_orig_lines)
 	train_orig = "".join(train_orig_lines)
 
-	check_identical_text(eval_orig, eval_gold)
+	check_identical_text(test_orig, test_gold)
 	check_identical_text(train_orig, train_gold)
 
 	from binding.xgboost import XGBoostBindingModel
+
 	m = XGBoostBindingModel(
 		ignore_chars=IGNORE,
 		gold_token_separator=GOLD_TOKEN_SEPARATOR,
 		orig_token_separator=ORIG_TOKEN_SEPARATOR,
 		binding_freq_file_path=opts.detok_table,
-		pos_file_path=opts.pos_table
+		pos_file_path=opts.pos_table,
+		group_freq_file_path=opts.group_freq_table,
+		**kwargs
 	)
 	m.train(train_gold, train_orig)
-	pred = m.predict(eval_orig)
-	scores, errs = binding_score(eval_gold, pred)
-	print("XGBoost regression binding scores:")
-	print("Precision: %s" % scores["precision"])
-	print("Recall:    %s" % scores["recall"])
-	print("F1:	      %s" % scores["f1"])
-	print()
+	pred = m.predict(test_orig)
+	scores, errs = binding_score(test_gold, pred)
 
 	with io.open(err_dir + "errs_binding_xgboost.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
@@ -257,8 +240,8 @@ def bind_with_xgboost(eval_orig_lines, eval_gold, train_orig_lines, train_gold, 
 	return scores
 
 
-def bind_with_lstm(eval_orig_lines, gold, opts):
-	txt = "".join(eval_orig_lines)
+def bind_with_lstm(test_orig_lines, gold, opts):
+	txt = "".join(test_orig_lines)
 	check_identical_text(gold, txt)
 
 	from binding.lstm import LSTMBindingModel
@@ -271,11 +254,6 @@ def bind_with_lstm(eval_orig_lines, gold, opts):
 	pred = m.predict(p_test)
 
 	scores, errs = binding_score(g_test, pred)
-	print("Logistic regression binding scores:")
-	print("Precision: %s" % scores["precision"])
-	print("Recall:    %s" % scores["recall"])
-	print("F1:	      %s" % scores["f1"])
-	print()
 
 	with io.open(err_dir + "errs_binding_logistic.tab", 'w', encoding="utf8") as f:
 		f.write("\n".join(errs) + "\n")
@@ -284,6 +262,14 @@ def bind_with_lstm(eval_orig_lines, gold, opts):
 
 
 # evaluation -----------------------------------------------------------------------------------------------------------
+def print_scores(scores, model_name):
+	print("%s binding scores:" % model_name)
+	print("Precision: %s" % scores["precision"])
+	print("Recall:    %s" % scores["recall"])
+	print("F1:        %s" % scores["f1"])
+	print()
+
+
 def binarize(text):
 	"""Turn a text with _ separating bound groups into array of 0 (no split after character) or 1 (split after
 	this character)
@@ -346,62 +332,121 @@ def binding_score(gold, pred):
 	return scores, errs
 
 
-def run_eval(eval_gold_list, eval_orig_list, train_gold_list, train_orig_list, opts):
+def run_eval(
+		test_gold_list,
+		test_orig_list,
+		train_gold_list,
+		train_orig_list,
+		dev_gold_list,
+		dev_orig_list,
+		opts
+):
 	strategy = opts.strategy
 
-	eval_gold = prepare_gold_text(eval_gold_list)
-	eval_orig_lines = prepare_orig_lines(eval_orig_list)
+	test_gold = prepare_gold_text(test_gold_list)
+	test_orig_lines = prepare_orig_lines(test_orig_list)
 
 	train_gold = prepare_gold_text(train_gold_list)
 	train_orig_lines = prepare_orig_lines(train_orig_list)
 
+	dev_gold = prepare_gold_text(dev_gold_list)
+	dev_orig_lines = prepare_orig_lines(dev_orig_list)
+
 	if strategy == 'naive':
-		baseline_scores = bind_naive(eval_orig_lines, eval_gold)
+		baseline_scores = bind_naive(test_orig_lines, test_gold)
+		print_scores(baseline_scores, 'Baseline')
 		return baseline_scores
 	elif strategy == 'stacked':
-		st_scores = bind_with_stacked_tokenizer(eval_orig_lines, eval_gold)
+		st_scores = bind_with_stacked_tokenizer(test_orig_lines, test_gold)
+		print_scores(st_scores, 'Stacked tokenizer')
 		return st_scores
 	elif strategy == 'logistic':
 		logistic_scores = bind_with_logistic(
-			eval_orig_lines,
-			eval_gold,
+			test_orig_lines,
+			test_gold,
 			train_orig_lines,
 			train_gold,
 			opts
 		)
+		print_scores(logistic_scores, 'LogisticRegressionCV')
 		return logistic_scores
 	elif strategy == 'xgboost':
 		xgboost_scores = bind_with_xgboost(
-			eval_orig_lines,
-			eval_gold,
+			test_orig_lines,
+			test_gold,
 			train_orig_lines,
 			train_gold,
 			opts
 		)
+		print_scores(xgboost_scores, 'XGBoost')
+		return xgboost_scores
+	elif strategy == 'xgboost-hyper':
+		from hyperopt import hp, fmin, Trials, STATUS_OK, tpe
+		from hyperopt.pyll import scope
+		space = {
+			'n_estimators': scope.int(hp.quniform('n_estimators', 100, 250, 10)),
+			'max_depth': scope.int(hp.quniform('max_depth', 8, 35, 1)),
+			'eta': scope.float(hp.quniform('eta', 0.01, 0.2, 0.01)),
+			'gamma': scope.float(hp.quniform('gamma', 0.01, 0.2, 0.01)),
+			'colsample_bytree': hp.choice('colsample_bytree', [0.6, 0.7, 0.8, 1.0]),
+			#'colsample_bynode': hp.choice('colsample_bynode', [0.6, 0.7, 0.8, 1.0]),
+			#'colsample_bylevel': hp.choice('colsample_bylevel', [0.6, 0.7, 0.8, 1.0]),
+			'subsample': hp.choice('subsample', [0.6, 0.7, 0.8, 0.9, 1.0]),
+		}
+
+		def f(params):
+			scores = bind_with_xgboost(
+				dev_orig_lines,
+				dev_gold,
+				train_orig_lines,
+				train_gold,
+				opts,
+				**params
+			)
+			return {'loss': -scores['f1'], 'status': STATUS_OK}
+
+		trials = Trials()
+		best = fmin(f, space, algo=tpe.suggest, max_evals=200, trials=trials)
+		print("\nBest parameters:\n" + 30 * "=")
+		print(best)
+		xgboost_scores = bind_with_xgboost(
+			test_orig_lines,
+			test_gold,
+			train_orig_lines,
+			train_gold,
+			opts,
+			**best
+		)
+		print_scores(xgboost_scores, 'XGBoost hyper search')
 		return xgboost_scores
 	elif strategy == 'lstm':
-		lstm_scores = bind_with_lstm(eval_orig_lines, eval_gold, opts)
+		lstm_scores = bind_with_lstm(test_orig_lines, test_gold, opts)
+		print_scores(lstm_scores, 'LSTM')
 		return lstm_scores
 	elif strategy == 'all':
-		_ = bind_naive(eval_orig_lines, eval_gold)
-		_ = bind_with_logistic(
-			eval_orig_lines,
-			eval_gold,
+		scores = bind_naive(test_orig_lines, test_gold)
+		print_scores(scores, 'Baseline')
+		scores = bind_with_logistic(
+			test_orig_lines,
+			test_gold,
 			train_orig_lines,
 			train_gold,
 			opts
 		)
-		_ = bind_with_xgboost(
-			eval_orig_lines,
-			eval_gold,
+		print_scores(scores, 'Logistic regression')
+		scores = bind_with_xgboost(
+			test_orig_lines,
+			test_gold,
 			train_orig_lines,
 			train_gold,
 			opts
 		)
-		#_ = bind_with_lstm(eval_orig_lines, gold, opts)
-		_ = bind_with_stacked_tokenizer(eval_orig_lines, eval_gold)
+		print_scores(scores, 'XGBoost')
+		#_ = bind_with_lstm(test_orig_lines, gold, opts)
+		scores = bind_with_stacked_tokenizer(test_orig_lines, test_gold)
+		print_scores(scores, 'Stacked tokenizer')
 	else:
-		raise Exception("Unknown strategy: '{}'.\nMust be one of 'naive', 'stacked', 'logistic', 'xgboost', 'lstm', 'all'."
+		raise Exception("Unknown strategy: '{}'.\nMust be one of 'naive', 'stacked', 'logistic', 'xgboost', 'xgboost-hyper', 'lstm', 'all'."
 						.format(strategy))
 
 
@@ -439,6 +484,15 @@ def expand_abbreviations(gold_list, orig_list):
 	elif orig_list.startswith("victor"):
 		orig_list = "victor_plain"
 		gold_list = "victor_tt"
+	elif orig_list.startswith("ephraim"):
+		orig_list = "ephraim_plain"
+		gold_list = "ephraim_tt"
+	elif orig_list.startswith("ephcyvic"):
+		orig_list = "ephcyvic_plain"
+		gold_list = "ephcyvic_tt"
+	elif orig_list.startswith("ephcyon"):
+		orig_list = "ephcyon_plain"
+		gold_list = "ephcyon_tt"
 
 	return gold_list, orig_list
 
@@ -448,28 +502,38 @@ def main():
 	p.add_argument(
 		"strategy",
 		default="all",
-		help="binding strategy: one of 'naive', 'stacked', 'logistic', 'xgboost', 'lstm', 'all'",
+		help="binding strategy: one of 'naive', 'stacked', 'logistic', 'xgboost', 'xgboost-hyper', 'lstm', 'all'",
 		nargs='?'
 	)
 	p.add_argument(
 		"--train_gold_list",
-		default="onno",
+		default="victor",
 		help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied"
 	)
 	p.add_argument(
 		"--train_orig_list",
-		default="onno",
+		default="victor",
 		help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'"
 	)
 	p.add_argument(
-		"--eval_gold_list",
+		"--test_gold_list",
 		default="cyrus_tt",
 		help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied"
 	)
 	p.add_argument(
-		"--eval_orig_list",
+		"--test_orig_list",
 		default="cyrus_plain",
 		help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'"
+	)
+	p.add_argument(
+		"--dev_gold_list",
+		default="onno",
+		help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in dev if not supplied"
+	)
+	p.add_argument(
+		"--dev_orig_list",
+		default="onno",
+		help="file with one file name per line of plain text dev files, or alias of dev set, e.g. 'ud_dev'"
 	)
 	p.add_argument("--file_dir", default="plain", help="directory with plain text files")
 	p.add_argument("--gold_dir", default="unreleased", help="directory with gold .tt files")
@@ -483,12 +547,18 @@ def main():
 		default="copt_lemma_lex_cplx_2.8_cdo.tab", #TODO: change this
 		help="A TSV file containing POS information"
 	)
+	p.add_argument(
+		"--group_freq_table",
+		default=os.sep.join(['..', 'data', 'annis_silver_orig_group_freqs_2019_07.tab']), #TODO: change this
+		help="A TSV file containing orig group freq information in silver data"
+	)
+
 
 	opts = p.parse_args()
 
-	eval_gold_list, eval_orig_list = resolve_file_lists(
-		opts.eval_gold_list,
-		opts.eval_orig_list,
+	test_gold_list, test_orig_list = resolve_file_lists(
+		opts.test_gold_list,
+		opts.test_orig_list,
 		opts.gold_dir,
 		opts.file_dir,
 	)
@@ -500,11 +570,20 @@ def main():
 		opts.file_dir,
 	)
 
+	dev_gold_list, dev_orig_list = resolve_file_lists(
+		opts.dev_gold_list,
+		opts.dev_orig_list,
+		opts.gold_dir,
+		opts.file_dir,
+	)
+
 	run_eval(
-		eval_gold_list,
-		eval_orig_list,
+		test_gold_list,
+		test_orig_list,
 		train_gold_list,
 		train_orig_list,
+		dev_gold_list,
+		dev_orig_list,
 		opts
 	)
 

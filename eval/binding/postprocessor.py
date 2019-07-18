@@ -7,8 +7,8 @@ class Postprocessor:
 
 		for i, token in enumerate(tokens):
 			pred = preds[i]
-			accum.append(token.orig)
-			if pred == 0:
+			accum.append(token.text(use_normalized=False))
+			if pred <= 0.50:
 				accum.append(self._sep)
 
 		output = "".join(accum)
