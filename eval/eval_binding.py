@@ -344,6 +344,7 @@ def run_eval(
 	strategy = opts.strategy
 
 	test_gold = prepare_gold_text(test_gold_list)
+	print(test_orig_list)
 	test_orig_lines = prepare_orig_lines(test_orig_list)
 
 	train_gold = prepare_gold_text(train_gold_list)
@@ -478,6 +479,18 @@ def expand_abbreviations(gold_list, orig_list):
 	if orig_list.startswith("onno"):
 		orig_list = "onno_plain"
 		gold_list = "onno"
+	elif orig_list.startswith("viccyeph"):
+		orig_list = "viccyeph_plain"
+		gold_list = "viccyeph_tt"
+	elif orig_list.startswith("cyephon"):
+		orig_list = "cyephon_plain"
+		gold_list = "cyephon_tt"
+	elif orig_list.startswith("vicephon"):
+		orig_list = "vicephon_plain"
+		gold_list = "vicephon_tt"
+	elif orig_list.startswith("viccyon"):
+		orig_list = "viccyon_plain"
+		gold_list = "viccyon_tt"
 	elif orig_list.startswith("cyrus"):
 		orig_list = "cyrus_plain"
 		gold_list = "cyrus"
@@ -487,12 +500,6 @@ def expand_abbreviations(gold_list, orig_list):
 	elif orig_list.startswith("ephraim"):
 		orig_list = "ephraim_plain"
 		gold_list = "ephraim_tt"
-	elif orig_list.startswith("ephcyvic"):
-		orig_list = "ephcyvic_plain"
-		gold_list = "ephcyvic_tt"
-	elif orig_list.startswith("ephcyon"):
-		orig_list = "ephcyon_plain"
-		gold_list = "ephcyon_tt"
 
 	return gold_list, orig_list
 
