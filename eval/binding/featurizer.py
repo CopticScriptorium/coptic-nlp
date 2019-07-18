@@ -10,24 +10,26 @@ from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 UNKNOWN_POS = "UNKNOWN"
 
 
+class BindingFreq:
+	def __init__(self, group, n_bound, n_not_bound, p_bound):
+		self.group = group
+		self.n_bound = int(n_bound)
+		self.n_not_bound = int(n_not_bound)
+		self.p_bound = float(p_bound)
+
+	def __str__(self):
+		return self.__repr__()
+
+	def __repr__(self):
+		return '<BindingFreq group="%s" p_bound="%s" n_bound="%s" n_not_bound="%s">' % (
+			self.group,
+			self.p_bound,
+			self.n_bound,
+			self.n_not_bound
+		)
+
+
 def read_binding_freq_file(path):
-	class BindingFreq:
-		def __init__(self, group, n_bound, n_not_bound, p_bound):
-			self.group = group
-			self.n_bound = int(n_bound)
-			self.n_not_bound = int(n_not_bound)
-			self.p_bound = float(p_bound)
-
-		def __str__(self):
-			return self.__repr__()
-
-		def __repr__(self):
-			return '<BindingFreq group="%s" p_bound="%s" n_bound="%s" n_not_bound="%s">' % (
-				self.group,
-				self.p_bound,
-				self.n_bound,
-				self.n_not_bound
-			)
 
 	if not os.path.isfile(path):
 		raise Exception("Could not find a binding frequency file at '" + path + "'.")

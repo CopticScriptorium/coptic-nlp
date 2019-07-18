@@ -1,3 +1,9 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'lib')))
+from auto_norm import normalize
+
+
 def remove_chars(s, ignore):
 	return "".join([c for c in s if c not in ignore])
 
@@ -21,8 +27,13 @@ class Token:
 		self.orig_start = orig_start
 		self.orig_end = orig_end
 
-	def text(self, ignore=[]):
-		text = self.orig
+		self.normed_orig = None
+
+	def text(self, ignore=[], use_normalized=True):
+		if use_normalized and self.normed_orig:
+			text = self.normed_orig
+		else:
+			text = self.orig
 		if ignore:
 			text = remove_chars(text, ignore)
 		return text
@@ -51,12 +62,14 @@ class Tokenizer:
 			gold_token_separator="_",
 			orig_token_separator=" ",
 			lowercase=False,
+			normalize=False,
 	):
 		assert type(gold_token_separator) == str
 		assert type(orig_token_separator) == str
 		self._gold_token_separator = gold_token_separator
 		self._orig_token_separator = orig_token_separator
 		self._lowercase = lowercase
+		self._normalize = normalize
 
 		self._separators = [gold_token_separator, orig_token_separator]
 		self._ignore_chars = ignore_chars
@@ -69,9 +82,17 @@ class Tokenizer:
 				orig = orig.lower()
 
 		if orig:
-			return self._tokenize_gold_with_orig(text, orig)
+			tokens = self._tokenize_gold_with_orig(text, orig)
 		else:
-			return self._tokenize(text)
+			tokens = self._tokenize(text)
+
+		if self._normalize:
+			normalized = normalize("\n".join([token.orig for token in tokens]))
+			normalized = normalized.split("\n")
+			assert len(normalized) == len(tokens)
+			for i, token in enumerate(tokens):
+				token.normed_orig = normalized[i]
+		return tokens
 
 	def _split_gold_token(self, gold_token, g2o):
 		"""Handles the case when a gold token corresponds to multiple orig tokens.

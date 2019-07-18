@@ -1,7 +1,7 @@
 from __future__ import division
 
 import numpy as np
-from xgboost import XGBClassifier, XGBRegressor
+from xgboost import XGBClassifier, XGBRegressor, XGBRFClassifier, XGBRFRegressor
 
 from .tokenizer import Tokenizer
 from .featurizer import Featurizer
@@ -20,10 +20,10 @@ class XGBoostBindingModel:
 		pos_file_path=None,
 		group_freq_file_path=None,
 		# for the model
-		n_estimators=100,
+		n_estimators=150,
 		max_depth=15,
 		eta=0.05,
-		gamma=0.05,
+		gamma=0.11,
 		colsample_bytree=0.6,
 		colsample_bylevel=0.9,
 		colsample_bynode=0.9,
@@ -34,8 +34,7 @@ class XGBoostBindingModel:
 			gold_token_separator=gold_token_separator,
 			orig_token_separator=orig_token_separator,
 			ignore_chars=ignore_chars,
-			lowercase=True,
-			normalize=True
+			lowercase=True
 		)
 		self._featurizer = Featurizer(
 			# seps might occur in tokens, also add them to the ignore list
@@ -51,7 +50,7 @@ class XGBoostBindingModel:
 		self._postprocessor = Postprocessor(separator=gold_token_separator)
 
 		# cf: https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier
-		self._m = XGBClassifier(
+		self._m = XGBRegressor(
 			nthread=-1,
 			n_estimators=n_estimators,
 			colsample_bytree=colsample_bytree,
