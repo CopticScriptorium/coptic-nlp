@@ -452,7 +452,7 @@ def run_eval(
 
 
 # command line interface -----------------------------------------------------------------------------------------------
-def resolve_file_lists(gold, orig, gold_dir, file_dir):
+def resolve_file_lists(gold, orig, gold_dir, file_dir, synthetic=False):
 	gold, orig = expand_abbreviations(gold, orig)
 
 	if os.path.isfile(orig):
@@ -472,6 +472,11 @@ def resolve_file_lists(gold, orig, gold_dir, file_dir):
 		gold = [os.path.basename(f) for f in gold if os.path.basename(f) not in orig]
 		gold = [script_dir + gold_dir + os.sep + f for f in gold]
 
+	if synthetic:
+		gold.append(script_dir + gold_dir + os.sep + 'aug_bind_uddev_gold.tt')
+		orig.append(script_dir + file_dir + os.sep + 'aug_bind_uddev.txt')
+		gold.append(script_dir + gold_dir + os.sep + 'aug_bind_udtrain_gold.tt')
+		orig.append(script_dir + file_dir + os.sep + 'aug_bind_udtrain.txt')
 	return gold, orig
 
 
@@ -575,6 +580,7 @@ def main():
 		opts.train_orig_list,
 		opts.gold_dir,
 		opts.file_dir,
+		synthetic=True
 	)
 
 	dev_gold_list, dev_orig_list = resolve_file_lists(
