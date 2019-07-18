@@ -31,7 +31,6 @@ This program is free software.
 """
 
 from argparse import ArgumentParser
-from fs_norm import FSNorm
 import io, sys, os, re
 from collections import defaultdict
 
@@ -46,7 +45,8 @@ orig_chars = set(["̈", "", "̄", "̀", "̣", "`", "̅", "̈", "̂", "︤", "︥
 def normalize(in_data,table_file=None,sahidica=False,finite_state=True):
 	def clean(text):
 		if "(" not in text and ")" not in text:  # Retain square brackets if item has capturing groups
-			text = text.replace("[","").replace("]","")
+			if len(text) > 1:
+				text = text.replace("[","").replace("]","")
 		return ''.join([c for c in text if c not in orig_chars]).lower()
 
 	outlines=[]
@@ -71,17 +71,28 @@ def normalize(in_data,table_file=None,sahidica=False,finite_state=True):
 	norms = temp
 	norms["ⲉⲣ"] = "ⲉⲣ"  # Prevent incorrect generalization from training data
 
-	lines = [clean(line) for line in in_data.split("\n")]
-	unk_lines = set([line for line in lines if line not in norms])
+	lines = [clean(line) for line in in_data.strip().split("\n")]
+	unk_lines = list(set([line for line in lines if line not in norms]))
 
+	use_foma = True
 	if finite_state:
-		# Get set of char n-grams attested in data
-		gram = 5
-		char_n_grams = [in_data[i:i+gram].lower() for i in range(len("\n".join(unk_lines))-gram)]
-		char_n_grams = set([g for g in char_n_grams if "\n" not in g])
+		if use_foma:
+			from foma_norm import FomaNorm
+			fs = FomaNorm()
+			fm_norms = fs.normalize(unk_lines)
+			for i, norm in enumerate(fm_norms):
+				if unk_lines[i] != norm:
+					norms[unk_lines[i]] = norm
+		else:
+			from fs_norm import FSNorm
+			# Get set of char n-grams attested in data
+			gram = 5
+			char_n_grams = [in_data[i:i+gram].lower() for i in range(len("\n".join(unk_lines))-gram)]
+			char_n_grams = set([g for g in char_n_grams if "\n" not in g])
 
-		# Build normalizer, ignoring items that can't possibly match the data to increase performance speed
-		fs = FSNorm(grams=char_n_grams)
+			# Build normalizer, ignoring items that can't possibly match the data to increase performance speed
+			fs = FSNorm(grams=char_n_grams)
+
 
 	for line in lines:
 		if line in norms:
@@ -101,7 +112,7 @@ def normalize(in_data,table_file=None,sahidica=False,finite_state=True):
 				line = norms[line]
 				outlines.append(line)
 				continue
-			elif finite_state:
+			elif not use_foma:
 				line = fs.normalize(line)
 
 			# Known regex substitutions
