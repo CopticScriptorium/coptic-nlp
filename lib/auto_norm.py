@@ -166,7 +166,6 @@ if __name__=="__main__":
 	finite_state = False if opts.no_finite_state else True
 
 	in_data = io.open(opts.infile,encoding="utf8").read().replace("\r","")
-	#normalized = normalize(in_data,table_file=opts.table,sahidica=opts.sahidica,finite_state=finite_state)
-	normalized = normalize("ⲁⲩⲱ",table_file=opts.table,sahidica=opts.sahidica,finite_state=finite_state)
+	normalized = normalize(in_data,table_file=opts.table,sahidica=opts.sahidica,finite_state=finite_state)
 	print(normalized)
 
