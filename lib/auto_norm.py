@@ -42,7 +42,7 @@ orig_chars = set(["̈", "", "̄", "̀", "̣", "`", "̅", "̈", "̂", "︤", "︥
 
 
 #@profile
-def normalize(in_data,table_file=None,sahidica=False,finite_state=True):
+def normalize(in_data,table_file=None,sahidica=False,finite_state=True,method="foma",no_unknown=True):
 	def clean(text):
 		if "(" not in text and ")" not in text:  # Retain square brackets if item has capturing groups
 			if len(text) > 1:
@@ -74,11 +74,11 @@ def normalize(in_data,table_file=None,sahidica=False,finite_state=True):
 	lines = [clean(line) for line in in_data.strip().split("\n")]
 	unk_lines = list(set([line for line in lines if line not in norms]))
 
-	use_foma = True
+	use_foma = True if method.lower()=="foma" else False
 	if finite_state:
 		if use_foma:
 			from foma_norm import FomaNorm
-			fs = FomaNorm()
+			fs = FomaNorm(no_unknown=no_unknown)
 			fm_norms = fs.normalize(unk_lines)
 			for i, norm in enumerate(fm_norms):
 				if unk_lines[i] != norm:
