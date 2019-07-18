@@ -58,8 +58,8 @@ def exec_via_temp(input_text, command_params, workdir=""):
 
 class FomaNorm:
 
-	def __init__(self):
-		pass
+	def __init__(self,no_unknown=True):
+		self.no_unknown=no_unknown
 
 	def normalize(self,origs):
 		origs = [clean(orig) for orig in origs]
@@ -69,7 +69,10 @@ class FomaNorm:
 		normalized = self.disambiguate(normalized,origs)
 		for i, orig in enumerate(origs):
 			if "?" in normalized[i]:
-				normalized[i] = orig
+				if self.no_unknown:
+					normalized[i] = orig
+				else:
+					normalized[i] = "?"
 
 		return normalized
 
