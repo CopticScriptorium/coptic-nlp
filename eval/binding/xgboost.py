@@ -20,14 +20,13 @@ class XGBoostBindingModel:
 		pos_file_path=None,
 		group_freq_file_path=None,
 		# for the model
-		n_estimators=100,
+		n_estimators=150,
 		max_depth=15,
 		eta=0.05,
 		gamma=0.05,
 		colsample_bytree=0.6,
-		colsample_bylevel=0.9,
-		colsample_bynode=0.9,
 		subsample=0.9,
+		min_child_weight=2,
 	):
 		self._tokens = []
 		self._tokenizer = Tokenizer(
@@ -55,12 +54,11 @@ class XGBoostBindingModel:
 			nthread=-1,
 			n_estimators=n_estimators,
 			colsample_bytree=colsample_bytree,
-			#colsample_bynode=colsample_bynode,
-			#colsample_bylevel=colsample_bylevel,
 			max_depth=max_depth,
 			eta=eta,
 			gamma=gamma,
 			subsample=subsample,
+			min_child_weight=min_child_weight,
 		)
 
 	def _build_feature_matrix(self, text, orig_text=None, training=False):
@@ -74,21 +72,26 @@ class XGBoostBindingModel:
 				.load_tokens(tokens, training=training)
 				.add_group_count()
 				.add_combined_token_group_count()
-				.add_morph_bound_count()
-				.add_morph_not_bound_count()
-				.add_morph_prob_bound()
+				#.add_morph_bound_count()
+				#.add_morph_not_bound_count()
+				#.add_morph_prob_bound()
 				#.add_combined_token_morph_bound_count()
 				#.add_combined_token_morph_not_bound_count()
 				#.add_combined_token_morph_prob_bound()
-				.add_length(left=1, right=3)
+				.add_length(left=1, right=2)
 				.add_pos(left=1, right=2)
+				#.add_is_prep(left=0, right=0)
 				.add_first_letter(left=0, right=1)
 				.add_last_letter(left=1, right=0)
 				.add_right_substr_pos(left=1, right=0)
-				.add_left_substr_pos(left=0, right=2)
+				.add_left_substr_pos(left=0, right=1)
+				.add_auto_norm_response(left=1, right=0)
+				.add_all_punct(left=0, right=1)
+				#.add_any_punct(left=1, right=1)
 				.features()
 		)
 
+		print(X.shape)
 		return X
 
 	def _build_label_vector(self):
@@ -105,6 +108,10 @@ class XGBoostBindingModel:
 		self._m.fit(X, y)
 
 	def predict(self, orig_text):
+		print(len(self._featurizer.feature_names), len(self._m.feature_importances_))
+		assert len(self._featurizer.feature_names) == len(self._m.feature_importances_)
+		for feat, impt in reversed(sorted(zip(self._featurizer.feature_names, self._m.feature_importances_), key=lambda x:x[1])):
+			print(feat + (" " * (40 - len(feat))) + "\t" + str(impt))
 		X = self._build_feature_matrix(orig_text)
 		preds = self._m.predict(X).tolist()
 		output = self._postprocessor.insert_separators(self._tokens, preds)

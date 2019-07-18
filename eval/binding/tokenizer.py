@@ -92,6 +92,7 @@ class Tokenizer:
 			assert len(normalized) == len(tokens)
 			for i, token in enumerate(tokens):
 				token.normed_orig = normalized[i]
+
 		return tokens
 
 	def _split_gold_token(self, gold_token, g2o):

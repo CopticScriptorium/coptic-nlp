@@ -1,11 +1,14 @@
+import sys
 import os
 import io
 import types
-
-from .const import UNKNOWN_CHAR
-
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder
+import unicodedata as uni
+
+from .const import UNKNOWN_CHAR
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'lib')))
+from auto_norm import normalize
 
 UNKNOWN_POS = "UNKNOWN"
 
@@ -65,7 +68,10 @@ def read_pos_file(path):
 
 		line = line.split("\t")
 		assert len(line) == 3, "Malformed line in " + path
-		table[line[0]] = line[1]
+		if line[0] in table:
+			table[line[0]] += "|" + line[1]
+		else:
+			table[line[0]] = line[1]
 
 	return table
 
@@ -118,8 +124,25 @@ def windowed_feature(out_of_window_value=None):
 				else kwargs.pop("right") if "right" in kwargs
 				else self._n_groups_right
 			)
+			skip_self = kwargs.pop("skip_self") if "skip_self" in kwargs else None
+
+			# TODO: this only works for label encoded features
+			i=0
+			for j in range(i - n_groups_left, i + n_groups_right + 1):
+				if j == i and skip_self:
+					continue
+				featname = func.__name__[4:] + ("+" if j-i >=0 else "") + str(j - i)
+				if featname not in self.feature_names:
+					if func.__name__ in ["add_right_substr_pos", "add_left_substr_pos"]:
+						self.feature_names.append(featname + " (pos)")
+						self.feature_names.append(featname + " (proportion)")
+					else:
+						self.feature_names.append(featname)
+
 			for i in range(len(self._tokens)):
 				for j in range(i - n_groups_left, i + n_groups_right + 1):
+					if j == i and skip_self:
+						continue
 					# build the feature
 					if j not in range(len(self._tokens)):
 						if callable(out_of_window_value):
@@ -155,6 +178,11 @@ def transform_single(self, x):
 
 
 class Featurizer:
+	encoder_map = {
+		'one_hot': OneHotEncoder,
+		'label': LabelEncoder
+	}
+
 	"""Produces token-level featurizations."""
 	def __init__(
 		self,
@@ -167,7 +195,7 @@ class Featurizer:
 		group_freq_file_path=None,
 		encoder='one_hot',
 	):
-		assert encoder in ['one_hot', 'label'], "Encoder must be one of 'one_hot', 'label'."
+		assert encoder in Featurizer.encoder_map, "Encoder must be one of 'one_hot', 'label'."
 		# assume that we have a linear model iff encoding is one-hot
 		self._linear = encoder == 'one_hot'
 
@@ -183,7 +211,7 @@ class Featurizer:
 		if pos_file_path:
 			pos_table = read_pos_file(pos_file_path)
 			self._pos_table = pos_table
-			self._pos_encoder = OneHotEncoder(handle_unknown='ignore') if encoder == 'one_hot' else LabelEncoder()
+			self._pos_encoder = Featurizer.encoder_map[encoder]()
 			self._pos_vocab = list(pos_table.values()) + [UNKNOWN_POS]
 			self._pos_encoder.fit(np.array(self._pos_vocab).reshape(-1, 1))
 			self._pos_encoder.transform_single = types.MethodType(transform_single, self._pos_encoder)
@@ -193,10 +221,13 @@ class Featurizer:
 
 		# char encoding
 		self._char_vocab = []
-		self._char_encoder = OneHotEncoder(handle_unknown='ignore') if encoder == 'one_hot' else LabelEncoder()
+		self._char_encoder = Featurizer.encoder_map[encoder]()
 
 		self._tokens = []
 		self._feats = []
+		self.feature_names = []
+
+		self._normalizer_responses = {}
 
 	def _undefined_count(self):
 		return 0 if self._linear else -1
@@ -218,6 +249,16 @@ class Featurizer:
 		self._feats = []
 		for i in range(len(tokens)):
 			self._feats.append([])
+
+		lines = []
+		for i in range(len(tokens)):
+			if i + 1 == len(tokens):
+				continue
+			combined_origs = tokens[i].orig + tokens[i + 1].orig
+			lines.append(combined_origs)
+		resps = normalize("\n".join(lines), no_unknown=False)
+		for i in range(len(resps.split("\n"))):
+			self._normalizer_responses[i] = resps[i]
 
 		return self
 
@@ -305,17 +346,6 @@ class Featurizer:
 			return self._undefined_prob() #TODO: see above
 
 	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
-	def add_count_if_bound(self, token, i):
-		if i + 1 == len(self._tokens):
-			return self._undefined_count()
-		next_token = self._tokens[i + 1]
-		combined_text = token.text(ignore=self._ignore_chars) + next_token.text(ignore=self._ignore_chars)
-		if combined_text in  self._binding_freq_table:
-			return self._binding_freq_table[combined_text].n_bound
-		else:
-			return self._undefined_count()
-
-	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
 	def add_length(self, token, i):
 		return len(token.text(ignore=self._ignore_chars))
 
@@ -325,6 +355,12 @@ class Featurizer:
 		pos = self._pos_table[orig] if orig in self._pos_table else UNKNOWN_POS
 		feature = self._pos_encoder.transform_single(pos if pos in self._pos_vocab else UNKNOWN_POS)
 		return feature
+
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
+	def add_is_prep(self, token, i):
+		orig = token.text(ignore=self._ignore_chars)
+		pos = self._pos_table[orig] if orig in self._pos_table else UNKNOWN_POS
+		return 1 if "PREP" in pos else 0
 
 	@windowed_feature(out_of_window_value=lambda self: self._char_encoder.transform_single(UNKNOWN_CHAR))
 	def add_first_letter(self, token, i):
@@ -352,6 +388,7 @@ class Featurizer:
 			substr = orig[j:]
 			if substr in self._pos_table:
 				pos = self._pos_table[substr]
+				break
 			j += 1
 
 		feats = (
@@ -387,6 +424,7 @@ class Featurizer:
 			substr = orig[:j]
 			if substr in self._pos_table:
 				pos = self._pos_table[substr]
+				break
 			j -= 1
 
 		feats = (
@@ -406,7 +444,17 @@ class Featurizer:
 
 		return feats
 
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
+	def add_auto_norm_response(self, token, i):
+		if i + 1 == len(self._tokens):
+			return self._undefined_count()
+		resp = self._normalizer_responses[i]
+		return 1 if resp != '?' else 0
 
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
+	def add_all_punct(self, token, i):
+		return 1 if all(uni.category(c)[0] == "P" for c in token.orig) else 0
 
-
-
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
+	def add_any_punct(self, token, i):
+		return 1 if any(uni.category(c)[0] == "P" for c in token.orig) else 0
