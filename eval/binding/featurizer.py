@@ -360,16 +360,21 @@ class Featurizer:
 	def add_is_prep(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
 		pos = self._pos_table[orig] if orig in self._pos_table else UNKNOWN_POS
+		#return 1.0/len(pos.split("|")) if "PREP" in pos else 0
 		return 1 if "PREP" in pos else 0
 
 	@windowed_feature(out_of_window_value=lambda self: self._char_encoder.transform_single(UNKNOWN_CHAR))
 	def add_first_letter(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
+		if not orig:
+			return self._char_encoder.transform_single(UNKNOWN_CHAR)
 		return self._char_encoder.transform_single(orig[0] if orig[0] in self._char_vocab else UNKNOWN_CHAR)
 
 	@windowed_feature(out_of_window_value=lambda self: self._char_encoder.transform_single(UNKNOWN_CHAR))
 	def add_last_letter(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
+		if not orig:
+			return self._char_encoder.transform_single(UNKNOWN_CHAR)
 		return self._char_encoder.transform_single(orig[-1] if orig[-1] in self._char_vocab else UNKNOWN_CHAR)
 
 	@windowed_feature(out_of_window_value
@@ -381,6 +386,8 @@ class Featurizer:
 										]))
 	def add_right_substr_pos(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
+		if not orig:
+			return self._pos_encoder.transform_single(UNKNOWN_POS) + [0]
 
 		j = 1
 		pos = UNKNOWN_POS
@@ -417,6 +424,8 @@ class Featurizer:
 										]))
 	def add_left_substr_pos(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
+		if not orig:
+			return self._pos_encoder.transform_single(UNKNOWN_POS) + [0]
 
 		j = len(orig) - 1
 		pos = UNKNOWN_POS
