@@ -14,7 +14,7 @@ Options and argument:
 -h              print this [h]elp message and quit
 -s              use [s]ahidica Bible specific normalization rules
 -t              use [t]able containing previous normalizations (first column is diplomatic text, last column is normalized)
--n              no finite-state tokenizer (closer to behavior of V2)
+-m              [m]ethod for finitestate fallback, one of 'foma', 're' or 'none'
 
 <FILE>    A text file encoded in UTF-8 without BOM
 
@@ -42,7 +42,7 @@ orig_chars = set(["̈", "", "̄", "̀", "̣", "`", "̅", "̈", "̂", "︤", "︥
 
 
 #@profile
-def normalize(in_data,table_file=None,sahidica=False,finite_state=True,method="foma",no_unknown=True):
+def normalize(in_data,table_file=None,sahidica=False,method="foma",no_unknown=True):
 	def clean(text):
 		if "(" not in text and ")" not in text:  # Retain square brackets if item has capturing groups
 			if len(text) > 1:
@@ -75,7 +75,7 @@ def normalize(in_data,table_file=None,sahidica=False,finite_state=True,method="f
 	unk_lines = list(set([line for line in lines if line not in norms]))
 
 	use_foma = True if method.lower()=="foma" else False
-	if finite_state and len(unk_lines)>0:
+	if method!="none" and len(unk_lines)>0:
 		if use_foma:
 			from foma_norm import FomaNorm
 			fs = FomaNorm(no_unknown=no_unknown)
@@ -157,15 +157,12 @@ if __name__=="__main__":
 	parser = ArgumentParser()
 	parser.add_argument("-s","--sahidica",action="store_true",help="use [s]ahidica Bible specific normalization rules")
 	parser.add_argument("-t","--table",action="store",default=None,help="use [t]able containing previous normalizations (first column is diplomatic text, last column is normalized)")
-	parser.add_argument("-n","--no_finite_state",action="store_true",help="[n]o finite state normalizer")
-	parser.add_argument("-m","--method",action="store",help="[n]o finite state normalizer")
+	parser.add_argument("-m","--method",action="store",choices=["foma","re","none"],default="foma",help="which finite state fallback method to use")
 	parser.add_argument("infile",action="store",help="file to process")
 
 	opts = parser.parse_args()
 
-	finite_state = False if opts.no_finite_state else True
-
 	in_data = io.open(opts.infile,encoding="utf8").read().replace("\r","")
-	normalized = normalize(in_data,table_file=opts.table,sahidica=opts.sahidica,finite_state=finite_state)
+	normalized = normalize(in_data,table_file=opts.table,sahidica=opts.sahidica,method=opts.method)
 	print(normalized)
 
