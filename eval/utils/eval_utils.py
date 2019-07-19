@@ -103,42 +103,32 @@ def list_files(alias="silver",file_dir=None,parse=False):
 		if alias.lower() == "cyrus":
 			file_dir = eval_dir + "unreleased" + os.sep
 			file_list = [file_dir + "BritMusOriental6783_part1.tt",file_dir + "BritMusOriental6783_part2.tt"]
+		elif alias.lower() == "cyrus_plain":
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "BritMusOriental6783_part1.txt",file_dir + "BritMusOriental6783_part2.txt"]
+
 		elif alias.lower().startswith("onno_plain"):  # onnophrius
 			file_dir = eval_dir + "plain" + os.sep
 			file_list = [file_dir + "apa_onnophrius_part1.txt"]
 		elif alias.lower().startswith("onno"):  # onnophrius
 			file_dir = eval_dir + "unreleased" + os.sep
 			file_list = [file_dir + "apa_onnophrius_part1.tt"]
-		elif alias.lower() == "ephcyvic_plain":
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "BritMusOriental6783_part1.txt",file_dir + "BritMusOriental6783_part2.txt",
-						 file_dir + "BritMusOriental6783_63b_67b.txt",
-						 file_dir + "martyrdom.victor.txt"]
-		elif alias.lower() == "ephcyvic_tt":
-			file_dir = eval_dir + "unreleased" + os.sep
-			file_list = [file_dir + "BritMusOriental6783_part1.tt",file_dir + "BritMusOriental6783_part2.tt",
-						 file_dir + "BritMusOriental6783_63b_67b.tt"]
-			file_dir = eval_dir + "plain" + os.sep
-			file_list.append(file_dir + "martyrdom.victor.01.tt")
-		elif alias.lower() == "ephcyon_plain":
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "BritMusOriental6783_part1.txt",file_dir + "BritMusOriental6783_part2.txt",
-						 file_dir + "BritMusOriental6783_63b_67b.txt",
-						 file_dir + "apa_onnophrius_part1.txt"]
-		elif alias.lower() == "ephcyon_tt":
-			file_dir = eval_dir + "unreleased" + os.sep
-			file_list = [file_dir + "BritMusOriental6783_part1.tt",file_dir + "BritMusOriental6783_part2.tt",
-						 file_dir + "BritMusOriental6783_63b_67b.tt",
-						 file_dir + "apa_onnophrius_part1.tt"]
-		elif alias.lower() == "cyrus_plain":
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "BritMusOriental6783_part1.txt",file_dir + "BritMusOriental6783_part2.txt"]
+
 		elif alias.lower() == "ephraim_plain":
 			file_dir = eval_dir + "plain" + os.sep
 			file_list = [file_dir + "BritMusOriental6783_63b_67b.txt"]
 		elif alias.lower().startswith("ephraim"):
 			file_dir = eval_dir + "unreleased" + os.sep
 			file_list = [file_dir + "BritMusOriental6783_63b_67b.tt"]
+
+		elif alias.lower() == "victor_plain":
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "martyrdom.victor.txt"]
+		#!! DANGER: this is in plain, not unreleased
+		elif alias.lower() == "victor_tt":
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "martyrdom.victor.01.tt"]
+
 		elif alias.lower() == "ud_test":
 			file_list = io.open(eval_dir + "test_list.tab").read().strip().split("\n")
 			file_list = [file_dir + f for f in file_list]
@@ -148,12 +138,54 @@ def list_files(alias="silver",file_dir=None,parse=False):
 		elif alias.lower() == "ud_train":
 			file_list = io.open(eval_dir + "train_list.tab").read().strip().split("\n")
 			file_list = [file_dir + f for f in file_list]
-		elif alias.lower() == "victor_plain":
+
+		elif alias.lower() == "viccyeph_tt":
 			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "martyrdom.victor.txt"]
-		elif alias.lower() == "victor_tt":
+			file_list.append(file_dir + "martyrdom.victor.01.tt")
+			file_dir = eval_dir + "unreleased" + os.sep
+			file_list = [file_dir + "BritMusOriental6783_part1.tt",file_dir + "BritMusOriental6783_part2.tt",
+						 file_dir + "BritMusOriental6783_63b_67b.tt"]
+		elif alias.lower() == "viccyeph_plain":
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "martyrdom.victor.txt",
+						 file_dir + "BritMusOriental6783_part1.txt",file_dir + "BritMusOriental6783_part2.txt",
+						 file_dir + "BritMusOriental6783_63b_67b.txt"]
+
+		elif alias.lower() == "cyephon_tt":
+			file_dir = eval_dir + "unreleased" + os.sep
+			file_list = [file_dir + "BritMusOriental6783_part1.tt",file_dir + "BritMusOriental6783_part2.tt",
+						 file_dir + "BritMusOriental6783_63b_67b.tt",
+						 file_dir + "apa_onnophrius_part1.tt"]
+		elif alias.lower() == "cyephon_plain":
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "BritMusOriental6783_part1.txt",file_dir + "BritMusOriental6783_part2.txt",
+						 file_dir + "BritMusOriental6783_63b_67b.txt",
+						 file_dir + "apa_onnophrius_part1.txt"]
+
+		elif alias.lower() == "vicephon_tt":
 			file_dir = eval_dir + "plain" + os.sep
 			file_list = [file_dir + "martyrdom.victor.01.tt"]
+			file_dir = eval_dir + "unreleased" + os.sep
+			file_list += [file_dir + "BritMusOriental6783_63b_67b.tt",
+						  file_dir + "apa_onnophrius_part1.tt"]
+		elif alias.lower() == "vicephon_plain":
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "martyrdom.victor.txt",
+						 file_dir + "BritMusOriental6783_63b_67b.txt",
+						 file_dir + "apa_onnophrius_part1.txt"]
+
+		elif alias.lower() == "viccyon_tt":
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "martyrdom.victor.01.tt"]
+			file_dir = eval_dir + "unreleased" + os.sep
+			file_list += [file_dir + "BritMusOriental6783_part1.tt", file_dir + "BritMusOriental6783_part2.tt",
+						  file_dir + "apa_onnophrius_part1.tt"]
+		elif alias.lower() == "viccyon_plain":
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "martyrdom.victor.txt",
+						 file_dir + "BritMusOriental6783_part1.txt",file_dir + "BritMusOriental6783_part2.txt",
+						 file_dir + "apa_onnophrius_part1.txt"]
+
 		elif alias.lower() == "silver":
 			test_list = io.open(eval_dir + "test_list.tab").read().strip().split("\n")
 			file_list = glob(file_dir + os.sep + "*.tt")
