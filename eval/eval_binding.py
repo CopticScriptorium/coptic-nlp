@@ -452,25 +452,12 @@ def run_eval(
 
 
 # command line interface -----------------------------------------------------------------------------------------------
-def resolve_file_lists(gold, orig, gold_dir, file_dir, synthetic=False):
-	gold, orig = expand_abbreviations(gold, orig)
+def resolve_file_lists(file_list, synthetic=False):
+	gold = list_files(file_list)
+	orig = list_files(file_list,mode="plain")
 
-	if os.path.isfile(orig):
-		orig = io.open(orig, encoding="utf8").read().strip().split("\n")
-		orig = [script_dir + file_dir + os.sep + f for f in orig]
-	else:
-		orig = list_files(orig)
-
-	if gold is not None:
-		if os.path.isfile(gold):
-			gold = io.open(gold, encoding="utf8").read().strip().split("\n")
-			gold = [script_dir + gold_dir + os.sep + f for f in gold]
-		else:
-			gold = list_files(gold)
-	else:
-		gold = glob(script_dir + gold_dir + os.sep + "*.tt")
-		gold = [os.path.basename(f) for f in gold if os.path.basename(f) not in orig]
-		gold = [script_dir + gold_dir + os.sep + f for f in gold]
+	file_dir = "plain"
+	gold_dir = "unreleased"
 
 	if synthetic:
 		gold.append(script_dir + gold_dir + os.sep + 'aug_bind_uddev_gold.tt')
@@ -479,34 +466,6 @@ def resolve_file_lists(gold, orig, gold_dir, file_dir, synthetic=False):
 		orig.append(script_dir + file_dir + os.sep + 'aug_bind_udtrain.txt')
 	return gold, orig
 
-
-def expand_abbreviations(gold_list, orig_list):
-	if orig_list.startswith("onno"):
-		orig_list = "onno_plain"
-		gold_list = "onno"
-	elif orig_list.startswith("viccyeph"):
-		orig_list = "viccyeph_plain"
-		gold_list = "viccyeph_tt"
-	elif orig_list.startswith("cyephon"):
-		orig_list = "cyephon_plain"
-		gold_list = "cyephon_tt"
-	elif orig_list.startswith("vicephon"):
-		orig_list = "vicephon_plain"
-		gold_list = "vicephon_tt"
-	elif orig_list.startswith("viccyon"):
-		orig_list = "viccyon_plain"
-		gold_list = "viccyon_tt"
-	elif orig_list.startswith("cyrus"):
-		orig_list = "cyrus_plain"
-		gold_list = "cyrus"
-	elif orig_list.startswith("victor"):
-		orig_list = "victor_plain"
-		gold_list = "victor_tt"
-	elif orig_list.startswith("ephraim"):
-		orig_list = "ephraim_plain"
-		gold_list = "ephraim_tt"
-
-	return gold_list, orig_list
 
 
 def main():
@@ -518,37 +477,21 @@ def main():
 		nargs='?'
 	)
 	p.add_argument(
-		"--train_gold_list",
+		"--train_list",
 		default="victor",
 		help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied"
 	)
+
 	p.add_argument(
-		"--train_orig_list",
-		default="victor",
-		help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'"
-	)
-	p.add_argument(
-		"--test_gold_list",
-		default="cyrus_tt",
+		"--test_list",
+		default="cyrus",
 		help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied"
 	)
 	p.add_argument(
-		"--test_orig_list",
-		default="cyrus_plain",
-		help="file with one file name per line of plain text test files, or alias of test set, e.g. 'ud_test'"
-	)
-	p.add_argument(
-		"--dev_gold_list",
+		"--dev_list",
 		default="onno",
 		help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in dev if not supplied"
 	)
-	p.add_argument(
-		"--dev_orig_list",
-		default="onno",
-		help="file with one file name per line of plain text dev files, or alias of dev set, e.g. 'ud_dev'"
-	)
-	p.add_argument("--file_dir", default="plain", help="directory with plain text files")
-	p.add_argument("--gold_dir", default="unreleased", help="directory with gold .tt files")
 	p.add_argument(
 		"--detok_table",
 		default=os.sep.join(['..', 'data', 'detok.tab']),
@@ -564,30 +507,22 @@ def main():
 		default=os.sep.join(['..', 'data', 'annis_silver_orig_group_freqs_2019_07.tab']), #TODO: change this
 		help="A TSV file containing orig group freq information in silver data"
 	)
+	p.add_argument("--synthetic",action="store_true",help="User synthetic training data")
 
 
 	opts = p.parse_args()
 
 	test_gold_list, test_orig_list = resolve_file_lists(
-		opts.test_gold_list,
-		opts.test_orig_list,
-		opts.gold_dir,
-		opts.file_dir,
+		opts.test_list
 	)
 
 	train_gold_list, train_orig_list = resolve_file_lists(
-		opts.train_gold_list,
-		opts.train_orig_list,
-		opts.gold_dir,
-		opts.file_dir,
-		synthetic=True
+		opts.train_list,
+		synthetic=opts.synthetic
 	)
 
 	dev_gold_list, dev_orig_list = resolve_file_lists(
-		opts.dev_gold_list,
-		opts.dev_orig_list,
-		opts.gold_dir,
-		opts.file_dir,
+		opts.dev_list
 	)
 
 	run_eval(
