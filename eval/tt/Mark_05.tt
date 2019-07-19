@@ -4584,7 +4584,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲉⲣⲉⲛⲉϥϩⲟⲉⲓⲧⲉ">
-<norm_group norm_group="ⲉⲣⲉⲛⲉϥϩⲟⲉⲓⲧⲉ">
+<norm_group norm_group="ⲉⲣⲉⲛⲉϥϩⲟⲓⲧⲉ">
 <orig orig="ⲉⲣⲉ">
 <norm norm="ⲉⲣⲉ">
 <lemma lemma="ⲉⲣⲉ">
@@ -4604,8 +4604,8 @@
 </norm>
 </orig>
 <orig orig="ϩⲟⲉⲓⲧⲉ">
-<norm norm="ϩⲟⲉⲓⲧⲉ">
-<lemma lemma="ϩⲟⲉⲓⲧⲉ">
+<norm norm="ϩⲟⲓⲧⲉ">
+<lemma lemma="ϩⲟⲓⲧⲉ">
 <pos pos="N">
 ϩⲟⲉⲓⲧⲉ
 </pos>
@@ -8722,7 +8722,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲉⲛⲉϥϩⲟⲓⲧⲉ">
-<norm_group norm_group="ⲉⲛⲉϥϩⲟⲉⲓⲧⲉ">
+<norm_group norm_group="ⲉⲛⲉϥϩⲟⲓⲧⲉ">
 <orig orig="ⲉ">
 <norm norm="ⲉ">
 <lemma lemma="ⲉ">
@@ -8742,8 +8742,8 @@
 </norm>
 </orig>
 <orig orig="ϩⲟⲓⲧⲉ">
-<norm norm="ϩⲟⲉⲓⲧⲉ">
-<lemma lemma="ϩⲟⲉⲓⲧⲉ">
+<norm norm="ϩⲟⲓⲧⲉ">
+<lemma lemma="ϩⲟⲓⲧⲉ">
 <pos pos="N">
 ϩⲟⲓⲧⲉ
 </pos>

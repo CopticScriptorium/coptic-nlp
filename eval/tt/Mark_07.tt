@@ -2531,7 +2531,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲛⲣⲣⲱⲙⲉ">
-<norm_group norm_group="ⲛⲣⲱⲙⲉ">
+<norm_group norm_group="ⲛⲛⲣⲱⲙⲉ">
 <orig orig="ⲛ">
 <norm norm="ⲛ">
 <lemma lemma="ⲛ">
@@ -2541,11 +2541,20 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲣⲣⲱⲙⲉ">
+<orig orig="ⲣ">
+<norm norm="ⲛ">
+<lemma lemma="ⲡ">
+<pos pos="ART">
+ⲣ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲣⲱⲙⲉ">
 <norm norm="ⲣⲱⲙⲉ">
 <lemma lemma="ⲣⲱⲙⲉ">
 <pos pos="N">
-ⲣⲣⲱⲙⲉ
+ⲣⲱⲙⲉ
 </pos>
 </lemma>
 </norm>
