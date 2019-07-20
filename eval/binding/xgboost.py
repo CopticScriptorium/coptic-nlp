@@ -20,12 +20,12 @@ class XGBoostBindingModel:
 		pos_file_path=None,
 		group_freq_file_path=None,
 		# for the model
-		n_estimators=150,
-		max_depth=15,
-		eta=0.05,
-		gamma=0.05,
+		n_estimators=130,
+		max_depth=18,
+		eta=0.08,
+		gamma=0.18,
 		colsample_bytree=0.6,
-		subsample=0.9,
+		subsample=0.8,
 		min_child_weight=2,
 	):
 		self._tokens = []
@@ -91,7 +91,6 @@ class XGBoostBindingModel:
 				.features()
 		)
 
-		print(X.shape)
 		return X
 
 	def _build_label_vector(self):
