@@ -80,7 +80,7 @@ class XGBoostBindingModel:
 				#.add_combined_token_morph_prob_bound()
 				.add_length(left=1, right=2)
 				.add_pos(left=1, right=2)
-				#.add_is_prep(left=0, right=0)
+				#.add_is_prep(left=0, right=1)
 				.add_first_letter(left=0, right=1)
 				.add_last_letter(left=1, right=0)
 				.add_right_substr_pos(left=1, right=0)
@@ -108,10 +108,10 @@ class XGBoostBindingModel:
 		self._m.fit(X, y)
 
 	def predict(self, orig_text):
-		print(len(self._featurizer.feature_names), len(self._m.feature_importances_))
-		assert len(self._featurizer.feature_names) == len(self._m.feature_importances_)
-		for feat, impt in reversed(sorted(zip(self._featurizer.feature_names, self._m.feature_importances_), key=lambda x:x[1])):
-			print(feat + (" " * (40 - len(feat))) + "\t" + str(impt))
+		#print(len(self._featurizer.feature_names), len(self._m.feature_importances_))
+		#assert len(self._featurizer.feature_names) == len(self._m.feature_importances_)
+		#for feat, impt in reversed(sorted(zip(self._featurizer.feature_names, self._m.feature_importances_), key=lambda x:x[1])):
+		#	print(feat + (" " * (40 - len(feat))) + "\t" + str(impt))
 		X = self._build_feature_matrix(orig_text)
 		preds = self._m.predict(X).tolist()
 		output = self._postprocessor.insert_separators(self._tokens, preds)
