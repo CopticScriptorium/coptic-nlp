@@ -46,7 +46,7 @@ class LogisticBindingModel:
 			fit_intercept=True,
 			max_iter=100,
 			solver='liblinear',
-			penalty='l1',
+			penalty='l2',
 			cv=3
 		)
 
@@ -61,18 +61,22 @@ class LogisticBindingModel:
 				.load_tokens(tokens, training=training)
 				.add_group_count()
 				.add_combined_token_group_count()
-				.add_morph_bound_count()
-				.add_morph_not_bound_count()
-				.add_morph_prob_bound()
+				#.add_morph_bound_count()
+				#.add_morph_not_bound_count()
+				#.add_morph_prob_bound()
 				#.add_combined_token_morph_bound_count()
 				#.add_combined_token_morph_not_bound_count()
 				#.add_combined_token_morph_prob_bound()
-				.add_length(left=1, right=3)
+				.add_length(left=1, right=2)
 				.add_pos(left=1, right=2)
+				#.add_is_prep(left=0, right=1)
 				.add_first_letter(left=0, right=1)
 				.add_last_letter(left=1, right=0)
 				.add_right_substr_pos(left=1, right=0)
-				.add_left_substr_pos(left=0, right=2)
+				.add_left_substr_pos(left=0, right=1)
+				.add_auto_norm_response(left=1, right=0)
+				.add_all_punct(left=0, right=1)
+				#.add_any_punct(left=1, right=1)
 				.features()
 		)
 
