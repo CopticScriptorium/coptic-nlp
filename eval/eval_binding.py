@@ -344,7 +344,6 @@ def run_eval(
 	strategy = opts.strategy
 
 	test_gold = prepare_gold_text(test_gold_list)
-	print(test_orig_list)
 	test_orig_lines = prepare_orig_lines(test_orig_list)
 
 	train_gold = prepare_gold_text(train_gold_list)
@@ -465,7 +464,6 @@ def resolve_file_lists(file_list, synthetic=False):
 		gold.append(script_dir + gold_dir + os.sep + 'aug_bind_udtrain_gold.tt')
 		orig.append(script_dir + file_dir + os.sep + 'aug_bind_udtrain.txt')
 	return gold, orig
-
 
 
 def main():
