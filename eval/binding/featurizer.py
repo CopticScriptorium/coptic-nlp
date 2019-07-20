@@ -380,14 +380,18 @@ class Featurizer:
 	@windowed_feature(out_of_window_value
 					  =lambda self: (self._pos_encoder.transform_single(UNKNOWN_POS)
 									 + [self._undefined_prob(),
-										#self._undefined_count(),
-										#self._undefined_count(),
-										#self._undefined_prob()
+										self._undefined_count(),
+										self._undefined_count(),
+										self._undefined_prob()
 										]))
 	def add_right_substr_pos(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
 		if not orig:
-			return self._pos_encoder.transform_single(UNKNOWN_POS) + [0]
+			return (self._pos_encoder.transform_single(UNKNOWN_POS)
+					+ [self._undefined_prob(),
+					   self._undefined_count(),
+					   self._undefined_count(),
+					   self._undefined_prob()])
 
 		j = 1
 		pos = UNKNOWN_POS
@@ -403,29 +407,33 @@ class Featurizer:
 			+ [float(len(substr)) / len(orig)]
 		)
 
-		#if substr in self._binding_freq_table:
-		#	entry = self._binding_freq_table[substr]
-		#	feats += [
-		#		entry.n_bound,
-		#		entry.n_not_bound,
-		#		entry.p_bound
-		#	]
-		#else:
-		#	feats += [self._undefined_count(), self._undefined_count(), self._undefined_prob()]
+		if substr in self._binding_freq_table:
+			entry = self._binding_freq_table[substr]
+			feats += [
+				entry.n_bound,
+				entry.n_not_bound,
+				entry.p_bound
+			]
+		else:
+			feats += [self._undefined_count(), self._undefined_count(), self._undefined_prob()]
 
 		return feats
 
 	@windowed_feature(out_of_window_value
 					  =lambda self: (self._pos_encoder.transform_single(UNKNOWN_POS)
 									 + [self._undefined_prob(),
-										#self._undefined_count(),
-										#self._undefined_count(),
-										#self._undefined_prob()
+										self._undefined_count(),
+										self._undefined_count(),
+										self._undefined_prob()
 										]))
 	def add_left_substr_pos(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
 		if not orig:
-			return self._pos_encoder.transform_single(UNKNOWN_POS) + [0]
+			return (self._pos_encoder.transform_single(UNKNOWN_POS)
+					+ [self._undefined_prob(),
+					   self._undefined_count(),
+					   self._undefined_count(),
+					   self._undefined_prob()])
 
 		j = len(orig) - 1
 		pos = UNKNOWN_POS
@@ -441,15 +449,15 @@ class Featurizer:
 			+ [float(len(substr)) / len(orig)]
 		)
 
-		#if substr in self._binding_freq_table:
-		#	entry = self._binding_freq_table[substr]
-		#	feats += [
-		#		entry.n_bound,
-		#		entry.n_not_bound,
-		#		entry.p_bound
-		#	]
-		#else:
-		#	feats += [self._undefined_count(), self._undefined_count(), self._undefined_prob()]
+		if substr in self._binding_freq_table:
+			entry = self._binding_freq_table[substr]
+			feats += [
+				entry.n_bound,
+				entry.n_not_bound,
+				entry.p_bound
+			]
+		else:
+			feats += [self._undefined_count(), self._undefined_count(), self._undefined_prob()]
 
 		return feats
 
