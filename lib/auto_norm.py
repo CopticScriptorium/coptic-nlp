@@ -110,9 +110,7 @@ def normalize(in_data,table_file=None,sahidica=False,method="foma",no_unknown=Tr
 			clean = line
 			if line in norms:
 				line = norms[line]
-				outlines.append(line)
-				continue
-			elif not use_foma:
+			elif method=="re":
 				line = fs.normalize(line)
 
 			# Known regex substitutions
@@ -135,6 +133,7 @@ def normalize(in_data,table_file=None,sahidica=False,method="foma",no_unknown=Tr
 			line = re.sub(r"(^|_)ϩⲃⲏⲟⲩⲉ($|_)", r"\1ϩⲃⲏⲩⲉ\2", line)
 			line = re.sub(r"(^|_)ⲓⲉⲣⲟⲥⲟⲗⲩⲙⲁ($|_)", r"\1ϩⲓⲉⲣⲟⲩⲥⲁⲗⲏⲙ\2", line)
 			line = re.sub(r"ⲑⲓⲗⲏⲙ($|_)", r"ⲧϩⲓⲉⲣⲟⲩⲥⲁⲗⲏⲙ\1", line)
+			line = re.sub(r"ⲙⲟⲛⲟⲭⲟⲥ($|_)", r"ⲙⲟⲛⲁⲭⲟⲥ\1", line)
 			line = re.sub(r"(^|_)ⲡⲓⲑⲉ($|_)", r"\1ⲡⲉⲓⲑⲉ\2", line)
 			line = re.sub(r"(^|_)ⲡⲣⲟⲥⲕⲁⲣⲧⲉⲣⲓ($|_)", r"\1ⲡⲣⲟⲥⲕⲁⲣⲧⲉⲣⲓⲁ\2", line)
 			line = re.sub(r"(^|[_ ]|ϫⲉ)ⲙⲡⲁⲧⲉ([ⲕϥⲥⲛ][^_ ]*)($|_)", r"\1ⲙⲡⲁⲧ\2\3", line)
