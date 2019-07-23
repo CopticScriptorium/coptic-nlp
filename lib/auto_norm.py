@@ -63,7 +63,7 @@ def normalize(in_data,table_file=None,sahidica=False,method="foma",no_unknown=Tr
 	for line in norm_lines:
 		if "\t" in line:
 			fields = line.split("\t")
-			norms[fields[0]][fields[1]]+=1
+			norms[clean(fields[0])][clean(fields[1])]+=1
 	temp = {}
 	for orig in norms:
 		max_norm = max(norms[orig],key=lambda x: norms[orig][x])
