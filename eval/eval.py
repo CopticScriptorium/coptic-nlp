@@ -54,9 +54,11 @@ def run(params):
 		tagger = params.get("method","tt")
 		retrain = bool(params.get("retrain",False))
 		res = run_eval(train_list,test_list,tagger=tagger,retrain=retrain)
-	elif "bind" in params["script"]:
-		from eval_binding import run_eval
-		res = run_eval(train_list,test_list)
+	# TODO: run_eval expects separate orig and gold lists, need to change this
+	# if we want it to be callable in eval.py
+	#elif "bind" in params["script"]:
+	#	from eval_binding import run_eval
+	#	res = run_eval(train_list,test_list)
 	elif "pars" in params["script"]:
 		from eval_parsing import run_eval
 		retrain = params.get('retrain',False)

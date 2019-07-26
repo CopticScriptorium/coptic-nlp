@@ -1,14 +1,15 @@
 from __future__ import division
 
 import numpy as np
-from xgboost import XGBClassifier, XGBRegressor
+from sklearn.linear_model import LogisticRegressionCV
+from sklearn.svm import LinearSVC
 
 from .tokenizer import Tokenizer
 from .featurizer import Featurizer
 from .postprocessor import Postprocessor
 
 
-class XGBoostBindingModel:
+class LogisticBindingModel:
 	def __init__(
 		self,
 		ignore_chars=[],
@@ -17,48 +18,38 @@ class XGBoostBindingModel:
 		gold_token_separator="_",
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
+		ngram_binding_freq_file_path=None,
 		pos_file_path=None,
 		group_freq_file_path=None,
-		# for the model
-		n_estimators=130,
-		max_depth=18,
-		eta=0.08,
-		gamma=0.18,
-		colsample_bytree=0.6,
-		subsample=0.8,
-		min_child_weight=2,
 	):
 		self._tokens = []
 		self._tokenizer = Tokenizer(
 			gold_token_separator=gold_token_separator,
 			orig_token_separator=orig_token_separator,
 			ignore_chars=ignore_chars,
-			lowercase=True,
-			normalize=True
+			lowercase=True
 		)
 		self._featurizer = Featurizer(
-			# seps might occur in tokens, also add them to the ignore list
 			n_groups_left,
 			n_groups_right,
+			# seps might occur in tokens, also add them to the ignore list
 			ignore_chars=ignore_chars + [orig_token_separator, gold_token_separator],
 			orig_token_separator=" ",
 			binding_freq_file_path=binding_freq_file_path,
+			ngram_binding_freq_file_path=ngram_binding_freq_file_path,
 			pos_file_path=pos_file_path,
 			group_freq_file_path=group_freq_file_path,
-			encoder='label'
+			encoder='one_hot'
 		)
 		self._postprocessor = Postprocessor(separator=gold_token_separator)
 
-		# cf: https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier
-		self._m = XGBClassifier(
-			nthread=-1,
-			n_estimators=n_estimators,
-			colsample_bytree=colsample_bytree,
-			max_depth=max_depth,
-			eta=eta,
-			gamma=gamma,
-			subsample=subsample,
-			min_child_weight=min_child_weight,
+		self._m = LogisticRegressionCV(
+			random_state=0,
+			fit_intercept=True,
+			max_iter=100,
+			solver='liblinear',
+			penalty='l2',
+			cv=3
 		)
 
 	def _build_feature_matrix(self, text, orig_text=None, training=False):
@@ -94,12 +85,11 @@ class XGBoostBindingModel:
 		return X
 
 	def _build_label_vector(self):
-		vec = np.array(
+		return np.array(
 			self._featurizer
 				.load_tokens(self._tokens)
 				.labels()
 		)
-		return vec
 
 	def train(self, gold_text, orig_text=None):
 		X = self._build_feature_matrix(gold_text, orig_text=orig_text, training=True)
@@ -107,10 +97,6 @@ class XGBoostBindingModel:
 		self._m.fit(X, y)
 
 	def predict(self, orig_text):
-		#print(len(self._featurizer.feature_names), len(self._m.feature_importances_))
-		#assert len(self._featurizer.feature_names) == len(self._m.feature_importances_)
-		#for feat, impt in reversed(sorted(zip(self._featurizer.feature_names, self._m.feature_importances_), key=lambda x:x[1])):
-		#	print(feat + (" " * (40 - len(feat))) + "\t" + str(impt))
 		X = self._build_feature_matrix(orig_text)
 		preds = self._m.predict(X).tolist()
 		output = self._postprocessor.insert_separators(self._tokens, preds)

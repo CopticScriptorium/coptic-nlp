@@ -11,6 +11,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 from auto_norm import normalize
 
 UNKNOWN_POS = "UNKNOWN"
+NGRAM_LENGTH = 4
 
 
 class BindingFreq:
@@ -166,21 +167,30 @@ def windowed_feature(out_of_window_value=None):
 	return inner_decorator
 
 
-# convenience function for encoding single values--monkey patch it onto an instance of an encoder
-def transform_single(self, x):
-	a = self.transform(np.array(x).reshape(-1, 1))
-	if type(a) != np.ndarray:
-		a = a.todense()[0]
-	a = a.tolist()
-	if type(a[0]) == list:
-		a = a[0]
-	return a
+class TransformSingleMixin:
+	# convenience function for encoding single values--monkey patch it onto an instance of an encoder
+	def transform_single(self, x):
+		a = self.transform(np.array(x).reshape(-1, 1))
+		if type(a) != np.ndarray:
+			a = a.todense()[0]
+		a = a.tolist()
+		if type(a[0]) == list:
+			a = a[0]
+		return a
+
+
+class OurOneHotEncoder(OneHotEncoder, TransformSingleMixin):
+	pass
+
+
+class OurLabelEncoder(LabelEncoder, TransformSingleMixin):
+	pass
 
 
 class Featurizer:
 	encoder_map = {
-		'one_hot': OneHotEncoder,
-		'label': LabelEncoder
+		'one_hot': OurOneHotEncoder,
+		'label': OurLabelEncoder
 	}
 
 	"""Produces token-level featurizations."""
@@ -191,6 +201,7 @@ class Featurizer:
 		ignore_chars=[],
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
+		ngram_binding_freq_file_path=None,
 		pos_file_path=None,
 		group_freq_file_path=None,
 		encoder='one_hot',
@@ -206,6 +217,8 @@ class Featurizer:
 
 		if binding_freq_file_path:
 			self._binding_freq_table = read_binding_freq_file(binding_freq_file_path)
+		if ngram_binding_freq_file_path:
+			self._ngram_binding_freq_table = read_binding_freq_file(ngram_binding_freq_file_path)
 
 		# pos encoding
 		if pos_file_path:
@@ -214,7 +227,6 @@ class Featurizer:
 			self._pos_encoder = Featurizer.encoder_map[encoder]()
 			self._pos_vocab = list(pos_table.values()) + [UNKNOWN_POS]
 			self._pos_encoder.fit(np.array(self._pos_vocab).reshape(-1, 1))
-			self._pos_encoder.transform_single = types.MethodType(transform_single, self._pos_encoder)
 
 		if group_freq_file_path:
 			self._group_freq_table = read_group_freq_file(group_freq_file_path, ignore_chars)
@@ -238,7 +250,6 @@ class Featurizer:
 	def _init_char_encoder(self, tokens):
 		self._char_vocab = list(set("".join([t.orig for t in tokens]))) + [UNKNOWN_CHAR]
 		self._char_encoder.fit(np.array(self._char_vocab).reshape(-1, 1))
-		self._char_encoder.transform_single = types.MethodType(transform_single, self._char_encoder)
 
 	def load_tokens(self, tokens, training=False):
 		self._tokens = tokens
@@ -298,10 +309,55 @@ class Featurizer:
 	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
 	def add_morph_not_bound_count(self, token, i):
 		orig = token.text(ignore=self._ignore_chars)
-		if orig in self._binding_freq_table:
-			return self._binding_freq_table[orig].n_not_bound
+		if orig in self._ngram_binding_freq_table:
+			return self._ngram_binding_freq_table[orig].n_not_bound
 		else:
 			return self._undefined_count()
+
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
+	def add_ngram_bound_count(self, token, i):
+		orig = token.text(ignore=self._ignore_chars)[-NGRAM_LENGTH:]
+		while len(orig) < NGRAM_LENGTH and i > 1:
+			i -= 1
+			orig = self._tokens[i].text(ignore=self._ignore_chars) + orig
+			orig = orig[-NGRAM_LENGTH:]
+		orig = (UNKNOWN_CHAR * (NGRAM_LENGTH - len(orig))) + orig
+		assert len(orig) == NGRAM_LENGTH, orig
+
+		if orig in self._ngram_binding_freq_table:
+			return self._ngram_binding_freq_table[orig].n_bound
+		else:
+			return self._undefined_count()
+
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_count())
+	def add_ngram_not_bound_count(self, token, i):
+		orig = token.text(ignore=self._ignore_chars)[-NGRAM_LENGTH:]
+		while len(orig) < NGRAM_LENGTH and i > 1:
+			i -= 1
+			orig = self._tokens[i].text(ignore=self._ignore_chars) + orig
+			orig = orig[-NGRAM_LENGTH:]
+		orig = (UNKNOWN_CHAR * (NGRAM_LENGTH - len(orig))) + orig
+		assert len(orig) == NGRAM_LENGTH
+
+		if orig in self._ngram_binding_freq_table:
+			return self._ngram_binding_freq_table[orig].n_not_bound
+		else:
+			return self._undefined_count()
+
+	@windowed_feature(out_of_window_value=lambda self: self._undefined_prob()) # TODO: should this be 0.5?
+	def add_ngram_prob_bound(self, token, i):
+		orig = token.text(ignore=self._ignore_chars)[-NGRAM_LENGTH:]
+		while len(orig) < NGRAM_LENGTH and i > 1:
+			i -= 1
+			orig = self._tokens[i].text(ignore=self._ignore_chars) + orig
+			orig = orig[-NGRAM_LENGTH:]
+		orig = (UNKNOWN_CHAR * (NGRAM_LENGTH - len(orig))) + orig
+		assert len(orig) == NGRAM_LENGTH
+
+		if orig in self._ngram_binding_freq_table:
+			return self._ngram_binding_freq_table[orig].p_bound
+		else:
+			return self._undefined_prob() # TODO: see above
 
 	@windowed_feature(out_of_window_value=lambda self: self._undefined_prob()) # TODO: should this be 0.5?
 	def add_morph_prob_bound(self, token, i):

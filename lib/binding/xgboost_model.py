@@ -1,15 +1,14 @@
 from __future__ import division
 
 import numpy as np
-from sklearn.linear_model import LogisticRegressionCV
-from sklearn.svm import LinearSVC
+from xgboost import XGBClassifier, XGBRegressor
 
 from .tokenizer import Tokenizer
 from .featurizer import Featurizer
 from .postprocessor import Postprocessor
 
 
-class LogisticBindingModel:
+class XGBoostBindingModel:
 	def __init__(
 		self,
 		ignore_chars=[],
@@ -18,36 +17,50 @@ class LogisticBindingModel:
 		gold_token_separator="_",
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
+		ngram_binding_freq_file_path=None,
 		pos_file_path=None,
 		group_freq_file_path=None,
+		# for the model
+		n_estimators=150,
+		max_depth=18,
+		eta=0.08,
+		gamma=0.18,
+		colsample_bytree=0.6,
+		subsample=0.9,
+		min_child_weight=2,
 	):
 		self._tokens = []
 		self._tokenizer = Tokenizer(
 			gold_token_separator=gold_token_separator,
 			orig_token_separator=orig_token_separator,
 			ignore_chars=ignore_chars,
-			lowercase=True
+			lowercase=True,
+			normalize=True
 		)
 		self._featurizer = Featurizer(
+			# seps might occur in tokens, also add them to the ignore list
 			n_groups_left,
 			n_groups_right,
-			# seps might occur in tokens, also add them to the ignore list
 			ignore_chars=ignore_chars + [orig_token_separator, gold_token_separator],
 			orig_token_separator=" ",
 			binding_freq_file_path=binding_freq_file_path,
+			ngram_binding_freq_file_path=ngram_binding_freq_file_path,
 			pos_file_path=pos_file_path,
 			group_freq_file_path=group_freq_file_path,
-			encoder='one_hot'
+			encoder='label'
 		)
 		self._postprocessor = Postprocessor(separator=gold_token_separator)
 
-		self._m = LogisticRegressionCV(
-			random_state=0,
-			fit_intercept=True,
-			max_iter=100,
-			solver='liblinear',
-			penalty='l2',
-			cv=3
+		# cf: https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier
+		self._m = XGBClassifier(
+			nthread=-1,
+			n_estimators=n_estimators,
+			colsample_bytree=colsample_bytree,
+			max_depth=max_depth,
+			eta=eta,
+			gamma=gamma,
+			subsample=subsample,
+			min_child_weight=min_child_weight,
 		)
 
 	def _build_feature_matrix(self, text, orig_text=None, training=False):
@@ -64,6 +77,9 @@ class LogisticBindingModel:
 				#.add_morph_bound_count()
 				#.add_morph_not_bound_count()
 				#.add_morph_prob_bound()
+				#.add_ngram_bound_count(left=0, right=0)
+				#.add_ngram_not_bound_count(left=0, right=0)
+				#.add_ngram_prob_bound(left=0, right=0)
 				#.add_combined_token_morph_bound_count()
 				#.add_combined_token_morph_not_bound_count()
 				#.add_combined_token_morph_prob_bound()
@@ -83,21 +99,23 @@ class LogisticBindingModel:
 		return X
 
 	def _build_label_vector(self):
-		return np.array(
+		vec = np.array(
 			self._featurizer
 				.load_tokens(self._tokens)
 				.labels()
 		)
+		return vec
 
 	def train(self, gold_text, orig_text=None):
 		X = self._build_feature_matrix(gold_text, orig_text=orig_text, training=True)
 		y = self._build_label_vector()
 		self._m.fit(X, y)
 
-	def predict(self, orig_text):
+	def predict(self, orig_text, return_type="text"):
 		X = self._build_feature_matrix(orig_text)
-		preds = self._m.predict(X).tolist()
-		output = self._postprocessor.insert_separators(self._tokens, preds)
+		output = self._m.predict(X).tolist()
+		if return_type == "text":
+			output = self._postprocessor.insert_separators(self._tokens, output)
 		return output
 
 
