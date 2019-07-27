@@ -17,13 +17,14 @@ class XGBoostBindingModel:
 		gold_token_separator="_",
 		orig_token_separator=" ",
 		binding_freq_file_path=None,
+		ngram_binding_freq_file_path=None,
 		pos_file_path=None,
 		group_freq_file_path=None,
 		# for the model
 		n_estimators=150,
-		max_depth=15,
-		eta=0.05,
-		gamma=0.05,
+		max_depth=18,
+		eta=0.08,
+		gamma=0.18,
 		colsample_bytree=0.6,
 		subsample=0.9,
 		min_child_weight=2,
@@ -43,6 +44,7 @@ class XGBoostBindingModel:
 			ignore_chars=ignore_chars + [orig_token_separator, gold_token_separator],
 			orig_token_separator=" ",
 			binding_freq_file_path=binding_freq_file_path,
+			ngram_binding_freq_file_path=ngram_binding_freq_file_path,
 			pos_file_path=pos_file_path,
 			group_freq_file_path=group_freq_file_path,
 			encoder='label'
@@ -75,12 +77,15 @@ class XGBoostBindingModel:
 				#.add_morph_bound_count()
 				#.add_morph_not_bound_count()
 				#.add_morph_prob_bound()
+				#.add_ngram_bound_count(left=0, right=0)
+				#.add_ngram_not_bound_count(left=0, right=0)
+				#.add_ngram_prob_bound(left=0, right=0)
 				#.add_combined_token_morph_bound_count()
 				#.add_combined_token_morph_not_bound_count()
 				#.add_combined_token_morph_prob_bound()
 				.add_length(left=1, right=2)
 				.add_pos(left=1, right=2)
-				#.add_is_prep(left=0, right=0)
+				#.add_is_prep(left=0, right=1)
 				.add_first_letter(left=0, right=1)
 				.add_last_letter(left=1, right=0)
 				.add_right_substr_pos(left=1, right=0)
@@ -91,7 +96,6 @@ class XGBoostBindingModel:
 				.features()
 		)
 
-		print(X.shape)
 		return X
 
 	def _build_label_vector(self):
@@ -107,14 +111,11 @@ class XGBoostBindingModel:
 		y = self._build_label_vector()
 		self._m.fit(X, y)
 
-	def predict(self, orig_text):
-		print(len(self._featurizer.feature_names), len(self._m.feature_importances_))
-		assert len(self._featurizer.feature_names) == len(self._m.feature_importances_)
-		for feat, impt in reversed(sorted(zip(self._featurizer.feature_names, self._m.feature_importances_), key=lambda x:x[1])):
-			print(feat + (" " * (40 - len(feat))) + "\t" + str(impt))
+	def predict(self, orig_text, return_type="text"):
 		X = self._build_feature_matrix(orig_text)
-		preds = self._m.predict(X).tolist()
-		output = self._postprocessor.insert_separators(self._tokens, preds)
+		output = self._m.predict(X).tolist()
+		if return_type == "text":
+			output = self._postprocessor.insert_separators(self._tokens, output)
 		return output
 
 
