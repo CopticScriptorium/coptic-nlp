@@ -257,7 +257,7 @@
 9-11	ⲉⲧⲃⲉⲟⲩⲙⲟⲥⲧⲉ	_	_	_	_	_	_	_	_
 9	ⲉⲧⲃⲉ	ⲉⲧⲃⲉ	ADP	PREP	_	11	case	_	Orig=ⲉ[ⲧⲃ]ⲉ
 10	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	11	det	_	_
-11	ⲙⲟⲥⲧⲉ	ⲙⲟⲥⲧⲉ	VERB	N	VerbForm=Fin	14	obl	_	_
+11	ⲙⲟⲥⲧⲉ	ⲙⲟⲥⲧⲉ	NOUN	N	VerbForm=Fin	14	obl	_	_
 12-14	ⲉϥϫⲱ	_	_	_	_	_	_	_	_
 12	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	14	mark	_	_
 13	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	14	nsubj	_	_
@@ -3808,7 +3808,7 @@
 6	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	8	mark	_	_
 7	ⲉⲓϣⲁⲛ	ⲉⲣϣⲁⲛ_ⲁⲛⲟⲕ	PRON	ACOND_PPERS	Definite=Def|Number=Sing|Person=1|PronType=Prs	8	nsubj	_	_
 8	ϫⲱϩ	ϫⲱϩ	VERB	V	VerbForm=Fin	14	advcl	_	_
-9-11	ⲉⲛⲉϥϩⲟⲉⲓⲧⲉ	_	_	_	_	_	_	_	_
+9-11	ⲉⲛⲉϥϩⲟⲓⲧⲉ	_	_	_	_	_	_	_	_
 9	ⲉ	ⲉ	ADP	PREP	_	11	case	_	_
 10	ⲛⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender[psor]=Masc|Number=Plur|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	11	det	_	_
 11	ϩⲟⲓⲧⲉ	ϩⲟⲓⲧⲉ	NOUN	N	_	8	obl	_	_
@@ -4696,7 +4696,6 @@
 13-14	ⲛⲥⲁϩⲟⲓⲛⲉ	_	_	_	_	_	_	_	_
 13	ⲛⲥⲁ	ⲛⲥⲁ	ADP	PREP	_	14	case	_	_
 14	ϩⲟⲓⲛⲉ	ϩⲟⲓⲛⲉ	NOUN	N	_	20	dislocated	_	Orig=ϩⲟⲉⲓⲛⲉ
-
 15-17	ⲉⲩϣⲱⲛⲉ	_	_	_	_	_	_	_	_
 15	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	17	mark	_	_
 16	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	17	nsubj	_	_
@@ -7176,7 +7175,7 @@
 16	ⲡⲁⲣⲁⲇⲟⲥⲓⲥ	ⲡⲁⲣⲁⲇⲟⲥⲓⲥ	NOUN	N	_	14	obl	_	_
 17-19	ⲛⲛⲣⲱⲙⲉ	_	_	_	_	_	_	_	_
 17	ⲛ	ⲛ	ADP	PREP	_	19	case	_	_
-18	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art		19	det	_	Orig=ⲣ
+18	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	19	det	_	Orig=ⲣ
 19	ⲣⲱⲙⲉ	ⲣⲱⲙⲉ	NOUN	N	_	16	nmod	_	_
 
 # sent_id = sahidica_mark-Mark_07_s0009
@@ -7852,7 +7851,6 @@
 33-34	ϩⲁⲣⲁⲧϥ	_	_	_	_	_	_	_	_
 33	ϩⲁⲣⲁⲧ	ϩⲁⲣⲁⲧ	ADP	PREP	_	34	case	_	_
 34	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	31	obl	_	_
-
 
 # sent_id = sahidica_mark-Mark_07_s0026
 # text = ⲧⲉⲥϩⲓⲙⲉ ⲇⲉ ⲛⲉⲩϩⲉⲗⲗⲏⲛ ⲧⲉ ⲛⲣⲙ ⲧⲉ ⲫⲟⲓⲛⲓⲕⲏ ⲛⲧⲥⲩⲣⲓⲁ . ⲁⲩⲱ ⲁⲥⲥⲉⲡⲥⲱⲡϥ ϫⲉⲕⲁⲁⲥ ⲉϥⲉⲛⲉϫⲡⲇⲁⲓⲙⲱⲛⲓⲟⲛ ⲉⲃⲟⲗ ϩⲓ ⲧⲉⲥϣⲉⲉⲣⲉ
@@ -13194,3 +13192,4 @@
 29	ⲛⲃⲗⲗⲁ	ⲛⲃⲗ	ADP	PREP	_	30	case	_	Orig=ⲛ̄ⲃⲗ̄ⲗⲁ
 30	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	26	obl	_	_
 31	·	·	PUNCT	PUNCT	_	10	punct	_	_
+
