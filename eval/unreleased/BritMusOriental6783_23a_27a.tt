@@ -6384,7 +6384,7 @@
 <orig orig="ⲁⲣⲁ">
 <norm norm="ⲁⲣⲁ">
 <lemma lemma="ⲁⲣⲁ">
-<pos pos="CONJ">
+<pos pos="PTC">
 <lang lang="Greek">
 ⲁⲣⲁ
 </lang>
@@ -11557,11 +11557,11 @@
 </orig>
 </norm_group>
 </orig_group>
-<orig_group orig_group="ⲙ̅ⲡϣⲁ">
-<norm_group norm_group="ⲙⲡϣⲁ">
-<orig orig="ⲙ̅">
-<norm norm="ⲙ">
-<lemma lemma="ⲛ">
+<orig_group orig_group="ⲙⲡϣⲁ">
+<norm_group norm_group="ⲙ̅ⲡϣⲁ">
+<orig orig="ⲙ̅ⲡϣⲁ">
+<norm norm="ⲙⲡϣⲁ">
+<lemma lemma="ⲙⲡϣⲁ">
 <pos pos="V">
 ⲙ̅ⲡϣⲁ
 </pos>
@@ -12907,6 +12907,7 @@
 </translation>
 </pb_xml_id>
 <pb_xml_id pb_xml_id="25b ⲛ̅">
+<translation translation="And I said unto him, 'Nay, it is not ordained thus, and it is not for this purpose that I have come to this place. ">
 <ed_line_n ed_line_n="6">
 <orig_group orig_group="Ⲡⲉϫⲁⲓ">
 <norm_group norm_group="ⲡⲉϫⲁⲓ">
@@ -13230,6 +13231,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="But I will remember thee if the Lord maketh straight my way so that I may meet that brother. ">
 <orig_group orig_group="ⲁⲗⲗⲁ">
 <norm_group norm_group="ⲁⲗⲗⲁ">
 <orig orig="ⲁⲗⲗⲁ">
@@ -13485,6 +13488,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="And, my father, do thou remember me until I shall enjoy the blessing of that brother.' ">
 <orig_group orig_group="ⲡⲗⲏⲛ">
 <norm_group norm_group="ⲡⲗⲏⲛ">
 <orig orig="ⲡⲗⲏⲛ">
@@ -13544,7 +13549,7 @@
 <orig orig="ⲁⲣⲓ">
 <norm norm="ⲁⲣⲓ">
 <lemma lemma="ⲉⲓⲣⲉ">
-<pos pos="V">
+<pos pos="VIMP">
 ⲁⲣⲓ
 </pos>
 </lemma>
@@ -13571,7 +13576,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ϣⲁⲛϯⲁⲡⲟⲗⲁⲩⲉ">
-<norm_group norm_group="ϣⲁⲛϯⲁⲡⲟⲗⲁⲩⲉ">
+<norm_group norm_group="ϣⲁⲛⲧⲓⲁⲡⲟⲗⲁⲩⲉ">
 <orig orig="ϣⲁⲛ">
 <norm norm="ϣⲁⲛⲧ">
 <lemma lemma="ϣⲁⲛⲧⲉ">
@@ -13702,6 +13707,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="And when I had journeyed into the mountain about the distance of a mile — now I, Pambo, the least of men, swear unto thee by the awful throne of God, and I do not lie in what I am going to say — the being who seized the prophet Habakkuk in ancient days, and carried him, and the food which was in his hands, and brought him to the pit of the lions [when] Habakkuk gave it (i.e. the food) to Daniel who was in the pit of the lions,">
 <orig_group orig_group="ⲛ̅ⲧⲉⲣⲓⲙⲟⲟϣⲉ">
 <norm_group norm_group="ⲛⲧⲉⲣⲓⲙⲟⲟϣⲉ">
 <orig orig="ⲛ̅ⲧⲉⲣ">
@@ -14767,6 +14774,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="this same being, I say, seized me under the impulse of the Spirit, and brought me to the little habitation of that brother. ">
 <orig_group orig_group="ⲛ̅ⲧⲟϥ">
 <norm_group norm_group="ⲛⲧⲟϥ">
 <orig orig="ⲛ̅ⲧⲟϥ">
@@ -15093,6 +15102,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="And I knocked at the door, according to the rule of the monkish brethren, and I stood still at the door for a long time. ">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
 <orig orig="ⲁⲩⲱ">
@@ -15426,6 +15437,8 @@
 </norm_group>
 </orig_group>
 </ed_line_n>
+</translation>
+<translation translation="And after these things the brother answered me from within, saying, 'Hail, Apa Pambo, thou elder of the church of Shiet, thou mighty ship that sailest over the desert that is without water. ">
 <ed_line_n ed_line_n="24">
 <orig_group orig_group="Ⲙⲛ̅ⲛ̅ⲥⲁⲛⲁⲓ">
 <norm_group norm_group="ⲙⲛⲛⲥⲁⲛⲁⲓ">
@@ -15953,6 +15966,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="Behold, for very many days I have eagerly desired to see thee. ">
 <orig_group orig_group="ⲉⲓⲥⲟⲩⲙⲏⲏϣⲉ">
 <norm_group norm_group="ⲉⲓⲥⲟⲩⲙⲏⲏϣⲉ">
 <orig orig="ⲉⲓⲥ">
@@ -16089,6 +16104,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="Behold, this day hath God fulfilled my desire. ">
 <orig_group orig_group="ⲉⲓⲥ">
 <norm_group norm_group="ⲉⲓⲥ">
 <orig orig="ⲉⲓⲥ">
@@ -16258,6 +16275,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="Come in, and stand not outside.' ">
 <orig_group orig_group="ⲁⲙⲟⲩ">
 <norm_group norm_group="ⲁⲙⲟⲩ">
 <orig orig="ⲁⲙⲟⲩ">
@@ -16393,6 +16412,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="And when I was passing in through the door of the little habitation I looked, and I saw a mighty stone, which twelve men were trying to move, and they could only lift it with the greatest difficulty. ">
 <orig_group orig_group="ⲛ̅ⲧⲉⲣⲓⲣ̅ⲡϩⲟⲩⲛ">
 <norm_group norm_group="ⲛⲧⲉⲣⲓⲣⲡϩⲟⲩⲛ">
 <orig orig="ⲛ̅ⲧⲉⲣ">
@@ -16792,6 +16813,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="And that brother advanced, and rolled the stone along, and fixed it at the door of the habitation; ">
 <orig_group orig_group="ⲁϥϯ">
 <norm_group norm_group="ⲁϥϯ">
 <orig orig="ⲁ">
@@ -16824,7 +16847,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲡϥ̅ⲟⲩⲟⲓ">
-<norm_group norm_group="ⲡⲉϥⲟⲩⲟⲉⲓ">
+<norm_group norm_group="ⲡⲉϥⲟⲩⲟⲓ">
 <orig orig="ⲡϥ̅">
 <norm norm="ⲡⲉϥ">
 <lemma lemma="ⲡⲉϥ">
@@ -16835,8 +16858,8 @@
 </norm>
 </orig>
 <orig orig="ⲟⲩⲟⲓ">
-<norm norm="ⲟⲩⲟⲉⲓ">
-<lemma lemma="ⲟⲩⲟⲉⲓ">
+<norm norm="ⲟⲩⲟⲓ">
+<lemma lemma="ⲟⲩⲟⲓ">
 <pos pos="N">
 ⲟⲩⲟⲓ
 </pos>
@@ -17096,11 +17119,13 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="and when I saw this I marvelled exceedingly. ">
 <orig_group orig_group="ⲛ̅ⲧⲉⲣⲉⲓⲛⲁⲩ">
-<norm_group norm_group="ⲛⲧⲉⲣⲉⲓⲛⲁⲩ">
+<norm_group norm_group="ⲛⲧⲉⲣⲓⲛⲁⲩ">
 <orig orig="ⲛ̅ⲧⲉⲣ">
 <norm norm="ⲛⲧⲉⲣ">
-<lemma lemma="ⲛⲧⲉⲣⲉ">
+<lemma lemma="ⲛⲧⲉⲣ">
 <pos pos="APREC">
 ⲛ̅ⲧⲉⲣ
 </pos>
@@ -17108,9 +17133,9 @@
 </norm>
 </orig>
 <orig orig="ⲉⲓ">
-<norm norm="ⲉⲓ">
-<lemma lemma="ⲉⲓ">
-<pos pos="V">
+<norm norm="ⲓ">
+<lemma lemma="ⲁⲛⲟⲕ">
+<pos pos="PPERS">
 ⲉⲓ
 </pos>
 </lemma>
@@ -17205,7 +17230,7 @@
 <orig orig="·">
 <norm norm="·">
 <lemma lemma="·">
-<pos pos="PUNCT	·">
+<pos pos="PUNCT">
 ·
 </pos>
 </lemma>
@@ -17214,6 +17239,8 @@
 </norm_group>
 </orig_group>
 </ed_line_n>
+</translation>
+<translation translation="Then I remembered the patriarch Jacob, and how he, when he fled from the face of Esau his brother, went into Mesopotamia of Syria, and how when he had arrived at the place wherein were the sheep of Laban ">
 <ed_line_n ed_line_n="3">
 <orig_group orig_group="Ⲡⲗⲏⲛ">
 <norm_group norm_group="ⲡⲗⲏⲛ">
@@ -17828,6 +17855,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="he went up to the well, and rolled away the stone which was on the mouth thereof, without any man giving him assistance, and how he watered the sheep of Laban and then sent them away to feed. ">
 <orig_group orig_group="ⲁϥϯⲡⲉϥⲟⲩⲟⲓ">
 <norm_group norm_group="ⲁϥϯⲡⲉϥⲟⲩⲟⲓ">
 <orig orig="ⲁ">
@@ -17985,8 +18014,8 @@
 </orig>
 <orig orig="ⲣⲱ">
 <norm norm="ⲣⲱ">
-<lemma lemma="ⲣⲱ">
-<pos pos="V">
+<lemma lemma="ⲣⲟ">
+<pos pos="N">
 ⲣⲱ
 </pos>
 </lemma>
@@ -18272,6 +18301,8 @@
 </norm_group>
 </orig_group>
 </ed_line_n>
+</translation>
+<translation translation="And finally I understood that in everything that the saints perform it is God Who helpeth them. ">
 <ed_line_n ed_line_n="10">
 <orig_group orig_group="ⲧⲟⲧⲉ">
 <norm_group norm_group="ⲧⲟⲧⲉ">
@@ -18539,6 +18570,8 @@
 </norm_group>
 </orig_group>
 </ed_line_n>
+</translation>
+<translation translation="And I said unto him, 'O my holy father, shew me thy holy name, for God hath hidden this from me.'">
 <ed_line_n ed_line_n="12">
 <orig_group orig_group="ⲡⲉϫⲁⲓ">
 <norm_group norm_group="ⲡⲉϫⲁⲓ">
@@ -18800,20 +18833,11 @@
 </orig_group>
 <orig_group orig_group="ⲉⲣⲟⲓ">
 <norm_group norm_group="ⲉⲣⲟⲓ">
-<orig orig="ⲉ">
-<norm norm="ⲉ">
+<orig orig="ⲉⲣⲟ">
+<norm norm="ⲉⲣⲟ">
 <lemma lemma="ⲉ">
 <pos pos="PREP">
-ⲉ
-</pos>
-</lemma>
-</norm>
-</orig>
-<orig orig="ⲣⲟ">
-<norm norm="ⲣⲟ">
-<lemma lemma="ⲣⲟ">
-<pos pos="V">
-ⲣⲟ
+ⲉⲣⲟ
 </pos>
 </lemma>
 </norm>
@@ -18843,7 +18867,9 @@
 </norm_group>
 </orig_group>
 </ed_line_n>
+</translation>
 <ed_line_n ed_line_n="14">
+<translation translation="And he said, 'Cyrus is my name. ">
 <orig_group orig_group="ⲛ̅ⲧⲟϥ">
 <norm_group norm_group="ⲛⲧⲟϥ">
 <orig orig="ⲛ̅ⲧⲟϥ">
@@ -18936,7 +18962,7 @@
 <orig orig="ⲡⲉ">
 <norm norm="ⲡⲉ">
 <lemma lemma="ⲡⲉ">
-<pos pos="PTC">
+<pos pos="COP">
 ⲡⲉ
 </pos>
 </lemma>
@@ -18979,6 +19005,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="I am the brother of the Emperor Theodosius, and I was reared and fed at the same table as Arcadius and Honorius. And, indeed, many, many times hath Honorius said unto me, 'Take me with thee into the desert, and I will become a monk';">
 <orig_group orig_group="ⲁⲛⲟⲕ">
 <norm_group norm_group="ⲁⲛⲟⲕ">
 <orig orig="ⲁⲛⲟⲕ">
@@ -19560,7 +19588,7 @@
 <orig orig="ⲣ̅ⲙⲟⲛⲟⲭⲟⲥ">
 <norm norm="ⲣⲙⲟⲛⲁⲭⲟⲥ">
 <lemma lemma="ⲣⲙⲟⲛⲁⲭⲟⲥ">
-<pos pos="N">
+<pos pos="V">
 <morph morph="ⲣ">
 ⲣ̅
 </morph>
@@ -19588,6 +19616,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="but I did not wish to take him with me, because he is a son of the Emperor. ">
 <orig_group orig_group="ⲁⲛⲟⲕ">
 <norm_group norm_group="ⲁⲛⲟⲕ">
 <orig orig="ⲁⲛⲟⲕ">
@@ -19783,6 +19813,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="And when we saw that oppression (or, violence) had multiplied, and that the Emperors were committing' sin, and that the rulers were robbing the poor, and that everyone was turning out of the straight road, and making corrupt his path before God, I rose up, and I set out and I came to this desert, and I took up my abode therein because of the multitude of my sins.">
 <orig_group orig_group="ⲛ̅ⲧⲉⲣⲛ̅ⲛⲁⲩ">
 <norm_group norm_group="ⲛⲧⲉⲣⲛⲛⲁⲩ">
 <orig orig="ⲛ̅ⲧⲉⲣ">
@@ -19897,7 +19929,7 @@
 <orig orig="ⲁϣⲁⲓ">
 <norm norm="ⲁϣⲁⲓ">
 <lemma lemma="ⲁϣⲁⲓ">
-<pos pos="CONJ">
+<pos pos="V">
 ⲁϣⲁⲓ
 </pos>
 </lemma>
@@ -20532,6 +20564,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="May God forgive me these!'">
 <orig_group orig_group="ⲧⲁⲣⲉⲡⲛⲟⲩⲧⲉ">
 <norm_group norm_group="ⲧⲁⲣⲉⲡⲛⲟⲩⲧⲉ">
 <orig orig="ⲧⲁⲣⲉ">
@@ -20623,8 +20657,10 @@
 </norm_group>
 </orig_group>
 </ed_line_n>
+</translation>
 </pb_xml_id>
 <pb_xml_id pb_xml_id="27a_ⲛ̅ⲅ̅">
+<translation translation="And I, Pambo, said unto him, 'My beloved father, where a wilt thou find men in this desert place to comfort thee in thy sufferings?' ">
 <ed_line_n ed_line_n="27">
 <orig_group orig_group="Ⲡⲉϫⲁⲓ">
 <norm_group norm_group="ⲡⲉϫⲁⲓ">
@@ -20939,6 +20975,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="And Apa Cyrus said unto me, 'Believe me, my beloved brother, Apa Pambo, my God and my Lord Jesus Christ are Those Who visit me in this desert wherein I live.">
 <orig_group orig_group="ⲡⲉϫⲁϥ">
 <norm_group norm_group="ⲡⲉϫⲁϥ">
 <orig orig="ⲡⲉϫⲁ">
@@ -21248,8 +21286,8 @@
 <norm_group norm_group="ⲡⲉⲧϭⲓⲛⲉ">
 <orig orig="ⲡ">
 <norm norm="ⲡ">
-<lemma lemma="ⲡ">
-<pos pos="ART">
+<lemma lemma="ⲡⲉ">
+<pos pos="COP">
 ⲡ
 </pos>
 </lemma>
@@ -21392,6 +21430,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="For I have never seen a man who came to me except a certain brother who was a monk, and who came hither wishing to see my face, besides such a one I have never seen anyone. ">
 <orig_group orig_group="ⲙ̅ⲡⲉⲓⲛⲁⲩ">
 <norm_group norm_group="ⲙⲡⲉⲓⲛⲁⲩ">
 <orig orig="ⲙ̅ⲡ">
@@ -21821,6 +21861,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="On the contrary, when any one came hither, whilst he remained outside I commanded him from inside this abode saying, &quot;Get thee gone, thou hast troubled thyself [to no purpose] in coming to me.&quot;">
 <orig_group orig_group="ⲁⲗⲗⲁ">
 <norm_group norm_group="ⲁⲗⲗⲁ">
 <orig orig="ⲁⲗⲗⲁ">
@@ -22052,21 +22094,13 @@
 </orig_group>
 <orig_group orig_group="ⲛϩⲟⲩⲛ">
 <norm_group norm_group="ⲛϩⲟⲩⲛ">
-<orig orig="ⲛ">
-<norm norm="ⲛ">
-<lemma lemma="ⲛ">
-<pos pos="PREP">
+<orig orig="ⲛϩⲟⲩⲛ">
+<norm norm="ⲛϩⲟⲩⲛ">
+<lemma lemma="ⲛϩⲟⲩⲛ">
+<pos pos="ADV">
 ⲛ
-</pos>
-</lemma>
-</norm>
-</orig>
 </ed_line_n>
 <ed_line_n ed_line_n="3">
-<orig orig="ϩⲟⲩⲛ">
-<norm norm="ϩⲟⲩⲛ">
-<lemma lemma="ϩⲟⲩⲛ">
-<pos pos="N">
 ϩⲟⲩⲛ
 </pos>
 </lemma>
@@ -22284,6 +22318,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="Most assuredly no man of flesh shall see my face except Apa Pambo, the elder of the church of Shiet. ">
 <orig_group orig_group="ⲙ̅ⲙⲟⲛ">
 <norm_group norm_group="ⲙⲙⲟⲛ">
 <orig orig="ⲙ̅ⲙⲟⲛ">
@@ -22557,6 +22593,7 @@
 </norm_group>
 </orig_group>
 </ed_line_n>
+</translation>
 </ed_page_n>
 </pb_xml_id>
 </meta>

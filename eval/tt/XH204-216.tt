@@ -6653,8 +6653,8 @@
 </norm>
 </orig>
 <orig orig="ϫⲓϩⲛⲁⲩ">
-<norm norm="ϫⲓ">
-<lemma lemma="ϫⲓ">
+<norm norm="ϫⲓϩⲛⲁⲩ">
+<lemma lemma="ϫⲓϩⲛⲁⲩ">
 <pos pos="V">
 <morph morph="ϫⲓ">
 ϫⲓ
@@ -10230,7 +10230,7 @@
 </lb_n>
 <lb_n lb_n="29">
 <orig_group orig_group="ⲛⲉⲡⲉⲧⲉϣϣⲉ">
-<norm_group norm_group="ⲛⲉⲡⲉⲧⲉϣϣⲉ">
+<norm_group norm_group="ⲛⲉⲡⲉⲧϣϣⲉ">
 <orig orig="ⲛⲉ">
 <norm norm="ⲛⲉ">
 <lemma lemma="ⲛⲉⲣⲉ">
@@ -10259,8 +10259,8 @@
 </norm>
 </orig>
 <orig orig="ⲉϣϣⲉ">
-<norm norm="ⲉϣϣⲉ">
-<lemma lemma="ⲉϣϣⲉ">
+<norm norm="ϣϣⲉ">
+<lemma lemma="ϣϣⲉ">
 <pos pos="V">
 ⲉϣϣⲉ
 </pos>

@@ -1,7 +1,7 @@
 <meta>
 <ed_page_n ed_page_n="1">
 <pb_xml_id pb_xml_id="1a ⲁ̅">
-<translation translation="THE LIFE AND CONVERSATION OF OUR HOLY FATHER, WHO WAS GLORIOUS IN EVERY WAY, APA ONNOPHRIOS THE ANCHORITE,">
+<translation translation="THE LIFE AND CONVERSATION OF OUR HOLY FATHER, WHO WAS GLORIOUS IN EVERY WAY, APA ONNOPHRIOS THE ANCHORITE, WHO ENDED HIS LIFE ON THE SIXTEENTH DAY OF THE MONTH PAONE IN THE PEACE OF GOD!">
 <ed_line_n ed_line_n="1">
 <orig_group orig_group="ⲠⲂⲒⲞⲤ">
 <norm_group norm_group="ⲡⲃⲓⲟⲥ">
@@ -19,9 +19,7 @@
 <lemma lemma="ⲃⲓⲟⲥ">
 <pos pos="N">
 <lang lang="Greek">
-<translation translation="WHO ENDED HIS LIFE ON THE SIXTEENTH DAY OF THE MONTH PAONE IN THE PEACE OF GOD! ">
 ⲂⲒⲞⲤ
-</translation>
 </lang>
 </pos>
 </lemma>
@@ -4566,21 +4564,21 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲙ̅ⲡⲉⲓϩⲉ">
-<norm_group norm_group="ⲙⲡⲉⲓϩⲉ">
-<orig orig="ⲙ̅">
-<norm norm="ⲙ">
-<lemma lemma="ⲛ">
-<pos pos="PREP">
-ⲙ̅
+<norm_group norm_group="ⲙⲡⲓϩⲉ">
+<orig orig="ⲙ̅ⲡ">
+<norm norm="ⲙⲡ">
+<lemma lemma="ⲙⲡⲉ">
+<pos pos="ANEGPST">
+ⲙ̅ⲡ
 </pos>
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲡⲉⲓ">
-<norm norm="ⲡⲉⲓ">
-<lemma lemma="ⲡⲉⲓ">
-<pos pos="PDEM">
-ⲡⲉⲓ
+<orig orig="ⲉⲓ">
+<norm norm="ⲓ">
+<lemma lemma="ⲁⲛⲟⲕ">
+<pos pos="PPERS">
+ⲉⲓ
 </pos>
 </lemma>
 </norm>
@@ -4588,7 +4586,7 @@
 <orig orig="ϩⲉ">
 <norm norm="ϩⲉ">
 <lemma lemma="ϩⲉ">
-<pos pos="N">
+<pos pos="V">
 ϩⲉ
 </pos>
 </lemma>
@@ -5832,7 +5830,7 @@
 <orig orig="ⲉⲣⲉ">
 <norm norm="ⲉⲣⲉ">
 <lemma lemma="ⲉⲣⲉ">
-<pos pos="CCIRC">
+<pos pos="CFOC">
 ⲉⲣⲉ
 </pos>
 </lemma>
@@ -7653,8 +7651,8 @@
 </orig>
 <orig orig="ϫⲓⲧ">
 <norm norm="ϫⲓⲧ">
-<lemma lemma="ϫⲓ">
-<pos pos="V">
+<lemma lemma="ϫⲓ_ⲁⲛⲟⲕ">
+<pos pos="V_PPERO">
 ϫⲓⲧ
 </pos>
 </lemma>
@@ -30646,7 +30644,7 @@
 </norm_group>
 </orig_group>
 </translation>
-<translation translation="translation">
+<translation translation="When we are thirsty we take water to drink. ">
 <orig_group orig_group="ⲛ̅ϣⲁⲛⲉⲓⲃⲉ">
 <norm_group norm_group="ⲉⲛϣⲁⲛⲉⲓⲃⲉ">
 <orig orig="ⲛ̅ϣⲁⲛ">
@@ -30763,7 +30761,7 @@
 </orig_group>
 </translation>
 </ed_line_n>
-<translation translation="translation">
+<translation translation="When we are weak our brethren reach out their hands to help us, ">
 <ed_line_n ed_line_n="7">
 <orig_group orig_group="ⲛ̅ϣⲁⲛⲣ̅ⲁⲧϭⲟⲙ">
 <norm_group norm_group="ⲉⲛϣⲁⲛⲣⲁⲧϭⲟⲙ">
@@ -30903,7 +30901,7 @@
 </orig_group>
 </ed_line_n>
 </translation>
-<translation translation="When we are thirsty we take water to drink. When we are weak our brethren reach out their hands to help us, and when we wish for the loan of a vessel to eat from we make use of those belonging to each other, for the love of God.">
+<translation translation="and when we wish for the loan of a vessel to eat from we make use of those belonging to each other, for the love of God.">
 <ed_line_n ed_line_n="8">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
