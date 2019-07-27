@@ -24,7 +24,7 @@ script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 plain_dir = script_dir + ".." + os.sep + "eval" + os.sep + "plain" + os.sep
 err_dir = script_dir + ".." + os.sep + "eval" + os.sep + "errors" + os.sep
 
-XGBOOST_PERSISTED_FILENAME = "xgboost_binding_model.bin"
+XGBOOST_PERSISTED_FILENAME = script_dir+"xgboost_binding_model.bin"
 lex = script_dir + ".." + os.sep + "data" + os.sep + "copt_lemma_lex_cplx_2.5.tab"
 frq = script_dir + ".." + os.sep + "data" + os.sep + "cop_freqs.tab"
 conf = script_dir + ".." + os.sep + "data" + os.sep + "test.conf"
@@ -51,6 +51,7 @@ def predict(orig, return_type="binary"):
 		print("You can train the model by running lib/binder.py directly, something like this:")
 		print("        python binder.py xgboost --train_list=onno+ephraim+victor+cyrus")
 		print(e)
+		sys.exit()
 
 	pred = m.predict(orig, return_type=return_type)
 
