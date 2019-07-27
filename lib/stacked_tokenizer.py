@@ -458,6 +458,14 @@ class StackedTokenizer:
 			for grp in grps:
 				if grp.clean in self.detok_table:
 					grp.proclitic = True
+		elif self.detokenize and not old_detok:
+			import binder # import here to avoid circular dep
+			binding_predictions = binder.predict(" ".join([grp.orig for grp in grps]))
+			for i, pred in enumerate(binding_predictions):
+				if pred >= 0.5:
+					grps[i].proclitic = True
+
+		if self.detokenize:
 			last_grp = None
 			detokenized = []
 			for grp in grps:
@@ -472,12 +480,6 @@ class StackedTokenizer:
 			if last_grp not in detokenized:
 				detokenized.append(last_grp)
 			grps = detokenized
-		elif self.detokenize and not old_detok:
-			import binder # import here to avoid circular dep
-			binding_predictions = binder.predict(" ".join([grp.orig for grp in grps]))
-			for i, pred in enumerate(binding_predictions):
-				if pred >= 0.5:
-					grps[i].proclitic = True
 
 		if self.tokenized:
 			for g in grps:
