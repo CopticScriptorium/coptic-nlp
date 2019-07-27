@@ -76,6 +76,7 @@ class Tokenizer:
 		self._ignore_or_sep = ignore_chars + self._separators
 
 	def tokenize(self, text, orig=None):
+		text = text.replace("\n","")
 		if self._lowercase:
 			text = text.lower()
 			if orig:
