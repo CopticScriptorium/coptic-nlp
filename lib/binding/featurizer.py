@@ -170,7 +170,7 @@ def windowed_feature(out_of_window_value=None):
 class TransformSingleMixin:
 	# convenience function for encoding single values--monkey patch it onto an instance of an encoder
 	def transform_single(self, x):
-		a = self.transform(np.array(x).reshape(-1, 1))
+		a = self.transform(np.array(x).reshape(1,))
 		if type(a) != np.ndarray:
 			a = a.todense()[0]
 		a = a.tolist()
@@ -226,7 +226,7 @@ class Featurizer:
 			self._pos_table = pos_table
 			self._pos_encoder = Featurizer.encoder_map[encoder]()
 			self._pos_vocab = list(pos_table.values()) + [UNKNOWN_POS]
-			self._pos_encoder.fit(np.array(self._pos_vocab).reshape(-1, 1))
+			self._pos_encoder.fit(np.array(self._pos_vocab).reshape(len(self._pos_vocab),))
 
 		if group_freq_file_path:
 			self._group_freq_table = read_group_freq_file(group_freq_file_path, ignore_chars)
@@ -249,7 +249,7 @@ class Featurizer:
 
 	def _init_char_encoder(self, tokens):
 		self._char_vocab = list(set("".join([t.orig for t in tokens]))) + [UNKNOWN_CHAR]
-		self._char_encoder.fit(np.array(self._char_vocab).reshape(-1, 1))
+		self._char_encoder.fit(np.array(self._char_vocab).reshape(len(self._char_vocab),))
 
 	def load_tokens(self, tokens, training=False):
 		self._tokens = tokens
