@@ -2,13 +2,28 @@ import os, io, sys
 
 PY3 = sys.version_info[0] > 2
 
+orig_chars = set(["̈", "", "̄", "̀", "̣", "`", "̅", "̈", "̂", "︤", "︥", "︦", "⳿", "~", "\n", "̇", " ", "‴", "#", "᷍", "⸍", "›", "‹","[","]"])
+
+
+def clean(text):
+	if len(text) < 2:
+		return text
+	else:
+		orig = text
+		text = ''.join([c for c in text if c not in orig_chars])
+		if len(text) < 1:
+			text = orig
+		return text
+
+
 def lookup_tokenize(norms,underscore_oov=False,seg_table=None):
 	if seg_table is None:
 		seg_table = os.path.dirname(os.path.realpath(__file__)) + os.sep +".." + os.sep + "data" +os.sep+"segmentation_table.tab"
 
 	rows = io.open(seg_table,encoding="utf8").read().replace("\r","").strip().split("\n")
 	tuples = [row.split("\t") for row in rows if "\t" in row]
-	segs = dict((t[0],t[1]) for t in tuples)
+	segs = dict((clean(t[0]),clean(t[1])) for t in tuples)
+	norms = [clean(norm) for norm in norms]
 
 	tokenized = []
 
@@ -22,6 +37,7 @@ def lookup_tokenize(norms,underscore_oov=False,seg_table=None):
 				tokenized.append(norm)
 
 	return tokenized
+
 
 if __name__ == "__main__":
 	from argparse import ArgumentParser
