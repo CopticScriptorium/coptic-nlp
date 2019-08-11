@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import sys, os, io, platform, subprocess, tempfile, re
 
 PY3 = sys.version_info[0] == 3
@@ -137,7 +140,7 @@ def tag_marmot(indata,model=None,sent=None,func=False):
 	if platform.system() == "Windows":
 		tag = ["java","-Dfile.encoding=UTF-8","-Xmx2g","-cp","*;","marmot.morph.cmd.Annotator","-model-file",model,"-test-file","form-index=0,tempfilename","-pred-file","tempfilename2"]
 	else:
-		tag = ["java","-Dfile.encoding=UTF-8","-Xmx2g","-cp","marmot.jar:trove.jar","marmot.morph.cmd.Annotator","-model-file",model,"-test-file","form-index=0","tempfilename","-pred-file","tempfilename2"]
+		tag = ["java","-Dfile.encoding=UTF-8","-Xmx2g","-cp","marmot.jar:trove.jar","marmot.morph.cmd.Annotator","-model-file",model,"-test-file","form-index=0,tempfilename","-pred-file","tempfilename2"]
 
 	to_tag = marmotify(indata,sent=sent)
 

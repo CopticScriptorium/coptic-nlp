@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import os, io, sys
 
 PY3 = sys.version_info[0] > 2
