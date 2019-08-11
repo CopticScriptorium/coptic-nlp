@@ -1,5 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+"""
+Finite state normalizer module called by auto_norm.py for OOV items. Relies on Foma binaries for the current
+operating systems in bin/foma/ and a compiled grammar at bin/coptic_foma.bin.
+"""
+
 from __future__ import print_function
 
 import io, os, re, sys
@@ -11,6 +17,7 @@ PY3 = sys.version_info[0] == 3
 
 script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 data_dir = script_dir + ".." + os.sep + "data" + os.sep
+bin_dir = script_dir + ".." + os.sep + "bin" + os.sep
 
 orig_chars = set(["̈", "", "̄", "̀", "̣", "`", "̅", "̈", "̂", "︤", "︥", "︦", "⳿", "~", "\n", "̇", " ", "‴", "#", "᷍", "⸍", "›", "‹"])
 
@@ -64,8 +71,8 @@ class FomaNorm:
 
 	def normalize(self,origs):
 		origs = [clean(orig) for orig in origs]
-		cmd = [script_dir+"flookup","-ix",data_dir+"coptic.bin","tempfilename"]
-		normalized = exec_via_temp("\n".join(origs),cmd,workdir=script_dir)
+		cmd = [bin_dir+"foma"+os.sep+"flookup","-ix",bin_dir+"coptic_foma.bin","tempfilename"]
+		normalized = exec_via_temp("\n".join(origs),cmd,workdir=bin_dir+"foma"+os.sep)
 		normalized = normalized.strip().split("\n\n")
 		normalized = self.disambiguate(normalized,origs)
 		for i, orig in enumerate(origs):
