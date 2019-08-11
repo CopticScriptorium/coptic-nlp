@@ -6,11 +6,10 @@ import sys, os, io, platform, subprocess, tempfile, re
 PY3 = sys.version_info[0] == 3
 
 script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
-bin_dir = script_dir + os.sep + ".." + os.sep + "bin" + os.sep
-data_dir = script_dir + os.sep + ".." + os.sep + "data" + os.sep
+bin_dir = script_dir + ".." + os.sep + "bin" + os.sep
+data_dir = script_dir + ".." + os.sep + "data" + os.sep
 marmot_path = bin_dir + "marmot" + os.sep
 
-script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 punctuation = set([".","·","·",":",",","-","ⲻ","·ⲻ","⳾","?",".ⲻ","—","†","=","]","⸱","].","⸓","⳾ⲻ","[","--","·]","··","☧",".]]","[·]","ⲻ·","=–.","̣","."])
 
 
