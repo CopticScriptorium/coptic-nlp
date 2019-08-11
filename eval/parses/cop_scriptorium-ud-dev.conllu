@@ -1,30 +1,30 @@
 # newdoc id = shenoute.a22:MONB_YA_421_428
 # sent_id = shenoute_a22-MONB_YA_421_428_s0001
 # text = ⲣⲙⲏ ⲉϩⲣⲁⲓ ⲉⲩⲃⲁⲩⲕⲁⲗⲓⲟⲛ ⲏ ⲉϩⲣⲁⲓ ⲉⲩϣⲟϣⲟⲩ ⲉϩⲣⲁⲓ ⲉϭⲉⲗⲁⲁⲩ ⲛϩⲛⲁⲁⲩ ⲉϥⲧⲛⲧⲱⲛ ⲉⲛⲁⲓ ⲉⲙⲡⲟⲩⲟⲩⲉϩⲥⲁϩⲛⲉ ⲛⲁϥ ϩⲓⲧⲙⲡϩⲗⲗⲱ ⲉⲓⲙⲏⲧⲓ ⲡⲙⲁ ⲛⲛⲣⲱⲙⲉ ⲉⲧϣⲱⲛⲉ ⲙⲙⲁⲧⲉ ⲙⲛⲛϩⲗⲗⲟ ⲁⲩⲣϩⲁϩ ⲛⲣⲟⲙⲡⲉ ⲁⲩⲱ ⲛⲉⲓⲕⲟⲟⲩⲉ ⲉⲧⲣⲉⲩϣⲓⲛⲉ ⲛⲧⲟⲟⲧϥ ⲙⲡϩⲗⲗⲟ
-1	ⲣⲙⲏ	ⲣⲙⲏ	VERB	V	VerbForm=Fin	52	dep	_	Morphs=ⲣ-ⲙⲏ|Orig=ⲣ̄ⲙⲏ̂
-2	ⲉϩⲣⲁⲓ	ⲉϩⲣⲁⲓ	ADV	ADV	_	1	advmod	_	Orig=ⲉϩⲣⲁⲓ̈
+1	ⲣⲙⲏ	ⲣⲙⲏ	VERB	V	VerbForm=Fin	0	root	_	Morphs=ⲣ-ⲙⲏ|Orig=ⲣ̄ⲙⲏ̂
+2	ⲉϩⲣⲁⲓ	ⲉϩⲣⲁⲓ	ADV	ADV	_	5	case	_	Orig=ⲉϩⲣⲁⲓ̈
 3-5	ⲉⲩⲃⲁⲩⲕⲁⲗⲓⲟⲛ	_	_	_	_	_	_	_	_
-3	ⲉ	ⲉ	ADP	PREP	_	5	case	_	_
+3	ⲉ	ⲉ	ADP	PREP	_	2	fixed	_	_
 4	ⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	5	det	_	_
 5	ⲃⲁⲩⲕⲁⲗⲓⲟⲛ	ⲃⲁⲩⲕⲁⲗⲓⲟⲛ	NOUN	N	_	1	obl	_	Orig=ⲃⲁⲩⲕⲁⲗⲓⲟⲛ`
 6	ⲏ	ⲏ	CCONJ	CONJ	_	10	cc	_	Orig=ⲏ̂
-7	ⲉϩⲣⲁⲓ	ⲉϩⲣⲁⲓ	ADV	ADV	_	1	advmod	_	Orig=ⲉϩⲣⲁⲓ̈
+7	ⲉϩⲣⲁⲓ	ⲉϩⲣⲁⲓ	ADV	ADV	_	10	case	_	Orig=ⲉϩⲣⲁⲓ̈
 8-10	ⲉⲩϣⲟϣⲟⲩ	_	_	_	_	_	_	_	_
-8	ⲉ	ⲉ	ADP	PREP	_	10	case	_	_
+8	ⲉ	ⲉ	ADP	PREP	_	7	fixed	_	_
 9	ⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	10	det	_	_
-10	ϣⲟϣⲟⲩ	ϣⲟϣⲟⲩ	NOUN	N	_	1	conj	_	_
-11	ⲉϩⲣⲁⲓ	ⲉϩⲣⲁⲓ	ADV	ADV	_	1	advmod	_	Orig=ⲉϩⲣⲁⲓ̈
+10	ϣⲟϣⲟⲩ	ϣⲟϣⲟⲩ	NOUN	N	_	5	conj	_	_
+11	ⲉϩⲣⲁⲓ	ⲉϩⲣⲁⲓ	ADV	ADV	_	14	case	_	Orig=ⲉϩⲣⲁⲓ̈
 12-14	ⲉϭⲉⲗⲁⲁⲩ	_	_	_	_	_	_	_	_
-12	ⲉ	ⲉ	ADP	PREP	_	14	case	_	_
+12	ⲉ	ⲉ	ADP	PREP	_	11	fixed	_	_
 13	ϭⲉ	ϭⲉ	DET	ART	PronType=Art	14	det	_	_
-14	ⲗⲁⲁⲩ	ⲗⲁⲁⲩ	NOUN	N	_	1	obl	_	_
+14	ⲗⲁⲁⲩ	ⲗⲁⲁⲩ	NOUN	N	_	5	conj	_	_
 15-16	ⲛϩⲛⲁⲁⲩ	_	_	_	_	_	_	_	_
 15	ⲛ	ⲛ	ADP	PREP	_	16	case	_	Orig=ⲛ̄
 16	ϩⲛⲁⲁⲩ	ϩⲛⲁⲁⲩ	NOUN	N	_	14	nmod	_	Orig=ϩⲛⲁⲁⲩ`
 17-19	ⲉϥⲧⲛⲧⲱⲛ	_	_	_	_	_	_	_	_
 17	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	19	mark	_	_
 18	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	19	nsubj	_	_
-19	ⲧⲛⲧⲱⲛ	ⲧⲟⲛⲧⲛ	VERB	VSTAT	VerbForm=Fin	16	acl	_	Orig=ⲧ︤ⲛ︥ⲧⲱⲛ
+19	ⲧⲛⲧⲱⲛ	ⲧⲟⲛⲧⲛ	VERB	VSTAT	VerbForm=Fin	14	acl	_	Orig=ⲧ︤ⲛ︥ⲧⲱⲛ
 20-21	ⲉⲛⲁⲓ	_	_	_	_	_	_	_	_
 20	ⲉ	ⲉ	ADP	PREP	_	21	case	_	_
 21	ⲛⲁⲓ	ⲡⲁⲓ	DET	PDEM	Definite=Def|Number=Plur|PronType=Dem	19	obl	_	Orig=ⲛⲁⲓ̈
@@ -69,7 +69,7 @@
 50	ⲕⲟⲟⲩⲉ	ⲕⲉ	NOUN	N	_	36	conj	_	Orig=ⲕⲟⲟⲩⲉ`
 51-54	ⲉⲧⲣⲉⲩϣⲓⲛⲉ	_	_	_	_	_	_	_	_
 51	ⲉ	ⲉ	PART	PREP	_	52	mark	_	_
-52	ⲧⲣⲉ	ⲧⲣⲉ	VERB	ACAUS	_	0	root	_	_
+52	ⲧⲣⲉ	ⲧⲣⲉ	VERB	ACAUS	_	1	xcomp	_	_
 53	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	54	nsubj	_	_
 54	ϣⲓⲛⲉ	ϣⲓⲛⲉ	VERB	V	VerbForm=Fin	52	xcomp	_	_
 55-57	ⲛⲧⲟⲟⲧϥ	_	_	_	_	_	_	_	_
@@ -257,7 +257,7 @@
 9-11	ⲉⲧⲃⲉⲟⲩⲙⲟⲥⲧⲉ	_	_	_	_	_	_	_	_
 9	ⲉⲧⲃⲉ	ⲉⲧⲃⲉ	ADP	PREP	_	11	case	_	Orig=ⲉ[ⲧⲃ]ⲉ
 10	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	11	det	_	_
-11	ⲙⲟⲥⲧⲉ	ⲙⲟⲥⲧⲉ	NOUN	N	VerbForm=Fin	14	obl	_	_
+11	ⲙⲟⲥⲧⲉ	ⲙⲟⲥⲧⲉ	NOUN	N	_	14	obl	_	_
 12-14	ⲉϥϫⲱ	_	_	_	_	_	_	_	_
 12	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	14	mark	_	_
 13	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	14	nsubj	_	_
@@ -441,120 +441,119 @@
 8	ⲛⲁ	ⲛⲁ	AUX	FUT	_	9	aux	_	_
 9	ϩⲟϫϩϫ	ϩⲟϫϩϫ	VERB	V	VerbForm=Fin	4	acl	_	Orig=ϩⲟϫ︤ϩ︥ϫ
 10	ⲉⲃⲟⲗ	ⲉⲃⲟⲗ	ADV	ADV	_	9	advmod	_	_
-11-13	ϩⲓⲧⲟⲟⲧⲟⲩ	_	_	_	_	_	_	_	_
-11	ϩⲓ	ϩⲓ	ADP	PREP	_	12	case	_	_
-12	ⲧⲟⲟⲧ	ⲧⲱⲣⲉ	NOUN	N	_	9	obl	_	_
-13	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	12	det	_	_
-14	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	17	cc	_	_
-15-17	ⲛϥⲕⲱⲧⲉ	_	_	_	_	_	_	_	_
-15	ⲛ	ⲛⲧⲉ	AUX	ACONJ	_	17	aux	_	Orig=ⲛ︤
-16	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	17	nsubj	_	Orig=ϥ︥
-17	ⲕⲱⲧⲉ	ⲕⲱⲧⲉ	VERB	V	VerbForm=Fin	9	conj	_	_
-18-20	ⲛⲥⲁⲧϩⲉ	_	_	_	_	_	_	_	_
-18	ⲛⲥⲁ	ⲛⲥⲁ	ADP	PREP	_	20	case	_	Orig=ⲛ̄ⲥⲁ
-19	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	20	det	_	Orig=ⲑ
-20	ϩⲉ	ϩⲉ	NOUN	N	_	17	obl	_	Orig=ⲉ
-21-22	ⲛⲉⲓ	_	_	_	_	_	_	_	_
-21	ⲛ	ⲛ	ADP	PREP	_	22	case	_	Orig=ⲛ̄
-22	ⲉⲓ	ⲉⲓ	NOUN	N	_	20	nmod	_	Orig=ⲉⲓ`
-23-24	ⲉⲉⲃⲟⲗ	_	_	_	_	_	_	_	_
-23	ⲉ	ⲉ	X	UNKNOWN	_	24	reparandum	_	_
-24	ⲉⲃⲟⲗ	ⲉⲃⲟⲗ	ADV	ADV	_	27	case	_	Orig=ⲉⲃⲟⲗ`
-25-27	ϩⲛⲧⲉⲩⲙⲏⲧⲉ	_	_	_	_	_	_	_	_
-25	ϩⲛ	ϩⲛ	ADP	PREP	_	24	fixed	_	Orig=ϩ︤ⲛ︥
-26	ⲧⲉⲩ	ⲡⲉⲩ	DET	PPOS	Definite=Def|Gender=Fem|Number=Sing|Number[psor]=Plur|Person=3|Poss=Yes|PronType=Prs	27	det	_	_
-27	ⲙⲏⲧⲉ	ⲙⲏⲧⲉ	NOUN	N	_	22	obl	_	_
-28	·	·	PUNCT	PUNCT	_	31	punct	_	_
-29-31	ⲛⲧϩⲉ	_	_	_	_	_	_	_	_
-29	ⲛ	ⲛ	ADP	PREP	_	31	case	_	Orig=ⲛ̄
-30	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	31	det	_	Orig=ⲑ
-31	ϩⲉ	ϩⲉ	NOUN	N	_	22	obl	_	Orig=ⲉ
-32-34	ⲛⲟⲩⲣⲱⲙⲉ	_	_	_	_	_	_	_	_
-32	ⲛ	ⲛ	ADP	PREP	_	34	case	_	Orig=ⲛ̄
-33	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	34	det	_	_
-34	ⲣⲱⲙⲉ	ⲣⲱⲙⲉ	NOUN	N	_	31	nmod	_	_
-35-36	ⲛⲇⲓⲕⲁⲓⲟⲥ	_	_	_	_	_	_	_	_
-35	ⲛ	ⲛ	ADP	PREP	_	36	case	_	Orig=ⲛ̄
-36	ⲇⲓⲕⲁⲓⲟⲥ	ⲇⲓⲕⲁⲓⲟⲥ	NOUN	N	_	34	nmod	_	Orig=ⲇⲓⲕⲁⲓⲟⲥ`
-37-40	ⲉⲁϥⲕⲱⲧⲉ	_	_	_	_	_	_	_	_
-37	ⲉ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	40	mark	_	_
-38	ⲁ	ⲁ	AUX	APST	_	40	aux	_	_
-39	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	40	nsubj	_	_
-40	ⲕⲱⲧⲉ	ⲕⲱⲧⲉ	VERB	V	VerbForm=Fin	34	acl	_	Orig=ⲕⲱⲧⲉ`
-41-43	ⲛⲥⲁⲧϩⲉ	_	_	_	_	_	_	_	_
-41	ⲛⲥⲁ	ⲛⲥⲁ	ADP	PREP	_	43	case	_	Orig=ⲛ̄ⲥⲁ
-42	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	43	det	_	Orig=ⲑ
-43	ϩⲉ	ϩⲉ	NOUN	N	_	40	obl	_	Orig=ⲉ
-44-45	ⲛⲕⲱ	_	_	_	_	_	_	_	_
-44	ⲛ	ⲛ	ADP	PREP	_	45	case	_	Orig=ⲛ̄
-45	ⲕⲱ	ⲕⲱ	NOUN	N	_	43	nmod	_	_
-46-47	ⲛⲥⲱϥ	_	_	_	_	_	_	_	_
-46	ⲛⲥⲱ	ⲛⲥⲁ	ADP	PREP	_	47	case	_	Orig=ⲛ̄ⲥⲱ
-47	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	45	obl	_	Orig=ϥ`
-48-50	ⲛⲟⲩⲗⲁⲟⲥ	_	_	_	_	_	_	_	_
-48	ⲛ	ⲛ	ADP	PREP	_	50	case	_	Orig=ⲛ̄
-49	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	50	det	_	_
-50	ⲗⲁⲟⲥ	ⲗⲁⲟⲥ	NOUN	N	_	45	obj	_	Orig=ⲗⲁⲟⲥ`
-51-53	ⲉⲧⲃⲉⲛⲉⲩϩⲃⲏⲩⲉ	_	_	_	_	_	_	_	_
-51	ⲉⲧⲃⲉ	ⲉⲧⲃⲉ	ADP	PREP	_	53	case	_	_
-52	ⲛⲉⲩ	ⲡⲉⲩ	DET	PPOS	Definite=Def|Number=Plur|Number[psor]=Plur|Person=3|Poss=Yes|PronType=Prs	53	det	_	_
-53	ϩⲃⲏⲩⲉ	ϩⲱⲃ	NOUN	N	_	45	obl	_	_
-54-55	ⲉⲧϩⲟⲟⲩ	_	_	_	_	_	_	_	_
-54	ⲉⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	55	mark	_	Orig=ⲉ
-55	ϩⲟⲟⲩ	ϩⲟⲟⲩ	VERB	VSTAT	VerbForm=Fin	53	acl	_	Orig=ⲑⲟⲟⲩ
-56-58	ⲕⲁⲧⲁⲡϣⲁϫⲉ	_	_	_	_	_	_	_	_
-56	ⲕⲁⲧⲁ	ⲕⲁⲧⲁ	ADP	PREP	_	58	case	_	_
-57	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	58	det	_	_
-58	ϣⲁϫⲉ	ϣⲁϫⲉ	NOUN	N	_	45	obl	_	_
-59-61	ⲙⲡⲉⲡⲣⲟⲫⲏⲧⲏⲥ	_	_	_	_	_	_	_	_
-59	ⲙ	ⲛ	ADP	PREP	_	61	case	_	Orig=ⲙ̄
-60	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	61	det	_	_
-61	ⲡⲣⲟⲫⲏⲧⲏⲥ	ⲡⲣⲟⲫⲏⲧⲏⲥ	NOUN	N	_	58	nmod	_	Orig=ⲡⲣⲟⲫⲏⲧⲏⲥ`
-62-63	ϫⲉⲛⲓⲙ	_	_	_	_	_	_	_	_
-62	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	63	mark	_	_
-63	ⲛⲓⲙ	ⲛⲓⲙ	PRON	PINT	PronType=Int	58	ccomp	_	_
-64-69	ⲡⲉⲧⲛⲁϯⲛⲁⲓ	_	_	_	_	_	_	_	_
-64	ⲡ	ⲡⲉ	PRON	COP	Gender=Masc|Number=Sing	63	cop	_	_
-65	ⲉⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	67	mark	_	_
-66	ⲛⲁ	ⲛⲁ	AUX	FUT	_	67	aux	_	_
-67	ϯ	ϯ	VERB	V	VerbForm=Fin	63	csubj	_	_
-68	ⲛⲁ	ⲛⲁ	ADP	PREP	_	69	case	_	_
-69	ⲓ	ⲁⲛⲟⲕ	PRON	PPERO	Definite=Def|Number=Sing|Person=1|PronType=Prs	67	obl	_	Orig=ⲓ̈
-70-72	ϩⲙⲡϫⲁⲓⲉ	_	_	_	_	_	_	_	_
-70	ϩⲙ	ϩⲛ	ADP	PREP	_	72	case	_	Orig=ϩⲙ̄
-71	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	72	det	_	_
-72	ϫⲁⲓⲉ	ϫⲁⲓⲉ	NOUN	N	_	67	obl	_	Orig=ϫⲁⲓ̈ⲉ
-73-75	ⲛⲟⲩⲙⲁ	_	_	_	_	_	_	_	_
-73	ⲛ	ⲛ	ADP	PREP	_	75	case	_	Orig=ⲛ̄
-74	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	75	det	_	_
-75	ⲙⲁ	ⲙⲁ	NOUN	N	_	67	obj	_	Orig=ⲙⲁ`
-76-77	ⲛϣⲱⲡⲉ	_	_	_	_	_	_	_	_
-76	ⲛ	ⲛ	ADP	PREP	_	77	case	_	Orig=ⲛ̄
-77	ϣⲱⲡⲉ	ϣⲱⲡⲉ	VERB	V	VerbForm=Fin	75	nmod	_	Orig=ϣⲱⲡⲉ`
-78-80	ⲉϥⲟⲩⲏⲩ	_	_	_	_	_	_	_	_
-78	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	80	mark	_	_
-79	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	80	nsubj	_	_
-80	ⲟⲩⲏⲩ	ⲟⲩⲉ	VERB	VSTAT	VerbForm=Fin	75	acl	_	Orig=ⲟⲩⲏⲩ`
-81-83	ⲛⲧⲁⲕⲱ	_	_	_	_	_	_	_	_
-81	ⲛ	ⲛⲧⲉ	AUX	ACONJ	_	83	aux	_	Orig=ⲛ̄
-82	ⲧⲁ	ⲁⲛⲟⲕ	PRON	PPERS	Definite=Def|Number=Sing|Person=1|PronType=Prs	83	nsubj	_	_
-83	ⲕⲱ	ⲕⲱ	VERB	V	VerbForm=Fin	67	advcl	_	_
-84-85	ⲛⲥⲱⲓ	_	_	_	_	_	_	_	_
-84	ⲛⲥⲱ	ⲛⲥⲁ	ADP	PREP	_	85	case	_	Orig=ⲛ̄ⲥⲱ
-85	ⲓ	ⲁⲛⲟⲕ	PRON	PPERO	Definite=Def|Number=Sing|Person=1|PronType=Prs	83	obl	_	Orig=ⲓ̈
-86-88	ⲙⲡⲉⲓⲗⲁⲟⲥ	_	_	_	_	_	_	_	_
-86	ⲙ	ⲛ	ADP	PREP	_	88	case	_	Orig=ⲙ̄
-87	ⲡⲉⲓ	ⲡⲉⲓ	DET	PDEM	Definite=Def|Gender=Masc|Number=Sing|PronType=Dem	88	det	_	_
-88	ⲗⲁⲟⲥ	ⲗⲁⲟⲥ	NOUN	N	_	83	obj	_	Orig=ⲗⲁⲟⲥ`
-89-91	ⲛⲧⲁⲟⲩⲉ	_	_	_	_	_	_	_	_
-89	ⲛ	ⲛⲧⲉ	AUX	ACONJ	_	91	aux	_	Orig=ⲛ̄
-90	ⲧⲁ	ⲁⲛⲟⲕ	PRON	PPERS	_	91	det	_	_
-91	ⲟⲩⲉ	ⲟⲩⲉ	VERB	V	VerbForm=Fin	83	advcl	_	Orig=ⲟⲩⲉ`
-92	ⲉⲃⲟⲗ	ⲉⲃⲟⲗ	ADV	ADV	_	94	case	_	_
-93-94	ⲙⲙⲟⲟⲩ	_	_	_	_	_	_	_	_
-93	ⲙⲙⲟ	ⲛ	ADP	PREP	_	92	fixed	_	Orig=ⲙ̄
-94	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	91	obl	_	Orig=ⲙⲟⲟⲩ
-95	·	·	PUNCT	PUNCT	_	2	punct	_	_
+11-12	ϩⲓⲧⲟⲟⲧⲟⲩ	_	_	_	_	_	_	_	_
+11	ϩⲓⲧⲟⲟⲧ	ϩⲓⲧⲛ	ADP	PREP	_	12	case	_	_
+12	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	9	obl	_	_
+13	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	16	cc	_	_
+14-16	ⲛϥⲕⲱⲧⲉ	_	_	_	_	_	_	_	_
+14	ⲛ	ⲛⲧⲉ	AUX	ACONJ	_	16	aux	_	Orig=ⲛ︤
+15	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	16	nsubj	_	Orig=ϥ︥
+16	ⲕⲱⲧⲉ	ⲕⲱⲧⲉ	VERB	V	VerbForm=Fin	9	conj	_	_
+17-19	ⲛⲥⲁⲧϩⲉ	_	_	_	_	_	_	_	_
+17	ⲛⲥⲁ	ⲛⲥⲁ	ADP	PREP	_	19	case	_	Orig=ⲛ̄ⲥⲁ
+18	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	19	det	_	Orig=ⲑ
+19	ϩⲉ	ϩⲉ	NOUN	N	_	16	obl	_	Orig=ⲉ
+20-21	ⲛⲉⲓ	_	_	_	_	_	_	_	_
+20	ⲛ	ⲛ	ADP	PREP	_	21	case	_	Orig=ⲛ̄
+21	ⲉⲓ	ⲉⲓ	NOUN	N	_	19	nmod	_	Orig=ⲉⲓ`
+22-23	ⲉⲉⲃⲟⲗ	_	_	_	_	_	_	_	_
+22	ⲉ	ⲉ	X	UNKNOWN	_	23	reparandum	_	_
+23	ⲉⲃⲟⲗ	ⲉⲃⲟⲗ	ADV	ADV	_	26	case	_	Orig=ⲉⲃⲟⲗ`
+24-26	ϩⲛⲧⲉⲩⲙⲏⲧⲉ	_	_	_	_	_	_	_	_
+24	ϩⲛ	ϩⲛ	ADP	PREP	_	23	fixed	_	Orig=ϩ︤ⲛ︥
+25	ⲧⲉⲩ	ⲡⲉⲩ	DET	PPOS	Definite=Def|Gender=Fem|Number=Sing|Number[psor]=Plur|Person=3|Poss=Yes|PronType=Prs	26	det	_	_
+26	ⲙⲏⲧⲉ	ⲙⲏⲧⲉ	NOUN	N	_	21	obl	_	_
+27	·	·	PUNCT	PUNCT	_	30	punct	_	_
+28-30	ⲛⲧϩⲉ	_	_	_	_	_	_	_	_
+28	ⲛ	ⲛ	ADP	PREP	_	30	case	_	Orig=ⲛ̄
+29	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	30	det	_	Orig=ⲑ
+30	ϩⲉ	ϩⲉ	NOUN	N	_	21	obl	_	Orig=ⲉ
+31-33	ⲛⲟⲩⲣⲱⲙⲉ	_	_	_	_	_	_	_	_
+31	ⲛ	ⲛ	ADP	PREP	_	33	case	_	Orig=ⲛ̄
+32	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	33	det	_	_
+33	ⲣⲱⲙⲉ	ⲣⲱⲙⲉ	NOUN	N	_	30	nmod	_	_
+34-35	ⲛⲇⲓⲕⲁⲓⲟⲥ	_	_	_	_	_	_	_	_
+34	ⲛ	ⲛ	ADP	PREP	_	35	case	_	Orig=ⲛ̄
+35	ⲇⲓⲕⲁⲓⲟⲥ	ⲇⲓⲕⲁⲓⲟⲥ	NOUN	N	_	33	nmod	_	Orig=ⲇⲓⲕⲁⲓⲟⲥ`
+36-39	ⲉⲁϥⲕⲱⲧⲉ	_	_	_	_	_	_	_	_
+36	ⲉ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	39	mark	_	_
+37	ⲁ	ⲁ	AUX	APST	_	39	aux	_	_
+38	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	39	nsubj	_	_
+39	ⲕⲱⲧⲉ	ⲕⲱⲧⲉ	VERB	V	VerbForm=Fin	33	acl	_	Orig=ⲕⲱⲧⲉ`
+40-42	ⲛⲥⲁⲧϩⲉ	_	_	_	_	_	_	_	_
+40	ⲛⲥⲁ	ⲛⲥⲁ	ADP	PREP	_	42	case	_	Orig=ⲛ̄ⲥⲁ
+41	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	42	det	_	Orig=ⲑ
+42	ϩⲉ	ϩⲉ	NOUN	N	_	39	obl	_	Orig=ⲉ
+43-44	ⲛⲕⲱ	_	_	_	_	_	_	_	_
+43	ⲛ	ⲛ	ADP	PREP	_	44	case	_	Orig=ⲛ̄
+44	ⲕⲱ	ⲕⲱ	NOUN	N	_	42	nmod	_	_
+45-46	ⲛⲥⲱϥ	_	_	_	_	_	_	_	_
+45	ⲛⲥⲱ	ⲛⲥⲁ	ADP	PREP	_	46	case	_	Orig=ⲛ̄ⲥⲱ
+46	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	44	obl	_	Orig=ϥ`
+47-49	ⲛⲟⲩⲗⲁⲟⲥ	_	_	_	_	_	_	_	_
+47	ⲛ	ⲛ	ADP	PREP	_	49	case	_	Orig=ⲛ̄
+48	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	49	det	_	_
+49	ⲗⲁⲟⲥ	ⲗⲁⲟⲥ	NOUN	N	_	44	obj	_	Orig=ⲗⲁⲟⲥ`
+50-52	ⲉⲧⲃⲉⲛⲉⲩϩⲃⲏⲩⲉ	_	_	_	_	_	_	_	_
+50	ⲉⲧⲃⲉ	ⲉⲧⲃⲉ	ADP	PREP	_	52	case	_	_
+51	ⲛⲉⲩ	ⲡⲉⲩ	DET	PPOS	Definite=Def|Number=Plur|Number[psor]=Plur|Person=3|Poss=Yes|PronType=Prs	52	det	_	_
+52	ϩⲃⲏⲩⲉ	ϩⲱⲃ	NOUN	N	_	44	obl	_	_
+53-54	ⲉⲧϩⲟⲟⲩ	_	_	_	_	_	_	_	_
+53	ⲉⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	54	mark	_	Orig=ⲉ
+54	ϩⲟⲟⲩ	ϩⲟⲟⲩ	VERB	VSTAT	VerbForm=Fin	52	acl	_	Orig=ⲑⲟⲟⲩ
+55-57	ⲕⲁⲧⲁⲡϣⲁϫⲉ	_	_	_	_	_	_	_	_
+55	ⲕⲁⲧⲁ	ⲕⲁⲧⲁ	ADP	PREP	_	57	case	_	_
+56	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	57	det	_	_
+57	ϣⲁϫⲉ	ϣⲁϫⲉ	NOUN	N	_	44	obl	_	_
+58-60	ⲙⲡⲉⲡⲣⲟⲫⲏⲧⲏⲥ	_	_	_	_	_	_	_	_
+58	ⲙ	ⲛ	ADP	PREP	_	60	case	_	Orig=ⲙ̄
+59	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	60	det	_	_
+60	ⲡⲣⲟⲫⲏⲧⲏⲥ	ⲡⲣⲟⲫⲏⲧⲏⲥ	NOUN	N	_	57	nmod	_	Orig=ⲡⲣⲟⲫⲏⲧⲏⲥ`
+61-62	ϫⲉⲛⲓⲙ	_	_	_	_	_	_	_	_
+61	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	62	mark	_	_
+62	ⲛⲓⲙ	ⲛⲓⲙ	PRON	PINT	PronType=Int	57	ccomp	_	_
+63-68	ⲡⲉⲧⲛⲁϯⲛⲁⲓ	_	_	_	_	_	_	_	_
+63	ⲡ	ⲡⲉ	PRON	COP	Gender=Masc|Number=Sing	62	cop	_	_
+64	ⲉⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	66	mark	_	_
+65	ⲛⲁ	ⲛⲁ	AUX	FUT	_	66	aux	_	_
+66	ϯ	ϯ	VERB	V	VerbForm=Fin	62	csubj	_	_
+67	ⲛⲁ	ⲛⲁ	ADP	PREP	_	68	case	_	_
+68	ⲓ	ⲁⲛⲟⲕ	PRON	PPERO	Definite=Def|Number=Sing|Person=1|PronType=Prs	66	obl	_	Orig=ⲓ̈
+69-71	ϩⲙⲡϫⲁⲓⲉ	_	_	_	_	_	_	_	_
+69	ϩⲙ	ϩⲛ	ADP	PREP	_	71	case	_	Orig=ϩⲙ̄
+70	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	71	det	_	_
+71	ϫⲁⲓⲉ	ϫⲁⲓⲉ	NOUN	N	_	66	obl	_	Orig=ϫⲁⲓ̈ⲉ
+72-74	ⲛⲟⲩⲙⲁ	_	_	_	_	_	_	_	_
+72	ⲛ	ⲛ	ADP	PREP	_	74	case	_	Orig=ⲛ̄
+73	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	74	det	_	_
+74	ⲙⲁ	ⲙⲁ	NOUN	N	_	66	obj	_	Orig=ⲙⲁ`
+75-76	ⲛϣⲱⲡⲉ	_	_	_	_	_	_	_	_
+75	ⲛ	ⲛ	ADP	PREP	_	76	case	_	Orig=ⲛ̄
+76	ϣⲱⲡⲉ	ϣⲱⲡⲉ	VERB	V	VerbForm=Fin	74	nmod	_	Orig=ϣⲱⲡⲉ`
+77-79	ⲉϥⲟⲩⲏⲩ	_	_	_	_	_	_	_	_
+77	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	79	mark	_	_
+78	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	79	nsubj	_	_
+79	ⲟⲩⲏⲩ	ⲟⲩⲉ	VERB	VSTAT	VerbForm=Fin	74	acl	_	Orig=ⲟⲩⲏⲩ`
+80-82	ⲛⲧⲁⲕⲱ	_	_	_	_	_	_	_	_
+80	ⲛ	ⲛⲧⲉ	AUX	ACONJ	_	82	aux	_	Orig=ⲛ̄
+81	ⲧⲁ	ⲁⲛⲟⲕ	PRON	PPERS	Definite=Def|Number=Sing|Person=1|PronType=Prs	82	nsubj	_	_
+82	ⲕⲱ	ⲕⲱ	VERB	V	VerbForm=Fin	66	advcl	_	_
+83-84	ⲛⲥⲱⲓ	_	_	_	_	_	_	_	_
+83	ⲛⲥⲱ	ⲛⲥⲁ	ADP	PREP	_	84	case	_	Orig=ⲛ̄ⲥⲱ
+84	ⲓ	ⲁⲛⲟⲕ	PRON	PPERO	Definite=Def|Number=Sing|Person=1|PronType=Prs	82	obl	_	Orig=ⲓ̈
+85-87	ⲙⲡⲉⲓⲗⲁⲟⲥ	_	_	_	_	_	_	_	_
+85	ⲙ	ⲛ	ADP	PREP	_	87	case	_	Orig=ⲙ̄
+86	ⲡⲉⲓ	ⲡⲉⲓ	DET	PDEM	Definite=Def|Gender=Masc|Number=Sing|PronType=Dem	87	det	_	_
+87	ⲗⲁⲟⲥ	ⲗⲁⲟⲥ	NOUN	N	_	82	obj	_	Orig=ⲗⲁⲟⲥ`
+88-90	ⲛⲧⲁⲟⲩⲉ	_	_	_	_	_	_	_	_
+88	ⲛ	ⲛⲧⲉ	AUX	ACONJ	_	90	aux	_	Orig=ⲛ̄
+89	ⲧⲁ	ⲁⲛⲟⲕ	PRON	PPERS	_	90	det	_	_
+90	ⲟⲩⲉ	ⲟⲩⲉ	VERB	V	VerbForm=Fin	82	advcl	_	Orig=ⲟⲩⲉ`
+91	ⲉⲃⲟⲗ	ⲉⲃⲟⲗ	ADV	ADV	_	93	case	_	_
+92-93	ⲙⲙⲟⲟⲩ	_	_	_	_	_	_	_	_
+92	ⲙⲙⲟ	ⲛ	ADP	PREP	_	91	fixed	_	Orig=ⲙ̄
+93	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	90	obl	_	Orig=ⲙⲟⲟⲩ
+94	·	·	PUNCT	PUNCT	_	2	punct	_	_
 
 # sent_id = shenoute_a22-MONB_YA_421_428_s0009
 # text = ⲛⲁⲉⲓⲁⲧⲟⲩ ⲇⲉ ⲛⲟⲩⲟⲛ ⲛⲓⲙ ⲉⲧⲉⲣⲉⲡⲛⲟⲩⲧⲉ ⲛⲁⲧⲱⲧⲛϩⲏⲧ ⲉⲃⲟⲗ ϩⲓⲧⲟⲟⲧⲟⲩ ⲉⲧⲣⲉϥⲣϩⲛⲁϥ ⲉϭⲱ ϩⲛⲧⲉⲩⲙⲏⲧⲉ · ⲛⲧϩⲉ ⲛⲟⲩⲣⲱⲙⲉ ⲛⲇⲓⲕⲁⲓⲟⲥ ⲉⲁϥⲧⲱⲧ ⲛϩⲏⲧ ⲛⲧⲟⲟⲧⲟⲩ ⲛϩⲉⲛⲣⲱⲙⲉ ⲙⲡⲓⲥⲧⲟⲥ ⲁⲩⲱ ⲉⲁϥⲣϩⲛⲁϥ ⲉϭⲱ ⲛⲟⲩⲟⲉⲓϣ ⲛⲓⲙ ϩⲛⲧⲉⲩⲙⲏⲧⲉ · ⲉⲧⲃⲉϫⲉⲛⲧⲟϥ ϩⲱⲱϥ ⲡϫⲟⲉⲓⲥ ϥⲱⲟⲟⲡ ϩⲛⲧⲉⲩⲙⲏⲧⲉ ⲛⲟⲩⲟⲉⲓϣ ⲛⲓⲙ ⲉⲧⲃⲉⲛⲉⲩϩⲃⲏⲩⲉ ⲙⲙⲉ ⲁⲩⲱ ⲛⲇⲓⲕⲁⲓⲟⲛ ·
@@ -578,7 +577,7 @@
 14	ⲉⲃⲟⲗ	ⲉⲃⲟⲗ	ADV	ADV	_	16	case	_	_
 15-16	ϩⲓⲧⲟⲟⲧⲟⲩ	_	_	_	_	_	_	_	_
 15	ϩⲓⲧⲟⲟⲧ	ϩⲓⲧⲛ	ADP	PREP	_	14	fixed	_	_
-16	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	11	obl	_	_
+16	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	11	obl	_	_
 17-22	ⲉⲧⲣⲉϥⲣϩⲛⲁϥ	_	_	_	_	_	_	_	_
 17	ⲉ	ⲉ	PART	PREP	_	18	mark	_	_
 18	ⲧⲣⲉ	ⲧⲣⲉ	VERB	ACAUS	_	11	xcomp	_	_
@@ -814,7 +813,7 @@
 20	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	19	obj	_	_
 21	·	·	PUNCT	PUNCT	_	7	punct	_	_
 22-23	ⲉⲓⲥϩⲏⲏⲛⲉ	_	_	_	_	_	_	_	_
-22	ⲉⲓⲥ	ⲉⲓⲥ	AUX	PTC	_	25	aux	_	_
+22	ⲉⲓⲥ	ⲉⲓⲥ	PART	PTC	_	25	advmod	_	_
 23	ϩⲏⲏⲛⲉ	ϩⲏⲏⲛⲉ	PART	PTC	_	22	fixed	_	Orig=ϩⲏⲏⲛⲉ`
 24-25	ⲥⲉⲥⲏϩ	_	_	_	_	_	_	_	_
 24	ⲥⲉ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	25	nsubj	_	_
@@ -1409,7 +1408,7 @@
 12	ⲉⲃⲟⲗ	ⲉⲃⲟⲗ	ADV	ADV	_	14	case	_	_
 13-14	ϩⲓⲧⲟⲟⲧⲟⲩ	_	_	_	_	_	_	_	_
 13	ϩⲓⲧⲟⲟⲧ	ϩⲓⲧⲛ	ADP	PREP	_	12	fixed	_	_
-14	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	5	obl	_	_
+14	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	5	obl	_	_
 15-17	ⲛⲛⲉϥⲡⲉⲧⲟⲩⲁⲁⲃ	_	_	_	_	_	_	_	_
 15	ⲛ	ⲛ	ADP	PREP	_	17	case	_	Orig=ⲛ̄
 16	ⲛⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender[psor]=Masc|Number=Plur|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	17	det	_	_
@@ -2608,7 +2607,7 @@
 8	·	·	PUNCT	PUNCT	_	3	punct	_	_
 
 # sent_id = apophthegmata_patrum-AP_026_cassian_07_s0003
-# text = ⲁϥⲕⲁ ϩⲉⲛⲕⲟⲩⲓ ⲛⲁϥ ⲉⲧⲃⲉⲧⲉϥⲭⲣⲓⲁ ⲙⲁⲩⲁⲁϥ ·
+# text = ⲁϥⲕⲁ ϩⲉⲛⲕⲟⲩⲓ ⲛⲁϥ ⲉⲧⲃⲉⲧⲉϥⲭⲣⲉⲓⲁ ⲙⲁⲩⲁⲁϥ ·
 1-3	ⲁϥⲕⲁ	_	_	_	_	_	_	_	_
 1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	Orig=ⲁ̇
 2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
@@ -2619,10 +2618,10 @@
 6-7	ⲛⲁϥ	_	_	_	_	_	_	_	_
 6	ⲛⲁ	ⲛⲁ	ADP	PREP	_	7	case	_	_
 7	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	obl	_	_
-8-10	ⲉⲧⲃⲉⲧⲉϥⲭⲣⲓⲁ	_	_	_	_	_	_	_	_
+8-10	ⲉⲧⲃⲉⲧⲉϥⲭⲣⲉⲓⲁ	_	_	_	_	_	_	_	_
 8	ⲉⲧⲃⲉ	ⲉⲧⲃⲉ	ADP	PREP	_	10	case	_	Orig=ⲉ̇ⲧⲃⲉ
 9	ⲧⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Fem|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	10	det	_	_
-10	ⲭⲣⲓⲁ	ⲭⲣⲓⲁ	NOUN	N	_	3	obl	_	Orig=ⲭⲣⲓ̇ⲁ̇
+10	ⲭⲣⲉⲓⲁ	ⲭⲣⲓⲁ	NOUN	N	_	3	obl	_	Orig=ⲭⲣⲓ̇ⲁ̇
 11-12	ⲙⲁⲩⲁⲁϥ	_	_	_	_	_	_	_	_
 11	ⲙⲁⲩⲁⲁ	ⲙⲁⲩⲁⲁ	ADV	IMOD	_	3	advmod	_	Orig=ⲙⲁⲩⲁ̇ⲁ
 12	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	11	det	_	_
@@ -3695,13 +3694,13 @@
 7	ϣⲟⲩⲟ	ϣⲟⲩⲟ	VERB	V	VerbForm=Fin	3	acl	_	_
 8-9	ⲙⲙⲟⲥ	_	_	_	_	_	_	_	_
 8	ⲙⲙⲟ	ⲛ	ADP	PREP	_	9	case	_	_
-9	ⲥ	ⲛⲧⲟⲥ	PRON	PPERO	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	7	obj	_	_
+9	ⲥ	ⲛⲧⲟⲥ	PRON	PPERO	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	7	obl	_	_
 10-11	ⲉⲓⲥⲙⲛⲧⲥⲛⲟⲟⲩⲥ	_	_	_	_	_	_	_	_
-10	ⲉⲓⲥ	ⲉⲓⲥ	PART	PTC	_	7	advcl	_	_
-11	ⲙⲛⲧⲥⲛⲟⲟⲩⲥ	ⲙⲛⲧⲥⲛⲟⲟⲩⲥ	NUM	NUM	NumType=Card	10	nsubj	_	Morphs=ⲙⲛⲧ-ⲥⲛⲟⲟⲩⲥ
+10	ⲉⲓⲥ	ⲉⲓⲥ	PART	PTC	_	13	advmod	_	_
+11	ⲙⲛⲧⲥⲛⲟⲟⲩⲥ	ⲙⲛⲧⲥⲛⲟⲟⲩⲥ	NUM	NUM	NumType=Card	13	nummod	_	Morphs=ⲙⲛⲧ-ⲥⲛⲟⲟⲩⲥ
 12-13	ⲛⲣⲟⲙⲡⲉ	_	_	_	_	_	_	_	_
 12	ⲛ	ⲛ	ADP	PREP	_	13	case	_	Orig=ⲣ
-13	ⲣⲟⲙⲡⲉ	ⲣⲟⲙⲡⲉ	NOUN	N	_	11	nmod	_	_
+13	ⲣⲟⲙⲡⲉ	ⲣⲟⲙⲡⲉ	NOUN	N	_	7	advcl	_	_
 14	.	.	PUNCT	PUNCT	_	3	punct	_	_
 
 # sent_id = sahidica_mark-Mark_05_s0026
@@ -3863,7 +3862,7 @@
 32	ⲥ	ⲛⲧⲟⲥ	PRON	PPERO	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	29	acl	_	_
 
 # sent_id = sahidica_mark-Mark_05_s0030
-# text = ⲓⲏⲥⲟⲩⲥ ⲇⲉ ⲛⲧⲉⲣⲉϥⲉⲓⲙⲉ ⲛⲧⲉⲩⲛⲟⲩ ϩⲣⲁⲓ ⲛϩⲏⲧϥ ⲉⲧϭⲟⲙⲉⲛⲧⲁⲥⲉⲓ ⲉⲃⲟⲗ ⲙⲙⲟϥ ⲁϥⲕⲧⲟϥ ϩⲙⲡⲙⲏⲏϣⲉ ⲉϥϫⲱ ⲙⲙⲟⲥ ϫⲉⲛⲓⲙ ⲡⲉ ⲛⲧⲁϥϫⲱϩ ⲉⲛⲁϩⲟⲉⲓⲧⲉ
+# text = ⲓⲏⲥⲟⲩⲥ ⲇⲉ ⲛⲧⲉⲣⲉϥⲉⲓⲙⲉ ⲛⲧⲉⲩⲛⲟⲩ ϩⲣⲁⲓ ⲛϩⲏⲧϥ ⲉⲧϭⲟⲙ ⲉⲛⲧⲁⲥⲉⲓ ⲉⲃⲟⲗ ⲙⲙⲟϥ ⲁϥⲕⲧⲟϥ ϩⲙⲡⲙⲏⲏϣⲉ ⲉϥϫⲱ ⲙⲙⲟⲥ ϫⲉⲛⲓⲙ ⲡⲉ ⲛⲧⲁϥϫⲱϩ ⲉⲛⲁϩⲟⲉⲓⲧⲉ
 1	ⲓⲏⲥⲟⲩⲥ	ⲓⲏⲥⲟⲩⲥ	PROPN	NPROP	_	5	dislocated	_	_
 2	ⲇⲉ	ⲇⲉ	PART	PTC	_	5	advmod	_	_
 3-5	ⲛⲧⲉⲣⲉϥⲉⲓⲙⲉ	_	_	_	_	_	_	_	_
@@ -3878,10 +3877,11 @@
 10-11	ⲛϩⲏⲧϥ	_	_	_	_	_	_	_	_
 10	ⲛϩⲏⲧ	ϩⲛ	ADP	PREP	_	11	case	_	_
 11	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	5	obl	_	_
-12-18	ⲉⲧϭⲟⲙⲉⲛⲧⲁⲥⲉⲓ	_	_	_	_	_	_	_	_
+12-14	ⲉⲧϭⲟⲙ	_	_	_	_	_	_	_	_
 12	ⲉ	ⲉ	ADP	PREP	_	14	case	_	_
 13	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	14	det	_	_
 14	ϭⲟⲙ	ϭⲟⲙ	NOUN	N	_	5	obl	_	_
+15-18	ⲉⲛⲧⲁⲥⲉⲓ	_	_	_	_	_	_	_	_
 15	ⲉⲛⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	18	mark	_	_
 16	ⲁ	ⲁ	AUX	APST	_	18	aux	_	_
 17	ⲥ	ⲛⲧⲟⲥ	PRON	PPERS	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	18	nsubj	_	_
@@ -4512,7 +4512,7 @@
 1	ⲛⲧⲉⲣⲉ	ⲛⲧⲉⲣⲉ	AUX	APREC	_	5	aux	_	_
 2	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	3	det	_	_
 3	ⲥⲁⲃⲃⲁⲧⲟⲛ	ⲥⲁⲃⲃⲁⲧⲟⲛ	NOUN	N	_	5	nsubj	_	_
-4	ⲇⲉ	ⲇⲉ	PART	PTC	_	5	advmod	_	_
+4	ⲇⲉ	ⲇⲉ	PART	PTC	_	8	advmod	_	_
 5	ϣⲱⲡⲉ	ϣⲱⲡⲉ	VERB	V	VerbForm=Fin	8	advcl	_	_
 6-8	ⲁϥⲁⲣⲭⲉⲥⲑⲁⲓ	_	_	_	_	_	_	_	_
 6	ⲁ	ⲁ	AUX	APST	_	8	aux	_	_
@@ -4785,7 +4785,7 @@
 30	ⲁⲕⲁⲑⲁⲣⲧⲟⲛ	ⲁⲕⲁⲑⲁⲣⲧⲟⲛ	NOUN	N	_	28	nmod	_	_
 
 # sent_id = sahidica_mark-Mark_06_s0008
-# text = ⲁϥϩⲱⲛ ⲇⲉ ⲉⲧⲟⲟⲧⲟⲩ ϫⲉⲕⲁⲁⲥ ⲉⲛⲛⲉⲩϥⲓⲗⲁⲁⲩ ⲛⲙⲙⲁⲩ ⲉ ⲧⲉϩⲓⲏ ⲛⲥⲁⲟⲩϭⲉⲣⲱⲃ ⲙⲙⲁⲧⲉ ⲟⲩⲇⲉ ⲟⲉⲓⲕ ⲟⲩⲇⲉ ⲡⲏⲣⲁ ⲟⲩⲇⲉ ϩⲟⲙⲛⲧ ⲉⲛⲉⲩⲙⲟϫϩ
+# text = ⲁϥϩⲱⲛ ⲇⲉ ⲉⲧⲟⲟⲧⲟⲩ ϫⲉⲕⲁⲁⲥ ⲉⲛⲛⲉⲩϥⲓⲗⲁⲁⲩ ⲛⲙⲙⲁⲩ ⲉⲧⲉϩⲓⲏ ⲛⲥⲁⲟⲩϭⲉⲣⲱⲃ ⲙⲙⲁⲧⲉ ⲟⲩⲇⲉ ⲟⲉⲓⲕ ⲟⲩⲇⲉ ⲡⲏⲣⲁ ⲟⲩⲇⲉ ϩⲟⲙⲛⲧ ⲉⲛⲉⲩⲙⲟϫϩ
 1-3	ⲁϥϩⲱⲛ	_	_	_	_	_	_	_	_
 1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	_
 2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
@@ -4804,8 +4804,8 @@
 13-14	ⲛⲙⲙⲁⲩ	_	_	_	_	_	_	_	_
 13	ⲛⲙⲙⲁ	ⲙⲛ	ADP	PREP	_	14	case	_	_
 14	ⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	11	obl	_	_
+15-17	ⲉⲧⲉϩⲓⲏ	_	_	_	_	_	_	_	_
 15	ⲉ	ⲉ	ADP	PREP	_	17	case	_	_
-16-17	ⲧⲉϩⲓⲏ	_	_	_	_	_	_	_	_
 16	ⲧⲉ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	17	det	_	_
 17	ϩⲓⲏ	ϩⲓⲏ	NOUN	N	_	11	obl	_	_
 18-20	ⲛⲥⲁⲟⲩϭⲉⲣⲱⲃ	_	_	_	_	_	_	_	_
@@ -7754,7 +7754,7 @@
 1	ⲛⲧⲉⲣⲉ	ⲛⲧⲉⲣⲉ	AUX	APREC	_	3	aux	_	_
 2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
 3	ⲡⲱⲱⲛⲉ	ⲡⲱⲱⲛⲉ	VERB	V	VerbForm=Fin	13	advcl	_	_
-4	ⲇⲉ	ⲇⲉ	PART	PTC	_	3	advmod	_	_
+4	ⲇⲉ	ⲇⲉ	PART	PTC	_	13	advmod	_	_
 5	ⲉⲃⲟⲗ	ⲉⲃⲟⲗ	ADV	ADV	_	8	case	_	_
 6-8	ⲙⲡⲙⲁ	_	_	_	_	_	_	_	_
 6	ⲙ	ⲛ	ADP	PREP	_	5	fixed	_	_
@@ -7808,8 +7808,8 @@
 # text = ⲁⲗⲗⲁ ⲛⲧⲉⲩⲛⲟⲩ ⲛⲧⲉⲣⲉⲥⲥⲱⲧⲙ ⲉⲧⲃⲏⲏⲧϥ ⲛϭⲓⲟⲩⲥϩⲓⲙⲉ ⲉⲩⲛⲧⲥⲟⲩϣⲉⲉⲣⲉ ⲙⲙⲁⲩ ⲉⲣⲉⲟⲩⲡⲛⲉⲩⲙⲁ ⲛⲁⲕⲁⲑⲁⲣⲧⲟⲛ ⲛⲙⲙⲁⲥ ⲁⲥⲉⲓ ⲁⲥⲡⲁϩⲧⲥ ϩⲁⲣⲁⲧϥ
 1	ⲁⲗⲗⲁ	ⲁⲗⲗⲁ	CCONJ	CONJ	_	28	cc	_	_
 2-4	ⲛⲧⲉⲩⲛⲟⲩ	_	_	_	_	_	_	_	_
-2	ⲛ	ⲛ	ADP	PREP	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	4	case	_	_
-3	ⲧⲉ	ⲡ	DET	ART	_	4	det	_	_
+2	ⲛ	ⲛ	ADP	PREP	_	4	case	_	_
+3	ⲧⲉ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	4	det	_	_
 4	ⲩⲛⲟⲩ	ⲟⲩⲛⲟⲩ	ADV	ADV	_	28	obl	_	_
 5-7	ⲛⲧⲉⲣⲉⲥⲥⲱⲧⲙ	_	_	_	_	_	_	_	_
 5	ⲛⲧⲉⲣⲉ	ⲛⲧⲉⲣⲉ	AUX	APREC	_	7	aux	_	_
@@ -8060,7 +8060,7 @@
 1	ⲛⲧⲉⲣⲉ	ⲛⲧⲉⲣⲉ	AUX	APREC	_	3	aux	_	_
 2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
 3	ⲉⲓ	ⲉⲓ	VERB	V	VerbForm=Fin	14	advcl	_	_
-4	ⲟⲛ	ⲟⲛ	ADV	ADV	_	3	advmod	_	_
+4	ⲟⲛ	ⲟⲛ	ADV	ADV	_	14	advmod	_	_
 5	ⲉⲃⲟⲗ	ⲉⲃⲟⲗ	ADV	ADV	_	8	case	_	_
 6	ϩⲛ	ϩⲛ	ADP	PREP	_	5	fixed	_	_
 7-8	ⲛⲧⲟϣ	_	_	_	_	_	_	_	_
@@ -11723,7 +11723,7 @@
 30	ⲉⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	33	mark	_	_
 31	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	33	nsubj	_	_
 32	ⲛⲁ	ⲛⲁ	AUX	FUT	_	33	aux	_	_
-33	ϭⲛⲭⲣⲏⲙⲁ	ϭⲛⲭⲣⲏⲙⲁ	VERB	V	_	29	acl	_	Morphs=ϭⲛ-ⲭⲣⲏⲙⲁ|Orig=ϭⲛ̄ⲭⲣⲏⲙⲁ
+33	ϭⲛⲭⲣⲏⲙⲁ	ϭⲛⲭⲣⲏⲙⲁ	VERB	V	VerbForm=Fin	29	acl	_	Morphs=ϭⲛ-ⲭⲣⲏⲙⲁ|Orig=ϭⲛ̄ⲭⲣⲏⲙⲁ
 34	ⲙⲙⲁⲩ	ⲙⲙⲁⲩ	ADV	ADV	_	33	advmod	_	Orig=ⲙ̄ⲙⲁⲩ
 35	·	·	PUNCT	PUNCT	_	7	punct	_	_
 
@@ -12504,7 +12504,7 @@
 11	ⲗⲁⲁⲩ	ⲗⲁⲁⲩ	NOUN	N	_	9	obj	_	_
 12	:	:	PUNCT	PUNCT	_	5	punct	_	_
 
-# newdoc id = martyrdom.victor:martyrdom.victor_01
+# newdoc id = martyrdom.victor:martyrdom.victor.01
 # sent_id = martyrdom_victor-martyrdom_victor_01_s0001
 # text = ⲧⲙⲁⲣⲧⲩⲣⲓⲁ ⲙⲡϩⲁⲅⲓⲟⲥ ⲃⲓⲕⲧⲱⲣ ⲡⲉⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ ⲁⲩⲱ ⲡⲙⲁⲣⲧⲩⲣⲟⲥ ⲉⲧⲧⲁⲓⲏⲩ ⲙⲡⲉⲭⲣⲓⲥⲧⲟⲥ · ⲁⲩⲱ ⲡϥⲁⲓⲕⲗⲟⲙ ⲛⲁⲙⲉ · ⲛⲧⲁϥϫⲱⲕ ϫⲉⲉⲃⲟⲗ ⲙⲡⲉϥⲁⲅⲱⲛ ⲉⲧⲧⲁⲓⲏⲩ · ⲛⲥⲟⲩϫⲟⲩⲧⲥⲁϣϥⲉ ⲙⲡⲉⲃⲟⲧ ⲫⲁⲣⲙⲟⲩⲧⲉ ·
 1-2	ⲧⲙⲁⲣⲧⲩⲣⲓⲁ	_	_	_	_	_	_	_	_
@@ -12605,8 +12605,7 @@
 29	—	—	PUNCT	PUNCT	_	14	punct	_	_
 30	—	—	PUNCT	PUNCT	_	14	punct	_	_
 
-# newdoc id = martyrdom.victor:martyrdom.victor_02
-# sent_id = martyrdom_victor-martyrdom_victor_02_s0001
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0003
 # text = ⲁⲥϣⲱⲡⲉ ⲇⲉ ϩⲛⲧⲙⲛⲧⲣⲣⲟ ⲛⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ ⲡⲣⲣⲟ ϩⲛⲧⲙⲉϩϣⲟⲙⲧⲉ ⲛⲣⲟⲙⲡⲉ ⲛⲧⲉϥⲙⲛⲧⲣⲣⲟ · ϩⲙⲡϣⲟⲣⲡ ⲛⲉⲃⲟⲧ · ⲡⲇⲓⲁⲃⲟⲗⲟⲥ ⲁϥⲥⲱⲣⲙ ⲙⲡⲉϥϩⲏⲧ ⲛⲥⲁⲃⲟⲗ ⲙⲡⲛⲟⲩⲧⲉ · ⲉⲧⲣⲉϥⲉⲓⲣⲉ ⲛⲛⲉⲧⲉⲙⲉϣϣⲉ ·
 1-3	ⲁⲥϣⲱⲡⲉ	_	_	_	_	_	_	_	_
 1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	Orig=Ⲁ
@@ -12633,7 +12632,7 @@
 17-19	ⲛⲧⲉϥⲙⲛⲧⲣⲣⲟ	_	_	_	_	_	_	_	_
 17	ⲛ	ⲛ	ADP	PREP	_	19	case	_	Orig=ⲛ̄
 18	ⲧⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Fem|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	19	det	_	_
-19	ⲙⲛⲧⲣⲣⲟ	ⲙⲛⲧⲣⲣⲟ	NOUN	N	_	16	nmod	_	Morphs=ⲙⲛⲧ-ⲣⲣⲟ|Orig=ⲙⲛ̄ⲧ̄ⲉⲣⲟ
+19	ⲙⲛⲧⲣⲣⲟ	ⲙⲛⲧⲣⲣⲟ	NOUN	N	_	16	nmod	_	Morphs=ⲙⲛⲧ-ⲉⲣⲟ|Orig=ⲙⲛ̄ⲧ̄ⲉⲣⲟ
 20	·	·	PUNCT	PUNCT	_	23	punct	_	_
 21-23	ϩⲙⲡϣⲟⲣⲡ	_	_	_	_	_	_	_	_
 21	ϩⲙ	ϩⲛ	ADP	PREP	_	25	case	_	Orig=ϩⲙ̄
@@ -12674,7 +12673,7 @@
 48	ⲙⲉϣϣⲉ	ⲙⲉϣϣⲉ	VERB	V	VerbForm=Fin	46	acl	_	_
 49	·	·	PUNCT	PUNCT	_	3	punct	_	_
 
-# sent_id = martyrdom_victor-martyrdom_victor_02_s0002
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0004
 # text = ⲁϥϣⲙϣⲉ ⲛⲛⲉⲓⲇⲱⲗⲟⲛ · ⲁϥⲕⲱ ⲛⲥⲱϥ ⲙⲡⲛⲟⲩⲧⲉ ⲛⲧⲡⲉ · ⲉⲧⲃⲉϩⲉⲛϣⲉ ⲙⲛϩⲉⲛⲱⲛⲉ · ⲙⲛϩⲉⲛⲙⲟⲩⲛⲅ ⲛϭⲓϫ ⲉⲩϣⲟⲩⲉⲓⲧ ⁛
 1-3	ⲁϥϣⲙϣⲉ	_	_	_	_	_	_	_	_
 1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	_
@@ -12723,7 +12722,7 @@
 34	ϣⲟⲩⲉⲓⲧ	ϣⲟⲩⲟ	VERB	VSTAT	VerbForm=Fin	29	acl	_	_
 35	⁛	⁛	PUNCT	PUNCT	_	3	punct	_	_
 
-# sent_id = martyrdom_victor-martyrdom_victor_02_s0003
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0005
 # text = ⲥⲱⲧⲙ ϭⲉ ⲧⲉⲛⲟⲩ ⲉⲧⲙⲛⲧϫⲱⲱⲣⲉ ⲛⲟⲩϣⲏⲣⲉ ϣⲏⲙ ϫⲉⲃⲓⲕⲧⲱⲣ ·
 1	ⲥⲱⲧⲙ	ⲥⲱⲧⲙ	VERB	V	VerbForm=Fin	0	root	_	Orig=ⲥⲱⲧⲙ̄
 2	ϭⲉ	ϭⲉ	PART	PTC	_	1	advmod	_	_
@@ -12742,8 +12741,8 @@
 12	ⲃⲓⲕⲧⲱⲣ	ⲃⲓⲕⲧⲱⲣ	PROPN	NPROP	_	9	xcomp	_	_
 13	·	·	PUNCT	PUNCT	_	1	punct	_	_
 
-# sent_id = martyrdom_victor-martyrdom_victor_02_s0004
-# text = ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ ⲇⲉ ⲡⲣⲣⲟ · ⲁϥⲥⲩⲙⲃⲟⲩⲗⲉⲩⲉ ⲉⲣ ⲛⲉⲧⲉⲙⲉϣϣⲉ ⲙⲡⲙⲧⲟ ⲉⲃⲟⲗ ⲙⲡⲛⲟⲩⲧⲉ ⲓⲏⲥⲟⲩⲥ ⲡⲉⲭⲣⲓⲥⲧⲟⲥ · ⲁⲩⲱ ⲛⲁⲓ ⲛⲉ ⲛⲧⲁϥⲁⲁⲩ ·
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0006
+# text = ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ ⲇⲉ ⲡⲣⲣⲟ · ⲁϥⲥⲩⲙⲃⲟⲩⲗⲉⲩⲉ ⲉⲣⲛⲉⲧⲉⲙⲉϣϣⲉ ⲙⲡⲙⲧⲟ ⲉⲃⲟⲗ ⲙⲡⲛⲟⲩⲧⲉ ⲓⲏⲥⲟⲩⲥ ⲡⲉⲭⲣⲓⲥⲧⲟⲥ · ⲁⲩⲱ ⲛⲁⲓ ⲛⲉ ⲛⲧⲁϥⲁⲁⲩ ·
 1	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	PROPN	NPROP	_	8	dislocated	_	_
 2	ⲇⲉ	ⲇⲉ	PART	PTC	_	8	advmod	_	_
 3-4	ⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
@@ -12754,10 +12753,9 @@
 6	ⲁ	ⲁ	AUX	APST	_	8	aux	_	_
 7	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	8	nsubj	_	_
 8	ⲥⲩⲙⲃⲟⲩⲗⲉⲩⲉ	ⲥⲩⲙⲃⲟⲩⲗⲉⲩⲉ	VERB	V	VerbForm=Fin	0	root	_	_
-9-10	ⲉⲣ	_	_	_	_	_	_	_	_
+9-13	ⲉⲣⲛⲉⲧⲉⲙⲉϣϣⲉ	_	_	_	_	_	_	_	_
 9	ⲉ	ⲉ	PART	PREP	_	10	mark	_	_
 10	ⲣ	ⲉⲓⲣⲉ	VERB	V	VerbForm=Inf	8	xcomp	_	Orig=ⲣ̄
-11-13	ⲛⲉⲧⲉⲙⲉϣϣⲉ	_	_	_	_	_	_	_	_
 11	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	10	obj	_	_
 12	ⲉⲧⲉ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	13	mark	_	_
 13	ⲙⲉϣϣⲉ	ⲙⲉϣϣⲉ	VERB	V	VerbForm=Fin	11	acl	_	_
@@ -12786,7 +12784,7 @@
 32	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	31	obj	_	_
 33	·	·	PUNCT	PUNCT	_	8	punct	_	_
 
-# sent_id = martyrdom_victor-martyrdom_victor_02_s0005
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0007
 # text = ⲁϥⲧⲁⲙⲓⲟ ⲛⲥⲁϣϥⲉ ⲛⲧⲟⲩⲱⲧ ⲛⲛⲟⲩⲃ · ⲁϥϯⲣⲁⲛ ⲉⲣⲟⲟⲩ ϫⲉⲛⲟⲩⲧⲉ ⲛϩⲟⲓⲛⲉ ⲁⲛ ⲛⲉ ·
 1-3	ⲁϥⲧⲁⲙⲓⲟ	_	_	_	_	_	_	_	_
 1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	_
@@ -12820,7 +12818,7 @@
 22	ⲛⲉ	ⲡⲉ	PRON	COP	Number=Plur	20	cop	_	_
 23	·	·	PUNCT	PUNCT	_	3	punct	_	_
 
-# sent_id = martyrdom_victor-martyrdom_victor_02_s0006
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0008
 # text = ⲁϥⲙⲟⲩⲧⲉ ⲉⲙⲁⲁⲃⲧⲏ ⲛⲛⲟⲩⲧⲉ ⲛϩⲟⲟⲩⲧ · ⲁⲩⲱ ⲙⲁⲁⲃⲧⲏ ⲛⲛⲟⲩⲧⲉ ⲛⲥϩⲓⲙⲉ ·
 1-3	ⲁϥⲙⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
 1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	_
@@ -12846,7 +12844,7 @@
 16	ⲥϩⲓⲙⲉ	ⲥϩⲓⲙⲉ	NOUN	N	_	14	orphan	_	_
 17	·	·	PUNCT	PUNCT	_	3	punct	_	_
 
-# sent_id = martyrdom_victor-martyrdom_victor_02_s0007
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0009
 # text = ⲁⲩⲱ ⲡⲥⲉⲉⲡⲉ ⲛⲛⲉϥⲛⲟⲩⲧⲉ ⲛϩⲟⲟⲩⲧ ϩⲓⲥϩⲓⲙⲉ · ⲥⲉⲉⲓⲣⲉ ⲛϣⲉϩⲙⲉ ϩⲛⲧⲉⲩⲏⲡⲉ ·
 1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	13	cc	_	_
 2-3	ⲡⲥⲉⲉⲡⲉ	_	_	_	_	_	_	_	_
@@ -12875,8 +12873,8 @@
 18	ⲏⲡⲉ	ⲏⲡⲉ	NOUN	N	_	13	obl	_	_
 19	·	·	PUNCT	PUNCT	_	13	punct	_	_
 
-# sent_id = martyrdom_victor-martyrdom_victor_02_s0008
-# text = ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ ⲇⲉ ⲡⲣⲣⲟ · ⲁϥⲧⲱϭⲉ ⲛⲟⲩⲥϩⲁⲓ ⲉⲃⲟⲗ ϩⲓⲣⲙⲡⲣⲟ ⲙⲡⲡⲁⲗⲗⲁϯⲟⲛ · ⲉϥⲥⲏϩ ⲛⲧⲉⲓ ϩⲉ ·
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0010
+# text = ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ ⲇⲉ ⲡⲣⲣⲟ · ⲁϥⲧⲱϭⲉ ⲛⲟⲩⲥϩⲁⲓ ⲉⲃⲟⲗ ϩⲓⲣⲙⲡⲣⲟ ⲙⲡⲡⲁⲗⲗⲁϯⲟⲛ · ⲉϥⲥⲏϩ ⲛⲧⲉⲓϩⲉ ·
 1	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	PROPN	NPROP	_	8	dislocated	_	_
 2	ⲇⲉ	ⲇⲉ	PART	PTC	_	8	advmod	_	_
 3-4	ⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
@@ -12905,13 +12903,13 @@
 20	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	22	mark	_	_
 21	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	22	nsubj	_	_
 22	ⲥⲏϩ	ⲥϩⲁⲓ	VERB	VSTAT	VerbForm=Fin	11	acl	_	_
-23-24	ⲛⲧⲉⲓ	_	_	_	_	_	_	_	_
+23-25	ⲛⲧⲉⲓϩⲉ	_	_	_	_	_	_	_	_
 23	ⲛ	ⲛ	ADP	PREP	_	25	case	_	Orig=ⲛ̄
 24	ⲧⲉⲓ	ⲡⲉⲓ	DET	PDEM	Definite=Def|Gender=Fem|Number=Sing|PronType=Dem	25	det	_	_
 25	ϩⲉ	ϩⲉ	NOUN	N	_	22	obl	_	_
 26	·	·	PUNCT	PUNCT	_	8	punct	_	_
 
-# sent_id = martyrdom_victor-martyrdom_victor_02_s0009
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0011
 # text = ⲁⲛⲟⲕ ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ ⲡⲣⲣⲟ · ϯⲕⲉⲗⲉⲩⲉ ϫⲓⲛⲧⲉϩⲣⲱⲙⲁⲛⲓⲁ ϣⲁⲣⲏⲥ ⲉⲡⲉⲗⲁⲕ · ϫⲉⲉⲓⲧⲉ ⲉⲡⲁⲣⲭⲟⲥ · ⲉⲓⲧⲉ ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ · ⲉⲓⲧⲉ ⲕⲟⲙⲉⲥ · ⲉⲓⲧⲉ ⲉⲡⲓⲥⲕⲟⲡⲟⲥ · ⲉⲓⲧⲉ ⲡⲣⲉⲥⲃⲩⲧⲉⲣⲟⲥ · ⲉⲓⲧⲉ ⲇⲓⲁⲕⲟⲛⲟⲥ · ⲉⲓⲧⲉ ⲁⲛⲁⲅⲛⲱⲥⲧⲏⲥ · ⲉⲓⲧⲉ ϩⲙϩⲁⲗ · ⲉⲓⲧⲉ ⲣⲙϩⲉ · ⲉⲓⲧⲉ ⲙⲁⲧⲟⲓ · ⲉⲓⲧⲉ ⲡⲁⲅⲁⲛⲱⲥ ⲉⲩⲉϣⲙϣⲉ ⲧⲏⲣⲟⲩ ⲛⲛⲁⲛⲟⲩⲧⲉ ·
 1	ⲁⲛⲟⲕ	ⲁⲛⲟⲕ	PRON	PPERI	Definite=Def|Number=Sing|Person=1|PronType=Prs	7	dislocated	_	_
 2	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	PROPN	NPROP	_	1	appos	_	_
@@ -12979,7 +12977,7 @@
 55	ⲛⲟⲩⲧⲉ	ⲛⲟⲩⲧⲉ	NOUN	N	_	50	obj	_	_
 56	·	·	PUNCT	PUNCT	_	7	punct	_	_
 
-# sent_id = martyrdom_victor-martyrdom_victor_02_s0010
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0012
 # text = ⲁⲩⲱ ⲡⲉⲧⲛⲁϫⲟⲟⲥ ⲛϩⲏⲧⲟⲩ ⲁⲛⲅⲟⲩⲭⲣⲓⲥϯⲁⲛⲟⲥ · ⲉⲩⲉϯⲙⲉⲉⲩⲉ ⲙⲙⲟϥ ⲛϥⲙⲟⲩ ϩⲛⲧⲥⲏϥⲉ ·
 1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	14	cc	_	_
 2-6	ⲡⲉⲧⲛⲁϫⲟⲟⲥ	_	_	_	_	_	_	_	_
@@ -13012,7 +13010,7 @@
 22	ⲥⲏϥⲉ	ⲥⲏϥⲉ	NOUN	N	_	19	obl	_	_
 23	·	·	PUNCT	PUNCT	_	14	punct	_	_
 
-# sent_id = martyrdom_victor-martyrdom_victor_02_s0011
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0013
 # text = ⲛⲧⲱⲧⲛ ϭⲉ ⲧⲏⲣⲧⲛ ⲛⲥⲩⲛⲕⲗⲓϯⲕⲟⲥ ⲙⲡⲡⲁⲗⲗⲁϯⲟⲛ · ⲉⲧⲉⲧⲛⲁⲉⲓⲣⲉ ⲕⲁⲧⲁⲡⲇⲓⲁⲧⲁⲅⲙⲁ · ϫⲉⲕⲁⲥ ⲉⲣⲉⲣⲱⲙⲉ ⲛⲓⲙ ⲛⲁϣⲙϣⲉ ⲛⲛⲁⲛⲟⲩⲧⲉ ·
 1	ⲛⲧⲱⲧⲛ	ⲛⲧⲱⲧⲛ	PRON	PPERI	Definite=Def|Number=Plur|Person=2|PronType=Prs	14	dislocated	_	Orig=ⲛ̄ⲧⲱⲧⲛ̄
 2	ϭⲉ	ϭⲉ	PART	PTC	_	14	advmod	_	_
@@ -13051,13 +13049,13 @@
 27	ⲛⲟⲩⲧⲉ	ϫⲣⲟ	NOUN	N	_	24	obl	_	_
 28	·	·	PUNCT	PUNCT	_	14	punct	_	_
 
-# sent_id = martyrdom_victor-martyrdom_victor_02_s0012
-# text = ϫⲉⲛⲁⲓ ⲛⲉⲛⲛⲟⲩⲧⲉ ⲉⲧϯ ⲛⲁⲛ ⲙⲡⲉϫⲣⲟ ϩⲙⲡⲡⲟⲗⲉⲙⲟⲥ · ⲁⲩⲱ ⲛⲧⲱⲧⲛ ϩⲱⲧⲧⲏⲩⲧⲛ ⲛⲥⲉϣⲱⲡⲉ ⲛⲏⲧⲛ ⲛⲛⲁϣⲧⲉ · ⲉⲩϯϭⲟⲙ ⲛⲏⲧⲛ ⲙⲛⲡⲉⲥⲧⲣⲁⲧⲉⲩⲙⲁ ⲧⲏⲣϥ ·
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0014
+# text = ϫⲉⲛⲁⲓ ⲛⲉ ⲛⲛⲟⲩⲧⲉ ⲉⲧϯ ⲛⲁⲛ ⲙⲡⲉϫⲣⲟ ϩⲙⲡⲡⲟⲗⲉⲙⲟⲥ · ⲁⲩⲱ ⲛⲧⲱⲧⲛ ϩⲱⲧⲧⲏⲩⲧⲛ ⲛⲥⲉϣⲱⲡⲉ ⲛⲏⲧⲛ ⲛⲛⲁϣⲧⲉ · ⲉⲩϯϭⲟⲙ ⲛⲏⲧⲛ ⲙⲛⲡⲉⲥⲧⲣⲁⲧⲉⲩⲙⲁ ⲧⲏⲣϥ ·
 1-2	ϫⲉⲛⲁⲓ	_	_	_	_	_	_	_	_
 1	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	5	mark	_	_
 2	ⲛⲁⲓ	ⲡⲁⲓ	DET	PDEM	Definite=Def|Number=Plur|PronType=Dem	5	nsubj	_	_
-3-5	ⲛⲉⲛⲛⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
 3	ⲛⲉ	ⲡⲉ	PRON	COP	Number=Plur	5	cop	_	_
+4-5	ⲛⲛⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
 4	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	5	det	_	Orig=ⲛ̄
 5	ⲛⲟⲩⲧⲉ	ⲛⲟⲩⲧⲉ	NOUN	N	_	0	root	_	_
 6-7	ⲉⲧϯ	_	_	_	_	_	_	_	_
@@ -13107,7 +13105,7 @@
 38	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	37	det	_	Orig=ϥ̄
 39	·	·	PUNCT	PUNCT	_	5	punct	_	_
 
-# sent_id = martyrdom_victor-martyrdom_victor_02_s0013
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0015
 # text = ϫⲉⲕⲁⲥ ⲡⲉⲧⲉⲛϥⲛⲁϣⲟⲣⲡϥ ⲁⲛ · ⲛϥⲉⲓ ⲉϩⲧⲟⲟⲩⲉ ⲛⲧⲛⲃⲱⲕ ⲉⲡⲣⲡⲉ ϩⲓⲟⲩⲥⲟⲡ · ⲛⲧⲛⲑⲩⲥⲓⲁⲍⲉ ⲛⲛⲛⲟⲩⲧⲉ ·
 1	ϫⲉⲕⲁⲥ	ϫⲉⲕⲁⲥ	CCONJ	CONJ	_	2	mark	_	_
 2-8	ⲡⲉⲧⲉⲛϥⲛⲁϣⲟⲣⲡϥ	_	_	_	_	_	_	_	_
@@ -13150,7 +13148,7 @@
 31	ⲛⲟⲩⲧⲉ	ⲛⲟⲩⲧⲉ	NOUN	N	_	28	obl	_	_
 32	·	·	PUNCT	PUNCT	_	2	punct	_	_
 
-# sent_id = martyrdom_victor-martyrdom_victor_02_s0014
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0016
 # text = ⲁⲩⲱ ⲡⲉⲧⲉⲛϥⲛⲏⲩ ⲁⲛ · ⲉⲩⲉⲕⲁⲧⲁⲡⲟⲛϯⲍⲉ ⲙⲙⲟϥ ⲉⲧⲑⲁⲗⲁⲥⲥⲁ · ϣⲁⲛⲧⲟⲩⲉⲓⲙⲉ ϫⲉⲁⲛⲟⲕ ⲡⲉ ⲡⲣⲣⲟ ⲉⲧⲉⲙⲛⲕⲉⲟⲩⲁ ⲛⲃⲗⲗⲁϥ ·
 1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	10	cc	_	_
 2-6	ⲡⲉⲧⲉⲛϥⲛⲏⲩ	_	_	_	_	_	_	_	_
@@ -13192,4 +13190,2161 @@
 29	ⲛⲃⲗⲗⲁ	ⲛⲃⲗ	ADP	PREP	_	30	case	_	Orig=ⲛ̄ⲃⲗ̄ⲗⲁ
 30	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	26	obl	_	_
 31	·	·	PUNCT	PUNCT	_	10	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0017
+# text = ϩⲧⲟⲟⲩⲉ ⲇⲉ ⲛⲥⲟⲩⲟⲩⲁ ⲙⲡⲁⲣⲙⲟⲩⲧⲉ · ⲁⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ ⲡⲣⲣⲟ ⲙⲛⲡⲉϥⲥⲧⲣⲁⲧⲉⲩⲙⲁ ⲧⲏⲣϥ · ⲙⲛⲛⲉⲡⲁⲣⲭⲟⲥ ⲙⲛⲛⲉⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ · ⲁⲩⲃⲱⲕ ⲉⲡⲣⲡⲉ : —
+1	ϩⲧⲟⲟⲩⲉ	ϩⲧⲟⲟⲩⲉ	NOUN	N	_	28	obl:npmod	_	_
+2	ⲇⲉ	ⲇⲉ	PART	PTC	_	28	advmod	_	_
+3-5	ⲛⲥⲟⲩⲟⲩⲁ	_	_	_	_	_	_	_	_
+3	ⲛ	ⲛ	ADP	PREP	_	5	case	_	Orig=ⲛ̄
+4	ⲥⲟⲩ	ⲥⲟⲩ	NOUN	N	_	5	compound	_	_
+5	ⲟⲩⲁ	ⲟⲩⲁ	NUM	NUM	NumType=Card	1	nmod	_	Orig=ⲁ̄
+6-7	ⲙⲡⲁⲣⲙⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
+6	ⲙ	ⲛ	ADP	PREP	_	7	case	_	Orig=ⲙ̄
+7	ⲡⲁⲣⲙⲟⲩⲧⲉ	ⲡⲁⲣⲙⲟⲩⲧⲉ	PROPN	NPROP	_	5	nmod	_	_
+8	·	·	PUNCT	PUNCT	_	5	punct	_	_
+9-10	ⲁⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	_	_	_	_	_	_	_	_
+9	ⲁ	ⲁ	AUX	APST	_	26	reparandum	_	_
+10	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	PROPN	NPROP	_	28	dislocated	_	Orig=ⲇⲓⲟ̄ⲕⲗⲏϯⲁⲛⲟⲥ
+11-12	ⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
+11	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	12	det	_	_
+12	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	10	appos	_	Orig=ⲣ̄ⲣⲟ
+13-15	ⲙⲛⲡⲉϥⲥⲧⲣⲁⲧⲉⲩⲙⲁ	_	_	_	_	_	_	_	_
+13	ⲙⲛ	ⲙⲛ	ADP	PREP	_	15	case	_	Orig=ⲙⲛ̄
+14	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	15	det	_	_
+15	ⲥⲧⲣⲁⲧⲉⲩⲙⲁ	ⲥⲧⲣⲁⲧⲉⲩⲙⲁ	NOUN	N	_	10	conj	_	Orig=ⲥϯⲣⲁⲧⲉⲩⲙⲁ
+16-17	ⲧⲏⲣϥ	_	_	_	_	_	_	_	_
+16	ⲧⲏⲣ	ⲧⲏⲣ	ADV	IMOD	PronType=Tot	15	advmod	_	_
+17	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	16	det	_	Orig=ϥ̄
+18	·	·	PUNCT	PUNCT	_	21	punct	_	_
+19-21	ⲙⲛⲛⲉⲡⲁⲣⲭⲟⲥ	_	_	_	_	_	_	_	_
+19	ⲙⲛ	ⲙⲛ	ADP	PREP	_	21	case	_	Orig=ⲙⲛ̄
+20	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	21	det	_	_
+21	ⲉⲡⲁⲣⲭⲟⲥ	ⲉⲡⲁⲣⲭⲟⲥ	NOUN	N	_	10	conj	_	_
+22-24	ⲙⲛⲛⲉⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	_	_	_	_	_	_	_	_
+22	ⲙⲛ	ⲙⲛ	ADP	PREP	_	24	case	_	Orig=ⲙⲛ̄
+23	ⲛⲉ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	24	det	_	_
+24	ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	NOUN	N	_	10	conj	_	_
+25	·	·	PUNCT	PUNCT	_	10	punct	_	_
+26-28	ⲁⲩⲃⲱⲕ	_	_	_	_	_	_	_	_
+26	ⲁ	ⲁ	AUX	APST	_	28	aux	_	_
+27	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	28	nsubj	_	_
+28	ⲃⲱⲕ	ⲃⲱⲕ	VERB	V	VerbForm=Fin	0	root	_	_
+29-31	ⲉⲡⲣⲡⲉ	_	_	_	_	_	_	_	_
+29	ⲉ	ⲉ	ADP	PREP	_	31	case	_	_
+30	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	31	det	_	_
+31	ⲣⲡⲉ	ⲣⲡⲉ	NOUN	N	_	28	obl	_	Orig=ⲣ̄ⲡⲉ
+32	:	:	PUNCT	PUNCT	_	28	punct	_	_
+33	—	—	PUNCT	PUNCT	_	28	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0018
+# text = ⲡⲣⲣⲟ ⲇⲉ ⲁϥϩⲙⲟⲟⲥ ⲉϫⲙⲡⲉⲑⲣⲟⲛⲟⲥ · ⲁϥⲧⲣⲉⲡⲓⲕⲩⲣⲓⲝ ⲱϣ ⲉⲃⲟⲗ ·
+1-2	ⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
+1	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	2	det	_	Orig=Ⲡ
+2	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	6	dislocated	_	Orig=ⲣ̄ⲣⲟ
+3	ⲇⲉ	ⲇⲉ	PART	PTC	_	6	advmod	_	_
+4-6	ⲁϥϩⲙⲟⲟⲥ	_	_	_	_	_	_	_	_
+4	ⲁ	ⲁ	AUX	APST	_	6	aux	_	_
+5	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	6	nsubj	_	_
+6	ϩⲙⲟⲟⲥ	ϩⲙⲟⲟⲥ	VERB	V	VerbForm=Fin	0	root	_	Orig=ϩⲙⲟⲟⲥ̄
+7-9	ⲉϫⲙⲡⲉⲑⲣⲟⲛⲟⲥ	_	_	_	_	_	_	_	_
+7	ⲉϫⲙ	ⲉϫⲛ	ADP	PREP	_	9	case	_	Orig=ⲉϫⲙ̄
+8	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	9	det	_	_
+9	ⲑⲣⲟⲛⲟⲥ	ⲑⲣⲟⲛⲟⲥ	NOUN	N	_	6	obl	_	_
+10	·	·	PUNCT	PUNCT	_	13	punct	_	_
+11-15	ⲁϥⲧⲣⲉⲡⲓⲕⲩⲣⲓⲝ	_	_	_	_	_	_	_	_
+11	ⲁ	ⲁ	AUX	APST	_	13	aux	_	_
+12	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	13	nsubj	_	_
+13	ⲧⲣⲉ	ⲧⲣⲉ	VERB	ACAUS	_	6	parataxis	_	_
+14	ⲡⲓ	ⲡⲓ	DET	PDEM	Definite=Def|Gender=Masc|Number=Sing|PronType=Dem	15	det	_	_
+15	ⲕⲩⲣⲓⲝ	ⲕⲩⲣⲓⲝ	NOUN	N	_	16	nsubj	_	_
+16	ⲱϣ	ⲱϣ	VERB	V	VerbForm=Fin	13	xcomp	_	_
+17	ⲉⲃⲟⲗ	ⲉⲃⲟⲗ	ADV	ADV	_	16	advmod	_	_
+18	·	·	PUNCT	PUNCT	_	6	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0019
+# text = ϫⲉⲁⲙⲏⲓⲧⲛ ⲁⲣⲓⲑⲩⲥⲓⲁⲍⲉ ⲱ ⲛⲣⲱⲙⲉ ⲛϩⲣⲱⲙⲁⲓⲟⲥ ·
+1-3	ϫⲉⲁⲙⲏⲓⲧⲛ	_	_	_	_	_	_	_	_
+1	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	2	mark	_	_
+2	ⲁⲙⲏⲓ	ⲉⲓ	VERB	VIMP	VerbForm=Fin	0	root	_	_
+3	ⲧⲛ	ⲛⲧⲱⲧⲛ	PRON	PPERS	Definite=Def|Number=Plur|Person=2|PronType=Prs	2	nsubj	_	Orig=ⲧⲛ̄
+4	ⲁⲣⲓⲑⲩⲥⲓⲁⲍⲉ	ⲣⲑⲩⲥⲓⲁⲍⲉ	VERB	VIMP	VerbForm=Fin	2	conj	_	Morphs=ⲁⲣⲓ-ⲑⲩⲥⲓⲁⲍⲉ
+5	ⲱ	ⲱ	PART	PTC	_	7	discourse	_	Orig=ⲱ̄
+6-7	ⲛⲣⲱⲙⲉ	_	_	_	_	_	_	_	_
+6	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	7	det	_	Orig=ⲛ̄
+7	ⲣⲱⲙⲉ	ⲣⲱⲙⲉ	NOUN	N	_	2	vocative	_	_
+8-9	ⲛϩⲣⲱⲙⲁⲓⲟⲥ	_	_	_	_	_	_	_	_
+8	ⲛ	ⲛ	ADP	PREP	_	9	case	_	Orig=ⲛ̄
+9	ϩⲣⲱⲙⲁⲓⲟⲥ	ϩⲣⲱⲙⲁⲓⲟⲥ	NOUN	N	_	7	nmod	_	Orig=ϩⲣⲟⲙⲁⲓⲟⲥ
+10	·	·	PUNCT	PUNCT	_	2	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0020
+# text = ⲁⲡⲣⲣⲟ ⲧⲁⲙⲓⲉⲟⲩⲛⲟϭ ⲛⲃⲟⲙⲱⲥ ⲛϩⲁⲧ ⲙⲛⲟⲩϣⲟⲩⲣⲏ ⲛⲛⲟⲩⲃ :
+1-3	ⲁⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
+1	ⲁ	ⲁ	AUX	APST	_	4	aux	_	_
+2	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	3	det	_	_
+3	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	4	nsubj	_	Orig=ⲣ̄ⲣⲟ
+4-6	ⲧⲁⲙⲓⲉⲟⲩⲛⲟϭ	_	_	_	_	_	_	_	_
+4	ⲧⲁⲙⲓⲉ	ⲧⲁⲙⲓⲟ	VERB	V	VerbForm=Fin	0	root	_	_
+5	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	6	det	_	_
+6	ⲛⲟϭ	ⲛⲟϭ	NOUN	N	_	4	obj	_	_
+7-8	ⲛⲃⲟⲙⲱⲥ	_	_	_	_	_	_	_	_
+7	ⲛ	ⲛ	ADP	PREP	_	8	case	_	Orig=ⲛ̄
+8	ⲃⲟⲙⲱⲥ	ⲃⲟⲙⲱⲥ	NOUN	N	_	6	nmod	_	_
+9-10	ⲛϩⲁⲧ	_	_	_	_	_	_	_	_
+9	ⲛ	ⲛ	ADP	PREP	_	10	case	_	Orig=ⲛ̄
+10	ϩⲁⲧ	ϩⲁⲧ	NOUN	N	_	6	nmod	_	_
+11-13	ⲙⲛⲟⲩϣⲟⲩⲣⲏ	_	_	_	_	_	_	_	_
+11	ⲙⲛ	ⲙⲛ	ADP	PREP	_	13	cc	_	Orig=ⲙⲛ̄
+12	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	13	det	_	_
+13	ϣⲟⲩⲣⲏ	ϣⲟⲩⲣⲏ	NOUN	N	_	6	conj	_	_
+14-15	ⲛⲛⲟⲩⲃ	_	_	_	_	_	_	_	_
+14	ⲛ	ⲛ	ADP	PREP	_	15	case	_	_
+15	ⲛⲟⲩⲃ	ⲛⲟⲩⲃ	NOUN	N	_	13	nmod	_	_
+16	:	:	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0021
+# text = ⲁⲩⲱ ⲁϥⲧⲁⲙⲓⲉⲟⲩⲛⲟϭ ⲛⲥⲧⲩⲗⲗⲟⲥ ⲛⲛⲟⲩⲃ ·
+1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	4	cc	_	_
+2-6	ⲁϥⲧⲁⲙⲓⲉⲟⲩⲛⲟϭ	_	_	_	_	_	_	_	_
+2	ⲁ	ⲁ	AUX	APST	_	4	aux	_	_
+3	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	_
+4	ⲧⲁⲙⲓⲉ	ⲧⲁⲙⲓⲟ	VERB	V	VerbForm=Fin	0	root	_	_
+5	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	6	det	_	_
+6	ⲛⲟϭ	ⲛⲟϭ	NOUN	N	_	4	obj	_	_
+7-8	ⲛⲥⲧⲩⲗⲗⲟⲥ	_	_	_	_	_	_	_	_
+7	ⲛ	ⲛ	ADP	PREP	_	8	case	_	Orig=ⲛ̄
+8	ⲥⲧⲩⲗⲗⲟⲥ	ⲥⲧⲩⲗⲗⲟⲥ	NOUN	N	_	6	nmod	_	_
+9-10	ⲛⲛⲟⲩⲃ	_	_	_	_	_	_	_	_
+9	ⲛ	ⲛ	ADP	PREP	_	10	case	_	Orig=ⲛ̄
+10	ⲛⲟⲩⲃ	ⲛⲟⲩⲃ	NOUN	N	_	6	nmod	_	_
+11	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0022
+# text = ⲁϥⲕⲁⲁϥ ⲙⲡⲙⲧⲟ ⲉⲃⲟⲗ ⲛⲧϣⲏⲩⲉ ϫⲉⲕⲁⲥ ⲉⲩⲉⲧⲁⲗⲉⲡⲁⲡⲟⲗⲗⲱⲛ ⲉϫⲱϥ ·
+1-4	ⲁϥⲕⲁⲁϥ	_	_	_	_	_	_	_	_
+1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	_
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ⲕⲁⲁ	ⲕⲱ	VERB	V	VerbForm=Fin	0	root	_	_
+4	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	obj	_	_
+5-7	ⲙⲡⲙⲧⲟ	_	_	_	_	_	_	_	_
+5	ⲙ	ⲛ	ADP	PREP	_	7	case	_	Orig=ⲙ̄
+6	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	7	det	_	_
+7	ⲙⲧⲟ	ⲙⲧⲟ	NOUN	N	_	3	obl	_	Orig=ⲙ̄ⲧⲟ
+8	ⲉⲃⲟⲗ	ⲉⲃⲟⲗ	ADV	ADV	_	7	advmod	_	_
+9-11	ⲛⲧϣⲏⲩⲉ	_	_	_	_	_	_	_	_
+9	ⲛ	ⲛ	ADP	PREP	_	11	case	_	Orig=ⲛ̄
+10	ⲧ	ⲧ	DET	ART	_	11	det	_	_
+11	ϣⲏⲩⲉ	ϣⲏⲩⲉ	NOUN	N	_	7	nmod	_	_
+12	ϫⲉⲕⲁⲥ	ϫⲉⲕⲁⲥ	CCONJ	CONJ	_	14	mark	_	_
+13-16	ⲉⲩⲉⲧⲁⲗⲉⲡⲁⲡⲟⲗⲗⲱⲛ	_	_	_	_	_	_	_	_
+13	ⲉⲩⲉ	ⲉⲣⲉ_ⲛⲧⲟⲟⲩ	PRON	AOPT_PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	14	nsubj	_	Orig=ⲉⲩⲉ̄
+14	ⲧⲁⲗⲉ	ⲧⲁⲗⲟ	VERB	V	VerbForm=Fin	3	advcl	_	_
+15	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	16	det	_	_
+16	ⲁⲡⲟⲗⲗⲱⲛ	ⲁⲡⲟⲗⲗⲱⲛ	PROPN	NPROP	_	14	obj	_	_
+17-18	ⲉϫⲱϥ	_	_	_	_	_	_	_	_
+17	ⲉϫⲱ	ⲉϫⲛ	ADP	PREP	_	18	case	_	_
+18	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	14	obl	_	_
+19	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0023
+# text = ⲁϥⲕⲉⲗⲉⲩⲉ ⲛϭⲓⲡⲣⲣⲟ · ⲉⲧⲣⲉⲩⲛⲗⲓⲃⲁⲛⲟⲥ ϩⲓⲥⲁⲙⲓⲧ · ϩⲓⲛⲉϩ ⲙⲙⲉ · ϩⲓⲕⲟⲛϯⲧⲟⲛ · ⲉⲥⲉⲡⲱϩⲧ ⲉϫⲛⲧϣⲏⲩⲉ ⲉⲧⲙⲟⲩϩ ·
+1-3	ⲁϥⲕⲉⲗⲉⲩⲉ	_	_	_	_	_	_	_	_
+1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	_
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ⲕⲉⲗⲉⲩⲉ	ⲕⲉⲗⲉⲩⲉ	VERB	V	VerbForm=Fin	0	root	_	_
+4-6	ⲛϭⲓⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
+4	ⲛϭⲓ	ⲛϭⲓ	PART	PTC	_	6	case	_	Orig=ⲛ̄ϭⲓ
+5	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	6	det	_	_
+6	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	3	dislocated	_	Orig=ⲣ̄ⲣⲟ
+7	·	·	PUNCT	PUNCT	_	9	punct	_	_
+8-12	ⲉⲧⲣⲉⲩⲛⲗⲓⲃⲁⲛⲟⲥ	_	_	_	_	_	_	_	_
+8	ⲉ	ⲉ	PART	PREP	_	9	mark	_	_
+9	ⲧⲣⲉ	ⲧⲣⲉ	VERB	ACAUS	_	3	ccomp	_	_
+10	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	11	nsubj	_	_
+11	ⲛ	ⲉⲓⲛⲉ	VERB	V	VerbForm=Fin	9	xcomp	_	Orig=ⲛ̄
+12	ⲗⲓⲃⲁⲛⲟⲥ	ⲗⲓⲃⲁⲛⲟⲥ	NOUN	N	_	11	obj	_	_
+13-14	ϩⲓⲥⲁⲙⲓⲧ	_	_	_	_	_	_	_	_
+13	ϩⲓ	ϩⲓ	ADP	PREP	_	14	cc	_	_
+14	ⲥⲁⲙⲓⲧ	ⲥⲁⲙⲓⲧ	NOUN	N	_	12	conj	_	_
+15	·	·	PUNCT	PUNCT	_	17	punct	_	_
+16-17	ϩⲓⲛⲉϩ	_	_	_	_	_	_	_	_
+16	ϩⲓ	ϩⲓ	ADP	PREP	_	17	cc	_	_
+17	ⲛⲉϩ	ⲛⲉϩ	NOUN	N	_	12	conj	_	_
+18-19	ⲙⲙⲉ	_	_	_	_	_	_	_	_
+18	ⲙ	ⲛ	ADP	PREP	_	19	case	_	Orig=ⲙ̄
+19	ⲙⲉ	ⲙⲉ	NOUN	N	_	17	nmod	_	_
+20	·	·	PUNCT	PUNCT	_	22	punct	_	_
+21-22	ϩⲓⲕⲟⲛϯⲧⲟⲛ	_	_	_	_	_	_	_	_
+21	ϩⲓ	ϩⲓ	ADP	PREP	_	22	cc	_	_
+22	ⲕⲟⲛϯⲧⲟⲛ	ⲕⲟⲛϯⲧⲟⲛ	NOUN	N	_	11	conj	_	_
+23	·	·	PUNCT	PUNCT	_	26	punct	_	_
+24-26	ⲉⲥⲉⲡⲱϩⲧ	_	_	_	_	_	_	_	_
+24	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	26	mark	_	_
+25	ⲥⲉ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	26	nsubj	_	_
+26	ⲡⲱϩⲧ	ⲡⲱϩⲧ	VERB	V	VerbForm=Fin	9	advcl	_	Orig=ⲡⲱϩⲧ̄
+27-29	ⲉϫⲛⲧϣⲏⲩⲉ	_	_	_	_	_	_	_	_
+27	ⲉϫⲛ	ⲉϫⲛ	ADP	PREP	_	29	case	_	Orig=ⲉϫⲛ̄
+28	ⲧ	ⲧ	DET	ART	_	29	det	_	_
+29	ϣⲏⲩⲉ	ϣⲏⲩⲉ	NOUN	N	_	26	obl	_	_
+30-31	ⲉⲧⲙⲟⲩϩ	_	_	_	_	_	_	_	_
+30	ⲉⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	31	mark	_	_
+31	ⲙⲟⲩϩ	ⲙⲟⲩϩ	VERB	V	VerbForm=Fin	29	acl	_	_
+32	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0024
+# text = ⲙⲛⲛⲥⲱⲥ ⲁϥϫⲉⲣⲟ ⲛϣⲏⲧ ⲛⲕⲉⲣⲱⲛ ⲛⲛⲟⲩⲃ · ⲙⲛϥⲧⲟⲟⲩϣⲉ ⲛⲕⲉⲣⲱⲛ ⲛϩⲁⲧ · ⲙⲛϣⲏⲧ ⲛϩⲧⲟ ⲉⲩⲟⲩⲟⲃϣ · ⲁⲩⲥⲱⲕ ϩⲏⲧⲟⲩ ⲛⲛⲉϥⲛⲟⲩⲧⲉ ϣⲁⲡⲣⲡⲉ ·
+1-2	ⲙⲛⲛⲥⲱⲥ	_	_	_	_	_	_	_	_
+1	ⲙⲛⲛⲥⲱ	ⲙⲛⲛⲥⲁ	ADP	PREP	_	2	case	_	Orig=ⲙⲛ̄ⲛ̄ⲥⲱ
+2	ⲥ	ⲛⲧⲟⲥ	PRON	PPERO	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	5	obl	_	_
+3-5	ⲁϥϫⲉⲣⲟ	_	_	_	_	_	_	_	_
+3	ⲁ	ⲁ	AUX	APST	_	5	aux	_	_
+4	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	5	nsubj	_	_
+5	ϫⲉⲣⲟ	ϫⲉⲣⲟ	VERB	V	VerbForm=Fin	0	root	_	_
+6-7	ⲛϣⲏⲧ	_	_	_	_	_	_	_	_
+6	ⲛ	ⲛ	ADP	PREP	_	9	case	_	Orig=ⲛ̄
+7	ϣⲏⲧ	ϣⲏⲧ	NUM	NUM	NumType=Card	9	nummod	_	_
+8-9	ⲛⲕⲉⲣⲱⲛ	_	_	_	_	_	_	_	_
+8	ⲛ	ⲛ	ADP	PREP	_	9	case	_	Orig=ⲛ̄
+9	ⲕⲉⲣⲱⲛ	ⲕⲉⲣⲱⲛ	NOUN	N	_	5	obj	_	_
+10-11	ⲛⲛⲟⲩⲃ	_	_	_	_	_	_	_	_
+10	ⲛ	ⲛ	ADP	PREP	_	11	case	_	Orig=ⲛ̄
+11	ⲛⲟⲩⲃ	ⲛⲟⲩⲃ	NOUN	N	_	9	nmod	_	_
+12	·	·	PUNCT	PUNCT	_	16	punct	_	_
+13-14	ⲙⲛϥⲧⲟⲟⲩϣⲉ	_	_	_	_	_	_	_	_
+13	ⲙⲛ	ⲙⲛ	ADP	PREP	_	16	cc	_	Orig=ⲙⲛ̄
+14	ϥⲧⲟⲟⲩϣⲉ	ϥⲧⲟⲟⲩϣⲉ	NUM	NUM	NumType=Card	16	nummod	_	Morphs=ϥⲧⲟⲟⲩ-ϣⲉ|Orig=ϥⲧⲟⲩϣⲉ
+15-16	ⲛⲕⲉⲣⲱⲛ	_	_	_	_	_	_	_	_
+15	ⲛ	ⲛ	ADP	PREP	_	16	case	_	Orig=ⲛ̄
+16	ⲕⲉⲣⲱⲛ	ⲕⲉⲣⲱⲛ	NOUN	N	_	9	conj	_	_
+17-18	ⲛϩⲁⲧ	_	_	_	_	_	_	_	_
+17	ⲛ	ⲛ	ADP	PREP	_	18	case	_	Orig=ⲛ̄
+18	ϩⲁⲧ	ϩⲁⲧ	NOUN	N	_	16	nmod	_	_
+19	·	·	PUNCT	PUNCT	_	23	punct	_	_
+20-21	ⲙⲛϣⲏⲧ	_	_	_	_	_	_	_	_
+20	ⲙⲛ	ⲙⲛ	ADP	PREP	_	23	case	_	Orig=ⲙⲛ̄
+21	ϣⲏⲧ	ϣⲏⲧ	NUM	NUM	NumType=Card	23	nummod	_	_
+22-23	ⲛϩⲧⲟ	_	_	_	_	_	_	_	_
+22	ⲛ	ⲛ	ADP	PREP	_	23	case	_	Orig=ⲛ̄
+23	ϩⲧⲟ	ϩⲧⲟ	NOUN	N	_	30	obl	_	_
+24-26	ⲉⲩⲟⲩⲟⲃϣ	_	_	_	_	_	_	_	_
+24	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	26	mark	_	_
+25	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	26	nsubj	_	_
+26	ⲟⲩⲟⲃϣ	ⲟⲩⲃⲁϣ	VERB	VSTAT	VerbForm=Fin	23	acl	_	Orig=ⲟⲩⲟ̄ⲃϣ̄
+27	·	·	PUNCT	PUNCT	_	23	punct	_	_
+28-30	ⲁⲩⲥⲱⲕ	_	_	_	_	_	_	_	_
+28	ⲁ	ⲁ	AUX	APST	_	30	aux	_	_
+29	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	30	nsubj	_	_
+30	ⲥⲱⲕ	ⲥⲱⲕ	VERB	V	VerbForm=Fin	5	parataxis	_	_
+31-32	ϩⲏⲧⲟⲩ	_	_	_	_	_	_	_	_
+31	ϩⲏⲧ	ϩⲏⲧ	NOUN	N	_	30	obl:npmod	_	_
+32	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	31	det	_	_
+33-35	ⲛⲛⲉϥⲛⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
+33	ⲛ	ⲛ	ADP	PREP	_	35	case	_	Orig=ⲛ̄
+34	ⲛⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender[psor]=Masc|Number=Plur|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	35	det	_	_
+35	ⲛⲟⲩⲧⲉ	ⲛⲟⲩⲧⲉ	NOUN	N	_	30	obj	_	_
+36-38	ϣⲁⲡⲣⲡⲉ	_	_	_	_	_	_	_	_
+36	ϣⲁ	ϣⲁ	ADP	PREP	_	38	case	_	_
+37	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	38	det	_	_
+38	ⲣⲡⲉ	ⲣⲡⲉ	NOUN	N	_	30	obl	_	Orig=ⲣ̄ⲡⲉ
+39	·	·	PUNCT	PUNCT	_	5	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0025
+# text = ⲡⲣⲣⲟ ⲇⲉ ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ · ⲛⲧⲉⲣⲟⲩⲉⲓⲛⲉ ⲉϩⲟⲩⲛ ⲛⲛⲉϥⲛⲟⲩⲧⲉ ⲉⲡⲣⲡⲉ · ⲁϥⲟⲛⲕϥ ⲉϩⲣⲁⲓ ϩⲓⲡⲉϥⲑⲣⲟⲛⲟⲥ ·
+1-2	ⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
+1	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	2	det	_	_
+2	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	19	dislocated	_	Orig=ⲣ̄ⲣⲟ
+3	ⲇⲉ	ⲇⲉ	PART	PTC	_	19	advmod	_	_
+4	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	PROPN	NPROP	_	2	appos	_	Orig=ⲇⲓⲟ̄ⲕⲗⲏϯⲁⲛⲟⲥ
+5	·	·	PUNCT	PUNCT	_	4	punct	_	_
+6-8	ⲛⲧⲉⲣⲟⲩⲉⲓⲛⲉ	_	_	_	_	_	_	_	_
+6	ⲛⲧⲉⲣ	ⲛⲧⲉⲣⲉ	AUX	APREC	_	8	aux	_	Orig=ⲛ̄ⲧⲉⲣ
+7	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	8	nsubj	_	_
+8	ⲉⲓⲛⲉ	ⲉⲓⲛⲉ	VERB	V	VerbForm=Fin	19	advcl	_	_
+9	ⲉϩⲟⲩⲛ	ⲉϩⲟⲩⲛ	ADV	ADV	_	8	advmod	_	_
+10-12	ⲛⲛⲉϥⲛⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
+10	ⲛ	ⲛ	ADP	PREP	_	12	case	_	Orig=ⲛ̄
+11	ⲛⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender[psor]=Masc|Number=Plur|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	12	det	_	_
+12	ⲛⲟⲩⲧⲉ	ⲛⲟⲩⲧⲉ	NOUN	N	_	8	obj	_	_
+13-15	ⲉⲡⲣⲡⲉ	_	_	_	_	_	_	_	_
+13	ⲉ	ⲉ	ADP	PREP	_	15	case	_	_
+14	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	15	det	_	_
+15	ⲣⲡⲉ	ⲣⲡⲉ	NOUN	N	_	8	obl	_	Orig=ⲣ̄ⲡⲉ
+16	·	·	PUNCT	PUNCT	_	8	punct	_	_
+17-20	ⲁϥⲟⲛⲕϥ	_	_	_	_	_	_	_	_
+17	ⲁ	ⲁ	AUX	APST	_	19	aux	_	_
+18	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	19	nsubj	_	_
+19	ⲟⲛⲕ	ⲱⲛⲕ	VERB	V	VerbForm=Fin	0	root	_	_
+20	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	19	obj	_	Orig=ϥ̄
+21	ⲉϩⲣⲁⲓ	ⲉϩⲣⲁⲓ	ADV	ADV	_	19	advmod	_	_
+22-24	ϩⲓⲡⲉϥⲑⲣⲟⲛⲟⲥ	_	_	_	_	_	_	_	_
+22	ϩⲓ	ϩⲓ	ADP	PREP	_	24	case	_	_
+23	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	24	det	_	_
+24	ⲑⲣⲟⲛⲟⲥ	ⲑⲣⲟⲛⲟⲥ	NOUN	N	_	19	obl	_	_
+25	·	·	PUNCT	PUNCT	_	19	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0026
+# text = ⲁϥϥⲓ ⲙⲡⲉϥⲕⲗⲟⲙ ϩⲓϫⲱϥ · ⲁϥⲧⲁⲁϥ ⲉϫⲛⲧⲁⲡⲉ ⲙⲡⲁⲡⲟⲗⲗⲱⲛ · ⲁϥⲟⲩⲱϣⲧ ⲛⲁϥ ⲛϣⲟⲙⲛⲧ ⲛⲥⲟⲡ ⲉϥϫⲱ ⲙⲙⲟⲥ ·
+1-3	ⲁϥϥⲓ	_	_	_	_	_	_	_	_
+1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	_
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ϥⲓ	ϥⲓ	VERB	V	VerbForm=Fin	0	root	_	_
+4-6	ⲙⲡⲉϥⲕⲗⲟⲙ	_	_	_	_	_	_	_	_
+4	ⲙ	ⲛ	ADP	PREP	_	6	case	_	Orig=ⲙ̄
+5	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	6	det	_	_
+6	ⲕⲗⲟⲙ	ⲕⲗⲟⲙ	NOUN	N	_	3	obj	_	_
+7-8	ϩⲓϫⲱϥ	_	_	_	_	_	_	_	_
+7	ϩⲓϫⲱ	ϩⲓϫⲛ	ADP	PREP	_	8	case	_	_
+8	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	obl	_	_
+9	·	·	PUNCT	PUNCT	_	12	punct	_	_
+10-13	ⲁϥⲧⲁⲁϥ	_	_	_	_	_	_	_	_
+10	ⲁ	ⲁ	AUX	APST	_	12	aux	_	_
+11	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	12	nsubj	_	_
+12	ⲧⲁⲁ	ϯ	VERB	V	VerbForm=Fin	3	parataxis	_	Orig=ⲧⲁ
+13	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	12	obj	_	_
+14-16	ⲉϫⲛⲧⲁⲡⲉ	_	_	_	_	_	_	_	_
+14	ⲉϫⲛ	ⲉϫⲛ	ADP	PREP	_	16	case	_	Orig=ⲉϫⲛ̄
+15	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	16	det	_	_
+16	ⲁⲡⲉ	ⲁⲡⲉ	NOUN	N	_	12	obl	_	_
+17-19	ⲙⲡⲁⲡⲟⲗⲗⲱⲛ	_	_	_	_	_	_	_	_
+17	ⲙ	ⲛ	ADP	PREP	_	19	case	_	Orig=ⲙ̄
+18	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	19	det	_	_
+19	ⲁⲡⲟⲗⲗⲱⲛ	ⲁⲡⲟⲗⲗⲱⲛ	PROPN	NPROP	_	16	nmod	_	Orig=ⲁⲡⲟⲗⲗⲟⲛ
+20	·	·	PUNCT	PUNCT	_	23	punct	_	_
+21-23	ⲁϥⲟⲩⲱϣⲧ	_	_	_	_	_	_	_	_
+21	ⲁ	ⲁ	AUX	APST	_	23	aux	_	_
+22	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	23	nsubj	_	_
+23	ⲟⲩⲱϣⲧ	ⲟⲩⲱϣⲧ	VERB	V	VerbForm=Fin	12	parataxis	_	Orig=ⲟⲩⲱϣⲧ̄
+24-25	ⲛⲁϥ	_	_	_	_	_	_	_	_
+24	ⲛⲁ	ⲛⲁ	ADP	PREP	_	25	case	_	_
+25	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	23	obl	_	_
+26-27	ⲛϣⲟⲙⲛⲧ	_	_	_	_	_	_	_	_
+26	ⲛ	ⲛ	ADP	PREP	_	29	case	_	Orig=ⲛ̄
+27	ϣⲟⲙⲛⲧ	ϣⲟⲙⲛⲧ	NUM	NUM	NumType=Card	29	nummod	_	Orig=ϣⲟⲙⲛ̄ⲧ̄
+28-29	ⲛⲥⲟⲡ	_	_	_	_	_	_	_	_
+28	ⲛ	ⲛ	ADP	PREP	_	29	case	_	Orig=ⲛ̄
+29	ⲥⲟⲡ	ⲥⲟⲡ	NOUN	N	_	23	obl	_	_
+30-32	ⲉϥϫⲱ	_	_	_	_	_	_	_	_
+30	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	32	mark	_	_
+31	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	32	nsubj	_	_
+32	ϫⲱ	ϫⲱ	VERB	V	VerbForm=Fin	23	advcl	_	_
+33-34	ⲙⲙⲟⲥ	_	_	_	_	_	_	_	_
+33	ⲙⲙⲟ	ⲛ	ADP	PREP	_	34	case	_	Orig=ⲙ̄ⲙⲟ
+34	ⲥ	ⲛⲧⲟⲥ	PRON	PPERO	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	32	obj	_	_
+35	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0027
+# text = ϫⲉⲛⲧⲕⲟⲩⲛⲟⲩⲧⲉ ⲉϥⲟⲛϩ ⲱ ⲡⲁⲡⲟⲗⲗⲱⲛ ⲡⲛⲟϭ ⲛⲛⲟⲩⲧⲉ · ⲡⲁⲓ ⲉⲧϯ ⲛⲁⲛ ⲙⲡⲉϫⲣⲟ ϩⲙⲡⲡⲟⲗⲉⲙⲟⲥ ·
+1-4	ϫⲉⲛⲧⲕⲟⲩⲛⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
+1	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	4	mark	_	_
+2	ⲛⲧⲕ	ⲛⲧⲟⲕ	PRON	PPERI	Definite=Def|Gender=Masc|Number=Sing|Person=2|PronType=Prs	4	nsubj	_	Orig=ⲛ̄ⲧⲕ̄
+3	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	4	det	_	_
+4	ⲛⲟⲩⲧⲉ	ⲛⲟⲩⲧⲉ	NOUN	N	_	0	root	_	_
+5-7	ⲉϥⲟⲛϩ	_	_	_	_	_	_	_	_
+5	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	7	mark	_	_
+6	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	7	nsubj	_	_
+7	ⲟⲛϩ	ⲱⲛϩ	VERB	VSTAT	VerbForm=Fin	4	acl	_	Orig=ⲟ̄ⲛϩ̄
+8	ⲱ	ⲱ	PART	PTC	_	10	discourse	_	Orig=ⲱ̄
+9-10	ⲡⲁⲡⲟⲗⲗⲱⲛ	_	_	_	_	_	_	_	_
+9	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	10	det	_	_
+10	ⲁⲡⲟⲗⲗⲱⲛ	ⲁⲡⲟⲗⲗⲱⲛ	PROPN	NPROP	_	4	vocative	_	Orig=ⲁⲡⲟⲗⲗⲟⲛ
+11-12	ⲡⲛⲟϭ	_	_	_	_	_	_	_	_
+11	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	12	det	_	_
+12	ⲛⲟϭ	ⲛⲟϭ	NOUN	N	_	10	appos	_	_
+13-14	ⲛⲛⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
+13	ⲛ	ⲛ	ADP	PREP	_	14	case	_	Orig=ⲛ̄
+14	ⲛⲟⲩⲧⲉ	ⲛⲟⲩⲧⲉ	NOUN	N	_	12	nmod	_	_
+15	·	·	PUNCT	PUNCT	_	16	punct	_	_
+16	ⲡⲁⲓ	ⲡⲁⲓ	DET	PDEM	Definite=Def|Gender=Masc|Number=Sing|PronType=Dem	12	appos	_	_
+17-18	ⲉⲧϯ	_	_	_	_	_	_	_	_
+17	ⲉⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	18	mark	_	_
+18	ϯ	ϯ	VERB	V	VerbForm=Fin	16	acl	_	_
+19-20	ⲛⲁⲛ	_	_	_	_	_	_	_	_
+19	ⲛⲁ	ⲛⲁ	ADP	PREP	_	20	case	_	_
+20	ⲛ	ⲡ	PRON	PPERO	_	18	obl	_	_
+21-23	ⲙⲡⲉϫⲣⲟ	_	_	_	_	_	_	_	_
+21	ⲙ	ⲛ	ADP	PREP	_	23	case	_	Orig=ⲙ̄
+22	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	23	det	_	_
+23	ϫⲣⲟ	ϫⲣⲟ	NOUN	N	_	18	obj	_	_
+24-26	ϩⲙⲡⲡⲟⲗⲉⲙⲟⲥ	_	_	_	_	_	_	_	_
+24	ϩⲙ	ϩⲛ	ADP	PREP	_	26	case	_	Orig=ϩⲙ̄
+25	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	26	det	_	_
+26	ⲡⲟⲗⲉⲙⲟⲥ	ⲡⲟⲗⲉⲙⲟⲥ	NOUN	N	_	23	nmod	_	_
+27	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0028
+# text = ⲡⲣⲣⲟ ⲇⲉ ⲛⲧⲉⲣⲉϥⲟⲩⲱϣⲧ · ⲁⲡⲉϥⲕⲉϣⲟⲙⲛⲧ ⲛϣⲃⲏⲣ ⲉⲓ ⲉⲧⲣⲉⲩⲟⲩⲱϣⲧ · ϩⲣⲱⲙⲁⲛⲟⲥ · ⲙⲛⲃⲁⲥⲓⲗⲉⲓⲧⲏⲥ · ⲙⲛⲉⲩϩⲁⲓⲟⲥ ·
+1-2	ⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
+1	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	2	det	_	_
+2	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	6	dislocated	_	Orig=ⲣ̄ⲣⲟ
+3	ⲇⲉ	ⲇⲉ	PART	PTC	_	6	advmod	_	_
+4-6	ⲛⲧⲉⲣⲉϥⲟⲩⲱϣⲧ	_	_	_	_	_	_	_	_
+4	ⲛⲧⲉⲣⲉ	ⲛⲧⲉⲣⲉ	SCONJ	APREC	_	6	mark	_	Orig=ⲛ̄ⲧⲉⲣⲉ
+5	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	6	nsubj	_	_
+6	ⲟⲩⲱϣⲧ	ⲟⲩⲱϣⲧ	VERB	V	VerbForm=Fin	14	advcl	_	Orig=ⲟⲩⲱϣⲧ̄
+7	·	·	PUNCT	PUNCT	_	6	punct	_	_
+8-11	ⲁⲡⲉϥⲕⲉϣⲟⲙⲛⲧ	_	_	_	_	_	_	_	_
+8	ⲁ	ⲁ	AUX	APST	_	14	aux	_	_
+9	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	13	det	_	_
+10	ⲕⲉ	ⲕⲉ	DET	ART	PronType=Art	13	det	_	_
+11	ϣⲟⲙⲛⲧ	ϣⲟⲙⲛⲧ	NUM	NUM	NumType=Card	13	nummod	_	Orig=ϣⲟⲙⲛ̄ⲧ̄
+12-13	ⲛϣⲃⲏⲣ	_	_	_	_	_	_	_	_
+12	ⲛ	ⲡ	ADP	PREP	_	13	case	_	Orig=ⲛ̄
+13	ϣⲃⲏⲣ	ϣⲃⲏⲣ	NOUN	N	_	14	nsubj	_	_
+14	ⲉⲓ	ⲉⲓ	VERB	V	VerbForm=Fin	0	root	_	_
+15-18	ⲉⲧⲣⲉⲩⲟⲩⲱϣⲧ	_	_	_	_	_	_	_	_
+15	ⲉ	ⲉ	PART	PREP	_	16	mark	_	_
+16	ⲧⲣⲉ	ⲧⲣⲉ	VERB	ACAUS	_	14	xcomp	_	_
+17	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	18	nsubj	_	_
+18	ⲟⲩⲱϣⲧ	ⲟⲩⲱϣⲧ	VERB	V	VerbForm=Fin	16	xcomp	_	Orig=ⲟⲩⲱϣⲧ̄
+19	·	·	PUNCT	PUNCT	_	20	punct	_	_
+20	ϩⲣⲱⲙⲁⲛⲟⲥ	ϩⲣⲱⲙⲁⲛⲟⲥ	PROPN	NPROP	_	14	dislocated	_	_
+21	·	·	PUNCT	PUNCT	_	23	punct	_	_
+22-23	ⲙⲛⲃⲁⲥⲓⲗⲉⲓⲧⲏⲥ	_	_	_	_	_	_	_	_
+22	ⲙⲛ	ⲙⲛ	ADP	PREP	_	23	cc	_	Orig=ⲙⲛ̄
+23	ⲃⲁⲥⲓⲗⲉⲓⲧⲏⲥ	ⲃⲁⲥⲓⲗⲉⲓⲧⲏⲥ	PROPN	NPROP	_	20	conj	_	Orig=ⲃⲁⲥⲓⲗⲏⲧⲏⲥ
+24	·	·	PUNCT	PUNCT	_	26	punct	_	_
+25-26	ⲙⲛⲉⲩϩⲁⲓⲟⲥ	_	_	_	_	_	_	_	_
+25	ⲙⲛ	ⲙⲛ	ADP	PREP	_	26	cc	_	Orig=ⲙⲛ̄
+26	ⲉⲩϩⲁⲓⲟⲥ	ⲉⲩϩⲁⲓⲟⲥ	PROPN	NPROP	_	20	conj	_	_
+27	·	·	PUNCT	PUNCT	_	14	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0029
+# text = ⲛⲁⲓ ⲉϩⲉⲛ ϩⲓⲥⲱⲛ ϩⲱⲟⲩ ⲛⲉ ⲛⲣⲣⲟ · ⲁⲩⲱ ⲉⲣⲉⲡⲣⲣⲟ ⲙⲉ ⲙⲙⲟⲟⲩ ⲉⲙⲁⲧⲉ ·
+1	ⲛⲁⲓ	ⲡⲁⲓ	DET	PDEM	Definite=Def|Number=Plur|PronType=Dem	0	root	_	_
+2-3	ⲉϩⲉⲛ	_	_	_	_	_	_	_	_
+2	ⲉ	ⲉ	SCONJ	CCIRC	_	4	mark	_	_
+3	ϩⲉⲛ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	4	det	_	_
+4	ϩⲓⲥⲱⲛ	ϩⲓⲥⲱⲛ	NOUN	N	_	1	advcl	_	_
+5-6	ϩⲱⲟⲩ	_	_	_	_	_	_	_	_
+5	ϩⲱ	ϩⲱⲱ	ADV	IMOD	_	4	advmod	_	_
+6	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	5	det	_	_
+7	ⲛⲉ	ⲡⲉ	PRON	COP	Number=Plur	4	cop	_	_
+8-9	ⲛⲣⲣⲟ	_	_	_	_	_	_	_	_
+8	ⲛ	ⲛ	ADP	PREP	_	9	case	_	Orig=ⲛ̄
+9	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	4	obl	_	_
+10	·	·	PUNCT	PUNCT	_	15	punct	_	_
+11	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	15	cc	_	Orig=Ⲁⲩⲱ
+12-14	ⲉⲣⲉⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
+12	ⲉⲣⲉ	ⲉⲣⲉ	PART	CFOC	_	15	mark	_	_
+13	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	14	det	_	_
+14	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	15	nsubj	_	Orig=ⲣ̄ⲣⲟ
+15	ⲙⲉ	ⲙⲉ	VERB	V	VerbForm=Fin	1	conj	_	_
+16-17	ⲙⲙⲟⲟⲩ	_	_	_	_	_	_	_	_
+16	ⲙⲙⲟ	ⲛ	ADP	PREP	_	17	case	_	Orig=ⲙ̄ⲙⲟ
+17	ⲟⲩ	ⲟⲩ	PRON	PPERO	_	15	obj	_	_
+18	ⲉⲙⲁⲧⲉ	ⲉⲙⲁⲧⲉ	ADV	ADV	_	15	advmod	_	Orig=ⲉⲙⲁⲁⲧⲉ
+19	·	·	PUNCT	PUNCT	_	1	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0030
+# text = ⲁϥϯ ⲇⲉ ⲛⲁⲩ ⲛⲧⲁⲉⲓⲟⲩ ⲛⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ ⲛⲛⲟⲩⲃ ⲉⲡⲟⲩⲁ ⲭⲱⲣⲓⲥ ⲛⲁⲝⲓⲱⲙⲁ ⲛⲧⲙⲛⲧⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ ⲙⲛⲛⲧⲁⲉⲓⲟ ⲛⲧⲁϥ ⲧⲁⲁⲩ ⲛⲁⲩ ·
+1-3	ⲁϥϯ	_	_	_	_	_	_	_	_
+1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	_
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ϯ	ϯ	VERB	V	VerbForm=Fin	0	root	_	_
+4	ⲇⲉ	ⲇⲉ	PART	PTC	_	3	advmod	_	_
+5-6	ⲛⲁⲩ	_	_	_	_	_	_	_	_
+5	ⲛⲁ	ⲛⲁ	ADP	PREP	_	6	case	_	_
+6	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	3	obl	_	_
+7-8	ⲛⲧⲁⲉⲓⲟⲩ	_	_	_	_	_	_	_	_
+7	ⲛ	ⲛ	ADP	PREP	_	10	case	_	Orig=ⲛ̄
+8	ⲧⲁⲉⲓⲟⲩ	ⲧⲁⲉⲓⲟⲩ	NUM	NUM	NumType=Card	10	nummod	_	Orig=ⲧⲁⲓⲟⲩ
+9-10	ⲛⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	_	_	_	_	_	_	_	_
+9	ⲛ	ⲛ	ADP	PREP	_	10	case	_	Orig=ⲛ̄
+10	ⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	ⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	NOUN	N	_	3	obj	_	Orig=ⲕⲉⲛⲇⲩⲛⲁⲣⲓⲟⲛ
+11-12	ⲛⲛⲟⲩⲃ	_	_	_	_	_	_	_	_
+11	ⲛ	ⲛ	ADP	PREP	_	12	case	_	Orig=ⲛ̄
+12	ⲛⲟⲩⲃ	ⲛⲟⲩⲃ	NOUN	N	_	10	nmod	_	_
+13-15	ⲉⲡⲟⲩⲁ	_	_	_	_	_	_	_	_
+13	ⲉ	ⲉ	ADP	PREP	_	15	case	_	_
+14	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	15	det	_	_
+15	ⲟⲩⲁ	ⲟⲩⲁ	NUM	NUM	NumType=Card	3	obl	_	_
+16	ⲭⲱⲣⲓⲥ	ⲭⲱⲣⲓⲥ	ADP	PREP	_	18	case	_	_
+17-18	ⲛⲁⲝⲓⲱⲙⲁ	_	_	_	_	_	_	_	_
+17	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	18	det	_	Orig=ⲛ̄
+18	ⲁⲝⲓⲱⲙⲁ	ⲁⲝⲓⲱⲙⲁ	NOUN	N	_	3	obl	_	_
+19-21	ⲛⲧⲙⲛⲧⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	_	_	_	_	_	_	_	_
+19	ⲛ	ⲛ	ADP	PREP	_	21	case	_	Orig=ⲛ̄
+20	ⲧ	ⲧ	DET	ART	_	21	det	_	_
+21	ⲙⲛⲧⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	ⲙⲛⲧⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	NOUN	N	_	18	nmod	_	Morphs=ⲙⲛⲧ-ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ|Orig=ⲙⲛ̄ⲧ̄ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲗⲁⲧⲏⲥ
+22-24	ⲙⲛⲛⲧⲁⲉⲓⲟ	_	_	_	_	_	_	_	_
+22	ⲙⲛ	ⲙⲛ	ADP	PREP	_	24	cc	_	Orig=ⲙⲛ̄
+23	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	24	det	_	Orig=ⲛ̄
+24	ⲧⲁⲉⲓⲟ	ⲧⲁⲉⲓⲟ	NOUN	N	_	18	conj	_	Orig=ⲧⲁⲓⲟ̄
+25-27	ⲛⲧⲁϥ	_	_	_	_	_	_	_	_
+25	ⲛⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	28	mark	_	Orig=ⲛ̄ⲧ
+26	ⲁ	ⲁ	AUX	APST	_	28	aux	_	_
+27	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	28	nsubj	_	_
+28-29	ⲧⲁⲁⲩ	_	_	_	_	_	_	_	_
+28	ⲧⲁⲁ	ϯ	VERB	V	VerbForm=Fin	24	acl	_	_
+29	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	28	obj	_	_
+30-31	ⲛⲁⲩ	_	_	_	_	_	_	_	_
+30	ⲛⲁ	ⲛⲁ	ADP	PREP	_	31	case	_	_
+31	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	28	obl	_	_
+32	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0031
+# text = ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ ⲇⲉ ⲡⲉϫⲁϥ ⲛⲁⲩ · ϫⲉⲱ ⲛⲁϣⲃⲏⲣ ⲡⲉⲓⲑⲉ ⲙⲙⲟⲓ ϩⲱⲧⲧⲏⲩⲧⲛ ⲛⲧⲉⲧⲛⲟⲩⲱϣⲧ ⲛⲛⲁⲛⲟⲩⲧⲉ ·
+1	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	PROPN	NPROP	_	3	dislocated	_	Orig=ⲇⲓⲟ̄ⲕⲗⲏϯⲁⲛⲟⲥ
+2	ⲇⲉ	ⲇⲉ	PART	PTC	_	3	advmod	_	_
+3-4	ⲡⲉϫⲁϥ	_	_	_	_	_	_	_	_
+3	ⲡⲉϫⲁ	ⲡⲉϫⲉ	VERB	VBD	VerbForm=Fin	0	root	_	_
+4	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+5-6	ⲛⲁⲩ	_	_	_	_	_	_	_	_
+5	ⲛⲁ	ⲛⲁ	ADP	PREP	_	6	case	_	_
+6	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	3	obl	_	_
+7	·	·	PUNCT	PUNCT	_	12	punct	_	_
+8-9	ϫⲉⲱ	_	_	_	_	_	_	_	_
+8	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	12	mark	_	_
+9	ⲱ	ⲱ	PART	PTC	_	11	discourse	_	Orig=ⲱ̄
+10-11	ⲛⲁϣⲃⲏⲣ	_	_	_	_	_	_	_	_
+10	ⲛⲁ	ⲡⲁ	DET	PPOS	Definite=Def|Number=Plur|Number[psor]=Sing|Person=1|Poss=Yes|PronType=Prs	11	det	_	_
+11	ϣⲃⲏⲣ	ϣⲃⲏⲣ	NOUN	N	_	12	vocative	_	_
+12	ⲡⲉⲓⲑⲉ	ⲡⲉⲓⲑⲉ	VERB	V	VerbForm=Fin	3	ccomp	_	Orig=ⲡⲓⲑⲉ
+13-14	ⲙⲙⲟⲓ	_	_	_	_	_	_	_	_
+13	ⲙⲙⲟ	ⲛ	ADP	PREP	_	14	case	_	Orig=ⲙ̄ⲙⲟ
+14	ⲓ	ⲁⲛⲟⲕ	PRON	PPERO	Definite=Def|Number=Sing|Person=1|PronType=Prs	12	obl	_	_
+15-16	ϩⲱⲧⲧⲏⲩⲧⲛ	_	_	_	_	_	_	_	_
+15	ϩⲱⲧ	ϩⲱⲱ	ADV	IMOD	_	12	advmod	_	_
+16	ⲧⲏⲩⲧⲛ	ⲛⲧⲱⲧⲛ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	15	det	_	Orig=ⲧⲏⲩⲧⲛ̄
+17-19	ⲛⲧⲉⲧⲛⲟⲩⲱϣⲧ	_	_	_	_	_	_	_	_
+17	ⲛ	ⲛⲧⲉ	AUX	ACONJ	_	19	aux	_	Orig=ⲛ̄
+18	ⲧⲉⲧⲛ	ⲛⲧⲱⲧⲛ	PRON	PPERS	Definite=Def|Number=Plur|Person=2|PronType=Prs	19	nsubj	_	Orig=ⲧⲉⲧⲛ̄
+19	ⲟⲩⲱϣⲧ	ⲟⲩⲱϣⲧ	VERB	V	VerbForm=Fin	12	advcl	_	Orig=ⲟⲩⲱϣⲧ̄
+20-22	ⲛⲛⲁⲛⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
+20	ⲛ	ⲛ	ADP	PREP	_	22	case	_	Orig=ⲛ̄
+21	ⲛⲁ	ⲡⲁ	DET	PPOS	Definite=Def|Number=Plur|Number[psor]=Sing|Person=1|Poss=Yes|PronType=Prs	22	det	_	_
+22	ⲛⲟⲩⲧⲉ	ⲛⲟⲩⲧⲉ	NOUN	N	_	19	obj	_	_
+23	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0032
+# text = ⲧⲉⲧⲛⲛⲁⲩ ⲛⲧⲱⲧⲛ ⲉⲛⲉⲓⲛⲟϭ ⲛϣⲁ ⲉⲧⲡⲟⲣϣ ⲉⲃⲟⲗ ⲙⲡⲟⲟⲩ ·
+1-2	ⲧⲉⲧⲛⲛⲁⲩ	_	_	_	_	_	_	_	_
+1	ⲧⲉⲧⲛ	ⲛⲧⲱⲧⲛ	PRON	PPERS	Definite=Def|Number=Plur|Person=2|PronType=Prs	2	nsubj	_	Orig=ⲧⲉⲧⲛ̄
+2	ⲛⲁⲩ	ⲛⲁⲩ	VERB	V	VerbForm=Fin	0	root	_	_
+3	ⲛⲧⲱⲧⲛ	ⲛⲧⲱⲧⲛ	PRON	PPERI	Definite=Def|Number=Plur|Person=2|PronType=Prs	2	dislocated	_	Orig=ⲛ̄ⲧⲱⲧⲛ̄
+4-6	ⲉⲛⲉⲓⲛⲟϭ	_	_	_	_	_	_	_	_
+4	ⲉ	ⲉ	ADP	PREP	_	6	case	_	_
+5	ⲛⲉⲓ	ⲡⲉⲓ	DET	PDEM	Definite=Def|Number=Plur|PronType=Dem	6	det	_	_
+6	ⲛⲟϭ	ⲛⲟϭ	NOUN	N	_	2	obl	_	_
+7-8	ⲛϣⲁ	_	_	_	_	_	_	_	_
+7	ⲛ	ⲛ	ADP	PREP	_	8	case	_	Orig=ⲛ̄
+8	ϣⲁ	ϣⲁ	NOUN	N	_	6	nmod	_	_
+9-10	ⲉⲧⲡⲟⲣϣ	_	_	_	_	_	_	_	_
+9	ⲉⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	10	mark	_	_
+10	ⲡⲟⲣϣ	ⲡⲱⲣϣ	VERB	V	VerbForm=Fin	6	acl	_	Orig=ⲡⲟⲣϣ̄
+11	ⲉⲃⲟⲗ	ⲉⲃⲟⲗ	ADV	ADV	_	10	advmod	_	_
+12-14	ⲙⲡⲟⲟⲩ	_	_	_	_	_	_	_	_
+12	ⲙ	ⲛ	ADP	PREP	_	14	case	_	Orig=ⲙ̄
+13	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	14	det	_	_
+14	ⲟⲟⲩ	ϩⲟⲟⲩ	NOUN	N	_	10	obl	_	_
+15	·	·	PUNCT	PUNCT	_	2	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0033
+# text = ϣⲉⲡⲟⲩϫⲁⲓ ⲙⲡⲁⲕⲣⲁⲧⲟⲥ · ⲙⲛⲡⲟⲩϫⲁⲓ ⲙⲡⲉⲥϣϥⲉ ⲛⲛⲟⲩⲧⲉ ⲙⲛⲡⲛⲟϭ ⲛⲛⲟⲩⲧⲉ ⲡⲁⲡⲟⲗⲗⲱⲛ · ϯⲛⲁⲧⲣⲉⲡⲕⲟⲥⲙⲟⲥ ⲟⲩⲱϣⲧ ⲛⲛⲁⲛⲟⲩⲧⲉ ·
+1-3	ϣⲉⲡⲟⲩϫⲁⲓ	_	_	_	_	_	_	_	_
+1	ϣⲉ	ϣⲉ	ADP	PREP	_	3	case	_	_
+2	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	3	det	_	_
+3	ⲟⲩϫⲁⲓ	ⲟⲩϫⲁⲓ	NOUN	N	_	26	discourse	_	_
+4-6	ⲙⲡⲁⲕⲣⲁⲧⲟⲥ	_	_	_	_	_	_	_	_
+4	ⲙ	ⲛ	ADP	PREP	_	6	case	_	Orig=ⲙ̄
+5	ⲡⲁ	ⲡⲁ	DET	PPOS	Definite=Def|Gender=Masc|Number=Sing|Number[psor]=Sing|Person=1|Poss=Yes|PronType=Prs	6	det	_	_
+6	ⲕⲣⲁⲧⲟⲥ	ⲕⲣⲁⲧⲟⲥ	NOUN	N	_	3	nmod	_	_
+7	·	·	PUNCT	PUNCT	_	10	punct	_	_
+8-10	ⲙⲛⲡⲟⲩϫⲁⲓ	_	_	_	_	_	_	_	_
+8	ⲙⲛ	ⲙⲛ	ADP	PREP	_	10	cc	_	Orig=ⲙⲛ̄
+9	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	10	det	_	_
+10	ⲟⲩϫⲁⲓ	ⲟⲩϫⲁⲓ	NOUN	N	_	3	conj	_	_
+11-13	ⲙⲡⲉⲥϣϥⲉ	_	_	_	_	_	_	_	_
+11	ⲙ	ⲛ	ADP	PREP	_	13	case	_	Orig=ⲙ̄
+12	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	13	det	_	_
+13	ⲥϣϥⲉ	ⲥⲁϣϥ	NUM	NUM	NumType=Card	15	nummod	_	_
+14-15	ⲛⲛⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
+14	ⲛ	ⲛ	ADP	PREP	_	15	case	_	Orig=ⲛ̄
+15	ⲛⲟⲩⲧⲉ	ⲛⲟⲩⲧⲉ	NOUN	N	_	10	nmod	_	Orig=ⲛ̇ⲟⲩⲧⲉ
+16-18	ⲙⲛⲡⲛⲟϭ	_	_	_	_	_	_	_	_
+16	ⲙⲛ	ⲙⲛ	ADP	PREP	_	18	cc	_	Orig=ⲙⲛ̄
+17	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	18	det	_	_
+18	ⲛⲟϭ	ⲛⲟϭ	NOUN	N	_	3	conj	_	_
+19-20	ⲛⲛⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
+19	ⲛ	ⲛ	ADP	PREP	_	20	case	_	Orig=ⲛ̄
+20	ⲛⲟⲩⲧⲉ	ⲛⲟⲩⲧⲉ	NOUN	N	_	18	nmod	_	_
+21-22	ⲡⲁⲡⲟⲗⲗⲱⲛ	_	_	_	_	_	_	_	_
+21	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	22	det	_	_
+22	ⲁⲡⲟⲗⲗⲱⲛ	ⲁⲡⲟⲗⲗⲱⲛ	PROPN	NPROP	_	18	appos	_	_
+23	·	·	PUNCT	PUNCT	_	3	punct	_	_
+24-28	ϯⲛⲁⲧⲣⲉⲡⲕⲟⲥⲙⲟⲥ	_	_	_	_	_	_	_	_
+24	ϯ	ϯ	PRON	PPERS	_	26	nsubj	_	_
+25	ⲛⲁ	ⲛⲁ	AUX	FUT	_	26	aux	_	_
+26	ⲧⲣⲉ	ⲧⲣⲉ	VERB	ACAUS	_	0	root	_	_
+27	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	28	det	_	_
+28	ⲕⲟⲥⲙⲟⲥ	ⲕⲟⲥⲙⲟⲥ	NOUN	N	_	29	nsubj	_	_
+29	ⲟⲩⲱϣⲧ	ⲟⲩⲱϣⲧ	VERB	V	VerbForm=Fin	26	xcomp	_	Orig=ⲟⲩⲱ̄ϣⲧ̄
+30-32	ⲛⲛⲁⲛⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
+30	ⲛ	ⲛ	ADP	PREP	_	32	case	_	Orig=ⲛ̄
+31	ⲛⲁ	ⲡⲁ	DET	PPOS	Definite=Def|Number=Plur|Number[psor]=Sing|Person=1|Poss=Yes|PronType=Prs	32	det	_	_
+32	ⲛⲟⲩⲧⲉ	ⲛⲟⲩⲧⲉ	NOUN	N	_	29	obj	_	_
+33	·	·	PUNCT	PUNCT	_	26	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0034
+# text = ⲁⲩⲱ ⲛⲥⲉⲧⲁϣⲉⲟⲉⲓϣ ⲙⲡϣⲁ ⲙⲡⲟⲟⲩ ϩⲙⲡⲕⲟⲥⲙⲟⲥ ⲧⲏⲣϥ ·
+1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	4	cc	_	_
+2-4	ⲛⲥⲉⲧⲁϣⲉⲟⲉⲓϣ	_	_	_	_	_	_	_	_
+2	ⲛ	ⲛⲧⲉ	AUX	ACONJ	_	4	aux	_	Orig=ⲛ̄
+3	ⲥⲉ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	4	nsubj	_	_
+4	ⲧⲁϣⲉⲟⲉⲓϣ	ⲧⲁϣⲉⲟⲉⲓϣ	VERB	V	VerbForm=Fin	0	root	_	Morphs=ⲧⲁϣⲉ-ⲟⲉⲓϣ|Orig=ⲧⲁϣⲉⲟ̄ⲉⲓϣ
+5-7	ⲙⲡϣⲁ	_	_	_	_	_	_	_	_
+5	ⲙ	ⲛ	ADP	PREP	_	7	case	_	Orig=ⲙ̄
+6	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	7	det	_	_
+7	ϣⲁ	ϣⲁ	NOUN	N	_	4	obj	_	_
+8-10	ⲙⲡⲟⲟⲩ	_	_	_	_	_	_	_	_
+8	ⲙ	ⲛ	ADP	PREP	_	10	case	_	Orig=ⲙ̄
+9	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	10	det	_	_
+10	ⲟⲟⲩ	ϩⲟⲟⲩ	NOUN	N	_	4	obl	_	_
+11-13	ϩⲙⲡⲕⲟⲥⲙⲟⲥ	_	_	_	_	_	_	_	_
+11	ϩⲙ	ϩⲛ	ADP	PREP	_	13	case	_	Orig=ϩⲙ̄
+12	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	13	det	_	_
+13	ⲕⲟⲥⲙⲟⲥ	ⲕⲟⲥⲙⲟⲥ	NOUN	N	_	4	obl	_	_
+14-15	ⲧⲏⲣϥ	_	_	_	_	_	_	_	_
+14	ⲧⲏⲣ	ⲧⲏⲣ	ADV	IMOD	PronType=Tot	13	advmod	_	_
+15	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	14	det	_	Orig=ϥ̄
+16	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0035
+# text = ⲁⲩⲱ ⲛⲧⲱⲧⲛ ϩⲱⲧⲧⲏⲩⲧⲛ ⲧⲉⲧⲛⲁϯ ⲛϩⲉⲛⲭⲁⲣⲓⲥⲙⲁ ⲛⲇⲱⲣⲟⲛ ⲉⲡⲣⲡⲉ ⲙⲡⲁⲡⲟⲗⲗⲱⲛ · ⲭⲱⲣⲓⲥ ⲛⲉⲧⲉⲣⲉⲛⲉⲡⲁⲣⲭⲟⲥ ⲛⲁⲧⲁⲁⲩ ⲙⲛⲛⲉⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ ·
+1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	7	cc	_	_
+2	ⲛⲧⲱⲧⲛ	ⲛⲧⲱⲧⲛ	PRON	PPERI	Definite=Def|Number=Plur|Person=2|PronType=Prs	7	dislocated	_	Orig=ⲛ̄ⲧⲱⲧⲛ̄
+3-4	ϩⲱⲧⲧⲏⲩⲧⲛ	_	_	_	_	_	_	_	_
+3	ϩⲱⲧ	ϩⲱⲱ	ADV	IMOD	_	4	case	_	_
+4	ⲧⲏⲩⲧⲛ	ⲛⲧⲱⲧⲛ	PRON	PPERO	Definite=Def|Number=Plur|Person=2|PronType=Prs	7	obl:npmod	_	Orig=ⲧⲏⲩⲧⲛ̄
+5-7	ⲧⲉⲧⲛⲁϯ	_	_	_	_	_	_	_	_
+5	ⲧⲉⲧ	ⲛⲧⲱⲧⲛ	PRON	PPERS	Definite=Def|Number=Plur|Person=2|PronType=Prs	7	nsubj	_	_
+6	ⲛⲁ	ⲛⲁ	AUX	FUT	_	7	aux	_	_
+7	ϯ	ϯ	VERB	V	VerbForm=Fin	0	root	_	_
+8-10	ⲛϩⲉⲛⲭⲁⲣⲓⲥⲙⲁ	_	_	_	_	_	_	_	_
+8	ⲛ	ⲛ	ADP	PREP	_	10	case	_	Orig=ⲛ̄
+9	ϩⲉⲛ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	10	det	_	_
+10	ⲭⲁⲣⲓⲥⲙⲁ	ⲭⲁⲣⲓⲥⲙⲁ	NOUN	N	_	7	obj	_	_
+11-12	ⲛⲇⲱⲣⲟⲛ	_	_	_	_	_	_	_	_
+11	ⲛ	ⲛ	ADP	PREP	_	12	case	_	Orig=ⲛ̄
+12	ⲇⲱⲣⲟⲛ	ⲇⲱⲣⲟⲛ	NOUN	N	_	10	nmod	_	_
+13-15	ⲉⲡⲣⲡⲉ	_	_	_	_	_	_	_	_
+13	ⲉ	ⲉ	ADP	PREP	_	15	case	_	_
+14	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	15	det	_	_
+15	ⲣⲡⲉ	ⲣⲡⲉ	NOUN	N	_	7	obl	_	Orig=ⲣ̄ⲡⲉ
+16-18	ⲙⲡⲁⲡⲟⲗⲗⲱⲛ	_	_	_	_	_	_	_	_
+16	ⲙ	ⲛ	ADP	PREP	_	18	case	_	Orig=ⲙ̄
+17	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	18	det	_	_
+18	ⲁⲡⲟⲗⲗⲱⲛ	ⲁⲡⲟⲗⲗⲱⲛ	PROPN	NPROP	_	15	nmod	_	_
+19	·	·	PUNCT	PUNCT	_	21	punct	_	_
+20	ⲭⲱⲣⲓⲥ	ⲭⲱⲣⲓⲥ	ADP	PREP	_	21	case	_	_
+21-24	ⲛⲉⲧⲉⲣⲉⲛⲉⲡⲁⲣⲭⲟⲥ	_	_	_	_	_	_	_	_
+21	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	10	nmod	_	_
+22	ⲉⲧⲉⲣⲉ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	26	mark	_	_
+23	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	24	det	_	_
+24	ⲉⲡⲁⲣⲭⲟⲥ	ⲉⲡⲁⲣⲭⲟⲥ	NOUN	N	_	26	nsubj	_	_
+25-27	ⲛⲁⲧⲁⲁⲩ	_	_	_	_	_	_	_	_
+25	ⲛⲁ	ⲛⲁ	AUX	FUT	_	26	aux	_	_
+26	ⲧⲁⲁ	ϯ	VERB	V	VerbForm=Fin	21	acl	_	_
+27	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	26	obj	_	_
+28-30	ⲙⲛⲛⲉⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	_	_	_	_	_	_	_	_
+28	ⲙⲛ	ⲙⲛ	ADP	PREP	_	30	cc	_	Orig=ⲙⲛ̄
+29	ⲛⲉ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	30	det	_	_
+30	ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	NOUN	N	_	24	conj	_	_
+31	·	·	PUNCT	PUNCT	_	7	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0036
+# text = ϩⲣⲱⲙⲁⲛⲟⲥ ⲇⲉ ⲁϥϯⲙⲁⲁⲃ ⲛⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ ⲛⲛⲟⲩⲃ · ⲃⲁⲥⲓⲗⲉⲓⲧⲏⲥ ⲇⲉ ⲁϥϯϫⲟⲩⲱⲧ · ⲉⲩϩⲁⲓⲟⲥ ⲁϥϯⲙⲏⲧ · ⲡⲣⲣⲟ ⲇⲉ ⲁϥϯⲥⲉ ·
+1	ϩⲣⲱⲙⲁⲛⲟⲥ	ϩⲣⲱⲙⲁⲛⲟⲥ	PROPN	NPROP	_	5	dislocated	_	_
+2	ⲇⲉ	ⲇⲉ	PART	PTC	_	5	advmod	_	_
+3-6	ⲁϥϯⲙⲁⲁⲃ	_	_	_	_	_	_	_	_
+3	ⲁ	ⲁ	AUX	APST	_	5	aux	_	_
+4	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	5	nsubj	_	_
+5	ϯ	ϯ	VERB	V	VerbForm=Fin	0	root	_	_
+6	ⲙⲁⲁⲃ	ⲙⲁⲁⲃ	NUM	NUM	NumType=Card	8	nummod	_	_
+7-8	ⲛⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	_	_	_	_	_	_	_	_
+7	ⲛ	ⲛ	ADP	PREP	_	8	case	_	Orig=ⲛ̄
+8	ⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	ⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	NOUN	N	_	5	obj	_	Orig=ⲕⲉⲛⲇⲩⲛⲁⲣⲓⲟⲛ
+9-10	ⲛⲛⲟⲩⲃ	_	_	_	_	_	_	_	_
+9	ⲛ	ⲛ	ADP	PREP	_	10	case	_	Orig=ⲛ̄
+10	ⲛⲟⲩⲃ	ⲛⲟⲩⲃ	NOUN	N	_	8	nmod	_	_
+11	·	·	PUNCT	PUNCT	_	16	punct	_	_
+12	ⲃⲁⲥⲓⲗⲉⲓⲧⲏⲥ	ⲃⲁⲥⲓⲗⲉⲓⲧⲏⲥ	PROPN	NPROP	_	16	dislocated	_	_
+13	ⲇⲉ	ⲇⲉ	PART	PTC	_	16	advmod	_	_
+14-17	ⲁϥϯϫⲟⲩⲱⲧ	_	_	_	_	_	_	_	_
+14	ⲁ	ⲁ	AUX	APST	_	16	aux	_	_
+15	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	16	nsubj	_	_
+16	ϯ	ϯ	VERB	V	VerbForm=Fin	5	parataxis	_	_
+17	ϫⲟⲩⲱⲧ	ϫⲟⲩⲱⲧ	NUM	NUM	NumType=Card	16	obj	_	_
+18	·	·	PUNCT	PUNCT	_	22	punct	_	_
+19	ⲉⲩϩⲁⲓⲟⲥ	ⲉⲩϩⲁⲓⲟⲥ	PROPN	NPROP	_	22	dislocated	_	_
+20-23	ⲁϥϯⲙⲏⲧ	_	_	_	_	_	_	_	_
+20	ⲁ	ⲁ	AUX	APST	_	22	aux	_	_
+21	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	22	nsubj	_	_
+22	ϯ	ϯ	VERB	V	VerbForm=Fin	16	parataxis	_	_
+23	ⲙⲏⲧ	ⲙⲏⲧ	NUM	NUM	NumType=Card	22	obj	_	_
+24	·	·	PUNCT	PUNCT	_	30	punct	_	_
+25-26	ⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
+25	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	26	det	_	_
+26	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	30	dislocated	_	Orig=ⲣ̄ⲣⲟ
+27	ⲇⲉ	ⲇⲉ	PART	PTC	_	30	advmod	_	_
+28-31	ⲁϥϯⲥⲉ	_	_	_	_	_	_	_	_
+28	ⲁ	ⲁ	AUX	APST	_	30	aux	_	_
+29	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	30	nsubj	_	_
+30	ϯ	ϯ	VERB	V	VerbForm=Fin	22	parataxis	_	_
+31	ⲥⲉ	ⲥⲉ	NUM	NUM	NumType=Card	30	obj	_	_
+32	·	·	PUNCT	PUNCT	_	5	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0037
+# text = ϩⲱⲥⲧⲉ · ϣⲉ ϫⲟⲩⲱⲧ ⲛⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ ⲛⲛⲟⲩⲃ ⲛⲥⲉⲧⲁⲁⲩ ⲛⲭⲁⲣⲓⲥⲙⲁ ⲙⲡⲁⲡⲟⲗⲗⲱⲛ ·
+1	ϩⲱⲥⲧⲉ	ϩⲱⲥⲧⲉ	CCONJ	CONJ	_	11	mark	_	_
+2	·	·	PUNCT	PUNCT	_	1	punct	_	_
+3	ϣⲉ	ϣⲉ	NUM	NUM	NumType=Card	4	compound	_	_
+4	ϫⲟⲩⲱⲧ	ϫⲟⲩⲱⲧ	NUM	NUM	NumType=Card	6	nummod	_	_
+5-6	ⲛⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	_	_	_	_	_	_	_	_
+5	ⲛ	ⲛ	ADP	PREP	_	6	case	_	Orig=ⲛ̄
+6	ⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	ⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	NOUN	N	_	11	dislocated	_	Orig=ⲕⲉⲛⲇⲩⲛⲁⲣⲓⲟⲛ
+7-8	ⲛⲛⲟⲩⲃ	_	_	_	_	_	_	_	_
+7	ⲛ	ⲛ	ADP	PREP	_	8	case	_	Orig=ⲛ̄
+8	ⲛⲟⲩⲃ	ⲛⲟⲩⲃ	NOUN	N	_	6	nmod	_	_
+9-12	ⲛⲥⲉⲧⲁⲁⲩ	_	_	_	_	_	_	_	_
+9	ⲛ	ⲛⲧⲉ	AUX	ACONJ	_	11	aux	_	Orig=ⲛ̄
+10	ⲥⲉ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	11	nsubj	_	_
+11	ⲧⲁⲁ	ϯ	VERB	V	VerbForm=Fin	0	root	_	_
+12	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	11	obj	_	_
+13-14	ⲛⲭⲁⲣⲓⲥⲙⲁ	_	_	_	_	_	_	_	_
+13	ⲛ	ⲛ	PART	PREP	_	14	mark	_	Orig=ⲛ̄
+14	ⲭⲁⲣⲓⲥⲙⲁ	ⲭⲁⲣⲓⲥⲙⲁ	NOUN	N	_	11	obl	_	_
+15-17	ⲙⲡⲁⲡⲟⲗⲗⲱⲛ	_	_	_	_	_	_	_	_
+15	ⲙ	ⲛ	ADP	PREP	_	17	case	_	Orig=ⲙ̄
+16	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	17	det	_	_
+17	ⲁⲡⲟⲗⲗⲱⲛ	ⲁⲡⲟⲗⲗⲱⲛ	PROPN	NPROP	_	11	obl	_	_
+18	·	·	PUNCT	PUNCT	_	11	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0038
+# text = ⲁϥϯϣⲟⲙⲛⲧ ⲛⲱⲛⲉ ⲙⲙⲉ ⲉⲡⲉⲕⲗⲟⲙ ⲙⲡⲁⲡⲟⲗⲗⲱⲛ ⲉⲛⲁϣⲉⲥⲟⲩⲉⲛⲧⲟⲩ ·
+1-4	ⲁϥϯϣⲟⲙⲛⲧ	_	_	_	_	_	_	_	_
+1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	_
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ϯ	ϯ	VERB	V	VerbForm=Fin	0	root	_	_
+4	ϣⲟⲙⲛⲧ	ϣⲟⲙⲛⲧ	NUM	NUM	NumType=Card	6	nummod	_	Orig=ϣⲟⲙⲛⲧ̄
+5-6	ⲛⲱⲛⲉ	_	_	_	_	_	_	_	_
+5	ⲛ	ⲛ	ADP	PREP	_	6	case	_	Orig=ⲛ̄
+6	ⲱⲛⲉ	ⲱⲛⲉ	NOUN	N	_	3	obj	_	Orig=ⲱ̄ⲛⲉ
+7-8	ⲙⲙⲉ	_	_	_	_	_	_	_	_
+7	ⲙ	ⲛ	ADP	PREP	_	8	case	_	Orig=ⲙ̄
+8	ⲙⲉ	ⲙⲉ	NOUN	N	_	6	nmod	_	_
+9-11	ⲉⲡⲉⲕⲗⲟⲙ	_	_	_	_	_	_	_	_
+9	ⲉ	ⲉ	ADP	PREP	_	11	case	_	_
+10	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	11	det	_	_
+11	ⲕⲗⲟⲙ	ⲕⲗⲟⲙ	NOUN	N	_	3	obl	_	_
+12-14	ⲙⲡⲁⲡⲟⲗⲗⲱⲛ	_	_	_	_	_	_	_	_
+12	ⲙ	ⲛ	ADP	PREP	_	14	case	_	Orig=ⲙ̄
+13	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	14	det	_	_
+14	ⲁⲡⲟⲗⲗⲱⲛ	ⲁⲡⲟⲗⲗⲱⲛ	PROPN	NPROP	_	11	nmod	_	_
+15-18	ⲉⲛⲁϣⲉⲥⲟⲩⲉⲛⲧⲟⲩ	_	_	_	_	_	_	_	_
+15	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	16	mark	_	_
+16	ⲛⲁϣⲉ	ⲛⲁϣⲉ	VERB	VBD	VerbForm=Fin	6	acl	_	_
+17	ⲥⲟⲩⲉⲛⲧ	ⲥⲟⲩⲉⲛ	NOUN	N	_	16	nsubj	_	_
+18	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	17	det	_	_
+19	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0039
+# text = ⲡⲣⲣⲟ ⲇⲉ ⲡⲉϫⲁϥ ⲛϩⲣⲱⲙⲁⲛⲟⲥ ⲡⲉⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ ·
+1-2	ⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
+1	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	2	det	_	_
+2	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	4	dislocated	_	Orig=ⲣ̄ⲣⲟ
+3	ⲇⲉ	ⲇⲉ	PART	PTC	_	4	advmod	_	_
+4-5	ⲡⲉϫⲁϥ	_	_	_	_	_	_	_	_
+4	ⲡⲉϫⲁ	ⲡⲉϫⲉ	VERB	VBD	VerbForm=Fin	0	root	_	_
+5	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	_
+6-7	ⲛϩⲣⲱⲙⲁⲛⲟⲥ	_	_	_	_	_	_	_	_
+6	ⲛ	ⲛ	ADP	PREP	_	7	case	_	Orig=ⲛ̄
+7	ϩⲣⲱⲙⲁⲛⲟⲥ	ϩⲣⲱⲙⲁⲛⲟⲥ	PROPN	NPROP	_	4	obl	_	_
+8-9	ⲡⲉⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	_	_	_	_	_	_	_	_
+8	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	9	det	_	_
+9	ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	NOUN	N	_	7	appos	_	_
+10	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0040
+# text = ϫⲉⲑⲩⲥⲓⲁⲍⲉ ⲛⲛⲁⲛⲟⲩⲧⲉ ·
+1-2	ϫⲉⲑⲩⲥⲓⲁⲍⲉ	_	_	_	_	_	_	_	_
+1	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	2	mark	_	_
+2	ⲑⲩⲥⲓⲁⲍⲉ	ⲑⲩⲥⲓⲁⲍⲉ	VERB	V	VerbForm=Fin	0	root	_	Orig=ⲑⲩⲥⲓ̈ⲁⲍⲉ
+3-5	ⲛⲛⲁⲛⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
+3	ⲛ	ⲛ	ADP	PREP	_	5	case	_	Orig=ⲛ̄
+4	ⲛⲁ	ⲡⲁ	DET	PPOS	Definite=Def|Number=Plur|Number[psor]=Sing|Person=1|Poss=Yes|PronType=Prs	5	det	_	_
+5	ⲛⲟⲩⲧⲉ	ⲛⲟⲩⲧⲉ	NOUN	N	_	2	obl	_	_
+6	·	·	PUNCT	PUNCT	_	2	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0041
+# text = ⲁϥϯⲡⲉϥⲟⲩⲟⲓ ⲁϥⲑⲩⲥⲓⲁⲍⲉ ⲙⲛⲡⲉϥⲕⲉϣⲃⲏⲣ ⲥⲛⲁⲩ : —
+1-5	ⲁϥϯⲡⲉϥⲟⲩⲟⲓ	_	_	_	_	_	_	_	_
+1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	_
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ϯ	ϯ	VERB	V	VerbForm=Fin	0	root	_	_
+4	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	5	det	_	_
+5	ⲟⲩⲟⲓ	ⲟⲩⲟⲉⲓ	NOUN	N	_	3	obj	_	_
+6-8	ⲁϥⲑⲩⲥⲓⲁⲍⲉ	_	_	_	_	_	_	_	_
+6	ⲁ	ⲁ	AUX	APST	_	8	aux	_	_
+7	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	8	nsubj	_	_
+8	ⲑⲩⲥⲓⲁⲍⲉ	ⲑⲩⲥⲓⲁⲍⲉ	VERB	V	VerbForm=Fin	3	parataxis	_	Orig=ⲑⲩⲥⲓ̈ⲁⲍⲉ
+9-12	ⲙⲛⲡⲉϥⲕⲉϣⲃⲏⲣ	_	_	_	_	_	_	_	_
+9	ⲙⲛ	ⲙⲛ	ADP	PREP	_	12	case	_	Orig=ⲙⲛ̄
+10	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	12	det	_	_
+11	ⲕⲉ	ⲕⲉ	DET	ART	PronType=Art	12	det	_	_
+12	ϣⲃⲏⲣ	ϣⲃⲏⲣ	NOUN	N	_	8	obl	_	_
+13	ⲥⲛⲁⲩ	ⲥⲛⲁⲩ	NUM	NUM	NumType=Card	12	nummod	_	_
+14	:	:	PUNCT	PUNCT	_	3	punct	_	_
+15	—	—	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0042
+# text = ⲁⲩⲱ ⲡⲕⲉⲥⲉⲉⲡⲉ ⲛⲛⲛⲟϭ ⲉⲧϩⲙⲡⲡⲁⲗⲗⲁϯⲟⲛ ·
+1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	4	cc	_	_
+2-4	ⲡⲕⲉⲥⲉⲉⲡⲉ	_	_	_	_	_	_	_	_
+2	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	4	det	_	_
+3	ⲕⲉ	ⲕⲉ	DET	ART	PronType=Art	4	det	_	_
+4	ⲥⲉⲉⲡⲉ	ⲥⲉⲉⲡⲉ	NOUN	N	_	0	root	_	_
+5-7	ⲛⲛⲛⲟϭ	_	_	_	_	_	_	_	_
+5	ⲛ	ⲛ	ADP	PREP	_	7	case	_	Orig=ⲛ̄
+6	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	7	det	_	Orig=ⲛ̄
+7	ⲛⲟϭ	ⲛⲟϭ	NOUN	N	_	4	nmod	_	_
+8-11	ⲉⲧϩⲙⲡⲡⲁⲗⲗⲁϯⲟⲛ	_	_	_	_	_	_	_	_
+8	ⲉⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	11	mark	_	_
+9	ϩⲙ	ϩⲛ	ADP	PREP	_	11	case	_	Orig=ϩⲙ̄
+10	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	11	det	_	_
+11	ⲡⲁⲗⲗⲁϯⲟⲛ	ⲡⲁⲗⲗⲁϯⲟⲛ	NOUN	N	_	4	acl	_	_
+12	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0043
+# text = ϩⲙⲡⲉϩⲟⲟⲩ ⲉⲧⲙⲙⲁⲩ · ⲁⲥⲉ ⲛⲧⲃⲁ ⲙⲙⲁⲧⲟⲓ ⲟⲩⲱϣⲧ ⲙⲛϣⲏⲧ ⲛⲧⲃⲁ ⲙⲡⲁⲅⲁⲛⲱⲥ · ⲉⲣⲉⲙⲙⲏⲏϣⲉ ⲧⲏⲣⲟⲩ ⲥⲟⲟⲩϩ ⲉⲧⲉⲑⲩⲥⲓⲁ ⲙⲡⲣⲣⲟ ·
+1-3	ϩⲙⲡⲉϩⲟⲟⲩ	_	_	_	_	_	_	_	_
+1	ϩⲙ	ϩⲛ	ADP	PREP	_	3	case	_	Orig=ϩⲙ̄
+2	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	3	det	_	_
+3	ϩⲟⲟⲩ	ϩⲟⲟⲩ	NOUN	N	_	13	obl	_	_
+4-5	ⲉⲧⲙⲙⲁⲩ	_	_	_	_	_	_	_	_
+4	ⲉⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	5	mark	_	Orig=ⲉ̄ⲧ
+5	ⲙⲙⲁⲩ	ⲙⲙⲁⲩ	ADV	ADV	_	3	acl	_	Orig=ⲙ̄ⲙⲁⲩ
+6	·	·	PUNCT	PUNCT	_	3	punct	_	_
+7-8	ⲁⲥⲉ	_	_	_	_	_	_	_	_
+7	ⲁ	ⲁ	AUX	APST	_	13	aux	_	_
+8	ⲥⲉ	ⲥⲉ	NUM	NUM	NumType=Card	10	compound	_	_
+9-10	ⲛⲧⲃⲁ	_	_	_	_	_	_	_	_
+9	ⲛ	ⲛ	ADP	PREP	_	10	case	_	Orig=ⲛ̄
+10	ⲧⲃⲁ	ⲧⲃⲁ	NUM	NUM	NumType=Card	12	nummod	_	_
+11-12	ⲙⲙⲁⲧⲟⲓ	_	_	_	_	_	_	_	_
+11	ⲙ	ⲛ	ADP	PREP	_	12	case	_	Orig=ⲙ̄
+12	ⲙⲁⲧⲟⲓ	ⲙⲁⲧⲟⲓ	NOUN	N	_	13	nsubj	_	_
+13	ⲟⲩⲱϣⲧ	ⲟⲩⲱϣⲧ	VERB	V	VerbForm=Fin	0	root	_	Orig=ⲟⲩⲱ̄ϣⲧ̄
+14-15	ⲙⲛϣⲏⲧ	_	_	_	_	_	_	_	_
+14	ⲙⲛ	ⲙⲛ	ADP	PREP	_	19	cc	_	Orig=ⲙⲛ̄
+15	ϣⲏⲧ	ϣⲏⲧ	NUM	NUM	NumType=Card	17	compound	_	_
+16-17	ⲛⲧⲃⲁ	_	_	_	_	_	_	_	_
+16	ⲛ	ⲛ	ADP	PREP	_	17	case	_	Orig=ⲛ̄
+17	ⲧⲃⲁ	ⲧⲃⲁ	NUM	NUM	NumType=Card	19	nummod	_	_
+18-19	ⲙⲡⲁⲅⲁⲛⲱⲥ	_	_	_	_	_	_	_	_
+18	ⲙ	ⲛ	ADP	PREP	_	19	case	_	Orig=ⲙ̄
+19	ⲡⲁⲅⲁⲛⲱⲥ	ⲡⲁⲅⲁⲛⲱⲥ	NOUN	N	_	12	conj	_	_
+20	·	·	PUNCT	PUNCT	_	26	punct	_	_
+21-23	ⲉⲣⲉⲙⲙⲏⲏϣⲉ	_	_	_	_	_	_	_	_
+21	ⲉⲣⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	26	mark	_	_
+22	ⲙ	ⲡ	DET	ART	_	23	det	_	Orig=ⲙ̄
+23	ⲙⲏⲏϣⲉ	ⲙⲏⲏϣⲉ	NOUN	N	_	26	nsubj	_	_
+24-25	ⲧⲏⲣⲟⲩ	_	_	_	_	_	_	_	_
+24	ⲧⲏⲣ	ⲧⲏⲣ	ADV	IMOD	PronType=Tot	23	advmod	_	_
+25	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	24	det	_	_
+26	ⲥⲟⲟⲩϩ	ⲥⲱⲟⲩϩ	VERB	V	VerbForm=Fin	13	advcl	_	_
+27-29	ⲉⲧⲉⲑⲩⲥⲓⲁ	_	_	_	_	_	_	_	_
+27	ⲉ	ⲉ	ADP	PREP	_	29	case	_	_
+28	ⲧⲉ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	29	det	_	_
+29	ⲑⲩⲥⲓⲁ	ⲑⲩⲥⲓⲁ	NOUN	N	_	26	obl	_	_
+30-32	ⲙⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
+30	ⲙ	ⲛ	ADP	PREP	_	32	case	_	Orig=ⲙ̄
+31	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	32	det	_	_
+32	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	29	nmod	_	Orig=ⲣ̄ⲣⲟ
+33	·	·	PUNCT	PUNCT	_	13	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0044
+# text = ⲛⲧⲉⲣⲉⲡⲟⲣⲇⲓⲛⲟⲛ ⲇⲉ ⲛⲟⲩⲡⲣⲟⲧⲉⲕⲧⲱⲣ ⲧⲁϩⲟϥ · ⲉⲡⲉϥⲣⲁⲛ ⲡⲉ ⲃⲁⲥⲓⲗⲉⲓⲧⲏⲥ ·
+1-3	ⲛⲧⲉⲣⲉⲡⲟⲣⲇⲓⲛⲟⲛ	_	_	_	_	_	_	_	_
+1	ⲛⲧⲉⲣⲉ	ⲛⲧⲉⲣⲉ	AUX	APREC	_	8	aux	_	Orig=ⲛ̄ⲧⲉⲣⲉ
+2	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	3	det	_	_
+3	ⲟⲣⲇⲓⲛⲟⲛ	ⲟⲣⲇⲓⲛⲟⲛ	NOUN	N	_	8	nsubj	_	_
+4	ⲇⲉ	ⲇⲉ	PART	PTC	_	8	advmod	_	_
+5-7	ⲛⲟⲩⲡⲣⲟⲧⲉⲕⲧⲱⲣ	_	_	_	_	_	_	_	_
+5	ⲛ	ⲛ	ADP	PREP	_	7	case	_	Orig=ⲛ̄
+6	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	7	det	_	_
+7	ⲡⲣⲟⲧⲉⲕⲧⲱⲣ	ⲛⲟⲩⲡⲣⲟⲧⲉⲕⲧⲱⲣ	NOUN	N	_	3	nmod	_	_
+8-9	ⲧⲁϩⲟϥ	_	_	_	_	_	_	_	_
+8	ⲧⲁϩⲟ	ⲧⲁϩⲟ	VERB	V	VerbForm=Fin	0	root	_	_
+9	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	8	obj	_	_
+10	·	·	PUNCT	PUNCT	_	13	punct	_	_
+11-13	ⲉⲡⲉϥⲣⲁⲛ	_	_	_	_	_	_	_	_
+11	ⲉ	ⲉ	SCONJ	CCIRC	_	13	mark	_	_
+12	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	13	det	_	_
+13	ⲣⲁⲛ	ⲣⲁⲛ	NOUN	N	_	7	acl	_	_
+14	ⲡⲉ	ⲡⲉ	PRON	COP	Gender=Masc|Number=Sing	13	cop	_	_
+15	ⲃⲁⲥⲓⲗⲉⲓⲧⲏⲥ	ⲃⲁⲥⲓⲗⲉⲓⲧⲏⲥ	PROPN	NPROP	_	13	nsubj	_	_
+16	·	·	PUNCT	PUNCT	_	8	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0045
+# text = ⲙⲡⲉϥⲑⲩⲥⲓⲁⲍⲉ ⲛⲛⲛⲟⲩⲧⲉ ⲙⲡⲣⲣⲟ ·
+1-3	ⲙⲡⲉϥⲑⲩⲥⲓⲁⲍⲉ	_	_	_	_	_	_	_	_
+1	ⲙⲡⲉ	ⲙⲡⲉ	AUX	ANEGPST	Polarity=Neg	3	aux	_	Orig=ⲙ̄ⲡⲉ
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ⲑⲩⲥⲓⲁⲍⲉ	ⲑⲩⲥⲓⲁⲍⲉ	VERB	V	VerbForm=Fin	0	root	_	_
+4-6	ⲛⲛⲛⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
+4	ⲛ	ⲛ	ADP	PREP	_	6	case	_	Orig=ⲛ̄
+5	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	6	det	_	Orig=ⲛ̄
+6	ⲛⲟⲩⲧⲉ	ⲛⲟⲩⲧⲉ	NOUN	N	_	3	obl	_	_
+7-9	ⲙⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
+7	ⲙ	ⲛ	ADP	PREP	_	9	case	_	Orig=ⲙ̄
+8	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	9	det	_	_
+9	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	6	nmod	_	Orig=ⲣ̄ⲣⲟ
+10	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0046
+# text = ⲁⲗⲗⲁ ⲁⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ ⲙⲟⲟⲩⲧ ⲙⲙⲟϥ ⲙⲛⲛⲁⲡⲉϥⲏⲓ ⲧⲏⲣⲟⲩ ·
+1	ⲁⲗⲗⲁ	ⲁⲗⲗⲁ	CCONJ	CONJ	_	4	cc	_	_
+2-3	ⲁⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	_	_	_	_	_	_	_	_
+2	ⲁ	ⲁ	AUX	APST	_	4	aux	_	_
+3	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	PROPN	NPROP	_	4	nsubj	_	_
+4	ⲙⲟⲟⲩⲧ	ⲙⲟⲩⲟⲩⲧ	VERB	V	VerbForm=Fin	0	root	_	_
+5-6	ⲙⲙⲟϥ	_	_	_	_	_	_	_	_
+5	ⲙⲙⲟ	ⲛ	ADP	PREP	_	6	case	_	Orig=ⲙ̄ⲙⲟ
+6	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	4	obj	_	_
+7-10	ⲙⲛⲛⲁⲡⲉϥⲏⲓ	_	_	_	_	_	_	_	_
+7	ⲙⲛ	ⲙⲛ	ADP	PREP	_	8	cc	_	Orig=ⲙⲛ̄
+8	ⲛⲁ	ⲡⲁ	DET	PPOS	_	6	conj	_	_
+9	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	10	det	_	_
+10	ⲏⲓ	ⲏⲓ	NOUN	N	_	8	nmod	_	_
+11-12	ⲧⲏⲣⲟⲩ	_	_	_	_	_	_	_	_
+11	ⲧⲏⲣ	ⲧⲏⲣ	ADV	IMOD	PronType=Tot	8	advmod	_	_
+12	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	11	det	_	_
+13	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0047
+# text = ⲧⲡⲟⲗⲓⲥ ⲇⲉ ⲧⲏⲣⲥ ⲁⲥⲛⲟⲉⲓⲛ ϩⲓⲧⲛⲧⲁⲫⲟⲣⲙⲏ ⲙⲡⲙⲏⲏϣⲉ ·
+1-2	ⲧⲡⲟⲗⲓⲥ	_	_	_	_	_	_	_	_
+1	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	2	det	_	_
+2	ⲡⲟⲗⲓⲥ	ⲡⲟⲗⲓⲥ	NOUN	N	_	8	dislocated	_	_
+3	ⲇⲉ	ⲇⲉ	PART	PTC	_	8	advmod	_	_
+4-5	ⲧⲏⲣⲥ	_	_	_	_	_	_	_	_
+4	ⲧⲏⲣ	ⲧⲏⲣ	ADV	IMOD	PronType=Tot	2	advmod	_	_
+5	ⲥ	ⲛⲧⲟⲥ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	4	det	_	Orig=ⲥ̄
+6-8	ⲁⲥⲛⲟⲉⲓⲛ	_	_	_	_	_	_	_	_
+6	ⲁ	ⲁ	AUX	APST	_	8	aux	_	_
+7	ⲥ	ⲛⲧⲟⲥ	PRON	PPERS	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	8	nsubj	_	_
+8	ⲛⲟⲉⲓⲛ	ⲛⲟⲉⲓⲛ	VERB	V	VerbForm=Fin	0	root	_	_
+9-11	ϩⲓⲧⲛⲧⲁⲫⲟⲣⲙⲏ	_	_	_	_	_	_	_	_
+9	ϩⲓⲧⲛ	ϩⲓⲧⲛ	ADP	PREP	_	11	case	_	Orig=ϩⲓⲧⲛ̄
+10	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	11	det	_	_
+11	ⲁⲫⲟⲣⲙⲏ	ⲁⲫⲟⲣⲙⲏ	NOUN	N	_	8	obl	_	_
+12-14	ⲙⲡⲙⲏⲏϣⲉ	_	_	_	_	_	_	_	_
+12	ⲙ	ⲛ	ADP	PREP	_	14	case	_	Orig=ⲙ̄
+13	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	14	det	_	_
+14	ⲙⲏⲏϣⲉ	ⲙⲏⲏϣⲉ	NOUN	N	_	11	nmod	_	Orig=ⲙⲏⲏ̄ϣⲉ
+15	·	·	PUNCT	PUNCT	_	8	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0048
+# text = ⲁⲩⲱ ⲁⲛⲣⲱⲙⲉ ⲣⲁⲡⲟⲡⲛⲓⲅⲉ ϩⲓⲧⲙⲡⲉⲥⲧⲟⲓ ⲙⲡⲗⲓⲃⲁⲛⲟⲥ · ⲙⲛⲡϣⲟⲩϩⲏⲛⲉ ⲉⲧⲉⲣⲉⲛⲣⲱⲙⲉ ⲧⲁⲗⲟ ⲙⲙⲟϥ ⲉϩⲣⲁⲓ : —
+1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	5	cc	_	_
+2-4	ⲁⲛⲣⲱⲙⲉ	_	_	_	_	_	_	_	_
+2	ⲁ	ⲁ	AUX	APST	_	5	aux	_	_
+3	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	4	det	_	_
+4	ⲣⲱⲙⲉ	ⲣⲱⲙⲉ	NOUN	N	_	5	nsubj	_	_
+5	ⲣⲁⲡⲟⲡⲛⲓⲅⲉ	ⲣⲁⲡⲟⲡⲛⲓⲅⲉ	VERB	V	VerbForm=Fin	0	root	_	Morphs=ⲣ-ⲁⲡⲟⲡⲛⲓⲅⲉ|Orig=ⲣ̄ⲁⲫⲛⲡⲛⲉⲩⲉ̄
+6-8	ϩⲓⲧⲙⲡⲉⲥⲧⲟⲓ	_	_	_	_	_	_	_	_
+6	ϩⲓⲧⲙ	ϩⲓⲧⲛ	ADP	PREP	_	8	case	_	Orig=ϩⲓⲧⲙ̄
+7	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	8	det	_	_
+8	ⲥⲧⲟⲓ	ⲥⲧⲟⲓ	NOUN	N	_	5	obl	_	_
+9-11	ⲙⲡⲗⲓⲃⲁⲛⲟⲥ	_	_	_	_	_	_	_	_
+9	ⲙ	ⲛ	ADP	PREP	_	11	case	_	Orig=ⲙ̄
+10	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	11	det	_	_
+11	ⲗⲓⲃⲁⲛⲟⲥ	ⲗⲓⲃⲁⲛⲟⲥ	NOUN	N	_	8	nmod	_	_
+12	·	·	PUNCT	PUNCT	_	15	punct	_	_
+13-15	ⲙⲛⲡϣⲟⲩϩⲏⲛⲉ	_	_	_	_	_	_	_	_
+13	ⲙⲛ	ⲙⲛ	ADP	PREP	_	15	cc	_	Orig=ⲙⲛ̄
+14	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	15	det	_	_
+15	ϣⲟⲩϩⲏⲛⲉ	ϣⲟⲩϩⲏⲛⲉ	NOUN	N	_	11	conj	_	_
+16-18	ⲉⲧⲉⲣⲉⲛⲣⲱⲙⲉ	_	_	_	_	_	_	_	_
+16	ⲉⲧⲉⲣⲉ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	19	mark	_	_
+17	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	18	det	_	Orig=ⲛ̄
+18	ⲣⲱⲙⲉ	ⲣⲱⲙⲉ	NOUN	N	_	19	nsubj	_	Orig=ⲣ̄ⲱ[ⲙⲉ]
+19	ⲧⲁⲗⲟ	ⲧⲁⲗⲟ	VERB	V	VerbForm=Fin	15	acl	_	_
+20-21	ⲙⲙⲟϥ	_	_	_	_	_	_	_	_
+20	ⲙⲙⲟ	ⲛ	ADP	PREP	_	21	case	_	Orig=ⲙ̄ⲙⲟ
+21	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	19	obj	_	_
+22	ⲉϩⲣⲁⲓ	ⲉϩⲣⲁⲓ	ADV	ADV	_	19	advmod	_	Orig=ⲉϩⲣⲁⲓ̈
+23	:	:	PUNCT	PUNCT	_	5	punct	_	_
+24	—	—	PUNCT	PUNCT	_	5	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0049
+# text = ⲛⲉⲛⲧⲁⲩⲙⲟⲩ ⲅⲁⲣ ϩⲙⲡϩⲟϫϩϫ ⲛⲙⲙⲏⲏϣⲉ · ⲉⲩⲛⲁⲣϯⲟⲩ ⲛϣⲟ · ⲭⲱⲣⲓⲥ ⲛⲉⲛⲧⲁⲩⲙⲟⲩ ϩⲙⲡⲣⲡⲉ · ⲉⲩⲛⲁⲣⲕⲉϥⲧⲟⲟⲩϣⲉ ·
+1-5	ⲛⲉⲛⲧⲁⲩⲙⲟⲩ	_	_	_	_	_	_	_	_
+1	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	0	root	_	_
+2	ⲉⲛⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	5	case	_	Orig=ⲉⲛ̄ⲧ
+3	ⲁ	ⲁ	AUX	APST	_	5	aux	_	_
+4	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	5	nsubj	_	_
+5	ⲙⲟⲩ	ⲙⲟⲩ	VERB	V	VerbForm=Fin	1	acl	_	_
+6	ⲅⲁⲣ	ⲅⲁⲣ	PART	PTC	_	5	advmod	_	_
+7-9	ϩⲙⲡϩⲟϫϩϫ	_	_	_	_	_	_	_	_
+7	ϩⲙ	ϩⲛ	ADP	PREP	_	9	case	_	Orig=ϩⲙ̄
+8	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	9	det	_	_
+9	ϩⲟϫϩϫ	ϩⲟϫϩϫ	NOUN	N	_	5	obl	_	Orig=ϩⲟϫϩⲉϫ
+10-12	ⲛⲙⲙⲏⲏϣⲉ	_	_	_	_	_	_	_	_
+10	ⲛ	ⲛ	ADP	PREP	_	12	case	_	Orig=ⲛ̄
+11	ⲙ	ⲡ	DET	ART	_	12	det	_	Orig=ⲙ̄
+12	ⲙⲏⲏϣⲉ	ⲙⲏⲏϣⲉ	NOUN	N	_	9	nmod	_	_
+13	·	·	PUNCT	PUNCT	_	17	punct	_	_
+14-18	ⲉⲩⲛⲁⲣϯⲟⲩ	_	_	_	_	_	_	_	_
+14	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	17	mark	_	_
+15	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	17	nsubj	_	_
+16	ⲛⲁ	ⲛⲁ	AUX	FUT	_	17	aux	_	_
+17	ⲣ	ⲉⲓⲣⲉ	VERB	V	VerbForm=Fin	5	advcl	_	Orig=ⲣ̄
+18	ϯⲟⲩ	ϯⲟⲩ	NUM	NUM	NumType=Card	20	nummod	_	_
+19-20	ⲛϣⲟ	_	_	_	_	_	_	_	_
+19	ⲛ	ⲛ	ADP	PREP	_	20	case	_	Orig=ⲛ̄
+20	ϣⲟ	ϣⲟ	NUM	NUM	NumType=Card	17	obj	_	_
+21	·	·	PUNCT	PUNCT	_	23	punct	_	_
+22	ⲭⲱⲣⲓⲥ	ⲭⲱⲣⲓⲥ	ADP	PREP	_	23	case	_	_
+23-27	ⲛⲉⲛⲧⲁⲩⲙⲟⲩ	_	_	_	_	_	_	_	_
+23	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	17	advcl	_	_
+24	ⲉⲛⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	27	case	_	Orig=ⲉⲛ̄ⲧ
+25	ⲁ	ⲁ	AUX	APST	_	27	aux	_	_
+26	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	27	nsubj	_	_
+27	ⲙⲟⲩ	ⲙⲟⲩ	VERB	V	VerbForm=Fin	23	acl	_	_
+28-30	ϩⲙⲡⲣⲡⲉ	_	_	_	_	_	_	_	_
+28	ϩⲙ	ϩⲛ	ADP	PREP	_	30	case	_	Orig=ϩⲙ̄
+29	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	30	det	_	_
+30	ⲣⲡⲉ	ⲣⲡⲉ	NOUN	N	_	27	obl	_	Orig=ⲣ̄ⲡⲉ
+31	·	·	PUNCT	PUNCT	_	35	punct	_	_
+32-37	ⲉⲩⲛⲁⲣⲕⲉϥⲧⲟⲟⲩϣⲉ	_	_	_	_	_	_	_	_
+32	ⲉ	ⲉⲣⲉ	PART	CFOC	_	35	mark	_	_
+33	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	35	nsubj	_	_
+34	ⲛⲁ	ⲛⲁ	AUX	FUT	_	35	aux	_	_
+35	ⲣ	ⲉⲓⲣⲉ	VERB	V	VerbForm=Fin	1	parataxis	_	Orig=ⲣ̄
+36	ⲕⲉ	ⲕⲉ	DET	ART	PronType=Art	37	det	_	_
+37	ϥⲧⲟⲟⲩϣⲉ	ϥⲧⲟⲟⲩϣⲉ	NUM	NUM	NumType=Card	35	obj	_	Morphs=ϥⲧⲟⲟⲩ-ϣⲉ|Orig=ϥⲧⲟⲩϣⲉ
+38	·	·	PUNCT	PUNCT	_	1	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0050
+# text = ⲡⲣⲣⲟ ⲇⲉ ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ ⲁϥϩⲣⲟⲕⲉⲩⲉ ⲛⲧⲡⲟⲗⲓⲥ ⲧⲏⲣⲥ · ⲉϥϫⲱ ⲙⲙⲟⲥ
+1-2	ⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
+1	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	2	det	_	_
+2	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	7	dislocated	_	Orig=ⲣ̄ⲣⲟ
+3	ⲇⲉ	ⲇⲉ	PART	PTC	_	7	advmod	_	_
+4	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ	PROPN	NPROP	_	2	appos	_	Orig=ⲇⲓⲟ̄ⲕⲗⲏϯⲁⲛⲟⲥ
+5-7	ⲁϥϩⲣⲟⲕⲉⲩⲉ	_	_	_	_	_	_	_	_
+5	ⲁ	ⲁ	AUX	APST	_	7	aux	_	_
+6	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	7	nsubj	_	_
+7	ϩⲣⲟⲕⲉⲩⲉ	ϩⲣⲟⲕⲉⲩⲉ	VERB	V	VerbForm=Fin	0	root	_	_
+8-10	ⲛⲧⲡⲟⲗⲓⲥ	_	_	_	_	_	_	_	_
+8	ⲛ	ⲛ	ADP	PREP	_	10	case	_	Orig=ⲛ̄
+9	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	10	det	_	_
+10	ⲡⲟⲗⲓⲥ	ⲡⲟⲗⲓⲥ	NOUN	N	_	7	obl	_	_
+11-12	ⲧⲏⲣⲥ	_	_	_	_	_	_	_	_
+11	ⲧⲏⲣ	ⲧⲏⲣ	ADV	IMOD	PronType=Tot	10	advmod	_	_
+12	ⲥ	ⲛⲧⲟⲥ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	11	det	_	Orig=ⲥ̄
+13	·	·	PUNCT	PUNCT	_	16	punct	_	_
+14-16	ⲉϥϫⲱ	_	_	_	_	_	_	_	_
+14	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	16	mark	_	_
+15	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	16	nsubj	_	_
+16	ϫⲱ	ϫⲱ	VERB	V	VerbForm=Fin	7	advcl	_	_
+17-18	ⲙⲙⲟⲥ	_	_	_	_	_	_	_	_
+17	ⲙⲙⲟ	ⲛ	ADP	PREP	_	18	case	_	Orig=ⲙ̄ⲙⲟ
+18	ⲥ	ⲛⲧⲟⲥ	PRON	PPERO	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	16	obj	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0051
+# text = ϫⲉⲉⲧⲉⲧⲛϣⲁⲛⲟⲩⲱ ⲉⲧⲉⲧⲛⲑⲩⲥⲓⲁⲍⲉ · ⲟⲩⲱⲙ ⲛⲧⲉⲧⲛⲥⲱ ϩⲓⲣⲙⲡⲣⲟ ⲙⲡⲁⲡⲟⲗⲗⲱⲛ ⲙⲛⲧⲁⲣⲧⲉⲙⲓⲥ ·
+1-3	ϫⲉⲉⲧⲉⲧⲛϣⲁⲛⲟⲩⲱ	_	_	_	_	_	_	_	_
+1	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	8	mark	_	_
+2	ⲉⲧⲉⲧⲛϣⲁⲛ	ⲉⲣϣⲁⲛ_ⲛⲧⲱⲧⲛ	PRON	ACOND_PPERS	Definite=Def|Number=Plur|Person=2|PronType=Prs	3	nsubj	_	Orig=ⲉⲧⲉⲧⲛ̄ϣⲁⲛ
+3	ⲟⲩⲱ	ⲟⲩⲱ	VERB	V	VerbForm=Fin	8	advcl	_	Orig=ⲟⲩⲱ̄
+4-6	ⲉⲧⲉⲧⲛⲑⲩⲥⲓⲁⲍⲉ	_	_	_	_	_	_	_	_
+4	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	6	mark	_	_
+5	ⲧⲉⲧⲛ	ⲛⲧⲱⲧⲛ	PRON	PPERS	Definite=Def|Number=Plur|Person=2|PronType=Prs	6	nsubj	_	Orig=ⲧⲉⲧⲛ̄
+6	ⲑⲩⲥⲓⲁⲍⲉ	ⲑⲩⲥⲓⲁⲍⲉ	VERB	V	VerbForm=Fin	3	advcl	_	_
+7	·	·	PUNCT	PUNCT	_	3	punct	_	_
+8	ⲟⲩⲱⲙ	ⲟⲩⲱⲙ	VERB	V	VerbForm=Fin	0	root	_	_
+9-11	ⲛⲧⲉⲧⲛⲥⲱ	_	_	_	_	_	_	_	_
+9	ⲛ	ⲛⲧⲉ	AUX	ACONJ	_	11	aux	_	Orig=ⲛ̄
+10	ⲧⲉⲧⲛ	ⲛⲧⲱⲧⲛ	PRON	PPERS	Definite=Def|Number=Plur|Person=2|PronType=Prs	11	nsubj	_	Orig=ⲧⲉⲧⲛ̄
+11	ⲥⲱ	ⲥⲱ	VERB	V	VerbForm=Fin	8	advcl	_	_
+12-14	ϩⲓⲣⲙⲡⲣⲟ	_	_	_	_	_	_	_	_
+12	ϩⲓⲣⲙ	ϩⲓⲣⲛ	ADP	PREP	_	14	case	_	Orig=ϩⲓⲣⲙ̄
+13	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	14	det	_	_
+14	ⲣⲟ	ⲣⲟ	NOUN	N	_	8	obl	_	_
+15-17	ⲙⲡⲁⲡⲟⲗⲗⲱⲛ	_	_	_	_	_	_	_	_
+15	ⲙ	ⲛ	ADP	PREP	_	17	case	_	Orig=ⲙ̄
+16	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	17	det	_	_
+17	ⲁⲡⲟⲗⲗⲱⲛ	ⲁⲡⲟⲗⲗⲱⲛ	PROPN	NPROP	_	14	nmod	_	_
+18-20	ⲙⲛⲧⲁⲣⲧⲉⲙⲓⲥ	_	_	_	_	_	_	_	_
+18	ⲙⲛ	ⲙⲛ	ADP	PREP	_	20	cc	_	Orig=ⲙⲛ̄
+19	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	20	det	_	_
+20	ⲁⲣⲧⲉⲙⲓⲥ	ⲁⲣⲧⲉⲙⲓⲥ	PROPN	NPROP	_	17	conj	_	Orig=ⲁⲣⲧⲉⲙⲓ̈ⲥ
+21	·	·	PUNCT	PUNCT	_	8	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0052
+# text = ⲛⲧⲉⲧⲛϯⲉⲟⲟⲩ ⲛⲁⲩ · ϫⲉⲛⲧⲟⲟⲩ ⲛⲉ ⲛⲧⲁⲩⲧⲁⲙⲓⲉⲧⲡⲉ ⲙⲛⲡⲕⲁϩ · ⲙⲛⲧⲑⲁⲗⲁⲥⲥⲁ ⲙⲛⲛⲣⲱⲙⲉ ·
+1-3	ⲛⲧⲉⲧⲛϯⲉⲟⲟⲩ	_	_	_	_	_	_	_	_
+1	ⲛ	ⲛⲧⲉ	AUX	ACONJ	_	3	aux	_	Orig=ⲛ̄
+2	ⲧⲉⲧⲛ	ⲛⲧⲱⲧⲛ	PRON	PPERS	Definite=Def|Number=Plur|Person=2|PronType=Prs	3	nsubj	_	Orig=ⲧⲉⲧⲛ̄
+3	ϯⲉⲟⲟⲩ	ϯⲉⲟⲟⲩ	VERB	V	VerbForm=Fin	0	root	_	Morphs=ϯ-ⲉⲟⲟⲩ
+4-5	ⲛⲁⲩ	_	_	_	_	_	_	_	_
+4	ⲛⲁ	ⲛⲁ	ADP	PREP	_	5	case	_	_
+5	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	3	obl	_	_
+6	·	·	PUNCT	PUNCT	_	8	punct	_	_
+7-8	ϫⲉⲛⲧⲟⲟⲩ	_	_	_	_	_	_	_	_
+7	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	8	mark	_	_
+8	ⲛⲧⲟⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERI	Definite=Def|Number=Plur|Person=3|PronType=Prs	3	advcl	_	Orig=ⲛ̄ⲧⲟⲟⲩ
+9	ⲛⲉ	ⲡⲉ	PRON	COP	Number=Plur	8	cop	_	_
+10-15	ⲛⲧⲁⲩⲧⲁⲙⲓⲉⲧⲡⲉ	_	_	_	_	_	_	_	_
+10	ⲛⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	13	mark	_	Orig=ⲛ̄ⲧ
+11	ⲁ	ⲁ	AUX	APST	_	13	aux	_	_
+12	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	13	nsubj	_	_
+13	ⲧⲁⲙⲓⲉ	ⲧⲁⲙⲓⲟ	VERB	V	VerbForm=Fin	8	csubj	_	_
+14	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	15	det	_	_
+15	ⲡⲉ	ⲡⲉ	NOUN	N	_	13	obj	_	_
+16-18	ⲙⲛⲡⲕⲁϩ	_	_	_	_	_	_	_	_
+16	ⲙⲛ	ⲙⲛ	ADP	PREP	_	18	cc	_	Orig=ⲙⲛ̄
+17	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	18	det	_	_
+18	ⲕⲁϩ	ⲕⲁϩ	NOUN	N	_	15	conj	_	_
+19	·	·	PUNCT	PUNCT	_	22	punct	_	_
+20-22	ⲙⲛⲧⲑⲁⲗⲁⲥⲥⲁ	_	_	_	_	_	_	_	_
+20	ⲙⲛ	ⲙⲛ	ADP	PREP	_	22	cc	_	Orig=ⲙⲛ̄
+21	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	22	det	_	Orig=ⲑ
+22	ⲑⲁⲗⲁⲥⲥⲁ	ⲑⲁⲗⲁⲥⲥⲁ	NOUN	N	_	15	conj	_	Orig=ⲁⲗⲁⲥⲥⲁ
+23-25	ⲙⲛⲛⲣⲱⲙⲉ	_	_	_	_	_	_	_	_
+23	ⲙⲛ	ⲙⲛ	ADP	PREP	_	25	cc	_	Orig=ⲙⲛ̄
+24	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	25	det	_	Orig=ⲛ̄
+25	ⲣⲱⲙⲉ	ⲣⲱⲙⲉ	NOUN	N	_	15	conj	_	_
+26	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0053
+# text = ⲡⲣⲣⲟ ⲇⲉ ⲁϥⲁⲛⲁⲭⲱⲣⲉⲓ ⲉⲡⲡⲁⲗⲗⲁϯⲟⲛ ⲙⲡⲛⲁⲩ ⲙⲡⲁⲣⲓⲥⲧⲟⲛ ·
+1-2	ⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
+1	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	2	det	_	_
+2	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	6	dislocated	_	Orig=ⲣ̄ⲣⲟ
+3	ⲇⲉ	ⲇⲉ	PART	PTC	_	6	advmod	_	_
+4-6	ⲁϥⲁⲛⲁⲭⲱⲣⲉⲓ	_	_	_	_	_	_	_	_
+4	ⲁ	ⲁ	AUX	APST	_	6	aux	_	_
+5	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	6	nsubj	_	_
+6	ⲁⲛⲁⲭⲱⲣⲉⲓ	ⲁⲛⲁⲭⲱⲣⲉⲓ	VERB	V	VerbForm=Fin	0	root	_	_
+7-9	ⲉⲡⲡⲁⲗⲗⲁϯⲟⲛ	_	_	_	_	_	_	_	_
+7	ⲉ	ⲉ	ADP	PREP	_	9	case	_	_
+8	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	9	det	_	_
+9	ⲡⲁⲗⲗⲁϯⲟⲛ	ⲡⲁⲗⲗⲁϯⲟⲛ	NOUN	N	_	6	obl	_	_
+10-12	ⲙⲡⲛⲁⲩ	_	_	_	_	_	_	_	_
+10	ⲙ	ⲛ	ADP	PREP	_	12	case	_	Orig=ⲙ̄
+11	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	12	det	_	_
+12	ⲛⲁⲩ	ⲛⲁⲩ	NOUN	N	_	6	obl	_	_
+13-15	ⲙⲡⲁⲣⲓⲥⲧⲟⲛ	_	_	_	_	_	_	_	_
+13	ⲙ	ⲛ	ADP	PREP	_	15	case	_	Orig=ⲙ̄
+14	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	15	det	_	_
+15	ⲁⲣⲓⲥⲧⲟⲛ	ⲁⲣⲓⲥⲧⲟⲛ	NOUN	N	_	12	nmod	_	_
+16	·	·	PUNCT	PUNCT	_	6	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0054
+# text = ⲁϥⲙⲟⲩⲧⲉ ⲉϩⲣⲱⲙⲁⲛⲟⲥ ⲡⲉⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ ⲡⲉϫⲁϥ ⲛⲁϥ ·
+1-3	ⲁϥⲙⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
+1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	_
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ⲙⲟⲩⲧⲉ	ⲙⲟⲩⲧⲉ	VERB	V	VerbForm=Fin	0	root	_	_
+4-5	ⲉϩⲣⲱⲙⲁⲛⲟⲥ	_	_	_	_	_	_	_	_
+4	ⲉ	ⲉ	ADP	PREP	_	5	case	_	_
+5	ϩⲣⲱⲙⲁⲛⲟⲥ	ϩⲣⲱⲙⲁⲛⲟⲥ	PROPN	NPROP	_	3	obl	_	Orig=ϩⲣⲟⲙⲁⲛⲟⲥ
+6-7	ⲡⲉⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	_	_	_	_	_	_	_	_
+6	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	7	det	_	_
+7	ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	NOUN	N	_	5	appos	_	_
+8-9	ⲡⲉϫⲁϥ	_	_	_	_	_	_	_	_
+8	ⲡⲉϫⲁ	ⲡⲉϫⲉ	VERB	VBD	VerbForm=Fin	3	parataxis	_	_
+9	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	8	nsubj	_	_
+10-11	ⲛⲁϥ	_	_	_	_	_	_	_	_
+10	ⲛⲁ	ⲛⲁ	ADP	PREP	_	11	case	_	_
+11	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	8	obl	_	_
+12	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0055
+# text = ϫⲉϫⲓ ⲙⲡⲉⲓⲇⲓⲁⲧⲁⲅⲙⲁ · ⲙⲁⲣⲉⲛⲕⲉⲥⲉⲉⲡⲉ ⲙⲙⲏⲏϣⲉ ⲑⲩⲥⲓⲁⲍⲉ ⲙⲡⲁⲧⲕⲁⲛⲁⲭⲱⲣⲉⲓ ·
+1-2	ϫⲉϫⲓ	_	_	_	_	_	_	_	_
+1	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	2	mark	_	_
+2	ϫⲓ	ϫⲓ	VERB	V	VerbForm=Fin	0	root	_	_
+3-5	ⲙⲡⲉⲓⲇⲓⲁⲧⲁⲅⲙⲁ	_	_	_	_	_	_	_	_
+3	ⲙ	ⲛ	ADP	PREP	_	5	case	_	Orig=ⲙ̄
+4	ⲡⲉⲓ	ⲡⲉⲓ	DET	PDEM	Definite=Def|Gender=Masc|Number=Sing|PronType=Dem	5	det	_	Orig=ⲡⲉⲓ̈
+5	ⲇⲓⲁⲧⲁⲅⲙⲁ	ⲇⲓⲁⲧⲁⲅⲙⲁ	NOUN	N	_	2	obj	_	_
+6	·	·	PUNCT	PUNCT	_	13	punct	_	_
+7-10	ⲙⲁⲣⲉⲛⲕⲉⲥⲉⲉⲡⲉ	_	_	_	_	_	_	_	_
+7	ⲙⲁⲣⲉ	ⲙⲁⲣⲉ	AUX	AJUS	_	13	aux	_	_
+8	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	10	det	_	_
+9	ⲕⲉ	ⲕⲉ	DET	ART	PronType=Art	10	det	_	_
+10	ⲥⲉⲉⲡⲉ	ⲥⲉⲉⲡⲉ	NOUN	N	_	13	nsubj	_	Orig=ⲉⲥⲉⲡⲉ
+11-12	ⲙⲙⲏⲏϣⲉ	_	_	_	_	_	_	_	_
+11	ⲙ	ⲛ	ADP	PREP	_	12	case	_	Orig=ⲙ̄
+12	ⲙⲏⲏϣⲉ	ⲙⲏⲏϣⲉ	NOUN	N	_	10	nmod	_	_
+13	ⲑⲩⲥⲓⲁⲍⲉ	ⲑⲩⲥⲓⲁⲍⲉ	VERB	V	VerbForm=Fin	2	parataxis	_	_
+14-16	ⲙⲡⲁⲧⲕⲁⲛⲁⲭⲱⲣⲉⲓ	_	_	_	_	_	_	_	_
+14	ⲙⲡⲁⲧ	ⲙⲡⲁⲧⲉ	AUX	ANY	Polarity=Neg	16	aux	_	Orig=ⲙ̄ⲡⲁⲧⲉ
+15	ⲕ	ⲛⲧⲟⲕ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=2|PronType=Prs	16	nsubj	_	_
+16	ⲁⲛⲁⲭⲱⲣⲉⲓ	ⲁⲛⲁⲭⲱⲣⲉⲓ	VERB	V	VerbForm=Fin	13	advcl	_	_
+17	·	·	PUNCT	PUNCT	_	2	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0056
+# text = ϩⲣⲱⲙⲁⲛⲟⲥ ⲇⲉ ⲡⲉⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ ⲁϥϫⲓ ⲙⲡⲇⲓⲁⲧⲁⲅⲙⲁ ⲛⲧⲟⲟⲧϥ ⲙⲡⲣⲣⲟ ·
+1	ϩⲣⲱⲙⲁⲛⲟⲥ	ϩⲣⲱⲙⲁⲛⲟⲥ	PROPN	NPROP	_	7	dislocated	_	_
+2	ⲇⲉ	ⲇⲉ	PART	PTC	_	7	advmod	_	_
+3-4	ⲡⲉⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	_	_	_	_	_	_	_	_
+3	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	4	det	_	_
+4	ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	NOUN	N	_	1	appos	_	_
+5-7	ⲁϥϫⲓ	_	_	_	_	_	_	_	_
+5	ⲁ	ⲁ	AUX	APST	_	7	aux	_	_
+6	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	7	nsubj	_	_
+7	ϫⲓ	ϫⲓ	VERB	V	VerbForm=Fin	0	root	_	Orig=ϫⲓ̈
+8-10	ⲙⲡⲇⲓⲁⲧⲁⲅⲙⲁ	_	_	_	_	_	_	_	_
+8	ⲙ	ⲛ	ADP	PREP	_	10	case	_	Orig=ⲙ̄
+9	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	10	det	_	_
+10	ⲇⲓⲁⲧⲁⲅⲙⲁ	ⲇⲓⲁⲧⲁⲅⲙⲁ	NOUN	N	_	7	obj	_	_
+11-12	ⲛⲧⲟⲟⲧϥ	_	_	_	_	_	_	_	_
+11	ⲛⲧⲟⲟⲧ	ⲛⲧⲛ	ADP	PREP	_	12	case	_	Orig=ⲛ̄ⲧⲟⲟⲧ
+12	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	7	obl	_	Orig=ϥ̄
+13-15	ⲙⲡⲣⲣⲟ	_	_	_	_	_	_	_	_
+13	ⲙ	ⲛ	ADP	PREP	_	15	case	_	Orig=ⲙ̄
+14	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	15	det	_	_
+15	ⲣⲣⲟ	ⲣⲣⲟ	NOUN	N	_	7	obl	_	Orig=ⲣ̄ⲣⲟ
+16	·	·	PUNCT	PUNCT	_	7	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0057
+# text = ⲁϥⲕⲉⲗⲉⲩⲉ ⲛⲙⲙⲏⲏϣⲉ ϫⲉⲑⲩⲥⲓⲁⲍⲉ ⲱ ⲛⲣⲱⲙⲉ ⲛϩⲣⲱⲙⲁⲓⲟⲥ ·
+1-3	ⲁϥⲕⲉⲗⲉⲩⲉ	_	_	_	_	_	_	_	_
+1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	_
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ⲕⲉⲗⲉⲩⲉ	ⲕⲉⲗⲉⲩⲉ	VERB	V	VerbForm=Fin	0	root	_	_
+4-6	ⲛⲙⲙⲏⲏϣⲉ	_	_	_	_	_	_	_	_
+4	ⲛ	ⲛ	ADP	PREP	_	6	case	_	Orig=ⲛ̄
+5	ⲙ	ⲡ	DET	ART	_	6	det	_	Orig=ⲙ̄
+6	ⲙⲏⲏϣⲉ	ⲙⲏⲏϣⲉ	NOUN	N	_	3	obl	_	_
+7-8	ϫⲉⲑⲩⲥⲓⲁⲍⲉ	_	_	_	_	_	_	_	_
+7	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	8	mark	_	_
+8	ⲑⲩⲥⲓⲁⲍⲉ	ⲑⲩⲥⲓⲁⲍⲉ	VERB	V	VerbForm=Fin	3	ccomp	_	_
+9	ⲱ	ⲱ	PART	PTC	_	11	discourse	_	Orig=ⲱ̄
+10-11	ⲛⲣⲱⲙⲉ	_	_	_	_	_	_	_	_
+10	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	11	det	_	Orig=ⲛ̄
+11	ⲣⲱⲙⲉ	ⲣⲱⲙⲉ	NOUN	N	_	8	vocative	_	_
+12-13	ⲛϩⲣⲱⲙⲁⲓⲟⲥ	_	_	_	_	_	_	_	_
+12	ⲛ	ⲛ	ADP	PREP	_	13	case	_	Orig=ⲛ̄
+13	ϩⲣⲱⲙⲁⲓⲟⲥ	ϩⲣⲱⲙⲁⲓⲟⲥ	NOUN	N	_	11	nmod	_	_
+14	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0058
+# text = ⲁⲥϣⲱⲡⲉ ⲇⲉ ⲛⲧⲉⲣⲟⲩⲑⲩⲥⲓⲁⲍⲉ ⲧⲏⲣⲟⲩ · ⲁⲡⲟⲣⲇⲓⲛⲟⲛ ⲙⲡⲉϥϣⲏⲣⲉ ⲧⲁϩⲟϥ ⲉⲧⲣⲉϥⲑⲩⲥⲓⲁⲍⲉ ·
+1-3	ⲁⲥϣⲱⲡⲉ	_	_	_	_	_	_	_	_
+1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	_
+2	ⲥ	ⲛⲧⲟⲥ	PRON	PPERS	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ϣⲱⲡⲉ	ϣⲱⲡⲉ	VERB	V	VerbForm=Fin	0	root	_	_
+4	ⲇⲉ	ⲇⲉ	PART	PTC	_	3	advmod	_	_
+5-7	ⲛⲧⲉⲣⲟⲩⲑⲩⲥⲓⲁⲍⲉ	_	_	_	_	_	_	_	_
+5	ⲛⲧⲉⲣ	ⲛⲧⲉⲣⲉ	AUX	APREC	_	7	aux	_	Orig=ⲛ̄ⲧⲉⲣ
+6	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	7	nsubj	_	_
+7	ⲑⲩⲥⲓⲁⲍⲉ	ⲑⲩⲥⲓⲁⲍⲉ	VERB	V	VerbForm=Fin	3	advcl	_	_
+8-9	ⲧⲏⲣⲟⲩ	_	_	_	_	_	_	_	_
+8	ⲧⲏⲣ	ⲧⲏⲣ	ADV	IMOD	PronType=Tot	7	advmod	_	_
+9	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	8	det	_	_
+10	·	·	PUNCT	PUNCT	_	17	punct	_	_
+11-13	ⲁⲡⲟⲣⲇⲓⲛⲟⲛ	_	_	_	_	_	_	_	_
+11	ⲁ	ⲁ	AUX	APST	_	13	aux	_	_
+12	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	13	det	_	_
+13	ⲟⲣⲇⲓⲛⲟⲛ	ⲟⲣⲇⲓⲛⲟⲛ	NOUN	N	_	17	nsubj	_	_
+14-16	ⲙⲡⲉϥϣⲏⲣⲉ	_	_	_	_	_	_	_	_
+14	ⲙ	ⲛ	ADP	PREP	_	16	case	_	Orig=ⲙ̄
+15	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	16	det	_	_
+16	ϣⲏⲣⲉ	ϣⲏⲣⲉ	NOUN	N	_	13	nmod	_	_
+17-18	ⲧⲁϩⲟϥ	_	_	_	_	_	_	_	_
+17	ⲧⲁϩⲟ	ⲧⲁϩⲟ	VERB	V	VerbForm=Fin	3	parataxis	_	_
+18	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	17	obj	_	_
+19-22	ⲉⲧⲣⲉϥⲑⲩⲥⲓⲁⲍⲉ	_	_	_	_	_	_	_	_
+19	ⲉ	ⲉ	PART	PREP	_	20	mark	_	_
+20	ⲧⲣⲉ	ⲧⲣⲉ	VERB	ACAUS	_	17	xcomp	_	Orig=ⲧⲣ
+21	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	22	nsubj	_	Orig=ϥ̄
+22	ⲑⲩⲥⲓⲁⲍⲉ	ⲑⲩⲥⲓⲁⲍⲉ	VERB	V	VerbForm=Fin	20	xcomp	_	_
+23	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0059
+# text = ⲟⲩϣⲏⲣⲉ ⲡⲉ ⲉϥϩⲛⲙⲛⲧⲯⲓⲧⲉ ⲛⲣⲟⲙⲡⲉ · ⲉϥϣⲙϣⲉ ⲙⲡⲛⲟⲩⲧⲉ · ⲁⲩⲱ ⲉϥⲣϩⲟⲧⲉ ϩⲏⲧⲟⲩ ⲛⲛⲉϥⲉⲛⲧⲟⲗⲏ ·
+1-2	ⲟⲩϣⲏⲣⲉ	_	_	_	_	_	_	_	_
+1	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	2	det	_	_
+2	ϣⲏⲣⲉ	ϣⲏⲣⲉ	NOUN	N	_	0	root	_	_
+3	ⲡⲉ	ⲡⲉ	PRON	COP	Gender=Masc|Number=Sing	2	cop	_	_
+4-7	ⲉϥϩⲛⲙⲛⲧⲯⲓⲧⲉ	_	_	_	_	_	_	_	_
+4	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	9	mark	_	_
+5	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	9	nsubj	_	_
+6	ϩⲛ	ϩⲛ	ADP	PREP	_	9	case	_	Orig=ϩⲛ̄
+7	ⲙⲛⲧⲯⲓⲧⲉ	ⲙⲛⲧⲯⲓⲧⲉ	NUM	NUM	NumType=Card	9	nummod	_	Morphs=ⲙⲛⲧ-ⲯⲓⲧⲉ|Orig=ⲙⲛ̄ⲧⲯⲓⲧⲉ
+8-9	ⲛⲣⲟⲙⲡⲉ	_	_	_	_	_	_	_	_
+8	ⲛ	ⲛ	ADP	PREP	_	9	case	_	Orig=ⲛ̄
+9	ⲣⲟⲙⲡⲉ	ⲣⲟⲙⲡⲉ	NOUN	N	_	2	acl	_	_
+10	·	·	PUNCT	PUNCT	_	13	punct	_	_
+11-13	ⲉϥϣⲙϣⲉ	_	_	_	_	_	_	_	_
+11	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	13	mark	_	_
+12	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	13	nsubj	_	_
+13	ϣⲙϣⲉ	ϣⲙϣⲉ	VERB	V	VerbForm=Fin	9	conj	_	Orig=ϣⲙ̄ϣⲉ
+14-16	ⲙⲡⲛⲟⲩⲧⲉ	_	_	_	_	_	_	_	_
+14	ⲙ	ⲛ	ADP	PREP	_	16	case	_	Orig=ⲙ̄
+15	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	16	det	_	_
+16	ⲛⲟⲩⲧⲉ	ⲛⲟⲩⲧⲉ	NOUN	N	_	13	obj	_	_
+17	·	·	PUNCT	PUNCT	_	21	punct	_	_
+18	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	21	cc	_	_
+19-21	ⲉϥⲣϩⲟⲧⲉ	_	_	_	_	_	_	_	_
+19	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	21	mark	_	_
+20	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	21	nsubj	_	_
+21	ⲣϩⲟⲧⲉ	ⲣϩⲟⲧⲉ	VERB	V	VerbForm=Fin	9	conj	_	Morphs=ⲣ-ϩⲟⲧⲉ|Orig=ⲣ̄ϩⲟⲧⲉ
+22-23	ϩⲏⲧⲟⲩ	_	_	_	_	_	_	_	_
+22	ϩⲏⲧ	ϩⲏⲧ	NOUN	N	_	21	obl:npmod	_	_
+23	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	22	det	_	_
+24-26	ⲛⲛⲉϥⲉⲛⲧⲟⲗⲏ	_	_	_	_	_	_	_	_
+24	ⲛ	ⲛ	ADP	PREP	_	26	case	_	Orig=ⲛ̄
+25	ⲛⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender[psor]=Masc|Number=Plur|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	26	det	_	_
+26	ⲉⲛⲧⲟⲗⲏ	ⲉⲛⲧⲟⲗⲏ	NOUN	N	_	21	obl	_	Orig=ⲛ̄ⲧⲟⲗⲏ
+27	·	·	PUNCT	PUNCT	_	2	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0060
+# text = ⲉϥⲟ ⲙⲡⲁⲣⲑⲉⲛⲟⲥ ϩⲙⲡⲉϥⲥⲱⲙⲁ · ⲉϥⲟⲩⲱⲙ ⲛⲟⲩⲥⲟⲡ ⲕⲁⲧⲁⲥⲁⲃⲃⲁⲧⲟⲛ · ⲉϥϣⲗⲏⲗ ϩⲛⲛⲉⲩϣⲟⲟⲩⲉ ·
+1-3	ⲉϥⲟ	_	_	_	_	_	_	_	_
+1	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	3	mark	_	_
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ⲟ	ⲉⲓⲣⲉ	VERB	VSTAT	VerbForm=Fin	0	root	_	_
+4-5	ⲙⲡⲁⲣⲑⲉⲛⲟⲥ	_	_	_	_	_	_	_	_
+4	ⲙ	ⲛ	ADP	PREP	_	5	case	_	Orig=ⲙ̄
+5	ⲡⲁⲣⲑⲉⲛⲟⲥ	ⲡⲁⲣⲑⲉⲛⲟⲥ	NOUN	N	_	3	xcomp	_	_
+6-8	ϩⲙⲡⲉϥⲥⲱⲙⲁ	_	_	_	_	_	_	_	_
+6	ϩⲙ	ϩⲛ	ADP	PREP	_	8	case	_	Orig=ϩⲙ̄
+7	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	8	det	_	_
+8	ⲥⲱⲙⲁ	ⲥⲱⲙⲁ	NOUN	N	_	5	nmod	_	_
+9	·	·	PUNCT	PUNCT	_	12	punct	_	_
+10-12	ⲉϥⲟⲩⲱⲙ	_	_	_	_	_	_	_	_
+10	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	12	mark	_	_
+11	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	12	nsubj	_	_
+12	ⲟⲩⲱⲙ	ⲟⲩⲱⲙ	VERB	V	VerbForm=Fin	3	parataxis	_	_
+13-15	ⲛⲟⲩⲥⲟⲡ	_	_	_	_	_	_	_	_
+13	ⲛ	ⲛ	ADP	PREP	_	15	case	_	Orig=ⲛ̄
+14	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	15	det	_	_
+15	ⲥⲟⲡ	ⲥⲟⲡ	NOUN	N	_	12	obl	_	_
+16-17	ⲕⲁⲧⲁⲥⲁⲃⲃⲁⲧⲟⲛ	_	_	_	_	_	_	_	_
+16	ⲕⲁⲧⲁ	ⲕⲁⲧⲁ	ADP	PREP	_	17	case	_	_
+17	ⲥⲁⲃⲃⲁⲧⲟⲛ	ⲥⲁⲃⲃⲁⲧⲟⲛ	NOUN	N	_	12	obl	_	_
+18	·	·	PUNCT	PUNCT	_	21	punct	_	_
+19-21	ⲉϥϣⲗⲏⲗ	_	_	_	_	_	_	_	_
+19	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	21	mark	_	_
+20	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	21	nsubj	_	_
+21	ϣⲗⲏⲗ	ϣⲗⲏⲗ	VERB	V	VerbForm=Fin	12	parataxis	_	_
+22-24	ϩⲛⲛⲉⲩϣⲟⲟⲩⲉ	_	_	_	_	_	_	_	_
+22	ϩⲛ	ϩⲛ	ADP	PREP	_	24	case	_	Orig=ϩⲛ̄
+23	ⲛⲉ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	24	det	_	_
+24	ⲩϣⲟⲟⲩⲉ	ⲟⲩϣⲏ	NOUN	N	_	21	obl	_	_
+25	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0061
+# text = ϫⲓⲛⲡⲉϩⲟⲟⲩ ⲛⲧⲁϥⲥⲱⲧⲙ ⲉⲛⲉⲭⲣⲓⲥϯⲁⲛⲟⲥ ⲉⲩⲱϣ ⲉⲣⲟϥ ϩⲛⲧⲉⲕⲕⲗⲏⲥⲓⲁ · ⲁⲡⲉϥϩⲏⲧ ⲃⲱⲕ ⲉϩⲣⲁⲓ ⲉⲙⲡⲏⲩⲉ ·
+1-3	ϫⲓⲛⲡⲉϩⲟⲟⲩ	_	_	_	_	_	_	_	_
+1	ϫⲓⲛ	ϫⲓⲛ	ADP	PREP	_	3	case	_	_
+2	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	3	det	_	_
+3	ϩⲟⲟⲩ	ϩⲟⲟⲩ	NOUN	N	_	23	obl	_	_
+4-7	ⲛⲧⲁϥⲥⲱⲧⲙ	_	_	_	_	_	_	_	_
+4	ⲛⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	7	mark	_	Orig=ⲛ̄ⲧ
+5	ⲁ	ⲁ	AUX	APST	_	7	aux	_	_
+6	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	7	nsubj	_	_
+7	ⲥⲱⲧⲙ	ⲥⲱⲧⲙ	VERB	V	VerbForm=Fin	3	acl	_	Orig=ⲥⲱⲧⲙ̄
+8-10	ⲉⲛⲉⲭⲣⲓⲥϯⲁⲛⲟⲥ	_	_	_	_	_	_	_	_
+8	ⲉ	ⲉ	ADP	PREP	_	10	case	_	_
+9	ⲛⲉ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	10	det	_	_
+10	ⲭⲣⲓⲥϯⲁⲛⲟⲥ	ⲭⲣⲓⲥϯⲁⲛⲟⲥ	NOUN	N	_	7	obl	_	_
+11-13	ⲉⲩⲱϣ	_	_	_	_	_	_	_	_
+11	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	13	mark	_	_
+12	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	13	nsubj	_	_
+13	ⲱϣ	ⲱϣ	VERB	V	VerbForm=Fin	10	advcl	_	_
+14-15	ⲉⲣⲟϥ	_	_	_	_	_	_	_	_
+14	ⲉⲣⲟ	ⲉ	ADP	PREP	_	15	case	_	_
+15	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	13	obl	_	_
+16-18	ϩⲛⲧⲉⲕⲕⲗⲏⲥⲓⲁ	_	_	_	_	_	_	_	_
+16	ϩⲛ	ϩⲛ	ADP	PREP	_	18	case	_	Orig=ϩⲛ̄
+17	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	18	det	_	_
+18	ⲉⲕⲕⲗⲏⲥⲓⲁ	ⲉⲕⲕⲗⲏⲥⲓⲁ	NOUN	N	_	7	obl	_	_
+19	·	·	PUNCT	PUNCT	_	3	punct	_	_
+20-22	ⲁⲡⲉϥϩⲏⲧ	_	_	_	_	_	_	_	_
+20	ⲁ	ⲁ	AUX	APST	_	23	aux	_	_
+21	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	22	det	_	_
+22	ϩⲏⲧ	ϩⲏⲧ	NOUN	N	_	23	nsubj	_	_
+23	ⲃⲱⲕ	ⲃⲱⲕ	VERB	V	VerbForm=Fin	0	root	_	_
+24	ⲉϩⲣⲁⲓ	ⲉϩⲣⲁⲓ	ADV	ADV	_	23	advmod	_	_
+25-27	ⲉⲙⲡⲏⲩⲉ	_	_	_	_	_	_	_	_
+25	ⲉ	ⲉ	ADP	PREP	_	27	case	_	_
+26	ⲙ	ⲡ	DET	ART	_	27	det	_	Orig=ⲙ̄
+27	ⲡⲏⲩⲉ	ⲡⲉ	NOUN	N	_	23	obl	_	_
+28	·	·	PUNCT	PUNCT	_	23	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0062
+# text = ⲁϥⲙⲉⲥⲧⲉ ⲡⲕⲟⲥⲙⲟⲥ · ⲛⲉⲙⲉϥⲥⲉⲏⲣⲡ ⲇⲉ · ⲟⲩⲇⲉ ⲙⲉϥⲟⲩⲉⲙϭⲓⲛⲟⲩⲱⲙ ⲉϥϩⲏⲙ ·
+1-3	ⲁϥⲙⲉⲥⲧⲉ	_	_	_	_	_	_	_	_
+1	ⲁ	ⲁ	AUX	APST	_	3	aux	_	_
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ⲙⲉⲥⲧⲉ	ⲙⲟⲥⲧⲉ	VERB	V	VerbForm=Fin	0	root	_	_
+4-5	ⲡⲕⲟⲥⲙⲟⲥ	_	_	_	_	_	_	_	_
+4	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	5	det	_	_
+5	ⲕⲟⲥⲙⲟⲥ	ⲕⲟⲥⲙⲟⲥ	NOUN	N	_	3	obj	_	_
+6	·	·	PUNCT	PUNCT	_	10	punct	_	_
+7-10	ⲛⲉⲙⲉϥⲥⲉⲏⲣⲡ	_	_	_	_	_	_	_	_
+7	ⲛⲉ	ⲛⲉⲣⲉ	AUX	CPRET	_	10	aux	_	_
+8	ⲙⲉ	ⲙⲉⲣⲉ	AUX	ANEGAOR	Polarity=Neg	10	aux	_	_
+9	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	10	nsubj	_	_
+10	ⲥⲉⲏⲣⲡ	ⲥⲉⲏⲣⲡ	VERB	V	VerbForm=Fin	3	conj	_	Morphs=ⲥⲉ-ⲏⲣⲡ|Orig=ⲥⲉⲏ̄ⲣⲡ̄
+11	ⲇⲉ	ⲇⲉ	PART	PTC	_	10	advmod	_	_
+12	·	·	PUNCT	PUNCT	_	16	punct	_	_
+13	ⲟⲩⲇⲉ	ⲟⲩⲇⲉ	CCONJ	CONJ	Polarity=Neg	16	cc	_	_
+14-17	ⲙⲉϥⲟⲩⲉⲙϭⲓⲛⲟⲩⲱⲙ	_	_	_	_	_	_	_	_
+14	ⲙⲉ	ⲙⲉⲣⲉ	AUX	ANEGAOR	Polarity=Neg	16	aux	_	_
+15	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	16	nsubj	_	_
+16	ⲟⲩⲉⲙ	ⲟⲩⲱⲙ	VERB	V	VerbForm=Fin	3	conj	_	_
+17	ϭⲓⲛⲟⲩⲱⲙ	ϭⲓⲛⲟⲩⲱⲙ	NOUN	N	_	16	obj	_	Morphs=ϭⲓⲛ-ⲟⲩⲱⲙ
+18-20	ⲉϥϩⲏⲙ	_	_	_	_	_	_	_	_
+18	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	20	mark	_	_
+19	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	20	nsubj	_	_
+20	ϩⲏⲙ	ϩⲙⲟⲙ	VERB	VSTAT	VerbForm=Fin	17	acl	_	_
+21	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0063
+# text = ⲟⲩⲇⲉ ⲧⲟⲃⲧⲃ ⲟⲩⲇⲉ ⲙⲉϥϣⲟⲩϣⲟⲩ ⲙⲙⲟϥ ϩⲛⲟⲩϩⲃⲥⲱ ⲛϩⲟⲉⲓⲧⲉ ⲉⲛⲉϩ ·
+1	ⲟⲩⲇⲉ	ⲟⲩⲇⲉ	CCONJ	CONJ	Polarity=Neg	2	cc	_	_
+2	ⲧⲟⲃⲧⲃ	ⲧⲟⲃⲧⲃ	VERB	V	VerbForm=Fin	0	root	_	Orig=ⲧⲃ̄ⲧⲃ̄
+3	ⲟⲩⲇⲉ	ⲟⲩⲇⲉ	CCONJ	CONJ	Polarity=Neg	6	cc	_	_
+4-6	ⲙⲉϥϣⲟⲩϣⲟⲩ	_	_	_	_	_	_	_	_
+4	ⲙⲉ	ⲙⲉⲣⲉ	AUX	ANEGAOR	Polarity=Neg	6	aux	_	_
+5	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	6	nsubj	_	_
+6	ϣⲟⲩϣⲟⲩ	ϣⲟⲩϣⲟⲩ	VERB	V	VerbForm=Fin	2	conj	_	_
+7-8	ⲙⲙⲟϥ	_	_	_	_	_	_	_	_
+7	ⲙⲙⲟ	ⲛ	ADP	PREP	_	8	case	_	Orig=ⲙ̄ⲙⲟ
+8	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	6	obj	_	_
+9-11	ϩⲛⲟⲩϩⲃⲥⲱ	_	_	_	_	_	_	_	_
+9	ϩⲛ	ϩⲛ	ADP	PREP	_	11	case	_	Orig=ϩⲛ̄
+10	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	11	det	_	_
+11	ϩⲃⲥⲱ	ϩⲃⲥⲱ	NOUN	N	_	6	obl	_	Orig=ϩⲃ̄ⲥⲱ
+12-13	ⲛϩⲟⲉⲓⲧⲉ	_	_	_	_	_	_	_	_
+12	ⲛ	ⲛ	ADP	PREP	_	13	case	_	Orig=ⲛ̄
+13	ϩⲟⲉⲓⲧⲉ	ϩⲟⲉⲓⲧⲉ	NOUN	N	_	11	nmod	_	Orig=ϩⲟⲓⲧⲉ
+14	ⲉⲛⲉϩ	ⲉⲛⲉϩ	ADV	ADV	_	6	advmod	_	_
+15	·	·	PUNCT	PUNCT	_	2	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0064
+# text = ⲟⲩⲇⲉ ⲙⲉϥⲁⲗⲉ ⲉϩⲧⲟⲟⲩ ⲇⲉ ϩⲁⲣⲙⲁ ·
+1	ⲟⲩⲇⲉ	ⲟⲩⲇⲉ	CCONJ	CONJ	Polarity=Neg	4	cc	_	_
+2-4	ⲙⲉϥⲁⲗⲉ	_	_	_	_	_	_	_	_
+2	ⲙⲉ	ⲙⲉⲣⲉ	AUX	ANEGAOR	Polarity=Neg	4	aux	_	_
+3	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	_
+4	ⲁⲗⲉ	ⲁⲗⲉ	VERB	V	VerbForm=Fin	0	root	_	_
+5-6	ⲉϩⲧⲟⲟⲩ	_	_	_	_	_	_	_	_
+5	ⲉ	ⲉ	ADP	PREP	_	6	case	_	_
+6	ϩⲧⲟⲟⲩ	ϩⲧⲟⲟⲩ	NOUN	N	_	4	obl	_	_
+7	ⲇⲉ	ⲇⲉ	PART	PTC	_	4	advmod	_	_
+8	ϩⲁⲣⲙⲁ	ϩⲁⲣⲙⲁ	NOUN	N	_	6	nmod	_	_
+9	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0065
+# text = ⲟⲩⲇⲉ ⲙⲉϥⲟⲩⲱⲙ ⲙⲛⲡⲉϥⲉⲓⲱⲧ · ⲟⲩⲇⲉ ⲙⲉϥϣⲁϫⲉ ⲛⲙⲙⲁϥ · ϩⲓⲧϩⲏ ⲛⲛⲟϭ ⲉⲣⲟϥ ·
+1	ⲟⲩⲇⲉ	ⲟⲩⲇⲉ	CCONJ	CONJ	Polarity=Neg	4	cc	_	_
+2-4	ⲙⲉϥⲟⲩⲱⲙ	_	_	_	_	_	_	_	_
+2	ⲙⲉ	ⲙⲉⲣⲉ	AUX	ANEGAOR	Polarity=Neg	4	aux	_	_
+3	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	_
+4	ⲟⲩⲱⲙ	ⲟⲩⲱⲙ	VERB	V	VerbForm=Fin	0	root	_	_
+5-7	ⲙⲛⲡⲉϥⲉⲓⲱⲧ	_	_	_	_	_	_	_	_
+5	ⲙⲛ	ⲙⲛ	ADP	PREP	_	7	case	_	Orig=ⲙⲛ̄
+6	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	7	det	_	_
+7	ⲉⲓⲱⲧ	ⲉⲓⲱⲧ	NOUN	N	_	4	obl	_	_
+8	·	·	PUNCT	PUNCT	_	12	punct	_	_
+9	ⲟⲩⲇⲉ	ⲟⲩⲇⲉ	CCONJ	CONJ	Polarity=Neg	12	cc	_	_
+10-12	ⲙⲉϥϣⲁϫⲉ	_	_	_	_	_	_	_	_
+10	ⲙⲉ	ⲙⲉⲣⲉ	AUX	ANEGAOR	Polarity=Neg	12	aux	_	_
+11	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	12	nsubj	_	_
+12	ϣⲁϫⲉ	ϣⲁϫⲉ	VERB	V	VerbForm=Fin	4	conj	_	_
+13-14	ⲛⲙⲙⲁϥ	_	_	_	_	_	_	_	_
+13	ⲛⲙⲙⲁ	ⲙⲛ	ADP	PREP	_	14	case	_	Orig=ⲛⲙ̄ⲙⲁ
+14	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	12	obl	_	_
+15	·	·	PUNCT	PUNCT	_	18	punct	_	_
+16-18	ϩⲓⲧϩⲏ	_	_	_	_	_	_	_	_
+16	ϩⲓ	ϩⲓ	ADP	PREP	_	18	case	_	_
+17	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	18	det	_	Orig=ⲑ
+18	ϩⲏ	ϩⲏ	NOUN	N	_	12	obl	_	Orig=ⲏ
+19-20	ⲛⲛⲟϭ	_	_	_	_	_	_	_	_
+19	ⲛ	ⲛ	ADP	PREP	_	20	case	_	Orig=ⲛ̄
+20	ⲛⲟϭ	ⲛⲟϭ	NOUN	N	_	18	nmod	_	_
+21-22	ⲉⲣⲟϥ	_	_	_	_	_	_	_	_
+21	ⲉⲣⲟ	ⲉ	ADP	PREP	_	22	case	_	_
+22	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	20	nmod	_	_
+23	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0066
+# text = ⲏ ⲛϥϫⲱ ⲛⲟⲩϣⲁϫⲉ ⲛϣⲗⲟϥ ·
+1	ⲏ	ⲏ	CCONJ	CONJ	_	4	cc	_	Orig=ⲏ̄
+2-4	ⲛϥϫⲱ	_	_	_	_	_	_	_	_
+2	ⲛ	ⲛⲧⲉ	AUX	ACONJ	_	4	aux	_	_
+3	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	Orig=ϥ̄
+4	ϫⲱ	ϫⲱ	VERB	V	VerbForm=Fin	0	root	_	_
+5-7	ⲛⲟⲩϣⲁϫⲉ	_	_	_	_	_	_	_	_
+5	ⲛ	ⲛ	ADP	PREP	_	7	case	_	Orig=ⲛ̄
+6	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	7	det	_	_
+7	ϣⲁϫⲉ	ϣⲁϫⲉ	NOUN	N	_	4	obj	_	_
+8-9	ⲛϣⲗⲟϥ	_	_	_	_	_	_	_	_
+8	ⲛ	ⲛ	ADP	PREP	_	9	case	_	Orig=ⲛ̄
+9	ϣⲗⲟϥ	ϣⲗⲟϥ	NOUN	N	_	7	nmod	_	_
+10	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0067
+# text = ⲟⲩⲇⲉ ⲙⲉϥⲱⲣⲕ ⲗⲁⲁⲩ ⲛⲁⲛⲁϣ ⲉⲡⲧⲏⲣϥ ·
+1	ⲟⲩⲇⲉ	ⲟⲩⲇⲉ	CCONJ	CONJ	Polarity=Neg	4	cc	_	_
+2-4	ⲙⲉϥⲱⲣⲕ	_	_	_	_	_	_	_	_
+2	ⲙⲉ	ⲙⲉⲣⲉ	AUX	ANEGAOR	Polarity=Neg	4	aux	_	_
+3	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	_
+4	ⲱⲣⲕ	ⲱⲣⲕ	VERB	V	VerbForm=Fin	0	root	_	Orig=ⲱ̄ⲣⲕ̄
+5	ⲗⲁⲁⲩ	ⲗⲁⲁⲩ	NOUN	N	_	4	obj	_	_
+6-7	ⲛⲁⲛⲁϣ	_	_	_	_	_	_	_	_
+6	ⲛ	ⲛ	ADP	PREP	_	7	case	_	Orig=ⲛ̄
+7	ⲁⲛⲁϣ	ⲁⲛⲁϣ	NOUN	N	_	5	nmod	_	_
+8-10	ⲉⲡⲧⲏⲣϥ	_	_	_	_	_	_	_	_
+8	ⲉ	ⲉ	ADP	PREP	_	10	case	_	_
+9	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	10	det	_	_
+10	ⲧⲏⲣϥ	ⲧⲏⲣϥ	NOUN	N	_	4	obl	_	Orig=ⲧⲏⲣϥ̄
+11	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0068
+# text = ⲁⲩⲱ ⲉϥϣⲁⲛⲥⲱⲧⲙ ⲉⲧⲃⲉⲟⲩⲁ ⲉϥⲟⲧⲡ ⲉϩⲟⲩⲛ · ⲉϣⲱⲡⲉ ⲟⲩⲭⲣⲓⲥϯⲁⲛⲟⲥ ⲡⲉ ϣⲁϥⲇⲓⲁⲕⲟⲛⲉⲓ ⲉⲣⲟϥ ·
+1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	17	cc	_	_
+2-3	ⲉϥϣⲁⲛⲥⲱⲧⲙ	_	_	_	_	_	_	_	_
+2	ⲉϥϣⲁⲛ	ⲉⲣϣⲁⲛ_ⲛⲧⲟϥ	PRON	ACOND_PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ⲥⲱⲧⲙ	ⲥⲱⲧⲙ	VERB	V	VerbForm=Fin	17	advcl	_	Orig=ⲥⲱⲧⲙ̄
+4-5	ⲉⲧⲃⲉⲟⲩⲁ	_	_	_	_	_	_	_	_
+4	ⲉⲧⲃⲉ	ⲉⲧⲃⲉ	ADP	PREP	_	5	case	_	_
+5	ⲟⲩⲁ	oⲩⲁ	NUM	NUM	NumType=Card	3	obl	_	_
+6-8	ⲉϥⲟⲧⲡ	_	_	_	_	_	_	_	_
+6	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	8	mark	_	_
+7	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	8	nsubj	_	_
+8	ⲟⲧⲡ	ⲱⲧⲡ	VERB	VSTAT	VerbForm=Fin	5	acl	_	Orig=ⲟⲧⲡ̄
+9	ⲉϩⲟⲩⲛ	ⲉϩⲟⲩⲛ	ADV	ADV	_	8	advmod	_	_
+10	·	·	PUNCT	PUNCT	_	3	punct	_	_
+11	ⲉϣⲱⲡⲉ	ⲉϣⲱⲡⲉ	CCONJ	CONJ	_	13	mark	_	_
+12-13	ⲟⲩⲭⲣⲓⲥϯⲁⲛⲟⲥ	_	_	_	_	_	_	_	_
+12	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	13	det	_	_
+13	ⲭⲣⲓⲥϯⲁⲛⲟⲥ	ⲭⲣⲓⲥϯⲁⲛⲟⲥ	NOUN	N	_	17	advcl	_	_
+14	ⲡⲉ	ⲡⲉ	PRON	COP	Gender=Masc|Number=Sing	13	cop	_	_
+15-17	ϣⲁϥⲇⲓⲁⲕⲟⲛⲉⲓ	_	_	_	_	_	_	_	_
+15	ϣⲁ	ϣⲁⲣⲉ	AUX	AAOR	_	17	aux	_	_
+16	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	17	nsubj	_	_
+17	ⲇⲓⲁⲕⲟⲛⲉⲓ	ⲇⲓⲁⲕⲟⲛⲉⲓ	VERB	V	VerbForm=Fin	0	root	_	_
+18-19	ⲉⲣⲟϥ	_	_	_	_	_	_	_	_
+18	ⲉⲣⲟ	ⲉ	ADP	PREP	_	19	case	_	_
+19	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	17	obl	_	_
+20	·	·	PUNCT	PUNCT	_	17	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0069
+# text = ⲁⲩⲱ ϣⲁϥϯⲧⲉϥⲭⲣⲉⲓⲁ ⲛⲁϥ · ⲭⲱⲣⲓⲥ ⲧⲁⲙⲉⲡⲉϥⲉⲓⲱⲧ ⲙⲛⲧⲉϥⲙⲁⲁⲩ : —
+1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	4	cc	_	_
+2-6	ϣⲁϥϯⲧⲉϥⲭⲣⲉⲓⲁ	_	_	_	_	_	_	_	_
+2	ϣⲁ	ϣⲁⲣⲉ	AUX	AAOR	_	4	aux	_	_
+3	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	_
+4	ϯ	ϯ	VERB	V	VerbForm=Fin	0	root	_	_
+5	ⲧⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Fem|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	6	det	_	_
+6	ⲭⲣⲉⲓⲁ	ⲭⲣⲉⲓⲁ	NOUN	N	_	4	obj	_	Orig=ⲭⲣⲓⲁ
+7-8	ⲛⲁϥ	_	_	_	_	_	_	_	_
+7	ⲛⲁ	ⲛⲁ	ADP	PREP	_	8	case	_	_
+8	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	4	obl	_	_
+9	·	·	PUNCT	PUNCT	_	11	punct	_	_
+10	ⲭⲱⲣⲓⲥ	ⲭⲱⲣⲓⲥ	PART	PREP	_	11	mark	_	_
+11-13	ⲧⲁⲙⲉⲡⲉϥⲉⲓⲱⲧ	_	_	_	_	_	_	_	_
+11	ⲧⲁⲙⲉ	ⲧⲁⲙⲟ	VERB	V	VerbForm=Fin	4	xcomp	_	_
+12	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	13	det	_	_
+13	ⲉⲓⲱⲧ	ⲉⲓⲱⲧ	NOUN	N	_	11	obj	_	_
+14-16	ⲙⲛⲧⲉϥⲙⲁⲁⲩ	_	_	_	_	_	_	_	_
+14	ⲙⲛ	ⲙⲛ	ADP	PREP	_	16	cc	_	Orig=ⲙⲛ̄
+15	ⲧⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Fem|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	16	det	_	_
+16	ⲙⲁⲁⲩ	ⲙⲁⲁⲩ	NOUN	N	_	13	conj	_	_
+17	:	:	PUNCT	PUNCT	_	4	punct	_	_
+18	—	—	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0070
+# text = ⲁⲩⲱ ⲟⲛ ⲭⲱⲣⲓⲥ ⲛⲉⲧϥϯ ⲙⲙⲟⲟⲩ ⲛⲛⲉϥϩⲙϩⲁⲗ ⲙⲙⲏⲏⲛⲉ ·
+1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	4	cc	_	_
+2	ⲟⲛ	ⲟⲛ	ADV	ADV	_	4	advmod	_	_
+3	ⲭⲱⲣⲓⲥ	ⲭⲱⲣⲓⲥ	ADP	PREP	_	4	case	_	_
+4-7	ⲛⲉⲧϥϯ	_	_	_	_	_	_	_	_
+4	ⲛ	ⲛ	DET	ART	_	0	root	_	_
+5	ⲉⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	7	mark	_	_
+6	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	7	nsubj	_	Orig=ϥ̄
+7	ϯ	ϯ	VERB	V	VerbForm=Fin	4	acl	_	_
+8-9	ⲙⲙⲟⲟⲩ	_	_	_	_	_	_	_	_
+8	ⲙⲙⲟ	ⲛ	ADP	PREP	_	9	case	_	Orig=ⲙ̄ⲙⲟ
+9	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	7	obj	_	_
+10-12	ⲛⲛⲉϥϩⲙϩⲁⲗ	_	_	_	_	_	_	_	_
+10	ⲛ	ⲛ	ADP	PREP	_	12	case	_	Orig=ⲛ̄
+11	ⲛⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender[psor]=Masc|Number=Plur|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	12	det	_	_
+12	ϩⲙϩⲁⲗ	ϩⲙϩⲁⲗ	NOUN	N	_	7	obl	_	Orig=ϩⲙ̄ϩⲁⲗ
+13-14	ⲙⲙⲏⲏⲛⲉ	_	_	_	_	_	_	_	_
+13	ⲙ	ⲛ	ADP	PREP	_	14	case	_	Orig=ⲙ̄
+14	ⲙⲏⲏⲛⲉ	ⲙⲏⲏⲛⲉ	NOUN	N	_	7	obl	_	Orig=ⲙⲏⲏ̄ⲛⲉ
+15	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0071
+# text = ϣⲁϥϣⲟⲣⲡϥ ⲉϩⲧⲟⲟⲩⲉ ⲙⲙⲏⲏⲛⲉ · ⲛϥⲉⲓ ⲉⲃⲟⲗ ⲉϫⲙⲡⲣⲟ ⲙⲡⲉϥⲏⲓ ·
+1-4	ϣⲁϥϣⲟⲣⲡϥ	_	_	_	_	_	_	_	_
+1	ϣⲁ	ϣⲁⲣⲉ	AUX	AAOR	_	3	aux	_	_
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ϣⲟⲣⲡ	ϣⲱⲣⲡ	VERB	V	VerbForm=Fin	0	root	_	_
+4	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	obj	_	Orig=ϥ̄
+5-6	ⲉϩⲧⲟⲟⲩⲉ	_	_	_	_	_	_	_	_
+5	ⲉ	ⲉ	ADP	PREP	_	6	case	_	_
+6	ϩⲧⲟⲟⲩⲉ	ϩⲧⲟⲟⲩⲉ	NOUN	N	_	3	obl	_	_
+7-8	ⲙⲙⲏⲏⲛⲉ	_	_	_	_	_	_	_	_
+7	ⲙ	ⲛ	ADP	PREP	_	8	case	_	Orig=ⲙ̄
+8	ⲙⲏⲏⲛⲉ	ⲙⲏⲏⲛⲉ	NOUN	N	_	3	obl	_	Orig=ⲙⲏⲏ̄ⲛⲉ
+9	·	·	PUNCT	PUNCT	_	12	punct	_	_
+10-12	ⲛϥⲉⲓ	_	_	_	_	_	_	_	_
+10	ⲛ	ⲛⲧⲉ	AUX	ACONJ	_	12	aux	_	_
+11	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	12	nsubj	_	Orig=ϥ̄
+12	ⲉⲓ	ⲉⲓ	VERB	V	VerbForm=Fin	3	advcl	_	_
+13	ⲉⲃⲟⲗ	ⲉⲃⲟⲗ	ADV	ADV	_	12	advmod	_	_
+14-16	ⲉϫⲙⲡⲣⲟ	_	_	_	_	_	_	_	_
+14	ⲉϫⲙ	ⲉϫⲛ	ADP	PREP	_	16	case	_	Orig=ⲉϫⲙ̄
+15	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	16	det	_	_
+16	ⲣⲟ	ⲣⲟ	NOUN	N	_	12	obl	_	_
+17-19	ⲙⲡⲉϥⲏⲓ	_	_	_	_	_	_	_	_
+17	ⲙ	ⲛ	ADP	PREP	_	19	case	_	Orig=ⲙ̄
+18	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	19	det	_	_
+19	ⲏⲓ	ⲏⲓ	NOUN	N	_	16	nmod	_	_
+20	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0072
+# text = ⲉϥϣⲁⲛⲛⲁⲩ ⲉⲟⲩⲁ ⲉϥⲕⲏⲕⲁϩⲏⲩ · ϣⲁϥⲕⲁⲁϥ ⲕⲁϩⲏⲩ ⲛⲧⲉϥϣⲧⲏⲛ ⲛϥⲧⲁⲁⲥ ⲛⲁϥ ·
+1-2	ⲉϥϣⲁⲛⲛⲁⲩ	_	_	_	_	_	_	_	_
+1	ⲉϥϣⲁⲛ	ⲉⲣϣⲁⲛ_ⲛⲧⲟϥ	PRON	ACOND_PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	2	nsubj	_	_
+2	ⲛⲁⲩ	ⲛⲁⲩ	VERB	V	VerbForm=Fin	11	advcl	_	_
+3-4	ⲉⲟⲩⲁ	_	_	_	_	_	_	_	_
+3	ⲉ	ⲉ	ADP	PREP	_	4	case	_	_
+4	ⲟⲩⲁ	ⲟⲩⲁ	NUM	NUM	NumType=Card	2	obl	_	_
+5-7	ⲉϥⲕⲏⲕⲁϩⲏⲩ	_	_	_	_	_	_	_	_
+5	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	7	mark	_	_
+6	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	7	nsubj	_	_
+7	ⲕⲏⲕⲁϩⲏⲩ	ⲕⲏⲕⲁϩⲏⲩ	VERB	VSTAT	VerbForm=Fin	4	acl	_	Morphs=ⲕⲏⲕ-ⲁϩⲏⲩ
+8	·	·	PUNCT	PUNCT	_	2	punct	_	_
+9-12	ϣⲁϥⲕⲁⲁϥ	_	_	_	_	_	_	_	_
+9	ϣⲁ	ϣⲁⲣⲉ	AUX	AAOR	_	11	aux	_	_
+10	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	11	nsubj	_	_
+11	ⲕⲁⲁ	ⲕⲱ	VERB	V	VerbForm=Fin	0	root	_	_
+12	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	11	obj	_	_
+13	ⲕⲁϩⲏⲩ	ⲕⲁϩⲏⲩ	ADV	ADV	_	11	xcomp	_	Morphs=ⲕⲁ-ϩⲏⲩ
+14-16	ⲛⲧⲉϥϣⲧⲏⲛ	_	_	_	_	_	_	_	_
+14	ⲛ	ⲛ	ADP	PREP	_	16	case	_	Orig=ⲛ̄
+15	ⲧⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Fem|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	16	det	_	_
+16	ϣⲧⲏⲛ	ϣⲧⲏⲛ	NOUN	N	_	13	obl	_	_
+17-20	ⲛϥⲧⲁⲁⲥ	_	_	_	_	_	_	_	_
+17	ⲛ	ⲛⲧⲉ	AUX	ACONJ	_	19	aux	_	_
+18	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	19	nsubj	_	Orig=ϥ̄
+19	ⲧⲁⲁ	ϯ	VERB	V	VerbForm=Fin	11	advcl	_	_
+20	ⲥ	ⲛⲧⲟⲥ	PRON	PPERO	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	19	obj	_	_
+21-22	ⲛⲁϥ	_	_	_	_	_	_	_	_
+21	ⲛⲁ	ⲛⲁ	ADP	PREP	_	22	case	_	_
+22	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	19	obl	_	_
+23	·	·	PUNCT	PUNCT	_	11	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0073
+# text = ⲁⲩⲱ ⲛⲉϥⲉⲓⲣⲉ ⲛⲛⲉⲛⲧⲟⲗⲏ ⲧⲏⲣⲟⲩ ⲉⲧⲥⲏϩ ·
+1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	4	cc	_	_
+2-4	ⲛⲉϥⲉⲓⲣⲉ	_	_	_	_	_	_	_	_
+2	ⲛⲉ	ⲛⲉⲣⲉ	AUX	CPRET	_	4	aux	_	_
+3	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	_
+4	ⲉⲓⲣⲉ	ⲉⲓⲣⲉ	VERB	V	VerbForm=Fin	0	root	_	_
+5-7	ⲛⲛⲉⲛⲧⲟⲗⲏ	_	_	_	_	_	_	_	_
+5	ⲛ	ⲛ	ADP	PREP	_	7	case	_	Orig=ⲛ̄
+6	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	7	det	_	_
+7	ⲉⲛⲧⲟⲗⲏ	ⲉⲛⲧⲟⲗⲏ	NOUN	N	_	4	obj	_	_
+8-9	ⲧⲏⲣⲟⲩ	_	_	_	_	_	_	_	_
+8	ⲧⲏⲣ	ⲧⲏⲣ	ADV	IMOD	PronType=Tot	7	advmod	_	_
+9	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	8	det	_	_
+10-11	ⲉⲧⲥⲏϩ	_	_	_	_	_	_	_	_
+10	ⲉⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	11	mark	_	_
+11	ⲥⲏϩ	ⲥϩⲁⲓ	VERB	VSTAT	VerbForm=Fin	7	acl	_	_
+12	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0074
+# text = ⲁⲩⲱ ⲛⲉϥϫⲱⲕ ⲉⲃⲟⲗ ⲙⲡϣⲁϫⲉ ⲛⲛⲉⲩⲁⲅⲅⲉⲗⲓⲟⲛ ⲙⲡⲉⲛϫⲟⲉⲓⲥ ⲓⲏⲥⲟⲩⲥ ⲡⲉⲭⲣⲓⲥⲧⲟⲥ ·
+1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	4	cc	_	_
+2-4	ⲛⲉϥϫⲱⲕ	_	_	_	_	_	_	_	_
+2	ⲛⲉ	ⲛⲉⲣⲉ	AUX	CPRET	_	4	aux	_	_
+3	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	_
+4	ϫⲱⲕ	ϫⲱⲕ	VERB	V	VerbForm=Fin	0	root	_	_
+5	ⲉⲃⲟⲗ	ⲉⲃⲟⲗ	ADV	ADV	_	4	advmod	_	_
+6-8	ⲙⲡϣⲁϫⲉ	_	_	_	_	_	_	_	_
+6	ⲙ	ⲛ	ADP	PREP	_	8	case	_	Orig=ⲙ̄
+7	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	8	det	_	_
+8	ϣⲁϫⲉ	ϣⲁϫⲉ	NOUN	N	_	4	obj	_	_
+9-11	ⲛⲛⲉⲩⲁⲅⲅⲉⲗⲓⲟⲛ	_	_	_	_	_	_	_	_
+9	ⲛ	ⲛ	ADP	PREP	_	11	case	_	Orig=ⲛ̄
+10	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	11	det	_	_
+11	ⲉⲩⲁⲅⲅⲉⲗⲓⲟⲛ	ⲉⲩⲁⲅⲅⲉⲗⲓⲟⲛ	NOUN	N	_	8	nmod	_	_
+12-14	ⲙⲡⲉⲛϫⲟⲉⲓⲥ	_	_	_	_	_	_	_	_
+12	ⲙ	ⲛ	ADP	PREP	_	14	case	_	Orig=ⲙ̄
+13	ⲡⲉⲛ	ⲡⲉⲛ	DET	PPOS	Definite=Def|Gender=Masc|Number=Sing|Number[psor]=Plur|Person=1|Poss=Yes|PronType=Prs	14	det	_	_
+14	ϫⲟⲉⲓⲥ	ϫⲟⲉⲓⲥ	NOUN	N	_	11	nmod	_	Orig=ϫⲥ̄
+15	ⲓⲏⲥⲟⲩⲥ	ⲓⲏⲥⲟⲩⲥ	PROPN	NPROP	_	14	appos	_	Orig=ⲓⲥ̄
+16-17	ⲡⲉⲭⲣⲓⲥⲧⲟⲥ	_	_	_	_	_	_	_	_
+16	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	17	det	_	_
+17	ⲭⲣⲓⲥⲧⲟⲥ	ⲭⲣⲓⲥⲧⲟⲥ	NOUN	N	_	14	appos	_	Orig=ⲭⲣ̄ⲥ̄
+18	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0075
+# text = ⲡⲉϥⲉⲓⲱⲧ ⲇⲉ ⲁϥϩⲓⲥⲉ ⲛⲙⲙⲁϥ · ϫⲉⲉⲓⲛⲁϫⲓ ⲛⲁⲕ ⲛⲧϣⲉⲉⲣⲉ ⲛⲃⲁⲥⲓⲗⲉⲓⲧⲏⲥ ⲡⲉⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ ·
+1-2	ⲡⲉϥⲉⲓⲱⲧ	_	_	_	_	_	_	_	_
+1	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	2	det	_	_
+2	ⲉⲓⲱⲧ	ⲉⲓⲱⲧ	NOUN	N	_	6	dislocated	_	_
+3	ⲇⲉ	ⲇⲉ	PART	PTC	_	6	advmod	_	_
+4-6	ⲁϥϩⲓⲥⲉ	_	_	_	_	_	_	_	_
+4	ⲁ	ⲁ	AUX	APST	_	6	aux	_	_
+5	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	6	nsubj	_	_
+6	ϩⲓⲥⲉ	ϩⲓⲥⲉ	VERB	V	VerbForm=Fin	0	root	_	_
+7-8	ⲛⲙⲙⲁϥ	_	_	_	_	_	_	_	_
+7	ⲛⲙⲙⲁ	ⲙⲛ	ADP	PREP	_	8	case	_	Orig=ⲛⲙ̄ⲙⲁ
+8	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	6	obl	_	_
+9	·	·	PUNCT	PUNCT	_	14	punct	_	_
+10-14	ϫⲉⲉⲓⲛⲁϫⲓ	_	_	_	_	_	_	_	_
+10	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	14	mark	_	_
+11	ⲉ	ⲉⲣⲉ	PART	CFOC	_	14	mark	_	_
+12	ⲓ	ⲁⲛⲟⲕ	PRON	PPERS	Definite=Def|Number=Sing|Person=1|PronType=Prs	14	nsubj	_	_
+13	ⲛⲁ	ⲛⲁ	AUX	FUT	_	14	aux	_	_
+14	ϫⲓ	ϫⲓ	VERB	V	VerbForm=Fin	6	ccomp	_	_
+15-16	ⲛⲁⲕ	_	_	_	_	_	_	_	_
+15	ⲛⲁ	ⲛⲁ	ADP	PREP	_	16	case	_	_
+16	ⲕ	ⲛⲧⲟⲕ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=2|PronType=Prs	14	obl	_	_
+17-19	ⲛⲧϣⲉⲉⲣⲉ	_	_	_	_	_	_	_	_
+17	ⲛ	ⲛ	ADP	PREP	_	19	case	_	Orig=ⲛ̄
+18	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	19	det	_	_
+19	ϣⲉⲉⲣⲉ	ϣⲉⲉⲣⲉ	NOUN	N	_	14	obj	_	_
+20-21	ⲛⲃⲁⲥⲓⲗⲉⲓⲧⲏⲥ	_	_	_	_	_	_	_	_
+20	ⲛ	ⲛ	ADP	PREP	_	21	case	_	Orig=ⲛ̄
+21	ⲃⲁⲥⲓⲗⲉⲓⲧⲏⲥ	ⲃⲁⲥⲓⲗⲉⲓⲧⲏⲥ	PROPN	NPROP	_	19	nmod	_	_
+22-23	ⲡⲉⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	_	_	_	_	_	_	_	_
+22	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	23	det	_	_
+23	ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	ⲥⲧⲣⲁⲧⲏⲗⲁⲧⲏⲥ	NOUN	N	_	21	appos	_	_
+24	·	·	PUNCT	PUNCT	_	6	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0076
+# text = ⲛⲉⲁⲩⲥⲙⲛⲧⲥ ⲅⲁⲣ ⲙⲛⲛⲉⲩⲉⲣⲏⲩ · ⲉϣⲏⲧ ⲛⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ ⲛⲛⲟⲩⲃ · ⲭⲱⲣⲓⲥ ⲛⲧⲁⲉⲓⲟ · ⲁⲩⲱ ϥⲧⲟⲟⲩϣⲉ ⲛⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ ⲛϩⲁⲧ ·
+1-5	ⲛⲉⲁⲩⲥⲙⲛⲧⲥ	_	_	_	_	_	_	_	_
+1	ⲛⲉ	ⲛⲉⲣⲉ	AUX	CPRET	_	4	aux	_	_
+2	ⲁ	ⲁ	AUX	APST	_	4	aux	_	_
+3	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	4	nsubj	_	_
+4	ⲥⲙⲛⲧ	ⲥⲙⲓⲛⲉ	VERB	V	VerbForm=Fin	0	root	_	Orig=ⲥⲙⲛ̄ⲧ
+5	ⲥ	ⲛⲧⲟⲥ	PRON	PPERO	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	4	obj	_	Orig=ⲥ̄
+6	ⲅⲁⲣ	ⲅⲁⲣ	PART	PTC	_	4	advmod	_	_
+7-9	ⲙⲛⲛⲉⲩⲉⲣⲏⲩ	_	_	_	_	_	_	_	_
+7	ⲙⲛ	ⲙⲛ	ADP	PREP	_	9	case	_	Orig=ⲙⲛ̄
+8	ⲛⲉⲩ	ⲡⲉⲩ	DET	PPOS	Definite=Def|Number=Plur|Number[psor]=Plur|Person=3|Poss=Yes|PronType=Prs	9	det	_	_
+9	ⲉⲣⲏⲩ	ⲉⲣⲏⲩ	NOUN	N	PronType=Rcp	4	obl	_	Orig=ⲉ̄ⲣⲏⲩ
+10	·	·	PUNCT	PUNCT	_	14	punct	_	_
+11-12	ⲉϣⲏⲧ	_	_	_	_	_	_	_	_
+11	ⲉ	ⲉ	ADP	PREP	_	14	case	_	_
+12	ϣⲏⲧ	ϣⲏⲧ	NUM	NUM	NumType=Card	14	nummod	_	_
+13-14	ⲛⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	_	_	_	_	_	_	_	_
+13	ⲛ	ⲛ	ADP	PREP	_	14	case	_	Orig=ⲛ̄
+14	ⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	ⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	NOUN	N	_	4	obl	_	Orig=ⲕⲉⲛ̇ⲇⲉⲛⲁⲣⲓⲟⲛ
+15-16	ⲛⲛⲟⲩⲃ	_	_	_	_	_	_	_	_
+15	ⲛ	ⲛ	ADP	PREP	_	16	case	_	Orig=ⲛ̄
+16	ⲛⲟⲩⲃ	ⲛⲟⲩⲃ	NOUN	N	_	14	nmod	_	_
+17	·	·	PUNCT	PUNCT	_	20	punct	_	_
+18	ⲭⲱⲣⲓⲥ	ⲭⲱⲣⲓⲥ	ADP	PREP	_	20	case	_	_
+19-20	ⲛⲧⲁⲉⲓⲟ	_	_	_	_	_	_	_	_
+19	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	20	det	_	Orig=ⲛ̄
+20	ⲧⲁⲉⲓⲟ	ⲧⲁⲉⲓⲟ	NOUN	N	_	14	nmod	_	Orig=ⲧⲁⲓⲟ
+21	·	·	PUNCT	PUNCT	_	25	punct	_	_
+22	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	25	cc	_	_
+23	ϥⲧⲟⲟⲩϣⲉ	ϥⲧⲟⲟⲩϣⲉ	NUM	NUM	NumType=Card	25	nummod	_	Morphs=ϥⲧⲟⲟⲩ-ϣⲉ|Orig=ϥⲧⲟⲩϣⲉ
+24-25	ⲛⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	_	_	_	_	_	_	_	_
+24	ⲛ	ⲛ	ADP	PREP	_	25	case	_	Orig=ⲛ̄
+25	ⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	ⲕⲉⲛⲧⲏⲛⲁⲣⲓⲟⲛ	NOUN	N	_	20	conj	_	Orig=ⲕⲉⲛⲇⲩⲛⲁⲣⲓⲟⲛ
+26-27	ⲛϩⲁⲧ	_	_	_	_	_	_	_	_
+26	ⲛ	ⲛ	ADP	PREP	_	27	case	_	Orig=ⲛ̄
+27	ϩⲁⲧ	ϩⲁⲧ	NOUN	N	_	25	nmod	_	_
+28	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0077
+# text = ⲙⲛⲙⲏⲧ ⲛϩⲙϩⲁⲗ ⲛϩⲟⲟⲩⲧ · ⲙⲛⲙⲏⲧ ⲛϣⲉ ⲛϩⲙϩⲁⲗ ⲛⲥϩⲓⲙⲉ · ⲉⲩϫⲓ ⲙⲁⲛⲓⲁⲕⲏⲥ ⲛⲛⲟⲩⲃ · ⲙⲛϥⲧⲟⲟⲩ ⲛϣⲉ ⲛϩⲧⲟ · ⲁⲩⲱ ⲙⲏⲧ ⲛϣⲉ ⲙⲙⲁⲥⲡⲟⲣⲕ · ⲙⲛⲙⲏⲧ ⲛϣⲉ ⲛϭⲁⲙⲟⲩⲗ · ⲙⲛⲙⲏⲧ ⲛϣⲉ ⲛⲥⲧⲉⲓⲱϩⲉ ⲛϭⲱⲙ ·
+1-2	ⲙⲛⲙⲏⲧ	_	_	_	_	_	_	_	_
+1	ⲙⲛ	ⲙⲛ	ADP	PREP	_	4	cc	_	Orig=ⲙⲛ̄
+2	ⲙⲏⲧ	ⲙⲏⲧ	NUM	NUM	NumType=Card	4	nummod	_	_
+3-4	ⲛϩⲙϩⲁⲗ	_	_	_	_	_	_	_	_
+3	ⲛ	ⲛ	ADP	PREP	_	4	case	_	Orig=ⲛ̄
+4	ϩⲙϩⲁⲗ	ϩⲙϩⲁⲗ	NOUN	N	_	0	root	_	Orig=ϩⲙ̄ϩⲁⲗ
+5-6	ⲛϩⲟⲟⲩⲧ	_	_	_	_	_	_	_	_
+5	ⲛ	ⲛ	ADP	PREP	_	6	case	_	Orig=ⲛ̄
+6	ϩⲟⲟⲩⲧ	ϩⲟⲟⲩⲧ	NOUN	N	_	4	nmod	_	_
+7	·	·	PUNCT	PUNCT	_	13	punct	_	_
+8-9	ⲙⲛⲙⲏⲧ	_	_	_	_	_	_	_	_
+8	ⲙⲛ	ⲙⲛ	ADP	PREP	_	13	cc	_	Orig=ⲙⲛ̄
+9	ⲙⲏⲧ	ⲙⲏⲧ	NUM	NUM	NumType=Card	11	compound	_	_
+10-11	ⲛϣⲉ	_	_	_	_	_	_	_	_
+10	ⲛ	ⲛ	ADP	PREP	_	11	case	_	Orig=ⲛ̄
+11	ϣⲉ	ϣⲉ	NUM	NUM	NumType=Card	13	nummod	_	_
+12-13	ⲛϩⲙϩⲁⲗ	_	_	_	_	_	_	_	_
+12	ⲛ	ⲛ	ADP	PREP	_	13	case	_	Orig=ⲛ̄
+13	ϩⲙϩⲁⲗ	ϩⲙϩⲁⲗ	NOUN	N	_	4	conj	_	Orig=ϩⲙ̄ϩⲁⲗ
+14-15	ⲛⲥϩⲓⲙⲉ	_	_	_	_	_	_	_	_
+14	ⲛ	ⲛ	ADP	PREP	_	15	case	_	Orig=ⲛ̄
+15	ⲥϩⲓⲙⲉ	ⲥϩⲓⲙⲉ	NOUN	N	_	13	nmod	_	_
+16	·	·	PUNCT	PUNCT	_	19	punct	_	_
+17-19	ⲉⲩϫⲓ	_	_	_	_	_	_	_	_
+17	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	19	mark	_	_
+18	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	19	nsubj	_	_
+19	ϫⲓ	ϫⲓ	VERB	V	VerbForm=Fin	13	acl	_	_
+20	ⲙⲁⲛⲓⲁⲕⲏⲥ	ⲙⲁⲛⲓⲁⲕⲏⲥ	NOUN	N	_	19	obj	_	_
+21-22	ⲛⲛⲟⲩⲃ	_	_	_	_	_	_	_	_
+21	ⲛ	ⲛ	ADP	PREP	_	22	case	_	Orig=ⲛ̄
+22	ⲛⲟⲩⲃ	ⲛⲟⲩⲃ	NOUN	N	_	20	nmod	_	_
+23	·	·	PUNCT	PUNCT	_	29	punct	_	_
+24-25	ⲙⲛϥⲧⲟⲟⲩ	_	_	_	_	_	_	_	_
+24	ⲙⲛ	ⲙⲛ	ADP	PREP	_	29	cc	_	Orig=ⲙⲛ̄
+25	ϥⲧⲟⲟⲩ	ϥⲧⲟⲟⲩ	NUM	NUM	NumType=Card	27	compound	_	_
+26-27	ⲛϣⲉ	_	_	_	_	_	_	_	_
+26	ⲛ	ⲛ	ADP	PREP	_	27	case	_	Orig=ⲛ̄
+27	ϣⲉ	ϣⲉ	NUM	NUM	NumType=Card	29	nummod	_	_
+28-29	ⲛϩⲧⲟ	_	_	_	_	_	_	_	_
+28	ⲛ	ⲛ	ADP	PREP	_	29	case	_	Orig=ⲛ̄
+29	ϩⲧⲟ	ϩⲧⲟ	NOUN	N	_	4	conj	_	_
+30	·	·	PUNCT	PUNCT	_	36	punct	_	_
+31	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	36	cc	_	_
+32	ⲙⲏⲧ	ⲙⲏⲧ	NUM	NUM	NumType=Card	34	compound	_	_
+33-34	ⲛϣⲉ	_	_	_	_	_	_	_	_
+33	ⲛ	ⲛ	ADP	PREP	_	34	case	_	Orig=ⲛ̄
+34	ϣⲉ	ϣⲉ	NUM	NUM	NumType=Card	36	nummod	_	_
+35-36	ⲙⲙⲁⲥⲡⲟⲣⲕ	_	_	_	_	_	_	_	_
+35	ⲙ	ⲛ	ADP	PREP	_	36	case	_	Orig=ⲙ̄
+36	ⲙⲁⲥⲡⲟⲣⲕ	ⲙⲁⲥⲡⲟⲣⲕ	NOUN	N	_	4	conj	_	Orig=ⲙⲁⲥⲡⲟⲣⲕ̄
+37	·	·	PUNCT	PUNCT	_	43	punct	_	_
+38-39	ⲙⲛⲙⲏⲧ	_	_	_	_	_	_	_	_
+38	ⲙⲛ	ⲙⲛ	ADP	PREP	_	43	cc	_	Orig=ⲙⲛ̄
+39	ⲙⲏⲧ	ⲙⲏⲧ	NUM	NUM	NumType=Card	41	compound	_	_
+40-41	ⲛϣⲉ	_	_	_	_	_	_	_	_
+40	ⲛ	ⲛ	ADP	PREP	_	41	case	_	Orig=ⲛ̄
+41	ϣⲉ	ϣⲉ	NUM	NUM	NumType=Card	43	nummod	_	_
+42-43	ⲛϭⲁⲙⲟⲩⲗ	_	_	_	_	_	_	_	_
+42	ⲛ	ⲛ	ADP	PREP	_	43	case	_	Orig=ⲛ̄
+43	ϭⲁⲙⲟⲩⲗ	ϭⲁⲙⲟⲩⲗ	NOUN	N	_	36	conj	_	_
+44	·	·	PUNCT	PUNCT	_	50	punct	_	_
+45-46	ⲙⲛⲙⲏⲧ	_	_	_	_	_	_	_	_
+45	ⲙⲛ	ⲙⲛ	ADP	PREP	_	50	cc	_	Orig=ⲙⲛ̄
+46	ⲙⲏⲧ	ⲙⲏⲧ	NUM	NUM	NumType=Card	48	compound	_	_
+47-48	ⲛϣⲉ	_	_	_	_	_	_	_	_
+47	ⲛ	ⲛ	ADP	PREP	_	48	case	_	Orig=ⲛ̄
+48	ϣⲉ	ϣⲉ	NUM	NUM	NumType=Card	50	nummod	_	_
+49-50	ⲛⲥⲧⲉⲓⲱϩⲉ	_	_	_	_	_	_	_	_
+49	ⲛ	ⲛ	ADP	PREP	_	50	case	_	Orig=ⲛ̄
+50	ⲥⲧⲉⲓⲱϩⲉ	ⲥⲧⲉⲓⲱϩⲉ	NOUN	N	_	36	conj	_	Morphs=ⲥⲧ-ⲉⲓⲱϩⲉ|Orig=ⲥϯⲱ̄ϩⲉ
+51-52	ⲛϭⲱⲙ	_	_	_	_	_	_	_	_
+51	ⲛ	ⲛ	ADP	PREP	_	52	case	_	Orig=ⲛ̄
+52	ϭⲱⲙ	ϭⲱⲙ	NOUN	N	_	50	nmod	_	_
+53	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0078
+# text = ⲙⲛⲙⲏⲧ ⲛϣⲉ ⲛϭⲓⲛⲟⲩⲃⲁⲗ ⲉⲩⲡⲗⲉⲁ ϩⲛⲧⲑⲁⲗⲁⲥⲥⲁ · ⲙⲛⲙⲏⲧ ⲛⲏⲓ ⲉⲣⲉⲙⲏⲧ ⲛⲥⲧⲉⲓⲱϩⲉ ⲉⲛⲟⲩⲁ ⲛϩⲏⲧⲟⲩ ·
+1-2	ⲙⲛⲙⲏⲧ	_	_	_	_	_	_	_	_
+1	ⲙⲛ	ⲙⲛ	ADP	PREP	_	6	cc	_	Orig=ⲙⲛ̄
+2	ⲙⲏⲧ	ⲙⲏⲧ	NUM	NUM	NumType=Card	4	compound	_	_
+3-4	ⲛϣⲉ	_	_	_	_	_	_	_	_
+3	ⲛ	ⲛ	ADP	PREP	_	4	case	_	Orig=ⲛ̄
+4	ϣⲉ	ϣⲉ	NUM	NUM	NumType=Card	6	nummod	_	_
+5-6	ⲛϭⲓⲛⲟⲩⲃⲁⲗ	_	_	_	_	_	_	_	_
+5	ⲛ	ⲛ	ADP	PREP	_	6	case	_	Orig=ⲛ̄
+6	ϭⲓⲛⲟⲩⲃⲁⲗ	ϭⲓⲛⲟⲩⲏⲗ	NOUN	N	_	0	root	_	_
+7-9	ⲉⲩⲡⲗⲉⲁ	_	_	_	_	_	_	_	_
+7	ⲉ	ⲉ	SCONJ	CCIRC	_	9	mark	_	_
+8	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	9	nsubj	_	_
+9	ⲡⲗⲉⲁ	ⲡⲗⲉⲁ	VERB	V	VerbForm=Fin	6	acl	_	_
+10-12	ϩⲛⲧⲑⲁⲗⲁⲥⲥⲁ	_	_	_	_	_	_	_	_
+10	ϩⲛ	ϩⲛ	ADP	PREP	_	12	case	_	Orig=ϩⲛ̄
+11	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	12	det	_	Orig=ⲑ
+12	ⲑⲁⲗⲁⲥⲥⲁ	ⲑⲁⲗⲁⲥⲥⲁ	NOUN	N	_	9	obl	_	Orig=ⲁⲗⲁⲥⲥⲁ
+13	·	·	PUNCT	PUNCT	_	17	punct	_	_
+14-15	ⲙⲛⲙⲏⲧ	_	_	_	_	_	_	_	_
+14	ⲙⲛ	ⲙⲛ	ADP	PREP	_	17	cc	_	Orig=ⲙⲛ̄
+15	ⲙⲏⲧ	ⲙⲏⲧ	NUM	NUM	NumType=Card	17	nummod	_	_
+16-17	ⲛⲏⲓ	_	_	_	_	_	_	_	_
+16	ⲛ	ⲛ	ADP	PREP	_	17	case	_	Orig=ⲛ̄
+17	ⲏⲓ	ⲏⲓ	NOUN	N	_	6	conj	_	_
+18-19	ⲉⲣⲉⲙⲏⲧ	_	_	_	_	_	_	_	_
+18	ⲉⲣⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	26	mark	_	_
+19	ⲙⲏⲧ	ⲙⲏⲧⲉ	NUM	NUM	NumType=Card	21	nummod	_	_
+20-21	ⲛⲥⲧⲉⲓⲱϩⲉ	_	_	_	_	_	_	_	_
+20	ⲛ	ⲛ	ADP	PREP	_	21	case	_	Orig=ⲉⲛ̄
+21	ⲥⲧⲉⲓⲱϩⲉ	ⲥⲧⲉⲓⲱϩⲉ	NOUN	N	_	26	nsubj	_	Morphs=ⲥⲧ-ⲉⲓⲱϩⲉ|Orig=ⲥϯⲱ̄ϩⲉ
+22-24	ⲉⲛⲟⲩⲁ	_	_	_	_	_	_	_	_
+22	ⲉ	ⲉ	ADP	PREP	_	24	case	_	_
+23	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	24	det	_	_
+24	ⲟⲩⲁ	ⲟⲩⲁ	NUM	NUM	NumType=Card	26	obl	_	_
+25-26	ⲛϩⲏⲧⲟⲩ	_	_	_	_	_	_	_	_
+25	ⲛϩⲏⲧ	ϩⲛ	ADP	PREP	_	26	case	_	Orig=ⲛ̄ϩⲏⲧ
+26	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	17	acl	_	_
+27	·	·	PUNCT	PUNCT	_	6	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0079
+# text = ⲭⲱⲣⲓⲥ ⲛⲉⲧⲉⲣⲉⲡⲉϥⲉⲓⲱⲧ ⲛⲁⲧⲁⲁⲩ ⲛⲁϥ · ϩⲉⲛⲛⲟϭ ⲛϩⲩⲡⲉⲣⲉⲥⲓⲁ ⲛⲉⲩϣⲟⲟⲡ ⲛⲁϥ ϩⲓϫⲙⲡⲕⲁϩ ·
+1	ⲭⲱⲣⲓⲥ	ⲭⲱⲣⲓⲥ	ADP	PREP	_	2	case	_	_
+2-5	ⲛⲉⲧⲉⲣⲉⲡⲉϥⲉⲓⲱⲧ	_	_	_	_	_	_	_	_
+2	ⲛ	ⲛ	DET	ART	_	0	root	_	_
+3	ⲉⲧⲉⲣⲉ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	7	mark	_	_
+4	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	5	det	_	_
+5	ⲉⲓⲱⲧ	ⲉⲓⲱⲧ	NOUN	N	_	7	nsubj	_	_
+6-8	ⲛⲁⲧⲁⲁⲩ	_	_	_	_	_	_	_	_
+6	ⲛⲁ	ⲛⲁ	AUX	FUT	_	7	aux	_	_
+7	ⲧⲁⲁ	ϯ	VERB	V	VerbForm=Fin	2	acl	_	_
+8	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	7	obj	_	_
+9-10	ⲛⲁϥ	_	_	_	_	_	_	_	_
+9	ⲛⲁ	ⲛⲁ	ADP	PREP	_	10	case	_	_
+10	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	7	obl	_	_
+11	·	·	PUNCT	PUNCT	_	18	punct	_	_
+12-13	ϩⲉⲛⲛⲟϭ	_	_	_	_	_	_	_	_
+12	ϩⲉⲛ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	13	det	_	_
+13	ⲛⲟϭ	ⲛⲟϭ	NOUN	N	_	18	dislocated	_	_
+14-15	ⲛϩⲩⲡⲉⲣⲉⲥⲓⲁ	_	_	_	_	_	_	_	_
+14	ⲛ	ⲛ	ADP	PREP	_	15	case	_	Orig=ⲛ̄
+15	ϩⲩⲡⲉⲣⲉⲥⲓⲁ	ϩⲩⲡⲉⲣⲉⲥⲓⲁ	NOUN	N	_	13	nmod	_	_
+16-18	ⲛⲉⲩϣⲟⲟⲡ	_	_	_	_	_	_	_	_
+16	ⲛⲉ	ⲛⲉⲣⲉ	AUX	CPRET	_	18	aux	_	_
+17	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	18	nsubj	_	_
+18	ϣⲟⲟⲡ	ϣⲱⲡⲉ	VERB	VSTAT	VerbForm=Fin	2	parataxis	_	_
+19-20	ⲛⲁϥ	_	_	_	_	_	_	_	_
+19	ⲛⲁ	ⲛⲁ	ADP	PREP	_	20	case	_	_
+20	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	18	obl	_	_
+21-23	ϩⲓϫⲙⲡⲕⲁϩ	_	_	_	_	_	_	_	_
+21	ϩⲓϫⲙ	ϩⲓϫⲛ	ADP	PREP	_	23	case	_	Orig=ϩⲓϫⲙ̄
+22	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	23	det	_	_
+23	ⲕⲁϩ	ⲕⲁϩ	NOUN	N	_	18	obl	_	_
+24	·	·	PUNCT	PUNCT	_	2	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0080
+# text = ⲡⲙⲁⲕⲁⲣⲓⲟⲥ ⲇⲉ ⲁⲡⲁ ⲃⲓⲕⲧⲱⲣ · ⲙⲡⲉϥⲡⲉⲓⲑⲉ ⲛⲁⲩ · ⲉϥϫⲱ ⲙⲙⲟⲥ
+1-2	ⲡⲙⲁⲕⲁⲣⲓⲟⲥ	_	_	_	_	_	_	_	_
+1	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	2	det	_	Orig=Ⲡ
+2	ⲙⲁⲕⲁⲣⲓⲟⲥ	ⲙⲁⲕⲁⲣⲓⲟⲥ	NOUN	N	_	9	dislocated	_	_
+3	ⲇⲉ	ⲇⲉ	PART	PTC	_	9	advmod	_	_
+4	ⲁⲡⲁ	ⲁⲡⲁ	NOUN	N	_	2	appos	_	_
+5	ⲃⲓⲕⲧⲱⲣ	ⲃⲓⲕⲧⲱⲣ	PROPN	NPROP	_	4	flat	_	_
+6	·	·	PUNCT	PUNCT	_	4	punct	_	_
+7-9	ⲙⲡⲉϥⲡⲉⲓⲑⲉ	_	_	_	_	_	_	_	_
+7	ⲙⲡⲉ	ⲙⲡⲉ	AUX	ANEGPST	Polarity=Neg	9	aux	_	Orig=ⲙ̄ⲡⲉ
+8	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	9	nsubj	_	_
+9	ⲡⲉⲓⲑⲉ	ⲡⲉⲓⲑⲉ	VERB	V	VerbForm=Fin	0	root	_	Orig=ⲡⲓⲑⲉ
+10-11	ⲛⲁⲩ	_	_	_	_	_	_	_	_
+10	ⲛⲁ	ⲛⲁ	ADP	PREP	_	11	case	_	_
+11	ⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	9	obl	_	_
+12	·	·	PUNCT	PUNCT	_	15	punct	_	_
+13-15	ⲉϥϫⲱ	_	_	_	_	_	_	_	_
+13	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	15	mark	_	_
+14	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	15	nsubj	_	_
+15	ϫⲱ	ϫⲱ	VERB	V	VerbForm=Fin	9	advcl	_	_
+16-17	ⲙⲙⲟⲥ	_	_	_	_	_	_	_	_
+16	ⲙⲙⲟ	ⲛ	ADP	PREP	_	17	case	_	Orig=ⲙ̄ⲙⲟ
+17	ⲥ	ⲛⲧⲟⲥ	PRON	PPERO	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	15	obj	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0081
+# text = ϫⲉⲛⲁⲓ ⲧⲏⲣⲟⲩ ⲥⲉⲛⲁⲧⲁⲕⲟ : —
+1-2	ϫⲉⲛⲁⲓ	_	_	_	_	_	_	_	_
+1	ϫⲉ	ϫⲉ	CCONJ	CONJ	_	7	mark	_	_
+2	ⲛⲁⲓ	ⲡⲁⲓ	DET	PDEM	Definite=Def|Number=Plur|PronType=Dem	7	dislocated	_	_
+3-4	ⲧⲏⲣⲟⲩ	_	_	_	_	_	_	_	_
+3	ⲧⲏⲣ	ⲧⲏⲣ	ADV	IMOD	PronType=Tot	2	advmod	_	_
+4	ⲟⲩ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Poss=Yes|PronType=Prs	3	det	_	_
+5-7	ⲥⲉⲛⲁⲧⲁⲕⲟ	_	_	_	_	_	_	_	_
+5	ⲥⲉ	ⲛⲧⲟⲟⲩ	PRON	PPERS	Definite=Def|Number=Plur|Person=3|PronType=Prs	7	nsubj	_	_
+6	ⲛⲁ	ⲛⲁ	AUX	FUT	_	7	aux	_	_
+7	ⲧⲁⲕⲟ	ⲧⲁⲕⲟ	VERB	V	VerbForm=Fin	0	root	_	_
+8	:	:	PUNCT	PUNCT	_	7	punct	_	_
+9	—	—	PUNCT	PUNCT	_	7	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0082
+# text = ⲉϥϩⲁⲣⲉϩ ⲛⲁϥ ⲉⲧⲙⲛⲧⲣⲣⲟ ⲛⲙⲡⲏⲩⲉ ·
+1-3	ⲉϥϩⲁⲣⲉϩ	_	_	_	_	_	_	_	_
+1	ⲉ	ⲉⲣⲉ	PART	CFOC	_	3	mark	_	_
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ϩⲁⲣⲉϩ	ϩⲁⲣⲉϩ	VERB	V	VerbForm=Fin	0	root	_	_
+4-5	ⲛⲁϥ	_	_	_	_	_	_	_	_
+4	ⲛⲁ	ⲛⲁ	ADP	PREP	_	5	case	_	_
+5	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	obl	_	_
+6-8	ⲉⲧⲙⲛⲧⲣⲣⲟ	_	_	_	_	_	_	_	_
+6	ⲉ	ⲉ	ADP	PREP	_	8	case	_	_
+7	ⲧ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	8	det	_	_
+8	ⲙⲛⲧⲣⲣⲟ	ⲙⲛⲧⲣⲣⲟ	NOUN	N	_	3	obl	_	Morphs=ⲙⲛⲧ-ⲣⲣⲟ|Orig=ⲙⲛ̄ⲧⲉⲣⲟ
+9-11	ⲛⲙⲡⲏⲩⲉ	_	_	_	_	_	_	_	_
+9	ⲛ	ⲛ	ADP	PREP	_	11	case	_	Orig=ⲛ̄
+10	ⲙ	ⲡ	DET	ART	_	11	det	_	Orig=ⲙ̄
+11	ⲡⲏⲩⲉ	ⲡⲉ	NOUN	N	_	8	nmod	_	_
+12	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0083
+# text = ⲛⲉϣⲁⲣⲉⲡϫⲟⲉⲓⲥ ⲓⲏⲥⲟⲩⲥ ⲟⲩⲱⲛϩ ⲉⲣⲟϥ ⲛϩⲟ ϩⲓϩⲟ · ⲉϥⲙⲉ ⲙⲙⲟϥ ⲉⲧⲃⲉⲡⲉϥⲧⲃⲃⲟ ·
+1-4	ⲛⲉϣⲁⲣⲉⲡϫⲟⲉⲓⲥ	_	_	_	_	_	_	_	_
+1	ⲛⲉ	ⲛⲉⲣⲉ	AUX	CPRET	_	6	aux	_	_
+2	ϣⲁⲣⲉ	ϣⲁⲣⲉ	AUX	AAOR	_	6	aux	_	_
+3	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	4	det	_	_
+4	ϫⲟⲉⲓⲥ	ϫⲟⲉⲓⲥ	NOUN	N	_	6	nsubj	_	Orig=ϫⲥ̄
+5	ⲓⲏⲥⲟⲩⲥ	ⲓⲏⲥⲟⲩⲥ	PROPN	NPROP	_	4	appos	_	Orig=ⲓⲥ̄
+6	ⲟⲩⲱⲛϩ	ⲟⲩⲱⲛϩ	VERB	V	VerbForm=Fin	0	root	_	Orig=ⲟⲩⲱ̄ⲛϩ̄
+7-8	ⲉⲣⲟϥ	_	_	_	_	_	_	_	_
+7	ⲉⲣⲟ	ⲉ	ADP	PREP	_	8	case	_	_
+8	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	6	obl	_	_
+9-10	ⲛϩⲟ	_	_	_	_	_	_	_	_
+9	ⲛ	ⲛ	ADP	PREP	_	10	case	_	Orig=ⲛ̄
+10	ϩⲟ	ϩⲟ	NOUN	N	_	6	obl	_	_
+11-12	ϩⲓϩⲟ	_	_	_	_	_	_	_	_
+11	ϩⲓ	ϩⲓ	ADP	PREP	_	12	case	_	_
+12	ϩⲟ	ϩⲟ	NOUN	N	_	10	nmod	_	_
+13	·	·	PUNCT	PUNCT	_	16	punct	_	_
+14-16	ⲉϥⲙⲉ	_	_	_	_	_	_	_	_
+14	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	16	mark	_	_
+15	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	16	nsubj	_	_
+16	ⲙⲉ	ⲙⲉ	VERB	V	VerbForm=Fin	6	advcl	_	_
+17-18	ⲙⲙⲟϥ	_	_	_	_	_	_	_	_
+17	ⲙⲙⲟ	ⲛ	ADP	PREP	_	18	case	_	Orig=ⲙ̄ⲙⲟ
+18	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	16	obj	_	_
+19-21	ⲉⲧⲃⲉⲡⲉϥⲧⲃⲃⲟ	_	_	_	_	_	_	_	_
+19	ⲉⲧⲃⲉ	ⲉⲧⲃⲉ	ADP	PREP	_	21	case	_	_
+20	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	21	det	_	_
+21	ⲧⲃⲃⲟ	ⲧⲃⲃⲟ	NOUN	N	_	16	obl	_	Orig=ⲧⲃ̄ⲃⲟ
+22	·	·	PUNCT	PUNCT	_	6	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0084
+# text = ⲡⲅⲉⲛⲛⲁⲓⲟⲥ ⲇⲉ ⲁⲡⲁ ⲃⲓⲕⲧⲱⲣ · ⲁϥⲕⲱ ⲛⲁϥ ⲛⲟⲩⲉⲝⲉⲇⲣⲁ ⲛϩⲟⲩⲛ ⲙⲡⲉϥⲏⲓ : — ⲉϥⲁⲛⲁⲭⲱⲣⲉⲓ ⲛϩⲏⲧⲥ ⲁϫⲛⲛⲉϥⲉⲓⲟⲧⲉ ·
+1-2	ⲡⲅⲉⲛⲛⲁⲓⲟⲥ	_	_	_	_	_	_	_	_
+1	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	2	det	_	_
+2	ⲅⲉⲛⲛⲁⲓⲟⲥ	ⲅⲉⲛⲛⲁⲓⲟⲥ	NOUN	N	_	9	dislocated	_	_
+3	ⲇⲉ	ⲇⲉ	PART	PTC	_	9	amod	_	_
+4	ⲁⲡⲁ	ⲁⲡⲁ	NOUN	N	_	2	appos	_	_
+5	ⲃⲓⲕⲧⲱⲣ	ⲃⲓⲕⲧⲱⲣ	PROPN	NPROP	_	4	flat	_	_
+6	·	·	PUNCT	PUNCT	_	4	punct	_	_
+7-9	ⲁϥⲕⲱ	_	_	_	_	_	_	_	_
+7	ⲁ	ⲁ	AUX	APST	_	9	aux	_	_
+8	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	9	nsubj	_	_
+9	ⲕⲱ	ⲕⲱ	VERB	V	VerbForm=Fin	0	root	_	_
+10-11	ⲛⲁϥ	_	_	_	_	_	_	_	_
+10	ⲛⲁ	ⲛⲁ	ADP	PREP	_	11	case	_	_
+11	ϥ	ⲛⲧⲟϥ	PRON	PPERO	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	9	obl	_	_
+12-14	ⲛⲟⲩⲉⲝⲉⲇⲣⲁ	_	_	_	_	_	_	_	_
+12	ⲛ	ⲛ	ADP	PREP	_	14	case	_	Orig=ⲛ̄
+13	ⲟⲩ	ⲟⲩ	DET	ART	Definite=Ind|Number=Sing|PronType=Art	14	det	_	_
+14	ⲉⲝⲉⲇⲣⲁ	ⲉⲝⲉⲇⲣⲁ	NOUN	N	_	9	obj	_	_
+15	ⲛϩⲟⲩⲛ	ⲛϩⲟⲩⲛ	ADV	ADV	_	18	case	_	Orig=ⲛ̄ϩⲟⲩⲛ
+16-18	ⲙⲡⲉϥⲏⲓ	_	_	_	_	_	_	_	_
+16	ⲙ	ⲛ	ADP	PREP	_	15	fixed	_	Orig=ⲙ̄
+17	ⲡⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender=Masc|Gender[psor]=Masc|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	18	det	_	_
+18	ⲏⲓ	ⲏⲓ	NOUN	N	_	9	obl	_	_
+19	:	:	PUNCT	PUNCT	_	9	punct	_	_
+20	—	—	PUNCT	PUNCT	_	23	punct	_	_
+21-23	ⲉϥⲁⲛⲁⲭⲱⲣⲉⲓ	_	_	_	_	_	_	_	_
+21	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	23	mark	_	_
+22	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	23	nsubj	_	_
+23	ⲁⲛⲁⲭⲱⲣⲉⲓ	ⲁⲛⲁⲭⲱⲣⲉⲓ	VERB	V	VerbForm=Fin	9	advcl	_	_
+24-25	ⲛϩⲏⲧⲥ	_	_	_	_	_	_	_	_
+24	ⲛϩⲏⲧ	ϩⲛ	ADP	PREP	_	25	case	_	Orig=ⲛ̄ϩⲏⲧ
+25	ⲥ	ⲛⲧⲟⲥ	PRON	PPERO	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	23	obl	_	Orig=ⲥ̄
+26-28	ⲁϫⲛⲛⲉϥⲉⲓⲟⲧⲉ	_	_	_	_	_	_	_	_
+26	ⲁϫⲛ	ⲁϫⲛ	ADP	PREP	_	28	case	_	Orig=ⲁϫⲛ̄
+27	ⲛⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender[psor]=Masc|Number=Plur|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	28	det	_	_
+28	ⲉⲓⲟⲧⲉ	ⲉⲓⲱⲧ	NOUN	N	_	23	obl	_	_
+29	·	·	PUNCT	PUNCT	_	9	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0085
+# text = ⲙⲡϥⲛⲕⲟⲧⲕ ⲅⲁⲣ ⲉϭⲗⲟϭ ϫⲓⲛⲉϥϩⲛⲙⲛⲧⲏ ⲛⲣⲟⲙⲡⲉ ·
+1-3	ⲙⲡϥⲛⲕⲟⲧⲕ	_	_	_	_	_	_	_	_
+1	ⲙⲡ	ⲙⲡⲉ	AUX	ANEGPST	Polarity=Neg	3	aux	_	Orig=ⲙ̄ⲡ
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	Orig=ϥ̄
+3	ⲛⲕⲟⲧⲕ	ⲛⲕⲟⲧⲕ	VERB	V	VerbForm=Fin	0	root	_	Orig=ⲛ̄ⲕⲟⲧⲕ̄
+4	ⲅⲁⲣ	ⲅⲁⲣ	PART	PTC	_	3	advmod	_	_
+5-6	ⲉϭⲗⲟϭ	_	_	_	_	_	_	_	_
+5	ⲉ	ⲉ	ADP	PREP	_	6	case	_	_
+6	ϭⲗⲟϭ	ϭⲗⲟϭ	NOUN	N	_	3	obl	_	_
+7-11	ϫⲓⲛⲉϥϩⲛⲙⲛⲧⲏ	_	_	_	_	_	_	_	_
+7	ϫⲓⲛ	ϫⲓⲛ	CCONJ	CONJ	_	13	mark	_	_
+8	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	13	mark	_	_
+9	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	13	nsubj	_	_
+10	ϩⲛ	ϩⲛ	ADP	PREP	_	13	case	_	Orig=ϩⲛ̄
+11	ⲙⲛⲧⲏ	ⲙⲛⲧⲏ	NUM	NUM	NumType=Card	13	nummod	_	Morphs=ⲙⲛⲧ-ⲏ|Orig=ⲙⲛ̄ⲧⲉ
+12-13	ⲛⲣⲟⲙⲡⲉ	_	_	_	_	_	_	_	_
+12	ⲛ	ⲛ	ADP	PREP	_	13	case	_	Orig=ⲛ̄
+13	ⲣⲟⲙⲡⲉ	ⲣⲟⲙⲡⲉ	NOUN	N	_	3	advcl	_	_
+14	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0086
+# text = ⲁⲗⲗⲁ ⲛⲉϥϣⲗⲏⲗ ⲙⲡⲉϩⲟⲟⲩ ⲙⲛⲧⲉⲩϣⲏ · ⲁⲩⲱ ⲛⲉϥⲛⲏⲥⲧⲉⲩⲉ ϫⲓⲛⲡⲥⲁⲃⲃⲁⲧⲟⲛ ϣⲁⲡⲥⲁⲃⲃⲁⲧⲟⲛ ·
+1	ⲁⲗⲗⲁ	ⲁⲗⲗⲁ	CCONJ	CONJ	_	4	cc	_	_
+2-4	ⲛⲉϥϣⲗⲏⲗ	_	_	_	_	_	_	_	_
+2	ⲛⲉ	ⲛⲉⲣⲉ	AUX	CPRET	_	4	aux	_	_
+3	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	_
+4	ϣⲗⲏⲗ	ϣⲗⲏⲗ	VERB	V	VerbForm=Fin	0	root	_	_
+5-7	ⲙⲡⲉϩⲟⲟⲩ	_	_	_	_	_	_	_	_
+5	ⲙ	ⲛ	ADP	PREP	_	7	case	_	Orig=ⲙ̄
+6	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	7	det	_	_
+7	ϩⲟⲟⲩ	ϩⲟⲟⲩ	NOUN	N	_	4	obl	_	_
+8-10	ⲙⲛⲧⲉⲩϣⲏ	_	_	_	_	_	_	_	_
+8	ⲙⲛ	ⲙⲛ	ADP	PREP	_	10	case	_	Orig=ⲙⲛ̄
+9	ⲧⲉ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	10	det	_	_
+10	ⲩϣⲏ	ⲟⲩϣⲏ	NOUN	N	_	7	conj	_	_
+11	·	·	PUNCT	PUNCT	_	15	punct	_	_
+12	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	15	cc	_	_
+13-15	ⲛⲉϥⲛⲏⲥⲧⲉⲩⲉ	_	_	_	_	_	_	_	_
+13	ⲛⲉ	ⲛⲉⲣⲉ	AUX	CPRET	_	15	aux	_	_
+14	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	15	nsubj	_	_
+15	ⲛⲏⲥⲧⲉⲩⲉ	ⲛⲏⲥⲧⲉⲩⲉ	VERB	V	VerbForm=Fin	4	conj	_	_
+16-18	ϫⲓⲛⲡⲥⲁⲃⲃⲁⲧⲟⲛ	_	_	_	_	_	_	_	_
+16	ϫⲓⲛ	ϫⲓⲛ	ADP	PREP	_	18	case	_	_
+17	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	18	det	_	_
+18	ⲥⲁⲃⲃⲁⲧⲟⲛ	ⲥⲁⲃⲃⲁⲧⲟⲛ	NOUN	N	_	15	obl	_	_
+19-21	ϣⲁⲡⲥⲁⲃⲃⲁⲧⲟⲛ	_	_	_	_	_	_	_	_
+19	ϣⲁ	ϣⲁ	ADP	PREP	_	21	case	_	_
+20	ⲡ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	21	det	_	_
+21	ⲥⲁⲃⲃⲁⲧⲟⲛ	ⲥⲁⲃⲃⲁⲧⲟⲛ	NOUN	N	_	15	obl	_	_
+22	·	·	PUNCT	PUNCT	_	4	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0087
+# text = ⲉϥⲉⲓⲣⲉ ⲛⲛⲉϥⲥⲩⲛⲁⲝⲓⲥ ·
+1-3	ⲉϥⲉⲓⲣⲉ	_	_	_	_	_	_	_	_
+1	ⲉ	ⲉⲣⲉ	SCONJ	CCIRC	_	3	mark	_	_
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ⲉⲓⲣⲉ	ⲉⲓⲣⲉ	VERB	V	VerbForm=Fin	0	root	_	_
+4-6	ⲛⲛⲉϥⲥⲩⲛⲁⲝⲓⲥ	_	_	_	_	_	_	_	_
+4	ⲛ	ⲛ	ADP	PREP	_	6	case	_	Orig=ⲛ̄
+5	ⲛⲉϥ	ⲡⲉϥ	DET	PPOS	Definite=Def|Gender[psor]=Masc|Number=Plur|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	6	det	_	_
+6	ⲥⲩⲛⲁⲝⲓⲥ	ⲥⲩⲛⲁⲝⲓⲥ	NOUN	N	_	3	obj	_	_
+7	·	·	PUNCT	PUNCT	_	3	punct	_	_
+
+# sent_id = martyrdom_victor-martyrdom_victor_01_s0088
+# text = ϣⲁϥⲣϣⲙⲛⲧϣⲉⲥⲉⲧⲏ ⲛⲥⲟⲡ ⲛϣⲗⲏⲗ ⲙⲡⲉϩⲟⲟⲩ · ⲁⲩⲱ ⲥⲁϣϥ ⲛϣⲉ ⲙⲁⲁⲃ ⲛⲧⲉⲩϣⲏ ·
+1-4	ϣⲁϥⲣϣⲙⲛⲧϣⲉⲥⲉⲧⲏ	_	_	_	_	_	_	_	_
+1	ϣⲁ	ϣⲁⲣⲉ	AUX	AAOR	_	3	aux	_	_
+2	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3	ⲣ	ⲉⲓⲣⲉ	VERB	V	VerbForm=Fin	0	root	_	Orig=ⲣ̄
+4	ϣⲙⲛⲧϣⲉⲥⲉⲧⲏ	ϣⲙⲛⲧϣⲉⲥⲉⲧⲏ	NUM	NUM	NumType=Card	6	nummod	_	Morphs=ϣⲙⲛⲧ-ϣⲉ-ⲥⲉ-ⲧⲏ|Orig=ϣⲉⲙⲛ̄ⲧϣⲉⲥⲉⲧⲏ
+5-6	ⲛⲥⲟⲡ	_	_	_	_	_	_	_	_
+5	ⲛ	ⲛ	ADP	PREP	_	6	case	_	Orig=ⲛ̄
+6	ⲥⲟⲡ	ⲥⲟⲡ	NOUN	N	_	3	obj	_	_
+7-8	ⲛϣⲗⲏⲗ	_	_	_	_	_	_	_	_
+7	ⲛ	ⲛ	ADP	PREP	_	8	case	_	Orig=ⲛ̄
+8	ϣⲗⲏⲗ	ϣⲗⲏⲗ	NOUN	N	_	6	nmod	_	_
+9-11	ⲙⲡⲉϩⲟⲟⲩ	_	_	_	_	_	_	_	_
+9	ⲙ	ⲛ	ADP	PREP	_	11	case	_	Orig=ⲙ̄
+10	ⲡⲉ	ⲡ	DET	ART	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	11	det	_	_
+11	ϩⲟⲟⲩ	ϩⲟⲟⲩ	NOUN	N	_	3	obl	_	_
+12	·	·	PUNCT	PUNCT	_	17	punct	_	_
+13	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	17	cc	_	_
+14	ⲥⲁϣϥ	ⲥⲁϣϥ	NUM	NUM	NumType=Card	17	compound	_	Orig=ⲥⲁϣϥ̄
+15-16	ⲛϣⲉ	_	_	_	_	_	_	_	_
+15	ⲛ	ⲛ	ADP	PREP	_	16	case	_	Orig=ⲛ̄
+16	ϣⲉ	ϣⲉ	NUM	NUM	NumType=Card	17	compound	_	_
+17	ⲙⲁⲁⲃ	ⲙⲁⲁⲃ	NUM	NUM	NumType=Card	3	conj	_	Orig=ⲙ̄ⲁⲁⲃ
+18-20	ⲛⲧⲉⲩϣⲏ	_	_	_	_	_	_	_	_
+18	ⲛ	ⲛ	ADP	PREP	_	20	case	_	Orig=ⲛ̄
+19	ⲧⲉ	ⲡ	DET	ART	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	20	det	_	_
+20	ⲩϣⲏ	ⲟⲩϣⲏ	NOUN	N	_	17	orphan	_	_
+21	·	·	PUNCT	PUNCT	_	3	punct	_	_
 
