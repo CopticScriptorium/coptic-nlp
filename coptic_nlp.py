@@ -16,6 +16,7 @@ from lib.binarize_tags import binarize
 from lib.lang import lookup_lang
 from lib.harvest_tt_sgml import harvest_tt
 from lib.mwe import tag_mwes
+from lib.lemmatize import Lemmatizer
 
 PY3 = sys.version_info[0] > 2
 
@@ -30,6 +31,9 @@ bin_dir = script_dir + os.sep + "bin" + os.sep
 data_dir = script_dir + os.sep + "data" + os.sep
 parser_path = bin_dir + "maltparser-1.8" + os.sep
 tt_path = bin_dir + "TreeTagger" + os.sep + "bin" + os.sep
+
+# Global lookup lemmatizer for marmot tagging
+lemmatizer = Lemmatizer(data_dir + "copt_lemma_lex.tab", no_unknown=True)
 
 
 def log_tasks(opts):
@@ -526,9 +530,9 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 		if sent_tag is not None:
 			tagged = re.sub(r"^<[^>]*>","",tagged)
 
-	lemmas = re.sub('^[^\t]+\t','',tagged)
-	lemmas = re.sub('\n[^\t]+\t','\n',lemmas)
-	tagged = re.sub('(\t[^\t]+\n)','\n',tagged)
+	lemmas = re.sub(r'^[^\t]+\t','',tagged)
+	lemmas = re.sub(r'\n[^\t]+\t','\n',lemmas)
+	tagged = re.sub(r'(\t[^\t]+(\n|$))','\n',tagged).strip()
 	langed = lookup_lang(norms, lexicon=data_dir + "lang_lexicon.tab")
 
 	if do_parse:
