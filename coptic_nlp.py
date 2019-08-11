@@ -745,8 +745,9 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 		stk = None
 
 	# Check if TreeTagger and Malt Parser are available
-	tt_OK, malt_OK = check_requirements()
-	if (opts.tag and not tt_OK) or ((opts.parse or opts.parse_only or opts.merge_parse) and not malt_OK):
+	tt_OK, malt_OK, foma_OK, marmot_OK = check_requirements()
+	if (opts.tag and not marmot_OK) or ((opts.parse or opts.parse_only or opts.merge_parse) and not malt_OK) or \
+			(opts.tag and opts.treetagger and not tt_OK) or not foma_OK:
 		sys.stderr.write("! You are missing required software:\n")
 		if not foma_OK and (opts.norm or not opts.no_tok):
 			sys.stderr.write(" - Foma is not installed but is required for tokenization and normalization\n")
