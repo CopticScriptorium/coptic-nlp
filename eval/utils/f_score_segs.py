@@ -13,13 +13,14 @@ of a single pipe (i.e. input contained a literal pipe, which must be a complete 
 """
 
 
-def main(goldfile, predfile, preds_as_string=False,ignore_diff_len=False,replace_diff_len=False,silent=False):
+def main(goldfile, predfile, preds_as_string=False,ignore_diff_len=False,replace_diff_len=False,silent=False,sep_only=False):
 	lines = io.open(goldfile, encoding="utf8").read().strip().replace("\r", "").split("\n")
 	counter = 0
 	gold = []
 	gold_groups = []
 	perfect = 0
 	total = 0
+	no_sep_lines = set([])
 
 	if "\t" in lines[0]:  # Convenience step allowing 2-column file as gold
 		sys.stderr.write("o Found tab in gold file, using second column as gold\n")
@@ -28,6 +29,9 @@ def main(goldfile, predfile, preds_as_string=False,ignore_diff_len=False,replace
 		total += 1
 		if "[" in line or "]" in line and not len(line.strip()) == 1:
 			line = line.replace("[","").replace("]","")
+		if sep_only and "|" not in line:  # Only evaluate lines that have separator
+			no_sep_lines.add(r)
+			continue
 		gold_groups.append(line.strip())
 		for i, c in enumerate(list(line.strip())):
 			counter += 1
@@ -50,22 +54,25 @@ def main(goldfile, predfile, preds_as_string=False,ignore_diff_len=False,replace
 		lines = io.open(predfile, encoding="utf8").read().strip().replace("\r", "").split("\n")
 	counter = 0
 	pred = []
+	offset = 0
 
-	to_pop = []
 	for r, line in enumerate(lines):
 		# Ignore [ or ] in string
 		if "[" in line or "]" in line and not len(line.strip()) == 1:
 			line = line.replace("[","").replace("]","")
 		if r == len(gold_groups):
 			a=4
-		if len(line.replace("|","").strip()) != len(gold_groups[r].replace("|","").strip()):
+		if r in no_sep_lines:
+			offset -= 1
+			continue
+		if len(line.replace("|","").strip()) != len(gold_groups[r+offset].replace("|","").strip()):
 			# Length mismatch, bug row
 			if ignore_diff_len:
 				if replace_diff_len:
-					line = gold_groups[r].replace("|","").strip()  # Replace prediction with gold length string with no segmentation
+					line = gold_groups[r+offset].replace("|","").strip()  # Replace prediction with gold length string with no segmentation
 				else:
 					continue
-		if line.strip() == gold_groups[r]:
+		if line.strip() == gold_groups[r+offset]:
 			perfect += 1
 		for i, c in enumerate(list(line.strip())):
 			counter += 1
