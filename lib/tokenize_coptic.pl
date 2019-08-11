@@ -97,8 +97,9 @@ while (<LEX>) {
     chomp;
 	if ($_ =~ /^(.*)\t(.*)\t(.*)$/) #ignore comments in modifier file marked by #
     {
-	if ($2 eq 'N') {$nounlist .= "$1|";} 
-	if ($2 eq 'NPROP') {$namelist .= "$1|";} 
+	if ($1 =~ '\[\.\.\]'){} # Ignore [..] to avoid error "POSIX syntax[..] is reserved for future extensions in regex"
+	elsif ($2 eq 'N') {$nounlist .= "$1|";} 
+	elsif ($2 eq 'NPROP') {$namelist .= "$1|";} 
 	elsif ($2 eq 'V' || $2 eq 'VIMP') {	$verblist .= "$1|";} 
 	elsif ($2 eq 'VSTAT') {$vstatlist .= "$1|";} 
 	elsif ($2 eq 'ADV') {$advlist .= "$1|";} 
