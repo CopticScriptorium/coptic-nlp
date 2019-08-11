@@ -1440,11 +1440,9 @@
 <norm norm="·">
 <lemma lemma="·">
 <pos pos="PUNCT">
-<morph morph="0">
 <hi_rend hi_rend="red">
 ·
 </hi_rend>
-</morph>
 </pos>
 </lemma>
 </norm>
