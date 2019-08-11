@@ -8114,7 +8114,7 @@
 <orig orig="ⲛⲁⲩ">
 <norm norm="ⲛⲁⲩ">
 <lemma lemma="ⲛⲁⲩ">
-<pos pos="N">
+<pos pos="V">
 ⲛⲁⲩ
 </pos>
 </lemma>
@@ -9077,7 +9077,7 @@
 <orig orig="ϣⲁϫⲉ">
 <norm norm="ϣⲁϫⲉ">
 <lemma lemma="ϣⲁϫⲉ">
-<pos pos="N">
+<pos pos="V">
 ϣⲁϫⲉ
 </pos>
 </lemma>
@@ -9254,11 +9254,11 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲉⲓⲟⲩⲏⲏϩ">
-<norm_group norm_group="ⲉⲓⲟⲩⲏⲏϩ">
+<norm_group norm_group="ⲉⲓⲟⲩⲏϩ">
 <orig orig="ⲉ">
 <norm norm="ⲉ">
 <lemma lemma="ⲉⲣⲉ">
-<pos pos="CCIRC">
+<pos pos="CFOC">
 ⲉ
 </pos>
 </lemma>
@@ -9274,9 +9274,9 @@
 </norm>
 </orig>
 <orig orig="ⲟⲩⲏⲏϩ">
-<norm norm="ⲟⲩⲏⲏϩ">
-<lemma lemma="ⲟⲩⲏⲏϩ">
-<pos pos="V">
+<norm norm="ⲟⲩⲏϩ">
+<lemma lemma="ⲟⲩⲱϩ">
+<pos pos="VSTAT">
 ⲟⲩⲏⲏϩ
 </pos>
 </lemma>
@@ -9285,7 +9285,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ϩⲛ̅ⲟⲩⲥⲟⲟϩⲥ̅">
-<norm_group norm_group="ϩⲛⲟⲩⲥⲟⲟϩⲥ">
+<norm_group norm_group="ϩⲛⲟⲩⲥⲟⲟⲩϩⲥ">
 <orig orig="ϩⲛ̅">
 <norm norm="ϩⲛ">
 <lemma lemma="ϩⲛ">
@@ -9305,8 +9305,8 @@
 </norm>
 </orig>
 <orig orig="ⲥⲟⲟϩⲥ̅">
-<norm norm="ⲥⲟⲟϩⲥ">
-<lemma lemma="ⲥⲟⲟϩⲥ">
+<norm norm="ⲥⲟⲟⲩϩⲥ">
+<lemma lemma="ⲥⲟⲟⲩϩⲥ">
 <pos pos="N">
 ⲥⲟⲟϩⲥ̅
 </pos>
@@ -10639,8 +10639,8 @@
 </orig>
 <orig orig="ⲩ">
 <norm norm="ⲩ">
-<lemma lemma="ⲛⲧⲟⲟⲩ">
-<pos pos="PPERS">
+<lemma lemma="ⲟⲩ">
+<pos pos="ART">
 ⲩ
 </pos>
 </lemma>
@@ -12559,13 +12559,21 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ϫⲓϩⲱⲃ">
-<norm norm="ϫⲓϩⲱⲃ">
-<lemma lemma="ϫⲓϩⲱⲃ">
+<orig orig="ϫⲓ">
+<norm norm="ϫⲓ">
+<lemma lemma="ϫⲓ">
 <pos pos="V">
 <morph morph="ϫⲓ">
 ϫⲓ
 </morph>
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϩⲱⲃ">
+<norm norm="ϩⲱⲃ">
+<lemma lemma="ϩⲱⲃ">
+<pos pos="N">
 <morph morph="ϩⲱⲃ">
 ϩⲱⲃ
 </morph>
@@ -13366,7 +13374,7 @@
 </orig_group>
 </ed_line_n>
 </translation>
-<translation translation="translation">
+<translation translation="Afterwards I meditated in my heart upon what I had done, and I grieved, and wept exceedingly, and I was always heaving sighs. ">
 <ed_line_n ed_line_n="30">
 <orig_group orig_group="Ⲙⲛ̅ⲛ̅ⲥⲱⲥ">
 <norm_group norm_group="ⲙⲛⲛⲥⲱⲥ">
@@ -13751,7 +13759,7 @@
 </norm_group>
 </orig_group>
 </translation>
-<translation translation="Afterwards I meditated in my heart upon what I had done, and I grieved, and wept exceedingly, and I j was always heaving sighs. ">
+<translation translation="Afterwards I meditated in my heart upon what I had done, and I grieved, and wept exceedingly, and I was always heaving sighs. ">
 <orig_group orig_group="ⲁⲓⲙⲉⲉⲩⲉ">
 <norm_group norm_group="ⲁⲓⲙⲉⲉⲩⲉ">
 <orig orig="ⲁ">
@@ -15093,7 +15101,7 @@
 <orig orig="ⲡⲱⲧ">
 <norm norm="ⲡⲱⲧ">
 <lemma lemma="ⲡⲱⲧ">
-<pos pos="N">
+<pos pos="V">
 ⲡⲱⲧ
 </pos>
 </lemma>
@@ -15304,7 +15312,7 @@
 <orig orig="ϯ">
 <norm norm="ϯ">
 <lemma lemma="ϯ">
-<pos pos="V">
+<pos pos="PDEM">
 ϯ
 </pos>
 </lemma>
@@ -15556,7 +15564,7 @@
 <orig orig="ⲡⲩⲅⲏ">
 <norm norm="ⲡⲩⲅⲏ">
 <lemma lemma="ⲡⲩⲅⲏ">
-<pos pos="V">
+<pos pos="N">
 ⲡⲩⲅⲏ
 </pos>
 </lemma>
@@ -17317,8 +17325,8 @@
 </orig>
 <orig orig="ⲁϩⲉ">
 <norm norm="ⲁϩⲉ">
-<lemma lemma="ⲱϩⲉ">
-<pos pos="V">
+<lemma lemma="ⲁϩⲉ">
+<pos pos="PTC">
 ⲁϩⲉ
 </pos>
 </lemma>
@@ -19740,8 +19748,8 @@
 <norm_group norm_group="ⲉⲩⲧⲟⲉⲓⲥ">
 <orig orig="ⲉ">
 <norm norm="ⲉ">
-<lemma lemma="ⲉⲣⲉ">
-<pos pos="CCIRC">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
 ⲉ
 </pos>
 </lemma>
@@ -19749,8 +19757,8 @@
 </orig>
 <orig orig="ⲩ">
 <norm norm="ⲩ">
-<lemma lemma="ⲛⲧⲟⲟⲩ">
-<pos pos="PPERS">
+<lemma lemma="ⲟⲩ">
+<pos pos="ART">
 ⲩ
 </pos>
 </lemma>
@@ -19759,7 +19767,7 @@
 <orig orig="ⲧⲟⲉⲓⲥ">
 <norm norm="ⲧⲟⲉⲓⲥ">
 <lemma lemma="ⲧⲟⲉⲓⲥ">
-<pos pos="VSTAT">
+<pos pos="N">
 ⲧⲟⲉⲓⲥ
 </pos>
 </lemma>
@@ -20538,8 +20546,8 @@
 <norm_group norm_group="ⲁⲣⲓϩⲙϩⲁⲗ">
 <orig orig="ⲁⲣⲓϩⲙ̅ϩⲁⲗ">
 <norm norm="ⲁⲣⲓϩⲙϩⲁⲗ">
-<lemma lemma="ⲁⲣⲓϩⲙϩⲁⲗ">
-<pos pos="N">
+<lemma lemma="ⲣϩⲙϩⲁⲗ">
+<pos pos="VIMP">
 <morph morph="ⲁⲣⲓ">
 ⲁⲣⲓ
 </morph>
@@ -20656,7 +20664,7 @@
 </norm_group>
 </orig_group>
 </translation>
-<translation translation="From that day all my bowels have remained in a healthy condition, and I have ceased to suffer in my liver, and I have lived in this place in the desert without pains. ">
+<translation translation="From that day all my bowels have remained in a healthy condition, and I have ceased to suffer in my liver,  ">
 <orig_group orig_group="ϫⲓⲛⲡⲉϩⲟⲟⲩ">
 <norm_group norm_group="ϫⲓⲛⲡⲉϩⲟⲟⲩ">
 <orig orig="ϫⲓⲛ">
@@ -20958,6 +20966,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="and I have lived in this place in the desert without pains.">
 <orig_group orig_group="ϯϣⲟⲟⲡ">
 <norm_group norm_group="ϯϣⲟⲟⲡ">
 <orig orig="ϯ">
@@ -21857,7 +21867,7 @@
 </norm_group>
 </orig_group>
 </translation>
-<translation translation="translation">
+<translation translation="and he said unto me, Timothy is my name. ">
 <orig_group orig_group="ⲛ̅ⲧⲟϥ">
 <norm_group norm_group="ⲛⲧⲟϥ">
 <orig orig="ⲛ̅ⲧⲟϥ">
@@ -21990,7 +22000,7 @@
 </norm_group>
 </orig_group>
 </translation>
-<translation translation="and he said unto me, Timothy is my name. Remember me, O my beloved brother, [in thy prayers], so that the Lord may make me to bring to an end the good fight whereto He hath summoned me.'">
+<translation translation="Remember me, O my beloved brother, [in thy prayers], so that the Lord may make me to bring to an end the good fight whereto He hath summoned me.'">
 <orig_group orig_group="Ⲁⲣⲓⲡⲁⲙⲉⲉⲩⲉ">
 <norm_group norm_group="ⲁⲣⲓⲡⲁⲙⲉⲉⲩⲉ">
 <orig orig="Ⲁⲣⲓ">
@@ -22139,8 +22149,8 @@
 </norm>
 </orig>
 <orig orig="ⲧ̅">
-<norm norm="ⲁⲛⲟⲕ">
-<lemma lemma="ⲧ">
+<norm norm="ⲧ">
+<lemma lemma="ⲁⲛⲟⲕ">
 <pos pos="PPERO">
 ⲧ̅
 </pos>
@@ -22256,12 +22266,21 @@
 </norm>
 </orig>
 </ed_line_n>
-<ed_line_n ed_line_n="19">
-<orig orig="ⲧⲁϩⲙⲉⲧ">
-<norm norm="ⲧⲁϩⲙⲉⲧ">
-<lemma lemma="ⲧⲁϩⲙⲉⲧ">
+<orig orig="ⲧⲁϩⲙⲉ">
+<norm norm="ⲧⲁϩⲙⲉ">
+<lemma lemma="ⲧⲱϩⲙ">
 <pos pos="V">
-ⲧⲁϩⲙⲉⲧ
+ⲧⲁϩⲙⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<ed_line_n ed_line_n="19">
+<orig orig="ⲧ">
+<norm norm="ⲧ">
+<lemma lemma="ⲁⲛⲟⲕ">
+<pos pos="PPERO">
+ⲧ
 </pos>
 </lemma>
 </norm>
@@ -28067,8 +28086,8 @@
 </orig_group>
 </ed_line_n>
 </translation>
-<translation translation="And the name of that monastery was Erete. We all lived together, and each of us was of the same mind, and peace dwelt in our midst. We lived with each other a life of quiet contemplation, and we ascribed glory unto God. ">
 <ed_line_n ed_line_n="23">
+<translation translation="And the name of that monastery was Erete.">
 <orig_group orig_group="Ⲡⲣⲁⲛ">
 <norm_group norm_group="ⲡⲣⲁⲛ">
 <orig orig="Ⲡ">
@@ -28198,12 +28217,14 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="We all lived together, and each of us was of the same mind, and peace dwelt in our midst. We lived with each other a life of quiet contemplation, and we ascribed glory unto God. ">
 <orig_group orig_group="ⲉⲛⲟ">
 <norm_group norm_group="ⲉⲛⲟ">
 <orig orig="ⲉ">
 <norm norm="ⲉ">
 <lemma lemma="ⲉⲣⲉ">
-<pos pos="CCIRC">
+<pos pos="CFOC">
 ⲉ
 </pos>
 </lemma>
@@ -28374,8 +28395,8 @@
 <ed_line_n ed_line_n="25">
 <orig orig="ϯ">
 <norm norm="ⲧ">
-<lemma lemma="ⲁⲛⲟⲕ">
-<pos pos="PPERS">
+<lemma lemma="ⲡ">
+<pos pos="ART">
 ϯ
 </pos>
 </lemma>
@@ -30355,7 +30376,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲙ̅ⲙⲏⲏⲛⲉ">
-<norm_group norm_group="ⲙⲙⲏⲏⲛⲉ">
+<norm_group norm_group="ⲙⲙⲏⲛⲉ">
 <orig orig="ⲙ̅">
 <norm norm="ⲙ">
 <lemma lemma="ⲛ">
@@ -30366,8 +30387,8 @@
 </norm>
 </orig>
 <orig orig="ⲙⲏⲏⲛⲉ">
-<norm norm="ⲙⲏⲏⲛⲉ">
-<lemma lemma="ⲙⲏⲏⲛⲉ">
+<norm norm="ⲙⲏⲛⲉ">
+<lemma lemma="ⲙⲏⲛⲉ">
 <pos pos="N">
 ⲙⲏⲏⲛⲉ
 </pos>
@@ -30824,8 +30845,8 @@
 </orig>
 <orig orig="ⲧⲟⲟⲧ">
 <norm norm="ⲧⲟⲟⲧ">
-<lemma lemma="ⲧⲟⲟⲧ">
-<pos pos="PREP">
+<lemma lemma="ⲧⲱⲣⲉ">
+<pos pos="N">
 ⲧⲟⲟⲧ
 </pos>
 </lemma>
