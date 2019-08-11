@@ -446,7 +446,7 @@ class StackedTokenizer:
 
 		return new_group
 
-	def analyze(self,data,do_normalize=True,norm_table=None,old_detok=False):
+	def analyze(self,data,do_normalize=True,norm_table=None,detok=0):
 		if self.lines:
 			data = add_lines(data)
 
@@ -454,23 +454,23 @@ class StackedTokenizer:
 			data = unicode(data)
 		grps = dissolve(data, tokenized=self.tokenized)
 
-		if self.detokenize and old_detok:
+		if self.detokenize in [1,2]:
 			for grp in grps:
 				if grp.clean in self.detok_table:
 					grp.proclitic = True
-		elif self.detokenize and not old_detok:
+		elif self.detokenize == 3:
 			import binder # import here to avoid circular dep
 			binding_predictions = binder.predict(" ".join([grp.orig for grp in grps]))
 			for i, pred in enumerate(binding_predictions):
 				if pred >= 0.5:
 					grps[i].proclitic = True
 
-		if self.detokenize:
+		if self.detokenize > 0:
 			last_grp = None
 			detokenized = []
 			for grp in grps:
 				if last_grp is not None:
-					if last_grp.proclitic or last_grp.clean in self.detok_table:
+					if last_grp.proclitic or (last_grp.clean in self.detok_table and self.detokenize in [1,2]):
 						if grp.clean not in self.no_merge:
 							new_grp = self.merge_groups(last_grp,grp)
 							last_grp = new_grp
