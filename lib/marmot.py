@@ -84,13 +84,16 @@ def exec_via_temp_twofile(input_text, command_params, workdir="", outfile=False)
 			if PY3:
 				output = io.open(temp2.name,encoding="utf8").read()
 			else:
-				output = open(temp2.name).read()
+				output = io.open(temp2.name).read()
 			temp2.close()
 			os.remove(temp2.name)
 		else:
 			output = stdout
 		#print(stderr)
-		proc.terminate()
+		try:
+			proc.terminate()
+		except:
+			pass
 	except Exception as e:
 		print(e)
 	finally:
