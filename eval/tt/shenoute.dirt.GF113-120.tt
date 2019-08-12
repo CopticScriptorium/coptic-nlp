@@ -18142,7 +18142,9 @@
 <norm norm="ⲁⲇⲁⲃ">
 <lemma lemma="ⲁⲇⲁⲃ">
 <pos pos="NPROP">
+<lang lang="Hebrew">
 ⲁⲇⲁⲃ
+</lang>
 </pos>
 </lemma>
 </norm>
@@ -18166,7 +18168,9 @@
 <norm norm="ⲁⲃⲉⲓⲟⲩⲇ">
 <lemma lemma="ⲁⲃⲉⲓⲟⲩⲇ">
 <pos pos="NPROP">
+<lang lang="Hebrew">
 ⲁⲃⲉⲓⲟⲩⲇ
+</lang>
 </pos>
 </lemma>
 </norm>
@@ -18175,8 +18179,8 @@
 </orig_group>
 <orig_group orig_group="ⲛⲧⲁⲩⲙⲟⲩ">
 <norm_group norm_group="ⲛⲧⲁⲩⲙⲟⲩ">
-<orig orig="ⲛⲧⲁ">
-<norm norm="ⲛⲧⲁ">
+<orig orig="ⲛⲧ">
+<norm norm="ⲛⲧ">
 <lemma lemma="ⲉⲧⲉⲣⲉ">
 <pos pos="CREL">
 ⲛ
@@ -18603,7 +18607,7 @@
 <orig orig="ⲛ">
 <norm norm="ⲛ">
 <lemma lemma="ⲛ">
-<pos pos="PREP">
+<pos pos="NEG">
 ⲛ
 </pos>
 </lemma>
