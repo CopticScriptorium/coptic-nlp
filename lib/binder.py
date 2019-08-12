@@ -168,12 +168,12 @@ def clean(text):
 	:return: Cleaned Coptic text
 	"""
 	text = text.replace(".", " .").replace("·", " ·").replace(":", " : ")
-	uncoptic1 = r'[A-Za-z0-9|]' # Latin or numbers, pipe
-	uncoptic2 = r'\[F[^]]+\]'   # Square brackets if they start with F
+	uncoptic1 = r'\[F[^]]+\]'   # Square brackets if they start with F
+	uncoptic2 = r'\|F[^|]+\|'   # Pipe delimiters if they start with F
 	uncoptic3 = r'\([^\)]+\)'   # Anything in round brackets
-	uncoptic = "("+"|".join([uncoptic1, uncoptic2, uncoptic3])+")"
+	uncoptic4 = r'[A-Za-z0-9|]' # Latin or numbers, pipe
+	uncoptic = "("+"|".join([uncoptic1, uncoptic2, uncoptic3, uncoptic4])+")"
 
-	#text = re.sub(r'.*ⲦⲘⲀⲢⲦⲨⲢⲒⲀ','ⲦⲘⲀⲢⲦⲨⲢⲒⲀ',text,flags=re.MULTILINE|re.DOTALL)
 	text = re.sub(uncoptic, '', text)
 	text = re.sub(r"\n+", r"\n", text)
 	text = re.sub(r" +", r" ", text)
