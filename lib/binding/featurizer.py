@@ -4,6 +4,7 @@ import io
 import types
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder
+from collections import defaultdict
 import unicodedata as uni
 
 from .const import UNKNOWN_CHAR
@@ -62,17 +63,18 @@ def read_pos_file(path):
 
 	file = io.open(path, encoding="utf8").read().replace("\r", "").strip().split("\n")
 
-	table = {}
+	set_table = defaultdict(set)
 	for line in file:
 		if line.startswith("#"):
 			continue
 
 		line = line.split("\t")
 		assert len(line) == 3, "Malformed line in " + path
-		if line[0] in table:
-			table[line[0]] += "|" + line[1]
-		else:
-			table[line[0]] = line[1]
+		set_table[line[0]].add(line[1])
+
+	table = {}
+	for word in set_table:
+		table[word] = "|".join(sorted(list(set_table[word])))
 
 	return table
 
