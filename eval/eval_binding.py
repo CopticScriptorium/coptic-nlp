@@ -8,7 +8,6 @@ lib = os.path.abspath(script_dir + os.sep + ".." + os.sep + "lib")
 sys.path.append(lib)
 
 import binder
-print(dir(binder))
 run_eval = binder.run_eval
 
 if __name__ == "__main__":
