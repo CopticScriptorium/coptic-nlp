@@ -24,7 +24,10 @@ script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 plain_dir = script_dir + ".." + os.sep + "eval" + os.sep + "plain" + os.sep
 err_dir = script_dir + ".." + os.sep + "eval" + os.sep + "errors" + os.sep
 
-XGBOOST_PERSISTED_FILENAME = script_dir+"xgboost_binding_model.bin"
+if PY3:
+	XGBOOST_PERSISTED_FILENAME = script_dir+"xgboost_binding_model.bin3"
+else:
+	XGBOOST_PERSISTED_FILENAME = script_dir+"xgboost_binding_model.bin2"
 lex = script_dir + ".." + os.sep + "data" + os.sep + "copt_lemma_lex_cplx_2.5.tab"
 frq = script_dir + ".." + os.sep + "data" + os.sep + "cop_freqs.tab"
 conf = script_dir + ".." + os.sep + "data" + os.sep + "test.conf"
@@ -255,8 +258,9 @@ def bind_with_xgboost(test_orig_lines, test_gold, train_orig_lines, train_gold, 
 	scores, errs = binding_score(test_gold, pred)
 
 	#os.mkdir(err_dir)
-	#with io.open(err_dir + "errs_binding_xgboost.tab", 'w', encoding="utf8") as f:
-	#	f.write("\n".join(errs) + "\n")
+	err_dir = script_dir + ".." + os.sep + "eval" + os.sep + "errors" + os.sep
+	with io.open(err_dir + "errs_binding_xgboost.tab", 'w', encoding="utf8") as f:
+		f.write("\n".join(errs) + "\n")
 
 	return scores
 
