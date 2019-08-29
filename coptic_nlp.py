@@ -46,7 +46,10 @@ def log_tasks(opts):
 	if opts.meta:
 		sys.stderr.write("o Metadata insertion\n")
 	if not opts.no_tok and not opts.parse_only and not opts.merge_parse:
-		sys.stderr.write("o Tokenization\n")
+		if opts.from_pipes:
+			sys.stderr.write("o Tokenization (from pipes)\n")
+		else:
+			sys.stderr.write("o Tokenization\n")
 	if opts.norm:
 		sys.stderr.write("o Normalization\n")
 	if opts.tag:
@@ -66,8 +69,10 @@ def log_tasks(opts):
 	if opts.space:
 		special_tasks.append("o Space out punctuation")
 	if opts.detokenize > 0:
-		if opts.detokenize > 1:
+		if opts.detokenize == 2:
 			special_tasks.append("o Detokenization (a.k.a. 'Laytonization') - aggressive")
+		elif opts.detokenize == 3:
+			special_tasks.append("o Detokenization (a.k.a. 'Laytonization') - smart")
 		else:
 			special_tasks.append("o Detokenization (a.k.a. 'Laytonization') - conservative")
 	if opts.segment_merged:
@@ -466,8 +471,10 @@ def download_requirements(tt_ok=True, malt_ok=True, foma_ok=True, marmot_ok=True
 		if "tree" in u and platform.system() != "Windows":
 			os_suf = "TreeTagger" + os.sep
 		z.extractall(path=bin_dir + os_suf)
-	shutil.copyfile(bin_dir+"coptic.mco",bin_dir+"maltparser-1.8" + os.sep + "coptic.mco")
-	shutil.copyfile(bin_dir+"coptic_fine.par",bin_dir+"TreeTagger" + os.sep + "bin" + os.sep + "coptic_fine.par")
+	if not malt_OK:
+		shutil.copyfile(bin_dir+"coptic.mco",bin_dir+"maltparser-1.8" + os.sep + "coptic.mco")
+	if not tt_ok and require_tt:
+		shutil.copyfile(bin_dir+"coptic_fine.par",bin_dir+"TreeTagger" + os.sep + "bin" + os.sep + "coptic_fine.par")
 
 
 def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True, do_mwe=True, do_tag=True, do_lemma=True, do_lang=True,
@@ -547,11 +554,12 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 					tagged = input_data.encode("utf8")  # Handle non-UTF-8 when calling TT from subprocess in Python 3
 		if gold_parse == "":
 			conllized = conllize(tagged,tag="PUNCT",element=sent_tag, no_zero=True)  # NB element is present it supercedes the POS tag
-			deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
-			depedited = deped.run_depedit(conllized.split("\n"))
+			#deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
+			#depedited = deped.run_depedit(conllized.split("\n"))
+			depedited = conllized
 			parse_coptic = ['java','-mx512m','-jar',"maltparser-1.8.jar",'-c','coptic','-i','tempfilename','-m','parse']
 			parsed = exec_via_temp(depedited,parse_coptic,parser_path)
-			deped = DepEdit(io.open(data_dir + "parser_postprocess_nodom.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
+			deped = DepEdit(io.open(data_dir + "postprocess_parser.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
 			depedited = deped.run_depedit(parsed.split("\n"))
 		else:  # A cached gold parse has been specified
 			depedited = gold_parse
@@ -591,11 +599,12 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 			norm_with_sgml = tok_from_norm(output)
 			tagged = postag(norm_with_sgml,tag_tt=tag_tt,sent=sent_tag)
 		conllized = conllize(tagged, tag="PUNCT", element=sent_tag, no_zero=True)
-		deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
-		depedited = deped.run_depedit(conllized.split("\n"))
+		#deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
+		#depedited = deped.run_depedit(conllized.split("\n"))
+		depedited = conllized
 		parse_coptic = ['java','-mx1g','-jar',"maltparser-1.8.jar",'-c','coptic','-i','tempfilename','-m','parse']
 		parsed = exec_via_temp(depedited,parse_coptic,parser_path)
-		deped = DepEdit(io.open(data_dir + "parser_postprocess_nodom.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
+		deped = DepEdit(io.open(data_dir + "postprocess_parser.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
 		depedited = deped.run_depedit(parsed.split("\n"))
 
 		ids, funcs, parents = extract_conll(depedited)
