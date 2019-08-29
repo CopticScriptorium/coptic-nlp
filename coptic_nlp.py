@@ -337,7 +337,7 @@ def inject_tags(in_sgml,insertion_specs,around_tag="norm",inserted_tag="multiwor
 	return "\n".join(outlines)
 
 
-def postag(indata,tag_tt=False,notokens=False,sent=None):
+def postag(indata,tag_tt=False,notokens=False,sent=None,tabular=False,postprocess=True):
 	if tag_tt:
 		tag = [tt_path + 'tree-tagger', tt_path+'coptic_fine.par', '-lemma','-no-unknown', '-sgml'] #no -token
 		if not notokens:
@@ -351,7 +351,20 @@ def postag(indata,tag_tt=False,notokens=False,sent=None):
 		tagged = lemmatizer.lemmatize(tagged)
 	spl = [line.split("\t") for line in tagged.strip().split("\n")]
 	words, tags, lemmas = zip(*spl)
-	if notokens:
+
+	if postprocess:  # Replace implausible word+tag combinations
+		tagtab = io.open(data_dir+"postprocess_tagger.tab",encoding="utf8").read().replace("\r","").strip().split("\n")
+		mapping = dict(((line.split("\t")[0],line.split("\t")[1]),line.split("\t")[2]) for line in tagtab)
+		for i, word in enumerate(words):
+			tag = tags[i]
+			if (word,tag) in mapping:
+				tags[i] = mapping[(word,tag)]
+			elif (word,"*") in mapping:
+				tags[i] = mapping[(word,"*")]
+
+	if tabular and not notokens:
+		return "\n".join([words[i]+"\t"+tags[i]+"\t"+lemmas[i] for i in range(len(tags))])
+	elif notokens:
 		return "\n".join([tags[i]+"\t"+lemmas[i] for i in range(len(tags))])
 	tagged = inject("pos","\n".join(tags),"norm",indata)
 	tagged = inject("lemma","\n".join(lemmas),"norm",tagged)
@@ -573,7 +586,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 		tagged = postag(norms,tag_tt=tag_tt,sent=sent_tag,notokens=True)
 	if do_parse:
 		if sent_tag is None:
-			tagged = postag(norms,tag_tt=tag_tt,sent=sent_tag)
+			tagged = postag(norms,tag_tt=tag_tt,sent=sent_tag,tabular=True)
 		else:
 			norm_with_sgml = tok_from_norm(output)
 			tagged = postag(norm_with_sgml,tag_tt=tag_tt,sent=sent_tag)
@@ -700,7 +713,7 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 
 	g2 = parser.add_argument_group("less common options")
 	g2.add_argument("-f","--finitestate", action="store_true", help='Use old finite-state tokenizer (less accurate)')
-	g2.add_argument("-d","--detokenize", action="store", type=int, choices=[0,1,2], default=0, help="Re-group non-standard bound groups (a.k.a. 'laytonize') - 1=normal 2=aggressive")
+	g2.add_argument("-d","--detokenize", action="store", type=int, choices=[0,1,2,3], default=0, help="Re-group non-standard bound groups (a.k.a. 'laytonize') - 1=conservative 2=aggressive 3=smart")
 	g2.add_argument("--segment_merged", action="store_true", help="When re-grouping bound groups, assume merged groups have segmentation boundary between them")
 	g2.add_argument("-q","--quiet", action="store_true", help='Suppress verbose messages')
 	g2.add_argument("-x","--extension", action="store", default=None, help='Extension for SGML mode output files (default: tt)')

@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import sys, io, re, os
 from glob import glob
 from argparse import ArgumentParser
@@ -16,7 +19,7 @@ PY3 = sys.version_info[0] == 3
 
 script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 err_dir = script_dir + "errors" + os.sep
-
+data_dir = script_dir + ".." + os.sep + "data" + os.sep
 
 def tt2tagger(tt_string,file_,pos_attr="pos",unit_attr="norm",lemma_attr="lemma"):
 
@@ -76,7 +79,7 @@ def run_eval(train_list, test_list, tagger="tt", retrain=True):
 			train_tt(train)
 
 	to_tag = [line.split("\t")[0] for line in test.strip().split("\n")]
-	golds = [line.split("\t") for line in test.strip().split("\n")]
+	golds = [line.split("\t") for line in test.strip().split("\n") if "\t" in line]
 	if tagger == "marmot":
 		preds = tag_marmot("\n".join(to_tag)+"\n")
 	elif tagger== "stanford":
@@ -97,6 +100,21 @@ def run_eval(train_list, test_list, tagger="tt", retrain=True):
 
 	if tagger != "ensemble":
 		preds = [line.split("\t") for line in preds.replace("\r","").strip().split("\n")]
+
+	if postprocess:  # Replace implausible word+tag combinations
+		tagtab = io.open(data_dir+"postprocess_tagger.tab",encoding="utf8").read().replace("\r","").strip().split("\n")
+		mapping = dict(((line.split("\t")[0],line.split("\t")[1]),line.split("\t")[2]) for line in tagtab)
+
+		words, tags = list(zip(*preds))
+		words, tags = list(words), list(tags)
+
+		for i, word in enumerate(words):
+			tag = tags[i]
+			if (word,tag) in mapping:
+				tags[i] = mapping[(word,tag)]
+			elif (word,"*") in mapping:
+				tags[i] = mapping[(word,"*")]
+		preds = zip(words,tags)
 
 	errs = defaultdict(int)
 	total = 0
@@ -132,6 +150,7 @@ if __name__ == "__main__":
 	p.add_argument("--file_dir",default="tt",help="directory with TT SGML files")
 	p.add_argument("--method",default="tt",help="which tagger to use",choices=["tt","marmot","stanford","ensemble"])
 	p.add_argument("--retrain",action="store_true",help="whether to retrain")
+	p.add_argument("--postprocess",action="store_true",help="whether to use replacement table from data/postprocess_tagger.tab")
 
 	opts = p.parse_args()
 
@@ -152,4 +171,4 @@ if __name__ == "__main__":
 		train_list = [os.path.basename(f) for f in train_list if os.path.basename(f) not in test_list]
 		train_list = [script_dir + opts.file_dir + os.sep + f for f in train_list]
 
-	run_eval(train_list,test_list,tagger=opts.method,retrain=opts.retrain)
+	run_eval(train_list,test_list,tagger=opts.method,retrain=opts.retrain,postprocess=opts.postprocess)
