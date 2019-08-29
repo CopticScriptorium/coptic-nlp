@@ -86,6 +86,7 @@ je+conv+art_m_long+clust_n_m
 #Aux ei (mpatei, nterei, mpei)
 aux_ei+verb
 aux_ei_no_noun+v_not_n
+aux_ei_no_noun+v_not_n+ppero
 aux_ei_no_noun+stative
 
 #Bipartite
@@ -101,6 +102,7 @@ conv_short+tri_subj+stative
 
 #Tripartite
 tri_aux+tri_subj+verb
+tri_aux+tri_subj+verb+ppero
 tri_nom+art_m+noun_m
 tri_nom+art_f+noun_f
 tri_nom+art_pl+noun_pl
