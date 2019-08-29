@@ -89,6 +89,8 @@ def make_nlp_form(access_level, mode):
 			do_mwe = form.getvalue("mwe") is not None
 			if form.getvalue("laytonize") == "aggressive":
 				detok = 2
+			elif form.getvalue("laytonize") == "smart":
+				detok = 3
 			elif form.getvalue("laytonize") == "conservative":
 				detok = 1
 			else:
@@ -129,6 +131,7 @@ def make_nlp_form(access_level, mode):
 		detokenize_checked = ' checked="checked"' if detok > 0 else ""
 		laytonize_conservative_checked = ' checked="checked"' if detok == 1 else ""
 		laytonize_aggressive_checked = ' checked="checked"' if detok == 2 else ""
+		laytonize_smart_checked = ' checked="checked"' if detok == 3 else ""
 		auto_checked = ' checked="checked"' if tok_mode == "auto" else ""
 		pipes_checked = ' checked="checked"' if tok_mode == "from_pipes" else ""
 		norm_checked = ' checked="checked"' if do_norm else ""
@@ -171,6 +174,7 @@ def make_nlp_form(access_level, mode):
 		template = template.replace("**detokenize_checked**", detokenize_checked)
 		template = template.replace("**laytonize_conservative_checked**", laytonize_conservative_checked)
 		template = template.replace("**laytonize_aggressive_checked**", laytonize_aggressive_checked)
+		template = template.replace("**laytonize_smart_checked**", laytonize_smart_checked)
 		template = template.replace("**segment_merged_checked**", segment_merged_checked)
 		template = template.replace("**auto_checked**", auto_checked)
 		template = template.replace("**pipes_checked**", pipes_checked)
