@@ -21,6 +21,7 @@ je+art_pl+noun_f
 je+art_pl+noun_pl
 je+art_theta+h_noun_f
 je+art_phi+h_noun_m
+je+name
 
 #PP
 prep+art_m+noun_m
@@ -47,8 +48,6 @@ prep_m+art_m_long+clust_n_m
 
 prep+nf+noun_not_verb
 prep+name
-
-
 
 #n/m, noun
 n+noun_m
@@ -141,8 +140,6 @@ adv
 #V
 verb
 
-
-
 # Relatives
 art_eth+h_verb
 et+verb
@@ -183,34 +180,35 @@ pet+verb
 pet+na+verb
 pet+tri_subj+verb
 pet+tri_subj+na+verb
-pet+verb+tri_subj
-pet+na+verb+tri_subj
+pet+verb+ppero
+pet+na+verb+ppero
 pet+stative
+pet+mmau
 prep+pet+verb
 prep+pet+na+verb
-prep+pet+verb+tri_subj
-prep+pet+na+verb+tri_subj
+prep+pet+verb+ppero
+prep+pet+na+verb+ppero
 prep+pet+tri_subj+verb
 m+labial_pet+verb
-m+labial_pet+verb+tri_subj
+m+labial_pet+verb+ppero
 m+labial_pet+tri_subj+verb
 prep+pet+stative
 m+labial_pet+stative
 conv+pet+verb
 conv+pet+na+verb
 conv+pet+tri_subj+verb
-conv+pet+na+verb+tri_subj
-conv+pet+verb+tri_subj
+conv+pet+na+verb+ppero
+conv+pet+verb+ppero
 conv+pet+stative
 penta+verb
 penta+tri_subj+verb
-penta+verb+tri_subj
+penta+verb+ppero
 prep+penta+verb
-prep+penta+verb+tri_subj
+prep+penta+verb+ppero
 prep+penta+tri_subj+verb
 m+labial_penta+verb
-m+labial_penta+verb+tri_subj
+m+labial_penta+verb+ppero
 m+labial_penta+tri_subj+verb
 conv+penta+verb
 conv+penta+tri_subj+verb
-conv+penta+verb+tri_subj
+conv+penta+verb+ppero

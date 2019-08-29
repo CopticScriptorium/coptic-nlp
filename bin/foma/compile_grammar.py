@@ -60,7 +60,7 @@ def mutate(find,rep,source_dict,target_dict,exclude=None):
 	target dict with source dict form as the normalization (unless they are in the iterable `exclude')"""
 
 	for word in source_dict:
-		if word == "ⲙⲓⲗⲓⲟⲛ":
+		if word == "ϫⲓ":
 			a=4
 		matches = list(re.finditer(find,word))
 		if len(matches)>0:  # Replace all instances
@@ -139,7 +139,7 @@ def make_lexicon_foma():
 	ta = {"ⲧⲁ":"ⲧⲁ"}
 
 	# Prepositions
-	prep = ["ⲉ","ⲉⲧⲃⲉ","ϣⲁ","ⲛⲥⲁ","ⲕⲁⲧⲁ","ⲙⲛ","ⲁϫⲛ","ⲛⲧⲉ","ⲛⲃⲗ","ⲉⲣⲁⲧ","ϩⲁ","ⲡⲁⲣⲁ","ⲛⲁ","ⲛⲧⲉ","ⲛϭⲓ"]  # not nqi not really a prep
+	prep = ["ⲉ","ⲉⲧⲃⲉ","ϣⲁ","ⲛⲥⲁ","ⲕⲁⲧⲁ","ⲙⲛ","ⲁϫⲛ","ⲛⲧⲉ","ⲛⲃⲗ","ⲉⲣⲁⲧ","ϩⲁ","ⲡⲁⲣⲁ","ⲛⲁ","ⲛⲧⲉ","ⲛϭⲓ","ⲭⲱⲣⲓⲥ","ϣⲉ"]  # not nqi, Se not really a prep
 	prep_m = ["ⲙ","ϩⲁⲧⲙ","ϩⲓⲣⲙ","ϩⲙ","ϩⲓⲧⲙ","ϩⲓϫⲙ","ⲉϫⲙ"]
 	prep_n = ["ⲛ","ϩⲁⲧⲛ","ϩⲓⲣⲛ","ϩⲛ","ϩⲓⲧⲛ","ϩⲓϫⲛ","ⲉϫⲛ"]
 	prep = prep + prep_n
@@ -237,7 +237,10 @@ def make_lexicon_foma():
 	prep_m = {k:k for k in prep_m}  # Labial assimilated prepositions
 	verbs = {k:k for k in verbs}
 
-	verbs = mutate(r'([^ⲉ]|^)ⲓ',r'\1ⲉⲓ',verbs,{k:v for k,v in verbs.items()},exclude=dict(list(noun_f.items())+list(noun_m.items())))
+	immutable_verbs = ["ϫⲉⲓ"]  # Forms that verbs should *not* be mutated into, e.g. ji -> jei
+	immutable_verbs = {k:k for k in immutable_verbs}
+
+	verbs = mutate(r'([^ⲉ]|^)ⲓ',r'\1ⲉⲓ',verbs,{k:v for k,v in verbs.items()},exclude=dict(list(noun_f.items())+list(noun_m.items())+list(immutable_verbs.items())))
 	adv = mutate(r'([^ⲉ]|^)ⲓ',r'\1ⲉⲓ',adv,{k:v for k,v in adv.items()},exclude=dict(list(noun_f.items())+list(noun_m.items())+list(verbs.items())))
 
 	noun_f.update({"ϭⲓⲛ"+v:"ϭⲓⲛ"+v for v in verbs if not v.startswith("ϭⲓⲛ") and v not in foreign})
@@ -275,7 +278,9 @@ def make_lexicon_foma():
 	aberrant_noun_f.update({"ⲙⲛⲧⲉⲣⲟ":"ⲙⲛⲧⲣⲣⲟ","ⲕⲕⲗⲏⲥⲓⲁ":"ⲉⲕⲕⲗⲏⲥⲓⲁ","ⲙⲛⲧⲙⲟⲛⲟⲭⲟⲥ":"ⲙⲛⲧⲙⲟⲛⲁⲭⲟⲥ"})
 	aberrant_noun_m.update({"ⲉⲣⲟ":"ⲣⲣⲟ","ⲓⲏⲗ":"ⲓⲥⲣⲁⲏⲗ","ⲏⲉⲓ":"ⲏⲓ","ⲟⲩⲣⲏⲏⲧⲉ":"ⲟⲩⲉⲣⲏⲧⲉ","ϫⲥ":"ϫⲟⲉⲓⲥ","ⲉⲓⲉⲣⲟ":"ⲓⲉⲣⲟ","ⲙⲟⲛⲟⲭⲟⲥ":"ⲙⲟⲛⲁⲭⲟⲥ","ⲣⲁⲁⲧ":"ⲣⲁⲧ"})
 	aberrant_noun_m.update({"ⲭⲣⲥ":"ⲭⲣⲓⲥⲧⲟⲥ","ⲭⲥ":"ⲭⲣⲓⲥⲧⲟⲥ"})
+
 	names["ⲓⲥ"] = "ⲓⲏⲥⲟⲩⲥ"
+	names.update({"ⲡⲁⲓ":"ⲡⲁⲓ","ⲧⲁⲓ":"ⲧⲁⲓ","ⲛⲁⲓ":"ⲛⲁⲓ"})  # Independent demonstratives work like names
 
 	noun_not_verb = {k:v for k,v in dict(list(noun_m.items())+list(noun_f.items())+list(noun_pl.items())).items() if k not in verbs}
 
@@ -309,6 +314,7 @@ def make_lexicon_foma():
 	tri_aux = {"ⲁ":"ⲁ","ⲙⲉ":"ⲙⲉ","ⲙⲡ":"ⲙⲡ","ϣⲁ":"ϣⲁ"}
 	tri_nom = {"ⲁ":"ⲁ","ⲙⲉⲣⲉ":"ⲙⲉⲣⲉ","ⲙⲡⲉ":"ⲙⲡⲉ","ϣⲁⲣⲉ":"ϣⲁⲣⲉ","ⲉⲣϣⲁⲛ":"ⲉⲣϣⲁⲛ","ⲣϣⲁⲛ":"ⲉⲣϣⲁⲛ","ⲟⲩⲛ":"ⲟⲩⲛ","ⲩⲛ":"ⲩⲛ","ⲙⲛ":"ⲙⲛ","ϣⲁⲛⲧⲉ":"ϣⲁⲛⲧⲉ"}
 	tri_subj = {"ⲓ":"ⲓ","ⲕ":"ⲕ","ϥ":"ϥ","ⲥ":"ⲥ","ⲛ":"ⲛ","ⲧⲉⲧⲛ":"ⲧⲉⲧⲛ","ⲩ":"ⲩ","ⲟⲩ":"ⲟⲩ"}
+	ppero = {"ⲓ":"ⲓ","ⲕ":"ⲕ","ϥ":"ϥ","ⲥ":"ⲥ","ⲛ":"ⲛ","ⲧⲉⲧⲛ":"ⲧⲉⲧⲛ","ⲩ":"ⲩ","ⲟⲩ":"ⲟⲩ","ⲧ":"ⲧ"}
 	circum1 = {"ⲉ":"ⲉ"}
 	circum2 = {"ϣⲁⲛ":"ϣⲁⲛ","ⲉ":"ⲉ",}
 
@@ -403,6 +409,7 @@ def make_lexicon_foma():
 	penta = {"ⲡⲉⲛⲧⲁ":"ⲡⲉⲛⲧⲁ","ⲧⲉⲛⲧⲁ":'ⲧⲉⲛⲧⲁ',"ⲛⲉⲛⲧⲁ":"ⲛⲉⲛⲧⲁ"}
 	labial_pet = {"ⲡⲉⲧ":"ⲡⲉⲧ","ⲡⲉϯ":"ⲡⲉⲧⲓ"}
 	labial_penta = {"ⲡⲉⲛⲧⲁ":"ⲡⲉⲛⲧⲁ"}
+	mmau = {"ⲙⲙⲁⲩ":"ⲙⲙⲁⲩ","ϩⲓϩⲟⲩⲛ":"ϩⲓϩⲟⲩⲛ","ⲛϩⲟⲩⲟ":"ⲛϩⲟⲩⲟ"}  # Adverbs that go with pet-
 
 	art_f_no_tn = {k:v for k,v in art_f.items()}
 
@@ -438,6 +445,7 @@ def make_lexicon_foma():
 	o("labial_pet",labial_pet)
 	o("penta",penta)
 	o("labial_penta",labial_penta)
+	o("mmau",mmau)
 	o("nf",nf)
 	o("verb",verbs)
 	o("stative",stative)
@@ -477,6 +485,7 @@ def make_lexicon_foma():
 	o("tri_aux",tri_aux)
 	o("tri_nom",tri_nom)
 	o("tri_subj",tri_subj)
+	o("ppero",ppero)
 
 	with io.open(script_dir + "lexicon_foma.tab",'w',encoding="utf8") as f:
 		f.write("\n".join(sorted(list(set(output)))))
