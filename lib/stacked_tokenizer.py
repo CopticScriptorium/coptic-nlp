@@ -103,10 +103,15 @@ class BoundGroup:
 		self.cursor += 1
 
 	def add_tokenization(self, tokenization):
+		# Move tokenization to norm form if tokenizing from pipes
+		if self.pretokenization != "":
+			if len(self.clean.strip()) != len(self.norm):
+				tokenization = self.reconcile_tokenization(self.norm, tokenization)
+
 		# Retain real tokenization for SGML output
 		self.tokenization = tokenization
+
 		# Construct approximate tokenization for piped output
-		len_offset = 0
 		if ("ⲑ" in self.dirty or "Ⲑ" in self.dirty) and ("ⲧ|ϩ" in tokenization or "ⲧ-ϩ" in tokenization):
 			tokenization = tokenization.replace("ⲧ|ϩ","ⲑ|").replace("ⲧ-ϩ","ⲑ-")
 		if ("ⲫ" in self.dirty or "Ⲫ" in self.dirty) and ("ⲡ|ϩ" in tokenization or "ⲡ-ϩ" in tokenization):
@@ -138,64 +143,113 @@ class BoundGroup:
 		self.tokenized = tokenized
 
 	@staticmethod
-	def reconcile_tokenization(unsegmented,segmented):
-		output = ""
-		offset = 0
-		if unsegmented == "":
-			return ""
-		for i, c in enumerate(list(unsegmented)):  # Try scanning through norm and finding all letters of orig (orig is shorter)
-			if len(segmented) <= i+1+offset:
-				if i+1 <= len(unsegmented):  # Segmentation is over, append remaining characters to output
-					output = "".join([output,unsegmented[i:]])
-				break
-			else:
-				if segmented[i+offset] in ["|","-"]:
-					output = "".join([output,segmented[i+offset]])
-					offset += 1
-				if segmented[i+offset] != unsegmented[i]:  # Character conflict
-					while segmented[i+offset] != unsegmented[i]:
-						if i+offset == len(segmented)-1:
-							#if i + 1 < len(unsegmented): # Segmentation is over
-							#	output += unsegmented[i+1:]
-							break
-						elif segmented[i+offset] in ["|","-"]:
-							output = "".join([output, segmented[i + offset]])
-						offset += 1
-					#if segmented[i+offset] == unsegmented[i]:
-					#	output+=unsegmented[i]
-				output += c
-		if "||" in output:  # Reconciliation has failed, try scanning through orig and finding all letters of norm (normalization is shorter)
+	def reconcile_tokenization(unsegmented, segmented):
+		"""Function to insert separators from `segmented` into a similar string `unsegmented`.
+
+		Behavior:
+		1. Characters are traversed in both strings in tandem, with boundaries inserted into unsegmented wherever matching positions are found
+		2. If there is a non-separator character mismatch, the algorithm waits until a match is found, inserting characters from the longer string
+		3. Traversal is automatically tied to the longer string
+		4. LTR traversal is preferred, RTL is attempted if LTR alignment is impossible
+		5. Returns empty string if no alignment is possible
+
+		Examples:
+		  reconcile_tokenization("ⲡⲉⲭⲥ","ⲡⲉ|ⲭⲣⲓⲥⲧⲟⲥ") -> ⲡⲉ|ⲭⲥ (scans LTR, inserts seg after pe|, matches x, waits until s is matched)
+		  reconcile_tokenization("ⲡⲉⲭ","ⲡⲉ|ⲭⲣⲓⲥⲧⲟⲥ") -> ⲡⲉ|ⲭ (scans LTR, match pe|, x ... quits because unsegmented string is done)
+		  reconcile_tokenization("ⲙⲛⲡⲉⲕⲉⲓⲱⲧ","ⲙⲛ|ⲡⲕ|ⲉⲓⲱⲧ") -> ⲙⲛ|ⲡⲉⲕ|ⲉⲓⲱⲧ  (scans mn|p.. waits for k, inserts e, finds k, continues alignment)
+		  reconcile_tokenization("ⲉⲧⲣⲉϥϩⲉ","ⲉ|ⲧⲣ|ϥ|ϩⲉ") -> ⲉ|ⲧⲣⲉ|ϥ|ϩⲉ (exception for |ⲧⲣ|, does not output expected ⲉ|ⲧⲣ|ⲉϥ|ϩⲉ)
+		  reconcile_tokenization("ⲛⲡⲭⲣⲓⲥⲧⲟⲥ","ⲙ|ⲡⲉ|ⲭⲣⲓⲥⲧⲟⲥ") -> (scans LTR, fails since ⲛ never appears, scans RTL and succeeds, appending left over ⲛ to start)
+		  reconcile_tokenization("ⲡⲉⲭ","ⲫⲗ|ⲥ") -> "" (both directions fail)
+
+		"""
+
+		def consecutive_seps(text):
+			if "||" in text or "--" in text or "|-" in text or "-|" in text:
+				return True
+			if text.startswith("|") or text.endswith("|") or text.startswith("-") or text.endswith("-"):
+				return True
+			return False
+
+		def align(unsegmented, segmented, reverse=False, loose=False):
+			seps = set(["|","-"])
+			clean_seg = segmented.replace("|","").replace("-","")
 			output = ""
 			offset = 0
-			unseg_offset = 0
-			for i, c in enumerate(list(unsegmented)):
-				if i+unseg_offset == len(unsegmented):
-					break
-				if segmented[i+offset] in ["|","-"]:
-					output = "".join([output,segmented[i+offset]])
-					offset += 1
-				if segmented[i+offset] != unsegmented[i+unseg_offset]:  # Character conflict
-					while segmented[i+offset] != unsegmented[i+unseg_offset]:
-						if i+unseg_offset == len(unsegmented)-1:
+			revoffset = 0
+			if reverse:
+				unsegmented = unsegmented[::-1]
+				segmented = segmented[::-1]
+			# Traverse by longer string
+			if len(clean_seg) > len(unsegmented):
+				for i, c in enumerate(unsegmented):
+					if i+offset > len(segmented)-1:  # Segmented string ended without perfect alignment, try to append rest
+						output += c
+						continue
+					if segmented[i+offset] in seps:
+						output += segmented[i+offset]
+						offset += 1  # Move cursor in unsegmented to account for separator
+					while c != segmented[i+offset]: # Mismatch: keep chomping longer string until match
+						if loose and c == "ϯ" and segmented[i+offset] == "ⲧ":
 							break
-						elif segmented[i+offset] in ["|","-"]:
-							output = "".join([output, segmented[i + offset]])
-							offset +=1
+						if segmented[i+offset] in seps:
+							output += segmented[i+offset]
+						offset += 1
+						if i+offset > len(segmented)-1:  # Segmented string ended without match, end chomping
+							break
+					output += c
+			else:
+				done = False
+				for i, c in enumerate(unsegmented):
+					if i+offset < len(segmented):
+						if segmented[i+offset] in seps:
+							output += segmented[i+offset]
+							offset += 1
+						if i+revoffset == len(unsegmented):
+							# Unsegmented has been spelled out, alignment
+							break
+						while unsegmented[i+revoffset] != segmented[i+offset]:
+							if loose and unsegmented[i+revoffset] == "ϯ" and segmented[i+offset] == "ⲧ":
+								break
+							output += unsegmented[i+revoffset]
+							revoffset += 1
+							if i+revoffset > len(unsegmented)-1:  # Segmented string ended without match, end chomping
+								done = True
+								break
+						if done:
+							break
 						else:
-							output = "".join([output,unsegmented[i+unseg_offset]])
-							unseg_offset += 1
-					output = "".join([output,unsegmented[i+unseg_offset]])
-				else:
-					output += unsegmented[i+unseg_offset]
+							output += unsegmented[i+revoffset]
+					else:  # Check for left over characters
+						if len(unsegmented) > i+revoffset:
+							output += unsegmented[i+revoffset:]
+							break
+			if reverse:
+				output = output[::-1]
+			return output
+
+		# Case 1: try LTR alignment
+		output = align(unsegmented,segmented)
+		# Case 2: try RTL alignment
+		if consecutive_seps(output):
+			# Mapping failed, traverse longer string RIGHT TO LEFT
+			output = align(unsegmented,segmented,reverse=True)
+		if consecutive_seps(output) and "ϯ" in unsegmented:
+			# Mapping failed, traverse longer string RIGHT TO LEFT
+			output = align(unsegmented,segmented,loose=True)
+			if consecutive_seps(output):
+				output = align(unsegmented,segmented,loose=True,reverse=True)
 
 		output = re.sub(r'\|+','|',output)
 		output = re.sub(r'-+','-',output)
+		if "|ⲧⲣ|ⲉ" in output:  # tr|f -> tre|f is an exception to left-to-right alignment priority
+			output = output.replace("|ⲧⲣ|ⲉ","|ⲧⲣⲉ|")
 		if output[-1] in ["|","-"]:
 			output = output[:-1]
 		if output[0] in ["|","-"]:
 			output = output[1:]
 		if output.count("|") != segmented.count("|"):
 			output=""
+
 		return output
 
 	def serialize_sgml(self):
@@ -446,7 +500,7 @@ class StackedTokenizer:
 
 		return new_group
 
-	def analyze(self,data,do_normalize=True,norm_table=None,detok=0):
+	def analyze(self,data,do_normalize=True,norm_table=None):
 		if self.lines:
 			data = add_lines(data)
 
@@ -482,6 +536,10 @@ class StackedTokenizer:
 			grps = detokenized
 
 		if self.tokenized:
+			if do_normalize:
+				grps = self.normalize(grps,norm_table=norm_table)
+				#for g in grps:
+				#	g.clean = g.norm
 			for g in grps:
 				plain_tokenization = g.pretokenization
 				plain_tokenization = adjust_theta(plain_tokenization)
@@ -580,7 +638,7 @@ class StackedTokenizer:
 					tokenization = m.analyze_morph(tokenization)
 				grps[i].add_tokenization(tokenization)
 
-		toks = serialize(grps, self.pipes, segment_merged=self.segment_merged)
+		toks = serialize(grps, pipes=self.pipes, segment_merged=self.segment_merged)
 
 		return toks
 
