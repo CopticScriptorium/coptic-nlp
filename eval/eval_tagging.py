@@ -52,7 +52,7 @@ def tt2tagger(tt_string,file_,pos_attr="pos",unit_attr="norm",lemma_attr="lemma"
 	return "\n".join(output)+"\n"
 
 
-def run_eval(train_list, test_list, tagger="tt", retrain=True):
+def run_eval(train_list, test_list, tagger="tt", retrain=True, postprocess=False):
 
 	test = ""
 	for file_ in test_list:
