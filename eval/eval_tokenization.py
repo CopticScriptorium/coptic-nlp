@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import sys, io, re, os
 from glob import glob
 from argparse import ArgumentParser
@@ -10,10 +13,10 @@ PY3 = sys.version_info[0] == 3
 
 script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 err_dir = script_dir + "errors" + os.sep
+data_dir = script_dir + ".." + os.sep + "data" + os.sep
 
 lex = script_dir + ".." + os.sep + "data" + os.sep + "copt_lemma_lex_cplx_2.5.tab"
-lex = script_dir + "copt_lemma_lex_cplx_2.8_cdo.tab"
-data_dir = script_dir + ".." + os.sep + "data" + os.sep
+lex = data_dir + "copt_lemma_lex_cplx_2.8_cdo.tab"
 frq = data_dir + "cop_freqs.tab"
 conf = data_dir + "test.conf"
 ambig = data_dir + "ambig.tab"
@@ -22,6 +25,13 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'l
 
 from tokenize_rf import RFTokenizer
 from stacked_tokenizer import StackedTokenizer
+
+
+orig_chars = set(["̈", "", "̄", "̀", "̣", "`", "̅", "̈", "̂", "︤", "︥", "︦", "⳿", "~", "\n", "[", "]", "̇", "᷍"])
+
+
+def clean(text):
+	return ''.join([c for c in text if c not in orig_chars])
 
 
 def tsv2dict(filename,as_string=False):
@@ -35,7 +45,7 @@ def tsv2dict(filename,as_string=False):
 	return d
 
 
-def tt2seg_table(tt_string,group_attr="norm_group",unit_attr="norm"):
+def tt2seg_table(tt_string,group_attr="orig_group",unit_attr="orig"):#group_attr="norm_group",unit_attr="norm"):
 
 	group = ""
 	output = ""
@@ -59,17 +69,20 @@ def tt2seg_table(tt_string,group_attr="norm_group",unit_attr="norm"):
 	return output
 
 
-def run_eval(train_list, test_list, retrain_rf=False, method="stacked", importances=False,optimize=False):
+def run_eval(train_list, test_list, retrain_rf=False, method="stacked", importances=False, optimize=False,
+			 gold_norm=False):
 
 	test = ""
+	tt_group = "norm_group" if gold_norm else "orig_group"
+	tt_unit = "norm" if gold_norm else "orig"
 	for file_ in test_list:
 		tt_sgml = io.open(file_,encoding="utf8").read()
-		test += tt2seg_table(tt_sgml)
+		test += tt2seg_table(tt_sgml,group_attr=tt_group,unit_attr=tt_unit)
 
 	train = ""
 	for file_ in train_list:
 		tt_sgml = io.open(file_,encoding="utf8").read()
-		train += tt2seg_table(tt_sgml)
+		train += tt2seg_table(tt_sgml,group_attr=tt_group,unit_attr=tt_unit)
 
 	# Remove bug rows
 	clean_test = []
@@ -95,7 +108,8 @@ def run_eval(train_list, test_list, retrain_rf=False, method="stacked", importan
 
 	for line in train.strip().split("\n"):
 		bg, analysis = line.split("\t")
-		seg_counts[bg][analysis] += 1
+		analysis = clean(analysis)
+		seg_counts[bg.strip()][analysis.strip()] += 1
 	for bg in seg_counts:
 		for ana in seg_counts[bg]:
 			if len(seg_counts[bg]) == 1:
@@ -115,7 +129,7 @@ def run_eval(train_list, test_list, retrain_rf=False, method="stacked", importan
 		temp.append(bg + "\t" + "\t".join(alternatives))
 	ambig_entries = temp
 	with io.open(data_dir + "segmentation_table.tab",'w', encoding="utf8",newline="\n") as f:
-		f.write("\n".join([k+"\t"+v for k,v in iteritems(lookup)])+"\n")
+		f.write("\n".join(sorted([k+"\t"+v for k,v in iteritems(lookup)]))+"\n")
 	with io.open(data_dir + "ambig.tab",'w', encoding="utf8",newline="\n") as f:
 		f.write("\n".join(ambig_entries)+"\n")
 
@@ -145,17 +159,19 @@ def run_eval(train_list, test_list, retrain_rf=False, method="stacked", importan
 
 	if method == "stacked":
 		stk = StackedTokenizer(no_morphs=True,model="test",pipes=True,ambig=ambig)
-
-		preds = stk.analyze("_".join(test_input))
+		preds = stk.analyze("_".join(test_input),norm_table=script_dir+"_tmp_norm_train.tab",do_normalize=(gold_norm is False))
 		preds = preds.split("_")
-	elif method == "rf":
-		preds = rf.rf_tokenize(test_input)
-	elif method == "finitestate":
-		from tokenize_fs import fs_tokenize
-		preds = fs_tokenize(test_input)
-	elif method == "lookup":
-		from tokenize_lookup import lookup_tokenize
-		preds = lookup_tokenize(test_input)
+	else:
+		from auto_norm import normalize
+		test_input = normalize("\n".join(test_input)).split("\n")
+		if method == "rf":
+			preds = rf.rf_tokenize(test_input)
+		elif method == "finitestate":
+			from tokenize_fs import fs_tokenize
+			preds = fs_tokenize(test_input)
+		elif method == "lookup":
+			from tokenize_lookup import lookup_tokenize
+			preds = lookup_tokenize(test_input)
 
 	scores = f_score(script_dir + "_tmp_test.tab","\n".join(preds),preds_as_string=True,ignore_diff_len=True,replace_diff_len=True)
 
@@ -168,6 +184,7 @@ def run_eval(train_list, test_list, retrain_rf=False, method="stacked", importan
 	for i, pred in enumerate(preds):
 		gold = golds[i].split("\t")[1]
 		if pred != gold:
+			#errs[golds[i-1].split("\t")[1] + "\t" + gold + "\t"+golds[i+1].split("\t")[1] +  "\t"+ pred] += 1
 			errs[gold + "\t"+ pred] += 1
 
 	err_sources = {}
@@ -175,7 +192,7 @@ def run_eval(train_list, test_list, retrain_rf=False, method="stacked", importan
 	ambig_table = tsv2dict(script_dir +".." + os.sep + "data" +os.sep+"ambig.tab")
 	for_fs = set([])
 	for key in errs:
-		bg = key.split("\t")[0].replace("|","")
+		bg = clean(key.split("\t")[0].replace("|",""))
 		if bg in ambig_table:
 			err_sources[bg] = "ambig"
 		elif bg in seg_table:
@@ -194,7 +211,7 @@ def run_eval(train_list, test_list, retrain_rf=False, method="stacked", importan
 
 	with io.open(err_dir + "errs_tokenization.tab",'w',encoding="utf8") as f:
 		for key in sorted(iterkeys(errs),key=lambda x:errs[x],reverse=True):
-			bg = key.split("\t")[0].replace("|","")
+			bg = clean(key.split("\t")[0].replace("|",""))
 			err_src = err_sources[bg] if bg in err_sources else "rf"
 			f.write(key + "\t" + str(errs[key]) + "\t" + err_src + "\n")
 
@@ -210,6 +227,7 @@ if __name__ == "__main__":
 	p.add_argument("-r","--retrain",action="store_true",help="whether to retrain RF tokenizer")
 	p.add_argument("-i","--importances",action="store_true",help="whether to output feature importances when retraining RF tokenizer")
 	p.add_argument("-o","--optimize",action="store_true",help="whether to run hyperparameter optimization when retraining RF tokenizer")
+	p.add_argument("-n","--normalized",action="store_true",help="use gold normalized data instead of automatic normalization")
 
 	opts = p.parse_args()
 
@@ -238,4 +256,5 @@ if __name__ == "__main__":
 	else:
 		retrain = opts.retrain
 
-	run_eval(train_list,test_list,retrain_rf=retrain,method=opts.method,importances=opts.importances,optimize=opts.optimize)
+	run_eval(train_list,test_list, retrain_rf=retrain, method=opts.method, importances=opts.importances,
+			 optimize=opts.optimize, gold_norm=opts.normalized)
