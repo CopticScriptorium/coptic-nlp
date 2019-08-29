@@ -1,4 +1,4 @@
-<meta>
+<meta annotation="Caroline T. Schroeder, Elizabeth Platte, Mitchell Abrams, Israel Avrahamy, Asael Benyami, Yinon Kahan, Oran Szachter, Amir Zeldes, Lance Martin" author="Paphnutius" collection="Oriental Manuscripts" Coptic_edition="&lt;a href=&amp;quot;https://archive.org/details/CopticMartyrdomshighResByEWallisBudgeVol01/page/n0&amp;quot;&gt;Budge, 1914&lt;/a&gt;" corpus="life.onnophrius" country="Egypt" document_cts_urn="urn:cts:copticLit:martyrdoms.onnophrius.budge:" idno="OR. 7027 ff. 1a-7b" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msItem_title="The Life of Apa Onnophrius the Anchorite" msName="MERC.AC" note="Coptic SCRIPTORIUM's edition includes only Budge's transcription of the manuscript. It is not a diplomatic transcription based on reading and collation of the original manuscript. The translation is Budge's with very slight modifications (e.g., numbers mistranslated.)" objectType="codex" origDate="1051" origDate_notAfter="1100" origDate_notBefore="1003" origDate_precision="medium" origPlace="St. Mercurius Monastery" pages_from="1" pages_to="14" parsing="gold" placeName="Edfu" project="Coptic SCRIPTORIUM" redundant="no" repository="British Library" segmentation="gold" source="&lt;a href='http://marcion.sourceforge.net'&gt;Marcion project&lt;/a&gt;, &lt;a href='https://archive.org/details/CopticMartyrdomshighResByEWallisBudgeVol01'&gt;Archive.org&lt;/a&gt;" tagging="gold" title="Life of Onnophrius, pages 1-14" translation="E. A. Wallis Budge" Trismegistos="none" version_n="3.0.0">
 <ed_page_n ed_page_n="1">
 <pb_xml_id pb_xml_id="1a ⲁ̅">
 <translation translation="THE LIFE AND CONVERSATION OF OUR HOLY FATHER, WHO WAS GLORIOUS IN EVERY WAY, APA ONNOPHRIOS THE ANCHORITE, WHO ENDED HIS LIFE ON THE SIXTEENTH DAY OF THE MONTH PAONE IN THE PEACE OF GOD!">
@@ -29958,7 +29958,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ϩⲙ̅ⲡⲓ̅ⲏ̅ⲗ̅">
-<norm_group norm_group="ϩⲙⲡⲓⲏⲗ">
+<norm_group norm_group="ϩⲙⲡⲓⲥⲣⲁⲏⲗ">
 <orig orig="ϩⲙ̅">
 <norm norm="ϩⲙ">
 <lemma lemma="ϩⲛ">
@@ -29969,9 +29969,9 @@
 </norm>
 </orig>
 <orig orig="ⲡ">
-<norm norm="ⲡⲓ">
+<norm norm="ⲡ">
 <lemma lemma="ⲡ">
-<pos pos="PDEM">
+<pos pos="ART">
 ⲡ
 </pos>
 </lemma>
@@ -29980,7 +29980,7 @@
 <orig orig="ⲓ̅ⲏ̅ⲗ̅">
 <norm norm="ⲓⲥⲣⲁⲏⲗ">
 <lemma lemma="ⲓⲥⲣⲁⲏⲗ">
-<pos pos="N">
+<pos pos="NPROP">
 <lang lang="Hebrew">
 ⲓ̅ⲏ̅ⲗ̅
 </lang>
@@ -31197,7 +31197,7 @@
 <orig orig="·">
 <norm norm="·">
 <lemma lemma="·">
-<pos pos="PUNCT	·">
+<pos pos="PUNCT">
 ·
 </pos>
 </lemma>

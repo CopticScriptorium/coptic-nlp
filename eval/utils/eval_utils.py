@@ -112,7 +112,8 @@ def list_files(alias="silver",file_dir=None,mode=None):
 	elif mode == "plain":
 		if alias.lower().startswith("cyrus"):
 			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "BritMusOriental6783_23a_27a.txt"]
+			file_list = [file_dir + "BritMusOriental6783_23a_27a.txt",
+						 file_dir + "BritMusOriental6783_27a_30a.txt"]
 		elif alias.lower().startswith("onno"):  # onnophrius
 			file_dir = eval_dir + "plain" + os.sep
 			file_list = [file_dir + "BritMusOriental7027_01a_07b.txt"]
@@ -125,6 +126,12 @@ def list_files(alias="silver",file_dir=None,mode=None):
 		elif alias.lower().startswith("victor"):
 			file_dir = eval_dir + "plain" + os.sep
 			file_list = [file_dir + "martyrdom.victor.txt"]
+		elif alias.lower().startswith("repose"):
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "BritMusOriental6782_2a_9a.txt"]
+		elif alias.lower().startswith("proclus"):
+			file_dir = eval_dir + "plain" + os.sep
+			file_list = [file_dir + "BritMusOriental5001_116a_122b.txt"]
 		elif alias.lower().startswith("viccyeph"):
 			file_dir = eval_dir + "plain" + os.sep
 			file_list = [file_dir + "martyrdom.victor.txt",
@@ -149,7 +156,8 @@ def list_files(alias="silver",file_dir=None,mode=None):
 	else:
 		if alias.lower() == "cyrus":
 			file_dir = eval_dir + "unreleased" + os.sep
-			file_list = [file_dir + "BritMusOriental6783_23a_27a.tt"]
+			file_list = [file_dir + "BritMusOriental6783_23a_27a.tt",
+						 file_dir + "BritMusOriental6783_27a_30a.tt"]
 		elif alias.lower().startswith("onno"):  # onnophrius
 			file_dir = eval_dir + "unreleased" + os.sep
 			file_list = [file_dir + "BritMusOriental7027_01a_07b.tt"]
@@ -165,6 +173,12 @@ def list_files(alias="silver",file_dir=None,mode=None):
 			file_dir = eval_dir + "plain" + os.sep
 			file_list = [file_dir + "martyrdom.victor.01.tt"]
 
+		elif alias.lower().startswith("repose"):
+			file_dir = eval_dir + "unreleased" + os.sep
+			file_list = [file_dir + "BritMusOriental6782_2a_9a.tt"]
+		elif alias.lower().startswith("proclus"):
+			file_dir = eval_dir + "unreleased" + os.sep
+			file_list = [file_dir + "BritMusOriental5001_116a_122b.tt"]
 		elif alias.lower() == "ud_test":
 			file_list = io.open(eval_dir + "test_list.tab").read().strip().split("\n")
 			file_list = [file_dir + f for f in file_list]

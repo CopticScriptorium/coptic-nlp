@@ -62,7 +62,7 @@
 <orig orig="Ⲉ">
 <norm norm="ⲉ">
 <lemma lemma="ⲉⲣⲉ">
-<pos pos="CCIRC">
+<pos pos="CFOC">
 Ⲉ
 </pos>
 </lemma>
@@ -766,7 +766,7 @@
 <orig orig="ⲉ">
 <norm norm="ⲉ">
 <lemma lemma="ⲉⲣⲉ">
-<pos pos="CCIRC">
+<pos pos="CFOC">
 ⲉ
 </pos>
 </lemma>
@@ -3402,8 +3402,6 @@
 </orig>
 </norm_group>
 </orig_group>
-</translation>
-<translation translation="Moreover, when the angels glorify him, ">
 <orig_group orig_group="·">
 <norm_group norm_group="·">
 <orig orig="·">
@@ -3417,12 +3415,14 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="Moreover, when the angels glorify him, ">
 <orig_group orig_group="ⲡⲁⲗⲓⲛ">
 <norm_group norm_group="ⲡⲁⲗⲓⲛ">
 <orig orig="ⲡⲁⲗⲓⲛ">
 <norm norm="ⲡⲁⲗⲓⲛ">
 <lemma lemma="ⲡⲁⲗⲓⲛ">
-<pos pos="CONJ">
+<pos pos="ADV">
 <lang lang="Greek">
 ⲡⲁⲗⲓⲛ
 </lang>
@@ -5342,7 +5342,7 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ⲛⲣϥ̅ⲥⲱⲧⲙ̅">
-<norm_group norm_group="ⲛⲣϥⲥⲱⲧⲙ">
+<norm_group norm_group="ⲛⲣⲉϥⲥⲱⲧⲙ">
 <orig orig="ⲛ">
 <norm norm="ⲛ">
 <lemma lemma="ⲡ">
@@ -5355,10 +5355,10 @@
 </ed_line_n>
 <ed_line_n ed_line_n="16">
 <orig orig="ⲣϥ̅ⲥⲱⲧⲙ̅">
-<norm norm="ⲣϥⲥⲱⲧⲙ">
-<lemma lemma="ⲣϥⲥⲱⲧⲙ">
+<norm norm="ⲣⲉϥⲥⲱⲧⲙ">
+<lemma lemma="ⲣⲉϥⲥⲱⲧⲙ">
 <pos pos="N">
-<morph morph="ⲣϥ">
+<morph morph="ⲣⲉϥ">
 ⲣϥ̅
 </morph>
 <morph morph="ⲥⲱⲧⲙ">
@@ -7333,20 +7333,18 @@
 </norm>
 </orig>
 <orig orig="ϯϭⲱⲛⲧ̅">
+<norm norm="ϯϭⲱⲛⲧ">
 <lemma lemma="ϯϭⲱⲛⲧ">
 <pos pos="V">
-<norm norm="ϯ">
 <morph morph="ϯ">
 ϯ
 </morph>
-</norm>
-<norm norm="ϭⲱⲛⲧ">
 <morph morph="ϭⲱⲛⲧ">
 ϭⲱⲛⲧ̅
 </morph>
-</norm>
 </pos>
 </lemma>
+</norm>
 </orig>
 </norm_group>
 </orig_group>
@@ -7587,6 +7585,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="Do not cry into [the abode of] a man because of thy belief, nor because of the desire of thy bowels. ">
 <orig_group orig_group="〈">
 <norm_group norm_group="〈">
 <orig orig="〈">
@@ -7600,8 +7600,6 @@
 </orig>
 </norm_group>
 </orig_group>
-</translation>
-<translation translation="Do not cry into [the abode of] a man because of thy belief, nor because of the desire of thy bowels. ">
 <orig_group orig_group="ⲙ̅ⲡⲣ̅">
 <norm_group norm_group="ⲙⲡⲣ">
 <orig orig="ⲙ̅ⲡⲣ̅">
@@ -7987,8 +7985,8 @@
 <norm_group norm_group="ⲛⲅϩⲛⲧⲧⲁⲡⲣⲟ">
 <orig orig="ⲛ">
 <norm norm="ⲛ">
-<lemma lemma="ⲛⲧⲉ">
-<pos pos="ACONJ">
+<lemma lemma="ⲛ">
+<pos pos="NEG">
 ⲛ
 </pos>
 </lemma>
@@ -8406,7 +8404,7 @@
 <orig orig="ⲛ̅">
 <norm norm="ⲛ">
 <lemma lemma="ⲛ">
-<pos pos="NEG">
+<pos pos="PREP">
 ⲛ̅
 </pos>
 </lemma>
@@ -9529,7 +9527,7 @@
 <orig orig="ⲉⲣⲉ">
 <norm norm="ⲉⲣⲉ">
 <lemma lemma="ⲉⲣⲉ">
-<pos pos="CFOC">
+<pos pos="CCIRC">
 ⲉⲣⲉ
 </pos>
 </lemma>
@@ -11731,7 +11729,7 @@
 <orig orig="ⲕ">
 <norm norm="ⲕ">
 <lemma lemma="ⲛⲧⲟⲕ">
-<pos pos="PPERO">
+<pos pos="PPERS">
 ⲕ
 </pos>
 </lemma>
@@ -16625,7 +16623,7 @@
 <orig orig="ⲛ̅">
 <norm norm="ⲛ">
 <lemma lemma="ⲛⲧⲉ">
-<pos pos="NEG">
+<pos pos="ACONJ">
 ⲛ̅
 </pos>
 </lemma>
@@ -16757,8 +16755,8 @@
 <norm_group norm_group="ⲡⲉⲛⲧⲁϥⲉⲓ">
 <orig orig="ⲡ">
 <norm norm="ⲡ">
-<lemma lemma="ⲡ">
-<pos pos="ART">
+<lemma lemma="ⲡⲉ">
+<pos pos="COP">
 ⲡ
 </pos>
 </lemma>
@@ -17335,7 +17333,7 @@
 <orig orig="ⲉ">
 <norm norm="ⲉ">
 <lemma lemma="ⲉⲣⲉ">
-<pos pos="CFOC">
+<pos pos="CCIRC">
 ⲉ
 </pos>
 </lemma>
@@ -17455,7 +17453,7 @@
 </norm_group>
 </orig_group>
 </translation>
-<translation translation="for it is written, 'My son, I have always shewn myself glad to accompany the man who wished to walk.'  Thou shalt rejoice with him, and be glad. ">
+<translation translation="for it is written, 'My son, I have always shewn myself glad to accompany the man who came to walk.'">
 <orig_group orig_group="ϥⲥⲏϩ">
 <norm_group norm_group="ϥⲥⲏϩ">
 <orig orig="ϥ">
@@ -17660,12 +17658,14 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="Lead him forth, rejoicing with him and being glad. ">
 <orig_group orig_group="ⲑⲡⲟϥ">
-<norm_group norm_group="ⲑⲡⲟϥ">
+<norm_group norm_group="ⲧϩⲡⲟϥ">
 <orig orig="ⲑⲡⲟ">
-<norm norm="ⲑⲡⲟ">
-<lemma lemma="ⲑⲡⲟ">
-<pos pos="N">
+<norm norm="ⲧϩⲡⲟ">
+<lemma lemma="ⲧϩⲡⲟ">
+<pos pos="V">
 ⲑⲡⲟ
 </pos>
 </lemma>
@@ -17836,7 +17836,7 @@
 <orig orig="ⲁ">
 <norm norm="ⲁ">
 <lemma lemma="ⲁ">
-<pos pos="APST">
+<pos pos="ADV">
 ⲁ
 </pos>
 </lemma>
@@ -17885,7 +17885,7 @@
 </ed_line_n>
 <ed_line_n ed_line_n="3">
 <orig orig="ⲧⲣ">
-<norm norm="ⲧⲣ">
+<norm norm="ⲧⲣⲉ">
 <lemma lemma="ⲧⲣⲉ">
 <pos pos="ACAUS">
 ⲧⲣ
@@ -18006,7 +18006,7 @@
 <orig orig="ⲉⲣⲉ">
 <norm norm="ⲉⲣⲉ">
 <lemma lemma="ⲉⲣⲉ">
-<pos pos="CFOC">
+<pos pos="AOPT">
 ⲉⲣⲉ
 </pos>
 </lemma>
@@ -18326,11 +18326,20 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲡⲁϩⲟⲩ">
-<norm norm="ⲡⲁϩⲟⲩ">
-<lemma lemma="ⲡⲁϩⲟⲩ">
-<pos pos="N">
-ⲡⲁϩⲟⲩ
+<orig orig="ⲡⲁϩ">
+<norm norm="ⲡⲁϩ">
+<lemma lemma="ⲡⲱϩ">
+<pos pos="V">
+ⲡⲁϩ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲟⲩ">
+<norm norm="ⲟⲩ">
+<lemma lemma="ⲟⲩ">
+<pos pos="PPERO">
+ⲟⲩ
 </pos>
 </lemma>
 </norm>
@@ -18378,8 +18387,8 @@
 <norm_group norm_group="ⲉⲃⲟⲗⲕ">
 <orig orig="ⲉ">
 <norm norm="ⲉ">
-<lemma lemma="ⲉⲣⲉ">
-<pos pos="CFOC">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
 ⲉ
 </pos>
 </lemma>
@@ -18905,7 +18914,7 @@
 <orig orig="ⲧⲣⲓⲁⲥ">
 <norm norm="ⲧⲣⲓⲁⲥ">
 <lemma lemma="ⲧⲣⲓⲁⲥ">
-<pos pos="NPROP">
+<pos pos="N">
 <lang lang="Greek">
 ⲧⲣⲓⲁⲥ
 </lang>
@@ -19153,7 +19162,7 @@
 </norm_group>
 </orig_group>
 </translation>
-<translation translation="He is the Light which came out of Light, He is the Lord out of the Lord. ">
+<translation translation="He is the Light which came out of Light, ">
 <orig_group orig_group="ⲟⲩⲟⲉⲓⲛ">
 <norm_group norm_group="ⲟⲩⲟⲉⲓⲛ">
 <orig orig="ⲟⲩⲟⲉⲓⲛ">
@@ -19228,6 +19237,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="He is the Lord out of the Lord. ">
 <orig_group orig_group="ⲟⲩϫⲥ̅">
 <norm_group norm_group="ⲟⲩϫⲟⲉⲓⲥ">
 <orig orig="ⲟⲩ">
@@ -19550,7 +19561,7 @@
 </norm_group>
 </orig_group>
 </translation>
-<translation translation="He was not a created things but God, who was produced by the Holy Virgin Mary, the woman who produced God. ">
+<translation translation="He was not a created thing but God, who was produced by the Holy Virgin Mary, the woman who produced God. ">
 <orig_group orig_group="ⲛ̅ⲟⲩⲧⲁⲙⲓⲟ">
 <norm_group norm_group="ⲛⲟⲩⲧⲁⲙⲓⲟ">
 <orig orig="ⲛ̅">
@@ -21831,11 +21842,20 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ⲡⲁⲙⲁϩⲧⲉ">
-<norm norm="ⲡⲁⲙⲁϩⲧⲉ">
-<lemma lemma="ⲡⲁⲙⲁϩⲧⲉ">
+<orig orig="ⲡ">
+<norm norm="ⲡ">
+<lemma lemma="ⲡ">
+<pos pos="ART">
+ⲡ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲁⲙⲁϩⲧⲉ">
+<norm norm="ⲁⲙⲁϩⲧⲉ">
+<lemma lemma="ⲁⲙⲁϩⲧⲉ">
 <pos pos="N">
-ⲡⲁⲙⲁϩⲧⲉ
+ⲁⲙⲁϩⲧⲉ
 </pos>
 </lemma>
 </norm>

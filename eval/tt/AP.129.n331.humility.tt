@@ -155,7 +155,7 @@
 <orig orig="ϣⲁϫⲉ">
 <norm norm="ϣⲁϫⲉ">
 <lemma lemma="ϣⲁϫⲉ">
-<pos pos="N">
+<pos pos="V">
 ϣⲁϫⲉ
 </pos>
 </lemma>
@@ -832,7 +832,7 @@
 <orig orig="ϩⲩⲡⲟⲕⲣⲓ̇ⲛⲉ">
 <norm norm="ϩⲩⲡⲟⲕⲣⲓⲛⲉ">
 <lemma lemma="ϩⲩⲡⲟⲕⲣⲓⲛⲉ">
-<pos pos="V">
+<pos pos="N">
 <lang lang="Greek">
 ϩⲩ
 </lb_n>
@@ -1008,7 +1008,7 @@
 <orig orig="ⲕ">
 <norm norm="ⲕ">
 <lemma lemma="ⲛⲧⲟⲕ">
-<pos pos="PPERS">
+<pos pos="PPERO">
 ⲕ
 </pos>
 </lemma>

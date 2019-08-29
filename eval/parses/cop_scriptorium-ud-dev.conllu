@@ -3705,7 +3705,7 @@
 
 # sent_id = sahidica_mark-Mark_05_s0026
 # text = ⲁⲩⲱ ⲁⲥϣⲉⲡϩⲁϩ ⲛϩⲓⲥⲉ ⲛⲧⲟⲟⲧⲟⲩ ⲛϩⲁϩ ⲛⲥⲁⲉⲓⲛ ⲁⲩⲱ ⲁⲥϫⲟ ⲉⲃⲟⲗ ⲛⲛⲉⲧⲉⲩⲛⲧⲁⲥⲥⲉ ⲧⲏⲣⲟⲩ ⲉⲙⲡⲥⲙⲧⲟⲛ ⲗⲁⲁⲩ . ⲁⲗⲗⲁ ⲛⲧⲁⲥⲉⲓ ⲛⲧϩⲟ .
-1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	17	cc	_	_
+1	ⲁⲩⲱ	ⲁⲩⲱ	CCONJ	CONJ	_	4	cc	_	_
 2-5	ⲁⲥϣⲉⲡϩⲁϩ	_	_	_	_	_	_	_	_
 2	ⲁ	ⲁ	AUX	APST	_	4	aux	_	_
 3	ⲥ	ⲛⲧⲟⲥ	PRON	PPERS	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	_
@@ -3734,7 +3734,7 @@
 20	ⲛ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	17	obj	_	_
 21	ⲉⲧⲉ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	22	mark	_	_
 22	ⲩⲛⲧⲁ	ⲟⲩⲛⲧⲁ	VERB	EXIST	_	20	acl	_	_
-23	ⲥ	ⲛⲧⲟⲥ	PRON	PPERS	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	22	iobj	_	_
+23	ⲥ	ⲛⲧⲟⲥ	PRON	PPERO	Definite=Def|Gender=Fem|Number=Sing|Person=3|PronType=Prs	22	iobj	_	_
 24	ⲥⲉ	ⲛⲧⲟⲟⲩ	PRON	PPERO	Definite=Def|Number=Plur|Person=3|PronType=Prs	22	obj	_	_
 25-26	ⲧⲏⲣⲟⲩ	_	_	_	_	_	_	_	_
 25	ⲧⲏⲣ	ⲧⲏⲣ	ADV	IMOD	PronType=Tot	20	advmod	_	_
@@ -8069,7 +8069,7 @@
 9-10	ⲛⲧⲩⲣⲟⲥ	_	_	_	_	_	_	_	_
 9	ⲛ	ⲛ	ADP	PREP	_	10	case	_	_
 10	ⲧⲩⲣⲟⲥ	ⲧⲩⲣⲟⲥ	PROPN	NPROP	_	8	nmod	_	_
-11	.	.	PUNCT	PUNCT	_	3	punct	_	_
+11	.	.	PUNCT	PUNCT	_	14	punct	_	_
 12-14	ⲁϥⲃⲱⲕ	_	_	_	_	_	_	_	_
 12	ⲁ	ⲁ	AUX	APST	_	14	aux	_	_
 13	ϥ	ⲛⲧⲟϥ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=3|PronType=Prs	14	nsubj	_	_

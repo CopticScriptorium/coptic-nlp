@@ -1725,7 +1725,7 @@
 </orig>
 <orig orig="ⲁⲛⲁⲛⲁⲭⲱⲣⲏⲧⲏⲥ">
 <norm norm="ⲁⲛⲁⲭⲱⲣⲏⲧⲏⲥ">
-<lemma lemma="ⲁ">
+<lemma lemma="ⲁⲛⲁⲭⲱⲣⲏⲧⲏⲥ">
 <pos pos="N">
 <lang lang="Greek">
 ⲁⲛⲁⲛⲁⲭⲱⲣⲏⲧⲏⲥ
@@ -1949,8 +1949,6 @@
 </orig>
 </norm_group>
 </orig_group>
-</translation>
-<translation translation="And the blessed Apa Pambo rose up and went into the desert in the strength of God which was with him, even as it was with the blessed Antonius at the time when he was on his journey to go to the blessed man Apa Paulus a second time.">
 <orig_group orig_group="·">
 <norm_group norm_group="·">
 <orig orig="·">
@@ -1964,6 +1962,8 @@
 </orig>
 </norm_group>
 </orig_group>
+</translation>
+<translation translation="And the blessed Apa Pambo rose up and went into the desert in the strength of God which was with him, even as it was with the blessed Antonius at the time when he was on his journey to go to the blessed man Apa Paulus a second time.">
 <orig_group orig_group="ⲛ̅ⲧⲟϥ">
 <norm_group norm_group="ⲛⲧⲟϥ">
 <orig orig="ⲛ̅ⲧⲟϥ">
@@ -3443,9 +3443,7 @@
 <norm norm="ⲁϩⲉ">
 <lemma lemma="ⲱϩⲉ">
 <pos pos="V">
-<morph morph="ⲁϩⲉ">
 ⲁϩⲉ
-</morph>
 </pos>
 </lemma>
 </norm>
@@ -3454,9 +3452,7 @@
 <norm norm="ⲣⲁⲧ">
 <lemma lemma="ⲣⲁⲧ_ⲁⲛⲟⲕ">
 <pos pos="N_PPERO">
-<morph morph="ⲣⲁⲧ">
 ⲣⲁⲧ
-</morph>
 </pos>
 </lemma>
 </norm>
@@ -21862,7 +21858,7 @@
 </norm_group>
 </orig_group>
 </translation>
-<translation translation="On the contrary, when any one came hither, whilst he remained outside I commanded him from inside this abode saying, &quot;Get thee gone, thou hast troubled thyself [to no purpose] in coming to me.&quot;">
+<translation translation="On the contrary, when any one came hither, whilst he remained outside I commanded him from inside this abode saying, 'Get thee gone, thou hast troubled thyself [to no purpose] in coming to me.'">
 <orig_group orig_group="ⲁⲗⲗⲁ">
 <norm_group norm_group="ⲁⲗⲗⲁ">
 <orig orig="ⲁⲗⲗⲁ">

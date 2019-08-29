@@ -105,7 +105,7 @@
 <norm_group norm_group="ϫⲉⲟⲩⲧⲱⲱⲃⲉ">
 <orig orig="ϫⲉ">
 <norm norm="ϫⲉ">
-<lemma lemma="ϫⲉ ">
+<lemma lemma="ϫⲉ">
 <pos pos="CONJ">
 ϫⲉ
 </pos>
@@ -272,8 +272,8 @@
 <norm_group norm_group="ⲛⲥⲛⲁϩⲩⲡⲟⲙⲓⲛⲉ">
 <orig orig="ⲛ">
 <norm norm="ⲛ">
-<lemma lemma="ⲛⲧⲉ">
-<pos pos="ACONJ">
+<lemma lemma="ⲛ">
+<pos pos="NEG">
 ⲛ
 </pos>
 </lemma>
@@ -1687,11 +1687,11 @@
 </norm_group>
 </orig_group>
 <orig_group orig_group="ϩⲛ̇ⲁ̇ⲧⲕⲓ̇ⲙ">
-<norm_group norm_group="ϩⲛⲁⲧⲕⲓⲙ">
+<norm_group norm_group="ϩⲉⲛⲁⲧⲕⲓⲙ">
 <orig orig="ϩⲛ̇">
-<norm norm="ϩⲛ">
-<lemma lemma="ϩⲛ">
-<pos pos="PREP">
+<norm norm="ϩⲉⲛ">
+<lemma lemma="ⲟⲩ">
+<pos pos="ART">
 ϩⲛ̇
 </pos>
 </lemma>

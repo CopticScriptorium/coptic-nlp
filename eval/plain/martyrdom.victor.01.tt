@@ -1,8 +1,8 @@
 <meta annotation="Caroline T. Schroeder, Elizabeth Platte, Mitchell Abrams, Israel Avrahamy, Asael Benyami, Yinon Kahan, Oran Szachter, Amir Zeldes" author="anonymous" collection="Oriental Manuscripts" Coptic_edition="&lt;a href=&amp;quot;https://archive.org/details/CopticMartyrdomshighResByEWallisBudgeVol01/page/n0&amp;quot;&gt;Budge, 1914&lt;/a&gt;" corpus="martyrdom.victor" country="Egypt" document_cts_urn="urn:cts:copticLit:martyrdoms.victor.budge:1.1-6.14" idno="7022 ff. 1-11" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msItem_title="The Martyrdom of Saint Victor the General" note="Coptic SCRIPTORIUM's edition includes only Budge's transcription of the manuscript. It is not a diplomatic transcription based on reading and collation of the original manuscript. The translation is Budge's with very slight modifications (e.g., numbers mistranslated.)" objectType="codex" origDate="951" origDate_notAfter="1000" origDate_notBefore="0900" origDate_precision="medium" origPlace="St. Mercurius Monastery" pages_from="1" pages_to="6" parsing="gold" placeName="Edfu" project="Coptic SCRIPTORIUM" redundant="no" repository="British Library" segmentation="gold" source="&lt;a href='http://marcion.sourceforge.net'&gt;Marcion project&lt;/a&gt;, &lt;a href='https://archive.org/details/CopticMartyrdomshighResByEWallisBudgeVol01'&gt;Archive.org&lt;/a&gt;" tagging="gold" title="Martyrdom of Victor part 1" translation="E. A. Wallis Budge" Trismegistos="none" version_date="2018-11-15" version_n="2.6.0">
 <pb_xml_id pb_xml_id="MERC.AS1">
-<chapter chapter="1">
+<chapter_n chapter_n="1">
 <translation translation="[HERE BEGINNETH] THE MARTYRDOM OF SAINT BIKTÔR (VICTOR), THE GENERAL AND MARTYR, THE MAN GLORIOUS IN CHRIST, THE WEARER OF THE CROWN IN VERY TRUTH, WHO COMPLETED HIS GLORIOUS STRIFE ON THE SEVEN AND TWENTIETH DAY OF THE MONTH PHARMOUTE.">
-<verse verse="1">
+<verse_n verse_n="1">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:1.1">
 <Budge_pb Budge_pb="1.1">
 <orig_group orig_group="ⲦⲘⲀⲢⲦⲨⲢⲒⲀ">
@@ -506,10 +506,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="IN THE PEACE OF GOD. MAY HIS HOLY BLESSING COME UPON US, AND MAY WE ALL BE SAVED TOGETHER. AMEN.">
-<verse verse="2">
+<verse_n verse_n="2">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:1.2">
 <orig_group orig_group="ϨⲚ̄ⲞⲨⲈⲒⲢⲎⲚⲎ">
 <norm_group norm_group="ϩⲛⲟⲩⲉⲓⲣⲏⲛⲏ">
@@ -862,12 +862,12 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
-</chapter>
-<chapter chapter="2">
+</chapter_n>
+<chapter_n chapter_n="2">
 <translation translation="And it came to pass in the kingdom (i. e. reign) of the Emperor Diocletian/ in the third year of his reign, in the first month, that the Devil led his heart astray from God, and made him to do the things that were not seemly.">
-<verse verse="1">
+<verse_n verse_n="1">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:2.1">
 <Budge_pb Budge_pb="1.11">
 <orig_group orig_group="Ⲁⲥϣⲱⲡⲉ">
@@ -1424,10 +1424,10 @@
 </orig_group>
 </Budge_pb>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And Diocletian worshipped idols, and thrust the God of heaven behind his back, for the sake of [creatures made of] wood and stones, and for the sake of the vain things that were fashioned by the hands of men. ">
-<verse verse="2">
+<verse_n verse_n="2">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:2.2">
 <Budge_pb Budge_pb="1.15">
 <orig_group orig_group="ⲁϥϣⲙ̄ϣⲉ">
@@ -1812,10 +1812,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="Hearken [ye] now to [the account of] the valour of the young man [called] Victor.">
-<verse verse="3">
+<verse_n verse_n="3">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:2.3">
 <orig_group orig_group="ⲥⲱⲧⲙ̄">
 <norm_group norm_group="ⲥⲱⲧⲙ">
@@ -1976,10 +1976,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And the Emperor Diocletian took counsel and decided to do the things that were unseemly before God, Jesus the Christ; and this is what he did. ">
-<verse verse="4">
+<verse_n verse_n="4">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:2.4">
 <orig_group orig_group="ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ">
 <norm_group norm_group="ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ">
@@ -2363,10 +2363,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="He made seventy images of gold, and gave unto them the name of gods which they certainly were not.">
-<verse verse="5">
+<verse_n verse_n="5">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:2.5">
 <orig_group orig_group="ⲁϥⲧⲁⲙⲓⲟ">
 <norm_group norm_group="ⲁϥⲧⲁⲙⲓⲟ">
@@ -2634,10 +2634,10 @@
 </orig_group>
 </Budge_pb>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="To thirty-five of these he gave names of gods, and to thirty-five the names of goddesses;">
-<verse verse="6">
+<verse_n verse_n="6">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:2.6">
 <Budge_pb Budge_pb="1.23">
 <orig_group orig_group="ⲁϥⲙⲟⲩⲧⲉ">
@@ -2846,10 +2846,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="now the number of his other gods and goddesses amounted to one hundred and forty.">
-<verse verse="7">
+<verse_n verse_n="7">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:2.7">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
@@ -3072,10 +3072,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And the Emperor Diocletian affixed a decree on the outside of the door of the Palace^ wherein it was written thus :">
-<verse verse="8">
+<verse_n verse_n="8">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:2.8">
 <orig_group orig_group="ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ">
 <norm_group norm_group="ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ">
@@ -3374,10 +3374,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="I, the Emperor Diocletian, [hereby] command that from Romania [in the north] to Pelak (Philac) in the south, every man, whether he be eparch, or general, or count, or bishop, or elder, or deacon, or reader, or servant, or free man, or soldier, or countryman, shall worship my gods.">
-<verse verse="9">
+<verse_n verse_n="9">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:2.9">
 <orig_group orig_group="ⲁⲛⲟⲕ">
 <norm_group norm_group="ⲁⲛⲟⲕ">
@@ -4127,10 +4127,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And any one among these who shall say, 'I am a Christian,' shall be remembered, and he shall die by the sword.">
-<verse verse="10">
+<verse_n verse_n="10">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:2.10">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
@@ -4391,10 +4391,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And as for you, O all ye noblemen of high senatorial rank, who hold office in connection with the Palace, ye shall give effect to | this decree in such a way that every man shall worship my gods ;">
-<verse verse="11">
+<verse_n verse_n="11">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:2.11">
 <orig_group orig_group="ⲛ̄ⲧⲱⲧⲛ̄">
 <norm_group norm_group="ⲛⲧⲱⲧⲛ">
@@ -4724,10 +4724,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="for these are the gods who give us victory in battle, and it is they who are the protectors of you yourselves, and they give strength unto you and unto the whole army.">
-<verse verse="12">
+<verse_n verse_n="12">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:2.12">
 <orig_group orig_group="ϫⲉⲛⲁⲓ">
 <norm_group norm_group="ϫⲉⲛⲁⲓ">
@@ -5176,10 +5176,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="Therefore, he that doth not rise up early in the morning, and come at dawn [to me so] that we may go into the temple together and offer up sacrifices to the gods, ">
-<verse verse="13">
+<verse_n verse_n="13">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:2.13">
 <orig_group orig_group="ϫⲉⲕⲁⲥ">
 <norm_group norm_group="ϫⲉⲕⲁⲥ">
@@ -5528,10 +5528,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="he, I say, that doth not come [hither] shall be cast into the sea, so that [all men] may know that I am king, and that there is no other king besides me.'">
-<verse verse="14">
+<verse_n verse_n="14">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:2.14">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
@@ -5883,12 +5883,12 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
-</chapter>
-<chapter chapter="3">
+</chapter_n>
+<chapter_n chapter_n="3">
 <translation translation="And it came to pass at dawn, on the first day of the month Parmoute, that the Emperor Diocletian, and all his army, and the eparchs, and the generals went into the temple.">
-<verse verse="1">
+<verse_n verse_n="1">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.1">
 <orig_group orig_group="ϩⲧⲟⲟⲩⲉ">
 <norm_group norm_group="ϩⲧⲟⲟⲩⲉ">
@@ -6274,10 +6274,10 @@
 </orig_group>
 </Budge_pb>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And the Emperor took his seat upon the throne, and he caused the herald to make a proclamation, saying, ">
-<verse verse="2">
+<verse_n verse_n="2">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.2">
 <Budge_pb Budge_pb="2.26">
 <orig_group orig_group="Ⲡⲣ̄ⲣⲟ">
@@ -6487,10 +6487,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="O [all] ye Roman people, come ye and offer up sacrifice.'">
-<verse verse="3">
+<verse_n verse_n="3">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.3">
 <orig_group orig_group="ϫⲉⲁⲙⲏⲓⲧⲛ̄">
 <norm_group norm_group="ϫⲉⲁⲙⲏⲓⲧⲛ">
@@ -6620,10 +6620,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And the Emperor made an altar of silver and a vessel wherein to burn incense of gold ;">
-<verse verse="4">
+<verse_n verse_n="4">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.4">
 <orig_group orig_group="ⲁⲡⲣ̄ⲣⲟ">
 <norm_group norm_group="ⲁⲡⲣⲣⲟ">
@@ -6802,10 +6802,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and he made a great pedestal of gold, ">
-<verse verse="5">
+<verse_n verse_n="5">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.5">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
@@ -6931,10 +6931,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and he placed it before the altar so that the [statue of] Apollo might be set upon it.">
-<verse verse="6">
+<verse_n verse_n="6">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.6">
 <orig_group orig_group="ⲁϥⲕⲁⲁϥ">
 <norm_group norm_group="ⲁϥⲕⲁⲁϥ">
@@ -7146,10 +7146,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And the Emperor commanded them to bring frankincense, and the finest flour of wheat, and the purest oil, and rare old wine, and to pour them out upon the altar whereon was blazing fire.">
-<verse verse="7">
+<verse_n verse_n="7">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.7">
 <orig_group orig_group="ⲁϥⲕⲉⲗⲉⲩⲉ">
 <norm_group norm_group="ⲁϥⲕⲉⲗⲉⲩⲉ">
@@ -7513,10 +7513,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And afterwards they lighted two hundred candles on golden candlesticks, and four hundred candles on silver candlesticks, and two hundred white horses drew his gods into the temple.">
-<verse verse="8">
+<verse_n verse_n="8">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.8">
 <orig_group orig_group="ⲙⲛ̄ⲛ̄ⲥⲱⲥ">
 <norm_group norm_group="ⲙⲛⲛⲥⲱⲥ">
@@ -7961,10 +7961,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="'And when they had brought his gods into the temple the Emperor Diocletian stood up on his throne,">
-<verse verse="9">
+<verse_n verse_n="9">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.9">
 <orig_group orig_group="ⲡⲣ̄ⲣⲟ">
 <norm_group norm_group="ⲡⲣⲣⲟ">
@@ -8254,10 +8254,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and he lifted his crown off his head, and set it upon the head of [the statue of] Apollo, and he bowed down and worshipped it three times, saying, ">
-<verse verse="10">
+<verse_n verse_n="10">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.10">
 <orig_group orig_group="ⲁϥϥⲓ">
 <norm_group norm_group="ⲁϥϥⲓ">
@@ -8643,10 +8643,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="Thou art the god who livest, O Apollo, the greatest of the gods, who dost give unto us victory in war.">
-<verse verse="11">
+<verse_n verse_n="11">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.11">
 <orig_group orig_group="ϫⲉⲛ̄ⲧⲕ̄ⲟⲩⲛⲟⲩⲧⲉ">
 <norm_group norm_group="ϫⲉⲛⲧⲕⲟⲩⲛⲟⲩⲧⲉ">
@@ -8954,10 +8954,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And after the Emperor had worshipped Apollo, his three fellow [Caesars], Romanus, Basileides, and Euaios, came and worshipped Apollo also.">
-<verse verse="12">
+<verse_n verse_n="12">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.12">
 <orig_group orig_group="ⲡⲣ̄ⲣⲟ">
 <norm_group norm_group="ⲡⲣⲣⲟ">
@@ -9275,10 +9275,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="Now these | held equal rank and power with the Fol. 2 « Emperor, and he loved them exceedingly.">
-<verse verse="13">
+<verse_n verse_n="13">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.13">
 <orig_group orig_group="ⲛⲁⲓ">
 <norm_group norm_group="ⲛⲁⲓ">
@@ -9512,10 +9512,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And he had given ^ unto each one of them fifty centenarii ^ of gold, in addition to the most noble rank of generals in the army and the other honours which he had bestowed upon them.">
-<verse verse="14">
+<verse_n verse_n="14">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.14">
 <orig_group orig_group="ⲁϥϯ">
 <norm_group norm_group="ⲁϥϯ">
@@ -9799,8 +9799,8 @@
 </orig>
 </norm_group>
 </orig_group>
-<orig_group orig_group="ⲛ̄ⲧⲁϥ">
-<norm_group norm_group="ⲛⲧⲁϥ">
+<orig_group orig_group="ⲛ̄ⲧⲁϥⲧⲁⲁⲩ">
+<norm_group norm_group="ⲛⲧⲁϥⲧⲁⲁⲩ">
 <orig orig="ⲛ̄ⲧ">
 <norm norm="ⲛⲧ">
 <lemma lemma="ⲉⲧⲉⲣⲉ">
@@ -9828,12 +9828,8 @@
 </lemma>
 </norm>
 </orig>
-</norm_group>
-</orig_group>
 </Budge_pb>
 <Budge_pb Budge_pb="3.17">
-<orig_group orig_group="ⲧⲁⲁⲩ">
-<norm_group norm_group="ⲧⲁⲁⲩ">
 <orig orig="ⲧⲁⲁ">
 <norm norm="ⲧⲁⲁ">
 <lemma lemma="ϯ">
@@ -9890,10 +9886,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And Diocletian said unto them, 'O my fellow [Caesars], I pray you to be persuaded by me, and to worship my gods.">
-<verse verse="15">
+<verse_n verse_n="15">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.15">
 <orig_group orig_group="ⲇⲓⲟ̄ⲕⲗⲏϯⲁⲛⲟⲥ">
 <norm_group norm_group="ⲇⲓⲟⲕⲗⲏϯⲁⲛⲟⲥ">
@@ -10167,10 +10163,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="Ye yourselves can see this great festival which hath spread abroad everywhere this day.">
-<verse verse="16">
+<verse_n verse_n="16">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.16">
 <orig_group orig_group="ⲧⲉⲧⲛ̄ⲛⲁⲩ">
 <norm_group norm_group="ⲧⲉⲧⲛⲛⲁⲩ">
@@ -10342,10 +10338,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="I swear by the salvation of my strength, and by the salvation of the seventy gods, and by the strength of the great god Apollo, that I will make the whole world worship my gods, ">
-<verse verse="17">
+<verse_n verse_n="17">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.17">
 <orig_group orig_group="ϣⲉⲡⲟⲩϫⲁⲓ">
 <norm_group norm_group="ϣⲉⲡⲟⲩϫⲁⲓ">
@@ -10715,10 +10711,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and the festival which is being celebrated this day shall be proclaimed throughout the whole world.">
-<verse verse="18">
+<verse_n verse_n="18">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.18">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
@@ -10902,10 +10898,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And ye yourselves shall give propitiatory offerings and gifts to the temple of Apollo, besides those which the eparch and the generals shall give.'">
-<verse verse="19">
+<verse_n verse_n="19">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.19">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
@@ -11261,10 +11257,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And Romanus gave thirty centenarii of gold, and Basileides gave twenty, and Euaios gave ten, and the Emperor gave sixty ;">
-<verse verse="20">
+<verse_n verse_n="20">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.20">
 <orig_group orig_group="ϩⲣⲱⲙⲁⲛⲟⲥ">
 <norm_group norm_group="ϩⲣⲱⲙⲁⲛⲟⲥ">
@@ -11643,10 +11639,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="in all they gave as free-will offerings to [the temple of] Apollo one hundred and twenty centenarii of gold.">
-<verse verse="21">
+<verse_n verse_n="21">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.21">
 <orig_group orig_group="ϩⲱⲥⲧⲉ">
 <norm_group norm_group="ϩⲱⲥⲧⲉ">
@@ -11861,10 +11857,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And the Emperor also gave three precious jewels [to be set] in the crown of Apollo^ and they were of exceedingly great price.">
-<verse verse="22">
+<verse_n verse_n="22">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.22">
 <orig_group orig_group="ⲁϥϯϣⲟⲙⲛⲧ̄">
 <norm_group norm_group="ⲁϥϯϣⲟⲙⲛⲧ">
@@ -12072,10 +12068,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And the Emperor said unto Romanus, the general o£ the army^ ">
-<verse verse="23">
+<verse_n verse_n="23">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.23">
 <orig_group orig_group="ⲡⲣ̄ⲣⲟ">
 <norm_group norm_group="ⲡⲣⲣⲟ">
@@ -12200,10 +12196,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="'Offer thou up sacrifice to my gods' ;">
-<verse verse="24">
+<verse_n verse_n="24">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.24">
 <orig_group orig_group="ϫⲉⲑⲩⲥⲓ̈ⲁⲍⲉ">
 <norm_group norm_group="ϫⲉⲑⲩⲥⲓⲁⲍⲉ">
@@ -12274,10 +12270,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and Romanus went forward and offered up sacrifice together with his two fellow [Caesars], ">
-<verse verse="25">
+<verse_n verse_n="25">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.25">
 <orig_group orig_group="ⲁϥϯⲡⲉϥⲟⲩⲟⲓ">
 <norm_group norm_group="ⲁϥϯⲡⲉϥⲟⲩⲟⲓ">
@@ -12444,11 +12440,11 @@
 </orig_group>
 </Budge_pb>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <Budge_pb Budge_pb="4.2">
 <translation translation="as did also the other nobles who were attached to the Palace.">
-<verse verse="26">
+<verse_n verse_n="26">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.26">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
@@ -12581,10 +12577,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="On that day six hundred thousand soldiers and two millions of the people of the country worshipped [Apollo], and all the multitudes of the people were gathered together at the sacrifice of the Emperor.">
-<verse verse="27">
+<verse_n verse_n="27">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:3.27">
 <orig_group orig_group="ϩⲙ̄ⲡⲉϩⲟⲟⲩ">
 <norm_group norm_group="ϩⲙⲡⲉϩⲟⲟⲩ">
@@ -12962,12 +12958,12 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
-</chapter>
-<chapter chapter="4">
+</chapter_n>
+<chapter_n chapter_n="4">
 <translation translation="And it came to pass that when the turn of the Protector had come to offer up sacrifice, now his name was Basileides^">
-<verse verse="1">
+<verse_n verse_n="1">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:4.1">
 <orig_group orig_group="ⲛ̄ⲧⲉⲣⲉⲡⲟⲣⲇⲓⲛⲟⲛ">
 <norm_group norm_group="ⲛⲧⲉⲣⲉⲡⲟⲣⲇⲓⲛⲟⲛ">
@@ -13163,10 +13159,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="he would not worship the gods of the Emperor ;">
-<verse verse="2">
+<verse_n verse_n="2">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:4.2">
 <orig_group orig_group="ⲙ̄ⲡⲉϥⲑⲩⲥⲓⲁⲍⲉ">
 <norm_group norm_group="ⲙⲡⲉϥⲑⲩⲥⲓⲁⲍⲉ">
@@ -13277,11 +13273,11 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 </Budge_pb>
 <translation translation="and Diocletian put him to death together with all his house.">
-<verse verse="3">
+<verse_n verse_n="3">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:4.3">
 <Budge_pb Budge_pb="4.8">
 <orig_group orig_group="ⲁⲗⲗⲁ">
@@ -13436,10 +13432,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And the whole city was greatly shaken by the thronging of the multitude, ">
-<verse verse="4">
+<verse_n verse_n="4">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:4.4">
 <orig_group orig_group="ⲧⲡⲟⲗⲓⲥ">
 <norm_group norm_group="ⲧⲡⲟⲗⲓⲥ">
@@ -13613,10 +13609,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and men died, being choked by the fumes of the frankincense^ and by the smell of the incense which the people were offering up upon the altar">
-<verse verse="5">
+<verse_n verse_n="5">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:4.5">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
@@ -13902,12 +13898,12 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 </pb_xml_id>
 <pb_xml_id pb_xml_id="MERC.AS4">
 <translation translation="And those who died through being^ crushed by the multitudes were five thousand in number, in addi                 tion to those who died in the temple, who were also five thousand in number, excepting the ones who died in the temple.">
-<verse verse="6">
+<verse_n verse_n="6">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:4.6">
 <orig_group orig_group="ⲛⲉⲛ̄ⲧⲁⲩⲙⲟⲩ">
 <norm_group norm_group="ⲛⲉⲛⲧⲁⲩⲙⲟⲩ">
@@ -14323,10 +14319,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And the Emperor Diocletian went about throughout the whole city, saying,  ">
-<verse verse="7">
+<verse_n verse_n="7">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:4.7">
 <orig_group orig_group="ⲡⲣ̄ⲣⲟ">
 <norm_group norm_group="ⲡⲣⲣⲟ">
@@ -14537,10 +14533,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="'When ye shall have finished offering up your sacrifices, [ye shall] eat and ye shall drink at the door of [the temple of] Apollo and Artemis,">
-<verse verse="8">
+<verse_n verse_n="8">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:4.8">
 <orig_group orig_group="ϫⲉⲉⲧⲉⲧⲛ̄ϣⲁⲛⲟⲩⲱ̄">
 <norm_group norm_group="ϫⲉⲉⲧⲉⲧⲛϣⲁⲛⲟⲩⲱ">
@@ -14778,10 +14774,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and ye shall glorify them, for it is they who have made the heavens, and the earth, and the sea, and mankind.^">
-<verse verse="9">
+<verse_n verse_n="9">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:4.9">
 <orig_group orig_group="ⲛ̄ⲧⲉⲧⲛ̄ϯⲉⲟⲟⲩ">
 <norm_group norm_group="ⲛⲧⲉⲧⲛϯⲉⲟⲟⲩ">
@@ -15073,10 +15069,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And the Emperor went back to the Palace at the time of the morning meal,">
-<verse verse="10">
+<verse_n verse_n="10">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:4.10">
 <orig_group orig_group="ⲡⲣ̄ⲣⲟ">
 <norm_group norm_group="ⲡⲣⲣⲟ">
@@ -15262,10 +15258,10 @@
 </orig_group>
 </Budge_pb>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and he called Romanus the general and said unto him,">
-<verse verse="11">
+<verse_n verse_n="11">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:4.11">
 <Budge_pb Budge_pb="4.22">
 <orig_group orig_group="ⲁϥⲙⲟⲩⲧⲉ">
@@ -15407,10 +15403,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="'Take this edict, and make the rest of the multitude offer up sacrifice before thou dost leave them.'">
-<verse verse="12">
+<verse_n verse_n="12">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:4.12">
 <orig_group orig_group="ϫⲉϫⲓ">
 <norm_group norm_group="ϫⲉϫⲓ">
@@ -15608,10 +15604,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="Then Romanus the general took the edict from the hand of the Emperor, ">
-<verse verse="13">
+<verse_n verse_n="13">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:4.13">
 <orig_group orig_group="ϩⲣⲱⲙⲁⲛⲟⲥ">
 <norm_group norm_group="ϩⲣⲱⲙⲁⲛⲟⲥ">
@@ -15803,10 +15799,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and he gave orders to the people, saying, 'O Romans, offer ye up sacrifice.'">
-<verse verse="14">
+<verse_n verse_n="14">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:4.14">
 <orig_group orig_group="ⲁϥⲕⲉⲗⲉⲩⲉ">
 <norm_group norm_group="ⲁϥⲕⲉⲗⲉⲩⲉ">
@@ -15973,12 +15969,12 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
-</chapter>
-<chapter chapter="5">
+</chapter_n>
+<chapter_n chapter_n="5">
 <translation translation="And it came to pass that when all the people had offered up sacrifice^ it came to the turn of his son to offer up sacrifice.">
-<verse verse="1">
+<verse_n verse_n="1">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.1">
 <orig_group orig_group="ⲁⲥϣⲱⲡⲉ">
 <norm_group norm_group="ⲁⲥϣⲱⲡⲉ">
@@ -16241,10 +16237,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="Now he was a young man of nineteen years of age, and he worshipped God, and held His commandments in fear.">
-<verse verse="2">
+<verse_n verse_n="2">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.2">
 <orig_group orig_group="ⲟⲩϣⲏⲣⲉ">
 <norm_group norm_group="ⲟⲩϣⲏⲣⲉ">
@@ -16558,10 +16554,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="He was a virgin in body, he ate once only each week, he prayed all night long,">
-<verse verse="3">
+<verse_n verse_n="3">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.3">
 <orig_group orig_group="ⲉϥⲟ">
 <norm_group norm_group="ⲉϥⲟ">
@@ -16845,10 +16841,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and from the day wherein he had heard the Christians crying out to him in the church his heart had departed into heaven.">
-<verse verse="4">
+<verse_n verse_n="4">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.4">
 <orig_group orig_group="ϫⲓⲛⲡⲉϩⲟⲟⲩ">
 <norm_group norm_group="ϫⲓⲛⲡⲉϩⲟⲟⲩ">
@@ -17159,10 +17155,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="He hated the world. He did not drink wine, neither did he eat food cooked with fire.">
-<verse verse="5">
+<verse_n verse_n="5">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.5">
 <orig_group orig_group="ⲁϥⲙⲉⲥⲧⲉ">
 <norm_group norm_group="ⲁϥⲙⲉⲥⲧⲉ">
@@ -17415,10 +17411,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="He did not decorate his person, and he did not adorn himself with rich apparel and fine raiment.">
-<verse verse="6">
+<verse_n verse_n="6">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.6">
 <orig_group orig_group="ⲟⲩⲇⲉ">
 <norm_group norm_group="ⲟⲩⲇⲉ">
@@ -17598,10 +17594,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="He did not mount the horse which was used in a chariot (i. e. a war-horse).">
-<verse verse="7">
+<verse_n verse_n="7">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.7">
 <orig_group orig_group="ⲟⲩⲇⲉ">
 <norm_group norm_group="ⲟⲩⲇⲉ">
@@ -17717,10 +17713,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="He neither ate food with his father nor did he enter into converse with him in the presence of any one who was greater than himself.">
-<verse verse="8">
+<verse_n verse_n="8">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.8">
 <orig_group orig_group="ⲟⲩⲇⲉ">
 <norm_group norm_group="ⲟⲩⲇⲉ">
@@ -17986,10 +17982,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="He never gave utterance to an obscene (or, scurrilous) word, ">
-<verse verse="9">
+<verse_n verse_n="9">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.9">
 <orig_group orig_group="ⲏ̄">
 <norm_group norm_group="ⲏ">
@@ -18104,10 +18100,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and never, under any circumstances, did he swear an oath by anything or by anybody.">
-<verse verse="10">
+<verse_n verse_n="10">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.10">
 <orig_group orig_group="ⲟⲩⲇⲉ">
 <norm_group norm_group="ⲟⲩⲇⲉ">
@@ -18237,10 +18233,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And whenever he heard concerning any one who was in distress, if that person w^ere a Christian, ^ he used to minister unto him, ">
-<verse verse="11">
+<verse_n verse_n="11">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.11">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
@@ -18481,10 +18477,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and give unto him of whatsoever he had need, without informing his father and mother of the same.">
-<verse verse="12">
+<verse_n verse_n="12">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.12">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
@@ -18693,10 +18689,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And this was in addition to the things that he used to give to his slaves daily.">
-<verse verse="13">
+<verse_n verse_n="13">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.13">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
@@ -18870,10 +18866,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="He was wont to rise each morning at break of day, and to come forth to the door of his house,">
-<verse verse="14">
+<verse_n verse_n="14">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.14">
 <orig_group orig_group="ϣⲁϥϣⲟⲣⲡϥ̄">
 <norm_group norm_group="ϣⲁϥϣⲟⲣⲡϥ">
@@ -19095,10 +19091,10 @@
 </orig_group>
 </Budge_pb>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and if he saw any one naked he would strip himself of the garment which he had on him, and give it to him.">
-<verse verse="15">
+<verse_n verse_n="15">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.15">
 <Budge_pb Budge_pb="5.15">
 <orig_group orig_group="ⲉϥϣⲁⲛⲛⲁⲩ">
@@ -19361,10 +19357,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And he performed all the commandments which were written, ">
-<verse verse="16">
+<verse_n verse_n="16">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.16">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
@@ -19503,10 +19499,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and he fulfilled all the instructions in the Gospel of our Lord Jesus the Christ.">
-<verse verse="17">
+<verse_n verse_n="17">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:5.17">
 <orig_group orig_group="ⲁⲩⲱ">
 <norm_group norm_group="ⲁⲩⲱ">
@@ -19716,12 +19712,12 @@
 </orig_group>
 </Budge_pb>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
-</chapter>
-<chapter chapter="6">
+</chapter_n>
+<chapter_n chapter_n="6">
 <translation translation="And his father wearied him exceedingly, saying, 'I shall take the daughter of Basileides the general for thee to wife,'">
-<verse verse="1">
+<verse_n verse_n="1">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:6.1">
 <Budge_pb Budge_pb="5.19">
 <orig_group orig_group="ⲡⲉϥⲉⲓⲱⲧ">
@@ -19993,10 +19989,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="for his father and Basileides had made an agreement in respect of her for two hundred centenarii of gold, besides gifts, and four hundred centenarii of silver,">
-<verse verse="2">
+<verse_n verse_n="2">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:6.2">
 <orig_group orig_group="ⲛⲉⲁⲩⲥⲙⲛ̄ⲧⲥ̄">
 <norm_group norm_group="ⲛⲉⲁⲩⲥⲙⲛⲧⲥ">
@@ -20337,10 +20333,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and ten menservants, and ten hundred maidservants wearing golden bracelets, and four hundred horses, and ten hundred mules, and ten hundred camels, and ten hundred farms which were under tillage,">
-<verse verse="3">
+<verse_n verse_n="3">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:6.3">
 <orig_group orig_group="ⲙⲛ̄ⲙⲏⲧ">
 <norm_group norm_group="ⲙⲛⲙⲏⲧ">
@@ -20959,10 +20955,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="and ten hundred ships which sailed the sea, and ten houses (palaces ?) to [each] one of which were attached ten farms under tillage,">
-<verse verse="4">
+<verse_n verse_n="4">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:6.4">
 <orig_group orig_group="ⲙⲛ̄ⲙⲏⲧ">
 <norm_group norm_group="ⲙⲛⲙⲏⲧ">
@@ -21273,10 +21269,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="besides the things which his father was to give to him, and a very large number of men who were to do the work on [his] land.">
-<verse verse="5">
+<verse_n verse_n="5">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:6.5">
 <orig_group orig_group="ⲭⲱⲣⲓⲥ">
 <norm_group norm_group="ⲭⲱⲣⲓⲥ">
@@ -21548,10 +21544,10 @@
 </orig_group>
 </Budge_pb>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And the blessed Apa Victor would not be persuaded by his father and Basileides, and he said unto them, ">
-<verse verse="6">
+<verse_n verse_n="6">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:6.6">
 <Budge_pb Budge_pb="5.32">
 <orig_group orig_group="Ⲡⲙⲁⲕⲁⲣⲓⲟⲥ">
@@ -21760,10 +21756,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="' All these things shall perish ' ;">
-<verse verse="7">
+<verse_n verse_n="7">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:6.7">
 <orig_group orig_group="ϫⲉⲛⲁⲓ">
 <norm_group norm_group="ϫⲉⲛⲁⲓ">
@@ -21867,12 +21863,12 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 </pb_xml_id>
 <pb_xml_id pb_xml_id="MERC.AS6">
 <translation translation="and he kept himself for the kingdom that is in the heavens.">
-<verse verse="8">
+<verse_n verse_n="8">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:6.8">
 <orig_group orig_group="ⲉϥϩⲁⲣⲉϩ">
 <norm_group norm_group="ⲉϥϩⲁⲣⲉϩ">
@@ -22010,10 +22006,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And the Lord Jesus was wont to appear to him, face to face, and He loved him because of his purity.">
-<verse verse="9">
+<verse_n verse_n="9">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:6.9">
 <orig_group orig_group="ⲛⲉϣⲁⲣⲉⲡϫⲥ̄">
 <norm_group norm_group="ⲛⲉϣⲁⲣⲉⲡϫⲟⲉⲓⲥ">
@@ -22264,10 +22260,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="And the noble Victor made for himself a small chamber in his house, I and there he would retire to be free from the company of his parents.">
-<verse verse="10">
+<verse_n verse_n="10">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:6.10">
 <orig_group orig_group="ⲡⲅⲉⲛⲛⲁⲓⲟⲥ">
 <norm_group norm_group="ⲡⲅⲉⲛⲛⲁⲓⲟⲥ">
@@ -22611,10 +22607,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="He had not slept upon a couch since he was fifteen years of age.">
-<verse verse="11">
+<verse_n verse_n="11">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:6.11">
 <orig_group orig_group="ⲙ̄ⲡϥ̄ⲛ̄ⲕⲟⲧⲕ̄">
 <norm_group norm_group="ⲙⲡϥⲛⲕⲟⲧⲕ">
@@ -22776,10 +22772,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="He prayed by day and by night, and he fasted from one sabbath to another.">
-<verse verse="12">
+<verse_n verse_n="12">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:6.12">
 <orig_group orig_group="ⲁⲗⲗⲁ">
 <norm_group norm_group="ⲁⲗⲗⲁ">
@@ -23032,10 +23028,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="He attended the assemblies for the Holy Communion.">
-<verse verse="13">
+<verse_n verse_n="13">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:6.13">
 <orig_group orig_group="ⲉϥⲉⲓⲣⲉ">
 <norm_group norm_group="ⲉϥⲉⲓⲣⲉ">
@@ -23117,10 +23113,10 @@
 </norm_group>
 </orig_group>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 <translation translation="He prayed three hundred and sixty-five prayers during the day, and seven hundred and thirty prayers during the night.">
-<verse verse="14">
+<verse_n verse_n="14">
 <vid_n vid_n="urn:cts:copticLit:martyrdoms.victor.budge:6.14">
 <orig_group orig_group="ϣⲁϥⲣ̄ϣⲉⲙⲛ̄ⲧϣⲉⲥⲉⲧⲏ">
 <norm_group norm_group="ϣⲁϥⲣϣⲙⲛⲧϣⲉⲥⲉⲧⲏ">
@@ -23370,8 +23366,8 @@
 </orig_group>
 </Budge_pb>
 </vid_n>
-</verse>
+</verse_n>
 </translation>
 </pb_xml_id>
-</chapter>
+</chapter_n>
 </meta>

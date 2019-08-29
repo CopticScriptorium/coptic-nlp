@@ -7,7 +7,7 @@
 <cb_n cb_n="2">
 <lb_n lb_n="40">
 <orig_group orig_group="ⲁϩⲛ̇ⲕⲟⲟⲩⲉ̇">
-<norm_group norm_group="ⲁϩⲛⲕⲟⲟⲩⲉ">
+<norm_group norm_group="ⲁϩⲉⲛⲕⲟⲟⲩⲉ">
 <orig orig="ⲁ">
 <norm norm="ⲁ">
 <lemma lemma="ⲁ">
@@ -20,7 +20,7 @@
 </norm>
 </orig>
 <orig orig="ϩⲛ̇">
-<norm norm="ϩⲛ">
+<norm norm="ϩⲉⲛ">
 <lemma lemma="ⲟⲩ">
 <pos pos="ART">
 ϩⲛ̇
@@ -28,10 +28,10 @@
 </lemma>
 </norm>
 </orig>
-<orig orig="ϩⲛ̇ⲕⲟⲟⲩⲉ̇">
+<orig orig="ⲕⲟⲟⲩⲉ̇">
 <norm norm="ⲕⲟⲟⲩⲉ">
 <lemma lemma="ⲕⲉ">
-<pos pos="ART">
+<pos pos="N">
 ⲕⲟⲟⲩⲉ̇
 </pos>
 </lemma>
@@ -331,7 +331,7 @@
 <lb_n lb_n="4">
 <orig_group orig_group="ⲛⲉϥϫⲱ">
 <norm_group norm_group="ⲛⲉϥϫⲱ">
-<orig orig="ⲛⲉ ">
+<orig orig="ⲛⲉ">
 <norm norm="ⲛⲉ">
 <lemma lemma="ⲛⲉⲣⲉ">
 <pos pos="CPRET">
@@ -539,7 +539,7 @@
 <orig orig="ⲃⲓ̇ⲣ">
 <norm norm="ⲃⲓⲣ">
 <lemma lemma="ⲃⲓⲣ">
-<pos pos="V">
+<pos pos="N">
 ⲃⲓ̇ⲣ
 </pos>
 </lemma>
@@ -694,8 +694,8 @@
 </orig>
 <orig orig="ⲟⲩ">
 <norm norm="ⲟⲩ">
-<lemma lemma="ⲛⲧⲟⲟⲩ">
-<pos pos="PPERO">
+<lemma lemma="ⲟⲩ">
+<pos pos="PINT">
 ⲟⲩ
 </pos>
 </lemma>

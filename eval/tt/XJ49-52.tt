@@ -6258,14 +6258,16 @@
 <orig orig="ⲉ">
 <norm norm="ⲉ">
 <lemma lemma="ⲉ">
+<pos pos="PREP">
 ⲉ
+</pos>
 </lemma>
 </norm>
 </orig>
 <orig orig="ϩⲁⲣⲉϩ">
 <norm norm="ϩⲁⲣⲉϩ">
 <lemma lemma="ϩⲁⲣⲉϩ">
-<pos pos="PREP">
+<pos pos="V">
 ϩⲁ
 </lb_n>
 <lb_n lb_n="8">
