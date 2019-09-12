@@ -194,7 +194,7 @@ def bind_naive(test_orig_lines, gold):
 
 
 def bind_with_stacked_tokenizer(test_orig_lines, gold):
-	stk = StackedTokenizer(no_morphs=True, model="test", pipes=True, detok=2, tokenized=True)
+	stk = StackedTokenizer(no_morphs=True, pipes=True, detok=2, tokenized=True)
 	stk.load_ambig(ambig_table=ambig)
 
 	bound = stk.analyze("\n".join(test_orig_lines)).replace("|", "").replace('\n', '').strip()
@@ -507,7 +507,7 @@ def main():
 
 	p.add_argument(
 		"--test_list",
-		default="cyrus",
+		default="ephraim",
 		help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied"
 	)
 	p.add_argument(
