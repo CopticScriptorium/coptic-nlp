@@ -193,8 +193,8 @@ def bind_naive(test_orig_lines, gold):
 	return scores
 
 
-def bind_with_stacked_tokenizer(test_orig_lines, gold):
-	stk = StackedTokenizer(no_morphs=True, pipes=True, detok=2, tokenized=True)
+def bind_with_stacked_tokenizer(test_orig_lines, gold, model="cop"):
+	stk = StackedTokenizer(no_morphs=True, pipes=True, detok=2, tokenized=True, model=model)
 	stk.load_ambig(ambig_table=ambig)
 
 	bound = stk.analyze("\n".join(test_orig_lines)).replace("|", "").replace('\n', '').strip()
@@ -367,6 +367,7 @@ def run_eval(
 		opts
 ):
 	strategy = opts.strategy
+	stk_model = opts.stk_model
 
 	test_gold = prepare_gold_text(test_gold_list)
 	test_orig_lines = prepare_orig_lines(test_orig_list)
@@ -382,7 +383,7 @@ def run_eval(
 		print_scores(baseline_scores, 'Baseline')
 		return baseline_scores
 	elif strategy == 'stacked':
-		st_scores = bind_with_stacked_tokenizer(test_orig_lines, test_gold)
+		st_scores = bind_with_stacked_tokenizer(test_orig_lines, test_gold, model=opts.stk_model)
 		print_scores(st_scores, 'Stacked tokenizer')
 		return st_scores
 	elif strategy == 'logistic':
@@ -499,6 +500,7 @@ def main():
 		help="binding strategy: one of 'naive', 'stacked', 'logistic', 'xgboost', 'xgboost-hyper', 'lstm', 'all'",
 		nargs='?'
 	)
+	p.add_argument("--stk_model",default="cop",help="model file name for Stacked tokenizer, e.g. 'cop' or 'test'")
 	p.add_argument(
 		"--train_list",
 		default="victor",
@@ -507,7 +509,7 @@ def main():
 
 	p.add_argument(
 		"--test_list",
-		default="ephraim",
+		default="cyrus",
 		help="file with one file name per line of TT SGML training files or alias of train set, e.g. 'silver'; all files not in test if not supplied"
 	)
 	p.add_argument(
