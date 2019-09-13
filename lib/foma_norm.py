@@ -39,7 +39,7 @@ def exec_via_temp(input_text, command_params, workdir=""):
 				# except:
 				# 	temp.write(input_text)
 			else:
-				temp.write(input_text)
+				temp.write(input_text.encode("utf8"))
 			temp.close()
 
 			command_params = [x if x != 'tempfilename' else temp.name for x in command_params]

@@ -1,12 +1,15 @@
-flags:	-o pipes (tokenize into pipes)
+flags:	-- -o pipes (tokenize into pipes)
 # Seg tests
 	# Ambiguous segmentation
 	ⲡⲉϫⲁϥ_ⲛⲁⲩ_ⲅⲁⲣ_ⲛⲁⲩ_ⲉⲣⲟⲓ			ⲡⲉϫⲁ|ϥ_ⲛⲁ|ⲩ_ⲅⲁⲣ_ⲛⲁⲩ_ⲉⲣⲟ|ⲓ
 	# Segmentation based on hypothetical normalization
-	ⲛ̅ⲥⲁⲡⲕ̅ⲉⲓⲱⲧ					ⲛ̅ⲥⲁ|ⲡⲕ̅|ⲉⲓⲱⲧ
+	ⲛ̅ⲥⲁⲡϥ̅ⲉⲓⲱⲧ					ⲛ̅ⲥⲁ|ⲡϥ̅|ⲉⲓⲱⲧ
 	ⲙ̄ⲡϥ̄ⲣⲁⲛ						ⲙ̄|ⲡϥ̄|ⲣⲁⲛ
+	ϩⲁϩⲧⲙ̅ⲡϫⲥ̅						ϩⲁϩⲧⲙ̅|ⲡ|ϫⲥ̅ 
 	# Pipe segmentation with theta
 	ⲛⲑⲉ								ⲛ|ⲑ|ⲉ
+	# Pipe segmentation with ti
+	ϫⲉϯⲣⲏⲛⲏ`						ϫⲉ|ϯ|ⲣⲏⲛⲏ`
 	# Morph
 	ⲧⲉⲓⲙⲛ̄ⲧⲁⲥⲉⲃⲏⲥ				ⲧⲉⲓ|ⲙⲛ̄ⲧ-ⲁⲥⲉⲃⲏⲥ
 	ⲧⲙⲛⲧⲣⲉϥϩⲉⲧⲃⲯⲩⲭⲏ		ⲧ|ⲙⲛⲧ-ⲣⲉϥ-ϩⲉⲧⲃ-ⲯⲩⲭⲏ
@@ -38,7 +41,7 @@ flags:	-penmult (full SGML pipeline)
 	# Test syntactic functions
 		ⲉⲥⲱⲧⲙ						func="xcomp"
 	# Test normalized segmentation projection
-		ⲛ̅ⲥⲁⲡⲕ̅ⲉⲓⲱⲧ				norm_group="ⲛⲥⲁⲡⲉⲕⲉⲓⲱⲧ"
+		ⲛ̅ⲥⲁⲡϥ̅ⲉⲓⲱⲧ				norm_group="ⲛⲥⲁⲡⲉϥⲉⲓⲱⲧ"
 	# Test theta segmentation
 		ⲛⲑⲉ							norm_group="ⲛⲧϩⲉ"
 	# Test nomina sacra

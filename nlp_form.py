@@ -55,7 +55,9 @@ def make_nlp_form(access_level, mode):
 	if mode == "interactive":
 		output = ""
 		data = """ⲁ<hi rend="red">ϥ</hi>ⲥⲱⲧ︤ⲙ︥ ⲛⲥⲱϥ ⲛ̄ϭ
-ⲓⲡⲁⲅⲅⲉⲗⲟⲥ ⲙ̄ⲙ︤ⲛ︦ⲧ︥ϣⲃⲏⲣ""".decode("utf8")
+ⲓⲡⲁⲅⲅⲉⲗⲟⲥ ⲙ̄ⲙ︤ⲛ︦ⲧ︥ϣⲃⲏⲣ"""
+		if not PY3:
+			data = data.decode("utf8")
 		#form = {}
 		form = cgi.FieldStorage()
 		processed=""
@@ -190,6 +192,7 @@ def make_nlp_form(access_level, mode):
 		template = template.replace("**data**", data)
 		template = template.replace("**processed**", processed)
 		template = template.replace("**access_js**", access_js)
-		template = template.encode("utf8")
+		if not PY3:
+			template = template.encode("utf8")
 
 		return template

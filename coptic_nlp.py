@@ -358,6 +358,7 @@ def postag(indata,tag_tt=False,notokens=False,sent=None,tabular=False,postproces
 	words, tags, lemmas = zip(*spl)
 
 	if postprocess:  # Replace implausible word+tag combinations
+		tags = list(tags)
 		tagtab = io.open(data_dir+"postprocess_tagger.tab",encoding="utf8").read().replace("\r","").strip().split("\n")
 		mapping = dict(((line.split("\t")[0],line.split("\t")[1]),line.split("\t")[2]) for line in tagtab)
 		for i, word in enumerate(words):
@@ -558,6 +559,9 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 			#depedited = deped.run_depedit(conllized.split("\n"))
 			depedited = conllized
 			parse_coptic = ['java','-mx512m','-jar',"maltparser-1.8.jar",'-c','coptic','-i','tempfilename','-m','parse']
+			if not os.path.exists(bin_dir+"maltparser-1.8" + os.sep + "coptic.mco"):
+				sys.stderr.write("! can't find coptic.mco parser model in " + bin_dir+"maltparser-1.8" + os.sep + "coptic.mco")
+				sys.exit(0)
 			parsed = exec_via_temp(depedited,parse_coptic,parser_path)
 			deped = DepEdit(io.open(data_dir + "postprocess_parser.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
 			depedited = deped.run_depedit(parsed.split("\n"))
@@ -602,6 +606,9 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 		#deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
 		#depedited = deped.run_depedit(conllized.split("\n"))
 		depedited = conllized
+		if not os.path.exists(bin_dir+"maltparser-1.8" + os.sep + "coptic.mco"):
+			sys.stderr.write("! can't find coptic.mco parser model in " + bin_dir+"maltparser-1.8" + os.sep + "coptic.mco")
+			sys.exit(0)
 		parse_coptic = ['java','-mx1g','-jar',"maltparser-1.8.jar",'-c','coptic','-i','tempfilename','-m','parse']
 		parsed = exec_via_temp(depedited,parse_coptic,parser_path)
 		deped = DepEdit(io.open(data_dir + "postprocess_parser.ini",encoding="utf8"),options=type('', (), {"quiet":True})())

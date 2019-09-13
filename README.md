@@ -63,9 +63,9 @@ standard module options:
 
 less common options:
   -f, --finitestate     Use old finite-state tokenizer (less accurate)
-  -d {0,1,2}, --detokenize {0,1,2}
+  -d {0,1,2,3}, --detokenize {0,1,2,3}
                         Re-group non-standard bound groups (a.k.a.
-                        'laytonize') - 1=normal 2=aggressive
+                        'laytonize') - 1=normal 2=aggressive 3=smart
   --segment_merged      When re-grouping bound groups, assume merged groups
                         have segmentation boundary between them
   -q, --quiet           Suppress verbose messages
@@ -116,7 +116,7 @@ The pipeline accepts the following kinds of input:
   * Plain text, with bound groups separated by underscores or spaces. 
     * Note that if punctuation has not been separated from bound groups, you can use the `--space` option to attempt to automatically separate punctuation
     * If your Coptic text represents line breaks as new line characters, you can automatically add line break tags using `-b` / `--breaklines`
-    * Gold tokenization information may be present in the input at pipes between part-of-speech bearing units and hyphens between morphemes
+    * Gold tokenization information may be present in the input as pipes between part-of-speech bearing units and hyphens between morphemes
   * XML/SGML input, with bound groups separated by underscores or spaces. The script will retain XML tags as-is around Coptic text. 
   * Coptic Scriptorium style TreeTagger SGML, with normalized units in tags such as <norm norm="...">. 
     * This input format is used when adding a parse to an existing .tt file using the `--merge_parse` option
@@ -193,4 +193,12 @@ The pipeline accepts the following kinds of input:
 </norm>
 </norm_group>
 </lb>
+```
+
+## Testing installation
+
+If all requirements are installed correctly, you can verify that modules are working correctly by running the built-in unit tests:
+
+```
+python run_tests.py
 ```

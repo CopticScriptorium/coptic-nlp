@@ -7,6 +7,10 @@ import sys, re, io, os
 from six import iterkeys, itervalues
 PY3 = sys.version_info[0] == 3
 
+__version__ = "2.0.0"
+__author__ = "Amir Zeldes"
+
+
 stk_dir = os.path.dirname(os.path.realpath(__file__))
 data_dir = stk_dir + os.sep + ".." + os.sep + "data" + os.sep
 
@@ -654,6 +658,11 @@ if __name__ == "__main__":
 	parser.add_argument("-t","--tokenized",action="store_true",dest="tokenized", help="tokenization is already indicated via pipes and dashes")
 	parser.add_argument("-d","--detokenize",action="store_true",dest="detokenize", help="re-split boundgroups based on Layton's conventions")
 	parser.add_argument("-s","--segment_merged",action="store_true",help="if detokenizing, force merged groups to hahve a boundary between them")
+	parser.add_argument("-v","--version",action="store_true",help="print version number and quit")
+
+	if "-v" in sys.argv or "--version" in sys.argv:
+		print("Stacked Tokenizer V" + __version__)
+		sys.exit(1)
 
 	options = parser.parse_args()
 
