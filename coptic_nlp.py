@@ -346,27 +346,27 @@ def postag(indata,tag_tt=False,notokens=False,sent=None,tabular=False,postproces
 	if tag_tt:
 		tag = [tt_path + 'tree-tagger', tt_path+'coptic_fine.par', '-lemma','-no-unknown', '-sgml'] #no -token
 		if not notokens:
-			tag+=['-token']
+			tag += ['-token']
 		tag += ['tempfilename']
 		tagged = exec_via_temp(indata,tag)
 		if notokens:
 			return tagged
 	else:
-		tagged = tag_marmot(indata,sent=sent)
+		tagged = tag_marmot(indata, sent=sent)
 		tagged = lemmatizer.lemmatize(tagged)
 	spl = [line.split("\t") for line in tagged.strip().split("\n")]
 	words, tags, lemmas = zip(*spl)
 
 	if postprocess:  # Replace implausible word+tag combinations
 		tags = list(tags)
-		tagtab = io.open(data_dir+"postprocess_tagger.tab",encoding="utf8").read().replace("\r","").strip().split("\n")
-		mapping = dict(((line.split("\t")[0],line.split("\t")[1]),line.split("\t")[2]) for line in tagtab)
+		tagtab = io.open(data_dir+"postprocess_tagger.tab", encoding="utf8").read().replace("\r", "").strip().split("\n")
+		mapping = dict(((line.split("\t")[0], line.split("\t")[1]), line.split("\t")[2]) for line in tagtab)
 		for i, word in enumerate(words):
 			tag = tags[i]
-			if (word,tag) in mapping:
-				tags[i] = mapping[(word,tag)]
-			elif (word,"*") in mapping:
-				tags[i] = mapping[(word,"*")]
+			if (word, tag) in mapping:
+				tags[i] = mapping[(word, tag)]
+			elif (word, "*") in mapping:
+				tags[i] = mapping[(word, "*")]
 
 	if tabular and not notokens:
 		return "\n".join([words[i]+"\t"+tags[i]+"\t"+lemmas[i] for i in range(len(tags))])
