@@ -1,0 +1,1987 @@
+<meta annotation="Elizabeth Platte, Caroline T. Schroeder" author="anonymous" collection="Borgia Collection" Coptic_edition="Chaîne (1960), p. 30" corpus="apophthegmata.patrum" country="Egypt" document_cts_urn="urn:cts:copticLit:ap.139.monbeg" idno="IB 17 484 f. 26r-26v" language="Sahidic Coptic" license="&lt;a href='https://creativecommons.org/licenses/by/4.0/'&gt;CC-BY 4.0&lt;/a&gt;" msItem_title="Apophthegmata Patrum" msName="MONB.EG" objectType="codex" origPlace="White Monastery" pages_from="207" pages_to="208" parsing="automatic" placeName="Atripe" project="Coptic SCRIPTORIUM" redundant="no" repository="Biblioteca Nazionale di Napoli" segmentation="checked" tagging="checked" title="Apophthegmata Patrum Sahidic 139: N 306" translation="Elizabeth Platte" version_date="2019-05-31" version_n="2.7.0">
+<chapter_n chapter_n="1">
+<pb_xml_id pb_xml_id="EG207">
+<cb_n cb_n="2">
+<verse_n verse_n="1">
+<vid_n vid_n="urn:cts:copticLit:ap.139.monbeg:1.1">
+<lb_n lb_n="35">
+<translation translation="A brother asked a monk,">
+<orig_group orig_group="ⲁⲟⲩⲥⲟⲛ">
+<norm_group norm_group="ⲁⲟⲩⲥⲟⲛ">
+<orig orig="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
+<hi_rend hi_rend="red ekthetic">
+ⲁ
+</hi_rend>
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲟⲩ">
+<norm norm="ⲟⲩ">
+<lemma lemma="ⲟⲩ">
+<pos pos="ART">
+ⲟⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲥⲟⲛ">
+<norm norm="ⲥⲟ">
+<lemma lemma="ⲥⲟⲛ">
+<pos pos="N">
+ⲥⲟⲛ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ϫⲛⲉⲟⲩϩⲗⲗ̣ⲟ">
+<norm_group norm_group="ϫⲛⲉⲟⲩϩⲗⲗⲟ">
+<orig orig="ϫⲛⲉ">
+<norm norm="ϫⲛⲉ">
+<lemma lemma="ϫⲛⲟⲩ">
+<pos pos="V">
+ϫⲛⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲟⲩ">
+<norm norm="ⲟⲩ">
+<lemma lemma="ⲟⲩ">
+<pos pos="ART">
+ⲟⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϩⲗⲗ̣ⲟ">
+<norm norm="ϩⲗⲗⲟ">
+<lemma lemma="ϩⲗⲗⲟ">
+<pos pos="N">
+ϩⲗ
+<supplied_reason supplied_reason="damage to page">
+ⲗ̣
+</supplied_reason>
+ⲟ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</translation>
+</lb_n>
+<translation translation="'[what] is [it] .. to be a stranger...?'">
+<lb_n lb_n="36">
+<orig_group orig_group="ϫⲉ..">
+<norm_group norm_group="ϫⲉⲟⲩ">
+<orig orig="ϫⲉ">
+<norm norm="ϫⲉ">
+<lemma lemma="ϫⲉ">
+<pos pos="CONJ">
+ϫⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<supplied_reason supplied_reason="damage to page">
+<orig orig="[..]">
+<norm norm="ⲟⲩ">
+<lemma lemma="ⲟⲩ">
+<pos pos="PINT">
+[..]
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲡ̣ⲉ̣">
+<norm_group norm_group="ⲡⲉ">
+<orig orig="ⲡ̣ⲉ̣">
+<norm norm="ⲡⲉ">
+<lemma lemma="ⲡⲉ">
+<pos pos="COP">
+ⲡ̣ⲉ̣
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲡ̣ϩ..">
+<norm_group norm_group="ⲡϩⲱⲃ">
+<orig orig="ⲡ̣">
+<norm norm="ⲡ">
+<lemma lemma="ⲡ">
+<pos pos="ART">
+ⲡ̣
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϩ[..]">
+<norm norm="ϩⲱⲃ">
+<lemma lemma="ϩⲱⲃ">
+<pos pos="N">
+ϩ[..]
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group=".ⲧⲙⲛⲧϣⲙⲙⲟ">
+<norm_group norm_group="ⲛⲧⲙⲛⲧϣⲙⲙⲟ">
+<orig orig="[.]">
+<norm norm="ⲛ">
+<lemma lemma="ⲛ">
+<pos pos="PREP">
+[.]
+</pos>
+</lemma>
+</norm>
+</orig>
+</supplied_reason>
+<orig orig="ⲧ">
+<norm norm="ⲧ">
+<lemma lemma="ⲡ">
+<pos pos="ART">
+ⲧ
+</pos>
+</lemma>
+</norm>
+</orig>
+</lb_n>
+<lb_n lb_n="37">
+<orig orig="ⲙⲛⲧϣⲙⲙⲟ">
+<norm norm="ⲙⲛⲧϣⲙⲙⲟ">
+<lemma lemma="ⲙⲛⲧϣⲙⲙⲟ">
+<pos pos="N">
+<morph morph="ⲙⲛⲧ">
+ⲙⲛⲧ
+</morph>
+<morph morph="ϣⲙⲙⲟ">
+ϣⲙⲙⲟ
+</morph>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="....">
+<norm_group norm_group="....">
+<orig orig="[....]">
+<norm norm="....">
+<lemma lemma="....">
+<pos pos="UNKNOWN">
+<supplied_reason supplied_reason="damage to page">
+[....]
+</supplied_reason>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+</translation>
+</vid_n>
+</verse_n>
+<verse_n verse_n="2">
+<vid_n vid_n="'urn:cts:copticLit:ap.139.monbeg:1.2">
+<lb_n lb_n="38">
+<orig_group orig_group="ⲡⲉ̣ϫⲁ̣ϥ̣">
+<norm_group norm_group="ⲡⲉϫⲁϥ">
+<translation translation="He said,">
+<orig orig="ⲡⲉ̣[ϫ]ⲁ">
+<norm norm="ⲡⲉϫⲁ">
+<lemma lemma="ⲡⲉϫⲉ">
+<pos pos="VBD">
+<hi_rend hi_rend="red ekthetic">
+ⲡ
+</hi_rend>
+ⲉ̣[ϫ]ⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="̣ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERS">
+̣ϥ
+</pos>
+</lemma>
+</norm>
+</orig>
+</translation>
+</norm_group>
+</orig_group>
+<translation translation="'…a brother…and…in…the feast was happening.'">
+<orig_group orig_group=".....ⲟ̣...">
+<norm_group norm_group=".....ⲟ...">
+<orig orig="̣[.....]ⲟ̣[...]">
+<norm norm=".....ⲟ...">
+<lemma lemma=".....ⲟ...">
+<pos pos="UNKNOWN">
+<supplied_reason supplied_reason="damage to page">
+̣[.....]
+</lb_n>
+<lb_n lb_n="39">
+ⲟ̣[...]
+</supplied_reason>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲟⲩⲥⲟⲛ">
+<norm_group norm_group="ⲟⲩⲥⲟⲛ">
+<orig orig="ⲟⲩ">
+<norm norm="ⲟⲩ">
+<lemma lemma="ⲟⲩ">
+<pos pos="ART">
+ⲟⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲥⲟⲛ">
+<norm norm="ⲥⲟⲛ">
+<lemma lemma="ⲥⲟⲛ">
+<pos pos="N">
+ⲥⲟⲛ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉ......ⲙ....">
+<norm_group norm_group="ⲉ......ⲙ....">
+<orig orig="ⲉ[......]ⲙ[....]">
+<norm norm="ⲉ......ⲙ....">
+<lemma lemma="ⲉ......ⲙ....">
+<pos pos="UNKNOWN">
+<supplied_reason supplied_reason="damage to page">
+ⲉ
+[......]
+</lb_n>
+<lb_n lb_n="40">
+ⲙ
+[....]
+</supplied_reason>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲁⲩⲱ">
+<norm_group norm_group="ⲁⲩⲱ">
+<orig orig="ⲁⲩⲱ">
+<norm norm="ⲁⲩⲱ">
+<lemma lemma="ⲁⲩⲱ">
+<pos pos="CONJ">
+ⲁⲩⲱ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="......">
+<norm_group norm_group="......">
+<orig orig="[......]">
+<norm norm="......">
+<lemma lemma="......">
+<pos pos="UNKNOWN">
+<supplied_reason supplied_reason="damage to page">
+[......]
+</supplied_reason>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+<lb_n lb_n="41">
+<orig_group orig_group="ϩⲛ..........">
+<norm_group norm_group="ϩⲛ..........">
+<orig orig="ϩⲛ">
+<norm norm="ϩⲛ">
+<lemma lemma="ϩⲛ">
+<pos pos="PREP">
+ϩⲛ
+</pos>
+</lemma>
+</norm>
+</orig>
+<supplied_reason supplied_reason="damage to page">
+<orig orig="[..........">
+<norm norm="..........">
+<lemma lemma="..........">
+<pos pos="UNKNOWN">
+[..........
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲁ̣ⲅⲁⲡⲏ">
+<norm_group norm_group="ⲁⲅⲁⲡⲏ">
+<orig orig="ⲁ̣]ⲅⲁⲡⲏ">
+<norm norm="ⲁⲅⲁⲡⲏ">
+<lemma lemma="ⲁⲅⲁⲡⲏ">
+<pos pos="N">
+<lang lang="Greek">
+ⲁ̣]
+</supplied_reason>
+</lb_n>
+</cb_n>
+</pb_xml_id>
+<pb_xml_id pb_xml_id="EG208">
+<cb_n cb_n="1">
+<lb_n lb_n="1">
+<hi_rend hi_rend="red ekthetic">
+ⲅ
+</hi_rend>
+ⲁⲡⲏ
+</lang>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ϣⲱⲡⲉ">
+<norm_group norm_group="ϣⲱⲡⲉ">
+<orig orig="ϣⲱⲡⲉ">
+<norm norm="ϣⲱⲡⲉ">
+<lemma lemma="ϣⲱⲡⲉ">
+<pos pos="V">
+ϣⲱⲡⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="·">
+<norm_group norm_group="·">
+<orig orig="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
+·
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</translation>
+</vid_n>
+</verse_n>
+<translation translation="And he sat down at the table to eat with the brothers.">
+<verse_n verse_n="3">
+<vid_n vid_n="'urn:cts:copticLit:ap.139.monbeg:1.3">
+<orig_group orig_group="ⲁⲩⲱ">
+<norm_group norm_group="ⲁⲩⲱ">
+<orig orig="ⲁⲩⲱ">
+<norm norm="ⲁⲩⲱ">
+<lemma lemma="ⲁⲩⲱ">
+<pos pos="CONJ">
+ⲁ
+<hi_rend hi_rend="tall">
+<note note="decorated character extends far into upper margin">
+ⲩ
+</note>
+</hi_rend>
+ⲱ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+<lb_n lb_n="2">
+<orig_group orig_group="ⲁϥϩⲙⲟⲟⲥ">
+<norm_group norm_group="ⲁϥϩⲙⲟⲟⲥ">
+<orig orig="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
+ⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERS">
+ϥ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϩⲙⲟⲟⲥ">
+<norm norm="ϩⲙⲟⲟⲥ">
+<lemma lemma="ϩⲙⲟⲟⲥ">
+<pos pos="V">
+ϩⲙⲟⲟⲥ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉ̇ⲧⲉⲧⲣⲁⲡⲩⲍⲁ">
+<norm_group norm_group="ⲉⲧⲉⲧⲣⲁⲡⲉⲍⲁ">
+<orig orig="ⲉ̇">
+<norm norm="ⲉ">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
+ⲉ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲧⲉ">
+<norm norm="ⲧⲉ">
+<lemma lemma="ⲡ">
+<pos pos="ART">
+ⲧⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲧⲣⲁⲡⲩⲍⲁ">
+<norm norm="ⲧⲣⲁⲡⲉⲍⲁ">
+<lemma lemma="ⲧⲣⲁⲡⲉⲍⲁ">
+<pos pos="N">
+<lang lang="Greek">
+ⲧⲣⲁⲡⲩ
+</lb_n>
+<lb_n lb_n="3">
+ⲍⲁ
+</lang>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉ̇ⲟⲩⲱ̇ⲙ">
+<norm_group norm_group="ⲉⲟⲩⲱⲙ">
+<orig orig="ⲉ̇">
+<norm norm="ⲉ">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
+ⲉ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲟⲩⲱ̇ⲙ">
+<norm norm="ⲟⲩⲱⲙ">
+<lemma lemma="ⲟⲩⲱⲙ">
+<pos pos="V">
+ⲟⲩⲱ̇ⲙ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲙⲛ̇ⲛⲉⲥⲛⲏⲩ">
+<norm_group norm_group="ⲙⲛⲛⲉⲥⲛⲏⲩ">
+<orig orig="ⲙⲛ̇">
+<norm norm="ⲙⲛ">
+<lemma lemma="ⲙⲛ">
+<pos pos="PREP">
+ⲙⲛ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲛⲉ">
+<norm norm="ⲛⲉ">
+<lemma lemma="ⲡ">
+<pos pos="ART">
+ⲛⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+</lb_n>
+<lb_n lb_n="4">
+<orig orig="ⲥⲛⲏⲩ">
+<norm norm="ⲥⲛⲏⲩ">
+<lemma lemma="ⲥⲟⲛ">
+<pos pos="N">
+ⲥⲛⲏⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="·">
+<norm_group norm_group="·">
+<orig orig="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
+<hi_rend hi_rend="3_space_right">
+·
+</hi_rend>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</vid_n>
+</verse_n>
+</translation>
+<translation translation="Some said, 'Who even is this person?'">
+<verse_n verse_n="4">
+<vid_n vid_n="'urn:cts:copticLit:ap.139.monbeg:1.4">
+<orig_group orig_group="ⲡⲉϫⲁⲩ">
+<norm_group norm_group="ⲡⲉϫⲁⲩ">
+<orig orig="ⲡⲉϫⲁ">
+<norm norm="ⲡⲉϫⲁ">
+<lemma lemma="ⲡⲉϫⲉ">
+<pos pos="VBD">
+ⲡⲉϫⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERS">
+ⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+<lb_n lb_n="5">
+<orig_group orig_group="ⲇⲉ">
+<norm_group norm_group="ⲇⲉ">
+<orig orig="ⲇⲉ">
+<norm norm="ⲇⲉ">
+<lemma lemma="ⲇⲉ">
+<pos pos="PTC">
+<lang lang="Greek">
+<hi_rend hi_rend="red ekthetic">
+ⲇ
+</hi_rend>
+ⲉ
+</lang>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲛ̇ϭⲓϩⲟⲓⲛⲉ">
+<norm_group norm_group="ⲛϭⲓϩⲟⲓⲛⲉ">
+<orig orig="ⲛ̇ϭⲓ">
+<norm norm="ⲛϭⲓ">
+<lemma lemma="ⲛϭⲓ">
+<pos pos="PTC">
+ⲛ̇ϭⲓ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϩⲟⲓⲛⲉ">
+<norm norm="ϩⲟⲓⲛⲉ">
+<lemma lemma="ϩⲟⲓⲛⲉ">
+<pos pos="N">
+ϩⲟⲓⲛⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ϫⲉⲛⲓⲙ̇">
+<norm_group norm_group="ϫⲉⲛⲓⲙ">
+<orig orig="ϫⲉ">
+<norm norm="ϫⲉ">
+<lemma lemma="ϫⲉ">
+<pos pos="CONJ">
+ϫⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲛⲓⲙ̇">
+<norm norm="ⲛⲓⲙ">
+<lemma lemma="ⲛⲓⲙ">
+<pos pos="PINT">
+ⲛⲓⲙ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+<lb_n lb_n="6">
+<orig_group orig_group="ⲡⲉ">
+<norm_group norm_group="ⲡⲉ">
+<orig orig="ⲡⲉ">
+<norm norm="ⲡⲉ">
+<lemma lemma="ⲡⲉ">
+<pos pos="COP">
+ⲡⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲡⲉⲓⲕⲉⲟⲩⲁ">
+<norm_group norm_group="ⲡⲉⲓⲕⲉⲟⲩⲁ">
+<orig orig="ⲡⲉⲓ">
+<norm norm="ⲡⲉⲓ">
+<lemma lemma="ⲡⲉⲓ">
+<pos pos="PDEM">
+ⲡⲉⲓ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲕⲉ">
+<norm norm="ⲕⲉ">
+<lemma lemma="ⲕⲉ">
+<pos pos="ART">
+ⲕⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲟⲩⲁ">
+<norm norm="ⲟⲩⲁ">
+<lemma lemma="ⲟⲩⲁ">
+<pos pos="NUM">
+ⲟⲩⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="·">
+<norm_group norm_group="·">
+<orig orig="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
+<hi_rend hi_rend="1_space_right">
+·
+</hi_rend>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</vid_n>
+</verse_n>
+</translation>
+<verse_n verse_n="5">
+<vid_n vid_n="'urn:cts:copticLit:ap.139.monbeg:1.5">
+<translation translation="And they grabbed him and made him stand up,">
+<orig_group orig_group="ⲁⲩⲁ̇ⲙⲁϩⲧⲉ">
+<norm_group norm_group="ⲁⲩⲁⲙⲁϩⲧⲉ">
+<orig orig="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
+ⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERS">
+ⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲁ̇ⲙⲁϩⲧⲉ">
+<norm norm="ⲁⲙⲁϩⲧⲉ">
+<lemma lemma="ⲁⲙⲁϩⲧⲉ">
+<pos pos="V">
+ⲁ̇
+</lb_n>
+<lb_n lb_n="7">
+ⲙⲁϩⲧⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲙ̇ⲙⲟϥ">
+<norm_group norm_group="ⲙⲙⲟϥ">
+<orig orig="ⲙ̇ⲙⲟ">
+<norm norm="ⲙⲙⲟ">
+<lemma lemma="ⲛ">
+<pos pos="PREP">
+ⲙ̇ⲙⲟ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERO">
+ϥ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲁⲩⲧⲟⲩⲛⲟⲥϥ̇">
+<norm_group norm_group="ⲁⲩⲧⲟⲩⲛⲟⲥϥ">
+<orig orig="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
+ⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERS">
+ⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲧⲟⲩⲛⲟⲥ">
+<norm norm="ⲧⲟⲩⲛⲟⲥ">
+<lemma lemma="ⲧⲟⲩⲛⲟⲥ">
+<pos pos="V">
+ⲧⲟⲩ
+</lb_n>
+<lb_n lb_n="8">
+ⲛⲟⲥ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϥ̇">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERO">
+ϥ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</translation>
+<translation translation="saying, 'Get up and leave!'">
+<orig_group orig_group="ⲉ̇ⲩϫⲱ">
+<norm_group norm_group="ⲉⲩϫⲱ">
+<orig orig="ⲉ̇">
+<norm norm="ⲉ">
+<lemma lemma="ⲉⲣⲉ">
+<pos pos="CCIRC">
+ⲉ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERS">
+ⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϫⲱ">
+<norm norm="ϫⲱ">
+<lemma lemma="ϫⲱ">
+<pos pos="V">
+ϫⲱ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲙ̇ⲙⲟⲥ">
+<norm_group norm_group="ⲙⲙⲟⲥ">
+<orig orig="ⲙ̇ⲙⲟ">
+<norm norm="ⲙⲙⲟ">
+<lemma lemma="ⲛ">
+<pos pos="PREP">
+ⲙ̇ⲙⲟ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲥ">
+<norm norm="ⲥ">
+<lemma lemma="ⲛⲧⲟⲥ">
+<pos pos="PPERO">
+ⲥ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+<lb_n lb_n="9">
+<orig_group orig_group="ϫⲉⲧⲱⲟⲩⲛ̇">
+<norm_group norm_group="ϫⲉⲧⲱⲟⲩⲛ">
+<orig orig="ϫⲉ">
+<norm norm="ϫⲉ">
+<lemma lemma="ϫⲉ">
+<pos pos="CONJ">
+ϫⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲧⲱⲟⲩⲛ̇">
+<norm norm="ⲧⲱⲟⲩⲛ">
+<lemma lemma="ⲧⲱⲟⲩⲛ">
+<pos pos="V">
+ⲧⲱⲟⲩⲛ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲛ̇ⲅ̇ⲃⲱⲕ">
+<norm_group norm_group="ⲛⲅⲃⲱⲕ">
+<orig orig="ⲛ̇">
+<norm norm="ⲛ">
+<lemma lemma="ⲛⲧⲉ">
+<pos pos="ACONJ">
+ⲛ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲅ̇">
+<norm norm="ⲅ">
+<lemma lemma="ⲛⲧⲟⲕ">
+<pos pos="PPERS">
+ⲅ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲃⲱⲕ">
+<norm norm="ⲃⲱⲕ">
+<lemma lemma="ⲃⲱⲕ">
+<pos pos="V">
+ⲃⲱⲕ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉⲃⲟⲗ">
+<norm_group norm_group="ⲉⲃⲟⲗ">
+<orig orig="ⲉⲃⲟⲗ">
+<norm norm="ⲉⲃⲟⲗ">
+<lemma lemma="ⲉⲃⲟⲗ">
+<pos pos="ADV">
+ⲉ
+</lb_n>
+<lb_n lb_n="10">
+ⲃⲟⲗ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="·">
+<norm_group norm_group="·">
+<orig orig="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
+·
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</translation>
+</vid_n>
+</verse_n>
+<translation translation="So he stood up and left.">
+<verse_n verse_n="6">
+<vid_n vid_n="'urn:cts:copticLit:ap.139.monbeg:1.6">
+<orig_group orig_group="ⲁ̇ϥⲧ̇ⲱⲟⲩⲛ̇">
+<norm_group norm_group="ⲁϥⲧⲱⲟⲩⲛ">
+<orig orig="ⲁ̇">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
+ⲁ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERS">
+ϥ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲧ̇ⲱⲟⲩⲛ̇">
+<norm norm="ⲧⲱⲟⲩⲛ">
+<lemma lemma="ⲧⲱⲟⲩⲛ">
+<pos pos="V">
+ⲧ̇ⲱⲟⲩⲛ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲇⲉ">
+<norm_group norm_group="ⲇⲉ">
+<orig orig="ⲇⲉ">
+<norm norm="ⲇⲉ">
+<lemma lemma="ⲇⲉ">
+<pos pos="PTC">
+<lang lang="Greek">
+ⲇⲉ
+</lang>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲁ̇ϥⲃⲱⲕ">
+<norm_group norm_group="ⲁϥⲃⲱⲕ">
+<orig orig="ⲁ̇">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
+ⲁ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERS">
+ϥ
+</pos>
+</lemma>
+</norm>
+</orig>
+</lb_n>
+<lb_n lb_n="11">
+<orig orig="ⲃⲱⲕ">
+<norm norm="ⲃⲱⲕ">
+<lemma lemma="ⲃⲱⲕ">
+<pos pos="V">
+ⲃⲱⲕ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="·">
+<norm_group norm_group="·">
+<orig orig="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
+·
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</vid_n>
+</verse_n>
+</translation>
+<verse_n verse_n="7">
+<vid_n vid_n="'urn:cts:copticLit:ap.139.monbeg:1.7">
+<translation translation="But some others were troubled, ">
+<orig_group orig_group="ⲁ̇ϩⲛ̇ⲕⲟⲟⲩⲉ̇">
+<norm_group norm_group="ⲁϩⲉⲛⲕⲟⲟⲩⲉ">
+<orig orig="ⲁ̇">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
+ⲁ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϩⲛ̇">
+<norm norm="ϩⲉⲛ">
+<lemma lemma="ⲟⲩ">
+<pos pos="ART">
+ϩⲛ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲕⲟⲟⲩⲉ̇">
+<norm norm="ⲕⲟⲟⲩⲉ">
+<lemma lemma="ⲕⲉ">
+<pos pos="N">
+ⲕⲟⲟⲩⲉ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲇⲉ">
+<norm_group norm_group="ⲇⲉ">
+<orig orig="ⲇⲉ">
+<norm norm="ⲇⲉ">
+<lemma lemma="ⲇⲉ">
+<pos pos="PTC">
+<lang lang="Greek">
+ⲇⲉ
+</lang>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+<lb_n lb_n="12">
+<orig_group orig_group="ⲙ̇ⲕⲁϩ">
+<norm_group norm_group="ⲙⲕⲁϩ">
+<orig orig="ⲙ̇ⲕⲁϩ">
+<norm norm="ⲙⲕⲁϩ">
+<lemma lemma="ⲙⲕⲁϩ">
+<pos pos="V">
+ⲙ̇ⲕⲁϩ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲛ̇ϩⲏⲧ">
+<norm_group norm_group="ⲛϩⲏⲧ">
+<orig orig="ⲛ̇">
+<norm norm="ⲛ">
+<lemma lemma="ⲛ">
+<pos pos="PREP">
+ⲛ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϩⲏⲧ">
+<norm norm="ϩⲏⲧ">
+<lemma lemma="ϩⲏⲧ">
+<pos pos="N">
+ϩⲏⲧ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="·">
+<norm_group norm_group="·">
+<orig orig="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
+·
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</translation>
+<translation translation="and they called him back.">
+<orig_group orig_group="ⲁⲩⲱ̇">
+<norm_group norm_group="ⲁⲩⲱ">
+<orig orig="ⲁⲩⲱ̇">
+<norm norm="ⲁⲩⲱ">
+<lemma lemma="ⲁⲩⲱ">
+<pos pos="CONJ">
+ⲁⲩⲱ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲁ̇ⲩⲙ̇ⲟⲩⲧⲉ">
+<norm_group norm_group="ⲁⲩⲙⲟⲩⲧⲉ">
+<orig orig="ⲁ̇">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
+ⲁ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERS">
+ⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+</lb_n>
+<lb_n lb_n="13">
+<orig orig="ⲙ̇ⲟⲩⲧⲉ">
+<norm norm="ⲙⲟⲩⲧⲉ">
+<lemma lemma="ⲙⲟⲩⲧⲉ">
+<pos pos="V">
+ⲙ̇ⲟⲩⲧⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉ̇ⲣⲟϥ">
+<norm_group norm_group="ⲉⲣⲟϥ">
+<orig orig="ⲉ̇ⲣⲟ">
+<norm norm="ⲉⲣⲟ">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
+ⲉ̇ⲣⲟ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERO">
+ϥ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="·">
+<norm_group norm_group="·">
+<orig orig="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
+·
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲻ">
+<norm_group norm_group="ⲻ">
+<orig orig="ⲻ">
+<norm norm="ⲻ">
+<lemma lemma="ⲻ">
+<pos pos="PUNCT">
+<hi_rend hi_rend="4_space_right">
+ⲻ
+</hi_rend>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+</translation>
+</vid_n>
+</verse_n>
+<verse_n verse_n="8">
+<vid_n vid_n="'urn:cts:copticLit:ap.139.monbeg:1.8">
+<lb_n lb_n="14">
+<translation translation="After this, one (of them) asked him, ">
+<orig_group orig_group="ⲙⲛ̇ⲛⲥⲁⲛⲁⲓ̇">
+<norm_group norm_group="ⲙⲛⲛⲥⲁⲛⲁⲓ">
+<orig orig="ⲙⲛ̇ⲛⲥⲁ">
+<norm norm="ⲙⲛⲛⲥⲁ">
+<lemma lemma="ⲙⲛⲛⲥⲁ">
+<pos pos="PREP">
+<hi_rend hi_rend="red ekthetic">
+ⲙ
+</hi_rend>
+ⲛ̇ⲛⲥⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲛⲁⲓ̇">
+<norm norm="ⲛⲁⲓ">
+<lemma lemma="ⲡⲁⲓ">
+<pos pos="PDEM">
+ⲛⲁⲓ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲁ̇ⲟⲩⲁ̇">
+<norm_group norm_group="ⲁⲟⲩⲁ">
+<orig orig="ⲁ̇">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
+ⲁ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲟⲩⲁ̇">
+<norm norm="ⲟⲩⲁ">
+<lemma lemma="ⲟⲩⲁ">
+<pos pos="NUM">
+ⲟⲩⲁ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ϫⲛⲟⲩϥ">
+<norm_group norm_group="ϫⲛⲟⲩϥ">
+<orig orig="ϫⲛⲟⲩ">
+<norm norm="ϫⲛⲟⲩ">
+<lemma lemma="ϫⲛⲟⲩ">
+<pos pos="V">
+ϫⲛⲟⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERO">
+ϥ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</translation>
+</lb_n>
+<translation translation="'What entered into your heart when you were cast out ">
+<lb_n lb_n="15">
+<orig_group orig_group="ϫⲉⲛ̇ⲧⲁⲟⲩⲃⲱⲕ">
+<norm_group norm_group="ϫⲉⲛⲧⲁⲟⲩⲃⲱⲕ">
+<orig orig="ϫⲉ">
+<norm norm="ϫⲉ">
+<lemma lemma="ϫⲉ">
+<pos pos="CONJ">
+ϫⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲛ̇ⲧ">
+<norm norm="ⲛⲧ">
+<lemma lemma="ⲉⲧⲉⲣⲉ">
+<pos pos="CFOC">
+ⲛ̇ⲧ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
+ⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲟⲩ">
+<norm norm="ⲟⲩ">
+<lemma lemma="ⲟⲩ">
+<pos pos="PINT">
+ⲟⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲃⲱⲕ">
+<norm norm="ⲃⲱⲕ">
+<lemma lemma="ⲃⲱⲕ">
+<pos pos="V">
+ⲃⲱⲕ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉ̇ⲡⲉⲕϩⲏⲧ">
+<norm_group norm_group="ⲉⲡⲉⲕϩⲏⲧ">
+<orig orig="ⲉ̇">
+<norm norm="ⲉ">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
+ⲉ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲡⲉⲕ">
+<norm norm="ⲡⲉⲕ">
+<lemma lemma="ⲡⲉⲕ">
+<pos pos="PPOS">
+ⲡⲉⲕ
+</pos>
+</lemma>
+</norm>
+</orig>
+</lb_n>
+<lb_n lb_n="16">
+<orig orig="ϩⲏⲧ">
+<norm norm="ϩⲏⲧ">
+<lemma lemma="ϩⲏⲧ">
+<pos pos="N">
+ϩⲏⲧ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ϫⲉⲁ̇ⲩⲛⲟϫⲕ̇">
+<norm_group norm_group="ϫⲉⲁⲩⲛⲟϫⲕ">
+<orig orig="ϫⲉ">
+<norm norm="ϫⲉ">
+<lemma lemma="ϫⲉ">
+<pos pos="CONJ">
+ϫⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲁ̇">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
+ⲁ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERS">
+ⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲛⲟϫ">
+<norm norm="ⲛⲟϫ">
+<lemma lemma="ⲛⲟⲩϫⲉ">
+<pos pos="V">
+ⲛⲟϫ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲕ̇">
+<norm norm="ⲕ">
+<lemma lemma="ⲛⲧⲟⲕ">
+<pos pos="PPERO">
+ⲕ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉ̇ⲃⲟⲗ">
+<norm_group norm_group="ⲉⲃⲟⲗ">
+<orig orig="ⲉ̇ⲃⲟⲗ">
+<norm norm="ⲉⲃⲟⲗ">
+<lemma lemma="ⲉⲃⲟⲗ">
+<pos pos="ADV">
+ⲉ̇
+</lb_n>
+<lb_n lb_n="17">
+ⲃⲟⲗ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="·">
+<norm_group norm_group="·">
+<orig orig="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
+·
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</translation>
+<translation translation="and brought back in again?'">
+<orig_group orig_group="ⲁⲩⲱ̇">
+<norm_group norm_group="ⲁⲩⲱ">
+<orig orig="ⲁⲩⲱ̇">
+<norm norm="ⲁⲩⲱ">
+<lemma lemma="ⲁⲩⲱ">
+<pos pos="CONJ">
+ⲁⲩⲱ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲁ̇ⲩⲉ̇ⲛⲧⲕ̇">
+<norm_group norm_group="ⲁⲩⲛⲧⲕ">
+<orig orig="ⲁ̇">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
+ⲁ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲩ">
+<norm norm="ⲩ">
+<lemma lemma="ⲛⲧⲟⲟⲩ">
+<pos pos="PPERS">
+ⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲉ̇ⲛⲧ">
+<norm norm="ⲛⲧ">
+<lemma lemma="ⲉⲓⲛⲉ">
+<pos pos="V">
+ⲉ̇ⲛⲧ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲕ̇">
+<norm norm="ⲕ">
+<lemma lemma="ⲛⲧⲟⲕ">
+<pos pos="PPERO">
+ⲕ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+<lb_n lb_n="18">
+<orig_group orig_group="ⲟ̇ⲛ">
+<norm_group norm_group="ⲟⲛ">
+<orig orig="ⲟ̇ⲛ">
+<norm norm="ⲟⲛ">
+<lemma lemma="ⲟⲛ">
+<pos pos="ADV">
+ⲟ̇ⲛ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉϩⲟⲩⲛ">
+<norm_group norm_group="ⲉϩⲟⲩⲛ">
+<orig orig="ⲉϩⲟⲩⲛ">
+<norm norm="ⲉϩⲟⲩⲛ">
+<lemma lemma="ⲉϩⲟⲩⲛ">
+<pos pos="ADV">
+ⲉϩⲟⲩⲛ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="·">
+<norm_group norm_group="·">
+<orig orig="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
+·
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲻ">
+<norm_group norm_group="ⲻ">
+<orig orig="ⲻ">
+<norm norm="ⲻ">
+<lemma lemma="ⲻ">
+<pos pos="PUNCT">
+<hi_rend hi_rend="5_space_right">
+ⲻ
+</hi_rend>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+</translation>
+</vid_n>
+</verse_n>
+<verse_n verse_n="9">
+<vid_n vid_n="'urn:cts:copticLit:ap.139.monbeg:1.9">
+<translation translation="He said, 'It entered my mind that I must be a dog, ">
+<lb_n lb_n="19">
+<orig_group orig_group="ⲡⲉϫⲁϥ">
+<norm_group norm_group="ⲡⲉϫⲁϥ">
+<orig orig="ⲡⲉϫⲁ">
+<norm norm="ⲡⲉϫⲁ">
+<lemma lemma="ⲡⲉϫⲉ">
+<pos pos="VBD">
+<hi_rend hi_rend="red ekthetic">
+ⲡ
+</hi_rend>
+ⲉϫⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERS">
+ϥ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ϫⲉⲁⲓ̇ⲕⲁⲁ̇ⲥ">
+<norm_group norm_group="ϫⲉⲁⲓⲕⲁⲁⲥ">
+<orig orig="ϫⲉ">
+<norm norm="ϫⲉ">
+<lemma lemma="ϫⲉ">
+<pos pos="CONJ">
+ϫⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲁ">
+<norm norm="ⲁ">
+<lemma lemma="ⲁ">
+<pos pos="APST">
+ⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲓ̇">
+<norm norm="ⲓ">
+<lemma lemma="ⲁⲛⲟⲕ">
+<pos pos="PPERS">
+ⲓ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲕⲁⲁ̇">
+<norm norm="ⲕⲁⲁ">
+<lemma lemma="ⲕⲱ">
+<pos pos="V">
+ⲕⲁⲁ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲥ">
+<norm norm="ⲥ">
+<lemma lemma="ⲛⲧⲟⲥ">
+<pos pos="PPERO">
+ⲥ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ϩⲙ̇ⲡⲁϩ̇ⲏⲧ">
+<norm_group norm_group="ϩⲙⲡⲁϩⲏⲧ">
+<orig orig="ϩⲙ̇">
+<norm norm="ϩⲙ">
+<lemma lemma="ϩⲛ">
+<pos pos="PREP">
+ϩⲙ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</lb_n>
+<lb_n lb_n="20">
+<orig orig="ⲡⲁ">
+<norm norm="ⲡⲁ">
+<lemma lemma="ⲡⲁ">
+<pos pos="PPOS">
+ⲡⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϩ̇ⲏⲧ">
+<norm norm="ϩⲏⲧ">
+<lemma lemma="ϩⲏⲧ">
+<pos pos="N">
+ϩ̇ⲏⲧ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ϩⲟⲡⲥ̇">
+<norm_group norm_group="ϩⲁⲡⲥ">
+<orig orig="ϩⲟⲡⲥ̇">
+<norm norm="ϩⲁⲡⲥ">
+<lemma lemma="ϩⲁⲡⲥ">
+<pos pos="V">
+ϩⲟⲡⲥ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲁ̇ⲛⲅⲟⲩϩⲟⲟⲣ">
+<norm_group norm_group="ⲁⲛⲅⲟⲩⲟⲩϩⲟⲣ">
+<orig orig="ⲁ̇ⲛⲅ">
+<norm norm="ⲁⲛⲅ">
+<lemma lemma="ⲁⲛⲟⲕ">
+<pos pos="PPERI">
+ⲁ̇ⲛⲅ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲟⲩ">
+<norm norm="ⲟⲩ">
+<lemma lemma="ⲟⲩ">
+<pos pos="ART">
+ⲟⲩ
+</pos>
+</lemma>
+</norm>
+</orig>
+</lb_n>
+<lb_n lb_n="21">
+<orig orig="ϩⲟⲟⲣ">
+<norm norm="ⲟⲩϩⲟⲣ">
+<lemma lemma="ⲟⲩϩⲟⲣ">
+<pos pos="N">
+ϩⲟⲟⲣ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="·">
+<norm_group norm_group="·">
+<orig orig="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
+·
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</translation>
+<translation translation="which leaves it if it cast out">
+<orig_group orig_group="ⲡⲁⲓ">
+<norm_group norm_group="ⲡⲁⲓ">
+<orig orig="ⲡⲁⲓ">
+<norm norm="ⲡⲁⲓ">
+<lemma lemma="ⲡⲁⲓ">
+<pos pos="PDEM">
+ⲡⲁⲓ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉⲩϣⲁⲛⲛ̇ⲟϫϥ̇">
+<norm_group norm_group="ⲉⲩϣⲁⲛⲛⲟϫϥ">
+<orig orig="ⲉⲩϣⲁⲛ">
+<norm norm="ⲉⲩϣⲁⲛ">
+<lemma lemma="ⲉⲣϣⲁⲛ_ⲛⲧⲟⲟⲩ">
+<pos pos="ACOND_PPERS">
+ⲉⲩϣⲁⲛ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲛ̇ⲟϫ">
+<norm norm="ⲛⲟϫ">
+<lemma lemma="ⲛⲟⲩϫⲉ">
+<pos pos="V">
+ⲛ̇ⲟ
+</lb_n>
+<lb_n lb_n="22">
+ϫ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϥ̇">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERO">
+ϥ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉ̇ⲃⲟⲗ">
+<norm_group norm_group="ⲉⲃⲟⲗ">
+<orig orig="ⲉ̇ⲃⲟⲗ">
+<norm norm="ⲉⲃⲟⲗ">
+<lemma lemma="ⲉⲃⲟⲗ">
+<pos pos="ADV">
+ⲉ̇ⲃⲟⲗ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ϣⲁϥⲃⲱⲕ">
+<norm_group norm_group="ϣⲁϥⲃⲱⲕ">
+<orig orig="ϣⲁ">
+<norm norm="ϣⲁ">
+<lemma lemma="ϣⲁⲣⲉ">
+<pos pos="AAOR">
+ϣⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERS">
+ϥ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲃⲱⲕ">
+<norm norm="ⲃⲱⲕ">
+<lemma lemma="ⲃⲱⲕ">
+<pos pos="V">
+ⲃⲱⲕ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+</translation>
+<translation translation="and comes when it is called.'">
+<lb_n lb_n="23">
+<orig_group orig_group="ⲉ̇ⲩϣⲁⲛⲙⲟⲩⲧⲉ">
+<norm_group norm_group="ⲉⲩϣⲁⲛⲙⲟⲩⲧⲉ">
+<orig orig="ⲉ̇ⲩϣⲁⲛ">
+<norm norm="ⲉⲩϣⲁⲛ">
+<lemma lemma="ⲉⲣϣⲁⲛ_ⲛⲧⲟⲟⲩ">
+<pos pos="ACOND_PPERS">
+ⲉ̇ⲩϣⲁⲛ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲙⲟⲩⲧⲉ">
+<norm norm="ⲙⲟⲩⲧⲉ">
+<lemma lemma="ⲙⲟⲩⲧⲉ">
+<pos pos="V">
+ⲙⲟⲩⲧⲉ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲉ̇ⲣⲟϥ">
+<norm_group norm_group="ⲉⲣⲟϥ">
+<orig orig="ⲉ̇ⲣⲟ">
+<norm norm="ⲉⲣⲟ">
+<lemma lemma="ⲉ">
+<pos pos="PREP">
+ⲉ̇ⲣⲟ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERO">
+ϥ
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+<lb_n lb_n="24">
+<orig_group orig_group="ϣ̇ⲁϥⲉⲓ̇">
+<norm_group norm_group="ϣⲁϥⲉⲓ">
+<orig orig="ϣ̇ⲁ">
+<norm norm="ϣⲁ">
+<lemma lemma="ϣⲁⲣⲉ">
+<pos pos="AAOR">
+ϣ̇ⲁ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ϥ">
+<norm norm="ϥ">
+<lemma lemma="ⲛⲧⲟϥ">
+<pos pos="PPERS">
+ϥ
+</pos>
+</lemma>
+</norm>
+</orig>
+<orig orig="ⲉⲓ̇">
+<norm norm="ⲉⲓ">
+<lemma lemma="ⲉⲓ">
+<pos pos="V">
+ⲉⲓ̇
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="·">
+<norm_group norm_group="·">
+<orig orig="·">
+<norm norm="·">
+<lemma lemma="·">
+<pos pos="PUNCT">
+·
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+<orig_group orig_group="ⲻ">
+<norm_group norm_group="ⲻ">
+<orig orig="ⲻ">
+<norm norm="ⲻ">
+<lemma lemma="ⲻ">
+<pos pos="PUNCT">
+<hi_rend hi_rend="7_space_right">
+ⲻ
+</hi_rend>
+</pos>
+</lemma>
+</norm>
+</orig>
+</norm_group>
+</orig_group>
+</lb_n>
+</translation>
+</vid_n>
+</verse_n>
+</cb_n>
+</pb_xml_id>
+</chapter_n>
+</meta>

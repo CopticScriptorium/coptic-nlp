@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import os, io, sys
+import os, io, sys, re
 
 """
 This script goes over a running list of paired norm words and lemmas to find multiword expressions based on a list
@@ -40,6 +40,61 @@ def tag_mwes(norms, lemmas, max_length=4):
 	#with io.open("/var/www/html/coptic-nlp/debug.txt",'w', encoding="utf8") as f:
 	#	f.write(str(results))
 	return results
+
+
+def read_attributes(input,attribute_name):
+	out_stream =""
+	for line in input.split('\n'):
+		if attribute_name + '="' in line:
+			m = re.search(attribute_name+r'="([^"]*)"',line)
+			if m is None:
+				print("ERR: cant find " + attribute_name + " in line: " + line)
+				attribute_value = ""
+			else:
+				attribute_value = m.group(1)
+			if len(attribute_value)==0:
+				attribute_value = "_warn:empty_"+attribute_name+"_"
+			out_stream += attribute_value +"\n"
+	return out_stream
+
+
+def add_mwe_to_sgml(sgml):
+	norms = read_attributes(sgml,"norm")
+	lemmas = read_attributes(sgml,"norm")
+	mwe_positions = tag_mwes(norms.split("\n"),lemmas.split("\n"))
+	output = inject_tags(sgml, mwe_positions)
+	return output
+
+
+def inject_tags(in_sgml,insertion_specs,around_tag="norm",inserted_tag="multiword"):
+	"""
+
+	:param in_sgml: input SGML stream including tags to surround with new tags
+	:param insertion_specs: list of triples (start, end, value)
+	:param around_tag: tag of span to surround by insertion
+	:return: modified SGML stream
+	"""
+	if len(insertion_specs) == 0:
+		return in_sgml
+
+	counter = -1
+	next_insert = insertion_specs[0]
+	insertion_counter = 0
+	outlines = []
+	for line in in_sgml.split("\n"):
+		if line.startswith("<" + around_tag + " "):
+			counter += 1
+			if next_insert[0] == counter:  # beginning of a span
+				outlines.append("<" + inserted_tag + " " + inserted_tag + '="' + next_insert[2] + '">')
+		outlines.append(line)
+		if line.startswith("</" + around_tag + ">"):
+			if next_insert[1] == counter:  # end of a span
+				outlines.append("</" + inserted_tag + ">")
+				insertion_counter += 1
+				if len(insertion_specs) > insertion_counter:
+					next_insert = insertion_specs[insertion_counter]
+
+	return "\n".join(outlines)
 
 
 if __name__ == "__main__":  # Test mwe

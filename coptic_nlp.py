@@ -16,6 +16,8 @@ from lib.binarize_tags import binarize
 from lib.lang import lookup_lang
 from lib.harvest_tt_sgml import harvest_tt
 from lib.mwe import tag_mwes
+from lib.marmot import tag_marmot
+from lib.lemmatize import Lemmatizer
 
 PY3 = sys.version_info[0] > 2
 
@@ -31,6 +33,9 @@ data_dir = script_dir + os.sep + "data" + os.sep
 parser_path = bin_dir + "maltparser-1.8" + os.sep
 tt_path = bin_dir + "TreeTagger" + os.sep + "bin" + os.sep
 
+# Global lookup lemmatizer for marmot tagging
+lemmatizer = Lemmatizer(data_dir + "copt_lemma_lex.tab", no_unknown=True)
+
 
 def log_tasks(opts):
 	sys.stderr.write("\nRunning standard tasks:\n" +"="*20 + "\n")
@@ -41,7 +46,10 @@ def log_tasks(opts):
 	if opts.meta:
 		sys.stderr.write("o Metadata insertion\n")
 	if not opts.no_tok and not opts.parse_only and not opts.merge_parse:
-		sys.stderr.write("o Tokenization\n")
+		if opts.from_pipes:
+			sys.stderr.write("o Tokenization (from pipes)\n")
+		else:
+			sys.stderr.write("o Tokenization\n")
 	if opts.norm:
 		sys.stderr.write("o Normalization\n")
 	if opts.tag:
@@ -61,8 +69,10 @@ def log_tasks(opts):
 	if opts.space:
 		special_tasks.append("o Space out punctuation")
 	if opts.detokenize > 0:
-		if opts.detokenize > 1:
+		if opts.detokenize == 2:
 			special_tasks.append("o Detokenization (a.k.a. 'Laytonization') - aggressive")
+		elif opts.detokenize == 3:
+			special_tasks.append("o Detokenization (a.k.a. 'Laytonization') - smart")
 		else:
 			special_tasks.append("o Detokenization (a.k.a. 'Laytonization') - conservative")
 	if opts.segment_merged:
@@ -332,30 +342,100 @@ def inject_tags(in_sgml,insertion_specs,around_tag="norm",inserted_tag="multiwor
 	return "\n".join(outlines)
 
 
-def check_requirements():
+def postag(indata,tag_tt=False,notokens=False,sent=None,tabular=False,postprocess=True):
+	if tag_tt:
+		tag = [tt_path + 'tree-tagger', tt_path+'coptic_fine.par', '-lemma','-no-unknown', '-sgml'] #no -token
+		if not notokens:
+			tag += ['-token']
+		tag += ['tempfilename']
+		tagged = exec_via_temp(indata,tag)
+		if notokens:
+			return tagged
+	else:
+		tagged = tag_marmot(indata, sent=sent)
+		tagged = lemmatizer.lemmatize(tagged)
+	spl = [line.split("\t") for line in tagged.strip().split("\n")]
+	words, tags, lemmas = zip(*spl)
+
+	if postprocess:  # Replace implausible word+tag combinations
+		tags = list(tags)
+		tagtab = io.open(data_dir+"postprocess_tagger.tab", encoding="utf8").read().replace("\r", "").strip().split("\n")
+		mapping = dict(((line.split("\t")[0], line.split("\t")[1]), line.split("\t")[2]) for line in tagtab)
+		for i, word in enumerate(words):
+			tag = tags[i]
+			if (word, tag) in mapping:
+				tags[i] = mapping[(word, tag)]
+			elif (word, "*") in mapping:
+				tags[i] = mapping[(word, "*")]
+
+	if tabular and not notokens:
+		return "\n".join([words[i]+"\t"+tags[i]+"\t"+lemmas[i] for i in range(len(tags))])
+	elif notokens:
+		return "\n".join([tags[i]+"\t"+lemmas[i] for i in range(len(tags))])
+	tagged = inject("pos","\n".join(tags),"norm",indata)
+	tagged = inject("lemma","\n".join(lemmas),"norm",tagged)
+	tagged = re.sub('\r','',tagged)
+
+	return tagged
+
+
+def check_requirements(require_tt=False):
+	marmot_OK = True
 	tt_OK = True
 	malt_OK = True
+	foma_OK = True
 	tt = "tree-tagger"
 	if platform.system() == "Windows":
 		tt+=".exe"
-	if not os.path.exists(tt_path + tt):
+	if not os.path.exists(tt_path + tt) and require_tt:
 		sys.stderr.write("! TreeTagger not found at ./bin/\n")
 		tt_OK = False
 	if not os.path.exists(parser_path+"maltparser-1.8.jar"):
 		sys.stderr.write("! Malt Parser 1.8 not found at ./bin/\n")
 		malt_OK = False
+	if not os.path.exists(bin_dir+"marmot"+os.sep+"marmot.jar"):
+		sys.stderr.write("! Marmot not found at ./bin/marmot/\n")
+		marmot_OK = False
+	if not (os.path.exists(bin_dir + "foma" + os.sep + "flookup") or os.path.exists(bin_dir + "foma" + os.sep + "flookup.exe")):
+		sys.stderr.write("! Foma flookup not found at ./bin/foma/\n")
+		foma_OK = False
 
-	return tt_OK, malt_OK
+	return tt_OK, malt_OK, foma_OK, marmot_OK
 
 
-def download_requirements(tt_ok=True, malt_ok=True):
+def download_requirements(tt_ok=True, malt_ok=True, foma_ok=True, marmot_ok=True, require_tt=False):
 	import requests, zipfile, shutil, tarfile
 	if not PY3:
 		import StringIO
 	urls = []
+	if not foma_ok:
+		if platform.system() == "Windows":
+			with zipfile.ZipFile(bin_dir+"foma"+os.sep+"foma_win.zip", 'r') as z:
+				z.extractall(bin_dir+"foma"+os.sep)
+		elif platform.system() == "Darwin":
+			with zipfile.ZipFile(bin_dir+"foma"+os.sep+"foma_osx.zip", 'r') as z:
+				z.extractall(bin_dir+"foma"+os.sep)
+		else:  # Linux
+			sys.stderr.write("! Need to compile foma on Linux and place flookup in bin/foma/\n! See bin/foma/README.md \n")
+			sys.exit(0)
+	if not marmot_ok:
+		if not os.path.exists(bin_dir + "marmot"):
+			os.makedirs(bin_dir + "marmot")
+		marmot_base_url = "http://cistern.cis.lmu.de/marmot/bin/CURRENT/"
+		marmot_current = requests.get(marmot_base_url).text
+		files = re.findall(r'href="((?:marmot|trove)[^"]+jar)"',marmot_current)
+		marmot_file = ""
+		trove_file = ""
+		for f in files:
+			if f.startswith("marmot"):
+				marmot_file = f
+			elif f.startswith("trove"):
+				trove_file = f
+		urls.append(marmot_base_url + marmot_file)
+		urls.append(marmot_base_url + trove_file)
 	if not malt_ok:
 		urls.append("http://maltparser.org/dist/maltparser-1.8.tar.gz")
-	if not tt_ok:
+	if not tt_ok and require_tt:
 		if platform.system() == "Windows":
 			u = "http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-windows-3.2.1.zip"
 		elif platform.system() == "Darwin":
@@ -378,19 +458,30 @@ def download_requirements(tt_ok=True, malt_ok=True):
 			file_contents = StringIO.StringIO(r.content)
 		if u.endswith("zip"):
 			z = zipfile.ZipFile(file_contents)
+		elif u.endswith("jar"):
+			if "trove" in u:
+				with open(bin_dir + "marmot" + os.sep + "trove.jar", 'wb') as f:
+					f.write(r.content)
+			elif "marmot" in u:
+				with open(bin_dir + "marmot" + os.sep + "marmot.jar", 'wb') as f:
+					f.write(r.content)
+			continue
 		else:
 			z = tarfile.open(fileobj=file_contents, mode="r:gz")
 		os_suf = ""
 		if "tree" in u and platform.system() != "Windows":
 			os_suf = "TreeTagger" + os.sep
 		z.extractall(path=bin_dir + os_suf)
-	shutil.copyfile(bin_dir+"coptic.mco",bin_dir+"maltparser-1.8" + os.sep + "coptic.mco")
-	shutil.copyfile(bin_dir+"coptic_fine.par",bin_dir+"TreeTagger" + os.sep + "bin" + os.sep + "coptic_fine.par")
+	if not malt_OK:
+		shutil.copyfile(bin_dir+"coptic.mco",bin_dir+"maltparser-1.8" + os.sep + "coptic.mco")
+	if not tt_ok and require_tt:
+		shutil.copyfile(bin_dir+"coptic_fine.par",bin_dir+"TreeTagger" + os.sep + "bin" + os.sep + "coptic_fine.par")
 
 
 def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True, do_mwe=True, do_tag=True, do_lemma=True, do_lang=True,
 			   do_milestone=True, do_parse=True, sgml_mode="sgml", tok_mode="auto", old_tokenizer=False, sent_tag=None,
-			   preloaded=None, pos_spans=False, merge_parse=False, detokenize=0, segment_merged=False, gold_parse=""):
+			   preloaded=None, pos_spans=False, merge_parse=False, detokenize=0, segment_merged=False, gold_parse="",
+			   tag_tt=False):
 
 	data = input_data.replace("\t","")
 	data = data.replace("\r","")
@@ -399,7 +490,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 		stk = preloaded
 	else:
 		stk = StackedTokenizer(pipes=sgml_mode != "sgml", lines=lb, tokenized=tok_mode=="from_pipes",
-							   detok=detokenize, segment_merged=segment_merged)
+							   detok=detokenize, segment_merged=segment_merged, ambig=data_dir + "ambig.tab")
 
 	if do_milestone:
 		data = binarize(data)
@@ -413,7 +504,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 				tokenize.append('-p')
 			if tok_mode == "from_pipes":
 				tokenize.append('-t')
-			tokenize += ['-d', data_dir + 'copt_lex.tab', '-s', data_dir + 'segmentation_table.tab', '-m', data_dir + 'morph_table.tab', 'tempfilename']
+			tokenize += ['-d', data_dir + 'copt_lemma_lex.tab', '-s', data_dir + 'segmentation_table.tab', '-m', data_dir + 'morph_table.tab', 'tempfilename']
 			tokenized = exec_via_temp(data,tokenize)
 			tokenized = tokenized.replace('\r','').strip()
 			tokenized = re.sub(r'_$','',tokenized)
@@ -446,7 +537,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 
 	if parse_only or merge_parse:
 		if not do_tag and (parse_only or merge_parse):
-			if not "\t" in input_data and not 'pos="' in input_data:
+			if "\t" not in input_data and 'pos="' not in input_data:
 				sys.stderr.write("! You selected parsing without tagging (-t) and your data format appears to contain no POS tag column.\n")
 				resp = inp("! Would you like to add POS tagging to the job profile? [Y]es/[N]o/[A]bort ")
 				if resp.lower() == "y":
@@ -454,9 +545,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 				elif resp.lower() == "a":
 					sys.exit(0)
 		if do_tag and not pos_spans:
-			tag = [tt_path+'tree-tagger', tt_path+'coptic_fine.par', '-token','-lemma','-no-unknown', '-sgml' ,'tempfilename'] #no -token
-			tagged = exec_via_temp(norms,tag)
-			tagged = re.sub('\r','',tagged)
+			tagged = postag(norms,tag_tt=tag_tt,sent=sent_tag)
 		else:  # Assume data is already tagged, in TT SGML format
 			if pos_spans:
 				tagged = harvest_tt(input_data, keep_sgml=True)
@@ -466,18 +555,28 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 					tagged = input_data.encode("utf8")  # Handle non-UTF-8 when calling TT from subprocess in Python 3
 		if gold_parse == "":
 			conllized = conllize(tagged,tag="PUNCT",element=sent_tag, no_zero=True)  # NB element is present it supercedes the POS tag
-			deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
-			depedited = deped.run_depedit(conllized.split("\n"))
+			#deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
+			#depedited = deped.run_depedit(conllized.split("\n"))
+			depedited = conllized
 			parse_coptic = ['java','-mx512m','-jar',"maltparser-1.8.jar",'-c','coptic','-i','tempfilename','-m','parse']
+			if not os.path.exists(bin_dir+"maltparser-1.8" + os.sep + "coptic.mco"):
+				sys.stderr.write("! can't find coptic.mco parser model in " + bin_dir+"maltparser-1.8" + os.sep + "coptic.mco")
+				sys.exit(0)
 			parsed = exec_via_temp(depedited,parse_coptic,parser_path)
-			deped = DepEdit(io.open(data_dir + "parser_postprocess_nodom.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
+			deped = DepEdit(io.open(data_dir + "postprocess_parser.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
 			depedited = deped.run_depedit(parsed.split("\n"))
 		else:  # A cached gold parse has been specified
 			depedited = gold_parse
 			norm_count = len(re.findall(r'(\n|^)[0-9]+\t',depedited))
 			input_norms = input_data.count(" norm=")
 			if norm_count != input_norms:
-				raise IOError("Mismatch in word count: " + str(norm_count) + " in gold parse but " + str(input_norms) + " in SGML file\n")
+				dped = re.findall(r'(?:\n|^)[0-9]+\t([^\n\t]+)',depedited)
+				nrms = re.findall(r' norm="([^"]*)"',input_data)
+				for i, nrm in enumerate(nrms):
+					if nrm != dped[i]:
+						mismatch = nrm +"!="+dped[i] + " at " + str(i) + " after " + nrms[i-2] + " " +  nrms[i-1]
+						break
+				raise IOError("Mismatch in word count: " + str(norm_count) + " in gold parse but " + str(input_norms) + " in SGML file\nMismatch: "+ mismatch)
 		if parse_only:  # Output parse in conll format
 			return depedited
 		elif merge_parse:  # Insert parse into input SGML as attributes of <norm>
@@ -496,23 +595,23 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 			return output
 
 	elif not do_parse:
-		tag = [tt_path + 'tree-tagger', tt_path+'coptic_fine.par', '-lemma','-no-unknown', '-sgml' ,'tempfilename'] #no -token
-		tagged = exec_via_temp(norms,tag)
-		tagged = re.sub('\r','',tagged)
+		tagged = postag(norms,tag_tt=tag_tt,sent=sent_tag,notokens=True)
 	if do_parse:
-		tag = [tt_path + 'tree-tagger', tt_path+'coptic_fine.par', '-token','-lemma','-no-unknown', '-sgml' ,'tempfilename'] #no -token
 		if sent_tag is None:
-			tagged = exec_via_temp(norms,tag)
+			tagged = postag(norms,tag_tt=tag_tt,sent=sent_tag,tabular=True)
 		else:
 			norm_with_sgml = tok_from_norm(output)
-			tagged = exec_via_temp(norm_with_sgml,tag)
-		tagged = re.sub('\r','',tagged)
+			tagged = postag(norm_with_sgml,tag_tt=tag_tt,sent=sent_tag)
 		conllized = conllize(tagged, tag="PUNCT", element=sent_tag, no_zero=True)
-		deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
-		depedited = deped.run_depedit(conllized.split("\n"))
+		#deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
+		#depedited = deped.run_depedit(conllized.split("\n"))
+		depedited = conllized
+		if not os.path.exists(bin_dir+"maltparser-1.8" + os.sep + "coptic.mco"):
+			sys.stderr.write("! can't find coptic.mco parser model in " + bin_dir+"maltparser-1.8" + os.sep + "coptic.mco")
+			sys.exit(0)
 		parse_coptic = ['java','-mx1g','-jar',"maltparser-1.8.jar",'-c','coptic','-i','tempfilename','-m','parse']
 		parsed = exec_via_temp(depedited,parse_coptic,parser_path)
-		deped = DepEdit(io.open(data_dir + "parser_postprocess_nodom.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
+		deped = DepEdit(io.open(data_dir + "postprocess_parser.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
 		depedited = deped.run_depedit(parsed.split("\n"))
 
 		ids, funcs, parents = extract_conll(depedited)
@@ -520,9 +619,9 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 		if sent_tag is not None:
 			tagged = re.sub(r"^<[^>]*>","",tagged)
 
-	lemmas = re.sub('^[^\t]+\t','',tagged)
-	lemmas = re.sub('\n[^\t]+\t','\n',lemmas)
-	tagged = re.sub('(\t[^\t]+\n)','\n',tagged)
+	lemmas = re.sub(r'^[^\t]+\t','',tagged)
+	lemmas = re.sub(r'\n[^\t]+\t','\n',lemmas)
+	tagged = re.sub(r'(\t[^\t]+(\n|$))','\n',tagged).strip()
 	langed = lookup_lang(norms, lexicon=data_dir + "lang_lexicon.tab")
 
 	if do_parse:
@@ -630,7 +729,7 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 
 	g2 = parser.add_argument_group("less common options")
 	g2.add_argument("-f","--finitestate", action="store_true", help='Use old finite-state tokenizer (less accurate)')
-	g2.add_argument("-d","--detokenize", action="store", type=int, choices=[0,1,2], default=0, help="Re-group non-standard bound groups (a.k.a. 'laytonize') - 1=normal 2=aggressive")
+	g2.add_argument("-d","--detokenize", action="store", type=int, choices=[0,1,2,3], default=0, help="Re-group non-standard bound groups (a.k.a. 'laytonize') - 1=conservative 2=aggressive 3=smart")
 	g2.add_argument("--segment_merged", action="store_true", help="When re-grouping bound groups, assume merged groups have segmentation boundary between them")
 	g2.add_argument("-q","--quiet", action="store_true", help='Suppress verbose messages')
 	g2.add_argument("-x","--extension", action="store", default=None, help='Extension for SGML mode output files (default: tt)')
@@ -645,6 +744,7 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 	g2.add_argument("--pos_spans", action="store_true", help='Harvest POS tags and lemmas from SGML spans')
 	g2.add_argument("--merge_parse", action="store_true", help='Merge/add a parse into a ready SGML file')
 	g2.add_argument("--version", action="store_true", help='Print version number and quit')
+	g2.add_argument("--treetagger", action="store_true", help='Tag using TreeTagger instead of Marmot')
 
 	if "--version" in sys.argv:
 		sys.stdout.write("Coptic NLP Pipeline V" + __version__)
@@ -674,16 +774,21 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 		stk = None
 
 	# Check if TreeTagger and Malt Parser are available
-	tt_OK, malt_OK = check_requirements()
-	if (opts.tag and not tt_OK) or ((opts.parse or opts.parse_only or opts.merge_parse) and not malt_OK):
+	tt_OK, malt_OK, foma_OK, marmot_OK = check_requirements()
+	if (opts.tag and not marmot_OK) or ((opts.parse or opts.parse_only or opts.merge_parse) and not malt_OK) or \
+			(opts.tag and opts.treetagger and not tt_OK) or not foma_OK:
 		sys.stderr.write("! You are missing required software:\n")
-		if opts.tag and not tt_OK:
+		if not foma_OK and (opts.norm or not opts.no_tok):
+			sys.stderr.write(" - Foma is not installed but is required for tokenization and normalization\n")
+		if opts.tag and not marmot_OK and not opts.treetagger:
+			sys.stderr.write(" - Tagging is specified but Marmot is not installed\n")
+		if opts.tag and opts.treetagger and not tt_OK:
 			sys.stderr.write(" - Tagging is specified but TreeTagger is not installed\n")
 		if (opts.parse or opts.parse_only or opts.merge_parse) and not malt_OK:
 			sys.stderr.write(" - Parsing is specified but Malt Parser 1.8 is not installed\n")
 		response = inp("Attempt to download missing software? [Y/N]\n")
 		if response.upper().strip() == "Y":
-			download_requirements(tt_OK,malt_OK)
+			download_requirements(tt_OK,malt_OK,foma_OK,marmot_OK,require_tt=opts.treetagger)
 		else:
 			sys.stderr.write("Aborting\n")
 			sys.exit(0)
@@ -726,7 +831,7 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 							   do_lang=opts.etym, do_milestone=opts.unary, do_parse=opts.parse, sgml_mode=opts.outmode,
 							   tok_mode="auto", old_tokenizer=old_tokenizer, sent_tag=opts.sent, preloaded=stk,
 							   pos_spans=opts.pos_spans, merge_parse=opts.merge_parse, detokenize=opts.detokenize,
-							   segment_merged=opts.segment_merged)
+							   segment_merged=opts.segment_merged, tag_tt=opts.treetagger)
 
 		if opts.outmode == "sgml":
 			processed = reorder(processed.strip().split("\n"),add_fixed_meta=add_fixed_meta)

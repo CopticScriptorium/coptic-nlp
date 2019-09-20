@@ -1,0 +1,55 @@
+flags:	-- -o pipes (tokenize into pipes)
+# Seg tests
+	# Ambiguous segmentation
+	ⲡⲉϫⲁϥ_ⲛⲁⲩ_ⲅⲁⲣ_ⲛⲁⲩ_ⲉⲣⲟⲓ			ⲡⲉϫⲁ|ϥ_ⲛⲁ|ⲩ_ⲅⲁⲣ_ⲛⲁⲩ_ⲉⲣⲟ|ⲓ
+	# Segmentation based on hypothetical normalization
+	ⲛ̅ⲥⲁⲡϥ̅ⲉⲓⲱⲧ					ⲛ̅ⲥⲁ|ⲡϥ̅|ⲉⲓⲱⲧ
+	ⲙ̄ⲡϥ̄ⲣⲁⲛ						ⲙ̄|ⲡϥ̄|ⲣⲁⲛ
+	ϩⲁϩⲧⲙ̅ⲡϫⲥ̅						ϩⲁϩⲧⲙ̅|ⲡ|ϫⲥ̅ 
+	# Pipe segmentation with theta
+	ⲛⲑⲉ								ⲛ|ⲑ|ⲉ
+	# Pipe segmentation with ti
+	ϫⲉϯⲣⲏⲛⲏ`						ϫⲉ|ϯ|ⲣⲏⲛⲏ`
+	# Morph
+	ⲧⲉⲓⲙⲛ̄ⲧⲁⲥⲉⲃⲏⲥ				ⲧⲉⲓ|ⲙⲛ̄ⲧ-ⲁⲥⲉⲃⲏⲥ
+	ⲧⲙⲛⲧⲣⲉϥϩⲉⲧⲃⲯⲩⲭⲏ		ⲧ|ⲙⲛⲧ-ⲣⲉϥ-ϩⲉⲧⲃ-ⲯⲩⲭⲏ
+	ⲛⲁⲣ̅ⲭⲣⲓⲁ	ⲛⲁ|ⲣ̅-ⲭⲣⲓⲁ
+	# Test mutated auxiliary spelling
+		ⲙ̅ⲡⲉⲓⲃⲱⲕ					ⲙ̅ⲡ|ⲉⲓ|ⲃⲱⲕ
+		ⲙ̅ⲡⲉⲓϫⲟⲟⲥ					ⲙ̅ⲡ|ⲉⲓ|ϫⲟⲟ|ⲥ
+	# Normalization and XML
+	ⲉⲧⲣ<ed_line n="12"/>ϥϩⲉ	ⲉ|ⲧⲣ<ed_line n="12"/>|ϥ|ϩⲉ
+	ⲙⲛⲛ<hi rend="red">ⲥ</hi>ⲁⲧⲣⲉϥⲥⲕⲉⲡⲁⲍⲉ	ⲙⲛⲛ<hi rend="red">ⲥ</hi>ⲁ|ⲧⲣⲉ|ϥ|ⲥⲕⲉⲡⲁⲍⲉ
+	ϫⲓⲛⲧⲁⲓⲣⲙⲟⲛⲟⲭⲟⲥ				ϫⲓ|ⲛⲧ|ⲁ|ⲓ|ⲣ-ⲙⲟⲛⲟⲭⲟⲥ
+	# Detokenization
+		# Conservative
+		flags:	-d 1 -o pipes (conservative Till detoknization)
+			ϩⲙ_ⲡⲏⲉⲓ				ϩⲙ|ⲡ|ⲏⲉⲓ
+		# Aggressive
+		flags:	-d 2 -o pipes (aggressive non-Till detokenization)
+			ⲁ_ϥⲥⲱⲧⲙ				ⲁ|ϥ|ⲥⲱⲧⲙ
+		# Smart
+		flags:	-d 3 -o pipes (machine learning detokenization trained on Budge)
+			ⲁϥⲣ_ⲭⲣⲉⲓⲁ				ⲁ|ϥ|ⲣ-ⲭⲣⲉⲓⲁ
+
+# SGML tests
+flags:	-penmult (full SGML pipeline)
+	# Test normalization
+		ⲙⲙⲟⲛⲟⲭⲟⲥ	norm_group="ⲙⲙⲟⲛⲁⲭⲟⲥ"
+	# Test multiword expressions
+		ⲁϥϭⲱⲗⲡ ⲉⲃⲟⲗ			multiword="ϭⲱⲗⲡ ⲉⲃⲟⲗ"
+	# Test syntactic functions
+		ⲉⲥⲱⲧⲙ						func="xcomp"
+	# Test normalized segmentation projection
+		ⲛ̅ⲥⲁⲡϥ̅ⲉⲓⲱⲧ				norm_group="ⲛⲥⲁⲡⲉϥⲉⲓⲱⲧ"
+	# Test theta segmentation
+		ⲛⲑⲉ							norm_group="ⲛⲧϩⲉ"
+	# Test nomina sacra
+		ⲙⲛ̅ⲡⲉⲡ̅ⲛ̅ⲁ̅					norm_group="ⲙⲛⲡⲉⲡⲛⲉⲩⲙⲁ"
+		ϩⲙ̅ⲡϫⲥ̅						norm_group="ϩⲙⲡϫⲟⲉⲓⲥ"
+flags:	-enult (SGML lemmatization and lang)
+	# Test lang
+		ⲁⲃⲣⲁϩⲁⲙ					lang="Hebrew"
+	# Test lemmatization
+		ⲁϥⲥⲉⲧⲡⲧⲉⲥϩⲓⲙⲉ			lemma="ⲥⲱⲧⲡ"
+		

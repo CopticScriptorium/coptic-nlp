@@ -55,7 +55,9 @@ def make_nlp_form(access_level, mode):
 	if mode == "interactive":
 		output = ""
 		data = """ⲁ<hi rend="red">ϥ</hi>ⲥⲱⲧ︤ⲙ︥ ⲛⲥⲱϥ ⲛ̄ϭ
-ⲓⲡⲁⲅⲅⲉⲗⲟⲥ ⲙ̄ⲙ︤ⲛ︦ⲧ︥ϣⲃⲏⲣ""".decode("utf8")
+ⲓⲡⲁⲅⲅⲉⲗⲟⲥ ⲙ̄ⲙ︤ⲛ︦ⲧ︥ϣⲃⲏⲣ"""
+		if not PY3:
+			data = data.decode("utf8")
 		#form = {}
 		form = cgi.FieldStorage()
 		processed=""
@@ -89,6 +91,8 @@ def make_nlp_form(access_level, mode):
 			do_mwe = form.getvalue("mwe") is not None
 			if form.getvalue("laytonize") == "aggressive":
 				detok = 2
+			elif form.getvalue("laytonize") == "smart":
+				detok = 3
 			elif form.getvalue("laytonize") == "conservative":
 				detok = 1
 			else:
@@ -129,6 +133,7 @@ def make_nlp_form(access_level, mode):
 		detokenize_checked = ' checked="checked"' if detok > 0 else ""
 		laytonize_conservative_checked = ' checked="checked"' if detok == 1 else ""
 		laytonize_aggressive_checked = ' checked="checked"' if detok == 2 else ""
+		laytonize_smart_checked = ' checked="checked"' if detok == 3 else ""
 		auto_checked = ' checked="checked"' if tok_mode == "auto" else ""
 		pipes_checked = ' checked="checked"' if tok_mode == "from_pipes" else ""
 		norm_checked = ' checked="checked"' if do_norm else ""
@@ -171,6 +176,7 @@ def make_nlp_form(access_level, mode):
 		template = template.replace("**detokenize_checked**", detokenize_checked)
 		template = template.replace("**laytonize_conservative_checked**", laytonize_conservative_checked)
 		template = template.replace("**laytonize_aggressive_checked**", laytonize_aggressive_checked)
+		template = template.replace("**laytonize_smart_checked**", laytonize_smart_checked)
 		template = template.replace("**segment_merged_checked**", segment_merged_checked)
 		template = template.replace("**auto_checked**", auto_checked)
 		template = template.replace("**pipes_checked**", pipes_checked)
@@ -186,6 +192,7 @@ def make_nlp_form(access_level, mode):
 		template = template.replace("**data**", data)
 		template = template.replace("**processed**", processed)
 		template = template.replace("**access_js**", access_js)
-		template = template.encode("utf8")
+		if not PY3:
+			template = template.encode("utf8")
 
 		return template
