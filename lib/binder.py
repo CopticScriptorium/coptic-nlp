@@ -21,6 +21,7 @@ PY3 = sys.version_info[0] == 3
 
 # Set up locations for lexical resources and error output
 script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
+eval_dir = script_dir + ".." + os.sep + "eval" + os.sep
 plain_dir = script_dir + ".." + os.sep + "eval" + os.sep + "plain" + os.sep
 err_dir = script_dir + ".." + os.sep + "eval" + os.sep + "errors" + os.sep
 
@@ -485,10 +486,10 @@ def resolve_file_lists(file_list, synthetic=False):
 	gold_dir = "unreleased"
 
 	if synthetic:
-		gold.append(script_dir + gold_dir + os.sep + 'aug_bind_uddev_gold.tt')
-		orig.append(script_dir + file_dir + os.sep + 'aug_bind_uddev.txt')
-		gold.append(script_dir + gold_dir + os.sep + 'aug_bind_udtrain_gold.tt')
-		orig.append(script_dir + file_dir + os.sep + 'aug_bind_udtrain.txt')
+		gold.append(eval_dir + gold_dir + os.sep + 'aug_bind_uddev_gold.tt')
+		orig.append(eval_dir + file_dir + os.sep + 'aug_bind_uddev.txt')
+		gold.append(eval_dir + gold_dir + os.sep + 'aug_bind_udtrain_gold.tt')
+		orig.append(eval_dir + file_dir + os.sep + 'aug_bind_udtrain.txt')
 	return gold, orig
 
 
