@@ -32,10 +32,59 @@ bin_dir = script_dir + os.sep + "bin" + os.sep
 data_dir = script_dir + os.sep + "data" + os.sep
 parser_path = bin_dir + "maltparser-1.8" + os.sep
 tt_path = bin_dir + "TreeTagger" + os.sep + "bin" + os.sep
+ud_coptic_path = "UD_Coptic-Scriptorium" + os.sep  # Optional path to UD_Coptic-Scriptorium - use to cache gold parses
+
+# Global cache of gold syntax trees, if UD_Coptic-Scriptorium data is available
+gold_trees = {}
+
+def get_gold_trees():
+	def conll2mapping(conllu):
+		out_dict = {}
+		sents = conllu.strip().replace("\r","").split("\n\n")
+		for sent in sents:
+			out_sent = []
+			tokens = []
+			for line in sent.split("\n"):
+				if "\t" in line:
+					fields = line.split("\t")
+					if "-" not in fields[0]:
+						tokens.append(fields[1])
+						fields[5], fields[-2], fields[-1] = "_", "_", "_"  # Kill MISC, FEATS
+						fields[3] = fields[4]  # Kill UPOS
+						out_sent.append("\t".join(fields))
+			out_dict[" ".join(tokens)] = "\n".join(out_sent)
+		return out_dict
+
+	global ud_coptic_path
+	global gold_trees
+	partition_files = ["train","test","dev"]
+	if os.path.exists(ud_coptic_path + 'cop_scriptorium-ud-train.conllu'):
+		partition_files = [ud_coptic_path + "cop_scriptorium-ud-" + f + ".conllu" for f in partition_files]
+		for f in partition_files:
+			gold_trees.update(conll2mapping(io.open(f,encoding="utf8").read()))
+
+
+def replace_trees(conllu, gold_trees):
+	sents = conllu.strip().replace("\r", "").split("\n\n")
+	output = []
+	for sent in sents:
+		tokens = []
+		for line in sent.split("\n"):
+			if "\t" in line:
+				fields = line.split("\t")
+				if "-" not in fields[0]:
+					tokens.append(fields[1])
+		plain = " ".join(tokens)
+		if plain in gold_trees:
+			output.append(gold_trees[plain])
+		else:
+			output.append(sent)
+
+	return "\n".join(output) + "\n\n"
+
 
 # Global lookup lemmatizer for marmot tagging
 lemmatizer = Lemmatizer(data_dir + "copt_lemma_lex.tab", no_unknown=True)
-
 
 def log_tasks(opts):
 	sys.stderr.write("\nRunning standard tasks:\n" +"="*20 + "\n")
@@ -250,7 +299,7 @@ def inject(attribute_name, contents, at_attribute,into_stream,replace=True):
 	:param replace: boolean, whether to replace existing values of attribute_name when already present
 	:return: TT SGML with added attributes
 	"""
-	insertions = contents.split('\n')
+	insertions = contents.strip().split('\n')
 	injected = ""
 	i=0
 	for line in into_stream.split("\n"):
@@ -565,7 +614,10 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 			parsed = exec_via_temp(depedited,parse_coptic,parser_path)
 			deped = DepEdit(io.open(data_dir + "postprocess_parser.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
 			depedited = deped.run_depedit(parsed.split("\n"))
-		else:  # A cached gold parse has been specified
+			if len(gold_trees) > 0:
+				# Replace automatic parses with cached trees from UD_Coptic if available
+				depedited = replace_trees(depedited, gold_trees)
+		else:  # A cached gold parse has been specified by the user
 			depedited = gold_parse
 			norm_count = len(re.findall(r'(\n|^)[0-9]+\t',depedited))
 			input_norms = input_data.count(" norm=")
@@ -613,6 +665,12 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 		parsed = exec_via_temp(depedited,parse_coptic,parser_path)
 		deped = DepEdit(io.open(data_dir + "postprocess_parser.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
 		depedited = deped.run_depedit(parsed.split("\n"))
+		if len(gold_trees) > 0:
+			# Replace automatic parses with cached trees from UD_Coptic if available
+			depedited = replace_trees(depedited, gold_trees)
+
+		if sgml_mode == "conllu":  # Return conllu parse and finish
+			return depedited
 
 		ids, funcs, parents = extract_conll(depedited)
 		tagged = re.sub(r"(^|\n)[^\t]+\t",r"\1",tagged)
@@ -825,6 +883,9 @@ Merge a parse into a tagged SGML file's <norm> tags, use translation tag to reco
 		if opts.merge_parse and not opts.pos_spans:
 			sys.stderr.write("o --merge_parse was selected; turning on --pos_spans option")
 			opts.pos_spans = True
+
+		if not opts.no_gold_parse and (opts.parse or opts.parse_only or opts.merge_parse or opts.recognize_entities):
+			get_gold_trees()
 
 		processed = nlp_coptic(input_text, lb=opts.breaklines, parse_only=opts.parse_only, do_tok=dotok,
 							   do_norm=opts.norm, do_mwe=opts.multiword, do_tag=opts.tag, do_lemma=opts.lemma,
