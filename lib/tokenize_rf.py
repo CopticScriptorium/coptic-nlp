@@ -6,7 +6,6 @@ import pandas as pd
 
 from sklearn.ensemble import ExtraTreesClassifier, RandomForestClassifier
 from sklearn.metrics import accuracy_score
-from sklearn.externals import joblib
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.preprocessing import LabelEncoder
 from collections import defaultdict
@@ -16,6 +15,12 @@ except ImportError:
 	from configparser import RawConfigParser as configparser
 
 PY3 = sys.version_info[0] == 3
+
+if PY3:
+	import joblib
+else:
+	from sklearn.externals import joblib
+
 script_dir = os.path.dirname(os.path.realpath(__file__))
 
 cat_labels = ['group_in_lex', 'current_letter', 'prev_prev_letter', 'prev_letter', 'next_letter', 'next_next_letter',
