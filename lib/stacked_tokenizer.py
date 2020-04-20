@@ -23,13 +23,11 @@ try:
 	from .tokenize_lookup import lookup_tokenize
 	from .tokenize_rf import RFTokenizer
 	from .tokenize_morph import MorphAnalyzer
-	from .tokenize_meta import MetaTokenizer
 except:
 	from tokenize_fs import fs_tokenize
 	from tokenize_lookup import lookup_tokenize
 	from tokenize_rf import RFTokenizer
 	from tokenize_morph import MorphAnalyzer
-	from tokenize_meta import MetaTokenizer
 
 from argparse import ArgumentParser
 from six import iteritems
@@ -435,6 +433,10 @@ class StackedTokenizer:
 		self.load_rftokenizer()
 		self.use_meta = use_meta
 		if self.use_meta:
+			try:
+				from .tokenize_meta import MetaTokenizer
+			except:
+				from tokenize_meta import MetaTokenizer
 			self.metatok = MetaTokenizer(model="cop",rf_tok=self.rf_tok)
 		# Place-holders for detokenization mode (a.k.a. Laytonization)
 		self.detokenize = detok
