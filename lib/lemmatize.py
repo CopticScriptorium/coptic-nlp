@@ -32,7 +32,7 @@ class Lemmatizer:
 			pos = tags[i]
 			if word in self.lex:
 				if pos in self.lex[word]:
-					matches = list(self.lex[word][pos])
+					matches = sorted(list(self.lex[word][pos]))
 					if len(matches) == 1:  # Unique solution
 						output.append(matches[0])
 						continue
