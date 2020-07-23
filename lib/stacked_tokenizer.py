@@ -121,7 +121,9 @@ class BoundGroup:
 		if ("ⲫ" in self.dirty or "Ⲫ" in self.dirty) and ("ⲡ|ϩ" in tokenization or "ⲡ-ϩ" in tokenization):
 			tokenization = tokenization.replace("ⲡ|ϩ","ⲫ|").replace("ⲡ-ϩ","ⲫ-")
 		if "ϯ" in self.dirty and "ⲧ|ⲓ" in tokenization:
-			tokenization = tokenization.replace("ⲧ|ⲓ","|ϯ")
+			tokenization = tokenization.replace("ⲧ|ⲓ","|ϯ")  # For cases like orig mpa|ti|-..., norm mapt|i|-
+			if "||ϯ" in tokenization:
+				tokenization = tokenization.replace("||ϯ","|ϯ|")  # For cases like orig ti|rHnH, norm t|irHnH
 		if "ⲉⲧⲛⲁ" in self.dirty and "ⲉⲧⲛ|ⲛⲁ" in tokenization and "ⲉⲧⲛⲛⲁ" not in self.dirty:
 			tokenization = tokenization.replace("ⲉⲧⲛ|ⲛⲁ","ⲉⲧⲛ|ⲁ")
 		tokenized = self.dirty
