@@ -14,9 +14,14 @@ fixed_meta = '<meta corpus="shenoute.obliged" repo="CopticScriptorium/shenoute-c
 def reorder(lines, add_fixed_meta=False):
 	meta_start=""
 	contents = lines
+	add_close_meta = False
 	for line in lines:
-		if line.startswith("<meta"):
+		if line.startswith("<meta "):
 			meta_start = line
+			if '</meta>' not in lines:
+				add_close_meta = True  # Add missing closing meta tag
+	if add_close_meta:
+		lines.append('</meta>')
 
 	if add_fixed_meta:
 		meta_start = fixed_meta
