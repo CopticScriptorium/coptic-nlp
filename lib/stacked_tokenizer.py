@@ -4,10 +4,10 @@
 
 from __future__ import unicode_literals
 import sys, re, io, os
-from six import iterkeys, itervalues
+from six import iterkeys, iteritems
 PY3 = sys.version_info[0] == 3
 
-__version__ = "2.0.0"
+__version__ = "2.1.0"
 __author__ = "Amir Zeldes"
 
 
@@ -30,7 +30,6 @@ except:
 	from tokenize_morph import MorphAnalyzer
 
 from argparse import ArgumentParser
-from six import iteritems
 
 if not PY3:
 	reload(sys)
@@ -116,11 +115,11 @@ class BoundGroup:
 		self.tokenization = tokenization
 
 		# Construct approximate tokenization for piped output
-		if ("ⲑ" in self.dirty or "Ⲑ" in self.dirty) and ("ⲧ|ϩ" in tokenization or "ⲧ-ϩ" in tokenization):
+		if ("ⲑ" in self.dirty or "Ⲑ" in self.dirty) and ("ⲧ|ϩ" in tokenization or "ⲧ-ϩ" in tokenization) and "ⲧϩ" not in self.dirty:
 			tokenization = tokenization.replace("ⲧ|ϩ","ⲑ|").replace("ⲧ-ϩ","ⲑ-")
-		if ("ⲫ" in self.dirty or "Ⲫ" in self.dirty) and ("ⲡ|ϩ" in tokenization or "ⲡ-ϩ" in tokenization):
+		if ("ⲫ" in self.dirty or "Ⲫ" in self.dirty) and ("ⲡ|ϩ" in tokenization or "ⲡ-ϩ" in tokenization) and "ⲡϩ" not in self.dirty:
 			tokenization = tokenization.replace("ⲡ|ϩ","ⲫ|").replace("ⲡ-ϩ","ⲫ-")
-		if "ϯ" in self.dirty and "ⲧ|ⲓ" in tokenization:
+		if "ϯ" in self.dirty and "ⲧ|ⲓ" in tokenization and "ⲧⲓ" not in self.dirty:
 			tokenization = tokenization.replace("ⲧ|ⲓ","|ϯ")  # For cases like orig mpa|ti|-..., norm mapt|i|-
 			if "||ϯ" in tokenization:
 				tokenization = tokenization.replace("||ϯ","|ϯ|")  # For cases like orig ti|rHnH, norm t|irHnH
@@ -244,6 +243,8 @@ class BoundGroup:
 			output = align(unsegmented,segmented,loose=True)
 			if consecutive_seps(output):
 				output = align(unsegmented,segmented,loose=True,reverse=True)
+		if "||ⲑ" in output and "ⲧ|ⲑ" in segmented:
+			output = output.replace("||ⲑ","|ⲑ|")
 
 		output = re.sub(r'\|+','|',output)
 		output = re.sub(r'-+','-',output)
@@ -642,10 +643,28 @@ class StackedTokenizer:
 			#		best_tokenizations.append(tokenizations_rf[i])
 
 			m = MorphAnalyzer()
+			prev_tokenization = ""
+			overrides = {"ⲉ|ⲡ|ⲁϩⲟ": "ⲉ|ⲡⲁ|ϩⲟ", "ⲛⲉ|ⲛ|ⲕⲁ": "ⲛⲉ|ⲛⲕⲁ", "ⲉ|ⲧⲟⲩ|ϯⲥⲃⲱ": "ⲉⲧ|ⲟⲩ|ϯⲥⲃⲱ","ⲛ|ⲉⲛⲧ|ⲁ|ⲩ|ϫⲟⲟⲩ":"ⲛ|ⲉⲛⲧ|ⲁ|ⲩ|ϫⲟ|ⲟⲩ"}
+			substrings = {"ⲛⲉ|ⲩ|ⲛ|ⲟⲩ|": "ⲛⲉ|ⲩⲛ|ⲟⲩ|","ⲛⲉ|ⲩ|ⲛ|ϩⲉⲛ|":"ⲛⲉ|ⲩ|ⲛ|ϩⲉⲛ|","ϫⲟ|ⲟⲩ|ⲥⲉ":"ϫⲟⲟⲩ|ⲥⲉ"}
 			for i, tokenization in enumerate(best_tokenizations):
 				if not self.no_morphs:
 					# print(tokenization)
 					tokenization = m.analyze_morph(tokenization)
+				# Hard wired rare but reliable solutions based on adjacent bound group
+				if i > 0:
+					prev_tokenization = best_tokenizations[i - 1]
+					if tokenization == "ⲙⲙⲟ|ⲛ":
+						if prev_tokenization.split("|")[-1] in ["ϫⲓⲛ","ϫⲉ","ϫⲛ","ⲉϣⲱⲡⲉ"]:
+							tokenization = "ⲙⲙⲟⲛ"
+				if i < len(best_tokenizations) - 1:
+					next_tokenization = best_tokenizations[i+1]
+					if tokenization == "ⲛ|ⲧⲉⲧⲛ" and next_tokenization.split("|")[0] in ["ⲛ","ϩⲉⲛ"]:
+						tokenization = "ⲛⲧⲉⲧⲛ"
+				if tokenization in overrides:
+					tokenization = overrides[tokenization]
+				for f, r in iteritems(substrings):
+					tokenization = tokenization.replace(f,r)
+
 				grps[i].add_tokenization(tokenization)
 
 		toks = serialize(grps, pipes=self.pipes, segment_merged=self.segment_merged)
