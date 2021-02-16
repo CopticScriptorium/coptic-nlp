@@ -31,6 +31,7 @@ def exec_via_temp(input_text, command_params, workdir=""):
 def fs_tokenize(bound_groups,rule_nums=False):
 
 	if rule_nums:
+		sys.stderr.write("i Using rule numbers in fs_tokenize\n")
 		cmd = ["perl",os.path.dirname(os.path.realpath(__file__)) + os.sep + "tokenize_perl.pl","-r","tempfilename"]
 	else:
 		cmd = ["perl",os.path.dirname(os.path.realpath(__file__)) + os.sep + "tokenize_perl.pl","tempfilename"]
