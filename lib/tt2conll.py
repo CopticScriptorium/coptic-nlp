@@ -40,7 +40,7 @@
 from argparse import ArgumentParser
 import io, sys, re
 
-def conllize(in_text,tag=None,element=None,no_zero=False):
+def conllize(in_text,tag=None,element=None,no_zero=False,ten_cols=False):
 
 	xml = False
 	if element is not None:
@@ -74,9 +74,12 @@ def conllize(in_text,tag=None,element=None,no_zero=False):
 					morph = fields[3]
 			if not (line.startswith("<") and line.endswith(">")):  # Do not make tokens out of XML elements
 				if no_zero:
-					outlines.append("\t".join([str(counter), tok, lemma, pos, pos, morph, "_", "_"]))
+					fields = [str(counter), tok, lemma, pos, pos, morph, "_", "_"]
 				else:
-					outlines.append("\t".join([str(counter),tok,lemma,pos,pos,morph,"0","_"]))
+					fields = [str(counter),tok,lemma,pos,pos,morph,"0","_"]
+				if ten_cols:
+					fields += ["_","_"]
+				outlines.append("\t".join(fields))
 				if outlines[-1].count("\t")>9:
 					sys.stderr.write("WARN: found " + str(outlines[-1].count("\t")) + " tabs in conll data!\n")
 					sys.stderr.write("WARN: do your tokens contain tabs?\n")
