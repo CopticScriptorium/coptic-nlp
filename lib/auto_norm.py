@@ -93,9 +93,13 @@ def normalize(in_data,table_file=None,sahidica=False,method="foma",no_unknown=Tr
 			# Build normalizer, ignoring items that can't possibly match the data to increase performance speed
 			fs = FSNorm(grams=char_n_grams)
 
+	# Hard-wired set of inputs forbidden to be normalized
+	forbidden = set(["ⲉⲓⲁⲕⲱⲃ","ⲉⲝⲉⲥⲧⲓ","ⲉⲧⲛⲁⲛⲁⲩ","ⲛⲙⲙⲉ","ⲁⲩⲃⲱⲕ","ⲙⲙⲉ","ϫⲟⲕϥ"])
 
 	for line in lines:
-		if line in norms:
+		if line in forbidden:
+			pass
+		elif line in norms:
 			line = norms[line]
 		else:
 			line = line.replace("|","").replace("[","").replace("]","")
