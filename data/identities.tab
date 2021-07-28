@@ -1,7 +1,7 @@
 ϣⲓⲏⲧ	ϣⲓⲏⲧ	place	Wadi El Natrun	17
 ϩⲁϩ ⲛ ⲓⲟⲩⲇⲁⲓ	ⲓⲟⲩⲇⲁⲓ	person	Jews	1
 ϩⲁⲙⲱⲥ	ϩⲁⲙⲱⲥ	person	Amon of Judah	1
-ϩⲁⲙⲱⲥ ⲡ ϣⲏⲣⲉ ⲛ ⲛⲁ ⲟⲩⲙ	ϩⲁⲙⲱⲥ	person		1
+ϩⲁⲙⲱⲥ ⲡ ϣⲏⲣⲉ ⲛ ⲛⲁⲟⲩⲙ	ϩⲁⲙⲱⲥ	person		1
 ϩⲉⲃⲉⲣ ⲡ ϣⲏⲣⲉ ⲛⲥⲁⲗⲁ	ϩⲉⲃⲉⲣ	person	Eber	1
 ϩⲉⲛ ⲓⲟⲩⲇⲁⲓ	ⲓⲟⲩⲇⲁⲓ	person	Jews	1
 ϩⲉⲛ ⲓⲟⲩⲇⲁⲓ ⲛ ϩⲟⲓⲛⲉ	ⲓⲟⲩⲇⲁⲓ	person	Jews	1
@@ -888,3 +888,78 @@
 ⲭⲉⲗⲕⲓⲁⲥ	ⲭⲉⲗⲕⲓⲁⲥ	person	Hilkiah	1
 ⲭⲣⲓⲥⲧⲟⲥ ⲓⲏⲥⲟⲩⲥ	ⲓⲏⲥⲟⲩⲥ	person	Jesus	1
 ⲱⲥⲏⲉ	ⲱⲥⲏⲉ	person	Hosea	1
+ⲙⲁⲣⲓⲁ ⲧⲁ ⲓⲁⲕⲱⲃⲟⲥ ⲙⲛ ⲥⲁⲗⲱⲙⲏ	ⲙⲁⲣⲓⲁ	person	Mary, mother of James	1
+ⲥⲓⲙⲱⲛ ⲡ ⲍⲏⲗⲱⲧⲏⲥ	ⲥⲓⲙⲱⲛ	person	Simon the Zealot	1
+ⲥⲓⲙⲱⲛ ⲡ ⲃⲁⲕϣⲁⲁⲣ	ⲥⲓⲙⲱⲛ	person	Simon the Tanner (New Testament)	1
+ⲫⲓⲗⲓⲡⲡⲟⲥ ⲡ ⲣⲉϥⲧⲁϣⲉⲟⲉⲓϣ ⲉ ⲟⲩⲁ ϩⲙ ⲡ ⲥⲁϣϥ ⲡⲉ	ⲫⲓⲗⲓⲡⲡⲟⲥ	person	Philip the Evangelist	1
+ⲫⲓⲗⲓⲡⲡⲟⲥ ⲡ ⲣⲉϥⲧⲁϣⲉⲟⲉⲓϣ	ⲫⲓⲗⲓⲡⲡⲟⲥ	person	Philip the Evangelist	1
+ⲓⲱⲛⲁⲑⲁⲛ	ⲓⲱⲛⲁⲑⲁⲛ	person	Jonathan (1 Samuel)	66
+ⲓⲱⲛⲁⲑⲁⲛ	ⲓⲱⲛⲁⲑⲁⲛ	person	Jonathan (Judges)	20
+ⲙⲁⲛⲁⲥⲥⲏ	ⲙⲁⲛⲁⲥⲥⲏ	person	Manasseh of Judah	25
+ⲙⲁⲛⲁⲥⲥⲏ	ⲙⲁⲛⲁⲥⲥⲏ	organization	Manasseh of Judah	25
+ⲙⲁⲛⲁⲥⲥⲏ	ⲙⲁⲛⲁⲥⲥⲏ	place	Manasseh of Judah	6
+ⲭⲉⲃⲣⲱⲛ	ⲭⲉⲃⲣⲱⲛ	person	Hebron (biblical figure)	1
+ⲭⲉⲃⲣⲱⲛ	ⲭⲉⲃⲣⲱⲛ	place	Hebron	37
+ⲙⲁⲇⲓϩⲁⲙ	ⲙⲁⲇⲓϩⲁⲙ	place	Midian	34
+ⲙⲁⲇⲓϩⲁⲙ	ⲙⲁⲇⲓϩⲁⲙ	person	Midian, son of Abraham	1
+ⲁⲃⲓⲙⲉⲗⲉⲭ	ⲁⲃⲓⲙⲉⲗⲉⲭ	person	Abimelech (Judges)	33
+ⲅⲁⲇ	ⲅⲁⲇ	person	Gad (son of Jacob)	3
+ⲅⲁⲇ	ⲅⲁⲇ	organization	Tribe of Gad	30
+ⲥⲓⲕⲓⲙⲁ	ⲥⲓⲕⲓⲙⲁ	place	Shechem	21
+ⲕⲟⲣⲉ	ⲕⲟⲣⲉ	person	Korah (son of Esau)	17
+ⲭⲁⲗⲉⲃ	ⲭⲁⲗⲉⲃ	person	Caleb	12
+ⲡ ⲕⲁⲣⲙⲏⲗⲟⲥ	ⲕⲁⲣⲙⲏⲗⲟⲥ	place	Mount Carmel	11
+ⲁⲥⲁⲫ	ⲁⲥⲁⲫ	Asaph (biblical figure)	8
+ⲥⲩⲭⲉⲙ	ⲥⲩⲭⲉⲙ	place	Shechem	6
+ⲛ ⲉϭⲟⲟϣ	ⲉϭⲟⲟϣ	organization	Ethiopians	6
+ⲛ ⲉϭⲟⲟϣ	ⲉϭⲟⲟϣ	person	Ethiopians	6
+ⲛ ⲉϭⲟⲟϣ	ⲉϭⲟⲟϣ	place	Ethiopia	6
+ⲱⲣ	ⲱⲣ	person	Hur (Bible)	3
+ⲱⲣ	ⲱⲣ	place	Mount Hor	1
+ⲓⲱⲛⲁⲑⲁⲛ ⲡ ϣⲏⲣⲉ ⲛ ⲥⲁⲟⲩⲗ	ⲓⲱⲛⲁⲑⲁⲛ	person	Jonathan (1 Samuel)	3
+ⲑⲁⲙⲁⲣ ⲧⲉϥ ⲥⲱⲛⲉ	ⲑⲁⲙⲁⲣ	person	Tamar (daughter of David)	3
+ⲭⲉⲗⲕⲓⲁⲥ ⲡ ⲟⲓⲕⲟⲛⲟⲙⲟⲥ	ⲭⲉⲗⲕⲓⲁⲥ	person	Hilkiah	3
+ⲉⲫⲣⲁⲓⲙ	ⲉⲫⲣⲁⲓⲙ	person	Ephraim	1
+ⲉⲫⲣⲁⲓⲙ	ⲉⲫⲣⲁⲓⲙ	organization	Tribe of Ephraim	2
+ⲛⲁⲇⲁⲃ	ⲛⲁⲇⲁⲃ	person	Nadab (son of Aaron)	2
+ⲛⲁⲇⲁⲃ	ⲛⲁⲇⲁⲃ	person	Nadab Nadab of Israel	1
+ⲇⲁⲛ	ⲇⲁⲛ	person	Dan	1
+ⲇⲁⲛ	ⲇⲁⲛ	organization	Tribe of Dan	1
+ⲇⲁⲛ	ⲇⲁⲛ	place	Tribe of Dan	1
+ⲓⲉⲙⲓⲛⲁⲓⲟⲥ	ⲓⲉⲙⲓⲛⲁⲓⲟⲥ	person	Tribe of Benjamin	2
+ⲓⲉⲙⲓⲛⲁⲓⲟⲥ	ⲓⲉⲙⲓⲛⲁⲓⲟⲥ	organization	Tribe of Benjamin	2
+ⲓⲱⲛⲁⲑⲁⲛ ⲇⲉ ⲡ ϣⲏⲣⲉ ⲛ ⲥⲁⲟⲩⲗ	ⲓⲱⲛⲁⲑⲁⲛ	person	Jonathan (1 Samuel)	2
+ⲁⲃⲓⲥⲁ ⲡⲉϥ ⲥⲟⲛ	ⲁⲃⲓⲥⲁ	person	Amasa	2
+ⲓⲱⲁⲑⲁⲙ	ⲓⲱⲁⲑⲁⲙ	person	Jotham of Judah	2
+ⲉⲛⲱⲭ	ⲉⲛⲱⲭ	person	Enoch (ancestor of Noah)	2
+ⲉⲛⲱⲭ	ⲉⲛⲱⲭ	person	Enoch (son of Cain)	1
+ⲃⲁⲣⲟⲩⲭ	ⲃⲁⲣⲟⲩⲭ	person	Baruch ben Neriah	2
+ⲛⲁⲑⲁⲛ	ⲛⲁⲑⲁⲛ	person	Nathan (prophet)	3
+ⲡ ϫⲟⲉⲓⲥ ⲥⲁⲃⲁⲱⲑ	ϫⲟⲉⲓⲥ	person	God	2
+ⲁⲥⲧⲁⲣⲱⲑ	ⲁⲥⲧⲁⲣⲱⲑ	place	Ashteroth Karnaim	2
+ⲫⲁⲛⲟⲩⲏⲗ	ⲫⲁⲛⲟⲩⲏⲗ	person	Penuel	2
+ⲫⲁⲣⲉⲥ	ⲫⲁⲣⲉⲥ	place	Rimmon Perez	1
+ⲑⲏⲃⲁⲓⲥ	ⲑⲏⲃⲁⲓⲥ	place	Tubas	1
+ϩⲁⲙⲱⲥ	ϩⲁⲙⲱⲥ	person	Amoz	1
+ⲭⲉⲓⲙⲁⲣⲣⲟⲥ	ⲭⲉⲓⲙⲁⲣⲣⲟⲥ	place		2
+ⲧⲟⲣⲓⲛⲏ ⲡ ⲕⲁϩ ⲉⲧ ϫⲟⲥⲉ	ⲧⲟⲣⲓⲛⲏ	place		2
+ⲭⲟⲩⲥⲓ	ⲭⲟⲩⲥⲓ	person		2
+ⲧⲟⲓⲕⲓⲟⲥ	ⲧⲟⲓⲕⲓⲟⲥ	person		2
+ⲃⲏⲗ	ⲃⲏⲗ	place		2
+ⲡ ⲁⲣⲭⲓⲙⲁⲅⲓⲣⲟⲥ	ⲁⲣⲭⲓⲙⲁⲅⲓⲣⲟⲥ	person		2
+ⲡ ⲁⲙⲁⲗⲏⲕ	ⲁⲙⲁⲗⲏⲕ	person	Amalek	6
+ⲁⲃⲓⲕⲓⲁ	ⲁⲃⲓⲕⲓⲁ	person	Abigail	6
+ⲥⲓⲥⲁⲣⲁ	ⲥⲓⲥⲁⲣⲁ	person	Sisera	5
+ⲁⲙⲙⲱⲛ	ⲁⲙⲙⲱⲛ	person	Ammon	4
+ⲉⲅⲗⲱⲙ	ⲉⲅⲗⲱⲙ	person	Eglon (king)	3
+ⲃⲁⲛⲉⲁⲥ	ⲃⲁⲛⲉⲁⲥ	person	Benaiah	5
+ⲁⲃⲉⲥⲁⲗⲱⲙ	ⲁⲃⲉⲥⲁⲗⲱⲙ	person	Absalom	3
+ⲥⲁⲫⲁⲛ	ⲥⲁⲫⲁⲛ	person	Shaphan	3
+ⲛ ⲁⲙⲟⲣⲁⲓⲟⲥ	ⲁⲙⲟⲣⲁⲓⲟⲥ	organization	Amorites	2
+ⲧ ⲙⲏⲇⲓⲁ	ⲙⲏⲇⲓⲁ	place	Media (region)	2
+ⲛ ⲁⲗⲗⲟⲫⲩⲗⲗⲟⲥ	ⲁⲗⲗⲟⲫⲩⲗⲗⲟⲥ	organization	Philistines	10
+ⲓⲏⲥⲟⲩⲥ	ⲓⲏⲥⲟⲩⲥ	person	Joshua	100
+ⲁⲓⲗⲓⲙ	ⲁⲓⲗⲓⲙ	place	Elim (Bible)	3
+ⲉⲗⲅⲁⲛⲁ	ⲉⲗⲅⲁⲛⲁ	person	Elkanah	3
+ⲁⲙⲉⲥⲥⲁⲉⲓ	ⲁⲙⲉⲥⲥⲁⲉⲓ	place	Amasa	3
+ⲁⲥⲕⲁⲗⲱⲛ	ⲁⲥⲕⲁⲗⲱⲛ	place	Ashkelon	2
