@@ -13,7 +13,7 @@ RUN pip3 install --no-cache-dir scikit-learn==0.19.0
 
 # xgboost build requires cmake
 RUN apt-get install -y cmake
-RUN pip3 install --no-cache-dir xgboost==0.82
+RUN pip3 install --no-cache-dir xgboost==0.90
 
 RUN pip3 install joblib depedit
 
