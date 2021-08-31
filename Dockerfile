@@ -9,7 +9,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 RUN apt-get install -y perl default-jre-headless
 
 # Use pip to install less-stable dependencies
-RUN pip3 install --no-cache-dir scikit-learn==0.19.0
+RUN pip3 install --no-cache-dir scikit-learn==0.20.2
 
 # xgboost build requires cmake
 RUN apt-get install -y cmake
