@@ -1,6 +1,6 @@
 requests
 pandas
-scikit-learn==0.19.0
-xgboost
+scikit-learn<0.23
+xgboost<1
 joblib
 depedit
