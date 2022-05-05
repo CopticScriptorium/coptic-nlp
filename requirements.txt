@@ -1,6 +1,7 @@
 requests
 pandas
 scikit-learn<0.23
-xgboost<1
+xgboost==0.81
 joblib
 depedit
+xrenner
