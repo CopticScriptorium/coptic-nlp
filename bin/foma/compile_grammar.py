@@ -12,7 +12,6 @@ import subprocess
 
 script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 data_dir = script_dir + ".." + os.sep + ".." + os.sep + "data" + os.sep
-eval_dir = script_dir + ".." + os.sep+ ".." + os.sep + "eval" + os.sep
 
 orig_chars = set(["̈", "", "̄", "̀", "̣", "`", "̅", "̈", "̂", "︤", "︥", "︦", "⳿", "~", "\n", "̇", " ", "‴", "#", "᷍", "⸍", "›", "‹"])
 vowels = list("ⲁⲉⲓⲟⲩⲏⲱ")
