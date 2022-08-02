@@ -37,6 +37,10 @@ parser_path = bin_dir + "maltparser-1.8" + os.sep
 tt_path = bin_dir + "TreeTagger" + os.sep + "bin" + os.sep
 ud_coptic_path = script_dir + os.sep + "UD_Coptic-Scriptorium" + os.sep  # Optional path to UD_Coptic-Scriptorium - use to cache gold parses
 
+from diaparser.parsers.parser import Parser as NeuralParser
+neural_model = script_dir + os.sep + "lib" + os.sep + "cop.diaparser"
+from lib.quiet import suppress_stdout_stderr  # Context to suppress stderr messages from imported libraries
+
 # Global cache of gold syntax trees, if UD_Coptic-Scriptorium data is available
 gold_trees = {}
 
@@ -358,6 +362,29 @@ def extract_conll(conll_string, mark_new_sent=True):
 	return ids, funcs, parents, new_sents
 
 
+def parse2conllu(parser_output, tagged):
+	output = []
+	tags = [l.split("\t")[1] for l in tagged.split("\n") if "\t" in l]
+	lemmas = [l.split("\t")[2] for l in tagged.split("\n") if "\t" in l]
+	toknum = -1
+	for sent in parser_output.sentences:
+		tid = -1
+		for position in sorted(list(sent.annotations.keys())):
+			fields = sent.annotations[position]
+			if "\t" in fields:
+				toknum += 1
+				tid += 1
+				fields = fields.split("\t")
+				fields[3] = fields[4] = tags[toknum]
+				fields[2] = lemmas[toknum]
+				fields[6] = str(sent.values[6][tid])
+				fields[7] = sent.values[7][tid]
+				fields = "\t".join(fields)
+			output.append(fields)
+		output.append("")
+	return "\n".join(output)
+
+
 def space_punct(input_text):
 	punct = set(["·",".","·","ⲵ",",",":",";","ʼ","„","“","{","}"])
 	if not PY3:
@@ -611,11 +638,10 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 
 	if preloaded is None:
 		with suppress_stdout_stderr():
-			#preloaded["parser"] = NeuralParser()
-			if stan:
-				preloaded = {"stk": None, "xrenner": None, "parser": NeuralParser(),"tagger":FlairTagger()}
-			else:
-				preloaded = {"stk":None,"xrenner":None,"parser":NeuralParser.load(neural_model),"tagger":FlairTagger()}#NeuralParser()}
+			preloaded = {"stk":None,"xrenner":None,"parser":NeuralParser.load(neural_model),"tagger":FlairTagger()}
+
+	with suppress_stdout_stderr():
+		neural_parser = preloaded["parser"] if preloaded["parser"] is not None else NeuralParser.load(neural_model)
 	data = input_data.replace("\t","")
 	data = data.replace("\r","")
 
@@ -690,17 +716,28 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 				if PY3:
 					tagged = input_data.encode("utf8")  # Handle non-UTF-8 when calling TT from subprocess in Python 3
 		if gold_parse == "":
-			conllized = conllize(tagged,tag="PUNCT",element=sent_tag, no_zero=True)  # NB element is present it supercedes the POS tag
-			#deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
-			#depedited = deped.run_depedit(conllized.split("\n"))
-			depedited = conllized
-			parse_coptic = ['java','-mx512m','-jar',"maltparser-1.8.jar",'-c','coptic','-i','tempfilename','-m','parse']
-			if not os.path.exists(bin_dir+"maltparser-1.8" + os.sep + "coptic.mco"):
-				sys.stderr.write("! can't find coptic.mco parser model in " + bin_dir+"maltparser-1.8" + os.sep + "coptic.mco")
-				sys.exit(0)
-			parsed = exec_via_temp(depedited,parse_coptic,parser_path)
-			deped = DepEdit(io.open(data_dir + "postprocess_parser.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
+			# NB if element is present for conllize it supercedes the POS tag for sentence splitting
+			if neural_parser:
+				conllized = conllize(tagged, tag="PUNCT", element=sent_tag, no_zero=True, ten_cols=True)
+				for_parser = []
+				for s in conllized.strip().split("\n\n"):
+					for_parser.append([l.split("\t")[1] for l in s.split("\n") if "\t" in l])
+				parsed = neural_parser.predict(conllized.strip()+"\n\n")
+				parsed = parse2conllu(parsed,tagged)
+			else:
+				conllized = conllize(tagged, tag="PUNCT", element=sent_tag, no_zero=True)
+				deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini",encoding="utf8"),options=type('', (), {"quiet":True, "kill":None})())
+				depedited = deped.run_depedit(conllized.split("\n"))
+				#depedited = conllized
+				parse_coptic = ['java','-mx512m','-jar',"maltparser-1.8.jar",'-c','coptic','-i','tempfilename','-m','parse']
+				if not os.path.exists(bin_dir+"maltparser-1.8" + os.sep + "coptic.mco"):
+					sys.stderr.write("! can't find coptic.mco parser model in " + bin_dir+"maltparser-1.8" + os.sep + "coptic.mco")
+					sys.exit(0)
+				parsed = exec_via_temp(depedited,parse_coptic,parser_path)
+			deped = DepEdit(io.open(data_dir + "postprocess_parser.ini",encoding="utf8"),options=type('', (), {"quiet":True, "kill":None})())
 			depedited = deped.run_depedit(parsed.split("\n"))
+			if len(gold_trees) == 0 and not no_gold_parse:
+				get_gold_trees()
 			if len(gold_trees) > 0:
 				# Replace automatic parses with cached trees from UD_Coptic if available
 				depedited = replace_trees(depedited, gold_trees)
@@ -759,8 +796,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 			for s in conllized.strip().split("\n\n"):
 				for_parser.append([l.split("\t")[1] for l in s.split("\n") if "\t" in l])
 			parsed = neural_parser.predict(for_parser)
-			if not stan:
-				parsed = parse2conllu(parsed,tagged)
+			parsed = parse2conllu(parsed,tagged)
 		else:
 			conllized = conllize(tagged, tag="PUNCT", element=sent_tag, no_zero=True)
 			if not os.path.exists(bin_dir + "maltparser-1.8" + os.sep + "coptic.mco"):
@@ -931,6 +967,7 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 	g2.add_argument("--treetagger", action="store_true", help='Tag using TreeTagger instead of flair')
 	g2.add_argument("--marmot", action="store_true", help='Tag using Marmot instead of flair')
 	g2.add_argument("--no_gold_parse", action="store_true", help='Do not use UD_Coptic cache for gold parses')
+	g2.add_argument("--processing_meta", action="store_true", help='Add segmentation/tagging/parsing/entities="auto"')
 
 	if "--version" in sys.argv:
 		sys.stdout.write("Coptic NLP Pipeline V" + __version__)
@@ -964,11 +1001,9 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 		preloaded["tagger"] = FlairTagger(train=False)
 
 	if opts.parse or opts.parse_only or opts.merge_parse:
-		with suppress_stdout_stderr():
-			if stan:
-				preloaded["parser"] = NeuralParser()  # NeuralParser()
-			else:
-				preloaded["parser"] = NeuralParser.load(neural_model) #NeuralParser()
+		if preloaded["parser"] is None:
+			with suppress_stdout_stderr():
+				preloaded["parser"] = NeuralParser.load(neural_model)
 
 	if opts.recognize_entities:
 		from xrenner import Xrenner  # .lib
@@ -1057,7 +1092,7 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 							   do_lang=opts.etym, do_milestone=opts.unary, do_parse=opts.parse, sgml_mode=opts.outmode,
 							   tok_mode="auto", old_tokenizer=old_tokenizer, sent_tag=opts.sent, preloaded=preloaded,
 							   pos_spans=opts.pos_spans, merge_parse=opts.merge_parse, detokenize=opts.detokenize,
-							   segment_merged=opts.segment_merged, tag_tt=opts.treetagger,
+							   segment_merged=opts.segment_merged, tagger=tagger_type,
 							   do_entities=opts.recognize_entities, no_gold_parse=opts.no_gold_parse,
 							   do_identities=opts.identities, docname=base)
 
