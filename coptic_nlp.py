@@ -18,6 +18,7 @@ from lib.lang import lookup_lang
 from lib.harvest_tt_sgml import harvest_tt
 from lib.mwe import tag_mwes
 from lib.marmot import tag_marmot
+from lib.flair_pos_tagger import FlairTagger
 from lib.lemmatize import Lemmatizer
 from lib.heads import assign_entity_heads
 
