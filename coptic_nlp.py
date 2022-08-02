@@ -552,7 +552,7 @@ def check_requirements(require_tt=False):
 	return tt_OK, malt_OK, foma_OK, marmot_OK
 
 
-def download_requirements(tt_ok=True, malt_ok=True, foma_ok=True, marmot_ok=True, require_tt=False):
+def download_requirements(tt_ok=True, malt_ok=True, foma_ok=True, marmot_ok=True, require_tt=False, require_malt=False):
 	import requests, zipfile, shutil, tarfile
 	if not PY3:
 		import StringIO
@@ -582,7 +582,7 @@ def download_requirements(tt_ok=True, malt_ok=True, foma_ok=True, marmot_ok=True
 				trove_file = f
 		urls.append(marmot_base_url + marmot_file)
 		urls.append(marmot_base_url + trove_file)
-	if not malt_ok:
+	if not malt_ok and require_malt:
 		urls.append("http://maltparser.org/dist/maltparser-1.8.tar.gz")
 	if not tt_ok and require_tt:
 		if platform.system() == "Windows":
@@ -621,7 +621,7 @@ def download_requirements(tt_ok=True, malt_ok=True, foma_ok=True, marmot_ok=True
 		if "tree" in u and platform.system() != "Windows":
 			os_suf = "TreeTagger" + os.sep
 		z.extractall(path=bin_dir + os_suf)
-	if not malt_OK:
+	if not malt_OK and require_malt:
 		shutil.copyfile(bin_dir+"coptic.mco",bin_dir+"maltparser-1.8" + os.sep + "coptic.mco")
 	if not tt_ok and require_tt:
 		shutil.copyfile(bin_dir+"coptic_fine.par",bin_dir+"TreeTagger" + os.sep + "bin" + os.sep + "coptic_fine.par")
@@ -630,7 +630,7 @@ def download_requirements(tt_ok=True, malt_ok=True, foma_ok=True, marmot_ok=True
 def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True, do_mwe=True, do_tag=True, do_lemma=True, do_lang=True,
 			   do_milestone=True, do_parse=True, sgml_mode="sgml", tok_mode="auto", old_tokenizer=False, sent_tag=None,
 			   preloaded=None, pos_spans=False, merge_parse=False, detokenize=0, segment_merged=False, gold_parse="",
-			   tagger="flair", do_entities=False, no_gold_parse=False, mark_new_sent=True, do_identities=False,
+			   tagger="flair", parser="diaparser", do_entities=False, no_gold_parse=False, mark_new_sent=True, do_identities=False,
 			   docname=None):
 
 	if docname is not None:
@@ -717,7 +717,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 					tagged = input_data.encode("utf8")  # Handle non-UTF-8 when calling TT from subprocess in Python 3
 		if gold_parse == "":
 			# NB if element is present for conllize it supercedes the POS tag for sentence splitting
-			if neural_parser:
+			if parser != "malt":
 				conllized = conllize(tagged, tag="PUNCT", element=sent_tag, no_zero=True, ten_cols=True)
 				for_parser = []
 				for s in conllized.strip().split("\n\n"):
@@ -790,7 +790,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 		else:
 			norm_with_sgml = tok_from_norm(output)
 			tagged = postag(norm_with_sgml,output,tagger=tagger,sent=sent_tag,tabular=False, preloaded=preloaded)
-		if neural_parser:
+		if parser!="malt":
 			conllized = conllize(tagged, tag="PUNCT", element=sent_tag, no_zero=True, ten_cols=True)
 			for_parser = []
 			for s in conllized.strip().split("\n\n"):
@@ -966,6 +966,7 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 	g2.add_argument("--version", action="store_true", help='Print version number and quit')
 	g2.add_argument("--treetagger", action="store_true", help='Tag using TreeTagger instead of flair')
 	g2.add_argument("--marmot", action="store_true", help='Tag using Marmot instead of flair')
+	g2.add_argument("--malt", action="store_true", help='Parse using MaltParser instead of Diaparser (requires Java)')
 	g2.add_argument("--no_gold_parse", action="store_true", help='Do not use UD_Coptic cache for gold parses')
 	g2.add_argument("--processing_meta", action="store_true", help='Add segmentation/tagging/parsing/entities="auto"')
 
@@ -1012,7 +1013,7 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 
 	# Check if TreeTagger and Malt Parser are available
 	tt_OK, malt_OK, foma_OK, marmot_OK = check_requirements()
-	if (opts.tag and not marmot_OK) or ((opts.parse or opts.parse_only or opts.merge_parse) and not malt_OK) or \
+	if (opts.tag and not marmot_OK) or ((opts.parse or opts.parse_only or opts.merge_parse) and opts.malt and not malt_OK) or \
 			(opts.tag and opts.treetagger and not tt_OK) or not foma_OK:
 		sys.stderr.write("! You are missing required software:\n")
 		if not foma_OK and (opts.norm or not opts.no_tok):
@@ -1021,11 +1022,11 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 			sys.stderr.write(" - Tagging is specified but Marmot is not installed\n")
 		if opts.tag and opts.treetagger and not tt_OK:
 			sys.stderr.write(" - Tagging is specified but TreeTagger is not installed\n")
-		if (opts.parse or opts.parse_only or opts.merge_parse) and not malt_OK:
-			sys.stderr.write(" - Parsing is specified but Malt Parser 1.8 is not installed\n")
+		if (opts.parse or opts.parse_only or opts.merge_parse) and opts.malt and not malt_OK:
+			sys.stderr.write(" - Parsing with Malt is specified but Malt Parser 1.8 is not installed\n")
 		response = inp("Attempt to download missing software? [Y/N]\n")
 		if response.upper().strip() == "Y":
-			download_requirements(tt_OK,malt_OK,foma_OK,marmot_OK,require_tt=opts.treetagger)
+			download_requirements(tt_OK,malt_OK,foma_OK,marmot_OK,require_tt=opts.treetagger, require_malt=opts.malt)
 		else:
 			sys.stderr.write("Aborting\n")
 			sys.exit(0)
@@ -1087,12 +1088,17 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 		else:
 			tagger_type = "flair"
 
+		if opts.malt:
+			parser_type = "malt"
+		else:
+			parser_type = "diaparser"
+
 		processed = nlp_coptic(input_text, lb=opts.breaklines, parse_only=opts.parse_only, do_tok=dotok,
 							   do_norm=opts.norm, do_mwe=opts.multiword, do_tag=opts.tag, do_lemma=opts.lemma,
 							   do_lang=opts.etym, do_milestone=opts.unary, do_parse=opts.parse, sgml_mode=opts.outmode,
 							   tok_mode="auto", old_tokenizer=old_tokenizer, sent_tag=opts.sent, preloaded=preloaded,
 							   pos_spans=opts.pos_spans, merge_parse=opts.merge_parse, detokenize=opts.detokenize,
-							   segment_merged=opts.segment_merged, tagger=tagger_type,
+							   segment_merged=opts.segment_merged, tagger=tagger_type, parser=parser_type,
 							   do_entities=opts.recognize_entities, no_gold_parse=opts.no_gold_parse,
 							   do_identities=opts.identities, docname=base)
 
