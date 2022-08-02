@@ -15,12 +15,15 @@ from sklearn.metrics import f1_score, precision_score, recall_score
 from joblib import dump, load
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'eval')))
-from utils.eval_utils import list_files
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'eval', 'utils')))
+
+from eval_utils import list_files
 
 PY3 = sys.version_info[0] == 3
 
 # Set up locations for lexical resources and error output
 script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
+data_dir = script_dir + ".." + os.sep + "data" + os.sep
 eval_dir = script_dir + ".." + os.sep + "eval" + os.sep
 plain_dir = script_dir + ".." + os.sep + "eval" + os.sep + "plain" + os.sep
 err_dir = script_dir + ".." + os.sep + "eval" + os.sep + "errors" + os.sep
@@ -29,18 +32,21 @@ if PY3:
 	XGBOOST_PERSISTED_FILENAME = script_dir+"xgboost_binding_model.bin3"
 else:
 	XGBOOST_PERSISTED_FILENAME = script_dir+"xgboost_binding_model.bin2"
-lex = script_dir + ".." + os.sep + "data" + os.sep + "copt_lemma_lex_cplx_2.5.tab"
+lex = script_dir + ".." + os.sep + "data" + os.sep + "copt_lemma_lex"  # _cplx_2.5.tab
 frq = script_dir + ".." + os.sep + "data" + os.sep + "cop_freqs.tab"
 conf = script_dir + ".." + os.sep + "data" + os.sep + "test.conf"
 ambig = script_dir + ".." + os.sep + "data" + os.sep + "ambig.tab"
 FILE_RESOURCES = {
-	"detok_table": ['..', 'data', 'detok.tab'],
-	"ngram_detok_table": ["..", "data", "silver_ngram_detok_table.tab"],
-	"pos_table": ["..", "data", "copt_lemma_lex_cplx_2.8_cdo.tab"], # TODO: get rid of version #
-	"group_freq_table": ['..', 'data', 'annis_silver_orig_group_freqs_2019_07.tab'],
+	"detok_table": [data_dir + 'detok.tab'],
+	"ngram_detok_table": [data_dir + "silver_ngram_detok_table.tab"],
+	"pos_table": [data_dir + "copt_lemma_lex.tab"],
+	"group_freq_table": [data_dir + 'annis_silver_orig_group_freqs.tab'],
 }
+try:
+	from stacked_tokenizer import StackedTokenizer
+except ModuleNotFoundError:
+	from lib.stacked_tokenizer import StackedTokenizer
 
-from stacked_tokenizer import StackedTokenizer
 from binding.const import IGNORE, GOLD_TOKEN_SEPARATOR, ORIG_TOKEN_SEPARATOR
 
 
@@ -55,6 +61,7 @@ def predict(orig, return_type="binary"):
 		print("You can train the model by running lib/binder.py directly, something like this:")
 		print("        python binder.py xgboost --train_list=onno+ephraim+victor+cyrus")
 		print(e)
+		print(sys.version_info)
 		sys.exit()
 
 	pred = m.predict(orig, return_type=return_type)
@@ -70,7 +77,7 @@ def read_and_combine_files(file_list):
 	:return: string contents of all files
 	"""
 	contents = ""
-	for f in file_list:
+	for f in sorted(file_list):
 		contents += io.open(f, encoding="utf8").read().strip() + "\n"
 	return contents
 
@@ -115,6 +122,7 @@ def check_identical_text(gold, pred):
 
 def prepare_gold_text(gold_list):
 	text = read_and_combine_files(gold_list)
+	#text = re.sub(r'\([^()]+\)','',text)
 	lines = text.split("\n")
 	gold = []
 	for line in lines:
@@ -255,15 +263,16 @@ def bind_with_xgboost(test_orig_lines, test_gold, train_orig_lines, train_gold, 
 	)
 	m.train(train_gold, train_orig)
 	dump(m, XGBOOST_PERSISTED_FILENAME)
-	pred = m.predict(test_orig)
-	scores, errs = binding_score(test_gold, pred)
+	if opts.scores:
+		pred = m.predict(test_orig)
+		scores, errs = binding_score(test_gold, pred)
 
-	#os.mkdir(err_dir)
-	err_dir = script_dir + ".." + os.sep + "eval" + os.sep + "errors" + os.sep
-	with io.open(err_dir + "errs_binding_xgboost.tab", 'w', encoding="utf8") as f:
-		f.write("\n".join(errs) + "\n")
+		#os.mkdir(err_dir)
+		err_dir = script_dir + ".." + os.sep + "eval" + os.sep + "errors" + os.sep
+		with io.open(err_dir + "errs_binding_xgboost.tab", 'w', encoding="utf8") as f:
+			f.write("\n".join(errs) + "\n")
 
-	return scores
+		return scores
 
 
 def bind_with_lstm(test_orig_lines, gold, opts):
@@ -368,7 +377,6 @@ def run_eval(
 		opts
 ):
 	strategy = opts.strategy
-	stk_model = opts.stk_model
 
 	test_gold = prepare_gold_text(test_gold_list)
 	test_orig_lines = prepare_orig_lines(test_orig_list)
@@ -405,8 +413,9 @@ def run_eval(
 			train_gold,
 			opts
 		)
-		print_scores(xgboost_scores, 'XGBoost')
-		return xgboost_scores
+		if opts.scores:
+			print_scores(xgboost_scores, 'XGBoost')
+			return xgboost_scores
 	elif strategy == 'xgboost-hyper':
 		from hyperopt import hp, fmin, Trials, STATUS_OK, tpe
 		from hyperopt.pyll import scope
@@ -479,8 +488,8 @@ def run_eval(
 
 # command line interface -----------------------------------------------------------------------------------------------
 def resolve_file_lists(file_list, synthetic=False):
-	gold = list_files(file_list)
-	orig = list_files(file_list,mode="plain")
+	gold = list_files(file_list,mode="plain_bg")
+	orig = list_files(file_list,mode="plain_text")
 
 	file_dir = "plain"
 	gold_dir = "unreleased"
@@ -538,6 +547,7 @@ def main():
 		default=os.sep.join(FILE_RESOURCES["group_freq_table"]), #TODO: change this
 		help="A TSV file containing orig group freq information in silver data"
 	)
+	p.add_argument("--scores",action="store_true",help="Test and report scores")
 	p.add_argument("--synthetic",action="store_true",help="User synthetic training data")
 
 

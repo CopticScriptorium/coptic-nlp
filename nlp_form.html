@@ -3,6 +3,7 @@
         <title>Coptic NLP Service</title>
         <link rel="stylesheet" href="css/global.css" type="text/css" charset="utf-8"/>
         <link rel="stylesheet" href="css/nlp.css" type="text/css" charset="utf-8"/>
+        <link rel="stylesheet" href="css/pagination.css" type="text/css" charset="utf-8"/>
         <link rel="stylesheet" href="css/font-awesome-4.2.0/css/font-awesome.min.css"/>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=800">
@@ -137,7 +138,17 @@
 							</span>
 					</a>
 					</input><br/>
-					<input type="checkbox" id="parse" name="parse" value="parse"**parse_checked**>Parse</input>
+					<input type="checkbox" id="parse" name="parse" value="parse"**parse_checked**>Parse</input><br/>
+					<input type="checkbox" id="entities" name="entities" value="entities"**entities_checked**>Entity recognition
+						<a href="#" class="tooltip2">
+						<i class="fa fa-info-circle" style="display: inline-block"></i>
+							<span>
+							<img class="callout" src="img/callout.gif" />
+							Identify sequences of words referring to people, places and more.
+							<br/>
+							</span>
+					</a>
+					</input><br/>
 				</ul>
 			</td>
 			<td style="vertical-align: top; padding-left: 20px">
@@ -155,7 +166,14 @@
 					<p>Result:</p>
 					<textarea class="anti nlp_input" id="result" type="textarea">**processed**</textarea>
 				</div>
+				<div id="entity_container">
+				</div>
+				<div id="tree_container">
+					<div id="holder0" class="svgholder" nr="0"><svg id="svg0"></svg></div>
+				</div>
+				<div id="pagination"></div>
 			</form>
+		</div>
 		<script>
 		document.getElementById('nlp_form').onsubmit = function() {
 			return false;
@@ -186,6 +204,7 @@
 			document.getElementById("norm").disabled = val;
 			document.getElementById("mwe").disabled = val;
 			document.getElementById("parse").disabled = val;
+			document.getElementById("entities").disabled = val;
 			radios = document.getElementsByName("tok_mode");
 			for (radio in radios){
 				radios[radio].disabled = val;
@@ -199,6 +218,7 @@
 				document.getElementById("norm").checked = true;
 				document.getElementById("mwe").checked = true;
 				document.getElementById("parse").checked = true;
+				document.getElementById("entities").checked = true;
 			}
 		}
 
@@ -233,6 +253,12 @@
 		</script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<script src="jquery-1.12.4.js"></script>
+	<script src="render_entities.js"></script>
+	<script src="raphael.js"></script>
+	<script src="arborator.draw.js"></script>
+	<script src="pagination.min.js"></script>
+	<script src="q_nlp.js"></script>
 	<script>$(".m-tools").addClass('on');</script>
 		</div>
 	</body>

@@ -49,6 +49,8 @@ class MorphAnalyzer:
 				analysis = norm.replace("ⲣⲉϥ","ⲣⲉϥ-")
 
 			#VN compounds
+			elif norm.startswith("ϣⲣⲡ") and len(norm) > 3:
+				analysis = norm.replace("ϣⲣⲡ", "ϣⲣⲡ-")
 			## TODO
 			#elsif($strUnit =~ /^($verblist)($nounlist)$/o) { if(length($1)>2){$strUnit = $1 . "|" . $2;}} #might overgenerate
 

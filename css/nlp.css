@@ -99,3 +99,27 @@ margin-bottom: 1.4rem;
 margin-top: 1.4rem;}
 
 button.nlp{color: #8E463D;}
+
+.referent{border: 2px solid lightgrey;
+    padding: 2px;
+    display: inline-block;
+    position: relative;
+	    margin-bottom: 0 !important;
+padding-left: 12px;}
+
+.entity_type {
+    font-size: x-small;
+    color: grey;
+    position: absolute;
+    left: 0;
+top: 0;}
+
+#entity_container, #tree_container{width: 644px;
+    height: 320px;
+    border: 3px solid #cccccc;
+    font-size: 16px;
+	display: none;
+	font-family: 'antinoouRegular';}
+	
+#tree_container{overflow: scroll}
+#entity_container{overflow-y: scroll;}

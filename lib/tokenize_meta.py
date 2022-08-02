@@ -18,7 +18,7 @@ from argparse import ArgumentParser
 from six import iteritems
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score
-from sklearn.externals import joblib
+import joblib
 import numpy as np
 
 seed(42)

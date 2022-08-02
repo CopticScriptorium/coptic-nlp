@@ -1,6 +1,11 @@
 requests
 pandas
-scikit-learn==0.19.0
-xgboost
+scikit-learn<0.23
+xgboost==0.81
 joblib
 depedit
+xrenner
+torch=1.6.0
+transformers=3.5.1
+flair=0.6.1
+diaparser==1.1.2

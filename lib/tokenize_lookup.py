@@ -5,19 +5,6 @@ import os, io, sys
 
 PY3 = sys.version_info[0] > 2
 
-orig_chars = set(["̈", "", "̄", "̀", "̣", "`", "̅", "̈", "̂", "︤", "︥", "︦", "⳿", "~", "\n", "̇", " ", "‴", "#", "᷍", "⸍", "›", "‹","[","]"])
-
-
-def clean(text):
-	if len(text) < 2:
-		return text
-	else:
-		orig = text
-		text = ''.join([c for c in text if c not in orig_chars])
-		if len(text) < 1:
-			text = orig
-		return text
-
 
 def lookup_tokenize(norms,underscore_oov=False,seg_table=None):
 	if seg_table is None:
@@ -25,8 +12,7 @@ def lookup_tokenize(norms,underscore_oov=False,seg_table=None):
 
 	rows = io.open(seg_table,encoding="utf8").read().replace("\r","").strip().split("\n")
 	tuples = [row.split("\t") for row in rows if "\t" in row]
-	segs = dict((clean(t[0]),clean(t[1])) for t in tuples)
-	norms = [clean(norm) for norm in norms]
+	segs = dict((t[0],t[1]) for t in tuples)
 
 	tokenized = []
 

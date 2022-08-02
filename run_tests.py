@@ -69,7 +69,7 @@ class CopticTest:
 			nlp_resp = nlp_coptic(all_inputs, do_tok=True,
 							   do_norm=norm, do_mwe=multiword, do_tag=tag, do_lemma=lemma,
 							   do_lang=etym, do_milestone=unary, do_parse=parse, sgml_mode=sgml_mode,
-							   tok_mode=tok_mode, preloaded=stk,
+							   tok_mode=tok_mode, preloaded=None,#{"stk":stk},
 							   detokenize=detokenize,
 							   segment_merged=segment_merged)
 

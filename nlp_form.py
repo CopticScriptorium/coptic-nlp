@@ -56,6 +56,12 @@ def make_nlp_form(access_level, mode):
 		output = ""
 		data = """ⲁ<hi rend="red">ϥ</hi>ⲥⲱⲧ︤ⲙ︥ ⲛⲥⲱϥ ⲛ̄ϭ
 ⲓⲡⲁⲅⲅⲉⲗⲟⲥ ⲙ̄ⲙ︤ⲛ︦ⲧ︥ϣⲃⲏⲣ"""
+		data += """ . \nⲱ̂ ⲧⲉⲧ︤ⲛ︥ⲣⲱϣⲉ ⲛ̄ⲧⲱⲧ︤ⲛ︥ ⲛⲉⲧⲕⲁⲙⲁ⳿ ⲙ̄ⲡⲥⲁⲧⲁⲛⲁⲥ 
+ⲉⲧⲣⲉϥⲉⲓ̂ ⲉϩⲟⲩⲛ ⲛ︤ϥ︥ϫⲱϩ︤ⲙ︥ ⲛ̄ⲙ̄ⲙⲁ ⲉⲧⲟⲩⲁⲁⲃ 
+ⲙ̄ⲡⲛⲟⲩⲧⲉ · ⲁⲩⲱ ⲛ̄ⲧⲉⲧ︤ⲛ︥ⲥⲱⲱϥ ⲙ̄ⲡⲉϥⲣ̄ⲡⲉ 
+ⲉⲧⲉⲛ̄ⲧⲱⲧ︤ⲛ︥ ⲡⲉ ⲙ̄ⲙⲓⲛⲙ̄ⲙⲱⲧ︤ⲛ︥ · ⲙ̄ⲡⲉⲧ︤ⲛ︥ⲣ̄ⲡⲙⲉⲉⲩⲉ 
+ⲛ̄ⲧⲁⲡⲟⲫⲁⲥⲓⲥ ⲙ̄ⲡⲁⲡⲟⲥⲧⲟⲗⲟⲥ 
+ϫⲉⲡⲉⲧⲛⲁⲥⲱⲱϥ⳿ ⲙ̄ⲡⲉⲣⲡⲉ ⲙ̄ⲡⲛⲟⲩⲧⲉ ."""
 		if not PY3:
 			data = data.decode("utf8")
 		#form = {}
@@ -68,6 +74,7 @@ def make_nlp_form(access_level, mode):
 		do_lemma = True
 		do_tag = True
 		do_parse = True
+		do_entities = True
 		detok = 0
 		segment_merged = False
 		do_tok = True
@@ -87,6 +94,7 @@ def make_nlp_form(access_level, mode):
 			do_lemma = form.getvalue("lemma") is not None
 			do_tag = form.getvalue("tag") is not None
 			do_parse = form.getvalue("parse") is not None
+			do_entities = form.getvalue("entities") is not None
 			do_norm = form.getvalue("norm") is not None
 			do_mwe = form.getvalue("mwe") is not None
 			if form.getvalue("laytonize") == "aggressive":
@@ -108,7 +116,8 @@ def make_nlp_form(access_level, mode):
 			else:
 				processed = nlp_coptic(data,lb=lb=="line",parse_only=False,do_tok=do_tok,do_norm=do_norm,do_mwe=do_mwe,
 									   do_tag=do_tag, do_lemma=do_lemma,do_lang=do_lang,do_milestone=do_milestone,
-									   do_parse=do_parse, sgml_mode=sgml_mode,tok_mode=tok_mode,old_tokenizer=old_tok,
+									   do_parse=do_parse, do_entities=do_entities, sgml_mode=sgml_mode,
+									   tok_mode=tok_mode,old_tokenizer=old_tok,
 									   detokenize=detok, segment_merged=segment_merged)
 				processed = processed.strip()
 
@@ -141,6 +150,7 @@ def make_nlp_form(access_level, mode):
 		tag_checked = ' checked="checked"' if do_tag else ""
 		lemma_checked = ' checked="checked"' if do_lemma else ""
 		parse_checked = ' checked="checked"' if do_parse else ""
+		entities_checked = ' checked="checked"' if do_entities else ""
 		lang_checked = ' checked="checked"' if do_lang else ""
 		milestone_checked = ' checked="checked"' if do_milestone else ""
 		sgml_checked = ' checked="checked"' if sgml_mode == "sgml" else ""
@@ -185,6 +195,7 @@ def make_nlp_form(access_level, mode):
 		template = template.replace("**tag_checked**", tag_checked)
 		template = template.replace("**lemma_checked**", lemma_checked)
 		template = template.replace("**parse_checked**", parse_checked)
+		template = template.replace("**entities_checked**", entities_checked)
 		template = template.replace("**lang_checked**", lang_checked)
 		template = template.replace("**noline_checked**", noline_checked)
 		template = template.replace("**sgml_checked**", sgml_checked)

@@ -1,273 +1,444 @@
 import tempfile, subprocess
-import io, os, sys
+import io, os, sys, re
+from six import itervalues
 from glob import glob
+from itertools import chain
 
 PY3 = sys.version_info[0] == 3
 
 script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 eval_dir = script_dir + ".." + os.sep
 
+try:
+    from paths import corpora_dir, ud_dir
+except:
+    from .paths import corpora_dir, ud_dir
+
+# Harvest corpora directory for aliases
+aliases = {}
+
+
+def get_conll_docnames(conllu):
+    docs = conllu.split("# newdoc ")[1:]
+    docs = [re.search(r"^id = [^\n]+:([^\n]+)", doc).group(1) for doc in docs]
+    return docs
+
+
+def harvest_aliases(harvest_dir):
+    def clean_tb_names(docname):
+        docname = docname.replace("1Corinthians", "1Cor")
+        docname = docname.replace("MONB_", "")
+        docname = re.sub(
+            r"([A-Z][A-Z])_([0-9]+)_([0-9]+)$", r"\1\2-\3", docname
+        )  # "YA_518_520"->"YA518-520"
+        if docname in ["YA421-428", "YA517-518", "YB307-320", "ZC301-308"]:
+            docname = "a22." + docname
+        return docname
+
+    def get_ud_docs(partition):
+        conllu = io.open(
+            ud_dir + "cop_scriptorium-ud-" + partition + ".conllu", encoding="utf8"
+        ).read()
+        ud_docs = get_conll_docnames(conllu)
+        ud_docs = [clean_tb_names(doc) for doc in ud_docs]
+        return ud_docs
+
+    out = {}
+    if os.path.exists(harvest_dir):
+        corpus_dirs = next(os.walk(harvest_dir))[
+            1
+        ]  # Immediate children of corpora directory
+        for d in corpus_dirs:
+            if (
+                "treebank" in d
+            ):  # Ignore additional treebank directory, since the same docs appear elsewhere
+                continue
+            files = glob(
+                corpora_dir + d + os.sep + "*" + os.sep + "*.tt", recursive=True
+            )
+            if len(files) > 0:
+                out[
+                    d.lower()
+                ] = files  # Accept GitHub repo directory names, e.g. besa-letters
+                out[
+                    d.replace("-", ".").lower()
+                ] = files  # Accept ANNIS style dot names, e.g. besa.letters
+                out[
+                    d.replace("life-", "").lower()
+                ] = files  # Accept protagonist names, e.g. 'cyrus' for 'life-cyrus'
+                out[
+                    d.replace("martyrdom-", "").lower()
+                ] = files  # Accept protagonist names, e.g. 'victor'
+                out[
+                    d.replace("shenoute-", "").lower()
+                ] = files  # Accept shenoute corpora without shenoute
+                out[d.replace("sahidica.", "").lower()] = files
+                out[d.replace("sahidic.", "").lower()] = files
+                out[d.replace("pseudo-", "").lower()] = files
+                for file_ in files:  # Accept individual tt file names
+                    out[os.path.basename(file_).replace(".tt", "")] = [file_]
+
+        for partition in ["train", "dev", "test"]:
+            docs = get_ud_docs(partition)
+            if any([a not in out for a in docs]):
+                sys.stderr.write(
+                    "ERR: Unknown treebank document: "
+                    + [a for a in docs if a not in out][0]
+                )
+                quit()
+            out["ud_" + partition] = []
+            for a in docs:
+                out["ud_" + partition] += out[a]
+
+        all_lists = [l for l in itervalues(out)]
+        flat = list(set(list(chain.from_iterable(all_lists))))
+
+        out["silver_auto"] = [f for f in flat if f not in out["ud_test"]]
+
+        out["gold"] = [f for f in flat if 'segmentation="gold' in io.open(f,encoding="utf8").read() and f not in out["ud_test"]]
+        out["gold_entities"] = [f for f in flat if ' entities="gold' in io.open(f,encoding="utf8").read() and f not in out["ud_test"]]
+        out["silver"] = [f for f in flat if ('segmentation="checked' in io.open(f,encoding="utf8").read() or f in out["gold"]) and f not in out["ud_test"]]
+        out["silver_no_dev"] = [f for f in flat if ('segmentation="checked' in io.open(f,encoding="utf8").read() or f in out["gold"]) and f not in out["ud_dev"]]
+
+    return out
+
+
+aliases.update(harvest_aliases(corpora_dir))
+
 
 def exec_via_temp(input_text, command_params, workdir="", outfile=False):
-	temp = tempfile.NamedTemporaryFile(delete=False)
-	if outfile:
-		temp2 = tempfile.NamedTemporaryFile(delete=False)
-	output = ""
-	try:
-		if input_text is not None:
-			temp.write(input_text.encode("utf8"))
-			temp.close()
+    temp = tempfile.NamedTemporaryFile(delete=False)
+    if outfile:
+        temp2 = tempfile.NamedTemporaryFile(delete=False)
+    output = ""
+    try:
+        if input_text is not None:
+            temp.write(input_text.encode("utf8"))
+            temp.close()
 
-			if outfile:
-				command_params = [x if 'tempfilename2' not in x else x.replace("tempfilename2",temp2.name) for x in command_params]
-			command_params = [x if 'tempfilename' not in x else x.replace("tempfilename",temp.name) for x in command_params]
-		if workdir == "":
-			proc = subprocess.Popen(command_params, stdout=subprocess.PIPE,stdin=subprocess.PIPE,stderr=subprocess.PIPE)
-			(stdout, stderr) = proc.communicate()
-		else:
-			proc = subprocess.Popen(command_params, stdout=subprocess.PIPE,stdin=subprocess.PIPE,stderr=subprocess.PIPE,cwd=workdir)
-			(stdout, stderr) = proc.communicate()
-		if outfile:
-			if PY3:
-				output = io.open(temp2.name,encoding="utf8").read()
-			else:
-				output = open(temp2.name).read()
-			temp2.close()
-			os.remove(temp2.name)
-		else:
-			output = stdout
-		#print(stderr)
-		proc.terminate()
-	except Exception as e:
-		print(e)
-	finally:
-		if PY3:
-			if not outfile:
-				output = output.decode("utf8").replace("\r","")
-		if input_text is not None:
-			os.remove(temp.name)
-		return output
+            if outfile:
+                command_params = [
+                    x
+                    if "tempfilename2" not in x
+                    else x.replace("tempfilename2", temp2.name)
+                    for x in command_params
+                ]
+            command_params = [
+                x if "tempfilename" not in x else x.replace("tempfilename", temp.name)
+                for x in command_params
+            ]
+        if workdir == "":
+            proc = subprocess.Popen(
+                command_params,
+                stdout=subprocess.PIPE,
+                stdin=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            (stdout, stderr) = proc.communicate()
+        else:
+            proc = subprocess.Popen(
+                command_params,
+                stdout=subprocess.PIPE,
+                stdin=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=workdir,
+            )
+            (stdout, stderr) = proc.communicate()
+        if outfile:
+            if PY3:
+                output = io.open(temp2.name, encoding="utf8").read()
+            else:
+                output = open(temp2.name).read()
+            temp2.close()
+            os.remove(temp2.name)
+        else:
+            output = stdout
+        # print(stderr)
+        proc.terminate()
+    except Exception as e:
+        print(e)
+    finally:
+        if PY3:
+            if not outfile:
+                output = output.decode("utf8").replace("\r", "")
+        if input_text is not None:
+            os.remove(temp.name)
+        return output
 
 
 def exec_via_temp_old(input_text, command_params, workdir=""):
-	exec_out = ""
-	try:
-		if input_text is not None:
-			temp = tempfile.NamedTemporaryFile(delete=False)
-			if PY3:
-				# try:
-				temp.write(input_text.encode("utf8"))
-				# except:
-				# 	temp.write(input_text)
-			else:
-				temp.write(input_text)
-			temp.close()
+    exec_out = ""
+    try:
+        if input_text is not None:
+            temp = tempfile.NamedTemporaryFile(delete=False)
+            if PY3:
+                # try:
+                temp.write(input_text.encode("utf8"))
+                # except:
+                # 	temp.write(input_text)
+            else:
+                temp.write(input_text)
+            temp.close()
 
-			command_params = [x if x != 'tempfilename' else temp.name for x in command_params]
-		if workdir == "":
-			proc = subprocess.Popen(command_params, stdout=subprocess.PIPE,stdin=subprocess.PIPE,stderr=subprocess.PIPE)
-			(stdout, stderr) = proc.communicate()
-		else:
-			proc = subprocess.Popen(command_params, stdout=subprocess.PIPE,stdin=subprocess.PIPE,stderr=subprocess.PIPE,cwd=workdir)
-			(stdout, stderr) = proc.communicate()
+            command_params = [
+                x if x != "tempfilename" else temp.name for x in command_params
+            ]
+        if workdir == "":
+            proc = subprocess.Popen(
+                command_params,
+                stdout=subprocess.PIPE,
+                stdin=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            (stdout, stderr) = proc.communicate()
+        else:
+            proc = subprocess.Popen(
+                command_params,
+                stdout=subprocess.PIPE,
+                stdin=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=workdir,
+            )
+            (stdout, stderr) = proc.communicate()
 
-		exec_out = stdout
-	except Exception as e:
-		print(e)
-	finally:
-		if input_text is not None:
-			os.remove(temp.name)
-		if PY3:
-			try:
-				exec_out = exec_out.decode("utf8").replace("\r","")
-			except:
-				pass
-		return exec_out
+        exec_out = stdout
+    except Exception as e:
+        print(e)
+    finally:
+        if input_text is not None:
+            os.remove(temp.name)
+        if PY3:
+            try:
+                exec_out = exec_out.decode("utf8").replace("\r", "")
+            except:
+                pass
+        return exec_out
 
 
-def list_files(alias="silver",file_dir=None,mode=None):
+def list_files(alias="silver", file_dir=None, mode=None):
+    """
+	Accept an alias and return a list of file paths. We assume that file_dir is usually the same as corpora_dir,
+	which is a clone of CopticScriptorium/corpora. Aliases are auto-lower-cased and can be:
 
-	file_list = []
+	- An ANNIS corpus name (e.g. besa.letters)
+	- A repo corpus folder name (besa-letters)
+	- A tt file name without extension (to_aphthonia)
+	- An initial substring uniquely identifying a valid option from the above
+	- A list of any of the above joined by '+'
 
-	if "plain" in alias:
-		mode = "plain"
+	:param alias: alias string, see above
+	:param file_dir: directory containing corpus folders with tt files (possibly is recursive sub-folders)
+	:param mode: tt, plain, parse
+	:return:
+	"""
 
-	if "+" in alias:
-		aliases = alias.split("+")
-		for alias in aliases:
-			file_list += list_files(alias,file_dir=file_dir,mode=mode)
-		return file_list
+    global aliases
 
-	if file_dir is None:
-		file_dir = eval_dir + "tt" + os.sep # Default tt file directory
+    if file_dir is not None:
+        aliases.update(harvest_aliases(file_dir))
 
-	if mode == "parse":
-		file_dir = eval_dir + "parses" + os.sep
-		if alias.lower() == "ud_test":
-			file_list = [file_dir + "cop_scriptorium-ud-test.conllu"]
-		elif alias.lower() == "ud_train":
-			file_list = [file_dir + "cop_scriptorium-ud-train.conllu"]
-		elif alias.lower() == "ud_dev_train":
-			file_list = [file_dir + "cop_scriptorium-ud-train.conllu",file_dir + "cop_scriptorium-ud-dev.conllu"]
-	elif mode == "plain":
-		if alias.lower().startswith("cyrus"):
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "BritMusOriental6783_23a_27a.txt",
-						 file_dir + "BritMusOriental6783_27a_30a.txt"]
-		elif alias.lower().startswith("onno"):  # onnophrius
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "BritMusOriental7027_01a_07b.txt"]
-		elif alias.lower().startswith("ephraim"):
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "BritMusOriental6783_63b_67b.txt"]
-		elif alias.lower().startswith("victor2"):
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "martyrdom.victor.02.txt"]
-		elif alias.lower().startswith("victor"):
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "martyrdom.victor.txt"]
-		elif alias.lower().startswith("repose"):
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "BritMusOriental6782_2a_9a.txt"]
-		elif alias.lower().startswith("proclus"):
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "BritMusOriental5001_116a_122b.txt"]
-		elif alias.lower().startswith("viccyeph"):
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "martyrdom.victor.txt",
-						 file_dir + "BritMusOriental6783_23a_27a.txt",
-						 file_dir + "BritMusOriental6783_63b_67b.txt"]
+    file_list = []
 
-		elif alias.lower().startswith("cyephon"):
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "BritMusOriental6783_23a_27a.txt",
-						 file_dir + "BritMusOriental6783_63b_67b.txt",
-						 file_dir + "BritMusOriental7027_01a_07b.txt"]
-		elif alias.lower().startswith("vicephon"):
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "martyrdom.victor.txt",
-						 file_dir + "BritMusOriental6783_63b_67b.txt",
-						 file_dir + "BritMusOriental7027_01a_07b.txt"]
-		elif alias.lower().startswith("viccyon"):
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "martyrdom.victor.txt",
-						 file_dir + "BritMusOriental6783_23a_27a.txt",
-						 file_dir + "BritMusOriental7027_01a_07b.txt"]
-	else:
-		if alias.lower() == "cyrus":
-			file_dir = eval_dir + "unreleased" + os.sep
-			file_list = [file_dir + "BritMusOriental6783_23a_27a.tt",
-						 file_dir + "BritMusOriental6783_27a_30a.tt"]
-		elif alias.lower().startswith("onno"):  # onnophrius
-			file_dir = eval_dir + "unreleased" + os.sep
-			file_list = [file_dir + "BritMusOriental7027_01a_07b.tt"]
-		elif alias.lower().startswith("ephraim"):
-			file_dir = eval_dir + "unreleased" + os.sep
-			file_list = [file_dir + "BritMusOriental6783_63b_67b.tt"]
-		elif alias.lower().startswith("victor2"):
-			file_dir = eval_dir + "unreleased" + os.sep
-			file_list = [file_dir + "martyrdom.victor.02.tt"]
+    if "plain" in alias:
+        mode = "plain"
 
-		#!! DANGER: this is in plain, not unreleased
-		elif alias.lower().startswith("victor"):
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "martyrdom.victor.01.tt"]
+    if "+" in alias:
+        multiple_aliases = alias.split("+")
+        for a in multiple_aliases:
+            file_list += list_files(a, file_dir=file_dir, mode=mode)
+        return list(set(file_list))
 
-		elif alias.lower().startswith("repose"):
-			file_dir = eval_dir + "unreleased" + os.sep
-			file_list = [file_dir + "BritMusOriental6782_2a_9a.tt"]
-		elif alias.lower().startswith("proclus"):
-			file_dir = eval_dir + "unreleased" + os.sep
-			file_list = [file_dir + "BritMusOriental5001_116a_122b.tt"]
-		elif alias.lower() == "ud_test":
-			file_list = io.open(eval_dir + "test_list.tab").read().strip().split("\n")
-			file_list = [file_dir + f for f in file_list]
-		elif alias.lower() == "ud_dev":
-			file_list = io.open(eval_dir + "dev_list.tab").read().strip().split("\n")
-			file_list = [file_dir + f for f in file_list]
-		elif alias.lower() == "ud_train":
-			file_list = io.open(eval_dir + "train_list.tab").read().strip().split("\n")
-			file_list = [file_dir + f for f in file_list]
+    # Resolve substrings
+    if alias not in aliases:
+        possible_keys = [k for k in aliases if k.startswith(alias)]
+        if len(possible_keys) == 1:
+            alias = possible_keys[0]
+        else:
+            sys.stderr.write(
+                "ERR: Could not find unambiguous data set alias '" + alias + "'\n"
+            )
+            quit()
 
-		elif alias.lower() == "viccyeph_tt":
-			file_dir = eval_dir + "plain" + os.sep
-			file_list.append(file_dir + "martyrdom.victor.01.tt")
-			file_dir = eval_dir + "unreleased" + os.sep
-			file_list = [file_dir + "BritMusOriental6783_23a_27a.tt",
-						 file_dir + "BritMusOriental6783_63b_67b.tt"]
-		elif alias.lower() == "cyephon_tt":
-			file_dir = eval_dir + "unreleased" + os.sep
-			file_list = [file_dir + "BritMusOriental6783_23a_27a.tt",
-						 file_dir + "BritMusOriental6783_63b_67b.tt",
-						 file_dir + "BritMusOriental7027_01a_07b.tt"]
-		elif alias.lower() == "vicephon_tt":
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "martyrdom.victor.01.tt"]
-			file_dir = eval_dir + "unreleased" + os.sep
-			file_list += [file_dir + "BritMusOriental6783_63b_67b.tt",
-						  file_dir + "BritMusOriental7027_01a_07b.tt"]
+    if file_dir is None:
+        file_dir = eval_dir + "tt" + os.sep  # Default tt file directory
 
-		elif alias.lower() == "viccyon_tt":
-			file_dir = eval_dir + "plain" + os.sep
-			file_list = [file_dir + "martyrdom.victor.01.tt"]
-			file_dir = eval_dir + "unreleased" + os.sep
-			file_list += [file_dir + "BritMusOriental6783_23a_27a.tt",
-						  file_dir + "BritMusOriental7027_01a_07b.tt"]
-		elif alias.lower() == "silver":
-			test_list = io.open(eval_dir + "test_list.tab").read().strip().split("\n")
-			file_list = glob(file_dir + os.sep + "*.tt")
-			filtered = []
-			for f in file_list:
-				if os.path.basename(f) not in test_list:
-					filtered.append(f)
-			file_list = filtered
+    if mode == "parse":
+        file_dir = eval_dir + "parses" + os.sep
+        if alias.lower() == "ud_test":
+            file_list = [file_dir + "cop_scriptorium-ud-test.conllu"]
+        elif alias.lower() == "ud_train":
+            file_list = [file_dir + "cop_scriptorium-ud-train.conllu"]
+        elif alias.lower() == "ud_dev_train":
+            file_list = [
+                file_dir + "cop_scriptorium-ud-train.conllu",
+                file_dir + "cop_scriptorium-ud-dev.conllu",
+            ]
+    elif mode == "plain":
+        if alias.lower().startswith("cyrus"):
+            file_dir = eval_dir + "plain" + os.sep
+            file_list = [file_dir + "BritMusOriental6783_23a_27a.txt"]
+        elif alias.lower().startswith("onno"):  # onnophrius
+            file_dir = eval_dir + "plain" + os.sep
+            file_list = [file_dir + "apa_onnophrius_part1.txt"]
+        elif alias.lower().startswith("ephraim"):
+            file_dir = eval_dir + "plain" + os.sep
+            file_list = [file_dir + "BritMusOriental6783_63b_67b.txt"]
+        elif alias.lower().startswith("victor2"):
+            file_dir = eval_dir + "plain" + os.sep
+            file_list = [file_dir + "martyrdom.victor.02.txt"]
+        elif alias.lower().startswith("victor"):
+            file_dir = eval_dir + "plain" + os.sep
+            file_list = [file_dir + "martyrdom.victor.txt"]
+        elif alias.lower().startswith("viccyeph"):
+            file_dir = eval_dir + "plain" + os.sep
+            file_list = [
+                file_dir + "martyrdom.victor.txt",
+                file_dir + "BritMusOriental6783_23a_27a.txt",
+                file_dir + "BritMusOriental6783_63b_67b.txt",
+            ]
 
-	return file_list
+        elif alias.lower().startswith("cyephon"):
+            file_dir = eval_dir + "plain" + os.sep
+            file_list = [
+                file_dir + "BritMusOriental6783_23a_27a.txt",
+                file_dir + "BritMusOriental6783_63b_67b.txt",
+                file_dir + "apa_onnophrius_part1.txt",
+            ]
+        elif alias.lower().startswith("vicephon"):
+            file_dir = eval_dir + "plain" + os.sep
+            file_list = [
+                file_dir + "martyrdom.victor.txt",
+                file_dir + "BritMusOriental6783_63b_67b.txt",
+                file_dir + "apa_onnophrius_part1.txt",
+            ]
+        elif alias.lower().startswith("viccyon"):
+            file_dir = eval_dir + "plain" + os.sep
+            file_list = [
+                file_dir + "martyrdom.victor.txt",
+                file_dir + "BritMusOriental6783_23a_27a.txt",
+                file_dir + "apa_onnophrius_part1.txt",
+            ]
+    else:
+        alias = alias.lower()
+        if alias in aliases:
+            return aliases[alias]
+        if alias.lower() == "cyrus":
+            file_dir = eval_dir + "tt" + os.sep
+            file_list = [file_dir + "life.cyrus.01.tt", file_dir + "life.cyrus.02.tt"]
+        elif alias.lower().startswith("onno"):  # onnophrius
+            file_dir = eval_dir + "unreleased" + os.sep
+            file_list = [file_dir + "apa_onnophrius_part1.tt"]
+        elif alias.lower().startswith("ephraim"):
+            file_dir = eval_dir + "unreleased" + os.sep
+            file_list = [file_dir + "BritMusOriental6783_63b_67b.tt"]
+        elif alias.lower().startswith("victor2"):
+            file_dir = eval_dir + "unreleased" + os.sep
+            file_list = [file_dir + "martyrdom.victor.02.tt"]
+
+        #!! DANGER: this is in plain, not unreleased
+        elif alias.lower().startswith("victor"):
+            file_dir = eval_dir + "plain" + os.sep
+            file_list = [file_dir + "martyrdom.victor.01.tt"]
+
+        elif alias.lower() == "ud_test":
+            file_list = io.open(eval_dir + "test_list.tab").read().strip().split("\n")
+            file_list = [file_dir + f for f in file_list]
+        elif alias.lower() == "ud_dev":
+            file_list = io.open(eval_dir + "dev_list.tab").read().strip().split("\n")
+            file_list = [file_dir + f for f in file_list]
+        elif alias.lower() == "ud_train":
+            file_list = io.open(eval_dir + "train_list.tab").read().strip().split("\n")
+            file_list = [file_dir + f for f in file_list]
+
+        elif alias.lower() == "viccyeph_tt":
+            file_dir = eval_dir + "plain" + os.sep
+            file_list.append(file_dir + "martyrdom.victor.01.tt")
+            file_dir = eval_dir + "unreleased" + os.sep
+            file_list = [
+                file_dir + "BritMusOriental6783_23a_27a.tt",
+                file_dir + "BritMusOriental6783_63b_67b.tt",
+            ]
+        elif alias.lower() == "cyephon_tt":
+            file_dir = eval_dir + "unreleased" + os.sep
+            file_list = [
+                file_dir + "BritMusOriental6783_23a_27a.tt",
+                file_dir + "BritMusOriental6783_63b_67b.tt",
+                file_dir + "apa_onnophrius_part1.tt",
+            ]
+        elif alias.lower() == "vicephon_tt":
+            file_dir = eval_dir + "plain" + os.sep
+            file_list = [file_dir + "martyrdom.victor.01.tt"]
+            file_dir = eval_dir + "unreleased" + os.sep
+            file_list += [
+                file_dir + "BritMusOriental6783_63b_67b.tt",
+                file_dir + "apa_onnophrius_part1.tt",
+            ]
+
+        elif alias.lower() == "viccyon_tt":
+            file_dir = eval_dir + "plain" + os.sep
+            file_list = [file_dir + "martyrdom.victor.01.tt"]
+            file_dir = eval_dir + "unreleased" + os.sep
+            file_list += [
+                file_dir + "BritMusOriental6783_23a_27a.tt",
+                file_dir + "apa_onnophrius_part1.tt",
+            ]
+        elif alias.lower() == "silver":
+            test_list = io.open(eval_dir + "test_list.tab").read().strip().split("\n")
+            file_list = glob(file_dir + os.sep + "*.tt")
+            filtered = []
+            for f in file_list:
+                if os.path.basename(f) not in test_list:
+                    filtered.append(f)
+            file_list = filtered
+
+    return list(set(file_list))  # Return list of unique files
 
 
 def get_col(data, colnum):
-	if not isinstance(data,list):
-		data = data.split("\n")
+    if not isinstance(data, list):
+        data = data.split("\n")
 
-	splits = [row.split("\t") for row in data if "\t" in row]
-	return [r[colnum] for r in splits]
+    splits = [row.split("\t") for row in data if "\t" in row]
+    return [r[colnum] for r in splits]
 
 
 def inject_col(source_lines, target_lines, col=-1, into_col=None, skip_supertoks=False):
 
-	output = []
-	counter = -1
-	target_line = ""
+    output = []
+    counter = -1
+    target_line = ""
 
-	if not PY3:
-		if isinstance(target_lines,unicode):
-			target_lines = str(target_lines.encode("utf8"))
+    if not PY3:
+        if isinstance(target_lines, unicode):
+            target_lines = str(target_lines.encode("utf8"))
 
-	if not isinstance(source_lines,list):
-		source_lines = source_lines.split("\n")
-	if not isinstance(target_lines,list):
-		target_lines = target_lines.split("\n")
+    if not isinstance(source_lines, list):
+        source_lines = source_lines.split("\n")
+    if not isinstance(target_lines, list):
+        target_lines = target_lines.split("\n")
 
-	for i, source_line in enumerate(source_lines):
-		while len(target_line) == 0:
-			counter +=1
-			target_line = target_lines[counter]
-			if (target_line.startswith("<") and target_line.endswith(">")) or len(target_line) == 0:
-				output.append(target_line)
-				target_line = ""
-			else:
-				target_cols = target_line.split("\t")
-				if "-" in target_cols[0] and skip_supertoks:
-					output.append(target_line)
-					target_line = ""
-		source_cols = source_line.split("\t")
-		to_inject = source_cols[col]
-		target_cols = target_line.split("\t")
-		if into_col is None:
-			target_cols.append(to_inject)
-		else:
-			target_cols[into_col] = to_inject
-		output.append("\t".join(target_cols))
-		target_line=""
+    for i, source_line in enumerate(source_lines):
+        while len(target_line) == 0:
+            counter += 1
+            target_line = target_lines[counter]
+            if (target_line.startswith("<") and target_line.endswith(">")) or len(
+                target_line
+            ) == 0:
+                output.append(target_line)
+                target_line = ""
+            else:
+                target_cols = target_line.split("\t")
+                if "-" in target_cols[0] and skip_supertoks:
+                    output.append(target_line)
+                    target_line = ""
+        source_cols = source_line.split("\t")
+        to_inject = source_cols[col]
+        target_cols = target_line.split("\t")
+        if into_col is None:
+            target_cols.append(to_inject)
+        else:
+            target_cols[into_col] = to_inject
+        output.append("\t".join(target_cols))
+        target_line = ""
 
-	return "\n".join(output)
+    return "\n".join(output)

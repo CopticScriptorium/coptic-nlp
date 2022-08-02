@@ -38,21 +38,29 @@
 """
 
 from argparse import ArgumentParser
-import io
+import io, sys, re
 
-def conllize(in_text,tag=None,element=None,no_zero=False):
+def conllize(in_text,tag=None,element=None,no_zero=False,ten_cols=False):
 
 	xml = False
 	if element is not None:
 		xml = True
+	pos_elements = lemma_elements = False
+	if xml and "\t" not in in_text:
+		if ' pos=' in in_text:
+			pos_elements = True
+		if ' lemma=' in in_text:
+			lemma_elements = True
 
 	outlines = []
 	counter = 1
 	for line in in_text.replace("\r","").split("\n"):
 		if len(line.strip()) > 0:
 			tabs = line.count("\t")
-			lemma = "_"
-			pos = "_"
+			if not pos_elements:
+				pos = "_"
+			if not lemma_elements:
+				lemma = "_"
 			morph = "_"
 			if tabs == 0:
 				tok = line
@@ -66,14 +74,24 @@ def conllize(in_text,tag=None,element=None,no_zero=False):
 					morph = fields[3]
 			if not (line.startswith("<") and line.endswith(">")):  # Do not make tokens out of XML elements
 				if no_zero:
-					outlines.append("\t".join([str(counter), tok, lemma, pos, pos, morph, "_", "_"]))
+					fields = [str(counter), tok, lemma, pos, pos, morph, "_", "_"]
 				else:
-					outlines.append("\t".join([str(counter),tok,lemma,pos,pos,morph,"0","_"]))
+					fields = [str(counter),tok,lemma,pos,pos,morph,"0","_"]
+				if ten_cols:
+					fields += ["_","_"]
+				outlines.append("\t".join(fields))
+				if outlines[-1].count("\t")>9:
+					sys.stderr.write("WARN: found " + str(outlines[-1].count("\t")) + " tabs in conll data!\n")
+					sys.stderr.write("WARN: do your tokens contain tabs?\n")
 				counter += 1
 			if xml:
 				if "</" + element + ">" in line:
 					counter = 1
 					outlines.append("")
+				if " pos=" in line:
+					pos = re.search(r'pos="([^"]*)"',line).group(1)
+				if " lemma=" in line:
+					lemma = re.search(r'lemma="([^"]*)"',line).group(1)
 			else:
 				if pos == tag:
 					counter = 1
