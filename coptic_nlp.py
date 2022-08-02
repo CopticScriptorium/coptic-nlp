@@ -89,8 +89,9 @@ def replace_trees(conllu, gold_trees):
 	return "\n\n".join(output) + "\n\n"
 
 
-# Global lookup lemmatizer for marmot tagging
+# Global lookup lemmatizer
 lemmatizer = Lemmatizer(data_dir + "copt_lemma_lex.tab", no_unknown=True)
+flair_tagger = None
 
 def log_tasks(opts):
 	sys.stderr.write("\nRunning standard tasks:\n" +"="*20 + "\n")
@@ -420,7 +421,7 @@ def get_entity_offsets(sgml):
 
 def analyze_entities(conll_parse,sgml_so_far,preloaded,outmode,do_identities=False,docname=None):
 	if preloaded is None:
-		preloaded = {"stk":None,"xrenner":None,"parser":None}
+		preloaded = {"stk":None,"xrenner":None,"parser":None,"tagger":None}
 	if preloaded["xrenner"] is None:
 		from xrenner import Xrenner  # lib.
 		xrenner = Xrenner(model=lib_dir + "cop.xrm")
@@ -436,7 +437,8 @@ def analyze_entities(conll_parse,sgml_so_far,preloaded,outmode,do_identities=Fal
 		ents = xrenner.analyze(conll_parse, "sgml")  # "conll_sent")
 		insertion_specs = get_entity_offsets(ents)  # Get [(start, end, entity_type),...]
 		output = inject_with_nesting(sgml_so_far, insertion_specs, around_tag="norm", inserted_tag="entity")
-		output = reorder_sgml(output.strip(),priorities=["entity", "norm"])  # Ensure entity nests norm
+		# Ensure entity nests norm
+		output = reorder_sgml(output.strip(),priorities=["entity", "orig_group", "norm_group", "norm", "orig"])
 		output = assign_entity_heads(output)
 		if do_identities:
 			identifier.read_words(output)
@@ -458,8 +460,8 @@ def analyze_entities(conll_parse,sgml_so_far,preloaded,outmode,do_identities=Fal
 		return "\n".join(out_conll)
 
 
-def postag(indata,tag_tt=False,notokens=False,sent=None,tabular=False,postprocess=True):
-	if tag_tt:
+def postag(indata, full_sgml, tagger="flair",notokens=False,sent=None,tabular=False,postprocess=True,preloaded=None):
+	if tagger=="treetagger":
 		tag = [tt_path + 'tree-tagger', tt_path+'coptic_fine.par', '-lemma','-no-unknown', '-sgml'] #no -token
 		if not notokens:
 			tag += ['-token']
@@ -467,8 +469,12 @@ def postag(indata,tag_tt=False,notokens=False,sent=None,tabular=False,postproces
 		tagged = exec_via_temp(indata,tag)
 		if notokens:
 			return tagged
-	else:
+	elif tagger=="marmot":
 		tagged = tag_marmot(indata, sent=sent)
+		tagged = lemmatizer.lemmatize(tagged)
+	elif tagger=="flair":
+		sentstr = "translation" if sent is None else sent
+		tagged = preloaded["tagger"].predict(full_sgml, in_format="sgml", out_format="tt", sent=sentstr, as_text=True)
 		tagged = lemmatizer.lemmatize(tagged)
 	spl = [line.split("\t") for line in tagged.strip().split("\n")]
 	words, tags, lemmas = zip(*spl)
@@ -597,14 +603,24 @@ def download_requirements(tt_ok=True, malt_ok=True, foma_ok=True, marmot_ok=True
 def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True, do_mwe=True, do_tag=True, do_lemma=True, do_lang=True,
 			   do_milestone=True, do_parse=True, sgml_mode="sgml", tok_mode="auto", old_tokenizer=False, sent_tag=None,
 			   preloaded=None, pos_spans=False, merge_parse=False, detokenize=0, segment_merged=False, gold_parse="",
-			   tag_tt=False, do_entities=False, no_gold_parse=False, mark_new_sent=True, do_identities=False,
+			   tagger="flair", do_entities=False, no_gold_parse=False, mark_new_sent=True, do_identities=False,
 			   docname=None):
 
+	if docname is not None:
+		docname = docname.replace(".tt","").replace(".sgml","").replace(".xml","").replace(".txt","")
+
+	if preloaded is None:
+		with suppress_stdout_stderr():
+			#preloaded["parser"] = NeuralParser()
+			if stan:
+				preloaded = {"stk": None, "xrenner": None, "parser": NeuralParser(),"tagger":FlairTagger()}
+			else:
+				preloaded = {"stk":None,"xrenner":None,"parser":NeuralParser.load(neural_model),"tagger":FlairTagger()}#NeuralParser()}
 	data = input_data.replace("\t","")
 	data = data.replace("\r","")
 
-	if preloaded is not None:
-		stk = preloaded
+	if preloaded["stk"] is not None:
+		stk = preloaded["stk"]
 	else:
 		stk = StackedTokenizer(pipes=sgml_mode != "sgml", lines=lb, tokenized=tok_mode=="from_pipes",
 							   detok=detokenize, segment_merged=segment_merged, ambig=data_dir + "ambig.tab")
@@ -665,7 +681,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 				elif resp.lower() == "a":
 					sys.exit(0)
 		if do_tag and not pos_spans:
-			tagged = postag(norms,tag_tt=tag_tt,sent=sent_tag)
+			tagged = postag(norms, output, tagger=tagger,sent=sent_tag, preloaded=preloaded)
 		else:  # Assume data is already tagged, in TT SGML format
 			if pos_spans:
 				tagged = harvest_tt(input_data, keep_sgml=True)
@@ -730,23 +746,34 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 			return output
 
 	elif not do_parse:
-		tagged = postag(norms,tag_tt=tag_tt,sent=sent_tag,notokens=True)
+		tagged = postag(norms,output,tagger=tagger,sent=sent_tag,notokens=True, preloaded=preloaded)
 	if do_parse:
 		if sent_tag is None:
-			tagged = postag(norms,tag_tt=tag_tt,sent=sent_tag,tabular=True)
+			tagged = postag(norms,output,tagger=tagger,sent=sent_tag,tabular=True, preloaded=preloaded)
 		else:
 			norm_with_sgml = tok_from_norm(output)
-			tagged = postag(norm_with_sgml,tag_tt=tag_tt,sent=sent_tag)
-		conllized = conllize(tagged, tag="PUNCT", element=sent_tag, no_zero=True)
-		#deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
-		#depedited = deped.run_depedit(conllized.split("\n"))
-		depedited = conllized
-		if not os.path.exists(bin_dir+"maltparser-1.8" + os.sep + "coptic.mco"):
-			sys.stderr.write("! can't find coptic.mco parser model in " + bin_dir+"maltparser-1.8" + os.sep + "coptic.mco")
-			sys.exit(0)
-		parse_coptic = ['java','-mx1g','-jar',"maltparser-1.8.jar",'-c','coptic','-i','tempfilename','-m','parse']
-		parsed = exec_via_temp(depedited,parse_coptic,parser_path)
-		deped = DepEdit(io.open(data_dir + "postprocess_parser.ini",encoding="utf8"),options=type('', (), {"quiet":True})())
+			tagged = postag(norm_with_sgml,output,tagger=tagger,sent=sent_tag,tabular=False, preloaded=preloaded)
+		if neural_parser:
+			conllized = conllize(tagged, tag="PUNCT", element=sent_tag, no_zero=True, ten_cols=True)
+			for_parser = []
+			for s in conllized.strip().split("\n\n"):
+				for_parser.append([l.split("\t")[1] for l in s.split("\n") if "\t" in l])
+			parsed = neural_parser.predict(for_parser)
+			if not stan:
+				parsed = parse2conllu(parsed,tagged)
+		else:
+			conllized = conllize(tagged, tag="PUNCT", element=sent_tag, no_zero=True)
+			if not os.path.exists(bin_dir + "maltparser-1.8" + os.sep + "coptic.mco"):
+				sys.stderr.write(
+					"! can't find coptic.mco parser model in " + bin_dir + "maltparser-1.8" + os.sep + "coptic.mco")
+				sys.exit(0)
+			deped = DepEdit(io.open(data_dir + "add_ud_and_flat_morph.ini", encoding="utf8"),
+							options=type('', (), {"quiet": True, "kill": "supertoks"})())
+			depedited = deped.run_depedit(conllized.split("\n"))
+			# depedited = conllized
+			parse_coptic = ['java','-mx1g','-jar',"maltparser-1.8.jar",'-c','coptic','-i','tempfilename','-m','parse']
+			parsed = exec_via_temp(depedited,parse_coptic,parser_path)
+		deped = DepEdit(io.open(data_dir + "postprocess_parser.ini",encoding="utf8"),options=type('', (), {"quiet":True,"kill":"supertoks"})())
 		depedited = deped.run_depedit(parsed.split("\n"))
 		if len(gold_trees) > 0:
 			# Replace automatic parses with cached trees from UD_Coptic if available
@@ -901,7 +928,8 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 	g2.add_argument("--pos_spans", action="store_true", help='Harvest POS tags and lemmas from SGML spans')
 	g2.add_argument("--merge_parse", action="store_true", help='Merge/add a parse into a ready SGML file')
 	g2.add_argument("--version", action="store_true", help='Print version number and quit')
-	g2.add_argument("--treetagger", action="store_true", help='Tag using TreeTagger instead of Marmot')
+	g2.add_argument("--treetagger", action="store_true", help='Tag using TreeTagger instead of flair')
+	g2.add_argument("--marmot", action="store_true", help='Tag using Marmot instead of flair')
 	g2.add_argument("--no_gold_parse", action="store_true", help='Do not use UD_Coptic cache for gold parses')
 
 	if "--version" in sys.argv:
@@ -924,7 +952,7 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 	if not opts.quiet:
 		log_tasks(opts)
 
-	preloaded = {"stk":None,"xrenner":None, "parser":None}
+	preloaded = {"stk":None, "tagger": None, "xrenner":None, "parser":None}
 	if dotok and not old_tokenizer:
 		# Pre-load stacked tokenizer for entire batch
 		preloaded["stk"] = StackedTokenizer(pipes=opts.outmode == "pipes", lines=opts.breaklines, tokenized=opts.from_pipes,
@@ -932,6 +960,15 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 	else:
 		preloaded["stk"] = None
 
+	if opts.tag and not (opts.treetagger or opts.marmot):
+		preloaded["tagger"] = FlairTagger(train=False)
+
+	if opts.parse or opts.parse_only or opts.merge_parse:
+		with suppress_stdout_stderr():
+			if stan:
+				preloaded["parser"] = NeuralParser()  # NeuralParser()
+			else:
+				preloaded["parser"] = NeuralParser.load(neural_model) #NeuralParser()
 
 	if opts.recognize_entities:
 		from xrenner import Xrenner  # .lib
@@ -966,10 +1003,12 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 			else:
 				opts.extension = "tt"
 		if opts.outmode == "sgml":
-			if infile.endswith("." + opts.extension):
+			if infile.endswith("." + opts.extension) and opts.dirout == ".":
 				outfile = base.replace("." + opts.extension,".out." + opts.extension)
 			elif len(infile) > 4 and infile[-4] == ".":
 				outfile = base[:-4] + "." + opts.extension
+			elif len(infile) > 4 and infile[-3:] == ".tt":
+				outfile = base[:-3] + "." + opts.extension
 			else:
 				outfile = base + "." + opts.extension
 		elif opts.outmode == "conllu":
@@ -1006,6 +1045,13 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 		if not opts.no_gold_parse and (opts.parse or opts.parse_only or opts.merge_parse or opts.recognize_entities):
 			get_gold_trees()
 
+		if opts.treetagger:
+			tagger_type = "treetagger"
+		elif opts.marmot:
+			tagger_type = "marmot"
+		else:
+			tagger_type = "flair"
+
 		processed = nlp_coptic(input_text, lb=opts.breaklines, parse_only=opts.parse_only, do_tok=dotok,
 							   do_norm=opts.norm, do_mwe=opts.multiword, do_tag=opts.tag, do_lemma=opts.lemma,
 							   do_lang=opts.etym, do_milestone=opts.unary, do_parse=opts.parse, sgml_mode=opts.outmode,
@@ -1016,6 +1062,31 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 							   do_identities=opts.identities, docname=base)
 
 		if opts.outmode == "sgml":
+			if opts.processing_meta:  # NLP reliability metadata
+				seg = 'segmentation="automatic"' if not opts.from_pipes else 'segmentation="checked"'
+				proc_meta = [seg]
+				if opts.merge_parse:
+					tagging = 'tagging="checked'
+					parsing = 'parsing="checked"'
+					proc_meta += [tagging, parsing]
+				else:
+					if opts.tag:
+						tagging = 'tagging="automatic"' if not opts.pos_spans else 'tagging="checked"'
+						proc_meta.append(tagging)
+					if opts.parse:
+						parsing = 'parsing="automatic"'
+						proc_meta.append(parsing)
+				if opts.recognize_entities:
+					proc_meta.append('entities="automatic"')
+				if opts.identities:
+					proc_meta.append('identities="automatic"')
+				if "<meta " in processed:
+					processed = processed.replace("<meta ","<meta " + " ".join(proc_meta) + " ")
+				else:
+					processed = "<meta " + " ".join(proc_meta) + ">\n" + processed
+				if "</meta>" not in processed:
+					processed = processed.strip() + "\n</meta>\n"
+
 			processed = reorder(processed.strip().split("\n"),add_fixed_meta=add_fixed_meta)
 			processed = processed.replace("xml:lang","lang")
 
