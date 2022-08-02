@@ -44,7 +44,7 @@ def reorder(tt_sgml,priorities=PRIORITIES):
 		if line.startswith("</") and line.endswith(">"):  # Close element
 			elem = re.search(r'^</([^\s>]*)',line).group(1)
 			if elem not in open_elems:
-				raise IOError("! saw a closed element: " + line + " but no corresponding element is open!\n")
+				raise IOError("! saw a closed element: " + line + " on line "+ str(i)+" but no corresponding element is open!\n")
 			span = Span(start=open_elems[elem][-1][0],end=toknum,text=open_elems[elem][-1][1],elem=elem,priorities=priorities)
 			open_elems[elem].pop()
 			if len(open_elems[elem]) == 0:
