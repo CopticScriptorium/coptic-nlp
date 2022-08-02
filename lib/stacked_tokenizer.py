@@ -7,7 +7,7 @@ import sys, re, io, os
 from six import iterkeys, iteritems
 PY3 = sys.version_info[0] == 3
 
-__version__ = "2.1.0"
+__version__ = "3.0.0"
 __author__ = "Amir Zeldes"
 
 
@@ -215,6 +215,10 @@ class BoundGroup:
 						while unsegmented[i+revoffset] != segmented[i+offset]:
 							if loose and unsegmented[i+revoffset] == "ϯ" and segmented[i+offset] == "ⲧ":
 								break
+							if loose and revoffset > 0:
+								if unsegmented[i+revoffset-1:i+revoffset+1] == "ⲧⲓ" and segmented[i+offset] == "ϯ":
+									# segmentation has ϯ and unsegmented has ⲧⲓ
+									break
 							output += unsegmented[i+revoffset]
 							revoffset += 1
 							if i+revoffset > len(unsegmented)-1:  # Segmented string ended without match, end chomping
@@ -238,7 +242,7 @@ class BoundGroup:
 		if consecutive_seps(output):
 			# Mapping failed, traverse longer string RIGHT TO LEFT
 			output = align(unsegmented,segmented,reverse=True)
-		if consecutive_seps(output) and "ϯ" in unsegmented:
+		if (consecutive_seps(output) and "ϯ" in unsegmented) or ("ϯ|" in segmented and "|" not in output):
 			# Mapping failed, traverse longer string RIGHT TO LEFT
 			output = align(unsegmented,segmented,loose=True)
 			if consecutive_seps(output):
@@ -329,14 +333,22 @@ class BoundGroup:
 			return "N: " + self.norm + " (" + self.dirty.replace("\\n", "\n") + ")"
 
 
-def add_lines(text):
+def add_lines(text, counter=True):
 	output = []
 	lines = text.split("\n")
+	lnum = 1
 	for line in lines:
+		if counter:
+			if "<pb " in line or "<pb>" in line or "<pb_xml" in line:
+				lnum = 1
 		if re.match(r"^<[^>]+>$",line):
 			output.append(line)
 		else:
-			output.append("<line>" + line + "</line>")
+			if counter:
+				output.append('<lb n="'+str(lnum)+'">' + line + "</lb>")
+				lnum += 1
+			else:
+				output.append("<line>" + line + "</line>")
 	return "\n".join(output)
 
 
@@ -397,14 +409,15 @@ def serialize(groups,pipes=False,group_sep="_",tok_sep="|",segment_merged=False)
 	out_text = ""
 	if segment_merged:
 		# Ensure that merged bound group positions have a separator, else add one
-		for g in groups:
+		for i,g in enumerate(groups):
 			if len(g.merge_boundaries) > 0:
 				new_tokenization = g.tokenization
 				for b in g.merge_boundaries:
 					pos = find_non_sep_position(new_tokenization, b)
 					#seps_before_boundary = new_tokenization[0:pos+1].count(tok_sep) + new_tokenization[0:pos+1].count("-")
-					if new_tokenization[pos+1] != "-" and new_tokenization[pos+1] != tok_sep:
-						new_tokenization = new_tokenization[0:pos+1] + "|" + new_tokenization[pos+1:]
+					if len(new_tokenization) > pos+1:
+						if new_tokenization[pos+1] != "-" and new_tokenization[pos+1] != tok_sep:
+							new_tokenization = new_tokenization[0:pos+1] + "|" + new_tokenization[pos+1:]
 				g.add_tokenization(new_tokenization)
 	if not pipes:
 		for g in groups:
@@ -423,17 +436,17 @@ def adjust_theta(tokenization):
 
 class StackedTokenizer:
 
-	def __init__(self,lines=False,pipes=False,tokenized=False,no_morphs=False,detok=0,segment_merged=False,model="cop",ambig=None,use_meta=False):
+	def __init__(self,lines=False,pipes=False,tokenized=False,no_morphs=False,detok=0,segment_merged=False,model="cop",
+				 ambig=None,use_meta=False,model_path=None,morph_table=None):
 		self.lines = lines
 		self.pipes = pipes
 		self.tokenized = tokenized
 		self.no_morphs = no_morphs
 		self.model = model
-		self.load_rftokenizer()
+		self.load_rftokenizer(model_path=model_path)
 		self.ambig = {}
 		if ambig is not None:
 			self.load_ambig(ambig)
-		self.load_rftokenizer()
 		self.use_meta = use_meta
 		if self.use_meta:
 			try:
@@ -452,6 +465,8 @@ class StackedTokenizer:
 				self.load_detokenizer(aggressive=True)
 			else:
 				self.load_detokenizer(aggressive=False)
+		self.escaped_squares = False
+		self.morph_analyzer = MorphAnalyzer(morph_table=morph_table)
 
 	def load_detokenizer(self,data=None,aggressive=False):
 		if data is None:
@@ -472,9 +487,12 @@ class StackedTokenizer:
 				fields = line.split("\t")
 				self.ambig[fields[0]] = fields[1:]
 
-	def load_rftokenizer(self):
+	def load_rftokenizer(self, model_path=None):
 		self.rf_tok = RFTokenizer(model=self.model)
-		self.rf_tok.load()
+		if model_path is None:
+			self.rf_tok.load()
+		else:
+			self.rf_tok.load(model_path=model_path)
 
 	def normalize(self,groups,norm_table=None):
 		cleans = [g.clean for g in groups]
@@ -512,6 +530,12 @@ class StackedTokenizer:
 		return new_group
 
 	def analyze(self,data,do_normalize=True,norm_table=None):
+		if '□' in data:
+			data = data.replace('□','▫')
+			self.escaped_squares = True
+		else:
+			self.escaped_squares = False
+
 		if self.lines:
 			data = add_lines(data)
 
@@ -611,8 +635,6 @@ class StackedTokenizer:
 			best_tokenizations = []
 			j = 0
 			for i, norm in enumerate(norms):
-				if norm== "ⲛⲁⲩ":
-					s=3
 				if i in unknown_indices:
 					if norm in self.ambig:
 						if tokenizations_rf[j] in self.ambig[norm]:
@@ -642,7 +664,7 @@ class StackedTokenizer:
 			#	else:
 			#		best_tokenizations.append(tokenizations_rf[i])
 
-			m = MorphAnalyzer()
+			m = self.morph_analyzer
 			prev_tokenization = ""
 			overrides = {"ⲉ|ⲡ|ⲁϩⲟ": "ⲉ|ⲡⲁ|ϩⲟ", "ⲛⲉ|ⲛ|ⲕⲁ": "ⲛⲉ|ⲛⲕⲁ", "ⲉ|ⲧⲟⲩ|ϯⲥⲃⲱ": "ⲉⲧ|ⲟⲩ|ϯⲥⲃⲱ","ⲛ|ⲉⲛⲧ|ⲁ|ⲩ|ϫⲟⲟⲩ":"ⲛ|ⲉⲛⲧ|ⲁ|ⲩ|ϫⲟ|ⲟⲩ"}
 			substrings = {"ⲛⲉ|ⲩ|ⲛ|ⲟⲩ|": "ⲛⲉ|ⲩⲛ|ⲟⲩ|","ⲛⲉ|ⲩ|ⲛ|ϩⲉⲛ|":"ⲛⲉ|ⲩ|ⲛ|ϩⲉⲛ|","ϫⲟ|ⲟⲩ|ⲥⲉ":"ϫⲟⲟⲩ|ⲥⲉ"}
@@ -668,6 +690,9 @@ class StackedTokenizer:
 				grps[i].add_tokenization(tokenization)
 
 		toks = serialize(grps, pipes=self.pipes, segment_merged=self.segment_merged)
+
+		if self.escaped_squares:
+			toks = toks.replace('▫','□')
 
 		return toks
 
