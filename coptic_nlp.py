@@ -393,6 +393,7 @@ def inject_with_nesting(in_sgml,insertion_specs,around_tag="norm",inserted_tag="
 		lines.insert(open_positions[insertion[0]],'<'+inserted_tag+' '+inserted_tag+'="' + insertion[2] + '">')
 
 	close_positions = [i for i in range(len(lines)) if lines[i] == "</" + around_tag + ">"]
+	insertion_specs.sort(key=lambda x:x[1])  # Sort by closing index
 	for insertion in insertion_specs[::-1]:  # Insert opening tags at desired indices in reverse
 		lines.insert(close_positions[insertion[1]]+1,'</'+inserted_tag+'>')
 
