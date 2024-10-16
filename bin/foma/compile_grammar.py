@@ -76,7 +76,7 @@ def mutate(find,rep,source_dict,target_dict,exclude=None):
 
 	return target_dict
 
-def make_lexicon_foma():
+def make_lexicon_foma(dialect="sahidic"):
 	"""Make the human-readable three column file lexicon_foma.tab in the format:
 	category	orig	norm
 	...
@@ -84,6 +84,10 @@ def make_lexicon_foma():
 	This file is later transformed into a XFST format .lexc cascade using grammar_foma.tab
 
 	"""
+
+	global data_dir
+	if dialect == "bohairic":
+		data_dir = script_dir + ".." + os.sep + ".." + os.sep + "data.b" + os.sep
 
 	# Known problematic/non-standard spellings in copt_lemma_lex
 	forbidden = set(["ⲛⲏⲥⲧⲓⲁ","ⲁⲡⲓⲗⲏ","ⲁⲣⲭⲓ","ⲙⲟⲛⲟⲭⲟⲥ","ⲙⲛⲧⲙⲟⲛⲟⲭⲟⲥ","ⲙⲉⲓⲗⲓⲟⲛ","ⲓⲱⲧ","ⲣϫⲟⲓⲥ","ϫⲟⲓⲥ","ⲁⲓⲧⲓ","ⲭⲣⲓⲁ","ⲣⲭⲣⲓⲁ","ⲣⲉϥⲣⲭⲣⲓⲁ","ⲫⲟⲣⲓ",
@@ -98,61 +102,96 @@ def make_lexicon_foma():
 	for orig, norm in norms.items():
 		orig = clean(orig).lower()
 		if orig != clean(norm) and orig not in all_norms:
-			if re.search(r'[ⲁⲃⲅⲇⲉⲍⲏⲑⲕⲗⲙⲛⲥⲟⲡⲣⲧⲭⲯⲝⲱⲩϫϥϩϭϣϯ]',orig) is not None:
+			if re.search(r'[ⲁⲃⲅⲇⲉⲍⲏⲑⲕⲗⲙⲛⲥⲟⲡⲣⲧⲭⲯⲝⲱⲩϫϥϩϭϣϯϧ]',orig) is not None:
 				forbidden.add(orig)
 
 
 	# Determiners
-	all_pos_m = ["ⲡⲁ","ⲡⲉⲕ","ⲡⲟⲩ","ⲡⲉϥ","ⲡⲉⲥ","ⲡⲉⲛ","ⲡⲉⲧⲛ","ⲡⲉⲩ"]
+	if dialect == "sahidic":
+		all_pos_m = ["ⲡⲁ","ⲡⲉⲕ","ⲡⲟⲩ","ⲡⲉϥ","ⲡⲉⲥ","ⲡⲉⲛ","ⲡⲉⲧⲛ","ⲡⲉⲩ"]
+	else:
+		all_pos_m = ["ⲡⲁ", "ⲡⲉⲕ", "ⲡⲟⲩ", "ⲡⲉϥ", "ⲡⲉⲥ", "ⲡⲉⲛ", "ⲡⲉⲧⲉⲛ", "ⲡⲉⲩ","ⲫⲁ"]
 	all_pos_f = [p.replace("ⲡ","ⲧ") for p in all_pos_m]
 	all_pos_pl = [p.replace("ⲡ","ⲛ") for p in all_pos_m]
 	all_pos_m = {k:k for k in all_pos_m}
 	all_pos_f = {k:k for k in all_pos_f}
 	all_pos_pl = {k:k for k in all_pos_pl}
 
-	art_m = {"ⲡ":"ⲡ","ⲡⲕⲉ":"ⲡⲕⲉ","ⲟⲩ":"ⲟⲩ","ⲟⲩⲕⲉ":"ⲟⲩⲕⲉ","ⲡⲉⲓ":"ⲡⲉⲓ","ⲡⲉⲉⲓ":"ⲡⲉⲓ"}
-	art_f = {"ⲧ":"ⲧ","ⲧⲕⲉ":"ⲧⲕⲉ","ⲟⲩ":"ⲟⲩ","ⲟⲩⲕⲉ":"ⲟⲩⲕⲉ","ⲧⲉⲓ":"ⲧⲉⲓ","ⲧⲉⲉⲓ":"ⲧⲉⲓ"}
-	art_pl = {"ⲛ":"ⲛ","ⲛⲕⲉ":"ⲛⲕⲉ","ϩⲉⲛ":"ϩⲉⲛ","ϩⲉⲛⲕⲉ":"ϩⲉⲛⲕⲉ","ⲛⲉⲓ":"ⲛⲉⲓ","ⲛⲉⲉⲓ":"ⲛⲉⲓ"}
+	if dialect == "sahidic":
+		art_m = {"ⲡ":"ⲡ","ⲡⲕⲉ":"ⲡⲕⲉ","ⲟⲩ":"ⲟⲩ","ⲟⲩⲕⲉ":"ⲟⲩⲕⲉ","ⲡⲉⲓ":"ⲡⲉⲓ","ⲡⲉⲉⲓ":"ⲡⲉⲓ"}
+		art_f = {"ⲧ":"ⲧ","ⲧⲕⲉ":"ⲧⲕⲉ","ⲟⲩ":"ⲟⲩ","ⲟⲩⲕⲉ":"ⲟⲩⲕⲉ","ⲧⲉⲓ":"ⲧⲉⲓ","ⲧⲉⲉⲓ":"ⲧⲉⲓ"}
+		art_pl = {"ⲛ":"ⲛ","ⲛⲕⲉ":"ⲛⲕⲉ","ϩⲉⲛ":"ϩⲉⲛ","ϩⲉⲛⲕⲉ":"ϩⲉⲛⲕⲉ","ⲛⲉⲓ":"ⲛⲉⲓ","ⲛⲉⲉⲓ":"ⲛⲉⲓ"}
+	else:
+		art_m = {"ⲡ":"ⲡ","ⲡⲕⲉ":"ⲡⲕⲉ","ⲟⲩ":"ⲟⲩ","ⲟⲩⲕⲉ":"ⲟⲩⲕⲉ","ⲡⲁⲓ":"ⲡⲁⲓ","ⲡⲓ":"ⲡⲓ"}
+		art_f = {"ⲧ":"ⲧ","ⲧⲕⲉ":"ⲧⲕⲉ","ⲟⲩ":"ⲟⲩ","ⲟⲩⲕⲉ":"ⲟⲩⲕⲉ","ⲧⲁⲓ":"ⲧⲁⲓ","ϯ":"ϯ"}
+		art_pl = {"ⲛ":"ⲛ","ⲛⲕⲉ":"ⲛⲕⲉ","ϩⲁⲛ":"ϩⲁⲛ","ϩⲁⲛⲕⲉ":"ϩⲁⲛⲕⲉ","ⲛⲁⲓ":"ⲛⲁⲓ","ⲛⲓ":"ⲛⲓ"}
 
 	art_m.update(all_pos_m)
 	art_f.update(all_pos_f)
 	art_pl.update(all_pos_pl)
-	art_pl_r = {"ⲣ":"ⲛ"}
-	art_pl_l = {"ⲗ":"ⲛ"}
-	art_pl_b = {"ⲃ":"ⲛ"}
+
+	if dialect == "sahidic":
+		art_pl_r = {"ⲣ":"ⲛ"}
+		art_pl_l = {"ⲗ":"ⲛ"}
+		art_pl_b = {"ⲃ":"ⲛ"}
+	else:
+		art_pl_r = art_pl_l = art_pl_b = {}
 
 	art_m_long = {"ⲡⲉ":"ⲡⲉ"}
 	art_f_long = {"ⲧⲉ":"ⲧⲉ"}
 	art_pl_long = {"ⲛⲉ":"ⲛⲉ"}
 
-	art_theta = {"ⲑ":"ⲧ"}
-	art_eth = {"ⲉⲑ":"ⲉⲧ","ⲡⲉⲑ":"ⲡⲉⲧ","ⲛⲉⲑ":"ⲛⲉⲧ","ⲧⲉⲑ":"ⲧⲉⲧ"}
-	art_phi = {"ⲫ":"ⲡ"}
+	if dialect == "sahidic":
+		art_theta = {"ⲑ":"ⲧ"}
+		art_eth = {"ⲉⲑ":"ⲉⲧ","ⲡⲉⲑ":"ⲡⲉⲧ","ⲛⲉⲑ":"ⲛⲉⲧ","ⲧⲉⲑ":"ⲧⲉⲧ"}
+		art_phi = {"ⲫ":"ⲡ"}
+	else:
+		art_theta = {"ⲑ":"ⲑ"}
+		art_eth = {}
+		art_phi = {"ⲫ":"ⲫ"}
+
 
 	# Converters and initial je
-	conv = {"ⲉⲣⲉ":"ⲉⲣⲉ","ⲛⲉⲣⲉ":"ⲛⲉⲣⲉ","ⲉⲧⲉⲣⲉ":"ⲉⲧⲉⲣⲉ"}
-	conv_short = {"ⲉ":"ⲉ","ⲛⲉ":"ⲛⲉ"}
-	et = {"ⲉⲧ":"ⲉⲧ"}
-	je = {"ϫⲉ":"ϫⲉ"}
-	na = {"ⲛⲁ":"ⲛⲁ"}
-	ta = {"ⲧⲁ":"ⲧⲁ"}
+	if dialect == "sahidic":
+		conv = {"ⲉⲣⲉ":"ⲉⲣⲉ","ⲛⲉⲣⲉ":"ⲛⲉⲣⲉ","ⲉⲧⲉⲣⲉ":"ⲉⲧⲉⲣⲉ"}
+		conv_short = {"ⲉ":"ⲉ","ⲛⲉ":"ⲛⲉ"}
+		et = {"ⲉⲧ":"ⲉⲧ"}
+		je = {"ϫⲉ":"ϫⲉ"}
+		na = {"ⲛⲁ":"ⲛⲁ"}
+		ta = {"ⲧⲁ":"ⲧⲁ"}
+	else:
+		conv = {"ⲉⲣⲉ":"ⲉⲣⲉ","ⲛⲁⲣⲉ":"ⲛⲁⲣⲉ","ⲁⲣⲉ":"ⲁⲣⲉ","ⲉⲧⲉ":"ⲉⲧⲉ"}
+		conv_short = {"ⲉ":"ⲉ","ⲛⲁ":"ⲛⲁ","ⲁ":"ⲁ"}
+		et = {"ⲉⲧ":"ⲉⲧ","ⲉⲑ":"ⲉⲑ"}
+		je = {"ϫⲉ":"ϫⲉ"}
+		na = {"ⲛⲁ":"ⲛⲁ"}
+		ta = {"ⲉⲧⲁ":"ⲉⲧⲁ"}
 
 	# Prepositions
-	prep = ["ⲉ","ⲉⲧⲃⲉ","ϣⲁ","ⲛⲥⲁ","ⲕⲁⲧⲁ","ⲙⲛ","ⲁϫⲛ","ⲛⲧⲉ","ⲛⲃⲗ","ⲉⲣⲁⲧ","ϩⲁ","ⲡⲁⲣⲁ","ⲛⲁ","ⲛⲧⲉ","ⲛϭⲓ","ⲭⲱⲣⲓⲥ","ϣⲉ"]  # not nqi, Se not really a prep
-	prep_m = ["ⲙ","ϩⲁⲧⲙ","ϩⲓⲣⲙ","ϩⲙ","ϩⲓⲧⲙ","ϩⲓϫⲙ","ⲉϫⲙ"]
-	prep_n = ["ⲛ","ϩⲁⲧⲛ","ϩⲓⲣⲛ","ϩⲛ","ϩⲓⲧⲛ","ϩⲓϫⲛ","ⲉϫⲛ"]
-	prep = prep + prep_n
+	if dialect=="sahidic":
+		prep = ["ⲉ","ⲉⲧⲃⲉ","ϣⲁ","ⲛⲥⲁ","ⲕⲁⲧⲁ","ⲙⲛ","ⲁϫⲛ","ⲛⲧⲉ","ⲛⲃⲗ","ⲉⲣⲁⲧ","ϩⲁ","ⲡⲁⲣⲁ","ⲛⲁ","ⲛⲧⲉ","ⲛϭⲓ","ⲭⲱⲣⲓⲥ","ϣⲉ"]  # not nqi, Se not really a prep
+		prep_m = ["ⲙ","ϩⲁⲧⲙ","ϩⲓⲣⲙ","ϩⲙ","ϩⲓⲧⲙ","ϩⲓϫⲙ","ⲉϫⲙ"]
+		prep_n = ["ⲛ","ϩⲁⲧⲛ","ϩⲓⲣⲛ","ϩⲛ","ϩⲓⲧⲛ","ϩⲓϫⲛ","ⲉϫⲛ"]
+		prep = prep + prep_n
 
-	prep_no_tn ={"ϩⲓ":"ϩⲓ"}
+		prep_no_tn ={"ϩⲓ":"ϩⲓ"}
 
-	ppos_f = {"ⲧⲕ̄":"ⲧⲉⲕ","ⲧϥ̄":"ⲧⲉϥ","ⲧⲛ":"ⲧⲉⲛ"}  # watch out for hitn- becoming hi-ten-, e-ten, n-ten
-	ppos_m = {"ⲡⲕ̄":"ⲡⲉⲕ","ⲡϥ̄":"ⲡⲉϥ","ⲡⲛ̄":"ⲡⲉⲛ"}
-	ppos_pl = {"ⲛⲕ̄":"ⲛⲉⲕ"}  # skip "ⲛⲛ̄":"ⲛⲉⲛ" since it can be normal n|n|-
-	nf = {"ⲛϥ̄":"ⲛⲉϥ"}  # Spectial entry for nf- to prevent overgeneration for actual conjunctive n|f|sOtm
+		ppos_f = {"ⲧⲕ̄":"ⲧⲉⲕ","ⲧϥ̄":"ⲧⲉϥ","ⲧⲛ":"ⲧⲉⲛ"}  # watch out for hitn- becoming hi-ten-, e-ten, n-ten
+		ppos_m = {"ⲡⲕ̄":"ⲡⲉⲕ","ⲡϥ̄":"ⲡⲉϥ","ⲡⲛ̄":"ⲡⲉⲛ"}
+		ppos_pl = {"ⲛⲕ̄":"ⲛⲉⲕ"}  # skip "ⲛⲛ̄":"ⲛⲉⲛ" since it can be normal n|n|-
+		nf = {"ⲛϥ̄":"ⲛⲉϥ"}  # Spectial entry for nf- to prevent overgeneration for actual conjunctive n|f|sOtm
 
-	art_m.update(ppos_m)
-	art_f.update(ppos_f)
-	art_pl.update(ppos_pl)
+		art_m.update(ppos_m)
+		art_f.update(ppos_f)
+		art_pl.update(ppos_pl)
+	else:
+		prep = ["ⲉ", "ⲉⲑⲃⲉ", "ϣⲁ", "ⲛⲥⲁ", "ⲕⲁⲧⲁ", "ⲛⲉⲙ", "ⲁϫⲉⲛ", "ⲛⲧⲉ", "ⲛⲃⲏⲗ", "ⲉⲣⲁⲧ", "ϩⲁ", "ϧⲁ", "ⲡⲁⲣⲁ", "ⲛⲁ", "ⲛⲧⲉ", "ⲛϫⲉ",
+				"ⲭⲱⲣⲓⲥ", "ϣⲉ"]  # not nqi, Se not really a prep
+		prep_m = ["ⲙ", "ϩⲁⲧⲉⲙ", "ϩⲓⲣⲉⲙ", "ϩⲓⲧⲉⲙ", "ϩⲓϫⲉⲙ", "ⲉϫⲉⲙ"]
+		prep_n = ["ⲛ", "ϩⲁⲧⲉⲛ", "ϩⲓⲣⲉⲛ", "ϧⲉⲛ", "ϩⲓⲧⲉⲛ", "ϩⲓϫⲉⲛ", "ⲉϫⲉⲛ", "ⲓⲥϫⲉⲛ", "ⲥⲁ", "ⲉⲥⲕⲉⲛ"]
+		prep = prep + prep_n
+
+		prep_no_tn = {"ϩⲓ": "ϩⲓ"}
 
 	# Nouns
 	noun_f = set(["ϩⲓⲙⲉ","ⲙⲏⲧⲉ","ⲙⲓⲛⲉ","ϭⲟⲙ","ⲥⲁⲣⲝ","ϩⲉ","ⲉⲡⲓⲥⲧⲟⲗⲏ","ⲉⲕⲕⲗⲏⲥⲓⲁ","ⲙⲛⲧⲣⲣⲟ","ϩⲏ","ⲡⲟⲣⲛⲉⲓⲁ","ⲡⲟⲣⲛⲏ","ⲯⲩⲭⲏ","ⲙⲁⲁⲩ","ⲕⲣⲓⲥⲓⲥ","ϩⲟⲧⲉ",
@@ -242,10 +281,15 @@ def make_lexicon_foma():
 	verbs = mutate(r'([^ⲉ]|^)ⲓ',r'\1ⲉⲓ',verbs,{k:v for k,v in verbs.items()},exclude=dict(list(noun_f.items())+list(noun_m.items())+list(immutable_verbs.items())))
 	adv = mutate(r'([^ⲉ]|^)ⲓ',r'\1ⲉⲓ',adv,{k:v for k,v in adv.items()},exclude=dict(list(noun_f.items())+list(noun_m.items())+list(verbs.items())))
 
-	noun_f.update({"ϭⲓⲛ"+v:"ϭⲓⲛ"+v for v in verbs if not v.startswith("ϭⲓⲛ") and v not in foreign})
-	noun_f.update({"ⲙⲛⲧ"+v:"ⲙⲛⲧ"+v for v in verbs if v not in foreign})
-	noun_m.update({"ⲣⲉϥ"+v:"ⲣⲉϥ"+v for v in verbs if v not in foreign})
-	noun_m.update({"ⲣϥ"+v:"ⲣⲉϥ"+v for v in verbs if v not in foreign})
+	if dialect == "sahidic":
+		noun_f.update({"ϭⲓⲛ"+v:"ϭⲓⲛ"+v for v in verbs if not v.startswith("ϭⲓⲛ") and v not in foreign})
+		noun_f.update({"ⲙⲛⲧ"+v:"ⲙⲛⲧ"+v for v in verbs if v not in foreign})
+		noun_m.update({"ⲣⲉϥ"+v:"ⲣⲉϥ"+v for v in verbs if v not in foreign})
+		noun_m.update({"ⲣϥ"+v:"ⲣⲉϥ"+v for v in verbs if v not in foreign})
+	else:
+		noun_f.update({"ϫⲓⲙ"+v:"ϫⲓⲙ"+v for v in verbs if not v.startswith("ϫⲓⲙ") and v not in foreign})
+		noun_f.update({"ⲙⲉⲧ"+v:"ⲙⲉⲧ"+v for v in verbs if v not in foreign})
+		noun_m.update({"ⲣⲉϥ"+v:"ⲣⲉϥ"+v for v in verbs if v not in foreign})
 
 	foreign_nouns = {n:n for n in dict(list(noun_m.items())+list(noun_f.items())) if n in foreign and n not in verbs}
 	foreign_verbs = {v:v for v in verbs if v in foreign and v not in noun_m and v not in noun_f}
@@ -276,6 +320,8 @@ def make_lexicon_foma():
 
 	aberrant_noun_f.update({"ⲙⲛⲧⲉⲣⲟ":"ⲙⲛⲧⲣⲣⲟ","ⲕⲕⲗⲏⲥⲓⲁ":"ⲉⲕⲕⲗⲏⲥⲓⲁ","ⲙⲛⲧⲙⲟⲛⲟⲭⲟⲥ":"ⲙⲛⲧⲙⲟⲛⲁⲭⲟⲥ"})
 	aberrant_noun_m.update({"ⲉⲣⲟ":"ⲣⲣⲟ","ⲓⲏⲗ":"ⲓⲥⲣⲁⲏⲗ","ⲏⲉⲓ":"ⲏⲓ","ⲟⲩⲣⲏⲏⲧⲉ":"ⲟⲩⲉⲣⲏⲧⲉ","ϫⲥ":"ϫⲟⲉⲓⲥ","ⲉⲓⲉⲣⲟ":"ⲓⲉⲣⲟ","ⲙⲟⲛⲟⲭⲟⲥ":"ⲙⲟⲛⲁⲭⲟⲥ","ⲣⲁⲁⲧ":"ⲣⲁⲧ"})
+	if dialect == "bohairic":
+		aberrant_noun_m.update({"ϭⲥ": "ϭⲟⲉⲓⲥ"})
 	aberrant_noun_m.update({"ⲭⲣⲥ":"ⲭⲣⲓⲥⲧⲟⲥ","ⲭⲥ":"ⲭⲣⲓⲥⲧⲟⲥ"})
 
 	names["ⲓⲥ"] = "ⲓⲏⲥⲟⲩⲥ"
@@ -308,21 +354,32 @@ def make_lexicon_foma():
 	bi_subj["ⲡⲉϯ"]="ⲡⲉⲧⲓ"
 	bi_subj["ⲧⲉⲧⲉⲓ"]="ⲧⲉⲧⲓ"
 
-	caus = {"ⲧⲣⲉ":"ⲧⲣⲉ","ⲧⲣ":"ⲧⲣⲉ"}
-	inf_mark = {"ⲉ":"ⲉ","ⲙⲛⲛⲥⲁ":"ⲙⲛⲛⲥⲁ"}
-	tri_aux = {"ⲁ":"ⲁ","ⲙⲉ":"ⲙⲉ","ⲙⲡ":"ⲙⲡ","ϣⲁ":"ϣⲁ"}
-	tri_nom = {"ⲁ":"ⲁ","ⲙⲉⲣⲉ":"ⲙⲉⲣⲉ","ⲙⲡⲉ":"ⲙⲡⲉ","ϣⲁⲣⲉ":"ϣⲁⲣⲉ","ⲉⲣϣⲁⲛ":"ⲉⲣϣⲁⲛ","ⲣϣⲁⲛ":"ⲉⲣϣⲁⲛ","ⲟⲩⲛ":"ⲟⲩⲛ","ⲩⲛ":"ⲩⲛ","ⲙⲛ":"ⲙⲛ","ϣⲁⲛⲧⲉ":"ϣⲁⲛⲧⲉ"}
-	tri_subj = {"ⲓ":"ⲓ","ⲕ":"ⲕ","ϥ":"ϥ","ⲥ":"ⲥ","ⲛ":"ⲛ","ⲧⲉⲧⲛ":"ⲧⲉⲧⲛ","ⲩ":"ⲩ","ⲟⲩ":"ⲟⲩ"}
-	ppero = {"ⲓ":"ⲓ","ⲕ":"ⲕ","ϥ":"ϥ","ⲥ":"ⲥ","ⲛ":"ⲛ","ⲧⲉⲧⲛ":"ⲧⲉⲧⲛ","ⲩ":"ⲩ","ⲟⲩ":"ⲟⲩ","ⲧ":"ⲧ"}
-	circum1 = {"ⲉ":"ⲉ"}
-	circum2 = {"ϣⲁⲛ":"ϣⲁⲛ","ⲉ":"ⲉ",}
+	if dialect == "sahidic":
+		caus = {"ⲧⲣⲉ":"ⲧⲣⲉ","ⲧⲣ":"ⲧⲣⲉ"}
+		inf_mark = {"ⲉ":"ⲉ","ⲙⲛⲛⲥⲁ":"ⲙⲛⲛⲥⲁ"}
+		tri_aux = {"ⲁ":"ⲁ","ⲙⲉ":"ⲙⲉ","ⲙⲡ":"ⲙⲡ","ϣⲁ":"ϣⲁ"}
+		tri_nom = {"ⲁ":"ⲁ","ⲙⲉⲣⲉ":"ⲙⲉⲣⲉ","ⲙⲡⲉ":"ⲙⲡⲉ","ϣⲁⲣⲉ":"ϣⲁⲣⲉ","ⲉⲣϣⲁⲛ":"ⲉⲣϣⲁⲛ","ⲣϣⲁⲛ":"ⲉⲣϣⲁⲛ","ⲟⲩⲛ":"ⲟⲩⲛ","ⲩⲛ":"ⲩⲛ","ⲙⲛ":"ⲙⲛ","ϣⲁⲛⲧⲉ":"ϣⲁⲛⲧⲉ"}
+		tri_subj = {"ⲓ":"ⲓ","ⲕ":"ⲕ","ϥ":"ϥ","ⲥ":"ⲥ","ⲛ":"ⲛ","ⲧⲉⲧⲛ":"ⲧⲉⲧⲛ","ⲩ":"ⲩ","ⲟⲩ":"ⲟⲩ"}
+		ppero = {"ⲓ":"ⲓ","ⲕ":"ⲕ","ϥ":"ϥ","ⲥ":"ⲥ","ⲛ":"ⲛ","ⲧⲉⲧⲛ":"ⲧⲉⲧⲛ","ⲩ":"ⲩ","ⲟⲩ":"ⲟⲩ","ⲧ":"ⲧ"}
+		circum1 = {"ⲉ":"ⲉ"}
+		circum2 = {"ϣⲁⲛ":"ϣⲁⲛ","ⲉ":"ⲉ",}
+	else:
+		caus = {"ⲑⲣⲉ":"ⲑⲣⲉ","ⲑⲣ":"ⲑⲣ"}
+		inf_mark = {"ⲉ":"ⲉ","ⲙⲉⲛⲉⲛⲥⲁ":"ⲙⲉⲛⲉⲛⲥⲁ"}
+		tri_aux = {"ⲁ":"ⲁ","ⲙⲉ":"ⲙⲉ","ⲙⲡⲁ":"ⲙⲡⲁ","ⲙⲡⲉ":"ⲙⲡⲉ","ϣⲁ":"ϣⲁ"}
+		tri_nom = {"ⲁ":"ⲁ","ⲙⲡⲁⲣⲉ":"ⲙⲡⲁⲣⲉ","ⲙⲡⲉ":"ⲙⲡⲉ","ϣⲁⲣⲉ":"ϣⲁⲣⲉ","ⲁⲣⲉϣⲁⲛ":"ⲁⲣⲉϣⲁⲛ","ϣⲁⲛⲧⲉ":"ϣⲁⲛⲧⲉ"}
+		tri_subj = {"ⲓ":"ⲓ","ⲕ":"ⲕ","ϥ":"ϥ","ⲥ":"ⲥ","ⲛ":"ⲛ","ⲧⲉⲧⲉⲛ":"ⲧⲉⲧⲉⲛ","ⲩ":"ⲩ","ⲟⲩ":"ⲟⲩ"}
+		ppero = {"ⲓ":"ⲓ","ⲕ":"ⲕ","ϥ":"ϥ","ⲥ":"ⲥ","ⲛ":"ⲛ","ⲧⲉⲧⲉⲛ":"ⲧⲉⲧⲉⲛ","ⲩ":"ⲩ","ⲟⲩ":"ⲟⲩ","ⲧ":"ⲧ"}
+		circum1 = {"ⲁ":"ⲁ","ⲉ":"ⲉ"}
+		circum2 = {"ϣⲁⲛ":"ϣⲁⲛ","ⲉ":"ⲉ"}
 
 	pre_nom_verb = {"ϯ":"ϯ","ⲣ":"ⲣ","ϫⲓ":"ϫⲓ"}
 
 	# Ti mutations
-	noun_m = mutate("ϯ","ⲧⲓ",{k:v for k,v in noun_m.items() if "ϯ" in k},noun_m,exclude=verbs)
-	noun_f = mutate("ϯ","ⲧⲓ",{k:v for k,v in noun_f.items() if "ϯ" in k},noun_f,exclude=verbs)
-	verbs = mutate("ϯ","ⲧⲓ",{k:v for k,v in verbs.items() if "ϯ" in k},verbs,exclude=dict(list(noun_m.items())+list(noun_f.items())))
+	if dialect == "sahidic":
+		noun_m = mutate("ϯ","ⲧⲓ",{k:v for k,v in noun_m.items() if "ϯ" in k},noun_m,exclude=verbs)
+		noun_f = mutate("ϯ","ⲧⲓ",{k:v for k,v in noun_f.items() if "ϯ" in k},noun_f,exclude=verbs)
+		verbs = mutate("ϯ","ⲧⲓ",{k:v for k,v in verbs.items() if "ϯ" in k},verbs,exclude=dict(list(noun_m.items())+list(noun_f.items())))
 
 	norm_data = io.open(data_dir + "norm_table.tab",encoding="utf8").read().strip().replace("\r","").split("\n")
 	norms = dict((line.split("\t")) for line in norm_data if "\t" in line)
