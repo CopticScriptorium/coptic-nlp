@@ -3,6 +3,7 @@ flair_pos_tagger.py
 """
 
 from argparse import ArgumentParser
+import flair
 from flair.data import Corpus, Sentence
 from flair.datasets import ColumnCorpus
 from flair.embeddings import OneHotEmbeddings, TransformerWordEmbeddings, StackedEmbeddings, WordEmbeddings
@@ -14,24 +15,36 @@ from depedit import DepEdit
 from random import seed, shuffle
 seed(42)
 
+flair_version = int(flair.__version__.split(".")[1])
+
 script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 model_dir = script_dir + ".." + os.sep + "lib" + os.sep
-CONLLU_ROOT = "UD_Coptic" + os.sep  # Path to conllu
-PUB_CORPORA = "Corpora" + os.sep  # Path to CopticScriptorium/Corpora
+GIT_ROOT = ""  # Path to parent of clones of CopticScriptorium/Corpora and UniversalDependencies/UD_Coptic-Scriptorium (and/or Bohairic)
+CONLLU_ROOT = GIT_ROOT + "UD_Coptic-Scriptorium" + os.sep  # Path to conllu
+PUB_CORPORA = GIT_ROOT + "corpora" + os.sep + "pub_corpora" + os.sep  # Path to CopticScriptorium/Corpora
 TARGET_FEATS = {"Gender","Number","Tense","VerbForm","Voice"}
+
 
 class FlairTagger:
 
-    def __init__(self, train=False, morph=False):
-        if not train:
+    def __init__(self, train=False, morph=False, seg=False, lang="cop"):
+        global model_dir
+        lang = "boh" if lang.lower().startswith("boh") else "cop"
+        self.dialect = lang
+        if seg:
+            model_dir = "models" + os.sep
+            self.model = SequenceTagger.load(model_dir + lang + ".seg")
+        elif not train:
             if morph:
-                self.model = SequenceTagger.load(model_dir + "cop.morph")
+                self.model = SequenceTagger.load(model_dir + lang + ".morph")
             else:
-                self.model = SequenceTagger.load(model_dir + "cop.flair")
+                self.model = SequenceTagger.load(model_dir + lang + ".flair")
 
-    @staticmethod
-    def make_seg_data():
+    def make_seg_data(self):
         # TODO: adapt to Coptic
+        global CONLLU_ROOT
+        global GIT_ROOT
+
         prefixes = {"ב","כ","מ","ל","ה",}
         suffixes = {"ו","ה","י","ך","ם","ן","הם","הן","כם","כן","יו"}
         def segs2tag(segs):
@@ -119,6 +132,8 @@ class FlairTagger:
                     labels = []
             return "\n\n".join(sents)
 
+        if self.dialect == "boh":
+            CONLLU_ROOT = GIT_ROOT + "UD_Bohairic" + os.sep
         files = glob(CONLLU_ROOT + "seg" + os.sep + "*.conllu")
         data = ""
         for file_ in files:
@@ -276,6 +291,8 @@ class FlairTagger:
                 return "akk"
             elif lang == "Aramaic":
                 return "arc"
+            elif lang == "Arabic":
+                return "ara"
             elif lang == "Persian":
                 return "peo"
             else:
@@ -446,21 +463,31 @@ class FlairTagger:
         conllu = d.run_depedit(conll.split("\n"))
         return conllu.strip() + "\n\n"
 
-    def make_all_checked(self):
+    def make_all_checked(self, bohairic=False):
         files = glob(PUB_CORPORA + "**" + os.sep + "*.tt",recursive=True)
         all_conllu = []
         for file_ in files:
             sgml = open(file_).read()
             # TODO: fix Mark metadata and update file list for train set
             if 'parsing="gold' in sgml or 'tagging="auto' in sgml or "</translation>" not in sgml \
-                    or "Mark_07" in file_  or "Mark_08" in file_  or "Mark_09" in file_ or "coptic-treebank" in file_:
+                    or "coptic-treebank" in file_:
                 continue
+            if ('Bohairic' in sgml or 'bohairic' in file_):
+                if not bohairic:
+                    continue
+            else:
+                if bohairic:
+                    continue
+
             conllu = self.sgml2conll(sgml,os.path.basename(file_),file_.split(os.sep)[-2])
             all_conllu.append(conllu.strip())
-        with open(script_dir + "non_tb_checked_pos.conllu",'w',encoding="utf8",newline="\n") as f:
+        with open(script_dir + self.dialect + "_non_tb_checked_pos.conllu",'w',encoding="utf8",newline="\n") as f:
             f.write("\n\n".join(all_conllu) + "\n\n")
 
     def make_pos_data(self, all_checked=True, tags=False):
+        global CONLLU_ROOT
+        global GIT_ROOT
+
         def filter_morph(feats):
             if feats == "_":
                 return "O"
@@ -475,14 +502,17 @@ class FlairTagger:
                 else:
                     return "O"
 
+        if self.dialect == "boh":
+            CONLLU_ROOT = GIT_ROOT + "UD_Bohairic" + os.sep
+
         files = glob(CONLLU_ROOT + "*.conllu")
         train = test = dev = ""
         super_tok_len = 0
         super_tok_start = False
         suff = "_morph" if tags else ""
         if all_checked:
-            self.make_all_checked()
-            files.append(script_dir + "non_tb_checked_pos.conllu")
+            self.make_all_checked(bohairic=self.dialect=="boh")
+            files.append(script_dir + self.dialect + "_non_tb_checked_pos.conllu")
         for file_ in files:
             output = []
             lines = io.open(file_,encoding="utf8").readlines()
@@ -521,11 +551,11 @@ class FlairTagger:
                 test += "\n".join(output)
             else:
                 train += "\n".join(output)
-        with io.open("tagger" + os.sep + "cop_train"+suff+".txt", 'w', encoding="utf8",newline="\n") as f:
+        with io.open("tagger" + os.sep + self.dialect + "_train"+suff+".txt", 'w', encoding="utf8",newline="\n") as f:
             f.write(train)
-        with io.open("tagger" + os.sep + "cop_dev"+suff+".txt", 'w', encoding="utf8",newline="\n") as f:
+        with io.open("tagger" + os.sep + self.dialect + "_dev"+suff+".txt", 'w', encoding="utf8",newline="\n") as f:
             f.write(dev)
-        with io.open("tagger" + os.sep + "cop_test"+suff+".txt", 'w', encoding="utf8",newline="\n") as f:
+        with io.open("tagger" + os.sep + self.dialect + "_test"+suff+".txt", 'w', encoding="utf8",newline="\n") as f:
             f.write(test)
 
     def train(self, cuda_safe=True, positional=True, tags=False, seg=False):
@@ -561,9 +591,9 @@ class FlairTagger:
 
         corpus: Corpus = ColumnCorpus(
             data_folder, columns,
-            train_file="cop_train"+suff+".txt",
-            test_file="cop_test"+suff+".txt",
-            dev_file="cop_dev"+suff+".txt",
+            train_file=self.dialect + "_train"+suff+".txt",
+            test_file=self.dialect + "_test"+suff+".txt",
+            dev_file=self.dialect + "_dev"+suff+".txt",
         )
 
         # 2. what tag do we want to predict?
@@ -572,20 +602,34 @@ class FlairTagger:
             tag_type = "seg"
 
         # 3. make the tag dictionary from the corpus
-        tag_dictionary = corpus.make_tag_dictionary(tag_type=tag_type)
+        if flair_version > 8:
+            tag_dictionary = corpus.make_label_dictionary(label_type=tag_type)
+        else:
+            tag_dictionary = corpus.make_tag_dictionary(tag_type=tag_type)
         print(tag_dictionary)
 
         # 4. initialize embeddings
         #embeddings: TransformerWordEmbeddings = TransformerWordEmbeddings(data_folder + os.sep + 'bert_2_60_5',)
-        embeddings: TransformerWordEmbeddings = TransformerWordEmbeddings('lgessler/coptic-bert-small-uncased',)
-        w2v: WordEmbeddings = WordEmbeddings(script_dir + ".." + os.sep + "data" + os.sep + "coptic_50d.vec.gensim")
+        #embeddings: TransformerWordEmbeddings = TransformerWordEmbeddings('lgessler/coptic-bert-small-uncased',)
+
+        if self.dialect == "cop":
+            w2v: WordEmbeddings = WordEmbeddings(script_dir + ".." + os.sep + "data" + os.sep + "coptic_50d.vec.gensim")
+            embeddings: TransformerWordEmbeddings = TransformerWordEmbeddings('lgessler/microbert-coptic-mx', )
+        else:
+            w2v: WordEmbeddings = WordEmbeddings(script_dir + ".." + os.sep + "data.b" + os.sep + "bohairic_50d.vec.gensim")
+            #embeddings: TransformerWordEmbeddings = TransformerWordEmbeddings(script_dir + ".." + os.sep + "data.b" + os.sep + "bohmbert", )
+            embeddings: TransformerWordEmbeddings = TransformerWordEmbeddings('amir-zeldes/bohmbert-m')
+
         if positional:
-            positions: OneHotEmbeddings = OneHotEmbeddings(corpus=corpus, field="super", embedding_length=5)
+            if flair_version > 8:
+                positions: OneHotEmbeddings = OneHotEmbeddings.from_corpus(corpus, field='super', embedding_length=5)
+            else:
+                positions: OneHotEmbeddings = OneHotEmbeddings(corpus=corpus, field="super", embedding_length=5)
             if tags:
                 tag_emb: OneHotEmbeddings = OneHotEmbeddings(corpus=corpus, field="pos", embedding_length=17)
                 stacked: StackedEmbeddings = StackedEmbeddings([embeddings,positions,tag_emb])
             else:
-                stacked: StackedEmbeddings = StackedEmbeddings([embeddings, positions])#, w2v])
+                stacked: StackedEmbeddings = StackedEmbeddings([embeddings, positions, w2v])
         elif not seg:
             if tags:
                 tag_emb: OneHotEmbeddings = OneHotEmbeddings(corpus=corpus, field="pos", embedding_length=17)
@@ -609,10 +653,10 @@ class FlairTagger:
         trainer: ModelTrainer = ModelTrainer(tagger, corpus)
 
         # 7. start training
-        trainer.train(script_dir + "pos-dependencies" + os.sep + 'flair_tagger',
+        trainer.fine_tune(script_dir + "pos-dependencies" + os.sep + 'flair_tagger',
                       learning_rate=0.1,
                       mini_batch_size=15,
-                      max_epochs=150)
+                      max_epochs=40)
 
     def predict(self, in_path=None, in_format="flair", out_format="conllu", as_text=False, tags=False, seg=False,
                 norm="norm", group="norm_group", sent="translation"):
@@ -637,7 +681,11 @@ class FlairTagger:
             if len(line.strip())==0 or \
                     (in_format=="sgml" and ("</" + sent + ">" in line or (len(group_breaks)>200 and "</" + group + ">" in line))):
                 if len(words) > 0:
-                    sents.append(Sentence(" ".join(words),use_tokenizer=lambda x:x.split(" ")))
+                    if flair_version > 8:
+                        tokenizer = False
+                    else:
+                        tokenizer = lambda x:x.split(" ")
+                    sents.append(Sentence(" ".join(words),use_tokenizer=tokenizer))
                     if in_format == "sgml":  # Compute BG positions
                         for i, p in enumerate(group_breaks):
                             next_p = 0 if i == len(group_breaks) - 1 else group_breaks[i+1]
@@ -712,7 +760,10 @@ class FlairTagger:
                         true_pos.append(line.split("\t")[4])
 
         # predict tags and print
-        model.predict(sents)#, all_tag_prob=True)
+        if flair_version > 8:
+            model.predict(sents, force_token_predictions=True, return_probabilities_for_all_classes=True)
+        else:
+            model.predict(sents)#, all_tag_prob=True)
 
         preds = []
         scores = []
@@ -720,14 +771,23 @@ class FlairTagger:
         for i, sent in enumerate(sents):
             for tok in sent.tokens:
                 if tags:
-                    pred = tok.labels[2].value
-                    score = str(tok.labels[2].score)
+                    if flair_version > 8:
+                        pred = tok.labels[2].value if len(tok.labels)>0 else "O"
+                        score = tok.labels[2].score if len(tok.labels) > 0 else "1.0"
+                    else:
+                        pred = tok.labels[2].value
+                        score = str(tok.labels[2].score)
                 else:
-                    pred = tok.labels[1].value
-                    score = str(tok.labels[1].score)
+                    if flair_version > 8:
+                        pred = tok.labels[-1].value if len(tok.labels)>0 else "O"
+                        score = tok.labels[-1].score if len(tok.labels) > 0 else "1.0"
+                    else:
+                        pred = tok.labels[1].value
+                        score = str(tok.labels[1].score)
                 preds.append(pred)
                 scores.append(score)
                 words.append(tok.text)
+                tok.clear_embeddings()  # Without this, there will be an OOM issue
 
         toknum = 0
         output = []
@@ -774,13 +834,14 @@ if __name__ == "__main__":
     p.add_argument("-s","--seg",action="store_true",help="Whether to train segmentation instead of tagging")
     p.add_argument("-i","--input_format",choices=["flair","conllu"],default="flair",help="flair two column training format or conllu")
     p.add_argument("-o","--output_format",choices=["flair","conllu","xg"],default="conllu",help="flair two column training format or conllu")
+    p.add_argument("-d","--dialect",choices=["sahidic","bohairic"],default="sahidic",help="dialect (Sahidic or Bohairic)")
 
     opts = p.parse_args()
 
     if opts.mode == "train":
-        tagger = FlairTagger(train=True)
+        tagger = FlairTagger(train=True, lang=opts.dialect)
         tagger.train(positional=opts.positional_embeddings, tags=opts.tag_embeddings, seg=opts.seg)
     else:
-        tagger = FlairTagger(train=False)
+        tagger = FlairTagger(train=False, lang=opts.dialect)
         tagger.predict(in_format=opts.input_format, out_format=opts.output_format,
                 in_path=opts.file)
