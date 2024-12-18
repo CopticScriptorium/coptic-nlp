@@ -8,7 +8,7 @@ PY3 = sys.version_info[0] == 3
 
 script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 eval_dir = script_dir + ".." + os.sep
-bohairic_corpora = pub_corpora = "C:\\Uni\\Coptic\\git\\corpora\\pub_corpora" + os.sep  # Path to clone of CopticScriptorium/corpora
+bohairic_corpora = pub_corpora = "corpora" + os.sep  # Path to clone of CopticScriptorium/corpora
 
 try:
     from fpaths import corpora_dir, ud_dir
