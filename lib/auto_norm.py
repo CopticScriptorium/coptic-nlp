@@ -74,6 +74,8 @@ def normalize(in_data,table_file=None,sahidica=False,method="foma",no_unknown=Tr
 		temp[orig] = max_norm
 	norms = temp
 	norms["ⲉⲣ"] = "ⲉⲣ"  # Prevent incorrect generalization from training data
+	if "ⲃ" in norms:
+		del norms["ⲃ"]  # Risk of normalizing isolated numeral beta like ⲃⲃⲣⲣⲉ -> ⲛ+ⲃⲣⲣⲉ
 
 	lines = [clean(line) for line in in_data.strip().split("\n")]
 	unk_lines = list(set([line for line in lines if line not in norms]))
