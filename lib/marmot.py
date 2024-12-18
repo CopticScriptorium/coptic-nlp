@@ -134,10 +134,13 @@ def marmotify(indata,train=False,sent=None,func=False):
 	return "\n".join(output) + "\n"
 
 
-def tag_marmot(indata,model=None,sent=None,func=False):
+def tag_marmot(indata,model=None,sent=None,func=False,dialect="sahidic"):
 
 	if model is None:
-		model = script_dir+"cop.marmot"
+		if dialect == "bohairic":
+			model = script_dir+"boh.marmot"
+		else:
+			model = script_dir+"cop.marmot"
 
 	if platform.system() == "Windows":
 		tag = ["java","-Dfile.encoding=UTF-8","-Xmx2g","-cp","*;","marmot.morph.cmd.Annotator","-model-file",model,"-test-file","form-index=0,tempfilename","-pred-file","tempfilename2"]
@@ -165,7 +168,10 @@ def train_marmot(train_data,model=None,func=False):
 	train = marmotify(train_data,train=True,func=func)
 
 	if model is None:
-		model = script_dir+"cop.marmot"
+		if dialect == "bohairic":
+			model = script_dir+"boh.marmot"
+		else:
+			model = script_dir+"cop.marmot"
 
 	if platform.system() == "Windows":
 		cmd = ["java","-Xmx4G","-cp","*;","marmot.morph.cmd.Trainer","-train-file","form-index=1,tag-index=2,morph-index=3,tempfilename","-tag-morph","true","-model-file",model]

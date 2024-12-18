@@ -52,7 +52,8 @@ def tt2tagger(tt_string,file_,pos_attr="pos",unit_attr="norm",lemma_attr="lemma"
 	return "\n".join(output)+"\n"
 
 
-def run_eval(train_list, test_list, tagger="tt", retrain=True, postprocess=False):
+def run_eval(train_list, test_list, tagger="tt", retrain=True, postprocess=False,
+			 dialect="sahidic"):
 
 	test = ""
 	for file_ in test_list:
@@ -60,6 +61,7 @@ def run_eval(train_list, test_list, tagger="tt", retrain=True, postprocess=False
 		test += tt2tagger(tt_sgml,file_)
 
 	train = ""
+	sys.stdout.write("Training on " + str(len(train_list)) + " files\n")
 	for file_ in train_list:
 		tt_sgml = io.open(file_,encoding="utf8").read()
 		train += tt2tagger(tt_sgml,file_)
@@ -72,11 +74,11 @@ def run_eval(train_list, test_list, tagger="tt", retrain=True, postprocess=False
 
 	if retrain:
 		if tagger in ["marmot", "ensemble"]:
-			train_marmot(train)
+			train_marmot(train,dialect=dialect)
 		if tagger in ["stanford","ensemble"]:
 			train_stanford(train)
 		if tagger in ["tt","ensemble"]:
-			train_tt(train)
+			train_tt(train,dialect=dialect)
 
 	to_tag = [line.split("\t")[0] for line in test.strip().split("\n")]
 	golds = [line.split("\t") for line in test.strip().split("\n") if "\t" in line]
@@ -110,23 +112,43 @@ def run_eval(train_list, test_list, tagger="tt", retrain=True, postprocess=False
 
 		for i, word in enumerate(words):
 			tag = tags[i]
+
+			# Handle hard-wired exceptionless cases
 			if (word,tag) in mapping:
 				tags[i] = mapping[(word,tag)]
 			elif (word,"*") in mapping:
 				tags[i] = mapping[(word,"*")]
+
+			# Handle long distance dependencies
+			next_5_w = words[i:i + 10]
+			next_5_t = tags[i:i + 10]
+			next_5 = [next_5_w[i] + "/" + next_5_t[i] for i in range(len(next_5_w))]
+			if tag == "CCIRC":
+				if any([t in ["ⲟⲩ/PINT","ⲧⲱⲛ/PINT","ⲧⲱⲛ/ADV","ⲁϣ/PINT","ⲟⲩⲏⲣ/PINT"] for t in next_5]):
+					#pass
+					tags[i] = "CFOC"
+			if tag == "ACONJ" and word == "ⲛ":
+				if any([t =="ⲁⲛ/NEG" for t in next_5]) and not any([t=="ⲧⲁ/PPERS" for t in next_5]):
+					# pass
+					tags[i] = "NEG"
+			if tag == "NEG" and word == "ⲛ":
+				if all([t != "ⲁⲛ/NEG" for t in next_5]):
+					# pass
+					tags[i] = "ACONJ"
 		preds = zip(words,tags)
 
 	errs = defaultdict(int)
 	total = 0
 	correct = 0
 	baseline = 0
+	preds = list(preds)
 	for i, line in enumerate(preds):
 		total += 1
 		tok,pos = line[0],line[1]
 		gold = golds[i][1]
 		if pos != gold:
 			errs[tok + "\t" + gold + "\t"+ pos] += 1
-			#errs[tok + "\t" + gold + "\t"+ pos + "\t" + preds[i-1][0] ] += 1  # Replace this with above for err context
+			#errs[tok + "\t" + gold + "\t"+ pos + "\t" + preds[i-1][0] + " "+tok +" "+ preds[i+1][0]] += 1  # Replace this with above for err context
 		else:
 			correct +=1
 		if gold =="PREP": # Most frequent tag
@@ -145,12 +167,13 @@ def run_eval(train_list, test_list, tagger="tt", retrain=True, postprocess=False
 
 if __name__ == "__main__":
 	p = ArgumentParser()
-	p.add_argument("--train_list",default=None,help="file with one file name per line of TT SGML training files; all files not in test if not supplied")
-	p.add_argument("--test_list",default="test_list.tab",help="file with one file name per line of TT SGML test files")
+	p.add_argument("--train_list",default="ud_train",help="file with one file name per line of TT SGML training files; all files not in test if not supplied")
+	p.add_argument("--test_list",default="ud_test",help="file with one file name per line of TT SGML test files")
 	p.add_argument("--file_dir",default="tt",help="directory with TT SGML files")
-	p.add_argument("--method",default="tt",help="which tagger to use",choices=["tt","marmot","stanford","ensemble"])
-	p.add_argument("--retrain",action="store_true",help="whether to retrain")
-	p.add_argument("--postprocess",action="store_true",help="whether to use replacement table from data/postprocess_tagger.tab")
+	p.add_argument("-m","--method",default="tt",help="which tagger to use",choices=["tt","marmot","stanford","ensemble"])
+	p.add_argument("-r","--retrain",action="store_true",help="whether to retrain")
+	p.add_argument("-p","--postprocess",action="store_true",help="whether to use replacement table from data/postprocess_tagger.tab")
+	p.add_argument("-d","--dialect",default="sahidic",help="dialect of training data",choices=["sahidic","bohairic"])
 
 	opts = p.parse_args()
 
@@ -158,17 +181,18 @@ if __name__ == "__main__":
 		test_list = io.open(opts.test_list,encoding="utf8").read().strip().split("\n")
 		test_list = [script_dir + opts.file_dir + os.sep + f for f in test_list]
 	else:
-		test_list = list_files(opts.test_list)
+		test_list = list_files(opts.test_list,dialect=opts.dialect)
 
 	if opts.train_list is not None:
 		if os.path.isfile(opts.train_list):
 			train_list = io.open(opts.train_list,encoding="utf8").read().strip().split("\n")
 			train_list = [script_dir + opts.file_dir + os.sep + f for f in train_list]
 		else:
-			train_list = list_files(opts.train_list)
+			train_list = list_files(opts.train_list,dialect=opts.dialect)
 	else:
 		train_list = glob(opts.file_dir + os.sep + "*.tt")
 		train_list = [os.path.basename(f) for f in train_list if os.path.basename(f) not in test_list]
 		train_list = [script_dir + opts.file_dir + os.sep + f for f in train_list]
 
-	run_eval(train_list,test_list,tagger=opts.method,retrain=opts.retrain,postprocess=opts.postprocess)
+	run_eval(train_list,test_list,tagger=opts.method,retrain=opts.retrain,
+			 postprocess=opts.postprocess,dialect=opts.dialect)

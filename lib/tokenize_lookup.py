@@ -6,9 +6,12 @@ import os, io, sys
 PY3 = sys.version_info[0] > 2
 
 
-def lookup_tokenize(norms,underscore_oov=False,seg_table=None):
+def lookup_tokenize(norms,underscore_oov=False,seg_table=None,dialect="sahidic"):
 	if seg_table is None:
-		seg_table = os.path.dirname(os.path.realpath(__file__)) + os.sep +".." + os.sep + "data" +os.sep+"segmentation_table.tab"
+		if dialect == "sahidic":
+			seg_table = os.path.dirname(os.path.realpath(__file__)) + os.sep +".." + os.sep + "data" +os.sep+"segmentation_table.tab"
+		else:
+			seg_table = os.path.dirname(os.path.realpath(__file__)) + os.sep + ".." + os.sep + "data.b" + os.sep + "segmentation_table.tab"
 
 	rows = io.open(seg_table,encoding="utf8").read().replace("\r","").strip().split("\n")
 	tuples = [row.split("\t") for row in rows if "\t" in row]
@@ -33,10 +36,11 @@ if __name__ == "__main__":
 	p = ArgumentParser()
 	p.add_argument("infile")
 	p.add_argument("-o","--oov_underscore",action="store_true",help="output underscore for OOV items")
+	p.add_argument("-d","--dialect",default="sahidic",help="dialect of training data",choices=["sahidic","bohairic"])
 	opts = p.parse_args()
 
 	norms = io.open(opts.infile,encoding="utf8").read().replace("\r","").split("\n")
-	tokenized = lookup_tokenize(norms,underscore_oov=opts.oov_underscore)
+	tokenized = lookup_tokenize(norms,underscore_oov=opts.oov_underscore,dialect=opts.dialect)
 	tokenized = "\n".join(tokenized) + "\n"
 	if PY3:
 		sys.stdout.buffer.write(tokenized.encode("utf8"))

@@ -56,14 +56,14 @@ def tt2norm(tt_string,file_,orig_attr="orig_group",unit_attr="norm_group"):
 				if "\t" in orig or "\t" in unit:
 					print("Error at " + str(i))
 					sys.exit()
-				output.append("\t".join([orig,unit]))
+				output.append("\t".join([clean(orig),unit]))
 			except:
 				print(file_,str(i))
 
 	return "\n".join(output)+"\n"
 
 
-def run_eval(train_list, test_list, method="foma"):
+def run_eval(train_list, test_list, method="foma", dialect="sahidic"):
 
 	test = ""
 	for file_ in test_list:
@@ -83,6 +83,16 @@ def run_eval(train_list, test_list, method="foma"):
 
 	#train = train.strip() + "\n" + aug + "\n"
 
+	# Get majority normalization
+	final = defaultdict(lambda : defaultdict(int))
+	for line in train.strip().split("\n"):
+		final[line.split("\t")[0]][line] += 1
+	train = []
+	for key in sorted(final):
+		best = max(iterkeys(final[key]),key=lambda x:final[key][x])
+		train.append(best)
+	train = "\n".join(train)
+
 	with io.open(script_dir + "_tmp_norm_train.tab",'w', encoding="utf8", newline="\n") as f:
 		f.write(train)
 
@@ -93,10 +103,10 @@ def run_eval(train_list, test_list, method="foma"):
 	test_origs = [clean(o) for o in test_origs]
 
 	train_tab = script_dir + "_tmp_norm_train.tab"
-	#train_tab = data_dir+"norm_group.tab" #None
+	#train_tab = data_dir+"norm_table.tab" #None
 	#train_tab = None
 
-	normed = normalize("\n".join(test_origs).strip(),table_file=train_tab,method=method).strip().split("\n")
+	normed = normalize("\n".join(test_origs).strip(),table_file=train_tab,method=method,dialect=dialect).strip().split("\n")
 
 	errs = defaultdict(int)
 	total = 0
@@ -110,7 +120,7 @@ def run_eval(train_list, test_list, method="foma"):
 	for i, auto in enumerate(normed):
 		total += 1
 		if auto != test_norms[i] and not (ignore_single and len(test_origs[i])==1):
-			if "." in test_origs[i] or re.search(r'[ⲁⲃⲅⲇⲉⲍⲏⲑⲕⲗⲙⲛⲥⲟⲡⲣⲧⲭⲯⲝⲱⲩϫϥϩϭϣϯ]',test_origs[i]) is None:  # Punctuation or dot case
+			if "." in test_origs[i] or re.search(r'[ⲁⲃⲅⲇⲉⲍⲏⲑⲕⲗⲙⲛⲥⲟⲡⲣⲧⲭⲯⲝⲱⲩϫϥϩϭϣϯϧ]',test_origs[i]) is None:  # Punctuation or dot case
 				correct_ignore_punct +=1
 			else:
 				errs[test_origs[i] + "\t" + test_norms[i] + "\t"+ auto] += 1
@@ -123,7 +133,7 @@ def run_eval(train_list, test_list, method="foma"):
 		if test_norms[i] == clean(test_origs[i]):
 			trivial += 1
 			trivial_ignore_punct += 1
-		elif "." in test_origs[i] or re.search(r'[ⲁⲃⲅⲇⲉⲍⲏⲑⲕⲗⲙⲛⲥⲟⲡⲣⲧⲭⲯⲝⲱⲩϫϥϩϭϣϯ]',test_origs[i]) is None:  # Punctuation or dot case
+		elif "." in test_origs[i] or re.search(r'[ⲁⲃⲅⲇⲉⲍⲏⲑⲕⲗⲙⲛⲥⲟⲡⲣⲧⲭⲯⲝⲱⲩϫϥϩϭϣϯϧ]',test_origs[i]) is None:  # Punctuation or dot case
 			trivial_ignore_punct += 1
 
 	bg_norm_acc = correct/float(total)
@@ -158,6 +168,7 @@ if __name__ == "__main__":
 	p.add_argument("--test_list",default="test_list.tab",help="file with one file name per line of TT SGML test files, or alias of test set, e.g. 'ud_test'")
 	p.add_argument("--file_dir",default="tt",help="directory with TT SGML files")
 	p.add_argument("--method",default="foma",choices=["foma","re","none"],help="fallback normalizer to use; 'none' just uses lookup")
+	p.add_argument("-d","--dialect",default="sahidic",help="dialect of training data",choices=["sahidic","bohairic"])
 
 	opts = p.parse_args()
 
@@ -178,4 +189,4 @@ if __name__ == "__main__":
 		train_list = [os.path.basename(f) for f in train_list if os.path.basename(f) not in test_list]
 		train_list = [script_dir + opts.file_dir + os.sep + f for f in train_list]
 
-	run_eval(train_list,test_list,method=opts.method)
+	run_eval(train_list,test_list,method=opts.method,dialect=opts.dialect)

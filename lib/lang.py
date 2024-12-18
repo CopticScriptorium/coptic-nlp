@@ -23,7 +23,7 @@ from argparse import ArgumentParser
 import io, os, sys, re
 
 
-def lookup_lang(in_data,lexicon=None,words=False):
+def lookup_lang(in_data,lexicon=None,words=False,tags=None):
 
 	outlines=[]
 	if lexicon is None:
@@ -34,6 +34,10 @@ def lookup_lang(in_data,lexicon=None,words=False):
 	except IOError as e:
 		sys.stderr.write("could not find lexicon file at " + lexicon + "\n")
 		sys.exit(0)
+
+	if tags is not None:
+		tags = tags.strip().split("\n")
+
 	lang_dict = {}
 	min_pref = 100
 	max_pref = 0
@@ -54,7 +58,7 @@ def lookup_lang(in_data,lexicon=None,words=False):
 	if min_pref > max_pref:
 		min_pref = max_pref
 
-	for line in in_data.strip().split("\n"):
+	for lnum, line in enumerate(in_data.strip().split("\n")):
 		line = re.sub(r'^([^\s]+).*',r'\1',line)  # Keep only first column
 		l = ""
 		if line in lang_dict:
@@ -71,6 +75,14 @@ def lookup_lang(in_data,lexicon=None,words=False):
 					if substr in lang_dict:
 						l = lang_dict[substr]
 						break
+		if tags is not None:
+			if tags[lnum] == "PTC" and line == "ⲟⲩⲛ":
+				l = "Greek"  # Particle oun
+			elif line == "ⲟⲩⲧⲉ":
+				if tags[lnum] == "CONJ":
+					l = "Greek"  # Conjunction oute
+				elif tags[lnum] == "PREP":
+					l = ""  # Bohairic preposition oute
 		if not words:
 			outlines.append(l)
 		else:

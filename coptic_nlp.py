@@ -6,7 +6,7 @@ import tempfile
 import subprocess
 from glob import glob
 
-from lib._version import __version__
+from _version import __version__
 from lib.stacked_tokenizer import StackedTokenizer
 from lib.order_meta_tag import reorder
 from lib.reorder_sgml import reorder as reorder_sgml
@@ -94,11 +94,31 @@ def replace_trees(conllu, gold_trees):
 
 
 # Global lookup lemmatizer
-lemmatizer = Lemmatizer(data_dir + "copt_lemma_lex.tab", no_unknown=True)
+lemmatizer = None
 flair_tagger = None
+
+
+def detect_lang(text):
+	# Split text into units agnostic of whether it's XML, TT SGML, plain text with pipes...
+	if "|" in text:
+		text = text.replace("|", "") # Ensure we can see whole bound groups
+	units = re.split(r'[\s"_-]+', text)
+	units = set(units)
+
+	if "ϧ" in text:
+		if "ⲡⲛⲟⲩⲧⲉ" not in units and "ⲁⲩⲱ" not in units:
+			return "bohairic"
+	elif "ⲟⲩⲟϩ" in units and "ⲁⲩⲱ" not in units:
+		return "bohairic"
+	elif "ⲫⲛⲟⲩϯ" in units and "ⲡⲛⲟⲩⲧⲉ" not in units:
+		return "bohairic"
+	return "sahidic"
+
 
 def log_tasks(opts):
 	sys.stderr.write("\nRunning standard tasks:\n" +"="*20 + "\n")
+	if opts.dialect == "auto":
+		sys.stderr.write("o Auto detect dialect\n")
 	if opts.unary:
 		sys.stderr.write("o Binarize unary XML milestone tags\n")
 	if opts.para:
@@ -364,8 +384,12 @@ def extract_conll(conll_string, mark_new_sent=True):
 
 def parse2conllu(parser_output, tagged):
 	output = []
-	tags = [l.split("\t")[1] for l in tagged.split("\n") if "\t" in l]
-	lemmas = [l.split("\t")[2] for l in tagged.split("\n") if "\t" in l]
+	try:
+		tags = [l.split("\t")[1] for l in tagged.split("\n") if "\t" in l]
+		lemmas = [l.split("\t")[2] for l in tagged.split("\n") if "\t" in l]
+	except:
+		sys.stderr.write(tagged)
+		raise IOError("\nUnexpected number of tabs in tagged data line\n")
 	toknum = -1
 	for sent in parser_output.sentences:
 		tid = -1
@@ -446,16 +470,21 @@ def get_entity_offsets(sgml):
 	return sorted(entities,key=lambda x: (x[0],-x[1]))
 
 
-def analyze_entities(conll_parse,sgml_so_far,preloaded,outmode,do_identities=False,docname=None):
+def analyze_entities(conll_parse,sgml_so_far,preloaded,outmode,do_identities=False,docname=None,dialect="sahidic",ot=False):
+	global identifier
 	if preloaded is None:
-		preloaded = {"stk":None,"xrenner":None,"parser":None,"tagger":None}
+		preloaded = {"stk":None,"xrenner":None,"parser":None,"tagger":None,"lemmatizer":None, "dialect":dialect}
 	if preloaded["xrenner"] is None:
 		from xrenner import Xrenner  # lib.
-		xrenner = Xrenner(model=lib_dir + "cop.xrm")
+		if dialect == "bohairic":
+			xrenner = Xrenner(model=lib_dir + "boh.xrm")
+		else:
+			xrenner = Xrenner(model=lib_dir + "cop.xrm")
 		preloaded["xrenner"] = xrenner
 	else:
 		xrenner = preloaded["xrenner"]
-	xrenner.docname = "_"
+	if docname is None:
+		xrenner.docname = "_"
 
 	# Make sure we don't have stale entity annotations in input
 	sgml_so_far = re.sub(r'</?entity[^\n]+\n','',sgml_so_far)
@@ -468,6 +497,9 @@ def analyze_entities(conll_parse,sgml_so_far,preloaded,outmode,do_identities=Fal
 		output = reorder_sgml(output.strip(),priorities=["entity", "orig_group", "norm_group", "norm", "orig"])
 		output = assign_entity_heads(output)
 		if do_identities:
+			if identifier is None:
+				from lib.identify import Identifier
+				identifier = Identifier(old_testament=ot)
 			identifier.read_words(output)
 			output = identifier.predict_sgml(output, docname=docname)
 		return output
@@ -487,9 +519,33 @@ def analyze_entities(conll_parse,sgml_so_far,preloaded,outmode,do_identities=Fal
 		return "\n".join(out_conll)
 
 
-def postag(indata, full_sgml, tagger="flair",notokens=False,sent=None,tabular=False,postprocess=True,preloaded=None):
+def postag(indata, full_sgml, tagger="flair",notokens=False,sent=None,tabular=False,postprocess=True,
+		   preloaded=None,dialect="sahidic",with_sgml=False):
+	def get_bg_position(sgml):
+		lines = sgml.split("\n")
+		positions = []
+		open = 0
+		for line in lines:
+			if '</norm>' in line:
+				if open == 0:
+					positions.append("B")
+				else:
+					positions.append("I")
+				open += 1
+			if '</norm_group>' in line:
+				if open == 0:
+					positions[-1] = "S"
+				else:
+					positions[-1] = "E"
+				open = 0
+		return positions
+
+	bg_positions = get_bg_position(full_sgml)
 	if tagger=="treetagger":
-		tag = [tt_path + 'tree-tagger', tt_path+'coptic_fine.par', '-lemma','-no-unknown', '-sgml'] #no -token
+		if dialect == "bohairic":
+			tag = [tt_path + 'tree-tagger', tt_path + 'coptic.b_fine.par', '-lemma', '-no-unknown', '-sgml']  # no -token
+		else:
+			tag = [tt_path + 'tree-tagger', tt_path+'coptic_fine.par', '-lemma','-no-unknown', '-sgml'] #no -token
 		if not notokens:
 			tag += ['-token']
 		tag += ['tempfilename']
@@ -497,12 +553,15 @@ def postag(indata, full_sgml, tagger="flair",notokens=False,sent=None,tabular=Fa
 		if notokens:
 			return tagged
 	elif tagger=="marmot":
-		tagged = tag_marmot(indata, sent=sent)
-		tagged = lemmatizer.lemmatize(tagged)
+		tagged = tag_marmot(indata, sent=sent, dialect=dialect)
+		tagged = lemmatizer.lemmatize(tagged, bg_positions)
 	elif tagger=="flair":
+		if preloaded["tagger"] is None:
+			with suppress_stdout_stderr():
+				preloaded["tagger"] = FlairTagger()
 		sentstr = "translation" if sent is None else sent
 		tagged = preloaded["tagger"].predict(full_sgml, in_format="sgml", out_format="tt", sent=sentstr, as_text=True)
-		tagged = lemmatizer.lemmatize(tagged)
+		tagged = lemmatizer.lemmatize(tagged, bg_positions)
 	spl = [line.split("\t") for line in tagged.strip().split("\n")]
 	words, tags, lemmas = zip(*spl)
 
@@ -518,7 +577,18 @@ def postag(indata, full_sgml, tagger="flair",notokens=False,sent=None,tabular=Fa
 				tags[i] = mapping[(word, "*")]
 
 	if tabular and not notokens:
-		return "\n".join([words[i]+"\t"+tags[i]+"\t"+lemmas[i] for i in range(len(tags))])
+		if with_sgml:
+			output = []
+			toknum = 0
+			for line in indata.strip().split("\n"):
+				if not (line.startswith("<") and line.endswith(">")):
+					output.append(words[toknum] + "\t" + tags[toknum] + "\t" + lemmas[toknum])
+					toknum += 1
+				else:
+					output.append(line)
+			return "\n".join(output)
+		else:
+			return "\n".join([words[i]+"\t"+tags[i]+"\t"+lemmas[i] for i in range(len(tags))])
 	elif notokens:
 		return "\n".join([tags[i]+"\t"+lemmas[i] for i in range(len(tags))])
 	tagged = inject("pos","\n".join(tags),"norm",indata)
@@ -528,7 +598,70 @@ def postag(indata, full_sgml, tagger="flair",notokens=False,sent=None,tabular=Fa
 	return tagged
 
 
-def check_requirements(require_tt=False):
+def predict_sents(sgml):
+	from lib.flair_sent_splitter import FlairSentSplitter
+	with suppress_stdout_stderr():
+		s = FlairSentSplitter(train=False)
+		preds = s.predict(sgml,as_text=True,as_bound_groups=True)
+
+		output = []
+		bg_counter = 0
+		last_break = -1
+		first_sent = True
+		trans_open = False
+		# place translation on outermost group type
+		elem = "orig_group" if "</norm_group>\n</orig_group>" in sgml else "norm_group"
+		lines = sgml.strip().split("\n")
+		for l, line in enumerate(lines):
+			if "</chapter" in line:
+				preds[bg_counter] = 1
+			if elem + " " in line or "</chapter" in line:
+				if preds[bg_counter] == 1 and last_break < bg_counter:
+					if not first_sent:
+						output.append('</translation>')
+						trans_open = False
+					if any([len(l) > 0 and not l.startswith("<") for l in lines[l:]]):  # Check that we still have tokens coming
+						output.append('<translation translation="...">')
+						trans_open = True
+						first_sent = False
+						last_break = bg_counter
+			if '</translation>' in line:
+				trans_open = False
+			output.append(line)
+			if "</"+elem+">" in line:
+				bg_counter += 1
+		if trans_open:
+			output.append("</translation>")
+		return "\n".join(output)
+
+
+def predict_sents_xgboost(sgml,genre="other",force_break_on_chapter=True):
+	from lib.sentencer import BGSentencer
+	s = BGSentencer()
+	preds = s.predict(sgml,as_text=True,genre=genre)
+	preds[0] = 1  # Force first group to be a new sentence
+	output = []
+	bg_counter = 0
+	last_break = -1
+	first_sent = True
+	# place translation on outermost group type
+	elem = "orig_group" if "</norm_group>\n</orig_group>" in sgml else "norm_group"
+	for line in sgml.strip().split("\n"):
+		if elem + " " in line or "</chapter" in line:
+			if preds[bg_counter] == 1 and last_break < bg_counter:
+				if not first_sent:
+					output.append('</translation>')
+				output.append('<translation translation="...">')
+				first_sent = False
+				last_break = bg_counter
+		output.append(line)
+		if "</"+elem+">" in line:
+			bg_counter += 1
+	output.append("</translation>")
+	return "\n".join(output)
+
+
+def check_requirements(require_tt=False, require_malt=False, require_marmot=False):
 	marmot_OK = True
 	tt_OK = True
 	malt_OK = True
@@ -539,10 +672,10 @@ def check_requirements(require_tt=False):
 	if not os.path.exists(tt_path + tt) and require_tt:
 		sys.stderr.write("! TreeTagger not found at ./bin/\n")
 		tt_OK = False
-	if not os.path.exists(parser_path+"maltparser-1.8.jar"):
+	if not os.path.exists(parser_path+"maltparser-1.8.jar") and require_malt:
 		sys.stderr.write("! Malt Parser 1.8 not found at ./bin/\n")
 		malt_OK = False
-	if not os.path.exists(bin_dir+"marmot"+os.sep+"marmot.jar"):
+	if not os.path.exists(bin_dir+"marmot"+os.sep+"marmot.jar") and require_marmot:
 		sys.stderr.write("! Marmot not found at ./bin/marmot/\n")
 		marmot_OK = False
 	if not (os.path.exists(bin_dir + "foma" + os.sep + "flookup") or os.path.exists(bin_dir + "foma" + os.sep + "flookup.exe")):
@@ -631,25 +764,52 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 			   do_milestone=True, do_parse=True, sgml_mode="sgml", tok_mode="auto", old_tokenizer=False, sent_tag=None,
 			   preloaded=None, pos_spans=False, merge_parse=False, detokenize=0, segment_merged=False, gold_parse="",
 			   tagger="flair", parser="diaparser", do_entities=False, no_gold_parse=False, mark_new_sent=True, do_identities=False,
-			   docname=None):
+			   docname=None,dialect="auto",ot=False):
+
+	global data_dir
+	global lemmatizer
+	global neural_model
+
+	if dialect.lower().startswith("auto"):
+		dialect = detect_lang(input_data)
+
+	if dialect == "bohairic":
+		data_dir = data_dir.replace("data" + os.sep, "data.b" + os.sep)
+		neural_model = neural_model.replace("cop.diaparser", "boh.diaparser")
+		tagger = "treetagger" if not os.path.exists(lib_dir + "boh.marmot") else "marmot"
+		if detokenize > 1:
+			detokenize = 1
+		do_mwe = False
+
+	if preloaded is None:
+		with suppress_stdout_stderr():
+			preloaded = {"stk":None,"xrenner":None,"parser":NeuralParser.load(neural_model),"tagger":FlairTagger(),
+						 "lemmatizer":Lemmatizer(data_dir + "copt_lemma_lex.tab", no_unknown=True, dialect=dialect),
+						 "dialect":dialect}
+	elif preloaded["lemmatizer"] is None and do_lemma:
+		preloaded["lemmatizer"] = Lemmatizer(data_dir + "copt_lemma_lex.tab", no_unknown=True, dialect=dialect)
+
+	lemmatizer = preloaded["lemmatizer"]
 
 	if docname is not None:
 		docname = docname.replace(".tt","").replace(".sgml","").replace(".xml","").replace(".txt","")
 
-	if preloaded is None:
-		with suppress_stdout_stderr():
-			preloaded = {"stk":None,"xrenner":None,"parser":NeuralParser.load(neural_model),"tagger":FlairTagger()}
-
 	with suppress_stdout_stderr():
-		neural_parser = preloaded["parser"] if preloaded["parser"] is not None else NeuralParser.load(neural_model)
+		if do_parse or parse_only or merge_parse:
+			neural_parser = preloaded["parser"] if preloaded["parser"] is not None else NeuralParser.load(neural_model)
 	data = input_data.replace("\t","")
 	data = data.replace("\r","")
 
 	if preloaded["stk"] is not None:
 		stk = preloaded["stk"]
-	else:
+	elif do_tok:
 		stk = StackedTokenizer(pipes=sgml_mode != "sgml", lines=lb, tokenized=tok_mode=="from_pipes",
-							   detok=detokenize, segment_merged=segment_merged, ambig=data_dir + "ambig.tab")
+							   detok=detokenize, segment_merged=segment_merged, ambig=data_dir + "ambig.tab",
+							   dialect=dialect)
+
+	if preloaded["tagger"] is None and tagger=="flair" and do_tag:
+		with suppress_stdout_stderr():
+			preloaded["tagger"] = FlairTagger(train=False)
 
 	if do_milestone:
 		data = binarize(data)
@@ -694,11 +854,14 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 
 	if do_norm:
 		from lib.auto_norm import normalize
-		norms = normalize(norms,table_file=data_dir + "norm_table.tab")
+		if dialect == "bohairic":
+			norms = normalize(norms, table_file=data_dir + "norm_table.tab", method="none")
+		else:
+			norms = normalize(norms,table_file=data_dir + "norm_table.tab")
 		output = inject("norm", norms, "norm", output)
 
 	if parse_only or merge_parse:
-		if not do_tag and (parse_only or merge_parse):
+		if not do_tag and (parse_only or merge_parse) and not pos_spans:
 			if "\t" not in input_data and 'pos="' not in input_data:
 				sys.stderr.write("! You selected parsing without tagging (-t) and your data format appears to contain no POS tag column.\n")
 				resp = inp("! Would you like to add POS tagging to the job profile? [Y]es/[N]o/[A]bort ")
@@ -707,7 +870,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 				elif resp.lower() == "a":
 					sys.exit(0)
 		if do_tag and not pos_spans:
-			tagged = postag(norms, output, tagger=tagger,sent=sent_tag, preloaded=preloaded)
+			tagged = postag(norms, output, tagger=tagger,sent=sent_tag, preloaded=preloaded, dialect=dialect)
 		else:  # Assume data is already tagged, in TT SGML format
 			if pos_spans:
 				tagged = harvest_tt(input_data, keep_sgml=True)
@@ -722,7 +885,8 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 				for_parser = []
 				for s in conllized.strip().split("\n\n"):
 					for_parser.append([l.split("\t")[1] for l in s.split("\n") if "\t" in l])
-				parsed = neural_parser.predict(conllized.strip()+"\n\n")
+				with suppress_stdout_stderr():
+					parsed = neural_parser.predict(for_parser)
 				parsed = parse2conllu(parsed,tagged)
 			else:
 				conllized = conllize(tagged, tag="PUNCT", element=sent_tag, no_zero=True)
@@ -748,15 +912,26 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 			if norm_count != input_norms:
 				dped = re.findall(r'(?:\n|^)[0-9]+\t([^\n\t]+)',depedited)
 				nrms = re.findall(r' norm="([^"]*)"',input_data)
+				mismatch = ""
 				for i, nrm in enumerate(nrms):
 					if nrm != dped[i]:
-						mismatch = nrm +"!="+dped[i] + " at " + str(i) + " after " + nrms[i-2] + " " +  nrms[i-1]
+						mismatch = nrm +"!="+dped[i] + " at " + str(i) + " after " + nrms[i-4] + " " + nrms[i-3] + " " + nrms[i-2] + " " +  nrms[i-1]
 						break
 				raise IOError("Mismatch in word count: " + str(norm_count) + " in gold parse but " + str(input_norms) + " in SGML file\nMismatch: "+ mismatch)
 		if do_entities:
 			if do_identities:
-				sys.stderr.write("! ignoring Wikification task due to parser merge workflow")
-			ents = analyze_entities(depedited, output, preloaded, sgml_mode, do_identities=False, docname=docname)
+				pass
+				#sys.stderr.write("! ignoring Wikification task due to parser merge workflow")
+			if " func=" not in output:  # SGML has no merged syntax
+				ids, funcs, parents, new_sents = extract_conll(depedited.strip(), mark_new_sent=mark_new_sent)
+				output = inject("xml:id", ids, "norm", output)
+				output = inject("func", funcs, "norm", output)
+				output = inject("head", parents, "norm", output)
+				output = inject("new_sent", new_sents, "norm", output)
+				output = output.replace(' head="#u0"', "").replace(' new_sent="false"', "")
+				output = merge_into_tag("pos", "norm", output)
+				output = merge_into_tag("lemma", "norm", output).strip()
+			ents = analyze_entities(depedited, output, preloaded, sgml_mode, do_identities=do_identities, docname=docname, dialect=dialect, ot=ot)
 			if sgml_mode == "conllu":
 				depedited = ents
 			else:
@@ -772,30 +947,37 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 				sys.exit(0)
 			if sgml_mode == "conllu":
 				return depedited
-			ids, funcs, parents, new_sents = extract_conll(depedited.strip(), mark_new_sent=mark_new_sent)
-			output = inject("xml:id", ids, "norm", output)
-			output = inject("func", funcs, "norm", output)
-			output = inject("head", parents, "norm", output)
-			output = inject("new_sent", new_sents, "norm", output)
-			output = output.replace(' head="#u0"', "").replace(' new_sent="false"', "")
-			output = merge_into_tag("pos", "norm", output)
-			output = merge_into_tag("lemma", "norm", output)
+			if " func=" not in output:
+				ids, funcs, parents, new_sents = extract_conll(depedited.strip(), mark_new_sent=mark_new_sent)
+				output = inject("xml:id", ids, "norm", output)
+				output = inject("func", funcs, "norm", output)
+				output = inject("head", parents, "norm", output)
+				output = inject("new_sent", new_sents, "norm", output)
+				output = output.replace(' head="#u0"', "").replace(' new_sent="false"', "")
+				if '<norm pos=' not in output:  # Move pos and lemma tags into norm elements, unless already there
+					output = merge_into_tag("pos", "norm", output)
+					output = merge_into_tag("lemma", "norm", output)
 			return output
 
+	elif sent_tag == "predict" and not do_parse and not do_tok and "pos=" in tokenized:
+		#sys.stderr.write("o Adding predicted sentence spans to input SGML\n")
+		output = predict_sents(tokenized)
+		return output
 	elif not do_parse:
-		tagged = postag(norms,output,tagger=tagger,sent=sent_tag,notokens=True, preloaded=preloaded)
+		tagged = postag(norms,output,tagger=tagger,sent=sent_tag,notokens=True, preloaded=preloaded, dialect=dialect).replace("\r","")
 	if do_parse:
-		if sent_tag is None:
-			tagged = postag(norms,output,tagger=tagger,sent=sent_tag,tabular=True, preloaded=preloaded)
+		if sent_tag is None and not pos_spans:
+			tagged = postag(norms,output,tagger=tagger,sent=sent_tag,tabular=True, preloaded=preloaded, dialect=dialect)
 		else:
 			norm_with_sgml = tok_from_norm(output)
-			tagged = postag(norm_with_sgml,output,tagger=tagger,sent=sent_tag,tabular=False, preloaded=preloaded)
+			tagged = postag(norm_with_sgml,output,tagger=tagger,sent=sent_tag,tabular=True, preloaded=preloaded, dialect=dialect, with_sgml=True)
 		if parser!="malt":
 			conllized = conllize(tagged, tag="PUNCT", element=sent_tag, no_zero=True, ten_cols=True)
 			for_parser = []
 			for s in conllized.strip().split("\n\n"):
 				for_parser.append([l.split("\t")[1] for l in s.split("\n") if "\t" in l])
-			parsed = neural_parser.predict(for_parser)
+			with suppress_stdout_stderr():
+				parsed = neural_parser.predict(for_parser)
 			parsed = parse2conllu(parsed,tagged)
 		else:
 			conllized = conllize(tagged, tag="PUNCT", element=sent_tag, no_zero=True)
@@ -830,7 +1012,7 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 	else:
 		lemmas = read_attributes(tagged,"lemma")
 		tagged = read_attributes(tagged, "pos")
-	langed = lookup_lang(norms, lexicon=data_dir + "lang_lexicon.tab")
+	langed = lookup_lang(norms, lexicon=data_dir + "lang_lexicon.tab", tags=tagged)
 
 	if do_parse:
 		output = inject("xml:id",ids,"norm",output)
@@ -885,9 +1067,13 @@ def nlp_coptic(input_data, lb=False, parse_only=False, do_tok=True, do_norm=True
 			output = inject("orig_group", orig_groups, "orig_group", output)
 
 	if do_entities:
-		output = analyze_entities(depedited, output, preloaded, sgml_mode, do_identities=do_identities, docname=docname)
+		output = analyze_entities(depedited, output, preloaded, sgml_mode, do_identities=do_identities, docname=docname, dialect=dialect,ot=ot)
 		if sgml_mode == "conllu":
 			return output  # All done if conllu output needed, else continue to merge rest
+
+	if sent_tag == "predict":
+		output = predict_sents(output)
+
 	return output.strip() + "\n"
 
 
@@ -907,18 +1093,18 @@ if __name__ == "__main__":
 	parser.epilog = """Example usage:
 --------------
 Add norm, lemma, parse, tag, entities, identities, unary tags, find multiword expressions and do language recognition:
-> python coptic_nlp.py -penmultri infile.txt        
+> python coptic_nlp.py -penmultri infile.txt		
 
 Just tokenize a file using pipes and dashes:
-> python coptic_nlp.py -o pipes infile.txt       
+> python coptic_nlp.py -o pipes infile.txt	   
 
 Tokenize with pipes and mark up line breaks, conservatively detokenize bound groups, assume seg boundary at merge site:
 > python coptic_nlp.py -b -d 1 --segment_merged -o pipes infile.txt
 
 Normalize, tag, lemmatize, find multiword expressions and parse, splitting sentences by <verse> tags:
-> python coptic_nlp.py -pnltm -s verse infile.txt       
+> python coptic_nlp.py -pnltm -s verse infile.txt	   
 
-Add full analyses to a whole directory of *.xml files, output to a specified directory:    
+Add full analyses to a whole directory of *.xml files, output to a specified directory:	
 > python coptic_nlp.py -penmult --dirout /home/cop/out/ *.xml
 
 Parse a tagged SGML file into CoNLL tabular format for treebanking, use translation tag to recognize sentences:
@@ -944,8 +1130,9 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 	g1.add_argument("-e","--etym", action="store_true", help='Add etymolgical language of origin for loan words')
 	g1.add_argument("-r","--recognize_entities", action="store_true", help='Add entity type recognition')
 	g1.add_argument("-i","--identities", action="store_true", help='Add entity linking to Wikipedia')
-	g1.add_argument("-s","--sent", action="store", help='XML tag to split sentences, e.g. verse for <verse ..> (otherwise PUNCT tag is used to split sentences)')
+	g1.add_argument("-s","--sent", action="store", help='XML tag to split sentences, e.g. verse for <verse ..> (otherwise PUNCT tag is used to split sentences); use -s=predict to use neural segmenter instead')
 	g1.add_argument("-o","--outmode", action="store", choices=["pipes","sgml","conllu"], default="sgml", help='Output SGML, conllu or tokenize with pipes')
+	g1.add_argument("--dialect", action="store", choices=["auto","sahidic","bohairic"], default="auto", help='Coptic dialect of input data (default: auto-detect)')
 
 	g2 = parser.add_argument_group("less common options")
 	g2.add_argument("-f","--finitestate", action="store_true", help='Use old finite-state tokenizer (less accurate)')
@@ -969,6 +1156,7 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 	g2.add_argument("--malt", action="store_true", help='Parse using MaltParser instead of Diaparser (requires Java)')
 	g2.add_argument("--no_gold_parse", action="store_true", help='Do not use UD_Coptic cache for gold parses')
 	g2.add_argument("--processing_meta", action="store_true", help='Add segmentation/tagging/parsing/entities="auto"')
+	g2.add_argument("--old_testament", action="store_true", help='Use Old Testament identities (Jesus means Jesus son of Naue i.e. Joshua, etc.)')
 
 	if "--version" in sys.argv:
 		sys.stdout.write("Coptic NLP Pipeline V" + __version__)
@@ -990,16 +1178,28 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 	if not opts.quiet:
 		log_tasks(opts)
 
-	preloaded = {"stk":None, "tagger": None, "xrenner":None, "parser":None}
+	if len(files) > 0:
+		if opts.dialect == "auto":
+			opts.dialect = detect_lang(io.open(files[0],encoding="utf8").read())
+			sys.stderr.write("o Detected dialect: " + opts.dialect + "\n\n")
+	else:
+		sys.stderr.write("! No files found matching " + opts.files + "\n")
+		sys.exit(0)
+
+	preloaded = {"stk":None, "tagger": None, "xrenner":None, "parser":None, "lemmatizer": None, "dialect":opts.dialect}
 	if dotok and not old_tokenizer:
 		# Pre-load stacked tokenizer for entire batch
 		preloaded["stk"] = StackedTokenizer(pipes=opts.outmode == "pipes", lines=opts.breaklines, tokenized=opts.from_pipes,
-							   segment_merged=opts.segment_merged, detok=opts.detokenize)
+							   segment_merged=opts.segment_merged, detok=opts.detokenize, dialect=opts.dialect)
 	else:
 		preloaded["stk"] = None
 
-	if opts.tag and not (opts.treetagger or opts.marmot):
-		preloaded["tagger"] = FlairTagger(train=False)
+	if opts.tag and not (opts.treetagger or opts.marmot) and opts.dialect != "bohairic":
+		with suppress_stdout_stderr():
+			preloaded["tagger"] = FlairTagger(train=False)
+
+	if opts.dialect == "bohairic":
+		neural_model = neural_model.replace("cop.diaparser", "boh.diaparser")
 
 	if opts.parse or opts.parse_only or opts.merge_parse:
 		if preloaded["parser"] is None:
@@ -1008,17 +1208,20 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 
 	if opts.recognize_entities:
 		from xrenner import Xrenner  # .lib
-		xrenner = Xrenner(model=lib_dir + "cop.xrm")
+		if opts.dialect == "bohairic":
+			xrenner = Xrenner(model=lib_dir + "boh.xrm")
+		else:
+			xrenner = Xrenner(model=lib_dir + "cop.xrm")
 		preloaded["xrenner"] = xrenner
 
 	# Check if TreeTagger and Malt Parser are available
-	tt_OK, malt_OK, foma_OK, marmot_OK = check_requirements()
+	tt_OK, malt_OK, foma_OK, marmot_OK = check_requirements(require_tt=opts.treetagger, require_malt=opts.malt, require_marmot=opts.marmot)
 	if (opts.tag and not marmot_OK) or ((opts.parse or opts.parse_only or opts.merge_parse) and opts.malt and not malt_OK) or \
 			(opts.tag and opts.treetagger and not tt_OK) or not foma_OK:
 		sys.stderr.write("! You are missing required software:\n")
 		if not foma_OK and (opts.norm or not opts.no_tok):
 			sys.stderr.write(" - Foma is not installed but is required for tokenization and normalization\n")
-		if opts.tag and not marmot_OK and not opts.treetagger:
+		if opts.tag and not marmot_OK and opts.marmot:
 			sys.stderr.write(" - Tagging is specified but Marmot is not installed\n")
 		if opts.tag and opts.treetagger and not tt_OK:
 			sys.stderr.write(" - Tagging is specified but TreeTagger is not installed\n")
@@ -1065,7 +1268,7 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 
 		if opts.identities:
 			from lib.identify import Identifier
-			identifier = Identifier()
+			identifier = Identifier(old_testament=opts.old_testament)
 
 		input_text = io.open(infile,encoding="utf8").read()
 		if opts.space:
@@ -1100,7 +1303,7 @@ Add entities to a tagged SGML file with translation spans but without a parse:
 							   pos_spans=opts.pos_spans, merge_parse=opts.merge_parse, detokenize=opts.detokenize,
 							   segment_merged=opts.segment_merged, tagger=tagger_type, parser=parser_type,
 							   do_entities=opts.recognize_entities, no_gold_parse=opts.no_gold_parse,
-							   do_identities=opts.identities, docname=base)
+							   do_identities=opts.identities, docname=base, dialect=opts.dialect, ot=opts.old_testament)
 
 		if opts.outmode == "sgml":
 			if opts.processing_meta:  # NLP reliability metadata

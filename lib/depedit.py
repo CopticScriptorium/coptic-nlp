@@ -22,7 +22,7 @@ from glob import glob
 import io
 from six import iteritems, iterkeys
 
-__version__ = "3.2.1.0"
+__version__ = "4.0.0.0"
 
 ALIASES = {"form":"text","upostag":"pos","xpostag":"cpos","feats":"morph","deprel":"func","deps":"head2","misc":"func2",
            "xpos": "cpos","upos":"pos"}
@@ -39,8 +39,63 @@ def escape(string, symbol_to_mask, border_marker):
     return output
 
 
+class Entity:
+    __slots__ = ['cluster','annos','tokens','sentence']
+
+    def __init__(self, cluster):
+        self.cluster = cluster
+        self.annos = {}
+        self.tokens = []
+
+    def __getattr__(self, item):
+        if item in self.annos:
+            return self.annos[item]
+        else:
+            if item == "text":
+                return " ".join([t.text for t in self.tokens])
+            elif item == "rawtext":
+                output = ""
+                for t in self.tokens:
+                    output += t.text
+                    if "SpaceAfter=No" not in t.func2:
+                        output += " "
+                return output.strip()
+            elif item == "start":
+                return self.tokens[0].id if len(self.tokens) > 0 else "s"
+            elif item == "end":
+                return self.tokens[-1].id if len(self.tokens) > 0 else "e"
+            elif item == "length":
+                return len(self.tokens)
+            elif item in self.annos:
+                return self.annos[item]
+            elif item == "sentence":
+                return self.tokens[0].sentence
+            elif item == "head":
+                if len(self.tokens) > 0:
+                    head = self.tokens[0]
+                    for tok in self.tokens:
+                        if tok.func != "punct":
+                            if tok.func == "root":
+                                head = tok
+                                break
+                            if tok.head < self.start or tok.head > self.end:
+                                head = tok
+                                break
+                    return head
+                else:
+                    return None
+            else:
+                raise AttributeError
+
+    def __len__(self):
+        return len(self.tokens)
+
+    def __repr__(self):
+        return self.text + " (" + str(self.start) + "-" + str(self.end) + ")"
+
+
 class ParsedToken:
-    __slots__ = ['id', 'text', 'lemma', 'pos', 'cpos', 'morph', 'head', 'func', 'edep', 'head2', 'func2', 'storage', 'storage2', 'num', 'child_funcs', 'position', 'is_super_tok', 'sentence']
+    __slots__ = ['id', 'text', 'lemma', 'pos', 'cpos', 'morph', 'head', 'func', 'edep', 'head2', 'func2', 'storage', 'storage2', 'storage3', 'num', 'child_funcs', 'position', 'is_super_tok', 'sentence']
 
     def __init__(self, tok_id, text, lemma, pos, cpos, morph, head, func, head2, func2, num, child_funcs, position, is_super_tok=False, tokoffset=0):
         self.id = tok_id
@@ -58,13 +113,14 @@ class ParsedToken:
             try:
                 edeps = head2.split("|")
                 for edep in edeps:
-                    h, d = edep.split(":", maxsplit=1)
+                    h, d = edep.split(":", 1)
                     h = str(float(h) + tokoffset)
                     self.edep.append([h, d])
             except ValueError:
                 pass
-        self.storage = ""  # Storage field for temporary values, never read or written to/from conllu
-        self.storage2 = ""  # Storage field for temporary values, never read or written to/from conllu
+        self.storage = ""  # Storage field2 for temporary values, never read or written to/from conllu
+        self.storage2 = ""
+        self.storage3 = ""
         self.num = num
         self.child_funcs = child_funcs
         self.position = position
@@ -77,17 +133,22 @@ class ParsedToken:
                 return self.sentence.annotations[key]
             elif key in self.sentence.input_annotations:
                 return self.sentence.input_annotations[key]
+            elif key == "docname":
+                return self.sentence.docname
             else:
                 return ""
 
     def __repr__(self):
         return str(self.text) + " (" + str(self.pos) + "/" + str(self.lemma) + ") " + "<-" + str(self.func)
 
+    def __deepcopy__(self, memo):
+        return self
+
 
 class Sentence:
-    __slots__ = ['sentence_string','length','annotations','input_annotations','sent_num','offset','depedit']
+    __slots__ = ['sentence_string','length','annotations','input_annotations','sent_num','offset','depedit','docname','entities']
 
-    def __init__(self, sentence_string="", sent_num=0, tokoffset=0, depedit_object=None):
+    def __init__(self, sentence_string="", sent_num=0, tokoffset=0, depedit_object=None, docname=""):
         self.sentence_string = sentence_string
         self.length = 0
         self.annotations = {}  # Dictionary to keep sentence annotations added by DepEdit rules
@@ -95,6 +156,8 @@ class Sentence:
         self.sent_num = sent_num
         self.offset = tokoffset
         self.depedit = depedit_object
+        self.docname = docname
+        self.entities = []
 
     def print_annos(self):
         anno_dict = dict((k, v) for k, v in iteritems(self.annotations))
@@ -118,7 +181,7 @@ class Sentence:
         others = [k for k in sorted_keys if not k.startswith("meta::") and not k.startswith("global.") and k != "text"]
         text = ["text"] if "text" in sorted_keys else []
         sorted_keys = newdoc_anno + global_specs + meta + sent_id + sorted(others) + text
-        return ["# " + key.strip() + " = " + anno_dict[key].strip() for key in sorted_keys]
+        return ["# " + key.strip() + " = " + anno_dict[key].strip() if len(anno_dict[key].strip())>0 else "# " + key.strip() for key in sorted_keys]
 
 
 class Transformation:
@@ -128,7 +191,7 @@ class Transformation:
         if len(split_trans) < 3:
             return None
         definition_string, relation_string, action_string = split_trans
-        if "~#" in action_string and "edep=" not in action_string:
+        if "~#" in action_string and "edep=" not in action_string and "edep+=" not in action_string:
             sys.stderr.write("WARN: action specifies enhanced edge (~) but no edep label on line " + str(line) + "\n")
         elif "~#" not in action_string and "edep=" in action_string and not action_string.endswith("edep=") and \
                 not "edep=;" in action_string and not "ehead=" in action_string:
@@ -165,6 +228,7 @@ class Transformation:
             orig_action = orig_action.replace(":" + source + "=", ":" + target + "=")
             orig_action = orig_action.replace(":" + source + "+=", ":" + target + "+=")
             orig_action = orig_action.replace(":" + source + "-=", ":" + target + "-=")
+            orig_action = orig_action.replace(":" + source + ",=", ":" + target + ",=")
         return orig_action
 
     @staticmethod
@@ -196,7 +260,8 @@ class Transformation:
             node = escape(definition.def_text, "&", "/")
             criteria = (_crit.replace("%%%%%", "&") for _crit in node.split("&"))
             for criterion in criteria:
-                if re.match(r"(text|pos|cpos|lemma|morph|storage2?|edom|func|head|func2|head2|num|form|upos|upostag|xpos|xpostag|feats|deprel|deps|misc|edep|ehead)!?=/[^/=]*/", criterion) is None:
+                criterion = escape(criterion, "=", "/")
+                if re.match(r"(text|pos|cpos|lemma|morph|storage[23]?|edom|func|head|func2|head2|num|form|upos|upostag|xpos|xpostag|feats|deprel|deps|misc|edep|ehead)!?=/[^/=]*/", criterion) is None:
                     if re.match(r"position!?=/(first|last|mid)/", criterion) is None:
                         if re.match(r"#S:[A-Za-z_]+!?=/[^/\t]+/",criterion) is None:
                             report += "Invalid node definition in column 1: " + criterion
@@ -210,14 +275,14 @@ class Transformation:
                 criteria = relation.split(";")
                 for criterion in criteria:
                     criterion = criterion.strip()
-                    if not re.match(r"(#[0-9]+(([>~]|\.([0-9]+(,[0-9]+)?)?)#[0-9]+)+|#[0-9]+:(text|pos|cpos|lemma|morph|storage2?|edom|"
+                    if not re.match(r"(#[0-9]+(([>~]|\.([0-9]+(,[0-9]+)?)?)#[0-9]+)+|#[0-9]+:(text|pos|cpos|lemma|morph|storage[23]?|edom|"
                                     r"func|head|func2|head2|num|form|upos|upostag|xpos|xpostag|feats|deprel|deps|misc|edep|ehead)==#[0-9]+)",
                                     criterion):
                         report += "Column 2 relation setting invalid criterion: " + criterion + "."
         for action in self.actions:
             commands = action.split(";")
             for command in commands:  # Node action
-                if re.match(r"(#[0-9]+([>~]|><)#[0-9]+|#[0-9]+:(func|lemma|text|pos|cpos|morph|storage2?|edom|head|head2|func2|num|form|upos|upostag|xpos|xpostag|feats|deprel|deps|misc|edep|ehead|split)[\+-]?=[^;]*)$", command) is None:
+                if re.match(r"(#[0-9]+([>~]|><)#[0-9]+|#[0-9]+:(func|lemma|text|pos|cpos|morph|storage[23]?|edom|head|head2|func2|num|form|upos|upostag|xpos|xpostag|feats|deprel|deps|misc|edep|ehead|split)[\+,-]?=[^;]*)$", command) is None:
                     if re.match(r"#S:[A-Za-z_]+=[A-Za-z_]+$|last$|once$", command) is None:  # Sentence annotation action or quit
                         report += "Column 3 invalid action definition: " + command + " and the action was " + action
                         if "#" not in action:
@@ -229,7 +294,7 @@ class Transformation:
 
 
 class DefinitionMatcher:
-    __slots__ = ['def_text','def_index','groups','defs','sent_def']
+    __slots__ = ['def_text','def_index','groups','defs','sent_def','priority']
 
     def __init__(self, def_text, def_index):
         self.def_text = escape(def_text, "&", "/")
@@ -237,6 +302,7 @@ class DefinitionMatcher:
         self.groups = []
         self.defs = []
         self.sent_def = False
+        self.priority = 5  # Minimum priority
         if def_text.startswith("#S:"):
             self.sent_def = True
 
@@ -244,10 +310,7 @@ class DefinitionMatcher:
         for def_item in def_items:
             def_item = def_item.replace("%%%%%", "&")
             criterion = def_item.split("=", 1)[0]
-            try:
-                negative_criterion = (criterion[-1] == "!")
-            except:
-                a=4
+            negative_criterion = (criterion[-1] == "!")
             if negative_criterion:
                 criterion = criterion[:-1]
 
@@ -260,7 +323,10 @@ class DefinitionMatcher:
                 def_value += "$"
             if "^(?i)" in def_value:
                 def_value = def_value.replace("^(?i)","(?i)^")  # ensure case insensitive flag is initial
-            self.defs.append(Definition(criterion, def_value, negative_criterion))
+            definition = Definition(criterion, def_value, negative_criterion)
+            self.defs.append(definition)
+            if definition.selectivity < self.priority:
+                self.priority = definition.selectivity
 
     def __repr__(self):
         return "#" + str(self.def_index) + ": " + self.def_text
@@ -295,7 +361,7 @@ class DefinitionMatcher:
 
 
 class Definition:
-    __slots__ = ['value','match_type','compiled_re','match_func','negative','criterion']
+    __slots__ = ['value','match_type','selectivity','compiled_re','match_func','negative','criterion']
 
     def __init__(self, criterion, value, negative=False):
         # Handle conllu criterion aliases:
@@ -308,24 +374,35 @@ class Definition:
         self.compiled_re = None
         self.match_func = None
         self.negative = negative
+        self.selectivity = 0
         self.set_match_type(criterion)
 
     def set_match_type(self, criterion):
         value = self.value[1:-1]
         if self.value == "^.*$" and not self.negative:
             self.match_func = self.return_true
+            self.match_type = "return_true"
+            self.selectivity = 5  # Minimum selectivity
         elif re.escape(value) == value:  # No regex operators within expression
             if criterion in ["edep","edom"]:
                 self.match_func = self.return_not_in if self.negative else self.return_in
+                self.match_type = "return_not_in" if self.negative else "return_in"
+                self.selectivity = 2
             else:
                 self.match_func = self.return_exact_negative if self.negative else self.return_exact
+                self.match_type = "return_exact_negative" if self.negative else "return_exact"
+                self.selectivity = 1
             self.value = value
         else:  # regex
             self.compiled_re = re.compile(self.value)
             if criterion in ["edep","edom"]:
                 self.match_func = self.return_regex_not_in if self.negative else self.return_regex_in
+                self.match_type = "return_regex_not_in" if self.negative else "return_regex_in"
+                self.selectivity = 4
             else:
                 self.match_func = self.return_regex_negative if self.negative else self.return_regex
+                self.match_type = "return_regex_negative" if self.negative else "return_regex"
+                self.selectivity = 3
 
     @staticmethod
     def return_exact(definition, test_val):
@@ -379,10 +456,25 @@ class Match:
     def __repr__(self):
         return "#" + str(self.def_index) + ": " + str(self.token)
 
+    def __copy__(self):
+        return self
+
+    def __deepcopy__(self, memo):
+        # Return a deep copy of the object without copying the object reference
+        cls = self.__class__
+        result = cls.__new__(cls)
+        memo[id(self)] = result
+        for k in self.__slots__:
+            v = self.__getattribute__(k)
+            setattr(result, k, deepcopy(v, memo))
+        return result
+
 
 class DepEdit:
 
     def __init__(self, config_file="", options=None):
+        self.mentions = []
+        self.entities = defaultdict(list)
         self.variables = {}
         self.transformations = []
         self.user_transformation_counter = 0
@@ -397,6 +489,7 @@ class DepEdit:
         if config_file != "":
             self.read_config_file(config_file)
         self.docname = self.input_mode = None
+        self.ent_annos = []
 
     def read_config_file(self, config_file, clear_transformations=False):
         """
@@ -449,15 +542,21 @@ class DepEdit:
                     print("# Rule " + str(i+1) + ": " + str(transformation)+'\n',end="")
 
             node_matches = defaultdict(list)
-            for def_matcher in transformation.definitions:
+            for def_matcher in sorted(transformation.definitions,key=lambda x: x.priority):
+                found = False
                 for token in conll_tokens:
                     if not token.is_super_tok and def_matcher.match(token):
+                        found = True
                         if def_matcher.sent_def:
                             if len(node_matches[def_matcher.def_index])==0:  # Only add a sentence anno definition once
                                 node_matches[def_matcher.def_index] = [Match(def_matcher.def_index, token, def_matcher.groups)]
                                 node_matches[def_matcher.def_index][0].sent_def = True
                         else:
                             node_matches[def_matcher.def_index].append(Match(def_matcher.def_index, token, def_matcher.groups))
+                if not found:
+                    break  # Some required node has no matches, stop processing this rule
+            if len(node_matches) == 0:
+                continue  # No mode matches for this rule, continue to next rule
             result_sets = []
             for relation in transformation.relations:
                 if not self.matches_relation(node_matches, relation, result_sets):
@@ -710,7 +809,7 @@ class DepEdit:
             return False
 
     @staticmethod
-    def merge_bins(bin1, bin2):
+    def merge_bins(bin1, bin2_orig):
         """
         Merge bins we know are compatible, e.g. bin1 has #1+#2 and bin2 has #2+#3
 
@@ -718,6 +817,7 @@ class DepEdit:
         :param bin2: a bin dictionary mapping indices to tokens, a list of relations 'rels' and matcher objects 'matchers'
         :return: the merged bin with data from both input bins
         """
+        bin2 = deepcopy(bin2_orig)
         for matcher in bin1["matchers"]:
             skip = False
             for matcher2 in bin2["matchers"]:
@@ -816,10 +916,7 @@ class DepEdit:
             # Push up all tokens after insertion point by len(subtoks)-1
             split_offset += len(subtoks)-1
             for tok in conll_tokens:
-                try:
-                    float(tok.id)
-                except:
-                    a=4
+                float(tok.id)
                 if tok.is_super_tok:
                     start, end = tok.id.split("-")
                     start = float(start)
@@ -868,7 +965,10 @@ class DepEdit:
                         if action.startswith("#S:"):  # Sentence annotation instruction
                             key_val = action.split(":")[1]
                             key, val = key_val.split("=", 1)
-                            result[1].sentence.annotations[key] = val
+                            if key == "docname":
+                                result[1].sentence.docname = val
+                            else:
+                                result[1].sentence.annotations[key] = val
                         else:  # node instruction
                             node_position = int(action[1:action.find(":")])
                             if not self.quiet:
@@ -881,11 +981,15 @@ class DepEdit:
                             value = action[action.find("=") + 1:].strip()
                             add_val = False
                             subtract_val = False
+                            concat_val = False
                             if prop.endswith("+"):  # Add annotation, e.g. feats+=...
                                 add_val = True
                                 prop = prop[:-1]
                             elif prop.endswith("-"):  # Remove annotation, e.g. feats-=...
                                 subtract_val = True
+                                prop = prop[:-1]
+                            elif prop.endswith(","):  # Add to existing values, separated by , and alphabetized, e.g. Cxn=X,Y,Z
+                                concat_val = True
                                 prop = prop[:-1]
                             group_num_matches = re.findall(r"(\$[0-9]+[LU]?)", value)
                             if group_num_matches is not None:
@@ -919,7 +1023,7 @@ class DepEdit:
                                 old_val = getattr(result[node_position],prop)
                                 new_vals = sorted(value.split("|"))
                                 new_vals_keys = [v.split("=")[0] for v in new_vals]
-                                if old_val != "_":  # Some values already exist
+                                if old_val != "_" and isinstance(old_val,str):  # Some values already exist
                                     kv = []
                                     for ov in sorted(old_val.split("|")):
                                         if not ov.split("=")[0] in new_vals_keys:  # Else this needs to be overwritten
@@ -942,6 +1046,28 @@ class DepEdit:
                                         value = "_"
                                 else:
                                     value = "_"
+                            elif concat_val:
+                                old_val = getattr(result[node_position],prop)
+                                new_vals = sorted(value.split("|"))
+                                new_vals_keys = defaultdict(set)
+                                for pair in new_vals:
+                                    this_key, this_val = pair.split("=")
+                                    new_vals_keys[this_key].add(this_val)
+                                if old_val != "_" and isinstance(old_val,str):  # Some values already exist
+                                    kv = []
+                                    for ov in sorted(old_val.split("|")+new_vals):
+                                        this_key, this_val = ov.split("=")
+                                        if this_key not in new_vals_keys:  # Else this needs to be overwritten
+                                            kv.append(ov)
+                                        else:
+                                            new_vals_keys[this_key].update(set(this_val.split(",")))
+                                    if len(new_vals_keys) > 0:
+                                        for this_key in new_vals_keys:
+                                            kv.append(this_key + "=" + ",".join(sorted(new_vals_keys[this_key])))
+                                    value = "|".join(sorted(kv,key=lambda x:x.lower()))
+                                else:
+                                    value = "|".join(new_vals)
+
                             if prop == "edep":
                                 if value == "":  # Set empty edep
                                     result[node_position].edep = []
@@ -954,7 +1080,17 @@ class DepEdit:
                                     try:
                                         index = [i for i, dep in enumerate(result[node_position].edep) if dep[-1] is None][0]
                                     except IndexError:  # All are filled, overwrite top of stack
-                                        index = -1
+                                        if add_val:  # += instruction for edep means add without overwriting
+                                            continue  # An edge already exists between these nodes and the op is +=, skip this action
+                                        else:
+                                            index = -1
+                                    if add_val:
+                                        test_parent = result[node_position].edep[index][0]
+                                        if any([x[0]==test_parent and x[1] is not None and not (x[0] == result[node_position].head and x[1] == result[node_position].func) for x in result[node_position].edep]):
+                                            # A distinct edep, non-None edge already exists lower than a None labeled edge
+                                            # and the op is +=, skip this action and remove the None edge
+                                            result[node_position].edep = [x for x in result[node_position].edep if x[1] is not None]
+                                            continue
                                     result[node_position].edep[index][1] = value
                                     # Remove all other edeps connecting the same two tokens
                                     this_edep_parent = result[node_position].edep[index][0]
@@ -962,7 +1098,7 @@ class DepEdit:
                                     result[node_position].head2 = "_"  # Remove any explicit head2 info to accommodate new edeps; it will be generated from edom
                             elif prop == "edom":
                                 if "||" in value:
-                                    h, rel = value.split("||", maxsplit=1)
+                                    h, rel = value.split("||", 1)
                                     new_rels = []
                                     for dom in result[node_position].edep:
                                         if dom[0] != h:  # Leave out any existing edeps with the same head unless they are substrings
@@ -1050,7 +1186,7 @@ class DepEdit:
             # sort by len, meaning we prefer longer edeps for duplicates with same ehead
             for p in sorted(parts,key=lambda x: len(x)):
                 if ":" in p:
-                    eh, ed = p.split(":",maxsplit=1)
+                    eh, ed = p.split(":",1)
                     d[eh] = ed
                 else:  # Non-UD edeps field, warn and return naive sort
                     sys.stderr.write("WARN: Non-standard value in column 9: enhanced dependencies should contain ':'\n")
@@ -1135,17 +1271,22 @@ class DepEdit:
                 toks.append(word)
         return "".join(toks)
 
-    def run_depedit(self, infile, filename="file", sent_id=False, docname=False, stepwise=False, enhanced=False, sent_text=False):
+    def run_depedit(self, infile, filename="file", sent_id=False, docname=False, stepwise=False, enhanced=False, sent_text=False, parse_entities=False):
 
         children = defaultdict(list)
         child_funcs = defaultdict(list)
         conll_tokens = [0]
         self.input_mode = "10col"
         self.docname = filename
+        self.mentions = []
+        self.entities = defaultdict(list)
         tokoffset = supertok_offset = sentlength = supertok_length = 0
         output_lines = []
         sentence_lines = []
-        current_sentence = Sentence(sent_num=1, depedit_object=self)
+        current_sentence = Sentence(sent_num=1, depedit_object=self, docname=filename)
+        open_ents = defaultdict(list)
+        closed_ents = []
+        max_ent = 1
 
         def _process_sentence(stepwise=False, enhanced=False):
             current_sentence.length = sentlength
@@ -1173,11 +1314,13 @@ class DepEdit:
                 sentence_lines = []
                 tokoffset += sentlength
                 supertok_offset += supertok_length
-                current_sentence = Sentence(sent_num=current_sentence.sent_num + 1,tokoffset=tokoffset, depedit_object=self)
+                current_sentence = Sentence(sent_num=current_sentence.sent_num + 1,tokoffset=tokoffset, depedit_object=self, docname=filename)
                 sentlength = supertok_length = 0
             if myline.startswith("#"):  # Preserve comment lines unless kill requested
+                if parse_entities and myline.startswith("# global.Entity"):
+                    self.ent_annos = myline.split("=")[1].strip().split("-")
                 if self.kill not in ["comments", "both"] and "=" not in myline:
-                    output_lines.append(myline.strip())
+                    current_sentence.input_annotations[myline[1:].strip()] = ""
                 if "=" in myline:
                     key, val = myline[1:].split("=",1)
                     current_sentence.input_annotations[key.strip()] = val.strip()
@@ -1212,6 +1355,42 @@ class DepEdit:
                     this_tok.position = "first"
                 this_tok.sentence = current_sentence
                 conll_tokens.append(this_tok)
+                if parse_entities and len(cols) > 9:
+                    if "Entity=" in cols[9]:  # Parse out nested entity openers like Entity=(1-person(2-organization)
+                        ent_string = [x for x in cols[-1].split("|") if x.startswith("Entity=")][0].split("=")[1]
+                        openers = re.findall(r'\(([0-9]+[^()]+)', ent_string)
+                        for opener in openers:
+                            eid = opener.split("-")[0]
+                            anno_vals = opener.split("-")
+                            if len(anno_vals) > len(self.ent_annos):  # Create generic anno names a1, a2... for unlisted
+                                sys.stderr.write("DepEdit WARN: Entity annotation count mismatch in " + filename + ", check global.Entity\n")
+                                self.ent_annos = ["a" + str(i + 1) for i in range(len(anno_vals))]
+                            anno_dict = {self.ent_annos[i]: anno_vals[i] for i in range(len(anno_vals))}
+                            if "GRP" in anno_dict and "eid" not in anno_dict:
+                                anno_dict["eid"] = anno_dict["GRP"]
+                            if "eid" not in anno_dict:
+                                anno_dict["eid"] = max_ent
+                                max_ent += 1
+                            ent = Entity(str(anno_dict["eid"]))
+                            ent.annos = anno_dict
+                            open_ents[eid].append(ent)
+                        closers = re.findall(r'\(([0-9]+)-[^()]+\)', ent_string)
+                        closers += re.findall(r'(?<=[=)])([0-9]+)\)', "=" + ent_string)
+                    else:
+                        closers = []
+
+                    # Create Entity object per opened entity
+                    for opener in open_ents:
+                        for e in open_ents[opener]:
+                            e.tokens.append(this_tok)
+
+                    # Move all closing entities to closed entities list
+                    for closer in closers:
+                        ent = open_ents[closer].pop()
+                        closed_ents.append(ent)
+                        self.mentions.append(ent)
+                        self.entities[ent.annos["eid"]].append(ent)
+
                 if super_tok:
                     supertok_length += 1
                 else:
@@ -1251,6 +1430,7 @@ def main():
                         help="Remove supertokens or commments from output")
     parser.add_argument('-q', '--quiet', action="store_true", dest="quiet", help="Do not output warnings and messages")
     parser.add_argument('--stepwise', action="store_true", help="Output sentence repeatedly after each step (useful for debugging)")
+    parser.add_argument('--time', action="store_true", help="Print time taken to process file(s)")
     group = parser.add_argument_group('Batch mode options')
     group.add_argument('-o', '--outdir', action="store", dest="outdir", default="",
                        help="Output directory in batch mode")
@@ -1258,6 +1438,7 @@ def main():
                        help="Extension for output files in batch mode")
     group.add_argument('-i', '--infix', action="store", dest="infix", default=".depedit",
                        help="Infix to denote edited files in batch mode (default: .depedit)")
+    parser.add_argument('--entities', action="store_true", help="Parse entity annotations in input")
     parser.add_argument('--version', action='version', version=depedit_version)
     options = parser.parse_args()
 
@@ -1281,7 +1462,8 @@ def main():
         basename = os.path.basename(filename)
         docname = basename[:basename.rfind(".")] if options.docname or options.sent_id else filename
         output_trees = depedit.run_depedit(infile, docname, sent_id=options.sent_id, docname=options.docname,
-                                           stepwise=options.stepwise, enhanced=options.enhanced, sent_text=options.text)
+                                           stepwise=options.stepwise, enhanced=options.enhanced, sent_text=options.text,
+                                           parse_entities=options.entities)
         if len(files) == 1:
             # Single file being processed, just print to STDOUT
             if sys.version_info[0] < 3:
@@ -1311,4 +1493,11 @@ def main():
 
 
 if __name__ == "__main__":
+    if "--time" in sys.argv:
+        import time
+        start_time = time.time()
+
     main()
+
+    if "--time" in sys.argv:
+        sys.stderr.write("--- %s seconds ---" % (time.time() - start_time))

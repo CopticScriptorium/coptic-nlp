@@ -9,12 +9,15 @@ in the following format:
 {"cat":"tok","name":"test_stacked","target":"norm","train":"silver","test":"ud_test"}
 
 """
-
-from sacred import Experiment
-from sacred.observers import MongoObserver
+try:
+	from sacred import Experiment
+	from sacred.observers import MongoObserver
+except ImportError:
+	pass
 from utils.eval_utils import list_files
 from six import iteritems
 import json, io
+
 
 ex = Experiment('coptic_nlp')
 ex.observers.append(MongoObserver.create())
@@ -54,11 +57,9 @@ def run(params):
 		tagger = params.get("method","tt")
 		retrain = bool(params.get("retrain",False))
 		res = run_eval(train_list,test_list,tagger=tagger,retrain=retrain)
-	# TODO: run_eval expects separate orig and gold lists, need to change this
-	# if we want it to be callable in eval.py
-	#elif "bind" in params["script"]:
-	#	from eval_binding import run_eval
-	#	res = run_eval(train_list,test_list)
+	elif "bind" in params["script"]:
+		from eval_binding import run_eval
+		res = run_eval(train_list,test_list)
 	elif "pars" in params["script"]:
 		from eval_parsing import run_eval
 		retrain = params.get('retrain',False)

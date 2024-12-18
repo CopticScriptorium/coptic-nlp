@@ -42,7 +42,11 @@ orig_chars = set(["̈", "", "̄", "̀", "̣", "`", "̅", "̈", "̂", "︤", "︥
 
 
 #@profile
-def normalize(in_data,table_file=None,sahidica=False,method="foma",no_unknown=True):
+def normalize(in_data,table_file=None,sahidica=False,method="foma",no_unknown=True,dialect="sahidic"):
+	global data_dir
+	if dialect == "bohairic":
+		data_dir = script_dir + ".." + os.sep + "data.b" + os.sep
+
 	def clean(text):
 		if "(" not in text and ")" not in text:  # Retain square brackets if item has capturing groups
 			if len(text) > 1:
@@ -70,11 +74,13 @@ def normalize(in_data,table_file=None,sahidica=False,method="foma",no_unknown=Tr
 		temp[orig] = max_norm
 	norms = temp
 	norms["ⲉⲣ"] = "ⲉⲣ"  # Prevent incorrect generalization from training data
+	if "ⲃ" in norms:
+		del norms["ⲃ"]  # Risk of normalizing isolated numeral beta like ⲃⲃⲣⲣⲉ -> ⲛ+ⲃⲣⲣⲉ
 
 	lines = [clean(line) for line in in_data.strip().split("\n")]
 	unk_lines = list(set([line for line in lines if line not in norms]))
 
-	use_foma = True if method.lower()=="foma" else False
+	use_foma = True if method.lower()=="foma" and dialect != "bohairic" else False
 	if method!="none" and len(unk_lines)>0:
 		if use_foma:
 			from foma_norm import FomaNorm
@@ -83,7 +89,7 @@ def normalize(in_data,table_file=None,sahidica=False,method="foma",no_unknown=Tr
 			for i, norm in enumerate(fm_norms):
 				if unk_lines[i] != norm:
 					norms[unk_lines[i]] = norm
-		else:
+		elif dialect != "bohairic":
 			from fs_norm import FSNorm
 			# Get set of char n-grams attested in data
 			gram = 5
@@ -109,7 +115,8 @@ def normalize(in_data,table_file=None,sahidica=False,method="foma",no_unknown=Tr
 			line = line.replace("`","")
 			line = line.replace("᷍","")
 			line = line.replace("̣","")
-			line = re.sub(r'([ⲁⲃⲅⲇⲉⲍⲏⲑⲓⲕⲗⲙⲛⲥⲟⲡⲝⲣⲧⲩⲱⲯϭϣϩϥϯ])[·.]([ⲁⲃⲅⲇⲉⲍⲏⲑⲓⲕⲗⲙⲛⲥⲟⲡⲝⲣⲧⲩⲱⲯϭϣϩϥϯ])',r'\1\2',line)  # remove punctuation inside alphabetic word
+			line = re.sub(r'([ⲁⲃⲅⲇⲉⲍⲏⲑⲓⲕⲗⲙⲛⲥⲟⲡⲝⲣⲧⲩⲱⲯϭϣϩϥϯ])[·.□]([ⲁⲃⲅⲇⲉⲍⲏⲑⲓⲕⲗⲙⲛⲥⲟⲡⲝⲣⲧⲩⲱⲯϭϣϩϥϯ])',r'\1\2',line)  # remove punctuation inside alphabetic word
+			line = re.sub(r'([ⲁⲃⲅⲇⲉⲍⲏⲑⲓⲕⲗⲙⲛⲥⲟⲡⲝⲣⲧⲩⲱⲯϭϣϩϥϯ])[□]+',r'\1',line)  # remove trailing punctuation in alphabetic word
 
 			clean = line
 			if line in norms:

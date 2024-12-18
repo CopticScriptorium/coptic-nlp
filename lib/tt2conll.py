@@ -40,7 +40,7 @@
 from argparse import ArgumentParser
 import io, sys, re
 
-def conllize(in_text,tag=None,element=None,no_zero=False,ten_cols=False):
+def conllize(in_text,tag=None,element=None,no_zero=False,ten_cols=False,with_text=False):
 
 	xml = False
 	if element is not None:
@@ -96,6 +96,17 @@ def conllize(in_text,tag=None,element=None,no_zero=False,ten_cols=False):
 				if pos == tag:
 					counter = 1
 					outlines.append("")
+	if with_text:
+		out_sents = []
+		sents = "\n".join(outlines).strip().split("\n\n")
+		for sent in sents:
+			words = []
+			for line in sent.split("\n"):
+				if "\t" in line:
+					words.append(line.split("\t")[1])
+			sent = "# text = " + " ".join(words) + "\n" + sent
+			out_sents.append(sent)
+		outlines = "\n\n".join(out_sents).split("\n")
 	return "\n".join(outlines)
 
 
@@ -107,7 +118,16 @@ if __name__ == "__main__":
 
 	opts = parser.parse_args()
 
-	in_data = io.open(opts.infile,encoding="utf8").read().replace("\r","")
-	conllized = conllize(in_data,opts.tagname,opts.xml_element)
-	print(conllized)
+	if "*" in opts.infile:
+		from glob import glob
+		files = glob(opts.infile)
+		for file_ in files:
+			in_data = io.open(file_, encoding="utf8").read().replace("\r", "")
+			conllized = conllize(in_data, opts.tagname, opts.xml_element)
+			with open(file_.replace(".xml","").replace(".tt","") + ".conll10",'w') as f:
+				f.write(conllized)
+	else:
+		in_data = io.open(opts.infile,encoding="utf8").read().replace("\r","")
+		conllized = conllize(in_data,opts.tagname,opts.xml_element)
+		print(conllized)
 

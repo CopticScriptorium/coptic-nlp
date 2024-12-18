@@ -47,9 +47,13 @@ flags:	-penmult (full SGML pipeline)
 	# Test nomina sacra
 		ⲙⲛ̅ⲡⲉⲡ̅ⲛ̅ⲁ̅					norm_group="ⲙⲛⲡⲉⲡⲛⲉⲩⲙⲁ"
 		ϩⲙ̅ⲡϫⲥ̅						norm_group="ϩⲙⲡϫⲟⲉⲓⲥ"
+flags:	-penmult --dialect bohairic (full SGML pipeline - bohairic)
+	# Test Bohairic
+		ϧⲉⲛⲡϭⲟⲉⲓⲥ_ⲙⲫⲣⲏϯ	norm="ⲣⲏϯ"
+		ϧⲉⲛⲡⲏⲓ_ⲙⲫϯ				norm="ⲛⲟⲩϯ"
+
 flags:	-enult (SGML lemmatization and lang)
 	# Test lang
 		ⲁⲃⲣⲁϩⲁⲙ					lang="Hebrew"
 	# Test lemmatization
 		ⲁϥⲥⲉⲧⲡⲧⲉⲥϩⲓⲙⲉ			lemma="ⲥⲱⲧⲡ"
-		

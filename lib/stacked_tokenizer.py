@@ -7,12 +7,12 @@ import sys, re, io, os
 from six import iterkeys, iteritems
 PY3 = sys.version_info[0] == 3
 
-__version__ = "3.0.0"
+__version__ = "4.0.0"
 __author__ = "Amir Zeldes"
 
 
 stk_dir = os.path.dirname(os.path.realpath(__file__))
-data_dir = stk_dir + os.sep + ".." + os.sep + "data" + os.sep
+data_dir = None
 
 sys.path.append(stk_dir)
 
@@ -96,7 +96,7 @@ class BoundGroup:
 					c = cap_map[c]
 				self.clean  = "".join([self.clean, c])
 				if c not in ["□","■"] and tokenized:
-					self.pretokenization  = "".join([self.pretokenization,c])
+					self.pretokenization = "".join([self.pretokenization,c])
 				self.clean_map[self.clean_cursor] = self.cursor
 				self.clean_cursor += 1
 
@@ -249,6 +249,10 @@ class BoundGroup:
 				output = align(unsegmented,segmented,loose=True,reverse=True)
 		if "||ⲑ" in output and "ⲧ|ⲑ" in segmented:
 			output = output.replace("||ⲑ","|ⲑ|")
+		if output.count("|") != segmented.count("|"):
+			output = align(unsegmented,segmented,loose=True)
+			if "|ϯ|" in segmented and "|ϯ|" not in output and "|ⲧⲓ|" in output:
+				output = output.replace("|ⲧⲓ|","ⲧ|ⲓ|")
 
 		output = re.sub(r'\|+','|',output)
 		output = re.sub(r'-+','-',output)
@@ -379,6 +383,15 @@ def dissolve(text, tok_sep="|", tokenized=False):
 				bound_groups[-2].affix(c,tokenized)
 		bound_groups.pop()
 
+	for bg in bound_groups:
+		if len(bg.pretokenization) > 0:
+			bg.pretokenization = bg.pretokenization.replace("||", "|").replace("--", "-")
+			if bg.pretokenization[0] in ["|","-"]:
+				bg.pretokenization = bg.pretokenization[1:]
+		if len(bg.pretokenization) > 0:
+			if bg.pretokenization[-1] in ["|","-"]:
+				bg.pretokenization = bg.pretokenization[:-1]
+
 	return bound_groups
 
 
@@ -437,12 +450,19 @@ def adjust_theta(tokenization):
 class StackedTokenizer:
 
 	def __init__(self,lines=False,pipes=False,tokenized=False,no_morphs=False,detok=0,segment_merged=False,model="cop",
-				 ambig=None,use_meta=False,model_path=None,morph_table=None):
+				 ambig=None,use_meta=False,model_path=None,morph_table=None,dialect="sahidic"):
+		global data_dir
+
+		if dialect == "bohairic":
+			data_dir = stk_dir + os.sep + ".." + os.sep + "data.b" + os.sep
+		else:
+			data_dir = stk_dir + os.sep + ".." + os.sep + "data" + os.sep
 		self.lines = lines
 		self.pipes = pipes
 		self.tokenized = tokenized
 		self.no_morphs = no_morphs
-		self.model = model
+		self.dialect = dialect
+		self.model = model if dialect != "bohairic" else "boh"
 		self.load_rftokenizer(model_path=model_path)
 		self.ambig = {}
 		if ambig is not None:
@@ -466,11 +486,14 @@ class StackedTokenizer:
 			else:
 				self.load_detokenizer(aggressive=False)
 		self.escaped_squares = False
-		self.morph_analyzer = MorphAnalyzer(morph_table=morph_table)
+		self.morph_analyzer = MorphAnalyzer(morph_table=morph_table,dialect=self.dialect)
 
 	def load_detokenizer(self,data=None,aggressive=False):
 		if data is None:
-			data = stk_dir + os.sep + ".." + os.sep + "data" + os.sep + "detok.tab"
+			if self.dialect == "bohairic":
+				data = stk_dir + os.sep + ".." + os.sep + "data.b" + os.sep + "detok.tab"
+			else:
+				data = stk_dir + os.sep + ".." + os.sep + "data" + os.sep + "detok.tab"
 		if os.path.exists(data):
 			detoks = io.open(data,encoding="utf8").read().replace("\r","").strip().split("\n")
 			split_lines = [(line.split("\t")[0], float(line.split("\t")[-1])) for line in detoks if not line.startswith("#")]
@@ -497,14 +520,69 @@ class StackedTokenizer:
 	def normalize(self,groups,norm_table=None):
 		cleans = [g.clean for g in groups]
 		if norm_table is None:
-			norms = lookup_normalize("\n".join(cleans),table_file=data_dir+"norm_table.tab").split("\n")
+			norms = lookup_normalize("\n".join(cleans),table_file=data_dir+"norm_table.tab",dialect=self.dialect).split("\n")
 		else:
-			norms = lookup_normalize("\n".join(cleans),table_file=norm_table).split("\n")
+			norms = lookup_normalize("\n".join(cleans),table_file=norm_table,dialect=self.dialect).split("\n")
 
 		for i,g in enumerate(groups):
 			g.norm = norms[i]
 
 		return groups
+
+	def fix_data(self, data, rule_lines):
+		rules = {}
+		for line in rule_lines.strip().split("\n"):
+			if "\t" in line:
+				orig, norms, tags, lemmas, langs = line.split("\t")
+				rules[orig.replace("|","")] = (orig,norms,tags,lemmas,langs)
+
+		output = []
+		bgs = data.split("\n</norm_group>\n")
+		for bg in bgs:
+			if ' orig_group=' not in bg:
+				output.append(bg)
+				continue
+			orig_group = re.search(r' orig_group="([^"]+)"',bg).group(1)
+			if orig_group in rules:
+				origs = rules[orig_group][0].split("|")
+				norms = rules[orig_group][1].split("|")
+				tags = rules[orig_group][2].split("|")
+				lemmas = rules[orig_group][3].split("|")
+				langs = rules[orig_group][4].split("|")
+				split_points = [""]
+				so_far = ""
+				for o in origs:
+					split_points.append(so_far + o)
+				group_out = []
+				i = 0
+				# Fix norm_group normalization
+				bg = re.sub(r' norm_group="[^"\n]+?"',r' norm_group="'+rules[orig_group][1].replace("|","")+'"',bg)
+				group_text = ""
+				for line in bg.strip().split("\n"):  # Fix individual norms
+					if '<norm ' in line or '</norm>' in line:
+						continue
+					if not (line.startswith("<") and line.endswith(">")):
+						for c in line:
+							if group_text in split_points:
+								langstr = f' lang="{langs[i]}"' if langs[i] != "Coptic" else ""
+								norm = f'<norm norm="{norms[i]}" orig="{origs[i]}" pos="{tags[i]}" lemma="{lemmas[i]}{langstr}">'
+								group_out.append(norm)
+								i += 1
+								group_out.append("</norm>")
+							else:
+								if group_out[-1].endswith(">"):
+									group_out.append(c)
+								else:
+									group_out[-1] += c
+							group_text += c
+					else:
+						group_out.append(line)
+				bg = "\n".join(group_out)
+			output.append(bg)
+
+		toks = "\n</norm_group>\n".join(output)
+
+		return toks
 
 	@staticmethod
 	def merge_groups(last_grp, grp):
@@ -529,7 +607,7 @@ class StackedTokenizer:
 
 		return new_group
 
-	def analyze(self,data,do_normalize=True,norm_table=None):
+	def analyze(self,data,do_normalize=True,norm_table=None,seg_table=None):
 		if '□' in data:
 			data = data.replace('□','▫')
 			self.escaped_squares = True
@@ -577,7 +655,8 @@ class StackedTokenizer:
 				#	g.clean = g.norm
 			for g in grps:
 				plain_tokenization = g.pretokenization
-				plain_tokenization = adjust_theta(plain_tokenization)
+				if self.dialect != "bohairic":
+					plain_tokenization = adjust_theta(plain_tokenization)
 				g.orig = g.orig.replace("□", "").replace("■", "")
 				g.clean = g.clean.replace("□", "").replace("■", "")
 				g.add_tokenization(plain_tokenization)
@@ -594,7 +673,7 @@ class StackedTokenizer:
 			known_tokenizations = {}
 			unknown = set([])
 
-			tokenizations_lo = lookup_tokenize(norm_types, underscore_oov=True)
+			tokenizations_lo = lookup_tokenize(norm_types, underscore_oov=True, seg_table=seg_table)
 			# lo_not_found = [i for i,x in enumerate(tokenizations_lo) if x == '_']
 			# tokenizations_lo = dict(zip(norm_types,tokenizations_lo))
 
@@ -608,7 +687,7 @@ class StackedTokenizer:
 						known_tokenizations[norm] = tokked
 
 			to_tokenize = list(unknown)
-			tokenizations_fs = fs_tokenize(to_tokenize)
+			tokenizations_fs = fs_tokenize(to_tokenize, dialect=self.dialect)
 			unknown = set([])
 
 			for norm, tokked in zip(to_tokenize, tokenizations_fs):
@@ -707,19 +786,30 @@ if __name__ == "__main__":
 	parser.add_argument("-d","--detokenize",action="store_true",dest="detokenize", help="re-split boundgroups based on Layton's conventions")
 	parser.add_argument("-s","--segment_merged",action="store_true",help="if detokenizing, force merged groups to hahve a boundary between them")
 	parser.add_argument("-v","--version",action="store_true",help="print version number and quit")
+	parser.add_argument("--dialect",action="store",default="sahidic", choices=["sahidic","bohairic"], help="dialect of Coptic to tokenize (sahidic or bohairic)")
+	parser.add_argument("--fix", action="store", default=None, help="supply a rule file to fix errors")
 
 	if "-v" in sys.argv or "--version" in sys.argv:
 		print("Stacked Tokenizer V" + __version__)
 		sys.exit(1)
 
 	options = parser.parse_args()
+	if options.dialect == "bohairic":
+		data_dir = stk_dir + os.sep + ".." + os.sep + "data.b" + os.sep
+	else:
+		data_dir = stk_dir + os.sep + ".." + os.sep + "data" + os.sep
 
 	stk = StackedTokenizer(lines=options.lines,pipes=options.pipes,tokenized=options.tokenized,no_morphs=options.no_morphs,
-						   detok=options.detokenize, segment_merged=options.segment_merged,ambig=data_dir+"ambig.tab")
+						   detok=options.detokenize, segment_merged=options.segment_merged,ambig=data_dir+"ambig.tab",
+						   dialect=options.dialect, model_path="cop.sm3")
 
 	data = io.open(options.infile, encoding="utf8").read().replace("\r", "")
 
-	toks = stk.analyze(data)
+	if options.fix is not None:
+		rules = io.open(options.fix, encoding="utf8").read()
+		toks = stk.fix_data(data, rules)
+	else:
+		toks = stk.analyze(data)
 
 	if PY3:
 		sys.stdout.buffer.write(toks.encode("utf8"))
