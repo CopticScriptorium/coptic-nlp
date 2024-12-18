@@ -1,17 +1,32 @@
 """Unit tests for Coptic NLP"""
 
-import io, re, os, sys
+import io, re, os, sys, platform, zipfile
 from collections import defaultdict
 from six import iterkeys
 
 script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 data_dir = script_dir + "data" + os.sep
 lib_dir = script_dir + "lib" + os.sep
+bin_dir = script_dir + "bin" + os.sep
 
 from coptic_nlp import nlp_coptic
 from lib.stacked_tokenizer import StackedTokenizer
 
 PY3 = sys.version_info[0] == 3
+
+# Check requirements
+if not (os.path.exists(bin_dir + "foma" + os.sep + "flookup") or os.path.exists(bin_dir + "foma" + os.sep + "flookup.exe")):
+	sys.stderr.write("! Foma flookup not found at ./bin/foma/\n! Attempting to obtain from zip...")
+	if platform.system() == "Windows":
+		with zipfile.ZipFile(bin_dir + "foma" + os.sep + "foma_win.zip", 'r') as z:
+			z.extractall(bin_dir + "foma" + os.sep)
+	elif platform.system() == "Darwin":
+		with zipfile.ZipFile(bin_dir + "foma" + os.sep + "foma_osx.zip", 'r') as z:
+			z.extractall(bin_dir + "foma" + os.sep)
+	else:  # Linux
+		sys.stderr.write("! Need to compile foma on Linux and place flookup in bin/foma/\n! See bin/foma/README.md \n")
+		sys.exit(0)
+	sys.stderr.write("! Foma flookup extracted to bin/foma/\n")
 
 class CopticTest:
 
