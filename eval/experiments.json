@@ -1,6 +1,10 @@
 {"script":"parse","name":"parser_malt","target":"dep","train":"ud_dev_train","test":"ud_test","method":"malt","retrain":true}
 {"script":"bind","name":"binding_cyrus","target":"orig_group","train":"cyrus","test":"cyrus_plain","method":"aggressive"}
 {"script":"bind","name":"binding_victor","target":"orig_group","train":"victor_tt","test":"victor_plain","method":"aggressive"}
+{"script":"tag","name":"tagger_ensemble","target":"pos","train":"silver","test":"ud_test","method":"ensemble","retrain":false}
+{"script":"tag","name":"tagger_ensemble_cyrus","target":"pos","train":"silver","test":"cyrus","method":"ensemble","retrain":false}
+{"script":"tag","name":"tagger_stan","target":"pos","train":"silver","test":"ud_test","method":"stanford","retrain":false}
+{"script":"tag","name":"tagger_stan_cyrus","target":"pos","train":"silver","test":"cyrus","method":"stanford","retrain":false}
 {"script":"tag","name":"tagger_tt","target":"pos","train":"silver","test":"ud_test","method":"treetagger","retrain":true}
 {"script":"tag","name":"tagger_tt_cyrus","target":"pos","train":"silver","test":"cyrus","method":"treetagger","retrain":true}
 {"script":"tag","name":"tagger_marmot","target":"pos","train":"silver","test":"ud_test","method":"marmot","retrain":false}

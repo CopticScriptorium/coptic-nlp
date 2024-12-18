@@ -17,13 +17,18 @@ def tag_tt(indata):
 	return tagged
 
 
-def train_tt(indata):
+def train_tt(indata, dialect="sahidic", gram="3"):
+	global data_dir
+
 	# Setup fresh lexicon
+	if dialect == "bohairic":
+		data_dir = data_dir[:-1] + ".b" + os.sep
+		#gram = "2"
 	lex_cmd = ["python",utils_dir + "_dedup_lexicon_lemma.py",data_dir+"copt_lemma_lex.tab"]
 	lex = exec_via_temp(None, lex_cmd)
 	with io.open(script_dir + "lexicon.txt",'w',encoding="utf8",newline="\n") as f:
 		f.write(lex)
 	lexicon = script_dir + "lexicon.txt"
 	open_class = script_dir + "coptic_open_classes.tab"
-	cmd = [tt_path + "train-tree-tagger","-st","PUNCT","-cl","3",lexicon,open_class,"tempfilename",script_dir+"temp.par"]
+	cmd = [tt_path + "train-tree-tagger","-st","PUNCT","-cl",gram,lexicon,open_class,"tempfilename",script_dir+"temp.par"]
 	exec_via_temp(indata, cmd)
