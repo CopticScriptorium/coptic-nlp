@@ -204,3 +204,7 @@ If all requirements are installed correctly, you can verify that modules are wor
 ```
 python run_tests.py
 ```
+
+## Acknowledgments
+
+We would like to thank Tito Orlandi (CMCL) for contributing Sahidic lexicon data to the project, Hany Takla (Saint Shenouda the Archimandrite Society) for much of the Bohairic data that the tools are based on and Pishoy Georgios for contributing lexical data for Bohairic. A full list of [contributors and collaborators](https://copticscriptorium.org/about) in other projects can be found on the [Coptic Scriptorium](https://copticscriptorium.org/) website.
