@@ -17318,9 +17318,6 @@ noun_f	ⲱⲫⲉⲗⲉⲓⲁ	ⲱⲫⲉⲗⲓⲁ
 noun_f	ⲱⲫⲉⲗⲏⲁ	ⲱⲫⲉⲗⲓⲁ
 noun_f	ⲱⲫⲏⲕⲉⲓⲟⲛ	ⲱⲫⲓⲕⲓⲟⲛ
 noun_f	ⲱⲫⲓⲕⲉⲓⲟⲛ	ⲱⲫⲓⲕⲓⲟⲛ
-noun_m	#added	#added
-noun_m	#from CDO	#from CDO
-noun_m	#new from treebank	#new from treebank
 noun_m	(?<!ⲉ)ⲕⲕⲗⲏⲥⲓⲁ	ⲉⲕⲕⲗⲏⲥⲓⲁ
 noun_m	-	-
 noun_m	--	--
@@ -39205,9 +39202,6 @@ noun_m	ⲱⲫⲓⲕⲉⲓⲟⲛ	ⲱⲫⲓⲕⲓⲟⲛ
 noun_m	ⲱⲫⲓⲕⲏⲟⲛ	ⲱⲫⲓⲕⲓⲟⲛ
 noun_m	ⲱⲫⲓⲕⲓⲟⲛ	ⲱⲫⲓⲕⲓⲟⲛ
 noun_m	⸖	⸖
-noun_not_verb	#added	#added
-noun_not_verb	#from CDO	#from CDO
-noun_not_verb	#new from treebank	#new from treebank
 noun_not_verb	-	-
 noun_not_verb	--	--
 noun_not_verb	[.....]	[.....]
