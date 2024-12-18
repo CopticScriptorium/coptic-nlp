@@ -135,7 +135,6 @@ def marmotify(indata,train=False,sent=None,func=False):
 
 
 def tag_marmot(indata,model=None,sent=None,func=False,dialect="sahidic"):
-def tag_marmot(indata,model=None,sent=None,func=False):
 
 	if model is None:
 		if dialect == "bohairic":
