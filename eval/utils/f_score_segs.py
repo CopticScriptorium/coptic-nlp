@@ -13,14 +13,14 @@ of a single pipe (i.e. input contained a literal pipe, which must be a complete 
 """
 
 
-def main(goldfile, predfile, preds_as_string=False,ignore_diff_len=False,replace_diff_len=False,silent=False,sep_only=False):
+def main(goldfile, predfile, preds_as_string=False,ignore_diff_len=False,replace_diff_len=False,silent=False,
+		 quit_on_error=True, sep_only=False):
 	lines = io.open(goldfile, encoding="utf8").read().strip().replace("\r", "").split("\n")
 	counter = 0
 	gold = []
 	gold_groups = []
 	perfect = 0
 	total = 0
-	no_sep_lines = set([])
 
 	if "\t" in lines[0]:  # Convenience step allowing 2-column file as gold
 		sys.stderr.write("o Found tab in gold file, using second column as gold\n")
@@ -29,9 +29,6 @@ def main(goldfile, predfile, preds_as_string=False,ignore_diff_len=False,replace
 		total += 1
 		if "[" in line or "]" in line and not len(line.strip()) == 1:
 			line = line.replace("[","").replace("]","")
-		if sep_only and "|" not in line:  # Only evaluate lines that have separator
-			no_sep_lines.add(r)
-			continue
 		gold_groups.append(line.strip())
 		for i, c in enumerate(list(line.strip())):
 			counter += 1
@@ -54,30 +51,33 @@ def main(goldfile, predfile, preds_as_string=False,ignore_diff_len=False,replace
 		lines = io.open(predfile, encoding="utf8").read().strip().replace("\r", "").split("\n")
 	counter = 0
 	pred = []
-	offset = 0
 
+	word_has_sep = []
 	for r, line in enumerate(lines):
 		# Ignore [ or ] in string
 		if "[" in line or "]" in line and not len(line.strip()) == 1:
 			line = line.replace("[","").replace("]","")
-		if r == len(gold_groups):
-			a=4
-		if r in no_sep_lines:
-			offset -= 1
-			continue
-		if len(line.replace("|","").strip()) != len(gold_groups[r+offset].replace("|","").strip()):
+		if r >= len(gold_groups):
+			print("More predictions than gold tokens")
+			print(r,line)
+			sys.exit(1)
+		if len(line.replace("|","").strip()) != len(gold_groups[r].replace("|","").strip()):
 			# Length mismatch, bug row
 			if ignore_diff_len:
 				if replace_diff_len:
-					line = gold_groups[r+offset].replace("|","").strip()  # Replace prediction with gold length string with no segmentation
+					line = gold_groups[r].replace("|","").strip()  # Replace prediction with gold length string with no segmentation
 				else:
 					continue
-		if line.strip() == gold_groups[r+offset]:
+		if line.strip() == gold_groups[r]:
 			perfect += 1
 		for i, c in enumerate(list(line.strip())):
 			counter += 1
 			if i == len(line.strip()) - 1:  # Last character is trivial, ignore
 				continue
+			if "|" in gold_groups[r]:
+				word_has_sep.append(1)
+			else:
+				word_has_sep.append(0)
 			if c == "|":
 				if len(line.strip()) > 1 and i == 0:
 					print("Complex token begins with boundary marker at pred row " + str(r))
@@ -89,24 +89,29 @@ def main(goldfile, predfile, preds_as_string=False,ignore_diff_len=False,replace
 
 	pred_chars = counter
 
-	if pred_chars != gold_chars:
-		sys.stderr.write("ERROR: found " + str(gold_chars) + " gold chars but " + str(pred_chars) + " pred chars\n")
-		sys.exit()
-
 	true_positive = 0
 	false_positive = 0
 	false_negative = 0
-	for i in range(len(gold)):
-		if gold[i] == 0:
-			if pred[i] == 0:
-				pass
+
+	if pred_chars != gold_chars:
+		# [(i,p) for i, p in enumerate(lines) if p.replace("|","").replace("[","").replace("]","") != gold_groups[i].replace("|","").replace("[","").replace("]","")]
+		sys.stderr.write("ERROR: found " + str(gold_chars) + " gold chars but " + str(pred_chars) + " pred chars\n")
+		if quit_on_error:
+			sys.exit()
+	else:
+		for i in range(len(gold)):
+			if sep_only and word_has_sep[i] == 0:
+				continue
+			if gold[i] == 0:
+				if pred[i] == 0:
+					pass
+				else:
+					false_positive += 1
 			else:
-				false_positive += 1
-		else:
-			if pred[i] == 0:
-				false_negative += 1
-			else:
-				true_positive += 1
+				if pred[i] == 0:
+					false_negative += 1
+				else:
+					true_positive += 1
 
 	try:
 		precision = true_positive / (float(true_positive) + false_positive)

@@ -95,7 +95,7 @@ def tt2split_groups(tt_string,group_attr="orig_group",unit_attr="orig"):
 					augmented.append("".join(units[1:]))
 					labels.extend([0,1])
 				continue
-		elif rnd >= 0.9 and len(bound_group)>1:
+		elif rnd >= 0.9 and len(bound_group)>1 and False:
 			rnd = random()
 			split_point = floor(len(bound_group)*rnd)
 			if len(bound_group) -1 > split_point > 0:
@@ -113,7 +113,7 @@ def tt2split_groups(tt_string,group_attr="orig_group",unit_attr="orig"):
 	return augmented, labels
 
 
-files = list_files("ud_train")
+files = list_files("ud_dev")
 
 augmented = []
 labels = []

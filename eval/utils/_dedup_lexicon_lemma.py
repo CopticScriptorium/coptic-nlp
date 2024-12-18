@@ -4,9 +4,12 @@ from collections import defaultdict
 lines = io.open(sys.argv[1],encoding="utf8").readlines()
 entries = defaultdict(set)
 
-for line in lines:
+for l, line in enumerate(lines):
 	fields = line.strip().split("\t")
-	entries[fields[0]].add((fields[1],fields[2]))
+	try:
+		entries[fields[0]].add((fields[1],fields[2]))
+	except:
+		raise IOError("Malformed line on line " + str(l))
 
 keys = sorted(entries.keys())
 seen = set([])

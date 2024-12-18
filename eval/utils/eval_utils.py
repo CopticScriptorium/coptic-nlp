@@ -8,11 +8,12 @@ PY3 = sys.version_info[0] == 3
 
 script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 eval_dir = script_dir + ".." + os.sep
+bohairic_corpora = pub_corpora = "corpora" + os.sep  # Path to clone of CopticScriptorium/corpora
 
 try:
-    from paths import corpora_dir, ud_dir
+    from fpaths import corpora_dir, ud_dir
 except:
-    from .paths import corpora_dir, ud_dir
+    from .fpaths import corpora_dir, ud_dir
 
 # Harvest corpora directory for aliases
 aliases = {}
@@ -24,7 +25,7 @@ def get_conll_docnames(conllu):
     return docs
 
 
-def harvest_aliases(harvest_dir):
+def harvest_aliases(harvest_dir, dialect="sahidic"):
     def clean_tb_names(docname):
         docname = docname.replace("1Corinthians", "1Cor")
         docname = docname.replace("MONB_", "")
@@ -35,13 +36,19 @@ def harvest_aliases(harvest_dir):
             docname = "a22." + docname
         return docname
 
-    def get_ud_docs(partition):
-        conllu = io.open(
-            ud_dir + "cop_scriptorium-ud-" + partition + ".conllu", encoding="utf8"
-        ).read()
+    def get_ud_docs(partition, dialect="sahidic"):
+        if dialect == "sahidic":
+            conllu = io.open(ud_dir + "cop_scriptorium-ud-" + partition + ".conllu", encoding="utf8").read()
+        else:
+            conllu = io.open(ud_dir + "cop_bohairic-ud-" + partition + ".conllu", encoding="utf8").read()
         ud_docs = get_conll_docnames(conllu)
         ud_docs = [clean_tb_names(doc) for doc in ud_docs]
         return ud_docs
+
+    global ud_dir
+
+    if dialect == "bohairic":
+        ud_dir = ud_dir.replace("UD_Coptic","UD_Bohairic")
 
     out = {}
     if os.path.exists(harvest_dir):
@@ -49,13 +56,11 @@ def harvest_aliases(harvest_dir):
             1
         ]  # Immediate children of corpora directory
         for d in corpus_dirs:
-            if (
-                "treebank" in d
-            ):  # Ignore additional treebank directory, since the same docs appear elsewhere
+            if "treebank" in d:  # Ignore additional treebank directory, since the same docs appear elsewhere
                 continue
-            files = glob(
-                corpora_dir + d + os.sep + "*" + os.sep + "*.tt", recursive=True
-            )
+            if dialect=="bohairic" and "bohairic" not in d:
+                continue
+            files = glob(corpora_dir + d + os.sep + "*" + os.sep + "*.tt", recursive=True)
             if len(files) > 0:
                 out[
                     d.lower()
@@ -79,7 +84,7 @@ def harvest_aliases(harvest_dir):
                     out[os.path.basename(file_).replace(".tt", "")] = [file_]
 
         for partition in ["train", "dev", "test"]:
-            docs = get_ud_docs(partition)
+            docs = get_ud_docs(partition, dialect=dialect)
             if any([a not in out for a in docs]):
                 sys.stderr.write(
                     "ERR: Unknown treebank document: "
@@ -93,12 +98,23 @@ def harvest_aliases(harvest_dir):
         all_lists = [l for l in itervalues(out)]
         flat = list(set(list(chain.from_iterable(all_lists))))
 
-        out["silver_auto"] = [f for f in flat if f not in out["ud_test"]]
-
-        out["gold"] = [f for f in flat if 'segmentation="gold' in io.open(f,encoding="utf8").read() and f not in out["ud_test"]]
-        out["gold_entities"] = [f for f in flat if ' entities="gold' in io.open(f,encoding="utf8").read() and f not in out["ud_test"]]
-        out["silver"] = [f for f in flat if ('segmentation="checked' in io.open(f,encoding="utf8").read() or f in out["gold"]) and f not in out["ud_test"]]
-        out["silver_no_dev"] = [f for f in flat if ('segmentation="checked' in io.open(f,encoding="utf8").read() or f in out["gold"]) and f not in out["ud_dev"]]
+        if dialect == "sahidic":
+            out["silver_auto"] = [f for f in flat if f not in out["ud_test"]]
+            out["gold"] = [f for f in flat if 'segmentation="gold' in io.open(f,encoding="utf8").read() and f not in out["ud_test"] and "bohairic" not in f]
+            out["gold_entities"] = [f for f in flat if ' entities="gold' in io.open(f,encoding="utf8").read() and f not in out["ud_test"] and "bohairic" not in f]
+            out["checked_entities"] = [f for f in flat if re.search(r' entities="(gold|checked)"',io.open(f,encoding="utf8").read()) is not None and f not in out["ud_test"] and "bohairic" not in f]
+            out["silver"] = [f for f in flat if ('segmentation="checked' in io.open(f,encoding="utf8").read() or f in out["gold"]) and f not in out["ud_test"] and "bohairic" not in f]
+            out["silver_no_dev"] = [f for f in flat if ('segmentation="checked' in io.open(f,encoding="utf8").read() or f in out["gold"]) and f not in out["ud_dev"] and "bohairic" not in f]
+            out["checked_identities"] = [f for f in flat if re.search(r' identities="(gold|checked)"',io.open(f,encoding="utf8").read()) is not None and f not in out["ud_test"] and "bohairic" not in f]
+        else:
+            out["bohairic_silver_auto"] = [f for f in flat if f not in out["ud_test"] and "bohairic" in f]
+            out["bohairic_gold"] = [f for f in flat if 'segmentation="gold' in io.open(f,encoding="utf8").read() and f not in out["ud_test"] and "bohairic" in f]
+            #out["bohairic_gold_entities"] = [f for f in flat if ' entities="gold' in io.open(f,encoding="utf8").read() and f not in out["ud_test"] and "bohairic" in f]
+            #out["bohairic_checked_entities"] = [f for f in flat if re.search(r' entities="(gold|checked)"',io.open(f,encoding="utf8").read()) is not None and f not in out["ud_test"] and "bohairic" in f]
+            out["bohairic_silver"] = [f for f in flat if ('segmentation="checked' in io.open(f,encoding="utf8").read() or f in out["bohairic_gold"]) and f not in out["ud_test"] and "bohairic" in f]
+            out["bohairic_silver_tagging"] = [f for f in flat if ('tagging="checked' in io.open(f,encoding="utf8").read() or f in out["bohairic_gold"]) and f not in out["ud_test"] and "bohairic" in f]
+            out["bohairic_silver_no_dev"] = [f for f in flat if ('segmentation="checked' in io.open(f,encoding="utf8").read() or f in out["bohairic_gold"]) and f not in out["ud_dev"] and "bohairic" in f]
+            #out["bohairic_checked_identities"] = [f for f in flat if re.search(r' identities="(gold|checked)"',io.open(f,encoding="utf8").read()) is not None and f not in out["ud_test"] and "bohairic" in f]
 
     return out
 
@@ -144,6 +160,8 @@ def exec_via_temp(input_text, command_params, workdir="", outfile=False):
                 cwd=workdir,
             )
             (stdout, stderr) = proc.communicate()
+        if len(str(stderr)) > 0:
+            print(stderr)
         if outfile:
             if PY3:
                 output = io.open(temp2.name, encoding="utf8").read()
@@ -166,56 +184,7 @@ def exec_via_temp(input_text, command_params, workdir="", outfile=False):
         return output
 
 
-def exec_via_temp_old(input_text, command_params, workdir=""):
-    exec_out = ""
-    try:
-        if input_text is not None:
-            temp = tempfile.NamedTemporaryFile(delete=False)
-            if PY3:
-                # try:
-                temp.write(input_text.encode("utf8"))
-                # except:
-                # 	temp.write(input_text)
-            else:
-                temp.write(input_text)
-            temp.close()
-
-            command_params = [
-                x if x != "tempfilename" else temp.name for x in command_params
-            ]
-        if workdir == "":
-            proc = subprocess.Popen(
-                command_params,
-                stdout=subprocess.PIPE,
-                stdin=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-            )
-            (stdout, stderr) = proc.communicate()
-        else:
-            proc = subprocess.Popen(
-                command_params,
-                stdout=subprocess.PIPE,
-                stdin=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                cwd=workdir,
-            )
-            (stdout, stderr) = proc.communicate()
-
-        exec_out = stdout
-    except Exception as e:
-        print(e)
-    finally:
-        if input_text is not None:
-            os.remove(temp.name)
-        if PY3:
-            try:
-                exec_out = exec_out.decode("utf8").replace("\r", "")
-            except:
-                pass
-        return exec_out
-
-
-def list_files(alias="silver", file_dir=None, mode=None):
+def list_files(alias="silver", file_dir=None, mode=None, dialect="sahidic"):
     """
 	Accept an alias and return a list of file paths. We assume that file_dir is usually the same as corpora_dir,
 	which is a clone of CopticScriptorium/corpora. Aliases are auto-lower-cased and can be:
@@ -228,16 +197,25 @@ def list_files(alias="silver", file_dir=None, mode=None):
 
 	:param alias: alias string, see above
 	:param file_dir: directory containing corpus folders with tt files (possibly is recursive sub-folders)
-	:param mode: tt, plain, parse
+	:param mode: tt, plain_text, plain_bg, parse
+	:param dialect: sahidic or bohairic
 	:return:
 	"""
 
     global aliases
 
+    if "bohairic" in alias:
+        dialect = "bohairic"
+    if dialect == "bohairic":
+        aliases.update(harvest_aliases(bohairic_corpora, dialect="bohairic"))
+
     if file_dir is not None:
-        aliases.update(harvest_aliases(file_dir))
+        aliases.update(harvest_aliases(file_dir, dialect=dialect))
 
     file_list = []
+
+    if mode is None:
+        mode = "tt"
 
     if "plain" in alias:
         mode = "plain"
@@ -245,22 +223,25 @@ def list_files(alias="silver", file_dir=None, mode=None):
     if "+" in alias:
         multiple_aliases = alias.split("+")
         for a in multiple_aliases:
-            file_list += list_files(a, file_dir=file_dir, mode=mode)
+            file_list += list_files(a, file_dir=file_dir, mode=mode, dialect=dialect)
         return list(set(file_list))
 
     # Resolve substrings
-    if alias not in aliases:
-        possible_keys = [k for k in aliases if k.startswith(alias)]
-        if len(possible_keys) == 1:
-            alias = possible_keys[0]
-        else:
-            sys.stderr.write(
-                "ERR: Could not find unambiguous data set alias '" + alias + "'\n"
-            )
-            quit()
+    if "plain" not in mode:
+        if alias not in aliases:
+            possible_keys = [k for k in aliases if k.startswith(alias)]
+            if len(possible_keys) == 1:
+                alias = possible_keys[0]
+            elif len(possible_keys) > 1:
+                shortest = min(possible_keys,key=lambda x:len(x))
+                sys.stderr.write("WARN: multiple aliases match '" + alias + "', choosing shortest: " + shortest + "\n")
+                alias = shortest
+            else:
+                sys.stderr.write("ERR: Could not find unambiguous data set alias '" + alias + "'\n")
+                sys.exit(0)
 
     if file_dir is None:
-        file_dir = eval_dir + "tt" + os.sep  # Default tt file directory
+        file_dir = pub_corpora  # Default tt file directory
 
     if mode == "parse":
         file_dir = eval_dir + "parses" + os.sep
@@ -273,7 +254,23 @@ def list_files(alias="silver", file_dir=None, mode=None):
                 file_dir + "cop_scriptorium-ud-train.conllu",
                 file_dir + "cop_scriptorium-ud-dev.conllu",
             ]
-    elif mode == "plain":
+    elif mode == "plain_text":
+        file_dir = eval_dir + "binder_data" + os.sep + "plain" + os.sep
+        files = sorted(glob(file_dir + "*.txt"))
+        if "-" in alias:
+            alias = alias.replace("-","")
+            file_list = [f for f in files if alias not in f]
+        else:
+            file_list = [f for f in files if alias in f]
+    elif mode == "plain_bg":
+        file_dir = eval_dir + "binder_data" + os.sep + "gold" + os.sep
+        files = sorted(glob(file_dir + "*.bg"))
+        if "-" in alias:
+            alias = alias.replace("-","")
+            file_list = [f for f in files if alias not in f]
+        else:
+            file_list = [f for f in files if alias in f]
+    elif mode == "old_plain":
         if alias.lower().startswith("cyrus"):
             file_dir = eval_dir + "plain" + os.sep
             file_list = [file_dir + "BritMusOriental6783_23a_27a.txt"]
@@ -383,6 +380,8 @@ def list_files(alias="silver", file_dir=None, mode=None):
                 file_dir + "apa_onnophrius_part1.tt",
             ]
         elif alias.lower() == "silver":
+            sys.stderr.write("WARN: old silver list used at eval_utils.py line 412")
+            quit()
             test_list = io.open(eval_dir + "test_list.tab").read().strip().split("\n")
             file_list = glob(file_dir + os.sep + "*.tt")
             filtered = []
