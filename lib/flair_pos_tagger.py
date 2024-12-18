@@ -19,8 +19,8 @@ flair_version = int(flair.__version__.split(".")[1])
 
 script_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 model_dir = script_dir + ".." + os.sep + "lib" + os.sep
-GIT_ROOT = ""  # Path to parent of clones of CopticScriptorium/Corpora and UniversalDependencies/UD_Coptic-Scriptorium (and/or Bohairic)
-CONLLU_ROOT = GIT_ROOT + "UD_Coptic-Scriptorium" + os.sep  # Path to conllu
+GIT_ROOT = "C:\\Uni\\Coptic\\git\\"  # Path to parent of clones of CopticScriptorium/Corpora and UniversalDependencies/UD_Coptic-Scriptorium (and/or Bohairic)
+CONLLU_ROOT = GIT_ROOT + "UD_Coptic" + os.sep  # Path to conllu
 PUB_CORPORA = GIT_ROOT + "corpora" + os.sep + "pub_corpora" + os.sep  # Path to CopticScriptorium/Corpora
 TARGET_FEATS = {"Gender","Number","Tense","VerbForm","Voice"}
 
@@ -653,10 +653,10 @@ class FlairTagger:
         trainer: ModelTrainer = ModelTrainer(tagger, corpus)
 
         # 7. start training
-        trainer.fine_tune(script_dir + "pos-dependencies" + os.sep + 'flair_tagger',
+        trainer.train(script_dir + "pos-dependencies" + os.sep + 'flair_tagger',
                       learning_rate=0.1,
                       mini_batch_size=15,
-                      max_epochs=40)
+                      max_epochs=50)
 
     def predict(self, in_path=None, in_format="flair", out_format="conllu", as_text=False, tags=False, seg=False,
                 norm="norm", group="norm_group", sent="translation"):
