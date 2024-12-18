@@ -7,9 +7,13 @@ PY3 = sys.version_info[0] == 3
 
 
 class MorphAnalyzer:
-	def __init__(self,morph_table=None):
+	def __init__(self,morph_table=None,dialect="sahidic"):
+		self.dialect = dialect
 		if morph_table is None:
-			morph_table = os.path.dirname(os.path.realpath(__file__)) +os.sep+".."+os.sep+"data" +os.sep+"morph_table.tab"
+			if dialect == "bohairic":
+				morph_table = os.path.dirname(os.path.realpath(__file__)) + os.sep + ".." + os.sep + "data.b" + os.sep + "morph_table.tab"
+			else:
+				morph_table = os.path.dirname(os.path.realpath(__file__)) +os.sep+".."+os.sep+"data" +os.sep+"morph_table.tab"
 		try:
 			reader = csv.reader(io.open(morph_table, encoding="utf8"), delimiter='\t', escapechar="\\")
 		except TypeError:
@@ -23,6 +27,9 @@ class MorphAnalyzer:
 
 		analyzed = []
 
+		mnt = "ⲙⲛⲧ" if self.dialect == "sahidic" else "ⲙⲉⲧ"
+		er = "ⲣ" if self.dialect == "sahidic" else "ⲉⲣ"
+
 		#norms2 = norms.decode("utf8").split("|")
 		if not PY3:
 			pass
@@ -35,16 +42,19 @@ class MorphAnalyzer:
 			if norm in self.segs:
 				analysis = self.segs[norm]
 			#mnt
-			elif norm.startswith("ⲙⲛⲧⲁⲧ"):
-				analysis = norm.replace("ⲙⲛⲧⲁⲧ","ⲙⲛⲧ-ⲁⲧ-")
-			elif norm.startswith("ⲙⲛⲧⲣⲉϥ"):
-				analysis = norm.replace("ⲙⲛⲧⲣⲉϥ","ⲙⲛⲧ-ⲣⲉϥ-")
-			elif norm.startswith("ⲙⲛⲧ"):
-				analysis = norm.replace("ⲙⲛⲧ","ⲙⲛⲧ-")  #might overgenerate
+			elif norm.startswith(mnt + "ⲁⲧ") or (norm.startswith(mnt + "ⲁⲑ") and self.dialect=="bohairic"):
+				if self.dialect=="bohairic":
+					analysis = norm.replace(mnt + "ⲁⲧ", mnt + "-ⲁⲧ-").replace(mnt + "ⲁⲑ", mnt + "-ⲁⲑ-")
+				else:
+					analysis = norm.replace(mnt + "ⲁⲧ",mnt+"-ⲁⲧ-")
+			elif norm.startswith(mnt+"ⲣⲉϥ"):
+				analysis = norm.replace(mnt+"ⲣⲉϥ",mnt+"-ⲣⲉϥ-")
+			elif norm.startswith(mnt):
+				analysis = norm.replace(mnt,mnt+"-")  #might overgenerate
 
 			#ref
-			elif norm.startswith("ⲣⲉϥⲣ"):
-				analysis = norm.replace("ⲣⲉϥⲣ","ⲣⲉϥ-ⲣ-")
+			elif norm.startswith("ⲣⲉϥ" + er):
+				analysis = norm.replace("ⲣⲉϥ" + er,"ⲣⲉϥ-"+er+"-")
 			elif norm.startswith("ⲣⲉϥ"):
 				analysis = norm.replace("ⲣⲉϥ","ⲣⲉϥ-")
 
@@ -63,3 +73,14 @@ class MorphAnalyzer:
 			analyzed.append(analysis)
 
 		return "|".join(analyzed)
+
+
+if __name__ == "__main__":
+	norms = open(sys.argv[1]).read().strip().split("\n")
+	analyzer = MorphAnalyzer()
+	for norm in norms:
+		morphs = analyzer.analyze_morph(norm)
+		if "-" in morphs:
+			print(morphs)
+		else:
+			print("")
