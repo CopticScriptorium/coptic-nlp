@@ -49,7 +49,7 @@ def make_nlp_form(access_level, mode):
 				Bound groups should be separated by <b>spaces</b> or <b>underscores</b>.</p>
 				<p>If you need to analyze longer texts or multiple texts automatically, you can log in
 				to the <a href="'''+secure_dest+'''">secure</a> area or use the <a href="api">API</a>. For a login please
-				contact <a href="http://corpling.uis.georgetown.edu/amir/">Amir Zeldes</a>.
+				contact <a href="https://gucorpling.org/amir/">Amir Zeldes</a>.
 				</p>'''
 
 	if mode == "interactive":
@@ -68,8 +68,9 @@ def make_nlp_form(access_level, mode):
 		form = cgi.FieldStorage()
 		processed=""
 		lb = "noline"
+		dialect = "auto"
 		old_tok = False
-		sgml_mode = "sgml"
+		sgml_mode = "pipes" # "sgml"
 		tok_mode = "auto"
 		do_lemma = True
 		do_tag = True
@@ -87,6 +88,7 @@ def make_nlp_form(access_level, mode):
 			data = re.sub(r'\r','',data)
 			data = data.strip()
 			lb = form.getvalue("lb")
+			dialect = form.getvalue("dialect")
 			old_tok = form.getvalue("old_tok") is not None
 			sgml_mode = form.getvalue("sgml_mode")
 			tok_mode = form.getvalue("tok_mode")
@@ -112,13 +114,13 @@ def make_nlp_form(access_level, mode):
 				do_tok = True
 
 			if len(data) > 20000 and access_level != "secure":
-				processed = "Input was too long; demo version limited to 10000 characters"
+					processed = "Input was too long; demo version limited to 10000 characters"
 			else:
 				processed = nlp_coptic(data,lb=lb=="line",parse_only=False,do_tok=do_tok,do_norm=do_norm,do_mwe=do_mwe,
 									   do_tag=do_tag, do_lemma=do_lemma,do_lang=do_lang,do_milestone=do_milestone,
 									   do_parse=do_parse, do_entities=do_entities, sgml_mode=sgml_mode,
 									   tok_mode=tok_mode,old_tokenizer=old_tok,
-									   detokenize=detok, segment_merged=segment_merged)
+									   detokenize=detok, segment_merged=segment_merged, dialect=dialect)
 				processed = processed.strip()
 
 		###
@@ -136,6 +138,9 @@ def make_nlp_form(access_level, mode):
 
 
 		noline_checked = ' checked="checked"' if lb else ""
+		autodialect_checked = ' checked="checked"' if dialect=="auto" else ""
+		sahidic_checked = ' checked="checked"' if dialect=="sahidic" else ""
+		bohairic_checked = ' checked="checked"' if dialect=="bohairic" else ""
 		tok_checked = ' checked="checked"' if do_tok else ""
 		old_checked = ' checked="checked"' if old_tok else ""
 		segment_merged_checked = ' checked="checked"' if segment_merged else ""
@@ -179,6 +184,9 @@ def make_nlp_form(access_level, mode):
 		template = template.replace("**action_dest**", action_dest)
 		template = template.replace("**access_message**", access_message)
 		template = template.replace("**noline_checked**", noline_checked)
+		template = template.replace("**autodialect_checked**", autodialect_checked)
+		template = template.replace("**sahidic_checked**", sahidic_checked)
+		template = template.replace("**bohairic_checked**", bohairic_checked)
 		template = template.replace("**sgml_checked**", sgml_checked)
 		template = template.replace("**old_checked**", old_checked)
 		template = template.replace("**milestone_checked**", milestone_checked)

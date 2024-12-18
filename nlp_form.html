@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>Coptic NLP Service</title>
@@ -10,8 +11,7 @@
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <script>var __adobewebfontsappname__="dreamweaver"</script>
-        <link rel="stylesheet" href="https://use.edgefonts.net/c/dbcb1c/1w;asul,2,WXx:W:n4/l" media="all">
-        <!--<script src="http://use.edgefonts.net/asul:n4:default.js" type="text/javascript"></script>-->
+		<link href="https://fonts.googleapis.com/css?family=Asul:400,700" rel="stylesheet">
     </head>
     <body class="home">
 		<div id="wrapper">
@@ -23,7 +23,14 @@
 				<h2 class="nlp_title">Coptic NLP Service</h2>
 				**access_message**
 				<div>
-				<h3 class="nlp_title">Input:</h3>
+				<h3 class="nlp_title">Dialect:</h3>
+					<input type="radio" name="dialect" value="auto"**autodialect_checked**>Auto-detect	</input>
+					<br/>
+					<input type="radio" name="dialect" value="sahidic"**sahidic_checked**>Sahidic	</input>
+					<br/>
+					<input type="radio" name="dialect" value="bohairic"**bohairic_checked**>Bohairic</input>
+			<br/>
+			<h3 class="nlp_title">Input:</h3>
 					<input type="radio" name="lb" value="line" >My data contains meaningful linebreaks
 						<a href="#" class="tooltip2">
 							<i class="fa fa-info-circle" style="display: inline-block"></i>
@@ -108,7 +115,7 @@
 							</span>
 					</a>
 					</input><br/>
-					<input type="checkbox" id="tok" name="tok" value="tok"**tok_checked**>Tokenize <span style="color: gray; font-size:small"><tt>[stk-2.0.0]</tt></span></input>
+					<input type="checkbox" id="tok" name="tok" value="tok"**tok_checked**>Tokenize <span style="color: gray; font-size:small"><tt>[stk-6.0.0]</tt></span></input>
 					<ul style="padding-left: 20px;">
 						<input type="radio" name="tok_mode" value="auto"**auto_checked**>Automatic</input><br/>
 						<input type="radio" name="tok_mode" value="from_pipes"**pipes_checked**>From pipes in input</input>
@@ -124,7 +131,7 @@
 							</span>
 					</a>
 					</input><br/>
-					<input type="checkbox" id="tag" name="tag" value="tag"**tag_checked**>Tag</input><span style="color: gray; font-size:small"><tt>[marm-3.0.0]</tt></span><br/>
+					<input type="checkbox" id="tag" name="tag" value="tag"**tag_checked**>Tag</input><span style="color: gray; font-size:small"><tt>[flairbert-6.0.0]</tt></span><br/>
 					<input type="checkbox" id="lemma" name="lemma" value="lemma"**lemma_checked**>Lemmatize</input><br/>
 					<input type="checkbox" id="lang" name="lang" value="lang"**lang_checked**>Language of origin</input><br/>
 					<input type="checkbox" id="mwe" name="mwe" value="mwe"**mwe_checked**>MWE recognition
@@ -138,7 +145,7 @@
 							</span>
 					</a>
 					</input><br/>
-					<input type="checkbox" id="parse" name="parse" value="parse"**parse_checked**>Parse</input><br/>
+					<input type="checkbox" id="parse" name="parse" value="parse"**parse_checked**>Parse</input><span style="color: gray; font-size:small"><tt>[diabert-UD2.15]</tt></span><br/>
 					<input type="checkbox" id="entities" name="entities" value="entities"**entities_checked**>Entity recognition
 						<a href="#" class="tooltip2">
 						<i class="fa fa-info-circle" style="display: inline-block"></i>
