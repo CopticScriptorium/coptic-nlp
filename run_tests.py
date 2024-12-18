@@ -9,7 +9,7 @@ data_dir = script_dir + "data" + os.sep
 lib_dir = script_dir + "lib" + os.sep
 bin_dir = script_dir + "bin" + os.sep
 
-from coptic_nlp import nlp_coptic
+from coptic_nlp import nlp_coptic, detect_lang
 from lib.stacked_tokenizer import StackedTokenizer
 
 PY3 = sys.version_info[0] == 3
@@ -81,12 +81,15 @@ class CopticTest:
 
 			segment_merged = False
 
+			dialect = detect_lang(all_inputs)
+
 			nlp_resp = nlp_coptic(all_inputs, do_tok=True,
 							   do_norm=norm, do_mwe=multiword, do_tag=tag, do_lemma=lemma,
 							   do_lang=etym, do_milestone=unary, do_parse=parse, sgml_mode=sgml_mode,
-							   tok_mode=tok_mode, preloaded=None,#{"stk":stk},
+							   tok_mode=tok_mode, preloaded=None,
 							   detokenize=detokenize,
-							   segment_merged=segment_merged)
+							   segment_merged=segment_merged,
+							   dialect=dialect)
 
 			for tup in self.tests[test]:
 				_, expected, comment = tup
