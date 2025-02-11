@@ -7,6 +7,6 @@ depedit>=4.0.0.0
 xrenner>=2.2.1.0
 gensim==4.3.2
 torch==2.2.1
-transformers==4.38.2
+transformers==4.48.0
 flair==0.14.0
 diaparser==1.1.3
